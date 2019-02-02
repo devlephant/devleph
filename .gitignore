@@ -6,3 +6,4 @@
 *.htm
 tests/cdk_api.php
 tests/csdk.php
+resources/
