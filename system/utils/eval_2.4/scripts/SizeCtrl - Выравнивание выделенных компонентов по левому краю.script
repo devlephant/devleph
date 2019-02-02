@@ -1,0 +1,11 @@
+// Выравнивание выделенных компонентов по левому краю
+global $_sc;
+$x = array();
+$t = $_sc->targets_ex;
+foreach($t as $obj)
+	$x[] = $obj->x;
+$min = min($x);
+foreach($t as $obj)
+	$obj->x = $min;
+$_sc->update();
+unset($x, $t, $min, $obj);

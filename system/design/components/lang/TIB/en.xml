@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<messages>
+  
+    <i>
+        <n>TIB_Caption</n>
+        <v>TIB - Image Button</v>
+    </i>
+    
+    <i>
+        <n>Auto State</n>
+        <v>Auto State</v>
+    </i>
+    
+    <i>
+        <n>State</n>
+        <v>State</v>
+    </i>
+    
+</messages>

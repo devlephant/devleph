@@ -1,0 +1,11 @@
+
+<?
+return array(
+'GROUP'   => 'Текстовые поля',
+'CLASS'   => basenameNoExt(__FILE__),
+'CAPTION' => t('TMemo_Caption'),
+'SORT'    => 89,
+'NAME'    => 'memo',
+'W' => 20,
+'H' => 15,
+);

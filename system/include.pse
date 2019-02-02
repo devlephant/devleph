@@ -1,0 +1,252 @@
+<?
+    /*
+    This product includes PHP software, freely available from <http://www.php.net/software/>
+    */
+
+if (!defined('IS_APPLICATION_START')){
+	
+	if( isset($_PARAMS[2]) ){
+		if (fileExt($_PARAMS[2])=='dvsexe') {
+			define_ex('EMULATE_DVS_EXE', true);    
+		} else {
+			define_ex('EMULATE_DVS_EXE', false); //V-touch.skf
+		}
+    } else {
+		define_ex('EMULATE_DVS_EXE', false);
+	}
+	define('DS_DEBUG_MODE', in_array('-debug', $_PARAMS, 0));
+
+	//lbpl('syned240.bpl');
+  
+	define('APP_DESIGN_MODE',!EMULATE_DVS_EXE);
+    $GLOBALS['APP_DESIGN_MODE'] = !EMULATE_DVS_EXE;
+    
+    global $APPLICATION;
+    
+    //$APPLICATION->showMainForm = true;
+    if (EMULATE_DVS_EXE){
+        set_include_path(DOC_ROOT2);
+        ini_set('include_path', DOC_ROOT2);
+        define('SYSTEM_DIR',DOC_ROOT2);
+        
+        global $__config;
+        $__config['config']['debug']['enabled'] = true;
+        
+    } else {
+        
+        set_include_path(DOC_ROOT);
+        ini_set('include_path', DOC_ROOT);
+        define('SYSTEM_DIR',DOC_ROOT);
+    }
+	
+    require 'start.php';
+
+
+    if (!EMULATE_DVS_EXE){
+		$APPLICATION->title = 'Devel Studio 2018';
+		
+        $fmLogoin = TForm::loadFromFile('dfm\\uLogoin');
+        c("fmLogoin->label9")->caption = "Devel Studio 2018 v".DV_VERSION. " - ".DV_PREFIX;
+        $fmLogoin->show();
+		$GLOBALS['APPLICATION']->processMessages();
+        $fmMain = TForm::loadFromFile('dfm\uMain',true);
+		//put here
+		//gui_form_fixdwm( $fmMain->handle );
+        //$fmMain->position = 'poScreenCenter';
+        //$fmMain->windowState = 'wsMaximized';
+        $GLOBALS['fmMain'] =& $fmMain;
+        setMainForm($fmMain);
+        $APPLICATION->mainFormOnTaskBar = true;
+		$fmMain->hide();
+
+    $GLOBALS['APPLICATION']->processMessages();
+    
+    $fmEdit = TForm::loadFromFile('dfm\\uEdit');
+
+    c_Alias('fmMain->listObjs','fmObjectInspector->list');
+    c_Alias('fmMain','fmComponents');
+    c_Alias('fmMain','fmObjectInspector');
+    c_Alias('fmMain','fmPropsAndEvents');
+	global $fmComponents, $fmPropEvent;
+    $fmComponents = TForm::loadFromFile('dfm\\uComponents',true);
+    $fmPropEvent  = TForm::loadFromFile('dfm\\uPropsAndEvents', true);
+
+    }
+    
+    if (!EMULATE_DVS_EXE){ 
+        // Editor dialogs
+        TForm::loadFromFile('dfm\uedt_Text', true);
+		TForm::loadFromFile('dfm\uTIBEditor', true);
+        TForm::loadFromFile('dfm\uedt_EventTypes');
+        TForm::loadFromFile('dfm\uInputText');
+    
+        TForm::loadFromFile('dfm\uFindDialog',true);
+		TForm::loadFromFile('dfm\uRunDebug',true);
+        TForm::loadFromFile('dfm\uInspect',true);
+	
+        TForm::loadFromFile('dfm\uPHPEditor', true);
+        TForm::loadFromFile('dfm\uSynSettings', true);
+        TForm::loadFromFile('dfm\uFormList');
+        TForm::loadFromFile('dfm\uImageView');
+        TForm::loadFromFile('dfm\uNewProject',true);
+        TForm::loadFromFile('dfm\uMenuEditor',true);
+
+        
+        TForm::loadFromFile('dfm\uFormProperties');
+        TForm::loadFromFile('dfm\uPHPModules');
+        TForm::loadFromFile('dfm\uBuildProgram'); 
+		c("fmBuildProgram->im_icon")->loadFromFile(DOC_ROOT . 'blanks/project.ico');
+        TForm::loadFromFile('dfm\uBuildCompleted',true);
+        TForm::loadFromFile('dfm\uOptionBuild',true);
+         
+        TForm::loadFromFile('dfm\uOptions', true);
+        TForm::loadFromFile('dfm\uSizesPosition');
+        
+        TForm::loadFromFile('dfm\uEasySelectDialog', true);
+
+        TForm::loadFromFile('dfm\uFindError', true);
+        TForm::loadFromFile('dfm\uAbout',true);
+		
+		global $fmObjInspect;
+		$fmObjInspect = TForm::loadFromFile('dfm\uObjectInspector', true);
+    }
+    
+    if (!EMULATE_DVS_EXE){
+    
+	
+        $GLOBALS['APPLICATION']->processMessages();
+    
+
+        include 'scripts/consts.php';
+        include 'scripts/images.php';
+    
+        include 'scripts/actPanel.php';
+        include 'scripts/modules.php';
+        include 'scripts/debug.php';
+
+        $GLOBALS['APPLICATION']->processMessages();
+    }
+    
+    require 'design/init.php';
+    
+    if (!EMULATE_DVS_EXE){  
+        
+        global $myProperties;
+        $myProperties->generateAllClasses();
+    
+        require 'scripts/fmMain.php';
+        include 'scripts/hotkeys.php';
+    
+        $GLOBALS['APPLICATION']->processMessages();
+        
+        loader::model('actions');
+        Localization::localApplication();
+        myProject::openLsProject( true );
+		
+		if( DS_DEBUG_MODE )
+			gui_message('Loading time: '.(microtime(1)-$tt));
+        $fmLogoin->free();
+        
+        evfmMain::loadMainConfig();
+		
+		c('fmMain->panelPropEvent')->onChange = 'myProperties::fixSplitterMoved';
+		$fmMain->onResize = 'myProperties::fixSplitterMoved';
+		//$fmMain->show();
+		myProperties::fixSplitterMoved(0);
+    }
+     
+    define('IS_APPLICATION_START',true);
+    
+    if (!EMULATE_DVS_EXE){  
+     
+        global $_PARAMS, $fmMain;
+		
+		$__blaparam =  isset($_PARAMS[2])? $_PARAMS[2]: '';
+        if ($GLOBALS['dsg_cfg']->newProjectDialog->startup && !file_exists($__blaparam)) {
+			$GLOBALS['__newproject_close'] = true;
+            myProject::newProjectDialog( true ); 
+		} else {
+			$GLOBALS['__newproject_close'] = false;
+		}
+		global $fmMain, $_sc, $myInspect;
+	$fmEdit = c('fmEdit');
+	
+		$fmMain->drop = new TDropFilesTarget($fmMain);
+		$fmMain->drop->enabled = 1;
+		$fmMain->drop->OnDropFiles = function($self, $files, $x, $y)use($fmEdit){
+			global $myProperties, $_sc, $myInspect;
+			$files = str_replace('\\', '/', $files);
+			preg_match_all('/(\w.+?)\n/i', $files, $re);
+			$n = 1;
+			$gs = $_sc->gridSize;
+			$_sc->clearTargets();
+			foreach($re[1] as $file){
+				if( in_array( strtolower(fileExt($file)), array('bmp', 'gif', 'jpeg', 'jpg', 'wmf', 'emf', 'ico', 'png') ) ){
+				$size = @getimagesize($file);
+				}elseif( in_array(strtolower(fileExt($file)), array('dvs', 'msppr', 'dfm', 'upr')) ){
+				$filename = replaceSl($file);
+				$ext = fileExt($filename);
+				if (!CApi::doEvent('onOpenProject',array('filename'=>$filename,'ext'=>$ext))) return;
+				switch ($ext){
+					case 'dvs':
+						myProject::openFromDVS($filename);
+						break;
+					case 'msppr':
+						myProject::open($filename);
+						break;
+					case 'upr':
+						myProject::open($filename);
+						break;
+					case 'dfm':
+						myProject::openAsDFM($filename);
+						break;
+				}
+				if (!CApi::doEvent('onOpenProjectAfter',array('filename'=>$filename,'ext'=>$ext))) return;
+				}
+				if($size){
+					$img = new TMImage($fmEdit);
+					$img->parent = $fmEdit;
+					$img->loadFromFile($file);
+					do{$name = 'image'.$n++;}while($fmEdit->findComponent($name));
+					$img->name = $name;
+					$img->x = $d;
+					$img->y = $d;
+					$img->w = round($img->w/$gs)*$gs;
+					$img->h = round($img->h/$gs)*$gs;
+					$_sc->addTarget($img);
+					$myInspect->addItem($img);
+					$d += $_sc->gridSize;
+				}
+			}
+			$myInspect->selectObject($img);
+			$panel = $myProperties->panels[$img->class_name]['PANEL'];
+			$panel->show();
+			$panel->toFront();
+			$myProperties->setProps();
+			myInspect::genList($img);
+			$myProperties->last_class = rtii_class($img->self);
+		};
+	    $fmMain->show();
+		global $dsg_cfg;
+			$fmMain->left  = $dsg_cfg->fmMain->x >= -120? $dsg_cfg->fmMain->x: -120;
+			$fmMain->top	= $dsg_cfg->fmMain->y >= -8? $dsg_cfg->fmMain->y: -8;
+    }
+    
+    
+    
+    if (EMULATE_DVS_EXE){  
+        
+        set_include_path(DOC_ROOT);
+        ini_set('include_path', DOC_ROOT);
+        chdir(DOC_ROOT);
+        
+		
+        $util = evalProject::open( str_ireplace('.dvsexe','.dvs', $_PARAMS[2]) );
+		
+        setMainForm(current($util->forms));
+        current($util->forms)->show();
+        $APPLICATION->mainFormOnTaskBar = true;        
+    }
+} else {
+    //halt();
+}

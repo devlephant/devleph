@@ -1,0 +1,56 @@
+global $fmMain, $_sc, $myInspect;
+$fmEdit = c('fmEdit');
+if(!$fmMain->drop){
+	$fmMain->drop = new TDropFilesTarget($fmMain);
+	$fmMain->drop->enabled = 1;
+	$fmMain->drop->OnDropFiles = function($self, $files, $x, $y)use($fmEdit){
+		global $myProperties, $_sc, $myInspect;
+		$files = str_replace('\\', '/', $files);
+		preg_match_all('/(\w.+?)\n/i', $files, $re);
+		$n = 1;
+		$gs = $_sc->gridSize;
+		$_sc->clearTargets();
+		foreach($re[1] as $file){
+			if( in_array( strtolower(fileExt($file)), array('bmp', 'gif', 'jpeg', 'jpg', 'wmf', 'emf', 'ico', 'png') ) ){
+			$size = @getimagesize($file);
+			}elseif( in_array(strtolower(fileExt($file)), array('dvs', 'msppr', 'dfm')) ){
+			$filename = replaceSl($file);
+			$ext = fileExt($filename);
+            if (!CApi::doEvent('onOpenProject',array('filename'=>$filename,'ext'=>$ext))) return;
+            switch ($ext){
+                case 'dvs':
+                    myProject::openFromDVS($filename);
+                    break;
+                case 'msppr':
+                    myProject::open($filename);
+                    break;
+                case 'dfm':
+                    myProject::openAsDFM($filename);
+                    break;
+            }
+            if (!CApi::doEvent('onOpenProjectAfter',array('filename'=>$filename,'ext'=>$ext))) return;
+			}
+			if($size){
+				$img = new TMImage($fmEdit);
+				$img->parent = $fmEdit;
+				$img->loadFromFile($file);
+				do{$name = 'image'.$n++;}while($fmEdit->findComponent($name));
+				$img->name = $name;
+				$img->x = $d;
+				$img->y = $d;
+				$img->w = round($img->w/$gs)*$gs;
+				$img->h = round($img->h/$gs)*$gs;
+				$_sc->addTarget($img);
+				$myInspect->addItem($img);
+				$d += $_sc->gridSize;
+			}
+		}
+		$myInspect->selectObject($img);
+		$panel = $myProperties->panels[$img->class_name]['PANEL'];
+		$panel->show();
+		$panel->toFront();
+		$myProperties->setProps();
+		myInspect::genList($img);
+		$myProperties->last_class = rtii_class($img->self);
+	};
+}

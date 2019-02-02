@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<messages>
+  
+    <i>
+        <n>TSplitter_Caption</n>
+        <v>Разделитель</v>
+    </i>
+
+    <i>
+        <n>Minimal size</n>
+        <v>Минимальный размер</v>
+    </i>
+
+    <i>
+        <n>Bevel Show</n>
+        <v>Показывать рамку</v>
+    </i>
+
+    <i>
+        <n>Auto Snap</n>
+        <v>Авто прилипание</v>
+    </i>
+
+
+    <i>
+        <n>Resize Style</n>
+        <v>Стиль изменения размера</v>
+    </i>
+    
+</messages>

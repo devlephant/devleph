@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<messages>
+  
+    <i>
+        <n>my_name</n>
+        <v>My name</v>
+    </i>
+        
+    <i>
+        <n>my_lastname</n>
+        <v>Мy Lastname</v>
+    </i>
+    
+    <i>
+        <n>test_message</n>
+        <v>Test message</v>
+    </i>
+    
+    <i>
+        <n>test_message_params</n>
+        <v>Test message with params</v>
+    </i>
+ 
+    <i>
+        <n>Test message - %s</n>
+        <v>Test message - %s</v>
+    </i>
+    
+</messages>

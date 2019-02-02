@@ -1,0 +1,15 @@
+a:1:{s:5:"form1";a:2:{s:8:"--fmedit";a:1:{s:8:"oncreate";s:230:"global $pwindow;
+$pwindow = new DOTNET("MediaPlayer", "MediaPlayer.MediaPlayer");
+$pwindow->parent = c("panel1")->handle;
+$pwindow->x = 0;
+$pwindow->y = 0;
+$pwindow->width = c("panel1")->w;
+$pwindow->height = c("panel1")->h;";}s:5:"openm";a:1:{s:7:"onclick";s:149:"global $pwindow;
+
+$opendlg = new TOpenDialog;
+$x = $opendlg->execute();
+
+if($x){
+$filename = $opendlg->filename;
+$pwindow->url = $filename;
+}";}}}

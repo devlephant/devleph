@@ -1,0 +1,8 @@
+*.in
+*.txt
+*.rar
+*.zip
+*.html
+*.htm
+tests/cdk_api.php
+tests/csdk.php

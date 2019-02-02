@@ -1,0 +1,5 @@
+<?
+$result = array();
+
+return $result;
+?>

@@ -1,0 +1,7 @@
+// Смена цвета неактивных точек редактирования
+global $_sc;
+$dlg = new TColorDialog();
+if($dlg->execute())
+	$_sc->BtnColorDisabled = $dlg->color;
+free($dlg);
+unset($dlg);

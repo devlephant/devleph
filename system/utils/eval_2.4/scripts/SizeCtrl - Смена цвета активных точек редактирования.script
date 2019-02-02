@@ -1,0 +1,7 @@
+// Смена цвета активных точек редактирования
+global $_sc;
+$dlg = new TColorDialog();
+if($dlg->execute())
+	$_sc->BtnColor = $dlg->color;
+free($dlg);
+unset($dlg);

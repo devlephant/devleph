@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<messages>
+  
+    <i>
+        <n>TLinkLabel_Caption</n>
+        <v>Ссылка</v>
+    </i>
+
+    <i>
+        <n>Link</n>
+        <v>Ссылка</v>
+    </i>
+
+    <i>
+        <n>Hover Color</n>
+        <v>Цвет наведения</v>
+    </i>
+
+    <i>
+        <n>Hover Size</n>
+        <v>Размер наведения</v>
+    </i>
+
+    <i>
+        <n>Hover Style</n>
+        <v>Стиль наведения</v>
+    </i>
+    
+</messages>

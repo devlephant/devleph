@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<messages>
+  
+    <i>
+        <n>TSampleDialog_Caption</n>
+        <v>Простой Диалог</v>
+    </i>
+    <i>
+        <n>Button Focus</n>
+        <v>Кнопка фокуса</v>
+    </i>
+    <i>
+        <n>Buttons Width</n>
+        <v>Ширина кнопок</v>
+    </i>
+    <i>
+        <n>Buttons Height</n>
+        <v>Высота кнопок</v>
+    </i>
+    <i>
+        <n>Buttons</n>
+        <v>Кнопки</v>
+    </i>
+    <i>
+        <n>Result as text</n>
+        <v>Результат как текст</v>
+    </i>
+    <i>
+        <n>Use Hot Key</n>
+        <v>Горячие клавиши</v>
+    </i>
+    <i>
+        <n>Button Font Size</n>
+        <v>Размер шрифта кнопок</v>
+    </i>
+    <i>
+        <n>Button Font Color</n>
+        <v>Цвет шрифта кнопок</v>
+    </i>
+    
+    
+</messages>

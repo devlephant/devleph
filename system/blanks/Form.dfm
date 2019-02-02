@@ -1,0 +1,37 @@
+object fmEdit: TForm
+  Align = alCustom
+  AlphaBlend = False
+  AlphaBlendValue = 255
+  AutoSize = False
+  AutoScroll = True
+  BorderIcons = []
+  BorderStyle = bsSizeable
+  BorderWidth = 0
+  Cursor = crDefault
+  Constraints.MinHeight = 0
+  Constraints.MinWidth = 0
+  Constraints.MaxHeight = 0
+  Constraints.MaxWidth = 0
+  Align = alNone
+  BorderStyle = bsSizeable
+  Caption = 'New Form'
+  ClientHeight = 280
+  ClientWidth = 460
+  Color = $00FFFFFF
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Segoe UI'
+  Font.Size = 8
+  Font.Quality = fqClearTypeNatural
+  Font.Style = []
+  FormStyle = fsStayOnTop
+  OldCreateOrder = False
+  Visible = True
+  PixelsPerInch = 96
+  TextHeight = 13
+  ScreenSnap = False
+  SnapBuffer = 10
+  TransparentColor = False
+  TransparentColorValue = clBlack
+end

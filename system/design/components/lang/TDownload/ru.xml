@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<messages>
+  
+    <i>
+        <n>oncomplete</n>
+        <v>Завершение</v>
+    </i>
+        
+    <i>
+        <n>onerror</n>
+        <v>Ошибка</v>
+    </i>
+    
+    <i>
+        <n>ondownload</n>
+        <v>Загрузка</v>
+    </i>
+    
+    <i>
+        <n>On Complete</n>
+        <v>Завершение</v>
+    </i>
+        
+    <i>
+        <n>On Error</n>
+        <v>Ошибка</v>
+    </i>
+    
+    <i>
+        <n>On Download</n>
+        <v>Загрузка</v>
+    </i>
+    
+</messages>

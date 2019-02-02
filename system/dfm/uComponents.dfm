@@ -1,0 +1,68 @@
+object fmComponents: TfmComponents
+  Left = 687
+  Top = 131
+  Width = 190
+  Height = 546
+  AutoScroll = True
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSizeToolWin
+  Caption = '{components}'
+  Color = clGray
+  DragKind = dkDock
+  DragMode = dmAutomatic
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Segoe UI'
+  Font.Size = 8
+  Font.Quality = fqClearTypeNatural
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDefault
+  ScreenSnap = True
+  PixelsPerInch = 96
+  TextHeight = 13
+  object list: TCategoryButtons
+    Left = 0
+    Top = 21
+    Width = 182
+    Height = 478
+    Align = alClient
+    ButtonFlow = cbfVertical
+    ButtonHeight = 26
+    ButtonWidth = 32
+    ButtonOptions = [boFullSize, boGradientFill, boShowCaptions, boBoldCaptions, boUsePlusMinus, boCaptionOnlyBorder]
+    Images = fmMain.MainImages24
+    BackgroundGradientDirection = gdVertical
+    Categories = <>
+    RegularButtonColor = 17119285
+    SelectedButtonColor = 12079702
+    ShowHint = True
+    TabOrder = 0
+  end
+  object c_type: TComboBox
+    Left = 0
+    Top = 0
+    Width = 182
+    Height = 21
+    Align = alTop
+    Style = csDropDownList
+    Color = clYellow
+    ItemHeight = 13
+    ItemIndex = 0
+    TabOrder = 1
+    Text = '{Icons + text}'
+    Items.Strings = (
+      '{Icons + text}'
+      '{Small Icons}')
+  end
+  object c_search: TEdit
+    Left = 0
+    Top = 22
+    Width = 182
+    Height = 20
+    Align = alTop
+    Color = clWhite
+    Text = ''
+  end
+end

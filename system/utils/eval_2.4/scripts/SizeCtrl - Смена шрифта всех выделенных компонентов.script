@@ -1,0 +1,8 @@
+// Смена шрифта всех выделенных компонентов
+global $_sc;
+$dlg = new TFontDialog();
+if($dlg->execute())
+	foreach($_sc->targets_ex as $obj)
+		$obj->font->assign($dlg->font);
+free($dlg);
+unset($dlg, $obj);

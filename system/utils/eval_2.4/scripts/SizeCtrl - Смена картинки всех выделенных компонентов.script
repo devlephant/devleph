@@ -1,0 +1,11 @@
+// Смена картинки всех выделенных компонентов
+global $_sc;
+$dlg = new TOpenDialog();
+if($dlg->execute()){
+	$file = $dlg->fileName;
+	foreach($_sc->targets_ex as $obj)
+		if(method_exists($obj->picture, 'loadAnyFile'))
+			$obj->picture->loadAnyFile($file);
+}
+free($dlg);
+unset($dlg, $file, $obj);

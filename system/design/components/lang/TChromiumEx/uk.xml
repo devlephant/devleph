@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<messages>
+  
+    <i>
+        <n>TChromium_Caption</n>
+        <v>Chromium</v>
+    </i>
+    
+    <i>
+        <n>On Before Browse</n>
+        <v>Перед переходом на URL</v>
+    </i>
+    
+    <i>
+        <n>On Before Popup</n>
+        <v>Відкривання всплавающіх вікон</v>
+    </i>
+    
+    <i>
+        <n>onbeforebrowse</n>
+        <v>Перед переходом по URL</v>
+    </i>
+    
+    <i>
+        <n>onbeforepopup</n>
+        <v>Відкривання всплавающіх вікон</v>
+    </i>
+    
+    <i>
+        <n>On Before Menu</n>
+        <v>Відкривання контекстного меню</v>
+    </i>
+    
+    <i>
+        <n>onbeforemenu</n>
+        <v>Відкривання контекстного меню</v>
+    </i>
+    
+    
+    <i>
+        <n>On Auth Credentials</n>
+        <v>Питання авторизации</v>
+    </i>
+    
+    <i>
+        <n>onauthcredentials</n>
+        <v>Питання авторизации</v>
+    </i>
+    
+    <i>
+        <n>On Get Download Handler</n>
+        <v>Загрузка файла</v>
+    </i>
+    
+    <i>
+        <n>ongetdownloadhandler</n>
+        <v>Загрузка файла</v>
+    </i>
+    
+    <i>
+        <n>On Console Message</n>
+        <v>Консольне повідомлення</v>
+    </i>
+    
+    <i>
+        <n>onconsolemessage</n>
+        <v>Консольное повідомлення</v>
+    </i>
+    
+    <i>
+        <n>On Load Start</n>
+        <v>Початок загрузки</v>
+    </i>
+    
+    <i>
+        <n>onloadstart</n>
+        <v>Початок загрузки</v>
+    </i>
+    
+    <i>
+        <n>On Load End</n>
+        <v>Кінець загрузки</v>
+    </i>
+    
+    <i>
+        <n>onloadend</n>
+        <v>Кінець загрузки</v>
+    </i>
+    
+    <i>
+        <n>On Load Error</n>
+        <v>Ошибка загрузки</v>
+    </i>
+    
+    <i>
+        <n>onloaderror</n>
+        <v>Ошибка загрузки</v>
+    </i>
+    
+    <i>
+        <n>On Status Message</n>
+        <v>Статусне повідомлення</v>
+    </i>
+    
+    <i>
+        <n>onstatusmessage</n>
+        <v>Статусне повідомлення</v>
+    </i>
+    
+    <i>
+        <n>On Address Change</n>
+        <v>Заміна адреса</v>
+    </i>
+    
+    <i>
+        <n>onaddresschange</n>
+        <v>Зміна адреса</v>
+    </i>
+    
+    <i>
+        <n>On Title Change</n>
+        <v>Зміна Заголовка</v>
+    </i>
+    
+    <i>
+        <n>ontitlechange</n>
+        <v>Зміна Заголовка</v>
+    </i>
+    
+    <i>
+        <n>On Chromium Lib Load</n>
+        <v>Загрузка Chromium бібліотеки</v>
+    </i>
+    
+    <i>
+        <n>onchromiumlibload</n>
+        <v>Загрузка Chromium бібліотеки</v>
+    </i>
+    
+    <i>
+        <n>On Tooltip</n>
+        <v>On Tooltip</v>
+    </i>
+    
+    
+</messages>

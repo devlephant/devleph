@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<messages>
+  
+    <i>
+        <n>TFormProtect_Caption</n>
+        <v>Защита Формы</v>
+    </i>
+    <i>
+        <n>Auth Form</n>
+        <v>Форма авторизации</v>
+    </i>
+	<i>
+        <n>Error Form</n>
+        <v>Форма ошибки</v>
+    </i>
+    <i>
+        <n>Active</n>
+        <v>Активность</v>
+    </i>
+    <i>
+        <n>Key</n>
+        <v>Ключ</v>
+    </i>
+    <i>
+        <n>Input Key</n>
+        <v>Компонент для ввода ключа</v>
+    </i>
+    <i>
+        <n>Trial Time (sec)</n>
+        <v>Тестовый период (сек)</v>
+    </i> 
+	<i>
+        <n>On Error</n>
+        <v>Ошибка</v>
+    </i>    
+    
+</messages>

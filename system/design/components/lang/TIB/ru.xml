@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<messages>
+  
+    <i>
+        <n>TIB_Caption</n>
+        <v>TIB - Кнопка картинка</v>
+    </i>
+    
+    <i>
+        <n>Auto State</n>
+        <v>Авто-статус</v>
+    </i>
+    
+    <i>
+        <n>State</n>
+        <v>Статус</v>
+    </i>
+    
+</messages>

@@ -1,0 +1,11 @@
+// Выравнивание выделенных компонентов по правому краю
+global $_sc;
+$x = array();
+$t = $_sc->targets_ex;
+foreach($t as $obj)
+	$x[] = $obj->x + $obj->w;
+$max = max($x);
+foreach($t as $obj)
+	$obj->x = $max - $obj->w;
+$_sc->update();
+unset($x, $t, $max, $obj);

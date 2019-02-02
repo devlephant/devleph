@@ -1,0 +1,7 @@
+$eventList = c('fmPropsAndEvents->eventList');
+if($eventList->itemIndex>-1){
+ global $myEvents;
+ eventEngine::setForm();
+ $name = $myEvents->selObj instanceof TForm ? '--fmedit' : $myEvents->selObj->name;
+ $self->text = eventEngine::getEvent($name, $eventList->events[$eventList->itemIndex]);
+}

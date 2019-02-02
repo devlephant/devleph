@@ -1,0 +1,8 @@
+<?
+
+$m['Open ini file'] = 'Â³äêðèòòÿ ³í³ ôàéëó';
+$m['To open ini file'] = 'Â³äêðèòè ³í³ ôàéë';
+$m['Path to ini file'] = 'Ïóòü äî ³í³ ôàéëó';
+$m['To open ini file from %pr1%'] = 'Â³äêðèòè ³í³ ç %pr1%';
+$m['gr_ini'] = '²í³ ôàéëè';
+$GLOBALS['__M'] =& $m;

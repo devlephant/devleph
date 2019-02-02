@@ -1,0 +1,292 @@
+<?
+$m['enc_chng_dg'] = 'Warning, the code can retire! Save it before changing the encoding.
+Changing the encoding again wouldn\'t fix anything!
+Convert encoding to %s?';
+$m['change encode'] = 'Change Encoding';
+$m['gr_NXTools'] = 'NextComponents\'s Tools';
+$m['TSColorDialog_Caption'] = 'Color Dialog';
+$m['gr_Alpha Dialogs'] = 'AC Dialogs';
+$m['TTransparentPanel_Caption'] = 'Transparent Panel';
+$m['Are you shure to open "%s" ?'] = 'Are you sure to open "%s" ?';
+$m['apr_style'] = 'Appearance Style';
+$m['imset_editor']	= 'Imageset Editor';
+$m['delete_image']	= 'Delete Image';
+$m['clear_image']	= 'Clear Image';
+$m['replace_image'] = 'Replace Image';
+$m['tib_add']	= 'Add Image';
+$m['tib_add1']	= 'Add Some Images';
+$m['tib_place_status'] = 'Install State';
+$m['tib_clear_status'] = 'Remove State';
+$m['mov_up'] = 'Move Up';
+$m['mov_do'] = 'Move Down';
+$m['img_cnt_1']  = 'Image';
+$m['img_cnt_234']= 'Images';
+$m['img_cnt_5_0']= 'Images';
+$m['build_notify_ua'] = '				Warning
+
+  Programs, compiled on DevelStudio, required a MSVC++ package to be installed
+	
+  https://www.microsoft.com/en-us/download/details.aspx?id=30679';
+$m['desns_sc'] = 'Designers:';
+$m['tesrs_p'] = 'Testers:';
+$m['devs_p'] = 'Developers:';
+$m['new_form'] = 'Create Form';
+$m['to_clone'] = 'Clone';
+$m['fp__toleft_move'] = 'Move Left';
+$m['fp__toright_move'] = 'Move Right';
+$m['Up_inf'] = "To update the studio skin, please reload the studio.\nRemember this function is optional and now in testing, so please, don't cry about the quality!";
+$m['gr_dev_tools'] = 'Developer Tools';
+$m['ds_on_exit'] = "You changed the project.\nAre you want to save \nit before closing?";
+$m['iconv'] = 'Encoding';
+$m['select all'] = 'Select All';
+$m['TArchiver_Caption'] = 'Archive';
+$m['TSpoiler_Caption'] = 'Spoiler';
+$m['TMonthCalendar_Caption'] = 'Month Calendar';
+$m['NoneColorColor'] = 'None Color Color';
+$m['DefaultColorColor'] = 'Default Color Color';
+$m['PenWidth'] = 'Pen Width';
+$m['Allow_All_Up_'] = 'Allow Buttons Up';
+$m['PenStyle'] = 'Pen Style';
+$m['PenColor'] = 'Pen Color';
+$m['DockSite'] = 'Dock Site';
+$m['ShowHint'] = $m['Show Hint'] = $m['Show hint'] = 'Show Hint';
+$m['PixelsPerInch'] = 'Pixels Per Inch';
+$m['Scale for pixels'] = 'Scale For Pixels';
+$m['DragKind'] = 'Drag Mode';
+$m['DragMode'] = 'Drag Kind';
+$m['Ctl3D'] = '3D Style';
+$m['Eval_Caption'] = 'Execute Code';
+$m['on_left_side'] = 'Left';
+$m['on_right_side'] = 'Right';
+$m['on_top_side'] = 'Top';
+$m['on_bottom_side'] = 'Bottom';
+$m['TMImage_Caption'] = 'Mosaic Image';
+$m['TStringGridMod_Caption'] = 'Modified String Table';
+$m['TUpDown_Caption'] = 'Arrows';
+$m['TCategoryButtons_Caption'] = 'Category Buttons List';
+$m['No_VS'] = 'No visual object';
+$m['Run code'] = 'Execute code';
+$m['Console'] = 'Console';
+$m['Execute code'] = 'Execute code';
+$m['file'] = 'File';
+$m['edit'] = 'Edit';
+$m['project'] = 'Project';
+$m['ittools'] = 'Instruments';
+$m['service'] = 'Service';
+$m['utils'] = 'Utils';
+$m['help'] = 'Help';
+$m['Show in Editor'] = 'Take a look in Editor';
+$m['new'] = 'New';
+$m['open'] = 'Open';
+$m['save'] = 'Save';
+$m['view'] = 'View';
+$m['save_as'] = 'Save as...';
+$m['save_as_exe'] = 'Save as executable';
+$m['last_projects'] = 'Reopen';
+$m['exit'] = 'Exit';
+$m['upx_None'] = 'None';
+$m['gr_3D'] = 'Game Engines';
+$m['gr_Бары'] = 'Bars';
+$m['gr_Контейнеры'] = 'Containers';
+$m['gr_Медиа'] = 'Multimedia';
+$m['gr_Текст'] = 'Text';
+$m['gr_Списки'] = 'Lists';
+$m['gr_Фигуры'] = 'Shapes';
+$m['gr_Программа'] = 'Program';
+$m['gr_Текстовые поля'] = 'Text Fields';
+$m['gr_Функции'] = 'Functions';
+$m['gr_Кнопки'] = 'Buttons';
+$m['gr_gcontrols'] = 'Control Elements';
+$m['components'] = 'Components';
+$m['TSBC_'] = 'Styled Button';
+$m['TSynEdit'] = 'Syntax Editor';
+$m['Flat_Button'] = 'Flat Button';
+$m['TUIButton'] = 'UI Button';
+$m['ImageButton'] = 'Image Button';
+$m['Multi_Button'] = 'Multi Button';
+$m['TClicker_Caption'] = 'Clicker';
+$m['TServer'] = 'Server';
+$m['TListView'] = 'List View';
+$m['TColor'] = 'Color Selector';
+$m['gr_main'] = 'Main';
+$m['gr_Buttons'] = 'Buttons';
+$m['gr_additional'] = 'Additional';
+$m['gr_editor'] = 'Editor';
+$m['gr_system'] = 'System';
+$m['gr_dialogs'] = 'Dialogs';
+$m['gr_multimedia'] = 'Multimedia';
+$m['gr_web_services'] = 'Web Services';
+$m['TButton_Caption'] = 'Button';
+$m['TSpeedButton_Caption'] = 'Speed Button';
+$m['TBitBtn_Caption'] = 'Button';
+$m['TRadioButton_Caption'] = 'Radio Button';
+$m['TSizeCtrl_Caption'] = 'Size control';
+$m['TSplitter_Caption'] = 'Splitter';
+$m['ColorBox'] = 'Drop-Down ColorBox';
+$m['TData_caption'] = 'Date';
+$m['TMarqueeLabel_Caption'] = 'Marquee label';
+$m['TNextInspector'] = 'NXInspectors List';
+$m['TMyPopup_Caption'] = 'My Popup';
+$m['TDropFiles_Caption'] = 'Drop files';
+$m['TSock'] = 'Socket';
+$m['TChromium_Caption'] = 'Chromium Browser';
+$m['VKAPI'] = 'VK API';
+$m['TDirDialog_Caption'] = 'Directory Dialog';
+$m['TFindDialog_Caption'] = 'Find Dialog';
+$m['TSampleDialog_Caption'] = 'Sample Dialog';
+$m['TReplaceDialog_Caption'] = 'Replace Dialog';
+$m['TLinkLabel_Caption'] = 'Link';
+$m['GoogleVoice'] = 'Google Voice';
+$m['TVideoBox'] = 'Video';
+$m['TTime_Caption'] = 'Time';
+$m['TSkype'] = 'Skype';
+$m['ProgressBarEx'] = 'Extra progressbar';
+$m['TLabel_Caption'] = 'Label';
+$m['TPanel_Caption'] = 'Panel';
+$m['TEdit_Caption']  = 'Edit';
+$m['TFormProtect_Caption']  = 'Form Protection';
+$m['TLabeledEdit_Caption'] = 'Labeled Edit';
+$m['TStyledBtn']  = 'Styled Button';
+$m['TMemo_Caption']  = 'Memo';
+$m['TCombobox_Caption'] = 'Drop-Down Box';
+$m['TCheckBox_Caption'] = 'Checkbox';
+$m['TListbox_Caption'] = 'List Box';
+$m['TPageControl_Caption'] = 'Pages';
+$m['TRadioGroup_Caption'] = 'Radio group';
+$m['TGroupBox_Caption'] = 'Group Box';
+$m['TEditBtn_Caption'] = 'Edit with Button';
+$m['TTabControl_Caption'] = 'Tabs';
+$m['TFunction_Caption'] = 'Function';
+$m['TFuncTimer_Caption'] = 'Timer';
+$m['TRichEdit_Caption'] = 'Rich Edit';
+$m['TImage_Caption'] = 'Image';
+$m['TWebBrowser_Caption'] = 'Web Browser';
+$m['TShape_Caption'] = 'Shape';
+$m['TMaskEdit_Caption'] = 'Masked Edit';
+$m['TImageList_Caption'] = 'Image List';
+$m['TPopupMenu_Caption'] = 'Popup Menu';
+$m['TMainMenu_Caption']  = 'Main Menu';
+$m['TMenuItem_Caption']  = 'Menu Item';
+$m['TProgressBar_Caption'] = 'Progress Bar';
+$m['TStatusBar_Caption'] = 'Statusbar';
+$m['TTrackBar_Caption'] = 'Trackbar';
+$m['TScrollBox_Caption'] = 'Scrolling Box';
+$m['TScrollBar_Caption'] = 'Scrolling Bar';
+$m['THotKey_Caption'] = 'HotKey';
+$m['TTrayIcon_Caption'] = 'System-Tray Icon';
+$m['TCheckListBox_Caption'] = 'Checks List';
+$m['TDateTimePicker_Caption'] = 'Date/Time Picker';
+$m['TOpenDialogEx_Caption'] = 'Open Dialog';
+$m['TSaveDialogEx_Caption'] = 'Save Dialog';
+$m['TColorDialogEx_Caption'] = 'Color Dialog';
+$m['TFontDialogEx_Caption'] = 'Font Dialog';
+$m['TStringGrid_Caption'] = 'String Table';
+$m['TLocalization_Caption'] = 'Localization';
+$m['TRzLine_Caption'] = 'Line';
+$m['THttpClient_Caption'] = 'HTTP Client';
+$m['TDownload_Caption'] = 'Downloader';
+$m['TDataVar_Caption'] = 'Data';
+$m['TBevel_Caption'] = 'Bevel';
+$m['TTreeView_Caption'] = 'TreeView';
+$m['THTMLViewer_Caption'] = 'HTML Text';
+$m['Font Orientation'] = 'Font Slip';
+$m['ondblclick'] = 'On DoubleClick';
+
+$m['components'] = 'Components';
+$m['page'] = 'Page';
+$m['properties'] = 'Properties';
+$m['events'] = 'Events';
+
+$m['caption'] = 'Caption';
+$m['text']    = 'Text';
+$m['visible'] = 'Visible';
+$m['font'] = 'Font';
+
+$m['image'] = 'Image';
+$m['flat'] = 'Flat';
+$m['transparent'] = 'Transparent';
+
+$m['text_editor'] = 'Text editor ';
+$m['ok'] = 'OK';
+$m['cancel'] = 'Cancel';
+
+$m['delete'] = 'Delete';
+$m['copy'] = 'Copy';
+$m['cut']  = 'Cut';
+$m['paste'] = 'Paste';
+$m['send_to_back'] = 'Send To Back';
+$m['send_to_front'] = 'Bring To Front';
+
+$m['modal_result'] = 'Dialog Result';
+
+$m['onclick'] = 'Click';
+$m['ondblclick'] = '2х Click';
+$m['onmousedown'] = 'Mouse Down';
+$m['onmouseup'] = 'Mouse Up';
+$m['onmousemove'] = 'Mouse Move';
+$m['onmouseenter'] = 'Mouse Enter';
+$m['onmouseleave'] = 'Mouse Leave';
+
+$m['onexecute'] = 'Execute';
+$m['onstart']   = 'Start Timer';
+$m['ontimer']   = 'Timer';
+$m['onfinish']  = 'Finish Timer';
+$m['onchange']  = 'Change';
+$m['onkeydown']= 'Key Down';
+$m['onkeypress']= 'Key Press';
+$m['onkeyup']  = 'Key Up';
+$m['onclose']   = 'Close';
+$m['onclosequery'] = 'Close Query';
+$m['onactivate']  = 'Activate';
+$m['ondeactivate'] = 'Deactivate';
+$m['onshow']    = 'Show';
+$m['onhide']    = 'Hide';
+$m['onresize']  = 'Resize';
+$m['onpaint']   = 'Paint';
+$m['onstarttrack'] = 'Start Track';
+$m['onendtrack'] = 'End Track';
+$m['onscroll'] = 'Scroll';
+$m['oncreate'] = 'Create';
+$m['onselect'] = 'Select';
+$m['onselectdialog'] = 'Select of Dialog';
+$m['onstartchange'] = 'Before Change';
+
+$m['php_script_editor'] = 'PHP Code Editor';
+$m['script'] = 'Script';
+$m['run']    = 'Run';
+$m['restart']= 'Restart';
+$m['about']  = 'About';
+$m['Form name'] = 'Form name (only letters and "_")'; 
+
+$m['main'] = 'Main';
+
+$m['p_Left'] = 'Left';
+$m['p_Top']  = 'Top';
+
+$m['gr_objects'] = 'Objects';
+
+$m['help_book'] = 'Help book';
+$m['tip'] = 'Tip';
+$m['about_program'] = 'About Program';
+$m['site_program'] = 'Official Site';
+$m['send_mail'] = 'Send Mail';
+
+$m['gr_files'] = 'Files';
+
+$m['clear_list'] = 'Clear List';
+$m['.. demonstration'] = 'Demonstration';
+
+$m['gr_internet'] = 'Internet';
+
+$m['php_help'] = 'PHP Help';
+
+
+$m['gr_science'] = 'Science';
+
+
+$m['demo_projects'] = 'Demos';
+$m['projects'] = 'Projects';
+$m['Enabled Button Color'] = 'Enabled frame button:';
+$m['Disabled Button Color'] = 'Disabled frame button:';
+$m['Selector Color'] = 'Selection frame:';
+$GLOBALS['__M'] =& $m;

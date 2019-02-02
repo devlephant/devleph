@@ -1,0 +1,2 @@
+$d = new TColorDialog();
+$d->execute();
