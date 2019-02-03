@@ -1,6 +1,5 @@
 <?
 
-
 class ev_fmNewProject_btn_demos {
     
     public static function onClick(){

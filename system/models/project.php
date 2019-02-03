@@ -746,7 +746,7 @@ class myProject {
         }
         
         c('fmNewProject->lastProjects')->items->setArray($arr);
-        
+        $dlg->FormState = 'fsmodal';
         $res = $dlg->showModal();
 		if( $setmain_form )
 		{
@@ -754,13 +754,13 @@ class myProject {
 			gui_formsetmain( $fmMain->self );
 			$APPLICATION->mainFormOnTaskBar = true; 
 		}
-		$GLOBALS['__newproject_close'] = false;
+		
         $__fix = isset($GLOBALS['__newproject_modalresult'])? $GLOBALS['__newproject_modalresult']: '';
         if ($res==mrOk || $__fix==mrOk){
             
             $result['PATH'] = replaceSl(c('fmNewProject->path')->text);
             if (fileExt($result['PATH'])!='msppr'){
-                
+				$GLOBALS['__newproject_close'] = false;
                 msg(t('Project file must have a ".msppr" extension'));
                 return false;
             }
@@ -768,6 +768,11 @@ class myProject {
             $result['DEL_ALL_FILES'] = c('fmNewProject->c_alldelete')->checked;
         } else
             $result = false;  
+		if( $GLOBALS['__newproject_close'] && !$result  )
+			{
+				application_terminate();
+				$GLOBALS['__newproject_close'] = 'exit';
+			} else $GLOBALS['__newproject_close'] = false;
         return $result;
     }
     
