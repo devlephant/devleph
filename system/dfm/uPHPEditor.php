@@ -10,10 +10,10 @@ $s->options    = '[eoAutoIndent, eoDragDropEditing, eoEnhanceEndKey, eoGroupUndo
 
 class ev_fmPHPEditor_tlOk{
 	static function onMouseEnter($self){
-		c("fmPHPEditor->ok_cl")->show();
+		c("fmPHPEditor->ok_cl")->visible = true;
 	}
 	static function onMouseLeave($self){
-		c("fmPHPEditor->ok_cl")->hide();
+		c("fmPHPEditor->ok_cl")->visible = false;
 	}
 	static function onClick($self){
 		global $phpeditorClosing, $showComplete, $showHint, $lastStringSelStart, $myEvents, $cancel;
@@ -34,10 +34,10 @@ class ev_fmPHPEditor_tlOk{
 class ev_fmPHPEditor_tlCancel{
 	static function onMouseEnter($self){
 		if( c($self)->enabled )
-			c("fmPHPEditor->ok_cn")->show();
+			c("fmPHPEditor->ok_cn")->visible = true;
 	}
 	static function onMouseLeave($self){
-		c("fmPHPEditor->ok_cn")->hide();
+		c("fmPHPEditor->ok_cn")->visible = false;
 	}
 	static function onClick($self){
 		c("fmPHPEditor")->close();
@@ -47,7 +47,7 @@ class ev_fmPHPEditor_tlCancel{
 class evfmPHPEditor {
 	static function onShow($self)
 	{
-		c("fmPHPEditor->ok_cn")->hide();
+		c("fmPHPEditor->ok_cn")->visible = false;
 		//c("fmPHPEditor->tlCancel")->enabled = false;
 	}
 	static function onCloseQuery($self, &$canClose)
@@ -468,7 +468,7 @@ class EditorSynt
 		//c('fmPHPEditor->l_eventinfo')->transparent = False;
 		c('fmPHPEditor->memo')->ActiveLineColor = $ini->read('main','ActiveLineColor',c('fmPHPEditor->memo')->color);
         gui_propSet( c('fmPHPEditor->memo')->gutter->self, 'color', $ini->read('gutter','color',clWhite) );
-        gui_propSet( c('fmPHPEditor->memo')->gutter->self, 'font->color', $ini->read('gutter','fontcolor',clGray) );
+        gui_propSet( c('fmPHPEditor->memo')->gutter->self, 'font.color', $ini->read('gutter','fontcolor',clGray) );
 
         gui_propSet( c('fmPHPEditor->memo')->SelectedColor, 'background', $ini->read('main','SelectedColorBG',c('fmPHPEditor->memo')->color) );
         gui_propSet( c('fmPHPEditor->memo')->SelectedColor, 'foreground', $ini->read('main','SelectedColorFG',c('fmPHPEditor->memo')->font->color ) );

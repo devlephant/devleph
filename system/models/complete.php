@@ -101,9 +101,10 @@ class myComplete {
 		return false;
 	}
     static function memoKeyUp($self, &$key, $shift){
+		if( (bool)(int)myOptions::get('prefs','complete_actskeys', "0") ){
 		if( $key == 13 || $key==114){
 			
-			c( $self )->BeginUndoBlock();
+			//c( $self )->BeginUndoBlock();
 			$CaretY = synedit_caret_y($self, null) - 1;
 			$CaretX = synedit_caret_x($self, null) - 1;
 			$line = c( $self )->items->getLine($CaretY);
@@ -120,16 +121,16 @@ class myComplete {
 				$arr[2] = array_slice($Array, $CaretY+1, count($Array));
 				
 				c( $self )->items->setArray( array_merge($arr[0], $arr[1], $arr[2]) );
-				/*
+		        /*
 				c( $self )->items->setLine($CaretY,  substr($line, 0, $CaretX)); 
 				c( $self )->items->setLine($CaretY+1,  "	".$str );
 			
-				c( $self )->items->setLine($CaretY+2, "}".substr($str1, $spos+1, $length) );*/
-				c( $self )->EndUndoBlock();
-				c( $self )->BeginUndoBlock();
+				c( $self )->items->setLine($CaretY+2, "}".substr($str1, $spos+1, $length) );//*/
+				//c( $self )->EndUndoBlock();
+				//c( $self )->BeginUndoBlock();
 				synedit_caret_y($self, $CaretY + 2);
 				synedit_caret_x($self, 2 );
-				c( $self )->EndUndoBlock();
+				//c( $self )->EndUndoBlock();
 			
 			$key=null;
 			}
@@ -138,7 +139,8 @@ class myComplete {
 			c("fmPHPEditor")->close();
 			c("fmPHPEditor")->ModalResult = 2;
 		}
-        global $phpMemo, $synComplete, $synHint;
+        }
+		global $phpMemo, $synComplete, $synHint;
         $phpMemo->onChange = 'myComplete::memoChange';
         unset($GLOBALS['__find']);
         unset($GLOBALS['__findIndex']);
@@ -172,8 +174,10 @@ class myComplete {
 		'{' => '}',
 		'[' => ']',
 		'"' => '"',);
+		if( (bool)(int)myOptions::get('prefs','complete_chars', "0") )
+		{
 		if( isset($chars[$key]) ) {
-			c( $self )->BeginUndoBlock();
+			//c( $self )->BeginUndoBlock();
 			$CaretY = synedit_caret_y($self, null) - 1;
 			$CaretX = synedit_caret_x($self, null) - 1;
 			$line = c( $self )->items->getLine($CaretY);
@@ -183,19 +187,20 @@ class myComplete {
 			}else{
 			c( $self )->items->setLine($CaretY,  substr($line, 0, $CaretX) . $key . substr($line, $CaretX, $length) );
 			}
-			c( $self )->EndUndoBlock();
-			c( $self )->BeginUndoBlock();
+			//c( $self )->EndUndoBlock();
+			//c( $self )->BeginUndoBlock();
 			synedit_caret_x($self, synedit_caret_x($self, null) + 1);
 			$key = "";
-			c( $self )->EndUndoBlock();
+			//c( $self )->EndUndoBlock();
 		}
 		if( in_array($key, array(')', ']')) ) {
 			if( myComplete::checkDublicate($self, $key) ) {
-				c( $self )->BeginUndoBlock();
+				//c( $self )->BeginUndoBlock();
 				synedit_caret_x($self, synedit_caret_x($self, null) + 1);
 				$key = "";
-				c( $self )->EndUndoBlock();
+				//c( $self )->EndUndoBlock();
 			}
+		}
 		}
         global $phpMemo, $synComplete, $synHint;
 		$phpMemo->onChange = 'myComplete::memoChange';
@@ -249,7 +254,8 @@ class myComplete {
         } else {
             
             $tmp   = new complete_Funcs;
-            $result['ARR'] = $tmp->getList('' /*$lineText*/);
+			$result['ARR'] = array();
+           // $result['ARR'] = $tmp->getList('' /*$lineText*/);
             unset($tmp);
             
             $synComplete->item = $result['ARR']['item'];
