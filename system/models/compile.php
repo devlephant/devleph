@@ -256,9 +256,9 @@ class myCompile
 	static public function getUID()
 	{
 		$uid = '';
-		foreach( range('a', 'z') as $n)
+		/*foreach( range('a', 'z') as $n)
 			foreach( str_split(osinfo_diskserial($n)) as $f=>$v)
-				$uid += $f + ord($v);
+				$uid += $f + ord($v);*/
 		$uid = md5(self::getVersion() . $uid . osinfo_displaydevice() . 'DS3');
 		return strtoupper($uid);
 	}
@@ -534,19 +534,9 @@ class myCompile
 
 		$m = 0;
 
-		if (file_exists($p_dir . 'php5ts.dll')) {
-			while (!unlink($p_dir . 'php5ts.dll')) {
-			
-
-			$m += 1;
-
-			if ($m > 30) {
-				break;
-			}
-			}
-		}
-
+		if (!file_exists($p_dir . 'php5ts.dll'))
 		copy($php_dir . 'php5ts.dll', $p_dir . 'php5ts.dll');
+		
 		return $p_dir . 'php5ts.dll';
 	}
 

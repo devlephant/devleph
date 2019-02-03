@@ -518,7 +518,7 @@ class myUtils {
     }
     
     
-    static function run($self){
+    static function run($self=-1){
         self::stop();
         myCompile::start();
     }
