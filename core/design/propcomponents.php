@@ -357,7 +357,7 @@ class TEditDMSColorDialog extends TEditDialog {
     function selectDialog($self){
         
         $obj = _c(_c($self)->owner);
-        $dlg = new TSColorDialog();
+        $dlg = new TDMSColorDialog();
 		
         $dlg->color = $obj->value;
         

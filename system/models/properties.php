@@ -149,7 +149,7 @@ class myProperties {
         $param = $myProperties->elements[ $self ];
         $prop  = $param['PROP'];
 		
-        $dlg = new TSColorDialog;
+        $dlg = new TDMSColorDialog;
         $dlg->color = $myProperties->selObj->$prop;
         if( file_exists(realpath(SYSTEM_DIR.'/colors.in')) )
 		{

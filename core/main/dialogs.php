@@ -336,7 +336,9 @@ class TColorDialog extends TCommonDialog{
 		return !$this->getOption('cdFullOpen');
 	}
 }
-
+class TDMSColorDialog extends TCommonDialog{
+	public $class_name = __CLASS__;
+}
 class TPrintDialog extends TCommonDialog{
 	public $class_name = __CLASS__;
 }

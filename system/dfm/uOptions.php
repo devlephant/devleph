@@ -32,7 +32,7 @@ class ev_fmOptions_up_gridsize {
 class ev_fmOptions_en_bc {
 	static function onMouseDown($self, $button, $shift, $x, $y){
 		global $_sc;
-		$dlg = new TSColorDialog();
+		$dlg = new TDMSColorDialog();
 		$col1 = $dlg->color = c($self)->brushColor;
 		if( file_exists(realpath(SYSTEM_DIR.'/colors.in')) )
 		{
@@ -50,7 +50,7 @@ class ev_fmOptions_en_bc {
 class ev_fmOptions_dis_bc {
 	static function onMouseDown($self, $button, $shift, $x, $y){
 		global $_sc;
-		$dlg = new TSColorDialog();
+		$dlg = new TDMSColorDialog();
 		$col1 = $dlg->color = c($self)->brushColor;
 		if( file_exists(realpath(SYSTEM_DIR.'/colors.in')) )
 		{
@@ -68,7 +68,7 @@ class ev_fmOptions_dis_bc {
 class ev_fmOptions_sel_color {
 	static function onMouseDown($self, $button, $shift, $x, $y){
 		
-		$dlg = new TSColorDialog();
+		$dlg = new TDMSColorDialog();
 		$col1 = $dlg->color = c($self)->brushColor;
 		if( file_exists(realpath(SYSTEM_DIR.'/colors.in')) )
 		{
