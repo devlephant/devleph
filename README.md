@@ -1,7 +1,7 @@
 # DevelStudio-3.0-beta
 
 ## EN
-### Unofficial DevelStudio Patch.
+** Unofficial DevelStudio Patch. **
 <br>Just download, unpack it, and run DS KE.exe to proceed :)
 
 Compatible SoulEngine Version Can Be Found -> <a href="https://github.com/Kashaket/soulengine">HERE</a>
@@ -15,7 +15,7 @@ For the full debug, you can create file 'lokoout_log.txt' near Ds Ke.exe, all er
 In the partially debug and full debug modes, there are available components, which in developing process (they can be glitchy or just unfinished yet)
 
 ## RU
-### Неофициальная правка DevelStudio.
+** Неофициальная правка DevelStudio. **
 <br>Просто скачайте, распакуйте это, и запустите DS KE.exe для использования :)
 
 Совместимая версия SoulEngine может быть найдена -> <a href="https://github.com/Kashaket/soulengine">Здесь</a>
