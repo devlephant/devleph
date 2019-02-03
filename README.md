@@ -1,4 +1,7 @@
 # DevelStudio-3.0-beta
 
 Unofficial DevelStudio Patch.
-Just download, unpack it, and run DS KE.exe to proceed :)
+<br>Just download, unpack it, and run DS KE.exe to proceed :)
+
+Compatible SoulEngine Version Can Be Found -> <a href="https://github.com/Kashaket/soulengine">HERE</a>
+<br>Autors: Andrew Zenin, Artem Ukolov<br>Testing: Vyascheslav Novikov (Manofjoe), Alexander Kobozev ([s]alex)
