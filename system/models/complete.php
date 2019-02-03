@@ -254,7 +254,7 @@ class myComplete {
         } else {
             
             $tmp   = new complete_Funcs;
-			$result['ARR'] = array();
+			$result['ARR'] = $tmp->getList(null);
            // $result['ARR'] = $tmp->getList('' /*$lineText*/);
             unset($tmp);
             
