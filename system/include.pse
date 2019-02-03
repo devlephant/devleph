@@ -174,13 +174,12 @@ if (!defined('IS_APPLICATION_START')){
 		$fmMain->drop = new TDropFilesTarget($fmMain);
 		$fmMain->drop->enabled = 1;
 		$fmMain->drop->OnDropFiles = function($self, $files, $x, $y)use($fmEdit){
+			
 			global $myProperties, $_sc, $myInspect;
-			$files = str_replace('\\', '/', $files);
-			preg_match_all('/(\w.+?)\n/i', $files, $re);
 			$n = 1;
 			$gs = $_sc->gridSize;
 			$_sc->clearTargets();
-			foreach($re[1] as $file){
+			foreach($files as $file){
 				if( in_array( strtolower(fileExt($file)), array('bmp', 'gif', 'jpeg', 'jpg', 'wmf', 'emf', 'ico', 'png') ) ){
 				$size = @getimagesize($file);
 				}elseif( in_array(strtolower(fileExt($file)), array('dvs', 'msppr', 'dfm', 'upr')) ){
