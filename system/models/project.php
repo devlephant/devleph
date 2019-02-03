@@ -707,6 +707,7 @@ class myProject {
             
             if (confirm(t('Are you shure to open "%s" ?',$file))) 
 			{
+				$GLOBALS['__newproject_close'] = false;
                 self::open($file, true, false);
 				self::initLastFiles($file, false);
 				c('fmNewProject')->close();
@@ -768,7 +769,7 @@ class myProject {
             $result['DEL_ALL_FILES'] = c('fmNewProject->c_alldelete')->checked;
         } else
             $result = false;  
-		if( $GLOBALS['__newproject_close'] && !$result  )
+		if( $GLOBALS['__newproject_close'] && !$result )
 			{
 				application_terminate();
 				$GLOBALS['__newproject_close'] = 'exit';
