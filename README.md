@@ -1,6 +1,7 @@
 # DevelStudio-3.0-beta
 
-Unofficial DevelStudio Patch.
+## EN
+### Unofficial DevelStudio Patch.
 <br>Just download, unpack it, and run DS KE.exe to proceed :)
 
 Compatible SoulEngine Version Can Be Found -> <a href="https://github.com/Kashaket/soulengine">HERE</a>
@@ -13,7 +14,8 @@ Note: This feature was added firstly in DS Ke 3.0.2 Beta
 For the full debug, you can create file 'lokoout_log.txt' near Ds Ke.exe, all errors on the  php side during using process will be logged in him
 In the partially debug and full debug modes, there are available components, which in developing process (they can be glitchy or just unfinished yet)
 
-Неофициальная правка DevelStudio.
+## RU
+### Неофициальная правка DevelStudio.
 <br>Просто скачайте, распакуйте это, и запустите DS KE.exe для использования :)
 
 Совместимая версия SoulEngine может быть найдена -> <a href="https://github.com/Kashaket/soulengine">Здесь</a>
