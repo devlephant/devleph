@@ -14,7 +14,7 @@
 				TMImage, TMaskEdit, TPadding, TPageControl, TPen,
 				TPicture, TScrollBox, TShape, TSplitter, TStaticText,
 				TStatusBar, TTabControl, TTabSet, TTabSheet,
-				TTrackBar, TTreeNode, TTreeView, TValueListEditor,
+				TTrackBar, TTreeNode, TTreeView,
 				TSizeConstraints, __TNoVisual
   
 */
@@ -500,15 +500,6 @@ class TStaticText extends TControl {
 
 class TControlBar extends TControl {
 	public $class_name = __CLASS__;
-}
-
-class TValueListEditor extends TControl {
-	public $class_name = __CLASS__;
-	public function set_atext( $v ){
-		$s = gui_propGet($this->self, 'Strings');
-		if( !is_object($s) ) $s = to_object($s, 'TStrings');
-		$s->add( $v );
-	}
 }
 
 
