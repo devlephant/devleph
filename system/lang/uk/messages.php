@@ -376,7 +376,7 @@ $m['Text'] = 'Текст';
 $m['Auto Size'] = 'Авто-Розмір';
 $m['Read Only'] = 'Лише Читання';
 $m['Char Case'] = 'Регистр Символів';
-$m['Auto Scroll'] = 'Авто Прокрутка';
+$m['Auto Scroll'] = 'Авто-Промотка';
 $m['Alpha Blend'] = 'Альфа Прозорість';
 $m['Alpha Blend Value'] = 'Рівень Альфа Прозорості';
 $m['Border Style'] = 'Стиль Рамки';
@@ -462,7 +462,7 @@ $m['onresize']  = 'Змінення Розмірів';
 $m['onpaint']   = 'Відрисовка';
 $m['onstarttrack'] = 'Початок Програвання';
 $m['onendtrack'] = 'Кінець Програвання';
-$m['onscroll'] = 'Прокрутка';
+$m['onscroll'] = 'Промотка';
 $m['oncreate'] = 'Створення';
 $m['onselect'] = 'Вибір';
 $m['onselectdialog'] = 'Вибір Діалогу';
@@ -975,7 +975,8 @@ $m['min'] = 'мин.';
 $m['Backup Projects'] = 'Резервування проектів';
 $m['demo_projects'] = 'Демо проекти';
 $m['projects'] = 'Проекти';
-
+$m['On Vertical Scroll'] = 'Вертикальна Промотка';
+$m['On Horizontal Scroll'] =  'Горизонтальна Промотка';
 $m['Synchronization'] = 'Синхронізація';
 
 

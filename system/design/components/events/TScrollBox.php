@@ -15,7 +15,18 @@ $result[] = array(
                   'INFO'=>'%func%($self)',
                   'ICON'=>'ondblclick',
                   );
-
+$result[] = array(
+                  'CAPTION'=>t('On Vertical Scroll'),
+                  'EVENT'=>'onScrollVert',
+                  'INFO'=>'%func%($self,$type,$scrollPos)',
+                  'ICON'=>'onscroll',
+                  );
+$result[] = array(
+                  'CAPTION'=>t('On Horizontal Scroll'),
+                  'EVENT'=>'onScrollHorz',
+                  'INFO'=>'%func%($self,$type,$scrollPos)',
+                  'ICON'=>'onscroll',
+                  );
 $result[] = array(
                   'CAPTION'=>t('On Resize'),
                   'EVENT'=>'onResize',

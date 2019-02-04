@@ -370,7 +370,7 @@ class __exEvents {
         self::freeEventInfo();
     }
     
-    static function callCodeScroll($self, $scrollCode, &$scrollPos, $_eventName){
+    static function callCodeScroll($_self, $scrollCode, &$scrollPos, $_eventName){
         
         $self   = c($_self);
         
@@ -503,6 +503,8 @@ class __exEvents {
     static function OnCloseQuery($self, &$canClose){ self::callCodeCloseQuery($self, $canClose, __FUNCTION__); }
     
     static function OnScroll($self, $scrollCode, &$scrollPos){ self::callCodeScroll($self, $scrollCode, $scrollPos, __FUNCTION__); }
+     static function OnScrollVert($self, $scrollCode, &$scrollPos){ self::callCodeScroll($self, $scrollCode, $scrollPos, __FUNCTION__); }
+     static function OnScrollHorz($self, $scrollCode, &$scrollPos){ self::callCodeScroll($self, $scrollCode, $scrollPos, __FUNCTION__); }
     
     static function OnSelectDialog($self, $value){
         self::callCodeSelect($self, $value, __FUNCTION__);
@@ -744,7 +746,8 @@ DSApi::reg_eventParams('onMouseMove',		array('self','shift','x','y'));
 DSApi::reg_eventParams('onMouseWheel',		array('self','shift', 'wheelDelta', 'x', 'y', '&handled'));
 DSApi::reg_eventParams('onCloseQuery',		array('self','&canClose'));
 DSApi::reg_eventParams('onScroll',			array('self','scrollCode', '&scrollPos'));
-
+DSApi::reg_eventParams('onScrollVert',			array('self','scrollCode', '&scrollPos'));
+DSApi::reg_eventParams('onScrollHorz',			array('self','scrollCode', '&scrollPos'));
 
 DSApi::reg_eventParams('onBeforePopup',		array('self', 'url', '&continue'));
 DSApi::reg_eventParams('onBeforeBrowse',	array('self', 'url', 'method', 'navType', 'isRedirect', '&continue'));

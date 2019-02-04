@@ -1,2 +1,6 @@
-$d = new TDMSColorDialog();
-$d->execute();
+pre2(
+event_set(c("fmMain->pDockMain")->self, 'OnScrollVert', function($self, $scrollCode, $scrollPos)
+{
+pre($self);
+})
+ );

@@ -869,12 +869,13 @@ function fmain_reloadims()
 	c("fmMain->itemSendtoback")->picture->loadFromFile(		"{$theme}/mi_sendtoback.bmp" );
 	
 }
-event_set(c("fmMain->pDockMain")->VertScrollBar->self, 'onScroll', function($self)
+
+event_set(c("fmMain->pDockMain")->self, 'OnScrollVert', function($self, $scrollCode, &$scrollPos)
 {
 	global $_sc;
 	$_sc->update();
 });
-event_set(c("fmMain->pDockMain")->HorzScrollBar->self, 'onScroll', function($self)
+event_set(c("fmMain->pDockMain")->self, 'onScrollHorz', function($self, $scrollCode, &$scrollPos)
 {
 	global $_sc;
 	$_sc->update();

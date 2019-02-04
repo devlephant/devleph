@@ -1021,7 +1021,8 @@ $m['min'] = 'мин.';
 $m['Backup Projects'] = 'Резервирование проектов';
 $m['demo_projects'] = 'Демо проекты';
 $m['projects'] = 'Проекты';
-
+$m['On Vertical Scroll'] = 'Вертикальная Прокрутка';
+$m['On Horizontal Scroll'] =  'Горизонтальная Прокрутка';
 $m['Synchronization'] = 'Синхронизация';
 
 
