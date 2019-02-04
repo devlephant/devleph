@@ -450,8 +450,8 @@ class ev_fmMain_pDockLeft {
             $obj->w = 220;
             $source->w = 220;
           }
-          else
-            ;
+        
+		$GLOBALS['_sc']->update();
     }
     
     static function onUndock($self, $count = 1){
@@ -460,7 +460,12 @@ class ev_fmMain_pDockLeft {
         $obj = c($self);
         if ($obj->dockClientCount <= 1)
             $obj->w = 5;
+		$GLOBALS['_sc']->update();
     }
+	static function onResize($self)
+	{
+		$GLOBALS['_sc']->update();
+	}
 }
 
 class ev_fmMain_pDockRight {
@@ -472,6 +477,11 @@ class ev_fmMain_pDockRight {
     static function onUndock($self, $count = 1){
         ev_fmMain_pDockLeft::onUndock($self, $count);
     }
+	
+	static function onResize($self)
+	{
+		$GLOBALS['_sc']->update();
+	}
 }
 
 
@@ -488,9 +498,7 @@ class ev_fmMain_pDockBottom {
             $obj->h = 170;
             $source->h = 170;
           }
-          else
-           
-            ;
+        $GLOBALS['_sc']->update();
     }
     
     static function onUndock($self, $count = 1){
@@ -499,7 +507,13 @@ class ev_fmMain_pDockBottom {
         $obj = c($self);
         if ($obj->dockClientCount <= 1)
             $obj->h = 5;
+		$GLOBALS['_sc']->update();
     }
+	
+	static function onResize($self)
+	{
+		$GLOBALS['_sc']->update();
+	}
 }
 
 

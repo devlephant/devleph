@@ -1,5 +1,6 @@
+pre( gui_class_proparray('TPanel') );
 pre2(
-event_set(c("fmMain->pDockMain")->self, 'OnScrollVert', function($self, $scrollCode, $scrollPos)
+event_set(c("fmMain->pDockRight")->self, 'OnResize', function($self)
 {
 pre($self);
 })
