@@ -68,17 +68,12 @@ class TPopupMenuEx extends __TNoVisual{
             }
 	    if ($name)
                 $x->name = $name;
-            
-	    if ($styled)
-		styleMenu::addItem($x);
-                
+
+		$x->StyleElements = $styled? '[seFont, seClient, seBorder]': '[]';    
 	    $list[$level+1] = $x;
 	}
         
-        
-        if ($this->styled){
-            styleMenu::add($obj);
-        }
+        $obj->StyleElements = $this->styled? '[seFont, seClient, seBorder]': '[]';
         
         $objects = explode(_BR_,$this->objects);
 	

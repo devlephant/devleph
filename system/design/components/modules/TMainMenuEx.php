@@ -62,24 +62,16 @@ class TMainMenuEx extends __TNoVisual{
 	    $org->addItem($x);
             
             if ($func){
-                $x->onClick = $func; 
-		//setEvetFromFunction($x,'onClick',$func);
+                $x->onClick = $func;
             }
 	    if ($name)
                 $x->name = $name;
             
-	   // pre($styled);
-	    if ($styled)
-		styleMenu::addItem($x);
+	    $x->StyleElements = $styled? '[seFont, seClient, seBorder]': '[]';
                 
 	    $list[$level+1] = $x;
 	}
-        
-        
-        if ($styled){
-            styleMenu::add($obj);
-        }     
-            
+        $obj->StyleElements = $styled? '[seFont, seClient, seBorder]': '[]';   
 	$tmp = $this->name;
 	$this->name = '';
 	$obj->name = $tmp;

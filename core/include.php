@@ -4,6 +4,10 @@ function _empty(){}
 function replaceSl($s){return str_replace("\\","/",$s);}
 function replaceSr($s){return str_replace("/","\\",$s);}
 
+function random( $x )
+{
+	return mt_rand(0, $x);
+}
 
 function pre($obj){
 	if ( sync(__FUNCTION__, func_get_args()) ) return;

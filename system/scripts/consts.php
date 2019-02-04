@@ -22,7 +22,7 @@
     myVars::set( c('fmMain->formsPopur'), 'formsPopur');
     //styleMenu::add($GLOBALS['formsPopur']);
     
-    styleMenu::add( c('edt_MenuEditor->popup') );
+    //styleMenu::add( c('edt_MenuEditor->popup') );
     //styleMenu::add( c('fmPHPEditor->popup') );
 	
     //styleMenu::add( c('fmPropsAndEvents->eventsPopup') );

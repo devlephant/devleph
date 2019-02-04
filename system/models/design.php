@@ -1062,10 +1062,13 @@ class myDesign {
     
     static function resizeEditForm($self){
         
-        global $fmEdit;
+        global $fmEdit, $_sc;
         
         c('fmMain->shapeSize',1)->w = $fmEdit->w + 17;
         c('fmMain->shapeSize',1)->h = $fmEdit->h + 17; 
+		if( isset($_sc) )
+			if( is_object($_sc) )
+				$_sc->update();
     }
     
     static function itViewsPopup($self){

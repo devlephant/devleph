@@ -464,7 +464,9 @@ class ev_fmMain_pDockLeft {
     }
 	static function onResize($self)
 	{
-		$GLOBALS['_sc']->update();
+		if( isset($GLOBALS['_sc']) )
+			if( is_object($GLOBALS['_sc']))
+				$GLOBALS['_sc']->update();
 	}
 }
 

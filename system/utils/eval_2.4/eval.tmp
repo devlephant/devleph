@@ -1,7 +1,3 @@
-pre( gui_class_proparray('TPanel') );
-pre2(
-event_set(c("fmMain->pDockRight")->self, 'OnResize', function($self)
-{
-pre($self);
-})
- );
+$s = new TStrings();
+$s->text = 'textwwfasf';
+pre( $s->text );
