@@ -60,7 +60,7 @@ $cp = c('fmComponents->list');
 }
 
 class evfmMain {
-    
+    public static $visfix = array();
     static function checkVer($file_info, $last_ver){
         
         global $dsg_cfg;
@@ -83,6 +83,10 @@ class evfmMain {
 		if( trim(c("fmMain->c_formComponents")->intext) == ':TForm'){
 			c("fmMain->c_formComponents")->intext = $fmEdit->name.' :TForm';
 		}
+		if( !empty(self::$visfix) )
+			foreach( self::$visfix as $v )
+				myOptions::getFloat(c($v)->name, c($v));
+		self::$visfix = false;
 		$_sc->update();
 	}
     
@@ -118,8 +122,6 @@ class evfmMain {
         $dsg_cfg->fmMain->wS = $fmMain->windowState;
         
         $dsg_cfg->lastVer    = DV_VERSION;
-        //$dsg_cfg->fmEdit->x = $fmEdit->left; 
-        //$dsg_cfg->fmEdit->y = $fmEdit->top;
         
         $dsg_cfg->fmPHPEditor->w = c('fmPHPEditor',1)->w;
         $dsg_cfg->fmPHPEditor->h = c('fmPHPEditor',1)->h;
@@ -182,6 +184,9 @@ class evfmMain {
 	
     static function panelVisibility($self, $host, $value)
 	{
+		if(!$value && gui_class($host)!=='TPanel' && is_array(evfmMain::$visfix))
+			evfmMain::$visfix[] = $self;
+		
 		if($value || gui_class($host)!=='TPanel') return;
 
 			$obj = c($host);
@@ -243,17 +248,21 @@ class evfmMain {
             Docking::loadFile(c('fmMain->pDockLeft'),DS_USERDIR.'left.dock');
             
             if (!self::isDocked(c('fmMain->pComponents')))
-                myOptions::getFloat('pComponents', c('fmMain->pComponents'));
-            
-            if (!self::isDocked(c('fmMain->pInspector')))    
-                myOptions::getFloat('pInspector', c('fmMain->pInspector'));
-                
+			{
+				c('fmMain->pComponents')->visible = false;
+			}
+            if (!self::isDocked(c('fmMain->pInspector')))
+			{	
+				c('fmMain->pInspector')->visible = false;		
+			}
             if (!self::isDocked(c('fmMain->pProps')))
-                myOptions::getFloat('pProps', c('fmMain->pProps'));
-                
+			{
+				c('fmMain->pProps')->visible = false;
+			}
             if (!self::isDocked(c('fmMain->pDebugWindow')))
-                myOptions::getFloat('pDebugWindow', c('fmMain->pDebugWindow'));
-        
+			{
+				c('fmMain->pDebugWindow')->visible = false;
+			}
             
             c('fmMain->it_components')->checked = c('fmMain->pComponents')->visible;
             c('fmMain->it_objectinspector')->checked = c('fmMain->pInspector')->visible;
