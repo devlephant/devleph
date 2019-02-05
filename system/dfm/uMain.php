@@ -79,17 +79,22 @@ class evfmMain {
         }
     }
 	static function onShow($self){
-		global $fmEdit, $_sc, $fmMain, $dsg_cfg;
+		global $fmEdit, $fmMain;
 		if( trim(c("fmMain->c_formComponents")->intext) == ':TForm'){
 			c("fmMain->c_formComponents")->intext = $fmEdit->name.' :TForm';
 		}
-		if( !empty(self::$visfix) )
-			foreach( self::$visfix as $v )
-				myOptions::getFloat(c($v)->name, c($v));
+		setTimeout(1, 'evfmMain::aftershow();');
+	}
+    static function aftershow()
+	{
+		global $_sc;
+		if( is_array(self::$visfix) )
+			if( !empty(self::$visfix) )
+				foreach( self::$visfix as $v )
+					myOptions::getFloat(c($v)->name, c($v));
 		self::$visfix = false;
 		$_sc->update();
 	}
-    
     static function getLastVer(){
         
         err_no();
