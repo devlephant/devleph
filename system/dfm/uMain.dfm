@@ -247,7 +247,7 @@ object fmMain: TfmMain
     DockSite = True
     TabOrder = 4
   end
-  object pComponents: TPanel
+  object pComponents: TDSPanel
     Left = 577
     Top = 45
     Width = 231
@@ -410,7 +410,7 @@ object fmMain: TfmMain
     end
   end
   end
-  object pInspector: TPanel
+  object pInspector: TDSPanel
     Left = 388
     Top = 45
     Width = 182
@@ -442,7 +442,7 @@ object fmMain: TfmMain
       TabOrder = 0
     end
   end
-  object pProps: TPanel
+  object pProps: TDSPanel
     Left = 37
     Top = 45
     Width = 204
@@ -672,7 +672,7 @@ object fmMain: TfmMain
       ExplicitWidth = 814
     end
   end
-  object pDebugWindow: TPanel
+  object pDebugWindow: TDSPanel
     Left = 37
     Top = 240
     Width = 730

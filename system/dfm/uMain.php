@@ -179,7 +179,22 @@ class evfmMain {
         
         $drag = control_dragobject($self);
     }
-    
+	
+    static function panelVisibility($self, $host, $value)
+	{
+		if($value || gui_class($host)!=='TPanel') return;
+
+			$obj = c($host);
+			foreach( $obj->get_dockList() as $v )
+			{
+				if( $v->visible && $v->self !== $self )
+				{
+					return;
+				}
+			}
+			$obj->h = $obj->w = 5;
+	}
+	
     static function loadMainConfig(){
         
         $ini = new TIniFileEx(DS_USERDIR.'phpsyn.ini');
@@ -210,6 +225,10 @@ class evfmMain {
         c('fmMain->pInspector')->onStartDock = 'evfmMain::panelStartDock';
         c('fmMain->pProps')->onStartDock = 'evfmMain::panelStartDock';
         c('fmMain->pComponents')->onStartDock = 'evfmMain::panelStartDock';
+		c('fmMain->pComponents')->onDockedVisibilityChanged = 'evfmMain::panelVisibility';
+        c('fmMain->pInspector')->onDockedVisibilityChanged = 'evfmMain::panelVisibility';
+        c('fmMain->pProps')->onDockedVisibilityChanged = 'evfmMain::panelVisibility';
+        c('fmMain->pDebugWindow')->onDockedVisibilityChanged = 'evfmMain::panelVisibility';
            
         if (!file_exists(DS_USERDIR.'bottom.dock')){
             
@@ -296,14 +315,6 @@ class evfmMain {
         }
     }
 
-}
-class ev_fmMain_pDebugWindow {
-	static function onHide($self) {
-		pre("hello");
-	}
-	static function onClose($self) {
-		pre("hello");
-	}
 }
 class ev_it_objectinspector {
     
@@ -438,15 +449,19 @@ class ev_statusBar {
 }
 
 class ev_fmMain_pDockLeft {
-    
     static function onDockDrop($self, $source){
-        
         $GLOBALS['_sc']->updateBtns();
         $obj = c($self);
         $source = c($source);
-        
-        if ($obj->dockClientCount < 2)
-          if ($obj->w < 30){
+        $continue = false;
+		foreach( $obj->get_dockList() as $v )
+			{
+				if( $v->visible )
+				{
+					$continue = true;
+				}
+			}
+		if (($continue || $source->visible) && $obj->w < 30){
             $obj->w = 220;
             $source->w = 220;
           }
@@ -454,12 +469,19 @@ class ev_fmMain_pDockLeft {
 		$GLOBALS['_sc']->update();
     }
     
-    static function onUndock($self, $count = 1){
+    static function onUndock($self, $source){
         
         $GLOBALS['_sc']->updateBtns();
         $obj = c($self);
-        if ($obj->dockClientCount <= 1)
-            $obj->w = 5;
+         $continue = true;
+        foreach( $obj->get_dockList() as $v )
+			{
+				if( $v->visible && $v->self !== $source )
+				{
+					$continue = false;
+				}
+			}
+            if($continue)$obj->w = 5;
 		$GLOBALS['_sc']->update();
     }
 	static function onResize($self)
@@ -471,50 +493,65 @@ class ev_fmMain_pDockLeft {
 }
 
 class ev_fmMain_pDockRight {
-    
+	
     static function onDockDrop($self, $source){
         ev_fmMain_pDockLeft::onDockDrop($self, $source);
     }
     
-    static function onUndock($self, $count = 1){
-        ev_fmMain_pDockLeft::onUndock($self, $count);
+    
+    static function onUndock($self, $source){
+       ev_fmMain_pDockLeft::onUnDock($self, $source);
     }
 	
 	static function onResize($self)
 	{
-		$GLOBALS['_sc']->update();
+		ev_fmMain_pDockLeft::onResize($self);
 	}
 }
 
 
 class ev_fmMain_pDockBottom {
-    
-    static function onDockDrop($self, $source){
-        
+    static function onDockDrop($self, $source=1){
+       
         $GLOBALS['_sc']->updateBtns();
         
         $obj = c($self);
         $source = c($source);
-        if ($obj->dockClientCount < 2)
-          if ($obj->h < 30){
+        $continue = false;
+		foreach( $obj->get_dockList() as $v )
+			{
+				if( $v->visible )
+				{
+					$continue = true;
+				}
+			}
+		if (($continue || $source->visible) && $obj->h < 30 ){
             $obj->h = 170;
             $source->h = 170;
           }
+		  
         $GLOBALS['_sc']->update();
     }
     
-    static function onUndock($self, $count = 1){
+    static function onUndock($self, $source=1){
         
         $GLOBALS['_sc']->updateBtns();
         $obj = c($self);
-        if ($obj->dockClientCount <= 1)
-            $obj->h = 5;
+		$continue = true;
+        foreach( $obj->get_dockList() as $v )
+			{
+				if( $v->visible && $v->self !== $source )
+				{
+					$continue = false;
+				}
+			}
+            if($continue) $obj->h = 5;
 		$GLOBALS['_sc']->update();
     }
 	
 	static function onResize($self)
 	{
-		$GLOBALS['_sc']->update();
+		ev_fmMain_pDockLeft::onResize($self);
 	}
 }
 
