@@ -83,17 +83,17 @@ class evfmMain {
 		if( trim(c("fmMain->c_formComponents")->intext) == ':TForm'){
 			c("fmMain->c_formComponents")->intext = $fmEdit->name.' :TForm';
 		}
-		setTimeout(1, 'evfmMain::aftershow();');
+		setTimeout(1, 'evfmMain::aftershow(' . $self . ');');
 	}
-    static function aftershow()
+    static function aftershow($self)
 	{
 		global $_sc;
-		if( is_array(self::$visfix) )
 			if( !empty(self::$visfix) )
 				foreach( self::$visfix as $v )
-					myOptions::getFloat(c($v)->name, c($v));
-		self::$visfix = false;
+					myOptions::getFloat($v->name, $v);
+		unset( self::$visfix );
 		$_sc->update();
+		c($self)->repaint();
 	}
     static function getLastVer(){
         
@@ -174,8 +174,7 @@ class evfmMain {
         
         $panels = array('pDockLeft','pDockRight','pDockBottom');
         foreach ($panels as $panel){
-            $list = c('fmMain->'.$panel)->dockList;
-            foreach ($list as $el)
+            foreach (c('fmMain->'.$panel)->get_dockList() as $el)
                 if ($el->self == $obj->self) return true;
         }
         
@@ -188,10 +187,7 @@ class evfmMain {
     }
 	
     static function panelVisibility($self, $host, $value)
-	{
-		if(!$value && gui_class($host)!=='TPanel' && is_array(evfmMain::$visfix))
-			evfmMain::$visfix[] = $self;
-		
+	{	
 		if($value || gui_class($host)!=='TPanel') return;
 
 			$obj = c($host);
@@ -254,19 +250,19 @@ class evfmMain {
             
             if (!self::isDocked(c('fmMain->pComponents')))
 			{
-				c('fmMain->pComponents')->visible = false;
+				self::$visfix[] = c('fmMain->pComponents');
 			}
             if (!self::isDocked(c('fmMain->pInspector')))
 			{	
-				c('fmMain->pInspector')->visible = false;		
+				self::$visfix[] = c('fmMain->pInspector');		
 			}
             if (!self::isDocked(c('fmMain->pProps')))
 			{
-				c('fmMain->pProps')->visible = false;
+				self::$visfix[] = c('fmMain->pProps');
 			}
             if (!self::isDocked(c('fmMain->pDebugWindow')))
 			{
-				c('fmMain->pDebugWindow')->visible = false;
+				self::$visfix[] = c('fmMain->pDebugWindow');
 			}
             
             c('fmMain->it_components')->checked = c('fmMain->pComponents')->visible;
