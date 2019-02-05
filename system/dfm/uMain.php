@@ -470,7 +470,7 @@ class ev_fmMain_pDockLeft {
 	{
 		self::$crz = $v;
 	}
-    static function onDockDrop($self, $source){
+    static function onDockDrop($self, $source=1, $x, $y){
         $GLOBALS['_sc']->updateBtns();
         $obj = c($self);
 		$source = c( dragobject_control($source) );
@@ -552,8 +552,8 @@ class ev_fmMain_pDockLeft {
 
 class ev_fmMain_pDockRight {
 	
-    static function onDockDrop($self, $source){
-        ev_fmMain_pDockLeft::onDockDrop($self, $source);
+    static function onDockDrop($self, $source=1, $x, $y){
+        ev_fmMain_pDockLeft::onDockDrop($self, $source, $x, $y);
     }
     
     
@@ -575,7 +575,7 @@ class ev_fmMain_pDockRight {
 
 class ev_fmMain_pDockBottom {
 
-    static function onDockDrop($self, $source=1){
+    static function onDockDrop($self, $source=1, $x, $y){
        
         $GLOBALS['_sc']->updateBtns();
         
