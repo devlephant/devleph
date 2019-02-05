@@ -83,17 +83,22 @@ class evfmMain {
 		if( trim(c("fmMain->c_formComponents")->intext) == ':TForm'){
 			c("fmMain->c_formComponents")->intext = $fmEdit->name.' :TForm';
 		}
-		setTimeout(1, 'evfmMain::aftershow(' . $self . ');');
+		self::aftershow();
 	}
-    static function aftershow($self)
+    static function aftershow()
 	{
 		global $_sc;
 			if( !empty(self::$visfix) )
+			{
 				foreach( self::$visfix as $v )
 					myOptions::getFloat($v->name, $v);
-		unset( self::$visfix );
+				
+				self::$visfix = null;
+				
+				myDesign::szRefresh();
+			}
 		$_sc->update();
-		c($self)->repaint();
+		
 	}
     static function getLastVer(){
         
@@ -187,7 +192,8 @@ class evfmMain {
     }
 	
     static function panelVisibility($self, $host, $value)
-	{	
+	{
+		if($value) ev_fmMain_pDockLeft::setcrz(true);
 		if($value || gui_class($host)!=='TPanel') return;
 
 			$obj = c($host);
@@ -459,10 +465,16 @@ class ev_statusBar {
 }
 
 class ev_fmMain_pDockLeft {
+	private static $crz = false;
+	static function setcrz($v)
+	{
+		self::$crz = $v;
+	}
     static function onDockDrop($self, $source){
         $GLOBALS['_sc']->updateBtns();
         $obj = c($self);
-        $source = c($source);
+		$source = c( dragobject_control($source) );
+		
         $continue = false;
 		foreach( $obj->get_dockList() as $v )
 			{
@@ -471,34 +483,70 @@ class ev_fmMain_pDockLeft {
 					$continue = true;
 				}
 			}
+		self::$crz = true;	
 		if (($continue || $source->visible) && $obj->w < 30){
             $obj->w = 220;
             $source->w = 220;
           }
-        
+        self::$crz = false;
 		$GLOBALS['_sc']->update();
     }
     
-    static function onUndock($self, $source){
+    static function edk($self, $p, $source){
         
         $GLOBALS['_sc']->updateBtns();
-        $obj = c($self);
          $continue = true;
-        foreach( $obj->get_dockList() as $v )
+		
+        foreach( $self->get_dockList() as $v )
 			{
 				if( $v->visible && $v->self !== $source )
 				{
 					$continue = false;
 				}
 			}
-            if($continue)$obj->w = 5;
+            if($continue)$self->$p = 5;
 		$GLOBALS['_sc']->update();
     }
-	static function onResize($self)
+	
+	static function onUndock($self, $source){
+		self::edk(c($self), 'w', $source);
+	}
+	
+	static function nrsz($self,$p)
 	{
+		if( $self->$p <= 10 )
+		{
+			$list = $self->get_dockList();
+			if( !empty($list) )
+				foreach($list as $ev)
+			$ev->visible = false;
+			self::$crz = false;
+		}else self::$crz = true;
 		if( isset($GLOBALS['_sc']) )
 			if( is_object($GLOBALS['_sc']))
 				$GLOBALS['_sc']->update();
+	}
+	
+	static function crsz($self, $p, $npv, &$r)
+	{
+		if( $self->$p <= 10 && $npv >= 10 && !self::$crz )
+		{
+			$self->get_dockList();
+			$r = false;
+			if( !empty($list) )
+				foreach($list as $ev)
+				if($ev->visible){ $r = true; return; }
+		}
+	}
+	
+	static function onResize($self)
+	{
+		self::nrsz(c($self), 'w');
+	}
+	
+	static function onCanResize($self, &$nW, &$nH, &$can)
+	{
+		ev_fmMain_pDockLeft::crsz(c($self), 'w', $nW, $can);
 	}
 }
 
@@ -515,18 +563,24 @@ class ev_fmMain_pDockRight {
 	
 	static function onResize($self)
 	{
-		ev_fmMain_pDockLeft::onResize($self);
+		ev_fmMain_pDockLeft::nrsz(c($self), 'w');
+	}
+	
+	static function onCanResize($self, &$nW, &$nH, &$can)
+	{
+		ev_fmMain_pDockLeft::onCanResize($self, $nW, $nH, $can);
 	}
 }
 
 
 class ev_fmMain_pDockBottom {
+
     static function onDockDrop($self, $source=1){
        
         $GLOBALS['_sc']->updateBtns();
         
         $obj = c($self);
-        $source = c($source);
+        $source = c( dragobject_control($source) );
         $continue = false;
 		foreach( $obj->get_dockList() as $v )
 			{
@@ -535,33 +589,29 @@ class ev_fmMain_pDockBottom {
 					$continue = true;
 				}
 			}
+		ev_fmMain_pDockLeft::setcrz(true);
 		if (($continue || $source->visible) && $obj->h < 30 ){
             $obj->h = 170;
             $source->h = 170;
           }
 		  
+        ev_fmMain_pDockLeft::setcrz(false);
         $GLOBALS['_sc']->update();
     }
     
     static function onUndock($self, $source=1){
         
-        $GLOBALS['_sc']->updateBtns();
-        $obj = c($self);
-		$continue = true;
-        foreach( $obj->get_dockList() as $v )
-			{
-				if( $v->visible && $v->self !== $source )
-				{
-					$continue = false;
-				}
-			}
-            if($continue) $obj->h = 5;
-		$GLOBALS['_sc']->update();
+        ev_fmMain_pDockLeft::edk(c($self), 'w', $source);
     }
 	
 	static function onResize($self)
 	{
-		ev_fmMain_pDockLeft::onResize($self);
+		ev_fmMain_pDockLeft::nrsz(c($self), 'h');
+	}
+	
+	static function onCanResize($self, &$nW, &$nH, &$can)
+	{
+		ev_fmMain_pDockLeft::crsz(c($self), 'h', $nH, $can);
 	}
 }
 
