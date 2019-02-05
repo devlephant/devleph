@@ -210,29 +210,37 @@ function setEvent($form,$name,$event,$func){
     //set_event($obj->self,$event,$func);
 }
 function findComponent($str,$sep = '->',$asObject='TControl'){
-    // $str = 'FormName->Onwer->Component';
-    global $SCREEN, $COMPONENT_COOL_CACHE;
-    
+    global $SCREEN;//, $COMPONENT_COOL_CACHE;
+    //переменная COMPONENT_COOL_CACHE использовалась для хранения php-объектов (обёрток), я их вырезал, сейчас она не нужна
+	//внимание: так делать НЕ НАДО, для хранения объектов лучше используйте статический класс (синглтон)
     $str = str_replace('.', $sep, $str);
     $names = explode($sep,$str);
-    $onwer = $GLOBALS['APPLICATION'];
+    $owner = $GLOBALS['APPLICATION'];//первый объект у нас - TApplication, по нему ищем уже дочерние объекты
     $x     = true;
     
     for ($i=0;$i<count($names);$i++){
 	
-	if ( !$onwer ) return null;
+	if ( !$owner ) return null; //если каким-то образом объект не был найден (например удалён или не существует вообще)
     
-        $onwer = $onwer->findComponent($names[$i]);
-	
-		if ($x && !$onwer){
+        $owner = $owner->findComponent($names[$i]);//ищем дочерний объект, далее проверка на удачность
+		//например если это TButton, а не TForm, объект найден не будет, т.к имя использовано в контексте события 
+		//(т.е имя используется событием на компоненте для обращения к компоненту той-же формы, на которой он находится) 
+		if ($x && !$owner){
+			//а вот это костыль из студии, он проверяет не было ли задано событием его самое местонахождения
+			//см. процедура SetEventInfo (класс __exEvents)
+			/*далее данные из SetEventInfo удаляются через freeEventInfo
+				p.s в этом месте можно поставить хук на событие для отладки*/
 			if(isset($GLOBALS['__ownerComponent'])){
 				if ($GLOBALS['__ownerComponent']){
-					$onwer = c($GLOBALS['__ownerComponent']);
+					$owner = c($GLOBALS['__ownerComponent']); //если инфа о родителе есть, он берётся из неё
 				}else{
-					$onwer = $SCREEN->activeForm;	
+					$owner = $SCREEN->activeForm; //если такой инфы нет, он берётся по учтению активной формы
+					//в данном случае обращение из TPanel, TPageControl к дочерним компонентам объекта неактуально, оно
+					//уйдёт вникуда, если информация об событии не была инициализирована через setEventInfo
 				}
 			}else{
-				$onwer = $SCREEN->activeForm;	
+				//та-же самая проверка, но на случай первого обращения к компоненту после запуска приложения
+				$owner = $SCREEN->activeForm;
 			}
 			
 			$i--;
@@ -241,8 +249,8 @@ function findComponent($str,$sep = '->',$asObject='TControl'){
 		}
     }
     
-   
-    return $onwer;
+	//возвращаем наш компонент, в случае если такового нет, я переместил возвращение в код выше (см. цикл for /\)
+    return $owner;
 }
 
 function rtti_class($self) //Возвращает Delphi-класс компонента/объекта
