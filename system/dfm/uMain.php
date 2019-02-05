@@ -601,7 +601,7 @@ class ev_fmMain_pDockBottom {
     
     static function onUndock($self, $source=1){
         
-        ev_fmMain_pDockLeft::edk(c($self), 'w', $source);
+        ev_fmMain_pDockLeft::edk(c($self), 'h', $source);
     }
 	
 	static function onResize($self)
