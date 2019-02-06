@@ -187,7 +187,14 @@ class evfmMain {
     }
     
     static function panelStartDock($self, &$drag){
-        
+
+        if( gui_class( control_dockhost($self) ) == 'TPanel')
+		{
+			$se = c($self);
+			$x = get_x($se) + GetSystemMetrics(32);
+			$y = get_y($se) + GetSystemMetrics(SM_CYSMCAPTION);
+			control_manualfloat($self, $x, $y, $x+$se->w, $y+$se->h);
+		}
         $drag = control_dragobject($self);
     }
 	
