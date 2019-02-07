@@ -374,7 +374,6 @@ class myCompile
 		$info['formsInfo'] = $myProject->formsInfo;
 		$myProject->config['attachData'] = $attachData;
 		$info['config'] = $myProject->config;
-		$info['config']['use_bcompiler'] = $with_bcompiler;
 		exemod_addstr('$X_CONFIG', base64_encode(serialize($info)));
 
 
@@ -423,7 +422,6 @@ class myCompile
 
 	static public function _start($check = true, $sstrs = false)
 	{
-		$use_bcompiler = false;
 		global $projectFile, $exten_dir, $ProjectProc;
 		if(file_exists(dirname($projectFile).'/c_php.ini')){
 			$scl = parse_ini_file(dirname($projectFile).'/c_php.ini');
@@ -434,10 +432,7 @@ class myCompile
 		$_e = err_status(false);
 		global $myProject;
 		myUtils::saveForm();
-		myCompile::setStatus('', t('Сборка проекта') . '...');
-
-		if ($use_bcompiler)
-			myCompile::setStatus('Warning', t('Используем BCompiler!') . '...');
+		myCompile::setStatus('', t('Запуск проекта') . '...');
 
 		$php_dir = dirname(replaceSl(EXE_NAME)) . '/php/';
 		$p_dir = dirname($projectFile) . '/php/';
@@ -477,7 +472,7 @@ class myCompile
 		self::attachPHPEngine(false, false);
 		self::attachSignature();
 		self::attachPHPSoulEngine(false);
-		self::attachForms(false, $use_bcompiler);
+		self::attachForms(false, false);
 		self::attachModules();
 		exemod_saveexe($exeFile);
 		exemod_finish();
@@ -495,24 +490,10 @@ class myCompile
 			winRes::changeIcon($exeFile, $fileIco);
 		}
 		
-		//shell_execute(0, 'open', replaceSr($exeFile), ' -c ' . receiver_handle(), replaceSr(dirname($exeFile)), SW_SHOW);
-		//pre($handle);
-		//'"'.replaceSr($exeFile).'"'.' -c ' . receiver_handle()
-		//$proc =  exec('start /D "' . replaceSr(dirname($exeFile)) .'" /SEPARATE "" "'.replaceSr($exeFile).'" -c '.receiver_handle().' 0 > echo', $output);
-		//pre( $proc );
-		//pre( $output );
-		//$ProjectProc = proc_get_status($proc);
-		//$ProjectProc = $ProjectProc['pid'];;
-		//pre( $ProjectProc );
 		$endTime = microtime(1);
 		$vtime = round( $endTime - $startTime, 1 );
 		$vtime = $vtime>=60? round($vtime/60,1).t('min.'): $vtime.t('sec.');
-		myCompile::setStatus('Successfull', t('Сборка завершена за ') . $vtime );
-		//shell_execute2(0, 'open', replaceSr($exeFile), ' -c ' . receiver_handle(), replaceSr(dirname($exeFile)), SW_SHOW);
-		//exec('start /B /D "' . replaceSr(dirname($exeFile)) .'" /SEPARATE "" "'.replaceSr($exeFile).'" -c '.receiver_handle().' ');
-		//shell_execute(0, 'open', '"'.replaceSr($exeFile).'"', ' -c ' . receiver_handle(), '"'.replaceSr(dirname($exeFile).'"'), SW_SHOW);
-		//shell_execute(0, 'open', replaceSr($exeFile), ' -c ' . receiver_handle(), replaceSr(dirname($exeFile)), SW_SHOW);
-		//shell_execute(0, 'open', replaceSr($exeFile), ' -c ' . receiver_handle(), replaceSr(dirname($exeFile)), SW_SHOW);
+		myCompile::setStatus('Successfull', t('Запуск завершен за ') . $vtime );
 		shell_execute(0, 'open', replaceSr($exeFile), ' -c ' . receiver_handle(), replaceSr(dirname($exeFile)), SW_SHOW);
 		err_status($_e);
 	}
@@ -558,10 +539,10 @@ class myCompile
 		myUtils::saveForm();
 		if ($back) {
 			$GLOBALS['APPLICATION']->processMessages();
-			self::_start(false, !$myProject->config['debug']['enabled']);
+			self::_start(false);
 		}
 		else {
-			self::_start(false, !$myProject->config['debug']['enabled']);
+			self::_start(false);
 		}
 	}
 
