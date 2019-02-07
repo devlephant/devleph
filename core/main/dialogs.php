@@ -125,22 +125,12 @@ class __TNoVisual extends TControl {
 	            $this->__loadDesign();
 	        }
 
-	    } else {
-		//$this->icon = $this->findComponent('image');
 	    }
-	   
-        //$this->__setAllPropEx($init);
     }
     
     public function __updateDesign(){
 	
 	$this->toFront();
-	$this->initLabel();
-    }
-
-    static function __doMouseEnter($self){
-	
-	_c($self)->initLabel();
     }
     
     static function __doMouseLeave($self){
@@ -195,11 +185,6 @@ class __TNoVisual extends TControl {
 	_c(_c($self)->obj)->toFront();
 	_c(_c(_c($self)->obj)->panel)->toFront();
 	$_sc->addTarget(_c(_c($self)->obj));
-    }
-    
-    function initLabel($self = false){
-	    
-	return;
     }
     
     public function setImage($file,$pre=false){	

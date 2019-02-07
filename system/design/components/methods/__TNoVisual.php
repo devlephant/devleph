@@ -28,8 +28,8 @@ $result[] = array(
 
 $result[] = array(
                   'CAPTION'=>'Set Label',
-                  'PROP'=>'initLabel',
-                  'INLINE'=>'initLabel (object self)  - Set label caption by object name',
+                  'PROP'=>'setLabel',
+                  'INLINE'=>'setLabel (object self)  - Set label caption by object name',
                   );		  
 	
 $result[] = array(
