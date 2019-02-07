@@ -421,8 +421,9 @@ class myCompile
 		return $result;
 	}
 
-	static public function _start($check = true, $use_bcompiler = false)
+	static public function _start($check = true, $sstrs = false)
 	{
+		$use_bcompiler = false;
 		global $projectFile, $exten_dir, $ProjectProc;
 		if(file_exists(dirname($projectFile).'/c_php.ini')){
 			$scl = parse_ini_file(dirname($projectFile).'/c_php.ini');

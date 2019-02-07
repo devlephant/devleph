@@ -1,15 +1,7 @@
-class TPanelEx extends TPanel{ public $class_name = __CLASS__; }
-$f = new TForm();
-$ex = new TPanelEx($f);
-$ex->parent = $f;
-$b = new TButton($f);
-$b->parent = $f;
-$b->y = $ex->h;
-$b->caption = 'clc';
-$b->onClick = function($self) use($ex){
-$ex->visible =! $ex->visible;
-};
-pre(
-event_set($ex->self, 'onVisibilityChanged', function($self, &$Value){ $Value = true; })
-);
-$f->show();
+$d = new TForm();
+$d->caption = 'test';
+$s = $d->self;
+$d = nil;
+$d->free();
+$sf = new TForm(nil, 1, $s);
+pre($sf->caption);
