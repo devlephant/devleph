@@ -114,8 +114,6 @@ class __TNoVisual extends TControl {
 		parent::__construct($onwer, $init, $self);
 
 	    if ($init){
-			$this->realWidth  = 26;
-			$this->realHeight = 26;
 
 			$this->showHint = true;
 			$this->hint = $this->name;
