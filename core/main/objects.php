@@ -210,7 +210,7 @@ function setEvent($form,$name,$event,$func){
     //set_event($obj->self,$event,$func);
 }
 function findComponent($str,$sep = '->',$asObject='TControl'){
-    global $SCREEN;//, $COMPONENT_COOL_CACHE;
+    global $SCREEN, $COMPONENT_COOL_CACHE;
     //переменная COMPONENT_COOL_CACHE использовалась для хранения php-объектов (обёрток), я их вырезал, сейчас она не нужна
 	//внимание: так делать НЕ НАДО, для хранения объектов лучше используйте статический класс (синглтон)
     $str = str_replace('.', $sep, $str);
