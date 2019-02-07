@@ -79,6 +79,7 @@ class __TNoVisual extends TControl {
 	if($this->file && trim($this->file) > ''){
 		$this->setImage(replaceSr($this->file));
 		$this->onDestroy = false;
+		$this->font->name = 'Segoe UI';
 	}
 	$this->hide();
 	if($this->aevisiable == true){
