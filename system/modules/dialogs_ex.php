@@ -256,10 +256,7 @@ class TImageDialog extends TPanel {
     }
     
     static function copy(){
-        
-        $bmp	= new TBitmap();
-		$bmp->assign(c('edt_ImageView->image')->picture);
-		clipboard_assign( $bmp->self );
+		clipboard_assign( c('edt_ImageView->image')->picture->self );
     }
     
     static function paste(){

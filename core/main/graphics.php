@@ -604,12 +604,11 @@ class TPicture extends TObject{
     }
 
     public function copyToClipboard(){
-
-            clipboard_assign( $this->self );
+		clipboard_assign( $this->self );
     }
 
     public function pasteFromClipboard(){
-           picture_assign($this->self, clipboard_get());
+		 clipboard_assignpic( $this->self );
     }
 }
 //#FUNCTIONS
