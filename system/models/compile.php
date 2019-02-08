@@ -428,10 +428,12 @@ class myCompile
 			$exten_dir = str_replace(array('.\\', '\\'), '/', $scl['extension_dir']);
 		}
 		
-		$startTime = microtime(1);
+		
 		$_e = err_status(false);
 		global $myProject;
 		myUtils::saveForm();
+		myDesign::szRefresh();
+		$startTime = microtime(1);
 		myCompile::setStatus('', t('Запуск проекта') . '...');
 
 		$php_dir = dirname(replaceSl(EXE_NAME)) . '/php/';
@@ -490,11 +492,12 @@ class myCompile
 			winRes::changeIcon($exeFile, $fileIco);
 		}
 		
-		$endTime = microtime(1);
-		$vtime = round( $endTime - $startTime, 1 );
+		$vtime = round( microtime(1) - $startTime, 1 );
 		$vtime = $vtime>=60? round($vtime/60,1).t('min.'): $vtime.t('sec.');
 		myCompile::setStatus('Successfull', t('Запуск завершен за ') . $vtime );
+		unset($_e, $vtime);
 		shell_execute(0, 'open', replaceSr($exeFile), ' -c ' . receiver_handle(), replaceSr(dirname($exeFile)), SW_SHOW);
+		myDesign::szRefresh();
 		err_status($_e);
 	}
 
@@ -548,12 +551,13 @@ class myCompile
 
 	static public function adv_start($fileExe, $attachPHP = true, $attachSE = true, $attachData = true, $UPXLevel = 0, $companyName = '', $version = '', $desc = '', $fileIco = '', $with_bcompiler = false)
 	{
-		$startTime = microtime(1);
 		global $myProject;
 		myCompile::setStatus('', t('Сборка программы') . '...');
 		$debug_enabled = $myProject->config['debug']['enabled'];
 		$myProject->config['debug']['enabled'] = false;
 		myUtils::saveForm();
+		myDesign::szRefresh();
+		$startTime = microtime(1);
 		$fileExe = replaceSl($fileExe);
 
 		if (file_exists($fileExe)) {
@@ -656,11 +660,10 @@ class myCompile
 		if( strlen(trim($companyName)) <= 0 ) $companyName = "Example Company";
 		winRes::changeInfo($fileExe, 'Copyright', $version, $companyName . " (c)" . date("Y"));
 		//*/
-		$endTime = microtime(1);
-		$buildTime = round( $endTime - $startTime, 1 );
-		
-		myCompile::setStatus('Successfull', t('Сборка завершена') . '. ('.$buildTime.' сек.)');
-
+		$vtime = round( microtime(1) - $startTime, 1 );
+		$vtime = $vtime>=60? round($vtime/60,1).t('min.'): $vtime.t('sec.');
+		myCompile::setStatus('Successfull', t('Сборка завершена') . '. ('.$vtime.')');
+		myDesign::szRefresh();
 		err_status($_e);
 		$myProject->config['debug']['enabled'] = $debug_enabled;
 		
