@@ -174,11 +174,7 @@ class myCompile
 	static public function generateIncFile()
 	{
 		global $projectFile, $exten_dir;
-		//$file = SYSTEM_DIR . '/blanks/inc.php';
 		$inc = file_get_contents(SYSTEM_DIR . '/blanks/inc.php');
-		/*if (file_exists($file) && (DS_DEBUG_MODE === true)) {
-			self::compilePHZ(SYSTEM_DIR . '/blanks/loader.bc', false);
-		}*/
 
 		$hash = md5('%*(' . $inc . '@#78');
 		exemod_addstr('$PHPSOULENGINE\\inc.php', $inc);
@@ -441,7 +437,7 @@ class myCompile
 		$exeFile = dirname($projectFile) . '/' . basenameNoExt($projectFile) . '.exe';
 
 		if (file_exists($exeFile)) {
-			if(	$ProjectProc !==0 ){
+			if(	$ProjectProc <>0 ){
 				exec('taskkill /pid '.$ProjectProc.' /T /F');
 				$ProjectProc = 0;
 			}
@@ -461,7 +457,7 @@ class myCompile
 			}
 
 			if (file_exists($exeFile)) {
-				myCompile::setStatus('Error', t('Попробуйте запустить среду с правами администратора') . '!');
+				myCompile::setStatus('Error', t('Файл программы занят, попробуйте уничтожить её процесс') . '!');
 				message_beep(MB_ICONERROR);
 				return false;
 			}

@@ -80,3 +80,4 @@ $binaryString .= ( ($y = chr(base_convert($eightBits[$z], 2, 10))) || ord($y) ==
 return $binaryString;
 }
 }
+?>

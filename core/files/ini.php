@@ -407,3 +407,4 @@ function iniConfiger(TConfig $cfg = null){
     
     return $result;
 }
+?>

@@ -78,5 +78,7 @@ class resize{
     } 
 } 
 if( !$GLOBALS['APP_DESIGN_MODE'] )
+{
 	setTimer(5, 'resize::tick();'); 
+}
 ?>

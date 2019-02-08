@@ -555,3 +555,4 @@ class TLEdit extends TPanel {
         $this->initComponents();
     }
 }
+?>

@@ -28,3 +28,4 @@ class Docking {
         $panel->dockLoadFromFile($file);
     }
 }
+?>

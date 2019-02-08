@@ -315,3 +315,4 @@ class TStringGrid extends TControl {
     function get_tabs(){ return $this->getOption('goTabs'); }
     function set_tabs($v){ $this->setOption('goTabs',$v); }
 }
+?>

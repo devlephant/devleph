@@ -69,3 +69,4 @@ class BlockData {
 		usort($items, 'iblockclass_sortlist_uasort');
     }
 }
+?>

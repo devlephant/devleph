@@ -293,3 +293,4 @@ function define_ex($name, $value){
     
     define($name, $value, false);
 }
+?>

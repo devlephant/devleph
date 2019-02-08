@@ -24,3 +24,4 @@ function SearchOnName($Dir, $Ext, $view = true) {
 
     return Search($Dir, '#('.$Ext.')#i', $view);
 }  
+?>

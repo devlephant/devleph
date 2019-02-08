@@ -146,3 +146,4 @@ class TSizeCtrl extends TControl{
     }
     
 }
+?>

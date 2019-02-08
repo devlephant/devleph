@@ -8,3 +8,4 @@
 		}
 	}
 	chromium_allowedcall_push("V8JS::CallVirtual");
+?>

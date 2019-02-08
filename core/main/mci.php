@@ -101,3 +101,4 @@ class cMCIPlayer extends _Object{
         mci_command('shareable',$v);
     }
 }
+?>

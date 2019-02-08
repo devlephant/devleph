@@ -1,7 +1,3 @@
-					//////////////////////////////////////////////
-					///Подборка/функций/от/наших/разработчиков///
-					////////////////////////////////////////////
-
 <?
 			///////////////////////
 			// Creator: Alex2003 //
@@ -228,7 +224,7 @@ function arr_gd($length, $color_1='', $color_2=''){
         }
         return $res;
 }
-
+/*
 function create_gradient($obj, TControlCanvas $canv, $col1 = clWhite, $col2 = clLtGray, $hz=false, $both=false){
 	if(!$canv){
 		$canv = new TControlCanvas( $obj );
@@ -266,7 +262,7 @@ function create_gradient($obj, TControlCanvas $canv, $col1 = clWhite, $col2 = cl
 	}
 	$canv->lock();
 }
-
+//*/
 
 
 function __c($obj){ 
@@ -298,4 +294,4 @@ $_Link->WorkingDirectory = dirname($file);
 $_Link->Save();
 unset($Shell, $_Link);
 }
-
+?>

@@ -196,3 +196,4 @@ class TNxMonthCalendar extends TControl
 class TNxTimePicker extends TControl
 {	public $class_name = __CLASS__;
 }
+?>

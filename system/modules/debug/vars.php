@@ -48,3 +48,4 @@ function __uploadGlVars($handle, $arr){
 }
 
 Receiver::add('__uploadGlVars');
+?>

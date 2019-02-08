@@ -95,3 +95,4 @@ class TImageList extends TControl {
         $this->set_prop('height',$v);
     }
 }
+?>

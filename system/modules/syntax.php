@@ -675,3 +675,4 @@ class PHPSyntax {
     }
     
 }
+?>

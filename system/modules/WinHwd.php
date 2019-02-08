@@ -31,3 +31,4 @@ function FindWindowA($lpClassName,$lpWindowName){
 	}
 	return $FFI->FindWindowA($lpClassName,$lpWindowName);
 }
+?>

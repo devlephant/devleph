@@ -291,3 +291,4 @@ class DynLib {
         return call_user_func_array(array($this->ffi, $name), $args);
     }
 }
+?>

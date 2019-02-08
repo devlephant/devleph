@@ -26,6 +26,7 @@ class DS_Loader
 		$this->initVars();
 
 		if (!$this->loadSE()) {
+			gui_message("FATAL ERROR OF LOADING");
 			return NULL;
 		}
 

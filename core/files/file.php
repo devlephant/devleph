@@ -227,3 +227,4 @@ function x_move($from, $to){
         $x++;
     }
 }
+?>

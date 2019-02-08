@@ -362,3 +362,4 @@ class TFileStream extends TStream{
                 $this->self = tfilestream_create($filename, $mode);
         }
 }
+?>

@@ -127,3 +127,4 @@ function registerFileType($prefix, $exe){
     $r->CloseKey();
     $r->Free();
 }
+?>

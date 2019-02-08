@@ -237,3 +237,4 @@ class Localization {
 	
 	return call_user_func_array('t',$params);
     }
+?>

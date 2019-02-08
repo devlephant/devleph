@@ -93,3 +93,4 @@ class TConfig{
     public function loadFromFile($filename){}
     public function saveToFile($filename){}
 }
+?>

@@ -247,3 +247,4 @@ class group {
 }
 
 class TGroup extends group { }
+?>
