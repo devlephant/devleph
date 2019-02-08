@@ -65,8 +65,6 @@ define('DRIVE_CHAR', $progDir[0]);
 
 define('progDir',$progDir);
 set_include_path(DOC_ROOT);
-//require ENGINE_DIR . 'design/studioskin.php'; //-забавный остаток от попыток создать автоматическую скинизацию для студии
-//inc_mdl('q_gui'); //-забавный остаток от того времени, когда студия была переведена на C# WPF и обратно
 $_SERVER['DOCUMENT_ROOT'] = DOC_ROOT;
 $_SERVER['MODULE_DIR'] = MODULE_DIR;
 $_SERVER['ENGINE_DIR'] = ENGINE_DIR;

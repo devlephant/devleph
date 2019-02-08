@@ -612,6 +612,7 @@ class myCompile
 			}
 		}
 		else {
+			gui_message('Fatal error of project compiling');
 			x_copy(DOC_ROOT . '/blanks/soulEngine.pak', dirname($fileExe) . '/soulEngine.pak');
 		}
 
