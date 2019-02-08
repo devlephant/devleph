@@ -268,8 +268,7 @@ class TImageDialog extends TPanel {
     
     static function paste(){
         
-        $bitmap = c('edt_ImageView->image')->picture;
-        $bitmap->assign(c('edt_ImageView->imgBuffer')->picture);
+       clipboard_assignpic( c('edt_ImageView->image')->picture->self );
     }
     
     function get_value(){
