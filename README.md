@@ -1,4 +1,7 @@
 # DevelStudio-3.0-beta
+>Commit №75 Filesize:
+<br>56,4Mb (zipped)
+<br>138Mb (on hdd)
 
 ## EN
 ** Unofficial DevelStudio Patch. **
@@ -13,6 +16,8 @@ Added debug launch via bat-cmd, if you don't like to use this way, just create l
 
 For the full debug, you can create file 'lokoout_log.txt' near Ds Ke.exe, all errors on the  php side during using process will be logged in him
 <br>In the partially debug and full debug modes, there are available components, which in developing process (they can be glitchy or just unfinished yet)
+
+---
 
 ## RU
 ** Неофициальная правка DevelStudio. **
