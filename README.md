@@ -1,5 +1,5 @@
 # DevelStudio-3.0-beta
->Commit №75 Filesize:
+>Commit №81 Filesize:
 <br>56,4Mb (zipped)
 <br>138Mb (on hdd)
 
