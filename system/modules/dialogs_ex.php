@@ -204,11 +204,8 @@ class TImageDialog extends TPanel {
         c('edt_ImageView->btn_copy')->onClick = 'TImageDialog::copy';
         c('edt_ImageView->btn_paste')->onClick= 'TImageDialog::paste';
         
-        //    $this->value = $text;
-        
         if ($this->imagelist){
             $this->setImages();
-            //c('edt_ImageView->groupBox')->show();
             c('edt_ImageView')->h = 498;
         } else {
             c('edt_ImageView')->h = 357;
@@ -259,8 +256,7 @@ class TImageDialog extends TPanel {
     }
     
     static function copy(){
-            
-        //$bitmap = c('edt_ImageView->imgBuffer')->picture;
+        
         $bmp	= new TBitmap();
 		$bmp->assign(c('edt_ImageView->image')->picture);
 		clipboard_assign( $bmp->self );
@@ -277,8 +273,7 @@ class TImageDialog extends TPanel {
     }
     
     function set_value($v){
-        
-       
+		
         c('edt_ImageView->image')->picture->assign($v);
     }
     
