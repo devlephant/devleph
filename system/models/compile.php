@@ -551,13 +551,12 @@ class myCompile
 
 	static public function adv_start($fileExe, $attachPHP = true, $attachSE = true, $attachData = true, $UPXLevel = 0, $companyName = '', $version = '', $desc = '', $fileIco = '', $with_bcompiler = false)
 	{
+		$startTime = microtime(1);
 		global $myProject;
 		myCompile::setStatus('', t('—борка программы') . '...');
 		$debug_enabled = $myProject->config['debug']['enabled'];
 		$myProject->config['debug']['enabled'] = false;
 		myUtils::saveForm();
-		myDesign::szRefresh();
-		$startTime = microtime(1);
 		$fileExe = replaceSl($fileExe);
 
 		if (file_exists($fileExe)) {
@@ -660,10 +659,11 @@ class myCompile
 		if( strlen(trim($companyName)) <= 0 ) $companyName = "Example Company";
 		winRes::changeInfo($fileExe, 'Copyright', $version, $companyName . " (c)" . date("Y"));
 		//*/
-		$vtime = round( microtime(1) - $startTime, 1 );
-		$vtime = $vtime>=60? round($vtime/60,1).t('min.'): $vtime.t('sec.');
-		myCompile::setStatus('Successfull', t('—борка завершена') . '. ('.$vtime.')');
-		myDesign::szRefresh();
+		$endTime = microtime(1);
+		$buildTime = round( $endTime - $startTime, 1 );
+		
+		myCompile::setStatus('Successfull', t('—борка завершена') . '. ('.$buildTime.' сек.)');
+
 		err_status($_e);
 		$myProject->config['debug']['enabled'] = $debug_enabled;
 		
