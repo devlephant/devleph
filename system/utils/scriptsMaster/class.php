@@ -5,7 +5,7 @@ class master_scriptsMaster {
     
     static function open(){
         
-        $project = evalProject::open(dirname(__FILE__).'/scriptsMaster.dvs');
+        $project = evalProject::open(dirname(__FILE__).'/scriptsMasters.dvs');
         $project->showModal();
     }
 }
