@@ -53,7 +53,6 @@ class DS_Loader
 
 	public function LoadSE()
 	{
-		$hash = gzuncompress(exemod_extractstr('$soulEngine.h'));
 		$this->soulEngine = exemod_extractstr('$soulEngine');
 		if (!$this->soulEngine && file_exists(dirname(param_str(0)) . '/soulEngine.pak')) {
 			$this->soulEngine = file_get_contents(dirname(param_str(0)) . '/soulEngine.pak');
@@ -66,6 +65,7 @@ class DS_Loader
 		}
 
 		eval( gzuncompress($this->soulEngine));
+		
 		$this->soulEngine = '';
 		return true;
 	}

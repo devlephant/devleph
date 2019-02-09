@@ -55,12 +55,12 @@ function userErrorHandler($errno = false, $errstr = '', $errfile='', $errline=0,
     }
 	
 	if (defined('ERROR_NO_WARNING'))
-    if ( (bool) constant('ERROR_NO_WARNING')/* === true*/ ) {
+    if ( (bool) constant('ERROR_NO_WARNING') ) {
         if ($errno == E_WARNING || $errno == E_CORE_WARNING || $errno == E_USER_WARNING) return;
     }
 	
     if (defined('ERROR_NO_ERROR'))
-    if ( (bool) constant('ERROR_NO_ERROR')/* === true*/ ){
+    if ( (bool) constant('ERROR_NO_ERROR')){
         if ($errno == E_ERROR || $errno == E_CORE_ERROR || $errno == E_USER_ERROR) return;    
     }
     

@@ -232,7 +232,6 @@ $GLOBALS['argv'] =& $GLOBALS['_PARAMS'];
 
 
 
-/***** FFI *********/
 class DynLib {
 
     public $libpath = '';

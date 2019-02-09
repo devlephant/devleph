@@ -10,7 +10,6 @@
 				_Object, TObject, TComponent, TFont, TRealFont, TControl
   
 */
-/* --------------------------------------- */
 define('nil',-1);
 
 define('OS_WIN',1);
@@ -25,7 +24,6 @@ define('__SYSTEM__',OS_WIN);
 		default:		define('_BR_',chr(13).chr(13));
     }
     
-/* --------------------------------------- */
 global $_c;
 //Константы, отвечающие какой тип свойства передан/взят
 $_c->tkUnknown		= 0;
@@ -415,8 +413,8 @@ function rtti_get($obj,$prop){
 	} //For Events Setting
 	*/	
    
-   if( is_numeric( $f ) and gui_propType($obj->self, $prop) == tkClass ) { //* Проверка типа свойства, если свойство является объектом, то, возвращаем как объект
-   //Костыль ниже \/    \/ //
+   if( is_numeric( $f ) and gui_propType($obj->self, $prop) == tkClass ) { // Проверка типа свойства, если свойство является объектом, то, возвращаем как объект
+   //Костыль ниже \/    \/
 	   if( class_exists( gui_class($f) ) ) {
 			if( _c($f) )
 			{
@@ -424,7 +422,7 @@ function rtti_get($obj,$prop){
 			}
 	   }
    } 	
-   //*/
+
    return $f;
 }
 function rtti_exists($obj,$prop){

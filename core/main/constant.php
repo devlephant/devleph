@@ -1,5 +1,4 @@
 <?
-/* <<<CONSTANTS */
 class myVars {
     
     static function set($var, $name){
@@ -72,11 +71,8 @@ class TConstantList{
 
 
 $GLOBALS['_c'] = new TConstantList;
-/* CONSTANTS; */
 
-/* <<<CLASSES */
-
-// Delphi: System.UITYPES.TColor //
+// Delphi: System.UITYPES.TColor
 Class TColor implements Iterator, ArrayAccess {
 //Allowed values
 const min = -2147483648;
@@ -94,10 +90,10 @@ protected $isstatic;
 protected $rgb;
 protected $name;
 
-	//* Properties: Contrast, Hue, Lightness, Darkness, Saturation 																						   
-	//* Formats: RGB, BGR, HSV, HSL, CMYK, DHEX, HEX, COLOR 																							  	 
-	//* Functions: compare_contrast( $c [TColor/Hex/RGB], [...] ) - returns most cotrast color, MakeStatic() - makes instance of TColor static for ever! 
-	//* Methods: compare_contrast($hexStr1, $hexStr2) - returns most cotrast color, BGR, HSV, HSL, CMYK, HEX, DHEX, COLOR <=> RGB - return rgb or instant
+	// Properties: Contrast, Hue, Lightness, Darkness, Saturation 																						   
+	// Formats: RGB, BGR, HSV, HSL, CMYK, DHEX, HEX, COLOR 																							  	 
+	// Functions: compare_contrast( $c [TColor/Hex/RGB], [...] ) - returns most cotrast color, MakeStatic() - makes instance of TColor static for ever! 
+	// Methods: compare_contrast($hexStr1, $hexStr2) - returns most cotrast color, BGR, HSV, HSL, CMYK, HEX, DHEX, COLOR <=> RGB - return rgb or instant
 	
 	//возвращает массив поддерживаемых форматов
 	public function formats()
@@ -382,7 +378,7 @@ protected $name;
 	{
 		switch( strtolower(trim($name)) )
 		{
-			 //* Formats /
+			 // Formats
 			 case 'bgr':	{ return	array( (int)$this->rgb[2], (int)$this->rgb[1],(int) $this->rgb[0] );					} break;
 			 case 'rgb':	{ return	array( (int)$this->rgb[0], (int)$this->rgb[1], (int)$this->rgb[2] );					} break;
 			 case 'hsv':	{ return	self::RGBtoHSV((int)$this->rgb[0], (int)$this->rgb[1], (int)$this->rgb[2]);				} break;
@@ -392,7 +388,7 @@ protected $name;
 			 case 'hex':	{ return 	self::RGBtoHEX((int)$this->rgb[0], (int)$this->rgb[1], (int)$this->rgb[2]);				} break;
 			 case 'color':	{ return	hexdec(self::RGBtoDHEX((int)$this->rgb[0], (int)$this->rgb[1], (int)$this->rgb[2]));	} break;
 			 
-			 //* Properties /
+			 // Properties
 			 case 'contrast':	{ return 0.2126 * pow($this->rgb[0] / 255, 2.2) +
 										 0.7152 * pow($this->rgb[1] / 255, 2.2) +
 										 0.0722 * pow($this->rgb[2] / 255, 2.2);	} break;
@@ -421,7 +417,7 @@ protected $name;
 		}
 		switch( strtolower(trim($name)) )
 		{
-			 //*Formats/
+			 //Formats
 			 case 'bgr': { 
 			 if( !$this->check_value($value, 'BGR') ) 			return false;
 			 $this->rgb   		= array((int)$value[2], (int)$value[1], (int)$value[0]);
@@ -469,7 +465,7 @@ protected $name;
 																													} break;
 																													
 			 
-			 // Properties //
+			 // Properties
 			 case 'contrast':	{ 
 			 $value = $value/222;
 				if( !$this->check_val($value, 'TColor contrast property', 'num', 22.2) )		return false;
@@ -926,7 +922,6 @@ protected $name;
 			} else { 
 					if($L1 > $L2)
 					return $hexColor;	
-			   //=================\\
 				return $hexColor2;
 			}
 	}
@@ -1045,7 +1040,7 @@ protected $name;
 			if( min($rgb) > 0 && max($rgb) < 256) 
 				$GradientColors[] =  new self::$classname(	$rgb, 'rgb');
 		}
-		//$GradientColors = array_filter($GradientColors, function($val){return strlen($val->hex) >= 6;});
+		
 	return $GradientColors;
 	}
 	
@@ -1215,7 +1210,5 @@ protected $name;
 function TColor( $color ) {
 	return call_user_func_array(array("TColor", "__invoke"), func_get_args());
 }
-//*/
 
-/* CLASSES; */
 ?>
