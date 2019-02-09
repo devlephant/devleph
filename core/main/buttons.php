@@ -34,7 +34,7 @@ class TBitBtn extends TControl {
 	
 	public function doClick(){
 		
-		eval(get_event($this->self, 'onClick').'('.$this->self.');');
+		call_user_func(event_get($this->self, 'onClick'), $this->self);
 	}
 	
 	public function loadPicture($file){
