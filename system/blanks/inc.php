@@ -65,10 +65,6 @@ class DS_Loader
 			exit();
 		}
 
-		if (md5(crc32($this->soulEngine . '$#')) !== $hash) {
-			return false;
-		}
-
 		eval( gzuncompress($this->soulEngine));
 		$this->soulEngine = '';
 		return true;
