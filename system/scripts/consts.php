@@ -20,12 +20,6 @@
     
 	
     myVars::set( c('fmMain->formsPopur'), 'formsPopur');
-    //styleMenu::add($GLOBALS['formsPopur']);
-    
-    //styleMenu::add( c('edt_MenuEditor->popup') );
-    //styleMenu::add( c('fmPHPEditor->popup') );
-	
-    //styleMenu::add( c('fmPropsAndEvents->eventsPopup') );
     
     myVars::set( c('fmPHPEditor'), 'fmPHPEditor');
     myVars::set( c('fmFormList'), 'fmFormList');
@@ -36,8 +30,6 @@
     c('fmEasySelectDialog->objs_list')->images   = $_IMAGES24;
     c('fmEasySelectDialog->lst_objects')->images = $_IMAGES24;
     
-    //$_FORMS = array('Form1'); //название форм
-    //mkdir(SYSTEM_DIR . '/project/',0777,true);
     $projectFile = DS_USERDIR . 'Project/Project.msppr';
 
     if (file_exists(DS_USERDIR . 'last.lst')){
