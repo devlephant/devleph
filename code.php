@@ -1,7 +1,2 @@
-$d = new TForm();
-$d->caption = 'test';
-$s = $d->self;
-$d = nil;
-$d->free();
-$sf = new TForm(nil, 1, $s);
-pre($sf->caption);
+enc_setvalue('eq1', 'sayhi');
+pre( enc_getvalue('eq1') );
