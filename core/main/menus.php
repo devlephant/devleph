@@ -3,9 +3,9 @@
   
   SoulEngine Menu Library
   
-  2016 ver 1.2
+  2019 ver 1.3
   
-  Kashaket Company (c) 2016
+  Kashaket Company (c) 2019
   
 */
 
@@ -141,7 +141,51 @@ class TMenuItem extends TControl {
 	public function delete($index){
 		menuitem_delete($this->self, $index);
 	}
-	
+	public function removeItem( TMenuItem $item )
+	{
+		menuitem_remitem($this->self, $item->self);
+	}
+	public function getItem( $index )
+	{
+		return _c(menuitem_getitem($this->self, $index));
+	}
+	public function get_count(){
+		return menuitem_itemcount($this->self);
+	}
+	public function get_items(){
+		$res = array();
+		if( menuitem_itemcount($this->self) <= 0 ) return $res;
+		for($i=0;$i<menuitem_itemcount($this->self);$i++)
+		{
+			$res[$i] =   _c(menuitem_getitem($this->self, $i));
+		}
+		return $res;
+	}
+	public function set_items($v)
+	{
+		if( !is_array($v) ) return;
+		$bef = $this->get_items();
+		if( menuitem_itemcount($this->self) > 0 )
+		for($i=0;$i<menuitem_itemcount($this->self);$i++)
+		{
+			$this->removeItem( _c(menuitem_getitem($this->self, $i)) );
+		}
+		if( !empty($v) )
+		foreach( $v as $item )
+		{
+			if( $v instanceof TMenuItem )
+			{
+				$this->addItem($v);
+			}elseif( is_numeric($v) && (gui_class($v) == 'TMenuItem'))
+			{
+				popup_additemex($this->self, $v);
+			}
+		}
+		$bef = array_diff($bef, $this->get_items());
+		if( !empty($bef) )
+			foreach($bef as $v)
+				$v->free();
+	}
 	public function insert($index, TMenuItem $item){
 		menu_insert($this->self, (int)$index, $item->self);
 	}

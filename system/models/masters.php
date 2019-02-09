@@ -11,6 +11,9 @@ class myMasters {
         
         foreach ($utils as $code)
             self::createMaster($code);
+		
+		if( c('fmMain->it_Utils')->count <= 0 )
+			c('fmMain->it_Utils')->visible = false;
     }
     
     static function createMaster($code){
