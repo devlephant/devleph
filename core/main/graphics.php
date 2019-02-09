@@ -616,20 +616,21 @@ class TPicture extends TObject{
 
 
 function createImage($filename, $type = 'TBitmap')
-{
-		switch( strtolower($type ) ) {
+{		
+		switch( strtolower(str_replace('.', '', $type) ) ) {
 			case 'png': $type = 'TPNGImage'; break;
-			case '.png': $type = 'TPNGImage'; break;
-			case 'bmp': $type = 'TBitmap'; break;
-			case '.bmp': $type = 'TBitmap'; break;
-			case 'jpg': $type = 'TJPEGImage'; break;
-			case 'jpeg': $type = 'TJPEGImage'; break;
-			case '.jpg': $type = 'TJPEGImage'; break;
-			case '.jpeg': $type = 'TJPEGImage'; break;
+			case 'tif': 
+			case 'tiff':
+			case 'icon':
+			case 'ico':
+			case 'emf':
+				case 'bmp': $type = 'TBitmap'; break;
+			case 'jpg': 
+			case 'jfif': 
+			case 'jif': 
+				case 'jpeg': $type = 'TJPEGImage'; break;
 			case 'gif': $type = 'TGIFImage'; break;
-			case '.gif': $type = 'TGIFImage'; break;
-			case 'emf': $type = 'TBitmap'; break;
-			case '.emf': $type = 'TBitmap'; break;
+			case 'svg': $type = 'TSVGImage'; break;
 		}
 		
 		if( !class_exists($type) ) return false;

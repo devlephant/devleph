@@ -596,9 +596,6 @@ class myCompile
 		$p_dir = false;
 		self::copyPHPts(dirname($fileExe));
 
-		if (0 < $UPXLevel) {
-		}
-
 		exemod_start($fileExe);
 		exemod_addstr('$PHPSOULENGINE\\inc.php', self::generateIncFile());
 		self::attachPHPEngine($p_dir, true);

@@ -6,7 +6,7 @@
 	c('fmTIB')->doubleBuffered = 1;
 
 	$dlg = new TOpenDialog( c('fmTIB') );
-	$dlg->filter = 'All images|*.bmp;*.gif;*.jpeg;*.jpg;*.wmf;*.emf;*.ico;*.png';
+	$dlg->filter = DLG_FILTER_PICTURES;
 	$dlg->name = 'openDlg1';
 
 /////////////////////////////////////////////////////////////////////////////////

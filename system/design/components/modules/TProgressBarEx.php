@@ -117,7 +117,7 @@ class TProgressBarEx extends TScrollBox{
 	 }
     public function load_image( $file ){
 		if( file_exists($file) )
-			if( in_array(fileExt($file), array('png', 'jpg', 'jpeg', 'emf', 'wmf', 'tiff', 'gif', 'ico', 'bmp') ) ) {
+			if( in_array(fileExt($file), array('png', 'jpg', 'jpeg', 'emf', 'wmf', 'tiff', 'tif', 'gif', 'ico', 'bmp', 'svg') ) ) {
 				$this->_file = $file;
 				return true;
 			}

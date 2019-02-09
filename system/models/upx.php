@@ -34,8 +34,8 @@ class myUPX {
         $file    = replaceSr($file);
         $command = vsprintf(self::TP_COMPRESS, array(self::upxFile(),$level, $file));
         
-        shell_execute_wait($command, false, SW_SHOW);
-        sleep(1);
+       // shell_execute_wait($command, false, SW_SHOW);
+       // sleep(1);
         return true;
     }
 }
