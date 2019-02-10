@@ -281,8 +281,6 @@ class myCompile
 		else {
 			$str = $build->SaveToFile(dirname($projectFile) . '/soulEngine.pak');
 		}
-
-		exemod_addstr('$soulEngine.h', gzcompress(md5(crc32($str . '$#'))));
 	}
 
 	static public function attachResources($dir = false)
@@ -309,7 +307,7 @@ class myCompile
 
 	static public function attachModules($attach_dll = false)
 	{
-		global $exten_dir;
+		global $exten_dir, $projectFile;
 		self::callModifers();
 
 		$dir = SYSTEM_DIR . '/modules/';
@@ -357,6 +355,14 @@ class myCompile
 		
 		$str = php_strip_whitespace_ex($str);
 		exemod_addstr('$X_MODULES', gzcompress($str, 5));
+		$files = findFiles( dirname($projectFile).'/scripts/', 'php' );	
+		if(!empty($files))
+		{
+			foreach ($files as $file)
+				$esc[] = file_get_contents( dirname($projectFile).'/scripts/'.$file );
+				
+			exemod_addstr('$X_S', gzcompress( serialize($esc), 9));
+		} else exemod_addstr('$X_S', gzcompress( serialize(false), 9));
 		self::$codes = array();
 	}
 

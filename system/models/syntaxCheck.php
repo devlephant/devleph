@@ -43,12 +43,11 @@ class mySyntaxCheck {
         $dir    = dirname($file);
         foreach ($result as $line){
             $info = explode('|',$line);
-            if (trim($info[1])){ // если есть ошибка
-                $tmp = explode('.', basenameNoExt($info[0]));
-                $event = $tmp[count($tmp)-1];
-                $form  = $tmp[0];
+				$tmp = explode('.', basenameNoExt($info[0]));
+				$event = $tmp[count($tmp)-1];
+				$form  = $tmp[0];
+            if (trim($info[1]) and !( $form == '1!scripts' and (trim($info[1]) == 'Namespace declaration statement has to be the very first statement in the script'))){ // если есть ошибка
                 $obj   = count($tmp)==2 ? '' : $tmp[1];
-                
                 self::$errors[$list->itemIndex+count(self::$errors)+1] = array('msg'=>trim($info[1]), 'type'=>(int)$info[2],
                                         'line'=>(int)$info[3], 'event'=>$event,
                                         'form'=>$form, 'obj'=>$obj);
@@ -70,11 +69,12 @@ class mySyntaxCheck {
             if ($err['obj'])
                 $obj_name .= '->'.$err['obj'];
                 
-            if ($obj_name=='___scripts'){
-                $obj_name = t('‘крипт проекта');
+            if ($obj_name=='1!scripts'){
+                $obj_name = t('Скрипт проекта');
                 $err['event'] = '/scripts/'.$err['event'].'.php';
             }
             message_beep(MB_ICONERROR);    
+
 			myCompile::addStatus('Error', ': {'.$obj_name.', '.t($err['event']).'}  '.$err['msg'].' '.t('on line').' '. ($err['line']));
 			
         }
@@ -107,8 +107,8 @@ class mySyntaxCheck {
         
         $scripts = findFiles( dirname($projectFile).'/scripts/', 'php' );
         foreach ($scripts as $file){
-            copy(dirname($projectFile).'/scripts/'.$file, $dir.'/___scripts.'.$file);
-            $files[] = $dir.'/___scripts.'.$file;
+            copy(dirname($projectFile).'/scripts/'.$file, $dir.'/1!scripts.'.$file);
+            $files[] = $dir.'/1!scripts.'.$file;
         }
         
         
@@ -142,7 +142,7 @@ class mySyntaxCheck {
         $error = self::$errors[$index];
         if (!$error) return;
         
-        if ($error['form']=='___scripts'){
+        if ($error['form']=='1!scripts'){
             
             return;
         }
@@ -175,7 +175,7 @@ class mySyntaxCheck {
         
         self::clickError($self);
         
-        if ($error['form']=='___scripts'){
+        if ($error['form']=='1!scripts'){
             
             global $projectFile;
             

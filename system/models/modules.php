@@ -36,12 +36,6 @@ class myModules {
                 $classes[] = $el['CLASS'];
             }  
         }
-		
-		
-        
-        $files = findFiles( dirname($projectFile).'/scripts/', 'php' );
-        foreach ($files as $file)
-            $result[] = dirname($projectFile).'/scripts/'.$file;
         
         return $result;
     }

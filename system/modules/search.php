@@ -23,5 +23,6 @@ function SearchOnName($Dir, $Ext, $view = true) {
         $Ext = implode('|', $Ext);
 
     return Search($Dir, '#('.$Ext.')#i', $view);
-}  
+}
+
 ?>
