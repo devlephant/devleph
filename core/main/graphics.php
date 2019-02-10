@@ -427,8 +427,47 @@ function canvas($ctrl = false){
     
     return new TControlCanvas($ctrl);
 }
-
-class TBitmap extends TObject{
+class TGraphic extends TControl{
+	public $class_name = __CLASS__;
+	function Assign(TGraphic $v)
+	{
+		if( $v->self == $this->self ) return;
+		tgraphic_assign($this->self, $v->self);
+	}
+	function get_Empty()
+	{
+		return tgraphic_prop($this->self, 1);
+	}
+	function get_Height()
+	{
+		return tgraphic_prop($this->self, 2);
+	}
+	function get_Modified()
+	{
+		return tgraphic_prop($this->self, 3);
+	}
+	function get_Palette()
+	{
+		return tgraphic_prop($this->self, 4);
+	}
+	function get_PaletteModified()
+	{
+		return tgraphic_prop($this->self, 5);
+	}
+	function get_Transparent()
+	{
+		return tgraphic_prop($this->self, 6);
+	}
+	function get_Width()
+	{
+		return tgraphic_prop($this->self, 7);
+	}
+	function get_SupportsPartialTransparency()
+	{
+		return tgraphic_prop($this->self, 8);
+	}
+}
+class TBitmap extends TGraphic{
     
     public $class_name = __CLASS__;
     public $parent_object = nil;
@@ -518,6 +557,10 @@ class TBitmap extends TObject{
 	}
 }
 
+class TSVGGraphic extends TGraphic{ public $class_name = __CLASS__; }
+class TPNGImage extends TGraphic{ public $class_name = __CLASS__; }
+class TGIFImage extends TGraphic{ public $class_name = __CLASS__; }
+class TJPEGImage extends TGraphic{ public $class_name = __CLASS__; }
 
 class TPicture extends TObject{
     
@@ -534,7 +577,14 @@ class TPicture extends TObject{
 			if($owner && $owner != nil)
 				$this->owner = $owner;
 	}
-    
+    function get_Graphic()
+	{
+		 return _c(picture_getgraphic($this->self));
+	}
+	function set_Graphic(TGraphic $v)
+	{
+		_c(picture_getgraphic($this->self))->Assign($v);
+	}
     function loadAnyFile($filename){
 		$this->loadFromFile($filename);
     }

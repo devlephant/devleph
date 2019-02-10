@@ -203,7 +203,7 @@ class TImageDialog extends TPanel {
         c('edt_ImageView->btn_clear')->onClick= 'TImageDialog::clear';
         c('edt_ImageView->btn_copy')->onClick = 'TImageDialog::copy';
         c('edt_ImageView->btn_paste')->onClick= 'TImageDialog::paste';
-        
+		
         if ($this->imagelist){
             $this->setImages();
             c('edt_ImageView')->h = 498;
@@ -217,6 +217,7 @@ class TImageDialog extends TPanel {
     static function clear(){
         
         c('edt_ImageView->image')->picture->clear();
+		c('edt_ImageView->background')->visible = false;
     }
     
     static function load(){
@@ -228,14 +229,14 @@ class TImageDialog extends TPanel {
         if ($dlg->execute()){
             
             c('edt_ImageView->image')->picture->loadAnyFile($dlg->fileName);
-			
-				 c('edt_ImageView->image')->transparent =  c('edt_ImageView->background')->visible = (fileExt($dlg->fileName) == "png" || fileExt($dlg->fileName) == "ico")? true: false;
-				c('edt_ImageView')->repaint();
+			c('edt_ImageView->background')->visible = (c('edt_ImageView->image')->picture->graphic->SupportsPartialTransparency || c('edt_ImageView->image')->picture->graphic->Transparent);
+			c('edt_ImageView')->repaint();
 			$result = true;
         }
         
         $dlg->free();
 		c('edt_ImageView')->toFront();
+		
         return $result;
     }
     
@@ -256,12 +257,19 @@ class TImageDialog extends TPanel {
     }
     
     static function copy(){
+		c('edt_ImageView->imgBuffer')->picture->assign( c('edt_ImageView->image')->picture );
 		clipboard_assign( c('edt_ImageView->image')->picture->self );
     }
     
     static function paste(){
-        
-       clipboard_assignpic( c('edt_ImageView->image')->picture->self );
+		if( clipboard_checkformat('pic') )
+		{
+			clipboard_assignpic( c('edt_ImageView->image')->picture->self );
+		} else
+		{
+			c('edt_ImageView->image')->picture->assign( c("edt_ImageView->imgBuffer")->picture );
+		}
+	   c('edt_ImageView->background')->visible = (c('edt_ImageView->image')->picture->graphic->SupportsPartialTransparency || c('edt_ImageView->image')->picture->graphic->Transparent);
     }
     
     function get_value(){
@@ -272,7 +280,9 @@ class TImageDialog extends TPanel {
     function set_value($v){
 		
         c('edt_ImageView->image')->picture->assign($v);
-    }
+		
+		c('edt_ImageView->background')->visible = (c('edt_ImageView->image')->picture->graphic->SupportsPartialTransparency || c('edt_ImageView->image')->picture->graphic->Transparent);
+	}
     
 }
 
