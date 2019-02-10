@@ -309,7 +309,7 @@ class myCompile
 	{
 		global $exten_dir, $projectFile;
 		self::callModifers();
-
+		$md5s = array();
 		$dir = SYSTEM_DIR . '/modules/';
 		$files = findFiles($dir, 'php', false, true);
 
@@ -338,10 +338,14 @@ class myCompile
 
 		foreach ($files as $i => $file) {
 			if (fileExt($file) == 'phpe2') {
-				$str .= myXVer::unPack(file_get_contents($file));
+				$addstr = myXVer::unPack(file_get_contents($file));
+				$md5s[] = md5($addstr);
+				$str .= $addstr;
 			}
 			else {
-				$str .= trim(file_get_contents($file));
+				$addstr = trim(file_get_contents($file));
+				$md5s[] = md5($addstr);
+				$str .= $addstr;
 			}
 
 			if (($str[strlen($str) - 2] . $str[strlen($str) - 1]) != '?>') {
@@ -359,10 +363,24 @@ class myCompile
 		if(!empty($files))
 		{
 			foreach ($files as $file)
-				$esc[] = file_get_contents( dirname($projectFile).'/scripts/'.$file );
-				
+			{
+				$addstr = trim( file_get_contents( dirname($projectFile).'/scripts/'.$file ) );
+				if( !in_array(md5($addstr), $md5s) )
+				{
+					$esc[] = $addstr;
+					$md5s[] = $addstr;
+				}
+			}	
+		}
+		if( !empty($esc) )
+		{
 			exemod_addstr('$X_S', gzcompress( serialize($esc), 9));
-		} else exemod_addstr('$X_S', gzcompress( serialize(false), 9));
+		}
+		else
+		{
+			exemod_addstr('$X_S', gzcompress( serialize(false), 9));
+		}
+		
 		self::$codes = array();
 	}
 
