@@ -178,8 +178,8 @@ class TCoolTrayIcon extends TControl {
 		$this->set_prop('hint',$v);
 	}
 	
-	public function assign($icon){
-		trayicon_assign($this->self, $icon->self);
+	public function assign(TCoolTrayIcon $icon){
+		tpersistent_assign($this->self, $icon->self);
 	}
 	
 	public function showBalloonTip(){
@@ -257,7 +257,7 @@ class TIcon extends TControl{
 		if ($bitmap instanceof TBitmap){
 			icon_assign($this->self, $bitmap->self);
 		} elseif ($bitmap instanceof TIcon){
-			icon_assign_ico($this->self, $bitmap->self);
+			tpersistent_assign($this->self, $bitmap->self);
 		}
     }
     

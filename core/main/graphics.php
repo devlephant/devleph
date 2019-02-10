@@ -432,7 +432,7 @@ class TGraphic extends TControl{
 	function Assign(TGraphic $v)
 	{
 		if( $v->self == $this->self ) return;
-		tgraphic_assign($this->self, $v->self);
+		tpersistent_assign($this->self, $v->self);
 	}
 	function get_Empty()
 	{
@@ -528,7 +528,7 @@ class TBitmap extends TGraphic{
 		if ($bitmap instanceof TPicture)
 			$this->assign($bitmap->getBitmap());
 		else
-			bitmap_assign($this->self, $bitmap->self);
+			tpersistent_assign($this->self, $bitmap->self);
     }
 
     public function copyToClipboard(){
@@ -640,9 +640,9 @@ class TPicture extends TObject{
     function assign($pic){
 	
 	if ($pic instanceof TBitmap) 
-	    picture_bitmap_assign($this->self, $pic->self);
+	    tpersistent_assign(picture_bitmap($this->self), $pic->self);
 	else
-	    picture_assign($this->self,$pic->self);
+	    tpersistent_assign($this->self,$pic->self);
     }
     
     function clear(){

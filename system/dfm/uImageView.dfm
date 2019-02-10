@@ -16,7 +16,6 @@ object edt_ImageView: Tedt_ImageView
   Font.Style = []
   OldCreateOrder = False
   PopupMenu = fmMain.editorPopup
-  DoubleBuffered = True
   Position = poDesigned
   Visible = False
   PixelsPerInch = 96
