@@ -562,7 +562,7 @@ class TPNGImage extends TGraphic{ public $class_name = __CLASS__; }
 class TGIFImage extends TGraphic{ public $class_name = __CLASS__; }
 class TJPEGImage extends TGraphic{ public $class_name = __CLASS__; }
 
-class TPicture extends TObject{
+class TPicture extends TControl{
     
     public $class_name = __CLASS__;
     public $parent_object = nil;
