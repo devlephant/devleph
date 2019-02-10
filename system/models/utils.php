@@ -576,16 +576,17 @@ class myUtils {
 		
 			$fname = isset($_FORMS[$formSelected])? str_replace(range(0, 9), '', $_FORMS[$formSelected]): 'Form';
 			if( isset($_FORMS[$formSelected]) ){
-				preg_match_all('!\d+!', $_FORMS[$formSelected], $int);
-				$int = max( current($int) );
-				$intpos = strpos($_FORMS[$formSelected], $int);
+				$f = preg_match_all('!\d+!', $_FORMS[$formSelected], $int);
+				
+				$int = $f? max( current($int) ): 1;
+				$intpos = $f? strpos($_FORMS[$formSelected], $int): strlen($fname);
 			} else {
 				$int = 1;
 				$intpos = 4;
 			}
+				while( in_array($fname.$int, $_FORMS) ) $int++;
+					$name = strins($fname, $intpos, $int);
 			
-			while( in_array($fname.$int, $_FORMS) ) $int++;
-				$name = strins($fname, $intpos, $int);
 		
         $name = inputText(t('Create new form'),t('Form name'), $name);
         
