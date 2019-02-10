@@ -365,20 +365,28 @@ class myCompile
 			foreach ($files as $file)
 			{
 				$addstr = trim( file_get_contents( dirname($projectFile).'/scripts/'.$file ) );
-				if( !in_array(md5($addstr), $md5s) )
+				$md5 = md5($addstr);
+				$addstr = php_strip_whitespace_ex($addstr);
+				if( substr($addstr, 0, 5) == '<?php' )
+					$addstr = substr($addstr, 5);
+				if( substr($addstr, 0, 2) == '<?' )
+					$addstr = substr($addstr, 2);
+				if( substr($addstr, strlen($addstr)-2) == '?>' )
+					$addstr = substr($addstr, 0, strlen($addstr)-2);
+				if( !in_array($md5, $md5s) )
 				{
 					$esc[] = $addstr;
-					$md5s[] = $addstr;
+					$md5s[] = $md5;
 				}
 			}	
 		}
-		if( !empty($esc) )
+		if( empty($esc) )
 		{
-			exemod_addstr('$X_S', gzcompress( serialize($esc), 9));
+			exemod_addstr('$X_S', gzcompress( serialize(false), 9));
 		}
 		else
 		{
-			exemod_addstr('$X_S', gzcompress( serialize(false), 9));
+			exemod_addstr('$X_S', gzcompress( serialize($esc), 9));
 		}
 		
 		self::$codes = array();

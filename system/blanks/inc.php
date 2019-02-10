@@ -73,22 +73,17 @@ class DS_Loader
 	public function LoadModules()
 	{
 		$modules = gzuncompress(exemod_extractstr('$X_MODULES'));
-		
 		eval( '?>' . $modules);
 		$modules = unserialize( gzuncompress(exemod_extractstr('$X_S')) );
+
 		if( is_array($modules) )
 		{
 			foreach($modules as $s)
 			{
-				ob_start();
-				eval('?>' . $s);
-				$e = ob_get_contents();
-				if( strlen($e) )
-					gui_message($e);
-				ob_end_clean();
+				eval($s);
 			}
 		}
-		unset($modules);
+		unset($modules,$s,$e);
 	}
 
 	public function LoadOptions()
