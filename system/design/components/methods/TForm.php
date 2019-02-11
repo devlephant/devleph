@@ -11,7 +11,7 @@ $result[] = array(
 $result[] = array(
                   'CAPTION'=>t('close'),
                   'PROP'=>'close()',
-                  'INLINE'=>'close ( bool Alpha )',
+                  'INLINE'=>'close ( void )',
                   );
 
 $result[] = array(
@@ -108,13 +108,13 @@ $result[] = array(
 $result[] = array(
                   'CAPTION'=>t('Show'),
                   'PROP'=>'show()',
-                  'INLINE'=>'show (  bool Alpha  )',
+                  'INLINE'=>'show ( int mode )',
                   );
 
 $result[] = array(
                   'CAPTION'=>t('Hide'),
                   'PROP'=>'hide()',
-                  'INLINE'=>'hide (  bool Alpha  )',
+                  'INLINE'=>'hide ( void )',
                   );
 
 

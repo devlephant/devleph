@@ -509,21 +509,20 @@ if (EMULATE_DVS_EXE) return;
 		$res = array();
 		$methods = gui_class_methodList($class);
 		if( empty($methods) ) return $res;
-		foreach( $methods as $method_name )
+		foreach( $methods as $method_name=>$parameters )
 		{
-			if( gui_method_paramss($class, $method_name) == '!' ) continue;
 			$res[] = array(
 					  'CAPTION'=> t($method_name),
 					  'PROP'=> strtolower(substr($method_name, 0, 1)) . substr($method_name, 1),
-					  'INLINE'=> $method_name . ' ( ' . str_replace(array('Integer', 'Boolean'), array('Int', 'Bool'), gui_method_paramss($class, $method_name) ) . ' )',
+					  'INLINE'=> $method_name . ' ' . str_replace(array('Integer', 'Boolean'), array('Int', 'Bool'),  $parameters),
 					  );
 		}
 		return $res;
 	}
 	
-	foreach( gui_get_all_unitsclasses() as $classname )
+	foreach( get_declared_classes()/*gui_get_all_unitsclasses()*/ as $classname )
 	{
-		if( !class_exists($classname) ) continue;
+		if( !gui_class_isset($classname) ) continue;
 		$p = get_sorted_props($classname);
 		$e = get_sorted_events($classname);
 		//$m = get_sorted_methods($classname);
@@ -532,11 +531,10 @@ if (EMULATE_DVS_EXE) return;
 		//*/
 		if( !empty($e) )
 			$componentEvents[$classname]	= $e;
-		
-		
-		/*if( !empty($m) )
+		/*
+		if( !empty($m) )
 			$componentMethods[$classname]	= $m;
-		//*/
+		*/
 	}
 	
 	

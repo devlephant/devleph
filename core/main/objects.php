@@ -50,31 +50,36 @@ $_c->tkPointer		= 20;
 $_c->tkProcedure	= 21;
 
 function rtti_call($obj,$prop,$values=false){
-	if( gui_methodExists($obj, $prop ) )
-	{
 		if( is_array($values) ) { //проверяет входящие аргументы на содержание объектов
-			error_msg('Sorry. This functional is temporary unavalaible'); //Заглушка, пока вызов функции(метода) не доработан
 			foreach($values as $key=>$val )
 			if( is_object($val) ) { //Опять таки, проверочка на объекты
 				if( isset($val->self) ) //Если объект у нас VCL (нуу, предположительно)
-					if( is_numeric( $val->self )  ) {
+					if( gui_isset($val->self) ) { //если объект у нас VCL (точный анализ!)
 						$values[$key] = $val->self; //Заменяем позицию в массиве, жёсткий костыль...
+					} else{
+						trigger_error('Cannot use custom objects in RTTI VCL methods', E_USER_ERROR);//посылаем пользователя в яму
+						return;
 					}
 			}
 			
-		$f = gui_methodCall($obj->self, $prop, $values); //вызываем метод с передачей аргументов
-		}
-		$f = gui_methodCall($obj->self, $prop); /*		вызываем метод без передачи аргументов 		*/
+			$f = gui_methodCall($obj->self, $prop, $values); //вызываем метод с передачей аргументов
+		}else $f = gui_methodCall($obj->self, $prop); /*		вызываем метод без передачи аргументов 		*/
 												/*(случай, если аргументы не были переданы в функцию*/
-		if( is_int($f) || is_integer($f) ) /* Костыль на проверку объекта, если метод возвращает int,,,
-											  скорее всего, это - объект, а вообще нужно сделать проверку
-											  возвращаемого значения по функции, тоже добавлю*/
-			if( $f > 800)					//Если значение больше 800 (обычно Handle'ы Delphi от 1000 и выше, ну не знаю я, как проверять, вот так вот, да...
-				$f = c($f)? c($f): $f; 		//костыль с функцией c()
-		return $f;
+	if(gui_methodrtype($obj->self, $prop) == tkClass)//случай, если возвращаемое значение - объект
+	{
+		$f = class_exists(gui_class($f))? _c($f): $f; 		//костыль с функцией c()
+	}elseif(gui_methodrtype($obj->self, $prop) == tkPointer){
+		return new Pointer($f);
 	}
+	return $f;
 }
-	
+class Pointer
+{
+	public function __construct($self)
+	{
+		$this->self = $f;
+	}
+}	
 /* Class for Object with property ala java */
 class _Object {  
     
@@ -575,13 +580,11 @@ class TComponent extends TObject {
 	}
     
 	function call_method($prop, $args = false ){
-		if (gui_methodExists($this->self, $prop)) {
 		if(!is_array($args))
 			return rtti_call($this, $prop, false);
 		if( empty($args) )
 			return rtti_call($this, $prop, false);
 		return rtti_call($this, $prop, $args);
-	 }
 	}
 	
 	function get_prop($prop){
