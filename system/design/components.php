@@ -579,7 +579,7 @@ if (EMULATE_DVS_EXE) return;
 		$e = get_sorted_events($classname);*/
 		$p = get_sorted_props($classname);
 		if( !empty($p) )
-			$componentProps[strtolower($classname)]		= $p;
+			$componentProps[$classname]		= $p;
 		/*
 		if( !empty($e) )
 			$componentEvents[$classname]	= $e;
@@ -594,7 +594,7 @@ if (EMULATE_DVS_EXE) return;
 	
 	$files = findFiles($dir_n . '/components/properties/','php');
 	foreach ($files as $file){
-		$componentProps[strtolower(basenameNoExt($file))] = include($dir_n . '/components/properties/' . $file);
+		$componentProps[basenameNoExt($file)] = include($dir_n . '/components/properties/' . $file);
 	}
 		
 	$files = findFiles($dir_n . '/components/events/','php');
