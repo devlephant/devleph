@@ -827,6 +827,10 @@ class ev_itinvertce {
 class fmain_ibtn {
 	static $onClick;
 	static $images;
+	static function s($callback)
+	{
+		self::sevent(substr(get_called_class(),10), $callback);
+	}
 	static function sevent($ic, $callback)
 	{
 		self::$onClick[c('fmMain->'.$ic)->self] = $callback;
@@ -891,68 +895,23 @@ class fmain_ibtn {
 }
 
 //one of the child classes to display buttons correctly */button displaying/*
-class ev_fmMain_btn_delForm extends fmain_ibtn {
-	static function s($evt)
-	{
-		self::sevent(substr(__CLASS__, 10), $evt);
-	}
-}
+class ev_fmMain_btn_delForm extends fmain_ibtn {}
 
-class ev_fmMain_btn_newForm extends fmain_ibtn {
-	static function s($evt)
-	{
-		self::sevent(substr(__CLASS__, 10), $evt);
-	}
-}
+class ev_fmMain_btn_newForm extends fmain_ibtn {}
 
-class ev_fmMain_btn_newProject extends fmain_ibtn {
-	static function s($evt)
-	{
-		self::sevent(substr(__CLASS__, 10), $evt);
-	}
-}
+class ev_fmMain_btn_newProject extends fmain_ibtn {}
 
-class ev_fmMain_btn_saveProject extends fmain_ibtn {
-	static function s($evt)
-	{
-		self::sevent(substr(__CLASS__, 10), $evt);
-	}
-}
+class ev_fmMain_btn_saveProject extends fmain_ibtn {}
 
-class ev_fmMain_btn_openProject extends fmain_ibtn {
-	static function s($evt)
-	{
-		self::sevent(substr(__CLASS__, 10), $evt);
-	}
-}
+class ev_fmMain_btn_openProject extends fmain_ibtn {}
 
-class ev_fmMain_btn_stop  extends fmain_ibtn {
-	static function s($evt)
-	{
-		self::sevent(substr(__CLASS__, 10), $evt);
-	}
-}
+class ev_fmMain_btn_stop  extends fmain_ibtn {}
 
-class ev_fmMain_btn_run extends fmain_ibtn {
-	static function s($evt)
-	{
-		self::sevent(substr(__CLASS__, 10), $evt);
-	}
-}
+class ev_fmMain_btn_run extends fmain_ibtn {}
 
-class ev_fmMain_btn_rundebug extends fmain_ibtn {
-	static function s($evt)
-	{
-		self::sevent(substr(__CLASS__, 10), $evt);
-	}
-}
+class ev_fmMain_btn_rundebug extends fmain_ibtn {}
 
-class ev_fmMain_btn_make extends fmain_ibtn {
-	static function s($evt)
-	{
-		self::sevent(substr(__CLASS__, 10), $evt);
-	}
-}
+class ev_fmMain_btn_make extends fmain_ibtn {}
 
 function fmain_reloadims()
 {
