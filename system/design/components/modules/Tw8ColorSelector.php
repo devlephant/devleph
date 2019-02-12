@@ -1,7 +1,7 @@
 <?
 
 Class Tw8ColorSelector Extends TScrollBox{
- Public $class_name_ex = __CLASS__;
+ 
  Private static $init_self;
  Private $_toDelete;
  

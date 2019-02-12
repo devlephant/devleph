@@ -7,7 +7,7 @@
 
 
 Class TClicker Extends __TNoVisual{
-Public $class_name_ex = __CLASS__;
+
 
 Function Click($x,$y){
     SetCursorPos($x,$y);  

@@ -1,6 +1,6 @@
 <?
 Class TServer Extends __TNoVisual{
-public $class_name_ex = __CLASS__;
+
 
 Function Check($url){
    $get = @Get_HEADERS($url);

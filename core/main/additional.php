@@ -128,7 +128,7 @@ function _addfont(&$arr){
 	$arr[] = array('CAPTION'=>t('Font Style'), 'PROP'=>'font->style');
 }
 class TCoolTrayIcon extends TControl {
-	public $class_name = __CLASS__;
+	
 	protected $_picture;
 	protected $_icon;
 	
@@ -193,12 +193,12 @@ class TCoolTrayIcon extends TControl {
 }
 
 class TTrackBar extends TControl {
-	public $class_name = __CLASS__;
+	
 }
 
 
 class THotKey extends TControl {
-	public $class_name = __CLASS__;
+	
 	
 	public function set_hotKey($sc){
 		
@@ -215,8 +215,6 @@ class THotKey extends TControl {
 }
 
 class TIcon extends TControl{
-    
-    public $class_name    = __CLASS__;
     //public $parent_object = nil;
     
     function __construct($owner=nil,$init=true,$self=nil){
@@ -285,12 +283,12 @@ class TIcon extends TControl{
 
 
 class TMaskEdit extends TControl {
-	public $class_name = __CLASS__;
+	
 }
 
 
 class TImage extends TControl {
-	public $class_name = __CLASS__;
+	
 	protected $_picture;
 
 	public function getCanvas(){
@@ -327,15 +325,15 @@ class TImage extends TControl {
 
 class TMImage extends TImage {
     
-    public $class_name = __CLASS__;
+    
 }
 
 class TDrawGrid extends TControl {
-	public $class_name = __CLASS__;
+	
 }
 
 class TShape extends TControl {
-	public $class_name = __CLASS__;
+	
 	
 	protected $_brush;
 	protected $_pen;
@@ -376,11 +374,11 @@ class TShape extends TControl {
 }
 
 class TBevel extends TControl {
-	public $class_name = __CLASS__;
+	
 }
 
 class TScrollBox extends TControl {
-	public $class_name = __CLASS__;
+	
 	protected $_constraints;	
 	
 	function get_constraints(){
@@ -407,7 +405,7 @@ class TScrollBox extends TControl {
 }
 
 class TCheckListBox extends TControl {
-	public $class_name = __CLASS__;
+	
 	protected $_items;
 	
 	function get_items(){
@@ -491,25 +489,25 @@ class TCheckListBox extends TControl {
 }
 
 class TSplitter extends TControl {
-	public $class_name = __CLASS__;
+	
 }
 
 class TStaticText extends TControl {
-	public $class_name = __CLASS__;
+	
 }
 
 class TControlBar extends TControl {
-	public $class_name = __CLASS__;
+	
 }
 
 
 
 class TColorBox extends TControl {
-	public $class_name = __CLASS__;
+	
 }
 
 class TStatusBar extends TControl {
-	public $class_name = __CLASS__;
+	
 	
 	function __construct($onwer=nil,$init=true,$self=nil){
 		parent::__construct($onwer,$init,$self);
@@ -522,17 +520,17 @@ class TStatusBar extends TControl {
 }
 
 class TColorListBox extends TControl {
-	public $class_name = __CLASS__;
+	
 }
 
 
 class TTabSet extends TControl {
-	public $class_name = __CLASS__;
+	
 }
 
 
 class TTabControl extends TControl {
-	public $class_name = __CLASS__;
+	
 	protected $_tabs;
 	
 	function get_tabs(){
@@ -566,7 +564,7 @@ class TTabControl extends TControl {
 }
 
 class TPageControl extends TControl {
-	public $class_name = __CLASS__;
+	
 	public $pages;
 	
 	function __loadDesign(){
@@ -736,7 +734,7 @@ class TPageControl extends TControl {
 }
 
 class TTabSheet extends TControl {
-	public $class_name = __CLASS__;
+	
 	
 	function set_parentControl($obj){
 		tabsheet_parent($this->self, $obj->self);
@@ -758,7 +756,7 @@ class TTabSheet extends TControl {
 
 class TSizeConstraints extends TComponent {
 	
-	public $class_name = __CLASS__;
+	
 	
 	#maxWidth
 	#maxHeight
@@ -769,12 +767,12 @@ class TSizeConstraints extends TComponent {
 
 class TPadding extends TControl {
 	
-	public $class_name = __CLASS__;
+	
 }
 
 class TListItems extends TControl {
 	
-	public $class_name = __CLASS__;
+	
 	
 	function delete($index){ listitems_command($this->self, __FUNCTION__, $index,0); }
 	function add(){ return _c(listitems_command($this->self, __FUNCTION__,0,0)); }
@@ -875,7 +873,7 @@ class TListItems extends TControl {
 
 class TListItem extends TControl {
 	
-	public $class_name = __CLASS__;
+	
 	
 	function delete(){ listitem_command($this->self, __FUNCTION__); }
 	function update(){ listitem_command($this->self, __FUNCTION__); }
@@ -913,7 +911,7 @@ class TListItem extends TControl {
 
 class TListView extends TControl {
 	
-	public $class_name = __CLASS__;
+	
 	protected $_items;
 	
 	function get_items(){
@@ -951,7 +949,7 @@ class TListView extends TControl {
 
 class TDateTimePicker extends TControl {
 	
-	public $class_name = __CLASS__;
+	
 	
 	public function get_date(){
 		
@@ -976,7 +974,7 @@ class TDateTimePicker extends TControl {
 
 class TTreeView extends TControl {
 	
-	public $class_name = __CLASS__;
+	
 	
 
 	private function PrintArrayToString(array $Add, $i = 0) {
@@ -1090,7 +1088,7 @@ class TTreeView extends TControl {
 
 class TTreeNode extends TControl {
 	
-	public $class_name = __CLASS__;
+	
 	
 	public function get_absIndex(){
 		return tree_absIndex($this->self);
@@ -1098,7 +1096,7 @@ class TTreeNode extends TControl {
 }
 
 class TControlScrollBar extends TControl {
-	public $class_name = __CLASS__;
+	
 }
 
 

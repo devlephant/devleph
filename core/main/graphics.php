@@ -183,14 +183,14 @@ function point($x,$y){
 ///////////////////////////////////////////////////////////////////////////////
 class TPen extends TComponent{
     
-    public $class_name = __CLASS__;
+    
     public $self;
     function __construct($onwer = nil,$init = true,$self = nil){}
 }
 
 class TBrush extends TComponent{
     
-    public $class_name = __CLASS__;
+    
     public $self;
     
     function __construct($onwer = nil,$init = true,$self = nil){}
@@ -202,7 +202,7 @@ class TBrush extends TComponent{
 ///////////////////////////////////////////////////////////////////////////////
 class TCanvas extends TControl{
         
-    public $class_name = __CLASS__;
+    
     public $pen;
     public $brush;
     public $font;
@@ -370,7 +370,7 @@ class TCanvasFont extends TFont {
 
 class TControlCanvas extends TCanvas {
     
-    public $class_name = __CLASS__;
+    
     
     function __construct($ctrl = false){
 		parent::__construct(nil,true,nil);
@@ -428,7 +428,7 @@ function canvas($ctrl = false){
     return new TControlCanvas($ctrl);
 }
 class TGraphic extends TControl{
-	public $class_name = __CLASS__;
+	
 	function Assign(TGraphic $v)
 	{
 		if( $v->self == $this->self ) return;
@@ -469,7 +469,7 @@ class TGraphic extends TControl{
 }
 class TBitmap extends TGraphic{
     
-    public $class_name = __CLASS__;
+    
     public $parent_object = nil;
     
     public function __construct($init=true){
@@ -557,14 +557,14 @@ class TBitmap extends TGraphic{
 	}
 }
 
-class TSVGGraphic extends TGraphic{ public $class_name = __CLASS__; }
-class TPNGImage extends TGraphic{ public $class_name = __CLASS__; }
-class TGIFImage extends TGraphic{ public $class_name = __CLASS__; }
-class TJPEGImage extends TGraphic{ public $class_name = __CLASS__; }
+class TSVGGraphic extends TGraphic{  }
+class TPNGImage extends TGraphic{  }
+class TGIFImage extends TGraphic{  }
+class TJPEGImage extends TGraphic{  }
 
 class TPicture extends TControl{
     
-    public $class_name = __CLASS__;
+    
     public $parent_object = nil;
     
     function __construct($init=true, $owner=nil, $self=nil){

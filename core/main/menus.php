@@ -30,7 +30,7 @@ function menuDinamicSetText($menu, $text){
 }
 
 class TMainMenu extends TControl {
-	public $class_name = __CLASS__;	
+		
 	
 	function set_images(TImageList $il){
 		//rtti_set($this, 'Images', $il->self);
@@ -81,7 +81,7 @@ function menuItem($caption, $styled = false, $name = '', $onClick = '', $sc = fa
 }
 
 class TMenuItem extends TControl {
-	public $class_name = __CLASS__;
+	
 	public $picture;
 	
 	public function __construct($onwer=nil, $init=true, $self=nil){
@@ -227,7 +227,7 @@ class TMenuItem extends TControl {
 }
 
 class TMenu extends TControl {
-	public $class_name = __CLASS__;
+	
 	
 	function set_images(TImageList $images){
 		imagelist_set_images($this->self, $images->self);
@@ -235,7 +235,7 @@ class TMenu extends TControl {
 }
 
 class TPopupMenu extends TControl {
-	public $class_name = __CLASS__;
+	
 	
 
 	function popup($x,$y){

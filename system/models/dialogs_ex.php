@@ -43,7 +43,7 @@ function inputText($caption, $text, $value='', $xy = true){
 // диалог дл€ текста...
 class TTextDialog extends TPanel {
     
-    public $class_name_ex = __CLASS__;
+    
     
     function execute($xy_mouse = true,$text = false){
         
@@ -99,7 +99,7 @@ class TTextDialog extends TPanel {
 // диалог дл€ размеров...
 class TSizesDialog extends TPanel {
     
-    public $class_name_ex = __CLASS__;
+    
     
     function execute($xy_cursor = true){
         
@@ -193,7 +193,7 @@ class TSizesDialog extends TPanel {
 // диалог дл€ картинки...
 class TImageDialog extends TPanel {
     
-    public $class_name_ex = __CLASS__;
+    
     
     function execute($imagelist = false){
         
@@ -289,7 +289,7 @@ class TImageDialog extends TPanel {
 //диалог дл€ меню...
 class TMenuDialog extends TPanel {
     
-    public $class_name_ex = __CLASS__;
+    
     
     function execute(){
         
@@ -310,7 +310,7 @@ class TMenuDialog extends TPanel {
 //диалог выбора объекта...
 class TObjectsDialog extends TPanel {
     
-    public $class_name_ex = __CLASS__;
+    
     
     function execute($classes=false, $status='', $fullpath = false){
         

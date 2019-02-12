@@ -5,7 +5,7 @@
 
 class TqAnim extends TImage{
 
-   public $class_name_ex = __CLASS__;
+   
 	private $_timer;
 	public $intervals;
 	protected $frames;

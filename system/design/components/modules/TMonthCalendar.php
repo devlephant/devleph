@@ -1,6 +1,6 @@
 <?
 class TMonthCalendar extends TControl{
-	public $class_name = __CLASS__;
+	
     
     public function get_date(){
 		

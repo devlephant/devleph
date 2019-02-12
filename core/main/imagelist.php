@@ -19,7 +19,7 @@ $_c->setConstList (array('dsFocus', 'dsSelected', 'dsNormal', 'dsTransparent'), 
 
 class TImageList extends TControl {
     
-    public $class_name = __CLASS__;
+    
     
     #public $imageType = (itImage, itMask)
     #public $blendColor

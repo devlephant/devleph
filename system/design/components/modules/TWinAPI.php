@@ -1,6 +1,6 @@
 <?php
 Class TWinAPI Extends __TNoVisual{
-public $class_name_ex = __CLASS__;
+
 
 
 

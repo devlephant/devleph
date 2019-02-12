@@ -1,6 +1,6 @@
 <?php
 class TSB extends TLabel{
-	public $class_name_ex = __CLASS__;
+	
 	function __initComponentInfo(){
         
         $this->fMouseEnter  = event_get($this->self,'onMouseEnter');

@@ -3,7 +3,7 @@ DSApi::reg_eventType('onerror','TFormProtect::callError',array('self'),'TFormPro
 
 class TFormProtect extends __TNoVisual {
     
-    public $class_name_ex = __CLASS__;
+    
     #public $icon = 'T';    
 	
     static function callError($self){

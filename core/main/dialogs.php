@@ -73,7 +73,7 @@ function confirm($text){
 }
 class __TNoVisual extends TControl {
     
-    public $class_name = __CLASS__;
+    
 	public $real;
     function __initComponentInfo(){
 	if($this->file && trim($this->file) > ''){
@@ -143,13 +143,13 @@ class __TNoVisual extends TControl {
     
     public function __loadDesign(){	
 	
-	$this->setImage(myImages::get24($this->class_name_ex));
+	$this->setImage(myImages::get24(get_class($this)));
 	$this->onDblClick = '__TNoVisual::panelDblClick';
     }
     
     public function __pasteDesign(){	
 	
-	$this->setImage(myImages::get24($this->class_name_ex));
+	$this->setImage(myImages::get24(get_class($this)));
 	$this->onDblClick = '__TNoVisual::panelDblClick';
     }
         
@@ -201,7 +201,7 @@ class __TNoVisual extends TControl {
 }
 class TCommonDialog extends TControl{
 	
-	public $class_name = __CLASS__;
+	
 	#public onSelect
 	
 	function execute(){
@@ -282,7 +282,7 @@ class TCommonDialog extends TControl{
 }
 
 class TOpenDialog extends TCommonDialog{	
-	public $class_name = __CLASS__;
+	
 	
 	
 	function set_smallMode($v){
@@ -304,13 +304,13 @@ class TOpenDialog extends TCommonDialog{
 	
 }
 class TSaveDialog extends TOpenDialog{
-	public $class_name = __CLASS__;
+	
 }
 class TFontDialog extends TCommonDialog{
-	public $class_name = __CLASS__;
+	
 }
 class TColorDialog extends TCommonDialog{
-	public $class_name = __CLASS__;
+	
 	
 	function set_smallMode($v){
 		$this->setOption('cdFullOpen', !$v);
@@ -321,16 +321,16 @@ class TColorDialog extends TCommonDialog{
 	}
 }
 class TDMSColorDialog extends TCommonDialog{
-	public $class_name = __CLASS__;
+	
 }
 class TPrintDialog extends TCommonDialog{
-	public $class_name = __CLASS__;
+	
 }
 class TPageSetupDialog extends TCommonDialog{
-	public $class_name = __CLASS__;
+	
 }
 class TFindDialog extends TCommonDialog{
-	public $class_name = __CLASS__;
+	
 	
 	public function get_isMatchCase(){
 		return $this->getOption('frMatchCase');
@@ -343,7 +343,7 @@ class TFindDialog extends TCommonDialog{
 }
 
 class TReplaceDialog extends TCommonDialog{
-	public $class_name = __CLASS__;
+	
 	
 	public function get_isMatchCase(){
 		return $this->getOption('frMatchCase');

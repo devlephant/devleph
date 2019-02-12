@@ -1,6 +1,6 @@
 <?
 class TMarqueeLabel extends TLabel {
-    public $class_name_ex = __CLASS__;
+    
 
 	public function setIntervalTime($self, $interval){
 		gui_propSet($self, 'interval', (int)$interval);

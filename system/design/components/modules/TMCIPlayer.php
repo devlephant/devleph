@@ -2,7 +2,7 @@
 
 class TMCIPlayer extends __TNoVisual {
 
-   public $class_name_ex = __CLASS__;
+   
 
 
    

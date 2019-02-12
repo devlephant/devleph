@@ -833,12 +833,9 @@
 	    $forms = $SCREEN->forms;
 	    if(is_array($forms)){
 	        foreach($forms as $form){
-	            $class = $form->class_name_ex;
-	            if(trim($class) == '')
-	                $class = $form->class_name;
-	            $name = $form->name;
-	            if(trim($name) == '')
-	                $name = $form->self;
+	            $class = get_class($form);
+
+	            $name = ($form->name!=='')?$form->name:$form->self;
 	            $re['item'][] = '\image{0} \style{+B}'.$name.'\style{-B}: \color{clRed}'.$class;
 	            $re['insert'][] = 'c('.$chr.$name.'\')';
 	            if($form->controlCount() > 0){
@@ -862,12 +859,9 @@
 	        if(is_array($list)){
 	            foreach($list as $obj){
 	                if(is_object($obj)){
-	                    $class = $obj->class_name_ex;
-	                    if(trim($class) == '')
-	                        $class = $obj->class_name;
-	                    $name = $obj->name;
-	                    if(trim($name) == '')
-	                        $name = $obj->self;
+	                    $class = get_class($obj);
+
+	                        $name = ($obj->name!=='')?$obj->name:$obj->self;
 	                    $re['item'][] = '\image{0} \style{+B}'.$name.'\style{-B}: \color{clRed}'.$class;
 	                    $re['insert'][] = $name.$chr.')';
 

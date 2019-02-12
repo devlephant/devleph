@@ -7,8 +7,6 @@ DSApi::reg_eventType('ondownload','TDownload::callDownload',array('self','pos','
 
 class TDownload extends __TNoVisual {
     
-    public $class_name_ex = __CLASS__;
-    
     #url
     #path
     #athread

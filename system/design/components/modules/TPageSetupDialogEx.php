@@ -1,7 +1,7 @@
 <?
 class TPageSetupDialogEx extends __TNoVisual {
 
-	public $class_name_ex = __CLASS__;
+	
 
 	public function __initComponentInfo(){
 		parent::__initComponentInfo();

@@ -16,7 +16,7 @@
 
 class TConfig{
     
-    public $class_name = __CLASS__;
+    
     protected $_data;
     
     

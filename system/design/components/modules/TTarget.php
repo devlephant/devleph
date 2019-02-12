@@ -1,6 +1,6 @@
 <?
 Class TTarget Extends __TNoVisual{
-Public $class_name_ex = __CLASS__;
+
 
 Function Target($Obj,$Color = 0xe74c3c)
  {
@@ -337,13 +337,13 @@ Function Get_Obj()
 Function Class_Name()
 {
  Global $_OBJ;
- Return($_OBJ->Class_Name);
+ Return(rtti_DClass($_OBJ));
 }
 
 Function Class_Name_Ex()
 {
  Global $_OBJ;
- Return($_OBJ->Class_Name_Ex);
+ Return(get_class($_OBJ));
 }
 
 Function ClearTargets()

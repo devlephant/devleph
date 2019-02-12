@@ -6,16 +6,14 @@ $_c->setConstList(array('apFirst', 'apLast'),0);
 
 class TNextInspector extends TControl {
     
-    public $class_name = 'TNextInspector';
-    
     public function add(TNxPropertyItem $item, $caption = ''){
         
-        return vs_inspector_add($this->self, $item->self, $item->class_name, $caption);
+        return vs_inspector_add($this->self, $item->self, get_class($item), $caption);
     }
     
     public function addFirst(TNxPropertyItem $item, $caption = ''){
         
-        return vs_inspector_addFirst($this->self, $item->self, $item->class_name, $caption);
+        return vs_inspector_addFirst($this->self, $item->self, get_class($item), $caption);
     }
     
     public function addItem($parent, $item, $pos = apLast){
@@ -50,8 +48,6 @@ class TNextInspector extends TControl {
 }
 
 class TNxPropertyItem extends TControl {
-    
-    public $class_name = 'TNxPropertyItem';
     public $valueFont;
     
     public function font($prop, $value = null){
@@ -70,8 +66,6 @@ class TNxPropertyItem extends TControl {
 
 class TNxToolbarItem extends TNxPropertyItem {
     
-    public $class_name = 'TNxToolbarItem';
-    
     public function addItem($class, $caption){
         
         //$class = str_ireplace('Nx','VS', $class);
@@ -81,13 +75,11 @@ class TNxToolbarItem extends TNxPropertyItem {
     
     public function add($item, $caption){
         
-        return $this->addItem($item->class_name, $caption);
+        return $this->addItem(get_class($item), $caption);
     }
 }
 
 class TNxButtonItem extends TNxPropertyItem {
-    
-    public $class_name = 'TNxButtonItem';
     #onButtonClick
     
     public $picture;
@@ -112,20 +104,11 @@ class TNxButtonItem extends TNxPropertyItem {
 	}
 }
 
-class TNxTextItem extends TNxPropertyItem {
-    
-    public $class_name = 'TNxTextItem';
-}
+class TNxTextItem extends TNxPropertyItem {}
 
-class TNxPopupItem extends TNxPropertyItem {
-    
-    public $class_name = 'TNxPopupItem';
-}
+class TNxPopupItem extends TNxPropertyItem {}
 
 class TNxComboBoxItem extends TNxPropertyItem {
-    
-    public $class_name = 'TNxComboBoxItem';
-    
     public function set_text($v){
         
         if (is_array($v)) $v = implode(_BR_, $v);
@@ -138,62 +121,56 @@ class TNxComboBoxItem extends TNxPropertyItem {
     }
 }
 
-class TNxCheckBoxItem extends TNxPropertyItem {
-    
-    public $class_name = 'TNxCheckBoxItem';
-}
+class TNxCheckBoxItem extends TNxPropertyItem {}
 
-class TNxSpinItem extends TNxPropertyItem {
-    
-    public $class_name = 'TNxSpinItem';
-}
+class TNxSpinItem extends TNxPropertyItem {}
 //startmy
 class TNxCalcEdit extends TControl
-{	public $class_name = __CLASS__;
+{	
 }
 class TNxFolderEdit extends TControl
-{	public $class_name = __CLASS__;
+{	
 }
 class TNxImagePathEdit extends TControl
-{	public $class_name = __CLASS__;
+{	
 }
 class TNxCheckBox extends TControl
-{	public $class_name = __CLASS__;
+{	
 }
 class TNxComboBox extends TControl
-{	public $class_name = __CLASS__;
+{	
 }
 class TNxDatePicker extends TControl
-{	public $class_name = __CLASS__;
+{	
 }
 class TNxFontComboBox extends TControl
-{	public $class_name = __CLASS__;
+{	
 }
 class TNxSpinEdit extends TControl
-{	public $class_name = __CLASS__;
+{	
 }
 class TNxEdit extends TControl
-{	public $class_name = __CLASS__;
+{	
 }
 class TNxMemo extends TControl
-{	public $class_name = __CLASS__;
+{	
 }
 class TNxMemoInplaceEdit extends TControl
-{	public $class_name = __CLASS__;
+{	
 }
 class TNxNumberEdit extends TControl
-{	public $class_name = __CLASS__;
+{	
 }
 class TNxRadioButton extends TControl
-{	public $class_name = __CLASS__;
+{	
 }
 class TNxTimeEdit extends TControl
-{	public $class_name = __CLASS__;
+{	
 }
 class TNxMonthCalendar extends TControl
-{	public $class_name = __CLASS__;
+{	
 }
 class TNxTimePicker extends TControl
-{	public $class_name = __CLASS__;
+{	
 }
 ?>

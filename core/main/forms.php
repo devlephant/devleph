@@ -104,7 +104,7 @@ $_c->setConstList(array('dkDock', 'dkDrag'), 0);
 
 class TForm extends TControl {
 	
-	public $class_name = __CLASS__;
+	
 	protected $_constraints;
 	protected $icon;
 	function get_icon(){
@@ -187,7 +187,7 @@ function setMainForm($form){
 /* TScreen класс... */
 class TScreen extends TComponent{
         
-        public $class_name = __CLASS__;
+        
 	
 	function get_activeForm(){
 		
@@ -220,7 +220,7 @@ class TScreen extends TComponent{
 
 class TScreenEx extends TScreen{
         
-        public $class_name = __CLASS__;
+        
 }
 
 

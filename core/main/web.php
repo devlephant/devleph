@@ -44,7 +44,7 @@ class TChromiumOptions extends TControl{
 
 class TChromium extends TControl {
     
-    public $class_name = __CLASS__;
+    
     public $_options;
     
 	public function free(){

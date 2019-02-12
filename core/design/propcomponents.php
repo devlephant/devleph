@@ -27,7 +27,7 @@ class TEditBtn extends TPanel {
     public $btn;
     public $edit;
     
-    public $class_name_ex = __CLASS__;
+    
     
     public function set_onSelectClick($str){
         
@@ -165,7 +165,7 @@ class TEditDialog extends TEditBtn {
     
     public $dlg;
     public $dlg_type;
-    public $class_name_ex = __CLASS__;
+    
     
     function __initComponentInfo(){
         
@@ -191,7 +191,7 @@ class TEditDialog extends TEditBtn {
             $this->dlg = _c($this->dlg_link);//$this->findComponent('dlg');
         }
         
-        $this->onSelectClick = $this->class_name_ex . '::selectDialog';
+        $this->onSelectClick = get_class($this) . '::selectDialog';
         $this->__setAllPropEx($init);
     }
     
@@ -225,7 +225,7 @@ class TEditDialog extends TEditBtn {
 
 class TEditOpenDialog extends TEditDialog {
     
-    public $class_name_ex = __CLASS__;
+    
     
     function __construct($onwer=nil,$init=true,$self=nil){
         $this->dlg_type = 'TOpenDialog';
@@ -235,7 +235,7 @@ class TEditOpenDialog extends TEditDialog {
 
 class TEditSaveDialog extends TEditDialog {
     
-    public $class_name_ex = __CLASS__;
+    
     
     function __construct($onwer=nil,$init=true,$self=nil){
         $this->dlg_type = 'TSaveDialog';
@@ -248,7 +248,7 @@ class TEditSaveDialog extends TEditDialog {
 
 class TEditFontDialog extends TEditDialog {
     
-    public $class_name_ex = __CLASS__;
+    
     
     function __construct($onwer=nil,$init=true,$self=nil){
         $this->dlg_type = 'TFontDialog';
@@ -287,7 +287,7 @@ class TEditFontDialog extends TEditDialog {
 
 class TEditColorDialog extends TEditDialog {
     
-    public $class_name_ex = __CLASS__;
+    
     
     function __initComponentInfo(){
         
@@ -342,7 +342,7 @@ class TEditColorDialog extends TEditDialog {
 
 class TEditDMSColorDialog extends TEditDialog {
     
-    public $class_name_ex = __CLASS__;
+    
     
     function __construct($onwer=nil,$init=true,$self=nil){
        
@@ -398,7 +398,7 @@ class TLEdit extends TPanel {
     public $label;
     public $edit;
     
-    public $class_name_ex = __CLASS__;
+    
     
     public function set_onClick($str){
         

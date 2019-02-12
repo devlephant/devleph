@@ -9,7 +9,7 @@ $_c->trfTrayIcon= 5;
 
 class TTrayIcon extends __TNoVisual {
     
-    public $class_name_ex = __CLASS__;
+    
     public $picture;
     
     public function __construct($onwer=nil,$init=true,$self=nil){

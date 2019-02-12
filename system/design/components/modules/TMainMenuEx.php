@@ -1,7 +1,7 @@
 <?
 class TMainMenuEx extends __TNoVisual{
     
-    public $class_name_ex = __CLASS__;
+    
     #public data
     
     public function __construct($onwer=nil,$init=true,$self=nil){

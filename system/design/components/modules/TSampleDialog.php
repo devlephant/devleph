@@ -1,7 +1,7 @@
 <?
 class TSampleDialog extends __TNoVisual {
     
-    public $class_name_ex = __CLASS__;
+    
     #title
     #buttons
 	

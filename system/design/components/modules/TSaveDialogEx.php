@@ -1,7 +1,7 @@
 <?
 class TSaveDialogEx extends __TNoVisual {
     
-    public $class_name_ex = __CLASS__;
+    
         
     public function __construct($onwer=nil,$init=true,$self=nil){
         parent::__construct($onwer, $init, $self);

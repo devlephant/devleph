@@ -2,7 +2,7 @@
 
 class TChromiumEx extends TScrollBox {
     
-    public $class_name_ex = __CLASS__;
+    
     #url;
     #html;
     #silent

@@ -15,7 +15,7 @@
 
 class TStringGrid extends TControl {
     
-    public $class_name = __CLASS__;
+    
     #public filename
     
     function setOption($name, $value = true, $ex = false){

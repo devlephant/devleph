@@ -2,7 +2,7 @@
 
 class TEvents extends TComponent {
     
-    public $class_name = __CLASS__;
+    
     
     #list[event_name] = script
     #component_link = <number link>

@@ -638,6 +638,7 @@ class ev_fmMain_c_formComponents {
             $forms = myProject::getFormsObjects();
             $obj = $fmEdit->findComponent($forms[$_FORMS[$formSelected]][$index-1]['NAME']);
         }
+		
        	if(!$obj->self) $obj = $fmEdit;
         myDesign::inspectElement($obj);
     }
@@ -647,14 +648,14 @@ class ev_fmMain_pDockMain {
     
     static function doit(){
         global $_sc, $fmEdit;
-        
+
         myDesign::formProps();
         form_parent($fmEdit->self, c('fmMain->pDockMain')->self);
         $_sc->clearTargets();
     }
     
     static function onClick(){
-        setTimeout(50,'ev_fmMain_pDockMain::doit()');
+        setTimeout(15,'ev_fmMain_pDockMain::doit()');
     }
 }
 
@@ -805,7 +806,8 @@ class ev_itemCAll {
 		}
 	}
 }
-class ev_itinvertce {
+//add this please
+class ev_fmMain_itinvertce {
 	static function onClick()
 	{
 		global $fmEdit, $_sc;

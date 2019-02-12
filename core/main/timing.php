@@ -21,12 +21,12 @@
 
 
 class TTimer extends TControl{
-	public $class_name = __CLASS__;
+	
 }
 
 class TTimerEx extends TPanel{
 	
-	public $class_name_ex = __CLASS__;
+	
 	#public $time_out = true;
 	public $_timer;
 	#public $var_name = ''; // название переменной которая освобождается после отработки таймера

@@ -14,11 +14,11 @@ global $_c;
 $_c->setConstList(array('blGlyphLeft', 'blGlyphRight', 'blGlyphTop', 'blGlyphBottom'),0);
 
 class TButton extends TControl {
-	public $class_name = __CLASS__;
+	
 }
 
 class TBitBtn extends TControl {
-	public $class_name = __CLASS__;
+	
 	protected $_picture;
 	
 	public function get_picture(){
@@ -47,7 +47,7 @@ class TBitBtn extends TControl {
 }
 
 class TSpeedButton extends TBitBtn {
-	public $class_name = __CLASS__;
+	
 }
 
 class TPNGGlyph {
@@ -88,7 +88,7 @@ class TPNGGlyph {
 
 class TPNGSpeedButton extends TBitBtn {
 	
-	public $class_name = __CLASS__;
+	
 	protected $_pngpicture;
 	
 	function __construct($onwer=nil,$init=true,$self=nil){
@@ -122,7 +122,7 @@ class TPNGSpeedButton extends TBitBtn {
 
 class TPNGBitBtn extends TPNGSpeedButton {
 	
-	public $class_name = __CLASS__;
+	
 
 }
 

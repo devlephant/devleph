@@ -140,7 +140,7 @@ class SQUALL {
 
 class SQUALL_Player extends TPanel {
     
-    public $class_name_ex = __CLASS__;
+    
     
     static function onTimer($self){
         
@@ -434,6 +434,8 @@ class SQUALL_Player extends TPanel {
         
         return $this->status == SQUALL_CHANNEL_STATUS_PAUSE;
     }
+	
+	public function 
     
 }
 /*CLASSES;*/

@@ -3,7 +3,7 @@
 
 class TLinkLabel extends TLabel {
     
-    public $class_name_ex = __CLASS__;
+    
     
     static function fontToArr(TFont $font){
         

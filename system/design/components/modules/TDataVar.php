@@ -4,7 +4,7 @@ $GLOBALS['__EVENTS_API']['onstartchange'] = 'TDataVar::callStartChange';
 
 class TDataVar extends __TNoVisual {
     
-    public $class_name_ex = __CLASS__;
+    
     #public $icon = 'F';
     #value
     #fileName

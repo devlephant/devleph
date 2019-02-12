@@ -1,7 +1,7 @@
 <?
 class TVideoBox extends TScrollBox{
 
-    public $class_name_ex = __CLASS__;
+    
 	#dio;
     #new_Panel;
     #sampleMovie;

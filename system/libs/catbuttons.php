@@ -2,7 +2,7 @@
 
 class TCategoryButtons extends TControl {
     
-    public $class_name = __CLASS__;
+    
     private $_categories = 0;
     #groups
     
@@ -116,7 +116,7 @@ class TCategoryButtons extends TControl {
 
 class TButtonCategories extends TControl {
     
-    public $class_name = __CLASS__;
+    
     
     // return TButtonCategory
     public function add(){
@@ -132,8 +132,8 @@ class TButtonCategories extends TControl {
 
 class TButtonCategory extends TControl {
     
-    public $class_name = __CLASS__;
-	public $class_name_ex = __CLASS__;
+    
+	
     #collapsed
     public function addButton(){
 		return _c(btncatigories_addbutton($this->self));
@@ -142,6 +142,6 @@ class TButtonCategory extends TControl {
 
 class TButtonItem extends TControl {
     
-    public $class_name = __CLASS__;
+    
 }
 ?>

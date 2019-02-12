@@ -2,7 +2,7 @@
 
 class TEditTextDialog extends TEditDialog {
     
-    public $class_name_ex = __CLASS__;
+    
     
     function __construct($onwer=nil,$init=true,$self=nil){
         $this->dlg_type = 'TTextDialog';
@@ -35,7 +35,7 @@ class TEditTextDialog extends TEditDialog {
 
 class TEditImageDialog extends TEditDialog {
     
-    public $class_name_ex = __CLASS__;
+    
     #public imagelist
     
     function __construct($onwer=nil,$init=true,$self=nil){
@@ -70,7 +70,7 @@ class TEditImageDialog extends TEditDialog {
 
 class TEditSizesDialog extends TEditDialog {
     
-    public $class_name_ex = __CLASS__;
+    
     
     function __construct($onwer=nil,$init=true,$self=nil){
         $this->dlg_type = 'TSizesDialog';
@@ -92,7 +92,7 @@ class TEditSizesDialog extends TEditDialog {
 
 class TEditFormDialog extends TEditDialog {
     
-    public $class_name_ex = __CLASS__;
+    
     
     function __construct($onwer=nil,$init=true,$self=nil){
         //$this->dlg_type = 'TImageDialog';
@@ -130,7 +130,7 @@ class TEditFormDialog extends TEditDialog {
 
 class TEditMenuDialog extends TEditDialog {
     
-    public $class_name_ex = __CLASS__;
+    
     
     function __construct($onwer=nil,$init=true,$self=nil){
         $this->dlg_type = 'TMenuDialog';

@@ -2,7 +2,7 @@
 
 class TFunction extends __TNoVisual {
     
-    public $class_name_ex = __CLASS__;
+    
     public $rand;
     #public $icon = 'F';
     #parameters

@@ -35,7 +35,7 @@ $_c->setConstList('scsReady', 'scsMoving', 'scsSizing', 0);
 
 class TSizeCtrl extends TControl{
     
-    public $class_name = __CLASS__;
+    
     public $targets = array();
     //public $targets_ex = array();
     

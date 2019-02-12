@@ -8,7 +8,7 @@
 
 class TProgressBarEx extends TScrollBox{
 
-	public $class_name_ex = __CLASS__;
+	
 	private static $init_self;
 	
    function __construct($owner=nil,$init=true,$self=nil){

@@ -32,7 +32,7 @@ global $_c;
 ///////////////////////////////////////////////////////////////////////////////
 class TStrings extends TObject{
     
-    public $class_name = __CLASS__;
+    
     public $parent_object = nil;
     
     function __construct($init = true, $owner = nil, $self = nil){
@@ -197,7 +197,7 @@ class TStrings extends TObject{
 ///////////////////////////////////////////////////////////////////////////////
 class TStringList extends TStrings
 {
-	public $class_name = __CLASS__;
+	
 }
 
 ///////////////////////////////////////////////////////////////////////////////

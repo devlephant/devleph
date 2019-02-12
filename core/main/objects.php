@@ -84,7 +84,6 @@ class Pointer
 class _Object {  
     
     protected $props = array();
-    protected $class_name = __CLASS__;
     
     function __get($nm) {
 	    $s = 'get_'.$nm;
@@ -255,7 +254,15 @@ function findComponent($str,$sep = '->',$asObject='TControl'){
 	//возвращаем наш компонент, в случае если такового нет, я переместил возвращение в код выше (см. цикл for /\)
     return $owner;
 }
-
+function rtti_DClass($name) //возврашает настоящий класс из псевдо-класса
+{
+	$name = get_class($name);
+	while( !gui_class_isset($name) && (bool)strlen($name) )
+		{
+			$name = get_parent_class($name);
+		}
+		return $name;
+}
 function rtti_class($self) //Возвращает Delphi-класс компонента/объекта
 {
     
@@ -495,7 +502,7 @@ class TComponent extends TObject {
 	// доп инфа для нестандартных свойств
 	function __addPropEx($nm, $val){
 
-	    $class = $this->class_name_ex ? $this->class_name_ex : $this->class_name;		    
+	    $class = get_class($this);		    
 	    $result = uni_unserialize($this->getHelpKeyword());
 	    
 	    $nm = strtolower($nm);
@@ -514,7 +521,7 @@ class TComponent extends TObject {
 	}
 	
 	function __setClass(){
-	    $class = $this->class_name_ex ? $this->class_name_ex : $this->class_name;
+	    $class = get_class($this);	
 	    
 	    $result = uni_unserialize($this->getHelpKeyword());
 	    
@@ -561,13 +568,11 @@ class TComponent extends TObject {
 	    $this->visible = $this->avisible;
 	    $this->enabled = $this->aenabled;
 	}
-	
 	function __construct($onwer = nil,$init = true,$self = nil)
 	{
 		
 	    if ($init){
-			$cname = isset($this->class_name)? $this->class_name: get_class($this);
-			$this->self = obj_create($cname, $onwer);
+			$this->self = obj_create(rtti_DClass($this), $onwer);
 	    }
 	    
         if ($self != nil)
@@ -605,9 +610,9 @@ class TComponent extends TObject {
 	function __set($nm,$val){
 		
 		$nm = strtolower($nm);
-		
+		$class = rtti_DClass($this);
 		if (!method_exists($this,'set_'.$nm))
-		if ($this->class_name!='TWebBrowser' && $this->class_name!='TScreenEx' && $this->class_name!='TPen' && $this->class_name!='TImageList'){
+		if ($class!='TWebBrowser' && $class!='TScreenEx' && $class!='TPen' && $class!='TImageList'){
 		    
 		    if ($nm=='visible'){
 				return control_visible($this->self, $val);
@@ -649,9 +654,9 @@ class TComponent extends TObject {
             
 	    $nm = strtolower($nm);
 	    $res = parent::__get($nm);
-	    
+	    $class = rtti_DClass($this);
 		if (!method_exists($this,'get_'.$nm))
-		if ($this->class_name!='TScreenEx' && $this->class_name!='TPen' && $this->class_name!='TImageList'){
+		if ($class!='TScreenEx' && $class!='TPen' && $class!='TImageList'){
 		    
 		    if ($nm == 'visible'){
 				return control_visible($this->self, null);
@@ -721,7 +726,7 @@ class TComponent extends TObject {
 }
 
 class TFont extends TControl {
-	public $class_name = __CLASS__;
+	
 	public $self;
 	
 	function prop($prop){
@@ -794,7 +799,7 @@ class TRealFont extends TFont {
 /* TControl is visual component */
 class TControl extends TComponent {
 	
-	public $class_name = __CLASS__;
+	
 	protected $_font;
 	#public $avisible;
 	

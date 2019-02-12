@@ -1,7 +1,7 @@
 <?
 class TMover extends __TNoVisual {
 
-	public $class_name_ex = __CLASS__;
+	
 
 	function __setC($objcont){
 	$objcont->fMouseDown  = event_get($objcont->self,'onMouseDown');

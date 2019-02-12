@@ -29,12 +29,12 @@ $_c->setConstList(array('doNoOrient', 'doHorizontal', 'doVertical'),0);
 //$_c->setConstList(array('mrNone','mrOk','mrCancel','mrAbort','mrRetry','mrIgnore','mrYes','mrNo','mrAll','mrNoToAll','mrYesToAll'),0);
 
 class TLabel extends TControl {
-	public $class_name = __CLASS__;
+	
 }
 
 
 class TEdit extends TControl {
-	public $class_name = __CLASS__;
+	
 	
 	function set_passwordChar($v){
 		
@@ -67,12 +67,12 @@ class TEdit extends TControl {
 }
 
 class TLabeledEdit extends TEdit {
-	public $class_name = __CLASS__;
+	
 }
 
 
 class TMemo extends TControl {	
-	public $class_name = __CLASS__;
+	
 	protected $_items;
 	
 	function get_items(){
@@ -133,7 +133,7 @@ class TMemo extends TControl {
 
 class TRichEdit extends TMemo {
 	
-	public $class_name = __CLASS__;
+	
 	
 	public function loadFromFile($file){
 		$file = getFileName($file);
@@ -188,7 +188,7 @@ class TRichEdit extends TMemo {
 }
 
 class TCheckBox extends TControl {
-	public $class_name = __CLASS__;
+	
 	
 	public function set_checked($v){
 		$this->set_prop('checked', (bool)$v);
@@ -196,11 +196,11 @@ class TCheckBox extends TControl {
 }
 
 class TRadioButton extends TControl {
-	public $class_name = __CLASS__;
+	
 }
 
 class TListBox extends TControl {
-	public $class_name = __CLASS__;
+	
 	protected $_items;
 	
         function getFont($index){
@@ -315,7 +315,7 @@ class TListBox extends TControl {
 
 
 class TComboBox extends TControl {
-	public $class_name = __CLASS__;
+	
 	protected $_items;
 	
 	function get_items(){
@@ -356,7 +356,7 @@ class TComboBox extends TControl {
 $_c->setConstList(array('pbHorizontal', 'pbVertical'),0);
 
 class TProgressBar extends TControl {
-	public $class_name = __CLASS__;
+	
 	
 	function set_smooth($v){
 		gui_propset($this->self, 'smooth', $v);
@@ -366,11 +366,11 @@ class TProgressBar extends TControl {
 }
 
 class TScrollBar extends TControl {
-	public $class_name = __CLASS__;
+	
 }
 
 class TGroupBox extends TControl {
-	public $class_name = __CLASS__;
+	
 	
 	function __construct($onwer=nil,$init=true,$self=nil){
 		parent::__construct($onwer,$init,$self);
@@ -380,7 +380,7 @@ class TGroupBox extends TControl {
 }
 
 class TRadioGroup extends TControl {
-	public $class_name = __CLASS__;
+	
 	protected $_items;
 	
 	function __construct($onwer=nil,$init=true,$self=nil){
@@ -408,7 +408,7 @@ class TRadioGroup extends TControl {
 }
 
 class TPanel extends TControl {
-	public $class_name = __CLASS__;
+	
 	protected $_constraints;
 	
 	public function __construct($onwer=nil, $init=true, $self=nil){
@@ -428,10 +428,10 @@ class TPanel extends TControl {
 	}
 }
 class TDSPanel extends TPanel {
-public $class_name = __CLASS__;
+
 }
 class TTransparentPanel extends TControl {
-	public $class_name = __CLASS__;
+	
 	protected $_constraints;
 	
 	public function __construct($onwer=nil, $init=true, $self=nil){

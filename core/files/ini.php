@@ -366,7 +366,7 @@ class TIniFile {
 
 class TConfigIni extends TConfig {
     
-    public $class_name = __CLASS__;
+    
     public $ini;
     
     protected $_result;

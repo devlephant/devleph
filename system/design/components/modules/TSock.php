@@ -12,7 +12,7 @@
 	
 	Class TSock extends __TNoVisual 
 	{
-		Public $class_name_ex = __CLASS__;
+		
 		
 		Public $V8JS;
 		

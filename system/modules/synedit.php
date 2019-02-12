@@ -6,7 +6,7 @@ $_c->setConstList(array('ctCode', 'ctHint', 'ctParams'),0);
 
 	
 class TSynEdit extends TMemo {
-	public $class_name = __CLASS__;
+	
 
 	function set_caretX($v)		{ synedit_caret_x($this->self,$v);			}
 	function get_caretX()		{ return synedit_caret_x($this->self,null);	}
@@ -117,12 +117,12 @@ class TSynEdit extends TMemo {
 }
 
 class TSynGutter extends TControl{
-	public $class_name = __CLASS__;
+	
 }
 
 class TSynCompletionProposal extends TControl {
     
-    public $class_name = __CLASS__;
+    
     public $itemList; // TStrings
     public $insertList; // TStrings
     
@@ -223,7 +223,7 @@ class TSynCompletionProposal extends TControl {
 
 class TSynHighlighterAttributes extends TControl {
 	
-	public $class_name = __CLASS__;
+	
 	#TColor background
 	#TColor foreground
 	#string style = 'fsBold, fsItalic, fsStrikeOut, fsUnderline'
@@ -231,7 +231,7 @@ class TSynHighlighterAttributes extends TControl {
 
 class TSynCustomHighlighter extends TControl {
 	
-	public $class_name = __CLASS__;
+	
 	#enabled
 	#DefaultFilter 
 	
@@ -248,7 +248,7 @@ class TSynCustomHighlighter extends TControl {
 
 #attr: Comment, Identifier, Key, Number, Space, String, Symbol, Variable
 class TSynPHPSyn extends TSynCustomHighlighter {
-	public $class_name = __CLASS__;
+	
 
 	static $prefixs = array('Comment', 'Identifier', 'Key', 'Number', 'Space', 'String', 'Symbol', 'Variable');
 	
@@ -278,11 +278,11 @@ class TSynPHPSyn extends TSynCustomHighlighter {
 		}
 	}
 }
-class TSynGeneralSyn			extends TSynCustomHighlighter	{ public $class_name = __CLASS__; }
-class TSynCppSyn				extends TSynCustomHighlighter 	{ public $class_name = __CLASS__; }
-class TSynCssSyn				extends TSynCustomHighlighter	{ public $class_name = __CLASS__; }
-class TSynHTMLSyn				extends TSynCustomHighlighter	{ public $class_name = __CLASS__; }
-class TSynSQLSyn				extends TSynCustomHighlighter	{ public $class_name = __CLASS__; }
-class TSynJScriptSyn			extends TSynCustomHighlighter	{ public $class_name = __CLASS__; }
-class TSynXMLSyn				extends TSynCustomHighlighter	{ public $class_name = __CLASS__; }
+class TSynGeneralSyn			extends TSynCustomHighlighter	{}
+class TSynCppSyn				extends TSynCustomHighlighter 	{}
+class TSynCssSyn				extends TSynCustomHighlighter	{}
+class TSynHTMLSyn				extends TSynCustomHighlighter	{}
+class TSynSQLSyn				extends TSynCustomHighlighter	{}
+class TSynJScriptSyn			extends TSynCustomHighlighter	{}
+class TSynXMLSyn				extends TSynCustomHighlighter	{}
 ?>

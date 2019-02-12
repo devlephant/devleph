@@ -2,7 +2,6 @@
 
 class Ground3D extends TPanel {
     
-    public $class_name_ex = __CLASS__;
     public $picture;
     
     public function __construct($onwer=nil,$init=true,$self=nil){
