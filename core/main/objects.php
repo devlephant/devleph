@@ -564,8 +564,10 @@ class TComponent extends TObject {
 	
 	function __construct($onwer = nil,$init = true,$self = nil)
 	{
+		
 	    if ($init){
-			$this->self = obj_create($this->class_name, $onwer);
+			$cname = isset($this->class_name)? $this->class_name: get_class($this);
+			$this->self = obj_create($cname, $onwer);
 	    }
 	    
         if ($self != nil)
@@ -719,7 +721,7 @@ class TComponent extends TObject {
 }
 
 class TFont extends TControl {
-	
+	public $class_name = __CLASS__;
 	public $self;
 	
 	function prop($prop){

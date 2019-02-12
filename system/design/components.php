@@ -576,11 +576,11 @@ if (EMULATE_DVS_EXE) return;
 	{
 		if( !gui_class_isset($classname) ) continue;
 		/*$p = get_sorted_props($classname);
-		$e = get_sorted_events($classname);*/
+		$e = get_sorted_events($classname);
 		$p = get_sorted_props($classname);
 		if( !empty($p) )
 			$componentProps[$classname]		= $p;
-		/*
+		
 		if( !empty($e) )
 			$componentEvents[$classname]	= $e;
 		*/
