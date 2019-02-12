@@ -563,7 +563,6 @@ class TComponent extends TObject {
 	}
 	
 	function __construct($onwer = nil,$init = true,$self = nil){
-
 	    if ($init){
 			$this->self = obj_create($this->class_name, $onwer);
 	    }

@@ -503,7 +503,58 @@ if (EMULATE_DVS_EXE) return;
 		}
 		return $res;
 	}
-	
+	function convertReturnType($class, $method, $type)
+	{
+		$res = '';
+		switch($type)
+		{
+			case -1:
+			{	$res = 'void'; 	}
+			break;
+			case tkUnknown: 
+			{	$res = 'void';	}
+			break;
+			case tkInteger:
+			case tkInt64:
+			{	$res='Integer';	}
+			break;
+			case tkChar:
+			case tkWChar:
+			case tkString:
+			case tkLString:
+			case tkWString:
+			case tkUstring:
+			{	$res='String';	}
+			break;
+			case tkFloat:
+			{	$res = 'Float';	}
+			break;
+			case tkPointer:
+			{	$res = 'Pointer';	}
+			break;
+			case tkClass:
+			{	$res = gui_methodrtype($class, $method, true); }
+			break;
+			DEFAULT:
+			{	return 'void ';	}
+			break;
+		}
+					//required further information
+			/*
+			  tkClass
+			  tkClassRef
+			  
+			  tkSet
+			  tkEnumeration:
+			  tkMethod
+			  tkArray
+			  tkRecord
+			  tkInterface
+			  
+			  tkProcedure
+			*/
+		return $res . ' ';
+	}
 	function get_sorted_methods($class)
 	{
 		$res = array();
@@ -511,46 +562,49 @@ if (EMULATE_DVS_EXE) return;
 		if( empty($methods) ) return $res;
 		foreach( $methods as $method_name=>$parameters )
 		{
+			//if( empty($parameters) ) continue;
 			$res[] = array(
 					  'CAPTION'=> t($method_name),
 					  'PROP'=> strtolower(substr($method_name, 0, 1)) . substr($method_name, 1),
-					  'INLINE'=> $method_name . ' ' . str_replace(array('Integer', 'Boolean'), array('Int', 'Bool'),  $parameters),
+					  'INLINE'=> convertReturnType($class, $method_name, gui_methodrtype($class, $method_name)). $method_name . ' ' . str_replace(array('Boolean'), array('Bool'),  $parameters),
 					  );
 		}
 		return $res;
 	}
-	
-	/*foreach( get_declared_classes()/*gui_get_all_unitsclasses()/ as $classname )
+	//gui_get_all_unitsclasses() as $classname
+	foreach( get_declared_classes() as $classname )
 	{
 		if( !gui_class_isset($classname) ) continue;
+		/*$p = get_sorted_props($classname);
+		$e = get_sorted_events($classname);*/
 		$p = get_sorted_props($classname);
-		$e = get_sorted_events($classname);
-		//$m = get_sorted_methods($classname);
 		if( !empty($p) )
-			$componentProps[$classname]		= $p;
-		///
+			$componentProps[strtolower($classname)]		= $p;
+		/*
 		if( !empty($e) )
 			$componentEvents[$classname]	= $e;
-		///*
+		*/
+		
+		$m = get_sorted_methods($classname);
 		if( !empty($m) )
-			$componentMethods[$classname]	= $m;
-		///
-	}*/
+			$componentMethods[strtolower($classname)]	= $m;
+		
+	}
 	
 	
 	$files = findFiles($dir_n . '/components/properties/','php');
 	foreach ($files as $file){
-		$componentProps[basenameNoExt($file)] = include($dir_n . '/components/properties/' . $file);
+		$componentProps[strtolower(basenameNoExt($file))] = include($dir_n . '/components/properties/' . $file);
 	}
 		
 	$files = findFiles($dir_n . '/components/events/','php');
 	foreach ($files as $file){
-		$componentEvents[basenameNoExt($file)] = include($dir_n . '/components/events/' . $file);
+		$componentEvents[strtolower(basenameNoExt($file))] = include($dir_n . '/components/events/' . $file);
 	}
 	
 	$files = findFiles($dir_n . '/components/methods/','php');
 	foreach ($files as $file){
-		$componentMethods[basenameNoExt($file)] = include($dir_n . '/components/methods/' . $file);
+		$componentMethods[strtolower(basenameNoExt($file))] = include($dir_n . '/components/methods/' . $file);
 	}
 	
     $files = findFiles($dir_n . '/components/modifers/','php');
