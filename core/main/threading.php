@@ -100,7 +100,8 @@ class TThread {
         return new TThread(false, $self);
     }
     
-    static function checkPool(){
+    static function checkPool($self)
+	{
         
         if ( sizeof(self::$pool) < 1 ) return;
         

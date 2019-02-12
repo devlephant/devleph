@@ -23,9 +23,10 @@ class TIB extends TMImage{
     $arr = $this->images;
     if( $arr[$index] ){
      $img = $arr[$index];
+	 $this->picture->clear();
      $this->picture->loadFromStr( $img[0], $img[1]);
      $this->index = $index;
-    }
+	}
    }
 
    public function replace($index=false, $file=false){

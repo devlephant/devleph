@@ -38,10 +38,35 @@ class TTimerEx extends TPanel{
 	
 	static function doTimer($self){
 		
+		if(isset($self))
+		{
+			if( strlen($self)<1  or !trim($self) or !$self){
+				file_put_contents('error.txt',
+				"TIMER ERROR[FATAL]");
+				return;
+			}
+		} else {
+			file_put_contents('error.txt',
+				"TIMER ERROR[FATAL]");
+			return;
+		}
 		$self = gui_owner($self);
+		if(isset($self))
+		{
+			if( strlen($self)<1  or !trim($self) or !$self){
+				file_put_contents('error.txt',
+				"TIMER ERROR[FATAL]");
+				return;
+			}
+		} else {
+			file_put_contents('error.txt',
+				"TIMER ERROR[FATAL]");
+			return;
+		}
 		$props = TComponent::__getPropExArray($self);
 		
 		// надо сразу избавляться от продолжения таймера, иначе баг =)
+		if(isset($props['time_out']))
 		if ($props['time_out']){
 			$obj = _c($self);
 			$obj->timer->enabled = false;
@@ -52,6 +77,7 @@ class TTimerEx extends TPanel{
 					eval($props['ontimer'] . '('.$self.');');
 			}
 		}
+		if( isset($props['func_name']) )
 		if ($props['func_name']){
 			
 			
@@ -67,7 +93,7 @@ class TTimerEx extends TPanel{
 			else
 				eval($props['func_name'] . ';');
 		}
-		
+		if( isset($props['freeonend']) )
 		if ($props['freeonend']){
 			
 			$obj->free();

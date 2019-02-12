@@ -1257,11 +1257,11 @@ class myProperties {
             $panel->onVSEdit = 'myProperties::VSEdit';
             $panel->onVSToolBarClick = 'myProperties::VSBarClick';
 			gui_propSet($panel->self, 'AppearanceOptions', '[]');
-			gui_propSet($panel->self, 'Color', 'clAppWorkSpace');
-			gui_propSet($panel->self, 'CategoriesColor', 'clBtnFace');
+			gui_propSet($panel->self, 'Color', clWindow);
+			gui_propSet($panel->self, 'CategoriesColor', clBtnFace);
             // c("fmMain->pInspector")->parent->parent->color
             $gr = new TNxToolbarItem;
-			gui_propSet(gui_propGet($gr->self, 'Font'), 'Color', 'clWindowText');
+			gui_propSet(gui_propGet($gr->self, 'Font'), 'Color', clWindowText);
             $gr->caption = t('gr_main');
 			gui_propSet($gr->self, 'Color', clBlack);
             $panel->addItem(null, $gr, apFirst);

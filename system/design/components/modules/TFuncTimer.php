@@ -6,11 +6,27 @@ class TFuncTimer extends __TNoVisual {
     #public $icon = 'T';    
     
      
-    function doTimer($self){
+    public static function doTimer($self){
 	$obj = _c(_c($self)->owner);
 	//pre($obj);
 	if ($obj->onTimer){
-	    eval($obj->onTimer . '('.$obj->self.');');
+		if( is_string($obj->onTimer) )
+		{
+			
+			if( function_exists($obj->onTimer) )
+			{
+				call_user_func($obj->onTimer, $obj->self);
+			} else if( method_exists($obj, $obj->onTimer) ) {
+				call_user_method($obj->onTimer, $obj, $obj->self);
+			} else if( class_exists($obj->onTimer) ) if( method_exists($obj->onTimer, 'onTimer') )
+				call_user_method('onTimer', $obj->onTimer, $obj->self);
+				
+		}else if( is_callable($obj->onTimer))
+		{
+			call_user_func($obj->onTimer, $obj->self);
+		} else if( is_object($obj->onTimer) )
+			if( method_exists($obj->onTimer, 'onTimer') )
+				call_user_method('onTimer', $obj->onTimer, $obj->self);
 	}
     }
     
@@ -26,7 +42,7 @@ class TFuncTimer extends __TNoVisual {
 	$timer->repeat   = $props['repeat'];
 	$timer->workbackground = $props['workbackground'];
 	$timer->priority = $props['priority'];
-	
+	//$timer->onTimer = TFuncTimer::onTimer;
 	//pre($this->background);
 	$timer->onTimer  = $props['onTimer'];
 	

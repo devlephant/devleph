@@ -24,7 +24,7 @@ class TFormProtect extends __TNoVisual {
 	
 	$self->set_form( $self->_form );
 	if ( $self->trialTime ){
-		Timer::setTimeout( function() use ($self){
+		Timer::setTimeout( function($s) use ($self){
 		    TFormProtect::__trialTime($self->self);
 		}, $self->trialTime * 1000);
 	}

@@ -520,7 +520,7 @@ if (EMULATE_DVS_EXE) return;
 		return $res;
 	}
 	
-	foreach( get_declared_classes()/*gui_get_all_unitsclasses()*/ as $classname )
+	/*foreach( get_declared_classes()/*gui_get_all_unitsclasses()/ as $classname )
 	{
 		if( !gui_class_isset($classname) ) continue;
 		$p = get_sorted_props($classname);
@@ -528,14 +528,14 @@ if (EMULATE_DVS_EXE) return;
 		//$m = get_sorted_methods($classname);
 		if( !empty($p) )
 			$componentProps[$classname]		= $p;
-		//*/
+		///
 		if( !empty($e) )
 			$componentEvents[$classname]	= $e;
-		/*
+		///*
 		if( !empty($m) )
 			$componentMethods[$classname]	= $m;
-		*/
-	}
+		///
+	}*/
 	
 	
 	$files = findFiles($dir_n . '/components/properties/','php');
