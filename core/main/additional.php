@@ -373,9 +373,7 @@ class TShape extends TControl {
 	function set_penWidth($v){ $this->pen->width = $v; }
 }
 
-class TBevel extends TControl {
-	
-}
+class TBevel extends TControl {}
 
 class TScrollBox extends TControl {
 	

@@ -810,8 +810,7 @@ class TControl extends TComponent {
 	
 	protected $_font;
 	#public $avisible;
-	public $avisible;
-	public $aenabled;
+
 	function __construct($onwer=nil,$init=true,$self=nil){
 	    if ($init){
 			$this->avisible = $this->visible;
