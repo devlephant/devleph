@@ -476,18 +476,12 @@ function set_event($self, $event, $value){
 
 function uni_serialize($str){
 	    
-	    return base64_encode(igbinary_serialize($str));
+	    return base64_encode(serialize($str));
 }
 
 function uni_unserialize($str){
-	    
-	    $st = err_status(false);
-	    $result = igbinary_unserialize(base64_decode($str));
 
-	    if ( strlen( err_msg() ) > 0 ){
-			$result = unserialize(base64_decode($str));
-	    }
-	    err_status($st);
+		$result = unserialize(base64_decode($str));
 	    
 	    return $result;
 }
