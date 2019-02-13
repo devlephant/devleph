@@ -9,6 +9,6 @@ return array(
 'H' =>30,
 'USE_SKIN' =>true,
 
-'DLLS' => array('avcodec-53.dll', 'avformat-53.dll', 'avutil-51.dll', 'D3DCompiler_47.dll', 'd3dx9_43.dll', 'icudt.dll', 
+'DLLS' => array('avcodec-57.dll', 'avformat-57.dll', 'avutil-55.dll', 'avdevice-57.dll', 'D3DCompiler_47.dll', 'd3dx9_43.dll', 'icudt.dll', 
 	    'libcef.dll', 'libEGL.dll', 'libGLESv2.dll', 'chrome.pak', 'locales'),
 );
