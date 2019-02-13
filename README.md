@@ -1,7 +1,7 @@
 # DevelStudio-3.0-beta
 >Commit №81 Filesize:
-<br>48,6Mb (zipped)
-<br>122Mb (on hdd)
+<br>43,2Mb (zipped)
+<br>115Mb (on hdd)
 
 ## EN
 ** Unofficial DevelStudio Patch. **
