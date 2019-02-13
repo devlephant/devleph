@@ -208,7 +208,7 @@ function reg_object($form,$name) //ещё один синоним, но с какой-то странной разн
 
 function setEvent($form,$name,$event,$func){
     $obj = reg_object($form,$name);
-	event_set( $obj->self, $event, $func );
+	set_event( $obj->self, $event, $func );
     //set_event($obj->self,$event,$func);
 }
 function findComponent($str,$sep = '->',$asObject='TControl'){
@@ -459,8 +459,17 @@ function obj_create($class,$owner){
 }
 
 function set_event($self, $event, $value){
-	    
-	    return event_set($self, $event, $value);
+	    if( is_array($value) )
+		{
+			if( is_callable($value[0]) )
+				$r = event_set($self, $event, $value[0]);
+			else
+				return FALSE;
+			
+			foreach( array_slice($value, 1) as $Add )
+				event_add($self, $event, $Add);
+				return $r;
+	    } else event_set($self, $event, $value);
 }
 
 function uni_serialize($str){
@@ -1185,5 +1194,11 @@ function val($str, $value = null){
     } else {
 		$obj->$prop = $value;
     }
+}
+
+function __autoload ( string $class ) 
+{
+	if( gui_class_isset($class) )
+		eval("class $class extends TControl{}");
 }
 ?>

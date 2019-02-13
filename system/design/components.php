@@ -599,7 +599,7 @@ if (EMULATE_DVS_EXE) return;
 		
 	$files = findFiles($dir_n . '/components/events/','php');
 	foreach ($files as $file){
-		$componentEvents[strtolower(basenameNoExt($file))] = include($dir_n . '/components/events/' . $file);
+		$componentEvents[basenameNoExt($file)] = include($dir_n . '/components/events/' . $file);
 	}
 	
 	$files = findFiles($dir_n . '/components/methods/','php');
