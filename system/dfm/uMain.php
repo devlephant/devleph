@@ -307,7 +307,7 @@ class evfmMain {
             c('fmPropsAndEvents->btn_delEvent')->onClick  = 'myEvents::deleteEvent';
             c('fmPropsAndEvents->btn_changeEvent')->onClick = 'myEvents::changeEvent';
             
-            gui_propSet(c("fmObjectInspector->list")->IconOptions, 'AutoArrange', 1);
+            gui_propSet(gui_propGet(c("fmObjectInspector->list")->self, 'IconOptions'), 'AutoArrange', 1);
 			
     }
     

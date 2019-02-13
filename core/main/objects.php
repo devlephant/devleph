@@ -392,29 +392,29 @@ function cCallMethod($str){
 
 function rtti_set($obj, $prop, $val)
 	{
-		if( is_object($val) ) //Если в функцию передали объект
+		
+		$obj = is_object($obj)?$obj->self:$obj;
+		if( gui_propType($obj, $prop) == tkEvent) return;
+		if( is_callable($val) ){
+			if( gui_propType($obj, $prop) == 8) return;
+		}elseif( is_object($val) ) //Если в функцию передали объект
 		{
 			if( isset($val->self) ) //И, Если у объекта есть ->self
 								   //По-другому я хз как проверять объект взят из делфи или нет, может потом составлю реестр классов 
 								  //с помощью UnitClass, и уже там буду проверять...
-				if( is_numeric( $val->self ) and gui_propType($obj->self, $prop) == tkClass ) { //Если тип свойства - объект
+				if( is_numeric( $val->self ) and gui_propType($obj, $prop) == tkClass ) { //Если тип свойства - объект
 					
 					gui_propSetObject($obj, $prop, $val->self); //Функция для задания свойства, по-хорошему, стоит объединить и поставить проверку, сейчас займусь
 					//$obj - объект, $prop - свойство, $val - SELF-объекта
 					return; 
 				}
-		} elseif( is_numeric($val) and gui_propType($obj->self, $prop) == tkClass  ) { //Если передали число, и тип свойства - объект
+		} elseif( is_numeric($val) and gui_propType($obj, $prop) == tkClass  ) { //Если передали число, и тип свойства - объект
 			gui_propSetObject($obj, $prop, $val);
 			//$obj - объект, $prop - свойство, $val - SELF-объекта
 					return;
 		} elseif( is_array($val) )$val = '['. implode(',', $val) . ']';
-	
 
-/*	elseif( is_callable($val) and gui_propType($obj->self, $prop) == 8 ) {
-		gui_EventSet($obj, $prop, $val);
-	} //For Events Setting
-*/
-    gui_propSet($obj->self, $prop, $val);
+    gui_propSet($obj, $prop, $val);
 	//$obj - объект, $prop - свойство, $val - значение свойства
 }
 
@@ -776,9 +776,10 @@ class TRealFont extends TFont {
 	}
 
     function propSet($prop, $value){
+		
         if (is_array($value)) $value = implode(',', $value);
 
-        return gui_propSet($this->self, $prop, $value);
+        return rtti_set($this, $prop, $value);
     }
 
 
@@ -1188,4 +1189,10 @@ function val($str, $value = null){
     }
 }
 
+function __autoload($name)
+{
+	if( substr($name, 0, 2) == 'ev' ) return;
+		if( gui_class_isset($name) )
+			eval("class $name extends TControl{}");
+}
 ?>

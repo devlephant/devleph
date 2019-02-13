@@ -83,7 +83,7 @@ class TqAnim extends TImage{
 			$obj = $this->self;
 			$slf = $this->_timer;
 			gui_propset($this->_timer, 'WorkBackground', 1);
-			gui_propset($this->_timer, 'OnExecute', function() use($obj, $slf){
+			event_set($this->_timer, 'OnExecute', function() use($obj, $slf){
 				$obj->state++;
 				if(isset($obj->intervals[$obj->state])){
 					gui_propset($slf, 'Interval', $obj->intervals[$obj->state]);

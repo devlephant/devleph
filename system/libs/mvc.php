@@ -20,14 +20,8 @@ class Loader {
                 $file .= '.'.$ext;
             }
             
-        if ($ext){
-            
-            if (class_exists('Thread') && $add_thread){
-                
-                if ( $file!='modules/animation.php' )
-                Thread::addFile(SYSTEM_DIR . $file);
-            }            
-            
+        if ($ext){ 
+           
             if ($ext=='phz' || $ext=='phb')
                 bcompiler_load(SYSTEM_DIR . $file);
             elseif ($ext=='phpe')
