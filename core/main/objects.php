@@ -256,7 +256,7 @@ function findComponent($str,$sep = '->',$asObject='TControl'){
 }
 function rtti_DClass($name) //возврашает настоящий класс из псевдо-класса
 {
-	$name = get_class($name);
+	$name = is_object($name)?get_class($name):$name;
 	while( !gui_class_isset($name) && (bool)strlen($name) )
 		{
 			$name = get_parent_class($name);
@@ -1196,9 +1196,4 @@ function val($str, $value = null){
     }
 }
 
-function __autoload ( string $class ) 
-{
-	if( gui_class_isset($class) )
-		eval("class $class extends TControl{}");
-}
 ?>
