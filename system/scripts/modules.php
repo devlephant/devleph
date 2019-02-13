@@ -11,3 +11,4 @@ $GLOBALS['MODULES_INFO']['php_mssql.dll']= array('ntwdblib.dll');
 $GLOBALS['MODULES_INFO']['php_interbase.dll']= array('gds32.dll');
 $GLOBALS['MODULES_INFO']['php_squall.dll']= array('squall.dll');
 $GLOBALS['MODULES_INFO']['php_bcompiler.dll'] = array('msvcr71.dll');
+$GLOBALS['MODULES_INFO']['php_excel.dll'] = array('libxl.dll');
