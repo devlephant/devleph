@@ -392,13 +392,13 @@ function cCallMethod($str){
 
 function rtti_set($obj, $prop, $val)
 	{
-		
 		if( is_object($val) ) //Если в функцию передали объект
 		{
 			if( isset($val->self) ) //И, Если у объекта есть ->self
 								   //По-другому я хз как проверять объект взят из делфи или нет, может потом составлю реестр классов 
 								  //с помощью UnitClass, и уже там буду проверять...
 				if( is_numeric( $val->self ) and gui_propType($obj->self, $prop) == tkClass ) { //Если тип свойства - объект
+					
 					gui_propSetObject($obj, $prop, $val->self); //Функция для задания свойства, по-хорошему, стоит объединить и поставить проверку, сейчас займусь
 					//$obj - объект, $prop - свойство, $val - SELF-объекта
 					return; 
@@ -579,7 +579,6 @@ class TComponent extends TObject {
 	}
 	function __construct($onwer = nil,$init = true,$self = nil)
 	{
-		
 	    if ($init){
 			$this->self = obj_create(rtti_DClass($this), $onwer);
 	    }
@@ -588,7 +587,7 @@ class TComponent extends TObject {
              $this->self = $self;
 	    
 		
-	    $this->__setAllPropEx($init);
+	   $this->__setAllPropEx($init);
 	}
 	
 	function set_prop($prop,$val){
@@ -811,16 +810,14 @@ class TControl extends TComponent {
 	
 	protected $_font;
 	#public $avisible;
-	
+	public $avisible;
+	public $aenabled;
 	function __construct($onwer=nil,$init=true,$self=nil){
-		parent::__construct($onwer,$init);
-			
-		if ($self!=nil) $this->self = $self;
-		if ($init){
-		    $this->avisible = $this->visible;
+	    if ($init){
+			$this->avisible = $this->visible;
 		    $this->aenabled = $this->enabled;
-		}
-		
+			$this->self = obj_create(rtti_DClass($this), $onwer);
+	    }elseif ($self!=nil) $this->self = $self;
 		$this->__setAllPropEx($init);
 	}
 	
@@ -876,11 +873,7 @@ class TControl extends TComponent {
 	    $this->avisible = $v;
 	    $this->set_prop('visible',$v);
 	}
-	
-	function setx_avisible($v){
-	    //
-	}
-        
+
         function get_owner(){
             return get_owner($this);
         }
