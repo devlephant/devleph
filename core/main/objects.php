@@ -419,6 +419,7 @@ function rtti_set($obj, $prop, $val)
 }
 
 function rtti_get($obj,$prop){
+	if( gui_propExists($obj->self, $prop) ){
 		$f = gui_propGet($obj->self, $prop);
 	/*	elseif( gui_propType($obj->self, $prop) == 8 ) {
 		return gui_EventGet($obj, $prop);
@@ -436,6 +437,7 @@ function rtti_get($obj,$prop){
    } 	
 
    return $f;
+	}
 }
 function rtti_exists($obj,$prop){
    return gui_propExists($obj->self, $prop);
