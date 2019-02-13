@@ -102,7 +102,7 @@ protected $name;
 	}
 	
 	//ищет цвет TColor по имени константы
-	public static function search( string $name )
+	public static function search( $name )
 	{
 			if( isset( $GLOBALS['_c'] ) ) {
 				if( isset($this->defines[$name]) )

@@ -22,11 +22,11 @@ global $_c;
   $_c->HKEY_CURRENT_CONFIG   = 0x80000005;
   $_c->HKEY_DYN_DATA         = 0x80000006;
   
-  $_c->STRING    = 0;
-  $_c->DATE_TIME = 1;
-  $_c->BOOL      = 2;
-  $_c->DWORD     = 3;
-  $_c->CURRENCY  = 4;
+  $_c->reg_STRING    = 0;
+  $_c->reg_DATE_TIME = 1;
+  $_c->reg_BOOL      = 2;
+  $_c->reg_DWORD     = 3;
+  $_c->reg_CURRENCY  = 4;
 
 class TRegistry {
     
@@ -62,7 +62,7 @@ class TRegistry {
         }
     }
     
-    function writeKeyEx($root, $path, $value = '', $type = STRING){
+    function writeKeyEx($root, $path, $value = '', $type = reg_STRING){
         
         $this->rootKey($root);
         $path = replaceSr($path);
@@ -76,15 +76,15 @@ class TRegistry {
         
         switch ($type){
             
-            case STRING: $this->writeString($p, $value); break;
-            case BOOL  : $this->writeBool($p, $value); break;
-            case DWORD : $this->writeFloat($p, $value); break;
-            case DATE_TIME: $this->writeDate($p, $value); break;
+            case reg_STRING: $this->writeString($p, $value); break;
+            case reg_BOOL  : $this->writeBool($p, $value); break;
+            case reg_DWORD : $this->writeFloat($p, $value); break;
+            case reg_DATE_TIME: $this->writeDate($p, $value); break;
             default: $this->writeString($p, $value); break;
         }
     }
     
-    function readKeyEx($root, $path, $type = STRING){
+    function readKeyEx($root, $path, $type = reg_STRING){
         
         $this->rootKey($root);
         $path = replaceSr($path);
@@ -97,10 +97,10 @@ class TRegistry {
         
         switch ($type){
             
-            case STRING: return $this->readString($p); break;
-            case BOOL  : return $this->readBool($p); break;
-            case DWORD : return $this->readFloat($p); break;
-            case DATE_TIME: return $this->readDate($p); break;
+            case reg_STRING: return $this->readString($p); break;
+            case reg_BOOL  : return $this->readBool($p); break;
+            case reg_DWORD : return $this->readFloat($p); break;
+            case reg_DATE_TIME: return $this->readDate($p); break;
             default: return $this->readString($p); break;
         }
     }

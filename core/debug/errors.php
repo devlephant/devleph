@@ -101,22 +101,6 @@ function userErrorHandler($errno = false, $errstr = '', $errfile='', $errline=0,
     v('is_showerror', true);
     // 
     global $__eventInfo;
-    if(!isset($GLOBALS['__error_types']))
-		$GLOBALS['__error_types'] = array (
-                0                 => "Fatal Error",
-                E_ERROR           => "Error",
-                E_WARNING         => "Warning",
-                E_PARSE           => "Parsing Error",
-                E_NOTICE          => "Notice",
-                E_CORE_ERROR      => "Core Error",
-                E_CORE_WARNING    => "Core Warning",
-                E_COMPILE_ERROR   => "Compile Error",
-                E_COMPILE_WARNING => "Compile Warning",
-                E_USER_ERROR      => "User Error",
-                E_USER_WARNING    => "User Warning",
-                E_USER_NOTICE     => "User Notice",
-                E_STRICT          => "Runtime Notice",
-    );
     $type = isset($GLOBALS['__error_types'][$errno])?t($GLOBALS['__error_types'][$errno]): t("Unknown Error");
     
 	$__search = 'Uncaught exception';
@@ -317,7 +301,6 @@ function except_msg(){
 	if( isset($GLOBALS['__exception_last']) )
 		return $GLOBALS['__exception_last']->getMessage();
 }
-
 errors_init();
 
 /* fix errors */
