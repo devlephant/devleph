@@ -1,8 +1,7 @@
-$res = array();
-foreach( get_declared_classes() as $class )
-{
-if( gui_class_isset($class) )
-	$res[$class] = gui_class_proparray($class);
-	//$res[] = $class;
-}
-file_put_contents('res.txt', print_r($res, true));
+$f = new TForm();
+$f->caption = 'Caption'.random(10000);
+//Событие OnClick
+$c = new TBevel();
+$c->parent = $f;
+$c->align = alClient;
+$f->show();
