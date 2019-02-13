@@ -1191,7 +1191,8 @@ function val($str, $value = null){
 
 function __autoload($name)
 {
-	if( substr($name, 0, 2) == 'ev' ) return;
+	if( substr($name, 0, 2) == 'ev' or  substr($name, 0, 7) == 'modifer' ) return;
+
 		if( gui_class_isset($name) )
 			eval("class $name extends TControl{}");
 }
