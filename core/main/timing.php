@@ -36,32 +36,15 @@ class TTimerEx extends TPanel{
 	
 	#event onTimer 
 	
-	static function doTimer($self){
-		
+	static function doTimer($_self){
+		$self = gui_owner($_self);
 		if(isset($self))
 		{
 			if( strlen($self)<1  or !trim($self) or !$self){
 				file_put_contents('error.txt',
-				"TIMER ERROR[FATAL]");
+				"TIMER ERROR[QQQFATAL] owner self (". gui_owner($_self) .") is not set");
 				return;
 			}
-		} else {
-			file_put_contents('error.txt',
-				"TIMER ERROR[FATAL]");
-			return;
-		}
-		$self = gui_owner($self);
-		if(isset($self))
-		{
-			if( strlen($self)<1  or !trim($self) or !$self){
-				file_put_contents('error.txt',
-				"TIMER ERROR[FATAL]");
-				return;
-			}
-		} else {
-			file_put_contents('error.txt',
-				"TIMER ERROR[FATAL]");
-			return;
 		}
 		$props = TComponent::__getPropExArray($self);
 		
@@ -115,6 +98,7 @@ class TTimerEx extends TPanel{
 		
 		if (!$this->timer_self){
 			$this->_timer = new TTimer($this);
+			$this->_timer->owner = $this->self;
 			$this->_timer->name = 'timer';
 			$this->_timer->onTimer = 'TTimerEx::doTimer';
 			$this->timer_self = $this->_timer->self;

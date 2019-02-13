@@ -813,11 +813,14 @@ class TControl extends TComponent {
 	#public $avisible;
 
 	function __construct($onwer=nil,$init=true,$self=nil){
-	    if ($init){
-			$this->avisible = $this->visible;
+	    parent::__construct($onwer,$init);
+			
+		if ($self!=nil) $this->self = $self;
+		if ($init){
+		    $this->avisible = $this->visible;
 		    $this->aenabled = $this->enabled;
-			$this->self = obj_create(rtti_DClass($this), $onwer);
-	    }elseif ($self!=nil) $this->self = $self;
+		}
+		
 		$this->__setAllPropEx($init);
 	}
 	
