@@ -165,7 +165,7 @@ class DSApi {
             if (is_array($eventList)){
                 
                 
-                if (!$self){    
+                if (!$self){
                     $el = $form->findComponent($obj);
                     $self = $el->self;
                 }

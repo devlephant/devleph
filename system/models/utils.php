@@ -341,7 +341,7 @@ class myUtils {
         eventEngine::setForm();    
 		
         myDesign::formProps();
-       
+		
 		$myProperties->setProps();
 		
         

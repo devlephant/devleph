@@ -83,6 +83,7 @@ class evfmMain {
 		if( trim(c("fmMain->c_formComponents")->intext) == ':TForm'){
 			c("fmMain->c_formComponents")->intext = $fmEdit->name.' :TForm';
 		}
+		myDesign::bugfixFormProps();
 		self::aftershow();
 	}
     static function aftershow()

@@ -725,9 +725,14 @@ class myDesign {
         $myProperties->generate($fmEdit->self,c('fmPropsAndEvents->tabProps',1));
 
         $myEvents->_generate($fmEdit);
-
     }
-    
+    static function bugfixFormProps()
+	{
+		global $myProperties;
+		if( !$myProperties->panels['TForm']['PANEL']->VertScrollBar->OldPosition && !$myProperties->panels['TForm']['PANEL']->VertScrollBar->Position)
+		$myProperties->panels['TForm']['PANEL']->CollapseAll();
+		$myProperties->panels['TForm']['PANEL']->ExpandAll();
+	}
     static function deleteObject($obj){
         
         if (link_null($obj->self)) return;

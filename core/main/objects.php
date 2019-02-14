@@ -874,6 +874,7 @@ class TControl extends TComponent {
         }
         
         function findComponent($name,$type = 'TControl'){
+			//here
             $id = find_component($this->self,$name);
 	    
             return _c($id);
