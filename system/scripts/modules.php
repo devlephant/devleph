@@ -37,5 +37,5 @@ $GLOBALS['MODULES_INFO'] = array(
 'php_stomp.dll'=>array('ssleay32.dll', 'libeay32.dll'),
 'php_suhosin.dll'=>array('php_mbstring.dll'),
 'php_opcache.dll'=>array('#!Z'), //#!Z means Zend Extension
-'php_xdebug.dll'=>array('#!Z',
+'php_xdebug.dll'=>array('#!Z'),
 );
