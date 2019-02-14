@@ -1091,9 +1091,4 @@ class TTreeNode extends TControl {
 	}
 }
 
-class TControlScrollBar extends TControl {
-	
-}
-
-
 ?>

@@ -425,14 +425,10 @@ function rtti_get($obj,$prop){
 		return gui_EventGet($obj, $prop);
 	} //For Events Setting
 	*/	
-   
    if( is_numeric( $f ) and gui_propType($obj->self, $prop) == tkClass ) { // Проверка типа свойства, если свойство является объектом, то, возвращаем как объект
    //Костыль ниже \/    \/
 	   if( class_exists( gui_class($f) ) ) {
-			if( _c($f) )
-			{
-				$f = _c($f);
-			}
+			$f = _c($f);
 	   }
    } 	
 

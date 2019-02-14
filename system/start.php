@@ -10,9 +10,9 @@
 		define('DS_USERDIR',winLocalPath(CSIDL_PERSONAL).'/DS KE/' );
 		$ini = new TIniFileEx(DS_USERDIR.'allconfig.ini');
 		$GLOBALS['ALL_CONFIG'] = $ini->arr;
-		define('DV_YEAR',		2018, 	 false );
+		define('DV_YEAR',		2019, 	 false );
 		define('DV_VERSION',	'3.0.4', false );
-		define('DV_PREFIX',		'Pre-Release', false );
+		define('DV_PREFIX',		'Fix Release', false );
     }
 	
     require 'libs/mvc.php';

@@ -2,15 +2,11 @@
       
     myVars::set( c('fmMain->MainImages16'), '_IMAGES16' );
     myVars::set( c('fmMain->MainImages24'), '_IMAGES24' ); 
-    myVars::set( c('fmMain->MainImages32'), '_IMAGES32' ); /*
-    myVars::set( c('fmMain->panelWindows'), 'panelWindows' ); 
-    myVars::set( c('fmMain->panelWindows'), 'panelWindows' ); */
-    myVars::set( c('fmMain->StatusBar'), 'StatusBar' ); 
+    myVars::set( c('fmMain->MainImages32'), '_IMAGES32' );
     
     /* menus */
 	
     myVars::set( c('fmMain->editorPopup'), 'editorPopup' );
-    //styleMenu::add($GLOBALS['editorPopup']);
 	myVars::set( c('fmMain->editorPopup'), 'editorPopup' );
     myVars::set( c('fmMain->formsPopur'), 'formsPopur');
     myVars::set( c('fmMain->MainMenu'), '_MENU' );

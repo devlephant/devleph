@@ -1166,7 +1166,7 @@ class myProperties {
         
 
         if (!is_object($this->selObj) || $this->last_class != $class){
-           
+          
             $this->selObj = toObject($self);
             $this->panel  = $panel;    
            
@@ -1193,8 +1193,7 @@ class myProperties {
 										if(is_object($GLOBALS['dsg_cfg']->panelLeft))
 									$this->panels[$class]['PANEL']->splitterPosition = $GLOBALS['dsg_cfg']->panelLeft->splitterW;
                     }
-                    
-                    //$tmp->free();
+					//pre( $this->panels[$class]['PANEL'] 
                 }
                 
                        
