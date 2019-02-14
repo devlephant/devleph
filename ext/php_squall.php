@@ -434,8 +434,7 @@ class SQUALL_Player extends TPanel {
         
         return $this->status == SQUALL_CHANNEL_STATUS_PAUSE;
     }
-	
-	public function 
+
     
 }
 /*CLASSES;*/
