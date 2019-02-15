@@ -1,14 +1,10 @@
 *.in
 *.txt
-*.rar
-*.zip
 *.html
 *.htm
 tests/cdk_api.php
 tests/csdk.php
 resources/
-skincrafter.dll
-skindll.dll
 thumbs.db
 load_ds.bmp
 syned240.bpl
@@ -20,7 +16,4 @@ SoulEngine.exe-2
 SoulEngine.exe-3
 
 system/utils/eval_2.4/eval.tmp
-
-code.php
-
 Thumbs.db
