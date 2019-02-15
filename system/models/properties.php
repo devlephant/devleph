@@ -1246,7 +1246,7 @@ class myProperties {
         
             
         if (!isset($this->panels[$class])){
-			//$theme = DOC_ROOT . 'images/btns/' . myOptions::get('prefs','studio_theme', 'light'); //#ADDOPT;
+			$theme = DOC_ROOT . 'images/btns/' . myOptions::get('prefs','studio_theme', 'light'); //#ADDOPT;
             
             $panel = new TNextInspector( $fmMain );
             $panel->parent = c('fmPropsAndEvents->tabProps');
@@ -1256,8 +1256,8 @@ class myProperties {
             $panel->HighlightTextColor = 0xC1FFFF;
             $panel->onVSEdit = 'myProperties::VSEdit';
             $panel->onVSToolBarClick = 'myProperties::VSBarClick';
-			//$panel->ExpandGlyph->loadFromFile("{$theme}/pp_collapsed.bmp");
-			//$panel->CollapseGlyph->loadFromFile("{$theme}/pp_expanded.bmp");
+			$panel->ExpandGlyph->loadFromFile("{$theme}/pp_collapsed.bmp");
+			$panel->CollapseGlyph->loadFromFile("{$theme}/pp_expanded.bmp");
 			$panel->ButtonsStyle = 1; //btCustom
 			//gui_propSet($panel->self, 'AppearanceOptions', '[]');
 			gui_propSet($panel->self, 'Color', clWindow);

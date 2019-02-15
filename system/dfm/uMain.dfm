@@ -1,7 +1,7 @@
 object fmMain: TfmMain
   Left = 306
   Top = 117
-  Caption = 'Devel Studio 2018'
+  Caption = 'Devel Studio 2019'
   ClientHeight = 832
   ClientWidth = 718
   Color = clWhite

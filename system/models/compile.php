@@ -564,7 +564,7 @@ class myCompile
 		if( strlen(trim($companyName)) <= 0 ) $companyName = "Example Company";
 		winRes::changeInfo($fileExe, 'Copyright', $version, $companyName . " (c)" . date("Y"));
 		//*/
-		myUPX::compress($fileExe, $UPXLevel);
+		
 		$p_dir = false;
 		self::copyPHPts(dirname($fileExe));
 
@@ -605,6 +605,7 @@ class myCompile
 		}
 
 		exemod_finish();
+		
 		unlink($fileExe);
 
 		if (file_exists($fileExe . '.$$$')) {
@@ -625,6 +626,7 @@ class myCompile
 		if( strlen(trim($companyName)) <= 0 ) $companyName = "Example Company";
 		winRes::changeInfo($fileExe, 'Copyright', $version, $companyName . " (c)" . date("Y"));
 		//*/
+		myUPX::compress($fileExe, $UPXLevel);
 		$endTime = microtime(1);
 		$buildTime = round( $endTime - $startTime, 1 );
 		

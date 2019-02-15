@@ -17,7 +17,7 @@ class myUPX {
     }
     
     static function compress($file, $level = self::L_MIDDLE){
-        
+    
         if ($level == L_NONE) return true;
         
         if (!file_exists($file))
@@ -34,8 +34,8 @@ class myUPX {
         $file    = replaceSr($file);
         $command = vsprintf(self::TP_COMPRESS, array(self::upxFile(),$level, $file));
         
-       // shell_execute_wait($command, false, SW_SHOW);
-       // sleep(1);
+        shell_execute_wait($command, false, SW_SHOW);
+        sleep(1);
         return true;
     }
 }
