@@ -106,7 +106,6 @@ class myModules {
         $dir = replaceSl(dirname(EXE_NAME)).'/';
         self::getNeed();
         
-       // $myProject->config['modules'][] = 'php_bcompiler.dll';
         $myProject->config['modules'] = array_unique($myProject->config['modules']);
         $real = array();
         foreach ((array)$myProject->config['modules'] as $mod){

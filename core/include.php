@@ -71,7 +71,6 @@ $_SERVER['ENGINE_DIR'] = ENGINE_DIR;
 /* %START_MODULES% */
 include_lib('main','constant');
 include_lib('debug','errors');
-include_lib('debug','bytecode');
 include_lib('debug','debugclass');
 include_lib('','config');
 include_lib('main','objects');

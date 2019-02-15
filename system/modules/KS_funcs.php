@@ -126,13 +126,6 @@ function print_right($v){
 	
 	gui_message($s);
 }
- function write_phb($php, $phb){
-	$fh = fopen($phb, "w");
-	bcompiler_write_header($fh);
-	bcompiler_write_file($fh, $php);
-	bcompiler_write_footer($fh);
-	fclose($fh);
- }
  
  function char2hex($text){
 	$text = unpack('H*', $text);

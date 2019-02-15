@@ -972,22 +972,9 @@ class myDesign {
         global $fmEdit, $_FORMS, $formSelected, $_sc,
                 $targetSelected, $myEvents, $myProperties;
         
-        $selectedName = _c($targetSelected)->name;
-        
-        $targets = $_sc->targets_ex;
-        foreach ($targets as $el)
-            $components[] = $el->name;
-       
         lockWindowUpdate(c('fmPropsAndEvents->tabProps',1)->handle);
-        myUtils::saveForm();
-        myUtils::loadForm($_FORMS[$formSelected]);
         
-        
-        foreach ($components as $name)
-            $_sc->addTarget($fmEdit->findComponent($name));
-            
-        $el = $fmEdit->findComponent($selectedName);
-        myVars::set($el->self,'targetSelected');
+        $el = $targetSelected>0?c($targetSelected):$fmEdit;
         $myEvents->generate($el);
         $myProperties->generate($el->self, c('fmPropsAndEvents->tabProps',1));
         lockWindowUpdate(0);

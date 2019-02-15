@@ -22,9 +22,7 @@ class Loader {
             
         if ($ext){ 
            
-            if ($ext=='phz' || $ext=='phb')
-                bcompiler_load(SYSTEM_DIR . $file);
-            elseif ($ext=='phpe')
+            if ($ext=='phpe')
                 include_ex(SYSTEM_DIR . $file);
             else
                 include SYSTEM_DIR . $file;
@@ -51,8 +49,6 @@ class Loader {
             include_ex2($file);
         elseif ( fileExt($file)=='phpe' )
             include_ex($file);
-        elseif ( fileExt($file)=='phb')
-            bcompiler_load($file);
         else
             include $file;
     }
@@ -61,12 +57,6 @@ class Loader {
         
         if (file_exists(SYSTEM_DIR . 'models/'.$file.'.phpe'))
             include_ex(SYSTEM_DIR . 'models/'.$file.'.phpe');
-        elseif (file_exists(SYSTEM_DIR . 'models/'.$file.'.phz')){
-            bcompiler_load(SYSTEM_DIR .'/models/'.$file.'.phz');
-        }
-        elseif (file_exists(SYSTEM_DIR . 'models/'.$file.'.phb')){
-            bcompiler_load(SYSTEM_DIR .'/models/'.$file.'.phb');
-        }
         else {
             self::file('models/'.$file, false);
         }

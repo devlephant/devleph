@@ -9,7 +9,6 @@ $GLOBALS['MODULES_INFO'] = array(
 'php_mssql.dll'=> array('ntwdblib.dll'),
 'php_interbase.dll'=> array('gds32.dll'),
 'php_squall.dll'=> array('squall.dll'),
-'php_bcompiler.dll' => array('msvcr71.dll'),
 'php_excel.dll' => array('libxl.dll'),
 'php_crypto.dll'=> array('libeay32.dll'),
 'php_dump.dll'=>array('msvcr100d.dll'),

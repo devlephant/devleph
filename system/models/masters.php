@@ -49,9 +49,6 @@ class myMasters {
         if (file_exists($dir.'/class.php')){
             include $dir .'/class.php';
         }
-        
-        if (file_exists($dir.'/class.phz'))
-            bcompiler_load($dir.'/classs.phz');
 
         if( isset($info['FORMS']) )
         foreach ((array)$info['FORMS'] as $form){

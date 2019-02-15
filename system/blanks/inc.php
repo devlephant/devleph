@@ -34,7 +34,6 @@ class DS_Loader
 		$this->loadModules();
 		$this->loadOptions();
 		DSApi::__doStartBeforeFunc();
-		$this->loadCompiledModule();
 		$this->loadForms();
 		DSApi::__doStartFunc();
 		$this->startApp();
@@ -102,19 +101,6 @@ class DS_Loader
 
 		define('ERROR_NO_WARNING', (bool) $this->config['debug']['no_warnings']);
 		define('ERROR_NO_ERROR', (bool) $this->config['debug']['no_errors']);
-	}
-
-	public function LoadCompiledModule()
-	{
-		if ($this->config['use_bcompiler']) {
-			$module = exemod_extractstr('$_exEvFILE');
-
-			if ($module) {
-				$module = gzuncompress($module);
-			}
-
-			ByteCode::Load($module);
-		}
 	}
 
 	public function CreateForm($name, $load_events = true, $new_name = '')

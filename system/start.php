@@ -41,7 +41,6 @@
     loader::lib('synedit');
     loader::lib('docking');
     loader::lib('catbuttons');
-    loader::lib('bcompiler');
 	}
     
     if (!EMULATE_DVS_EXE){

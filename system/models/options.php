@@ -74,7 +74,6 @@ class myOptions {
         $list->clear();
         
         $modules = findFiles(SYSTEM_DIR . '/../ext/','dll');
-        //unset($modules[array_search('php_bcompiler.dll',$modules)]);
         
         $list->items->setArray($modules);
         $list->checkedItems = (array)$myProject->config['modules'];   
@@ -98,7 +97,6 @@ class myOptions {
         $list->clear();
         
         $modules = findFiles(SYSTEM_DIR . '/../ext/','dll');
-        //unset($modules[array_search('php_bcompiler.dll',$modules)]);
         
         $list->items->setArray($modules);
         $list->checkedItems = (array)$myProject->config['modules'];   
@@ -193,7 +191,6 @@ class myOptions {
         $ini->write('main','upx_level', c('fmBuildProgram->c_upx')->itemIndex);
         $ini->write('main','company', c('fmBuildProgram->e_companyname')->text);
         $ini->write('main','version', c('fmBuildProgram->e_version')->text);
-        $ini->write('main','use_bcompiler', c('fmBuildProgram->use_bcompiler')->checked);
         
         $fileIco = SYSTEM_DIR . '/blanks/project.ico';
         if (file_exists($GLOBALS['__iconFile'])){
@@ -220,7 +217,6 @@ class myOptions {
         c('fmBuildProgram->c_upx')->itemIndex = $ini->read('main','upx_level', 0);
         c('fmBuildProgram->e_companyname')->text = $ini->read('main','company', '');
         c('fmBuildProgram->e_version')->text = $ini->read('main','version', '1.0.0.0');
-        c('fmBuildProgram->use_bcompiler')->checked = $ini->read('main','use_bcompiler', true);
         
         $iconFile = $ini->read('main', 'icon', '');
         if ($iconFile){
@@ -263,8 +259,7 @@ class myOptions {
                                  c('fmBuildProgram->e_companyname',1)->text,
                                  c('fmBuildProgram->e_version',1)->text,
                                 /* c('fmBuildProgram->e_filedescription',1)->text */ '',
-                                 myVars::get('__iconFile'),
-				    c('fmBuildProgram->use_bcompiler',1)->checked
+                                 myVars::get('__iconFile')
                                 );
             
             if (false && err_msg()){

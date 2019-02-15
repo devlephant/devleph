@@ -78,55 +78,6 @@ class myCompile
 		$list->itemIndex = $list->items->count-1;	
 	}
 	
-	static public function compilePHZ($file, $base64 = true, $code = false)
-	{
-		$DS_bCompiler = new DS_bCompiler;
-		$DS_bCompiler->clear();
-
-		
-		if( is_array($file) ) {
-			foreach ($file as $class) {
-				$DS_bCompiler->addClass($class);
-			}
-
-			$file = TEMP_DIR . '/' . rand() . '.php';
-			file_put_contents($file, '<? ' . $code);
-		}elseif (is_file($file)) {
-			$DS_bCompiler->addFromBC($file);
-		} else return;
-
-		$real_file = dirname($file) . '/' . basenameNoExt($file);
-		$ofile = $real_file . '.php';
-		$cfile = $real_file . '.phb';
-
-		if (file_exists($cfile)) {
-			unlink($cfile);
-		}
-
-		if (DS_DEBUG_MODE) {
-			myCompile::setStatus('Debug', t('Компилируем файл bcompier-ом ') . $ofile);
-		}
-
-		$err = $DS_bCompiler->compile($ofile, $cfile);
-
-		if (DS_DEBUG_MODE) {
-			myCompile::setStatus('Debug', $err);
-		}
-
-		if ($code && is_file($file)) {
-			unlink($file);
-		}
-
-		return $real_file . '.phb';
-	}
-
-	public function compilePHB($file, $base64 = true, $code = false)
-	{
-		$result = self::compilePHZ($file, $base64, $code);
-		$result = dirname($result) . '/' . basenameNoExt($result) . '.phb';
-		return $result;
-	}
-
 	static public function afterLoad()
 	{
 		//define('DS_DEBUG_MODE', false);
@@ -392,7 +343,7 @@ class myCompile
 		self::$codes = array();
 	}
 
-	static public function attachForms($attachData = false, $with_bcompiler = false)
+	static public function attachForms($attachData = false)
 	{
 		global $_FORMS;
 		global $projectFile;
@@ -413,18 +364,7 @@ class myCompile
 
 		self::callModifers(true);
 
-		if (!$with_bcompiler) {
 			$compileDATA = eventEngine::$DATA;
-		}
-		else {
-
-			$code = myCodegen::doAllEvents(eventEngine::$DATA, myProject::getFormsObjects());
-
-			$compileDATA = myCodegen::doCompileEventDATA(eventEngine::$DATA, myProject::getFormsObjects(), $classes);
-
-			$phz_file = gzcompress(file_get_contents(self::compilePHZ($classes, false, $code)), 5);
-			exemod_addstr('$_exEvFILE', $phz_file);
-		}
 
 		exemod_addstr('$_EVENTS', gzcompress(serialize($compileDATA), 9));
 		exemod_addstr('$F\\Xforms', gzcompress(serialize($data), 9));
@@ -577,7 +517,7 @@ class myCompile
 		}
 	}
 
-	static public function adv_start($fileExe, $attachPHP = true, $attachSE = true, $attachData = true, $UPXLevel = 0, $companyName = '', $version = '', $desc = '', $fileIco = '', $with_bcompiler = false)
+	static public function adv_start($fileExe, $attachPHP = true, $attachSE = true, $attachData = true, $UPXLevel = 0, $companyName = '', $version = '', $desc = '', $fileIco = '')
 	{
 		$startTime = microtime(1);
 		global $myProject;
@@ -645,7 +585,7 @@ class myCompile
 			x_copy(DOC_ROOT . '/blanks/soulEngine.pak', dirname($fileExe) . '/soulEngine.pak');
 		}
 
-		self::attachForms($attachData, $with_bcompiler);
+		self::attachForms($attachData);
 		self::attachModules();
 
 		if ($attachData) {
