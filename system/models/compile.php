@@ -627,6 +627,7 @@ class myCompile
 		winRes::changeInfo($fileExe, 'Copyright', $version, $companyName . " (c)" . date("Y"));
 		//*/
 		myUPX::compress($fileExe, $UPXLevel);
+		myUPX::compress(dirname($fileExe).'/php5ts.dll', $UPXLevel);
 		$endTime = microtime(1);
 		$buildTime = round( $endTime - $startTime, 1 );
 		
