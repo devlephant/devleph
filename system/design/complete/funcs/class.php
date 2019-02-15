@@ -14,7 +14,6 @@ class complete_Funcs {
         self::$sourceFiles[] = $engineDir . '/main/messages.php';
         self::$sourceFiles[] = $engineDir . '/main/osapi.php';
         self::$sourceFiles[] = $engineDir . '/main/threading.php';
-        self::$sourceFiles[] = $engineDir . '/main/mci.php';
         self::$sourceFiles[] = $engineDir . '/main/registry.php';
         self::$sourceFiles[] = $engineDir . '/main/localization.php';
         self::$sourceFiles[] = $engineDir . '/main/dfmreader.php';
