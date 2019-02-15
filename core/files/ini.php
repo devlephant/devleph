@@ -27,7 +27,7 @@ class __ini {
         )
     ;
 
-/**
+/*
  * constructor ini ( [ string ini_file = NULL [, string default_file = NULL] ] )
  */
     function ini ( $ini_file = NULL, $default_file = NULL ) {
@@ -46,12 +46,12 @@ class __ini {
     
     } // func ini
     
-/**
+/*
  * mixed get ( string key [, string section = NULL] )
  */
     function get ( $key, $section = NULL ) {
     
-    /**
+    /*
      * if a value for given key (and section) exists -> return it
      * else if $use_defaults is TRUE return the default setting ( if any )
      */

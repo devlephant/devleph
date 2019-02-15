@@ -133,12 +133,6 @@ class TStrings extends TObject{
     function setLine($index, $value){
         
         tstrings_setline($this->self, $index, $value);
-        /*$id = $this->itemIndex;
-        $lines = $this->lines;
-        if (isset($lines[$index]))
-            $lines[$index] = $name;
-        $this->text = implode(_BR_, $lines);
-        $this->itemIndex = $id;*/
     }
     
     function getLine($index){
@@ -260,12 +254,7 @@ class TStream extends TObject{
         
         function writeComponentRes($resName, TComponent $instance){
                 tstream_write_component_res($this->self, $resName, $instance->self);
-        }
-        
-        /*function writeDescendent(object $instance, object $ancestor){
-                tstream_write_component($this->self,$instance->self,$ancestor->self); 
-        }*/
-        
+        }        
         
         // properties...
         function get_position(){

@@ -253,19 +253,7 @@ class TCanvas extends TControl{
 	
 	canvas_rectangle($this->self, $x1, $y1, $x2, $y2);
     }
-    
-	/*function square($x1, $y1, $x2, $y2){
-		canvas_moveto($this->self,$x1,$y1);
-		canvas_lineto($this->self,$x1,$y1+$y2);
-		canvas_moveto($this->self,$x1,$y1);
-		canvas_lineto($this->self,$x1+$x2,$y1);
-		
-		canvas_moveto($this->self,$x2,$y2);
-		canvas_lineto($this->self,$x2-$x1,$y2);
-		canvas_moveto($this->self,$x2,$y2);
-		canvas_lineto($this->self,$x2,$y2-$y1);
-    }*/
-	
+    	
     function ellipse($x1, $y1, $x2, $y2){
 	
 		canvas_ellipse($this->self, $x1, $y1, $x2, $y2);

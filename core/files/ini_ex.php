@@ -83,10 +83,7 @@ class TIniFileEx {
     
     function updateFile(){
         
-        $this->filename = replaceSl($this->filename);
-        /*if (!is_writable($this->filename))
-            return false;*/
-        
+        $this->filename = replaceSl($this->filename);        
         $result = '';
         foreach ($this->arr as $sname=>$section){
             

@@ -303,7 +303,6 @@ function except_msg(){
 }
 errors_init();
 
-/* fix errors */
 err_no();
     date_default_timezone_set(date_default_timezone_get());
     ini_set('date.timezone', date_default_timezone_get());

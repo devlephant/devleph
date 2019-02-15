@@ -71,10 +71,6 @@ class TSizeCtrl extends TControl{
     
     public function addTarget($target, $init = true){
         
-        //$this->targets_ex[$target->self] = $target;
-        
-       // if ($this->indexOf($target)>-1) return -1;
-        
         $this->targets[] = $target;
         
         if ($init)
@@ -82,13 +78,6 @@ class TSizeCtrl extends TControl{
     }
     
     public function deleteTarget($target){
-        /*$id = $this->indexOf($target);
-        if ($id > -1){
-            //unset($this->targets_ex[$target->self]);
-            unset($this->targets[$id]);
-        }
-        else return;
-        */
         sizectrl_delete_target($this->self, $target->self);
     }
     

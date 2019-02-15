@@ -207,10 +207,6 @@ class TCommonDialog extends TControl{
 	function execute(){
 
 		$res = dialog_execute($this->self);
-
-		/*if ($res && $this->onSelectDialog){
-			eval($this->onSelectDialog . '('.$this->self.',\''. addslashes($this->filename) .'\');');
-		}*/
 		return $res;
 	}
 	

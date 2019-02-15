@@ -63,8 +63,8 @@ function rtti_call($obj,$prop,$values=false){
 			}
 			
 			$f = gui_methodCall($obj->self, $prop, $values); //вызываем метод с передачей аргументов
-		}else $f = gui_methodCall($obj->self, $prop); /*		вызываем метод без передачи аргументов 		*/
-												/*(случай, если аргументы не были переданы в функцию*/
+		}else $f = gui_methodCall($obj->self, $prop); //		вызываем метод без передачи аргументов 
+												//случай, если аргументы не были переданы в функцию
 	if(gui_methodrtype($obj->self, $prop) == tkClass)//случай, если возвращаемое значение - объект
 	{
 		$f = class_exists(gui_class($f))? _c($f): $f; 		//костыль с функцией c()
@@ -229,8 +229,8 @@ function findComponent($str,$sep = '->',$asObject='TControl'){
 		if ($x && !$owner){
 			//а вот это костыль из студии, он проверяет не было ли задано событием его самое местонахождения
 			//см. процедура SetEventInfo (класс __exEvents)
-			/*далее данные из SetEventInfo удаляются через freeEventInfo
-				p.s в этом месте можно поставить хук на событие для отладки*/
+			//далее данные из SetEventInfo удаляются через freeEventInfo
+				//p.s в этом месте можно поставить хук на событие для отладки
 			if(isset($GLOBALS['__ownerComponent'])){
 				if ($GLOBALS['__ownerComponent']){
 					$owner = c($GLOBALS['__ownerComponent']); //если инфа о родителе есть, он берётся из неё
@@ -412,10 +412,6 @@ function rtti_set($obj, $prop, $val)
 function rtti_get($obj,$prop){
 	if( gui_propExists($obj->self, $prop) ){
 		$f = gui_propGet($obj->self, $prop);
-	/*	elseif( gui_propType($obj->self, $prop) == 8 ) {
-		return gui_EventGet($obj, $prop);
-	} //For Events Setting
-	*/	
    if( is_numeric( $f ) and gui_propType($obj->self, $prop) == tkClass ) { // Проверка типа свойства, если свойство является объектом, то, возвращаем как объект
    //Костыль ниже \/    \/
 	   if( class_exists( gui_class($f) ) ) {
