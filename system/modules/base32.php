@@ -45,7 +45,7 @@ while($i < count($fiveBitBinaryArray)) {
 $base32 .= self::$map[base_convert(str_pad($fiveBitBinaryArray[$i], 5,'0'), 2, 10)];
 $i++;
 }
-if($padding && ($x = strlen($binaryString) % 40) != 0) {
+if($padding && ($x = strlen($binaryString) % 40) !== 0) {
 if($x == 8) $base32 .= str_repeat(self::$map[32], 6);
 else if($x == 16) $base32 .= str_repeat(self::$map[32], 4);
 else if($x == 24) $base32 .= str_repeat(self::$map[32], 3);
@@ -61,7 +61,7 @@ $allowedValues = array(6,4,3,1,0);
 if(!in_array($paddingCharCount, $allowedValues)) return false;
 for($i=0; $i<4; $i++){ 
 if($paddingCharCount == $allowedValues[$i] && 
-substr($input, -($allowedValues[$i])) != str_repeat(self::$map[32], $allowedValues[$i])) return false;
+substr($input, -($allowedValues[$i])) !== str_repeat(self::$map[32], $allowedValues[$i])) return false;
 }
 $input = str_replace('=','', $input);
 $input = str_split($input);

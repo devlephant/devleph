@@ -148,7 +148,7 @@ class mySyntaxCheck {
         }
         
         
-        if (strtolower($_FORMS[$formSelected])!=strtolower($error['form'])){
+        if (strtolower($_FORMS[$formSelected])!==strtolower($error['form'])){
                 
                 eventEngine::setForm($error['form']);
                 myUtils::saveForm();

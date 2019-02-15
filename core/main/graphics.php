@@ -569,12 +569,12 @@ class TPicture extends TControl{
     
     function __construct($init=true, $owner=nil, $self=nil){
         if ($init)
-			if( $self && $self != nil )
+			if( $self && $self !== nil )
 				$this->self = $self;
 			else
 				$this->self = tpicture_create();
 			
-			if($owner && $owner != nil)
+			if($owner && $owner !== nil)
 				$this->owner = $owner;
 	}
     function get_Graphic()

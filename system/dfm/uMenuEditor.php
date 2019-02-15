@@ -101,7 +101,7 @@ class menuEditor {
         $item = '-';
         $c    = count($result);
         
-        if (is_int($index) && $index!=count($result)){
+        if (is_int($index) && $index!==count($result)){
             $result = array_insert($result, $index, $item);
             c('edt_menuEditor')->result = implode(_BR_, $result);
             //$index++;
@@ -185,7 +185,7 @@ class menuEditor {
     
     static function itemUp($index){
         
-        if (is_int($index) && ($index!=0) && $index!=count(self::getResult())){
+        if (is_int($index) && ($index!==0) && $index!==count(self::getResult())){
             
             self::exchange($index, $index-1);
             return $index-1;
@@ -194,7 +194,7 @@ class menuEditor {
     
     static function itemDown($index){
         
-        if (is_int($index) && $index!=count(self::getResult())){
+        if (is_int($index) && $index!==count(self::getResult())){
             
             self::exchange($index, $index+1);
             return $index+1;

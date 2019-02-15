@@ -42,7 +42,7 @@ class complete_Funcs {
                 $params[$x] = $param .' = '.$defaults[$x];   
         }
         
-        if (count($params)!=0){
+        if (count($params)!==0){
                         
             $inline .= implode(', ', $params);
         } else {
@@ -106,7 +106,7 @@ class complete_Funcs {
                     $params = explode(_BR_, $obj['parameters']);
                     $inline = 'mixed '.$obj['NAME'].' ( ';
                     
-                    if (count($params)!=0){
+                    if (count($params)!==0){
                         
                         $inline .= implode(', ', $params);
                     } else {

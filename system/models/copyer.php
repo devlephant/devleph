@@ -19,7 +19,7 @@ class myCopyer {
                 continue;
             }
             
-            if ($i != count($lines)-1)
+            if ($i !== count($lines)-1)
             if (trim($line)=='end'){
                 $is_child = false;
                 continue;

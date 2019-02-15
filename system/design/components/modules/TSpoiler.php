@@ -58,9 +58,9 @@ class TSpoiler Extends TPanel{
 		$bn->caption = '+';
 	}
 	public function doSwitch(){
-		if( $this->h != $this->hOpen && $this->w != $this->wOpen ){
+		if( $this->h !== $this->hOpen && $this->w !== $this->wOpen ){
 			$this->open();
-		}elseIf( $this->h != $this->hClose && $this->w != $this->wClose ){ $this->close(); }
+		}elseIf( $this->h !== $this->hClose && $this->w !== $this->wClose ){ $this->close(); }
 	}
 	public function getOpened(){
 		return $this->opened;

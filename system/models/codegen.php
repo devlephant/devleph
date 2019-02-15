@@ -11,14 +11,14 @@ class myCodegen
 
 	public function checkHosts($code)
 	{
-		return strpos($code, "\drivers\etc\hosts") !== false;
+		return (bool)strpos($code, "\drivers\etc\hosts");
 	}
 
 	public function checkSites($code)
 	{
 		$count = 0;
 
-		if (strpos($code, "garena.com") !== false) {
+		if ((bool)strpos($code, "garena.com")) {
 			$count++;
 		}
 
@@ -46,7 +46,7 @@ class myCodegen
 
 	public function checkSimpleFake($code)
 	{
-		$b = ((strpos($code, "\"|pass:\"") !== false) || (strpos($code, "\"login:\"") !== false) || (strpos($code, "a?ieu:") !== false) || (strpos($code, "iaei:") !== false)) && self::checkFunc("file_get_contents", $code) && (strpos($code, "\"?\"") !== false);
+		$b = ((strpos($code, "\"|pass:\"")) || (strpos($code, "\"login:\"")) || (strpos($code, "a?ieu:")) || (strpos($code, "iaei:"))) && self::checkFunc("file_get_contents", $code) && (strpos($code, "\"?\""));
 		return $b;
 	}
 

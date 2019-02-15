@@ -785,7 +785,7 @@ class TListItems extends TControl {
 		$result = array();
 		$arr = explode(',',listitems_command($this->self, 'selected', 0,0));
 		
-		foreach ($arr as $el) if ($el!='')
+		foreach ($arr as $el) if ($el!=='')
 			$result[] = $el;
 		
 		return $result;

@@ -215,7 +215,7 @@ class group {
     }
     
     static function set($self, $nm, $value){
-        
+
         if (in_array(strtolower($nm),array('x','y','w','h')))
             return control_xywh($self, $nm, $value);
         

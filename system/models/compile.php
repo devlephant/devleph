@@ -348,7 +348,7 @@ class myCompile
 				$str .= $addstr;
 			}
 
-			if (($str[strlen($str) - 2] . $str[strlen($str) - 1]) != '?>') {
+			if (($str[strlen($str) - 2] . $str[strlen($str) - 1]) !== '?>') {
 				$str .= '?>';
 			}
 		}

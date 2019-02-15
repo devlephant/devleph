@@ -73,7 +73,7 @@ class evfmPHPEditor {
 			$phpeditorClosing = 1;
 			c('fmPHPEditor')->close();
 		}
-		elseif($msg != mrCancel)
+		elseif($msg !== mrCancel)
 		{
 			$phpeditorClosing = 1;
 			c('fmPHPEditor')->close();
@@ -181,7 +181,7 @@ class ev_fmPHPEditor_btn_save {
         if ($dlg->execute()){
             
             $fileName = $dlg->fileName;
-            if (fileExt($fileName)!='php') $fileName .= '.php';
+            if (fileExt($fileName)!=='php') $fileName .= '.php';
             
             file_p_contents( $fileName, c('fmPHPEditor->memo')->text );   
         }
@@ -383,7 +383,7 @@ class ev_fmPHPEditor_Saveas1{
         if ($dlg->execute()){
             
             $fileName = $dlg->fileName;
-            if (fileExt($fileName)!='php') $fileName .= '.php';
+            if (fileExt($fileName)!=='php') $fileName .= '.php';
             
             file_p_contents( $fileName, c('fmPHPEditor->memo')->text );   
         }
@@ -515,7 +515,7 @@ class EditorSynt
 
 		$synList = EditorSynt::getHighlight();
 
-		if( $synList != array() )
+		if( !empty($synList) )
 		foreach( $synList as $s )
 		{
 			$it = new TMenuItem;
@@ -554,7 +554,7 @@ class ev_fmPHPEditor_options {
         $ini = $GLOBALS['__syn_ini_o__'];
         c('fmPHPEditor->SynPHPSyn')->saveToArray($arr);
         $color = c('fmPHPEditor->memo')->color;
-        if (c('fmEditorSettings')->showModal()!=mrOk){
+        if (c('fmEditorSettings')->showModal()!==mrOk){
             c('fmPHPEditor->SynPHPSyn')->loadFromArray($arr);
             c('fmPHPEditor->memo')->color = $ini->read('main','color',clWhite);
             

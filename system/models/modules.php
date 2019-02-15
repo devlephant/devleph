@@ -126,7 +126,7 @@ class myModules {
                         $md5_2 = md5_file(dirname($file).$exten_dir.$mod);
                     
                     
-                    if (!$md5_2 || ($md5_1!=$md5_2)){
+                    if (!$md5_2 || ($md5_1!==$md5_2)){
                         
                         x_copy($dir.'ext/'.$mod, dirname($file).$exten_dir.$mod);
                     }

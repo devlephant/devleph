@@ -71,8 +71,8 @@ class ThreadObjectReceiver
 		if ($key = $GLOBALS['THREAD_SELF']) {
 			if ($block) {
 				$block = ($block < 10 ? 10 : $block) * 1000;
-				while(SyncEx('ThreadObjectReceiver::block', array($name, $key)) != 'true') {
-				//while(self::block($name, $key) != 'true') {
+				while(SyncEx('ThreadObjectReceiver::block', array($name, $key)) !== 'true') {
+				//while(self::block($name, $key) !== 'true') {
 					usleep($block);
 				}
 			}
@@ -105,7 +105,7 @@ class ThreadObjectReceiver
 
 	public static function block($name, $id)
 	{
-		if (!empty(self::$block[$name]) && self::$block[$name] != $id) {
+		if (!empty(self::$block[$name]) && self::$block[$name] !== $id) {
 			return 'false';
 		}
 		self::$block[$name] = $id;

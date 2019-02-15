@@ -284,7 +284,7 @@ class myDesign {
         
         $_sc->clearTargets();
         if ($c){
-            if(c("fmComponents->c_search")->text != ''){
+            if(c("fmComponents->c_search")->text !== ''){
 				c("fmComponents->c_search")->text = '';
 				//myOptions::set("components","groups", implode(",",c("fmMain->list")->selectedList));
 			}
@@ -304,7 +304,7 @@ class myDesign {
 
             $obj = new $class($fmEdit);
             gui_propSet( $obj->self, 'StyleElements', '[]' );
-            if (($parent->self!=$fmEdit->self) && ($obj instanceof __TNoVisual) ){
+            if (($parent->self!==$fmEdit->self) && ($obj instanceof __TNoVisual) ){
           
                 $x     += getAbsoluteX($parent->self, $fmEdit->self);
                 $y     += getAbsoluteY($parent->self, $fmEdit->self);
@@ -634,7 +634,7 @@ class myDesign {
         myVars::set(true, '__sizeAndMove');
         
         
-        if (!$_designSel && $button!=1){
+        if (!$_designSel && $button!==1){
             $_sc->clearTargets();
             if ($selectedClass) {
                 
@@ -777,7 +777,7 @@ class myDesign {
         $myProperties->generate($obj->self,c('fmPropsAndEvents->tabProps',1));
         $myEvents->generate($obj);
         
-        if ($obj->self != $fmEdit->self)
+        if ($obj->self !== $fmEdit->self)
         $_sc->addTarget($obj);
         
         myInspect::generate($fmEdit);

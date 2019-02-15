@@ -40,7 +40,7 @@ _addfont($result);
 
 foreach( explode("\n", gui_class_propList('TLabeledEdit', 18)) as $prop ) {
 $prop = str_replace(array("\r", "\n"), '', trim($prop));
-if(trim($prop) and $prop!='Name' and $prop!='HelpKeyword')
+if(trim($prop) and $prop!=='Name' and $prop!=='HelpKeyword')
 $result[] = array(
                   'CAPTION'=>t($prop.'_caption'),
                   'TYPE'=>'text',

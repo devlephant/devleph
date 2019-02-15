@@ -350,11 +350,11 @@ Function ClearTargets()
 {
  Global $_TE_,$_OBJ,$_TT_;
  
- IF($_TE_['Obj'] != Null)
+ IF($_TE_['Obj'] !== Null)
  {
   Foreach($_TE_['Obj'] as $Obj)
   {
-   IF($Obj != Null)
+   IF($Obj !== Null)
    {
     $Obj->Free();
 	$_OBJ = Null;

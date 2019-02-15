@@ -152,8 +152,7 @@ class TObject extends _Object {
 		    return true;
 	    return false;
 	} else {
-	    $class = strtolower($class);
-	    return $class==strtolower($this->className);
+	    return strtolower($class)==strtolower($this->className);
 	}
     }
     
@@ -344,10 +343,7 @@ function ñ($str, $cached = false) {
 // cSetProp('form.object.caption', 'text')
 function cSetProp($str, $value){
     
-    $str = strtolower($str);
-    $str = str_replace('font.','font',$str);
-    
-    $str = str_replace('->','.',$str);
+    $str = str_ireplace(array('font.', '->'),array('font','.'),$str);
     $obj = c(substr($str, 0, strrpos($str,'.')));
     $method = substr($str, strrpos($str, ".")+1, strlen($str) - strrpos($str, '.'));
 
@@ -362,10 +358,8 @@ function cSetProp($str, $value){
 // cGetProp('MainForm->Button_1->Caption');
 function cGetProp($str){
     
-    $str = strtolower($str);
-    $str = str_replace('font.','font',$str);
+    $str = str_ireplace(array('font.', '->'),array('font','.'),$str);
     
-    $str = str_replace('->','.',$str);
     $obj = c(substr($str, 0, strrpos($str,'.')));
     $method = substr($str, strrpos($str, ".")+1, strlen($str) - strrpos($str, '.'));
 
@@ -380,10 +374,7 @@ function p($str){
 // cCallMethod('form.object.setFocus')
 function cCallMethod($str){
     
-    $str = strtolower($str);
-    $str = str_replace('font.','font',$str);
-    
-    $str = str_replace('->','.',$str);
+    $str = str_ireplace(array('font.', '->'),array('font','.'),$str);
     $obj = c(substr($str, 0, strrpos($str,'.')));
     $method = substr($str, strrpos($str, ".")+1, strlen($str) - strrpos($str, '.'));
 
@@ -575,7 +566,7 @@ class TComponent extends TObject {
 			$this->self = obj_create(rtti_DClass($this), $onwer);
 	    }
 	    
-        if ($self != nil)
+        if ($self !== nil)
              $this->self = $self;
 	    
 		
@@ -612,7 +603,7 @@ class TComponent extends TObject {
 		$nm = strtolower($nm);
 		$class = rtti_DClass($this);
 		if (!method_exists($this,'set_'.$nm))
-		if ($class!='TWebBrowser' && $class!='TScreenEx' && $class!='TPen' && $class!='TImageList'){
+		if ($class!=='TWebBrowser' && $class!=='TScreenEx' && $class!=='TPen' && $class!=='TImageList'){
 		    
 		    if ($nm=='visible'){
 				return control_visible($this->self, $val);
@@ -656,7 +647,7 @@ class TComponent extends TObject {
 	    $res = parent::__get($nm);
 	    $class = rtti_DClass($this);
 		if (!method_exists($this,'get_'.$nm))
-		if ($class!='TScreenEx' && $class!='TPen' && $class!='TImageList'){
+		if ($class!=='TScreenEx' && $class!=='TPen' && $class!=='TImageList'){
 		    
 		    if ($nm == 'visible'){
 				return control_visible($this->self, null);
@@ -807,7 +798,7 @@ class TControl extends TComponent {
 	function __construct($onwer=nil,$init=true,$self=nil){
 	    parent::__construct($onwer,$init);
 			
-		if ($self!=nil) $this->self = $self;
+		if ($self!==nil) $this->self = $self;
 		if ($init){
 		    $this->avisible = $this->visible;
 		    $this->aenabled = $this->enabled;
@@ -1158,10 +1149,8 @@ class TControl extends TComponent {
 
 function cMethodExists($str){
          
-    $str = strtolower($str);
-    $str = str_replace('font.','font',$str);
+    $str = str_ireplace(array('font.', '->'),array('font','.'),$str);
     
-    $str = str_replace('->','.',$str);
     $obj = c(substr($str, 0, strrpos($str,'.')));
     $method = substr($str, strrpos($str, ".")+1, strlen($str) - strrpos($str, '.'));
     

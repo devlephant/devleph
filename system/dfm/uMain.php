@@ -66,7 +66,7 @@ class evfmMain {
         global $dsg_cfg;
         if ($last_ver){
             
-            if ($dsg_cfg->main->lastVer!=$last_ver && compareVer($last_ver, '3.0.4.0')===1){
+            if ($dsg_cfg->main->lastVer!==$last_ver && compareVer($last_ver, '3.0.4.0')===1){
                 
                 $dsg_cfg->main->lastVer = $last_ver;
                 
@@ -752,7 +752,7 @@ class ev_fmMain_shapeSize {
             
             $obj->cursor = $curType;
             global $fmEdit;
-            if( $fmEdit->y != (c("fmMain->shapeSize")->y + 9) ) 
+            if( $fmEdit->y !== (c("fmMain->shapeSize")->y + 9) ) 
 			{
 				$fmEdit->y = c("fmMain->shapeSize")->y + 9;
 				$fmEdit->x = c("fmMain->shapeSize")->x + 8;

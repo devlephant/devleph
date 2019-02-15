@@ -213,7 +213,7 @@ class evalProject {
         $fileExe = dirname(EXE_NAME).'/DS KE.exe';
         
         if (file_exists($fileExe)){
-            if (fileExt($project)!='dvsexe')
+            if (fileExt($project)!=='dvsexe')
                 $project .= 'exe';
                 
             shell_execute(0, 'open', replaceSr($fileExe), '"'.replaceSr($project).'"', '', SW_SHOW);

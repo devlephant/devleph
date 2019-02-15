@@ -96,7 +96,7 @@ class TFunction extends __TNoVisual {
 	              $args = array("self"=>$self);';
 	    $x_names = explode(',',$names);
 	    foreach ($x_names as $x_name){
-		if ($x_name!='')
+		if ($x_name!=='')
 		$code .= '$args["'.str_replace('$','',trim($x_name)).'"] = '.trim($x_name).';';
 	    }
 	    

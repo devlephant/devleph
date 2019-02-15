@@ -210,7 +210,7 @@ class TStringList extends TStrings
 class TStream extends TObject{
 
         function __construct($self=nil){
-                if ($self != nil)
+                if ($self !== nil)
                         $this->self = $self;
                 else
                         $this->self = tstream_create();
@@ -324,7 +324,7 @@ class TStream extends TObject{
 class TMemoryStream extends TStream{
         
         function __construct($self = nil){
-                if ($self != nil)
+                if ($self !== nil)
                         $this->self = $self;
                 else
                         $this->self = tmstream_create();

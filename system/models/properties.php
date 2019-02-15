@@ -396,7 +396,7 @@ class myProperties {
         
         $param = $myProperties->elements[ $prop ];
         
-        if ($param['TYPE']!='check') return;
+        if ($param['TYPE']!=='check') return;
         
         $value = _c($prop)->value === t('Yes') ? true : false;
         
@@ -1165,7 +1165,7 @@ class myProperties {
             $class = rtti_class($self);
         
 
-        if (!is_object($this->selObj) || $this->last_class != $class){
+        if (!is_object($this->selObj) || $this->last_class !== $class){
           
             $this->selObj = toObject($self);
             $this->panel  = $panel;    
@@ -1222,7 +1222,7 @@ class myProperties {
             
         } else {
             
-            $to_update = $this->selObj->self != $self;
+            $to_update = $this->selObj->self !== $self;
             $this->selObj = _c($self);
             
             
@@ -1268,7 +1268,7 @@ class myProperties {
             $this->panels[$class]['PANEL'] = $panel;
             $this->panels[$class]['GROUP'] = $gr;
                 
-            if ($class!='TForm'){
+            if ($class!=='TForm'){
                 $componentProps[$class] =
                 array_merge(array(array('CAPTION'=>t('Name'),'TYPE'=>'Name','PROP'=>'name','ADD_GROUP'=>true)),
                             (array)$componentProps[$class]);
@@ -1406,7 +1406,7 @@ class myProperties {
         
         global $componentMethods;
         
-        return (array)$componentMethods[$class];
+        return (array)$componentMethods[strtolower($class)];
     }
     
     static function fixSplitterMoved($self){

@@ -111,7 +111,7 @@ function loadForm($name, $mode = LD_XY){
         
         foreach ($forms as $el){
             
-            if ($el->self != $form->self)
+            if ($el->self !== $form->self)
                 $el->hide();
         }
         

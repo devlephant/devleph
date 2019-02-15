@@ -28,12 +28,23 @@ function extend($class, $extend_class){
 		return runkit_class_emancipate($class);
 	}else{ return False; }
 }
-function parent_set_prop_all($obj, $prop, $value, $bool=1){
+function parent_set_prop_all($obj, $prop, $value, $bool=1, $res=false){
+	if( !$res )
+	{
+		while($obj->parent){
+			$obj = $obj->parent;
+			if(isset($obj->$prop)){	$res = true; $obj->$prop = $value; }
+		}
+		return $res;
+	}
     $arr = array();
 	while($obj->parent){
 		$obj = $obj->parent;
-		if($obj->$prop){	$obj->$prop = $value;	$rs = '=';	}else{	$rs = '!=';	};
-		if($bool){ if($rs == '='){ $arr[] = true; } else { $arr[] = false; }; }else{ 	$arr[] = $obj->name . $obj->$prop . " $rs " . $value;	};
+		if(isset($obj->$prop)){	$obj->$prop = $value; }
+		$arr[] = 
+			isset($obj->$prop)?
+				($bool)?true:	$obj->name . '->' . $prop . " == " . $value:
+				($bool)?false:	$obj->name . '->' . $prop . " != " . $value;
 	}
 	return $arr;
 }

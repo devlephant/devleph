@@ -16,7 +16,7 @@ class ev_fmEditorSettings {
         $prefixs = array('Comment', 'Identifier', 'Key', 'Number', 'Space', 'String', 'Symbol', 'Variable');
         $index   = $list->itemIndex;
         
-        if ($index != -1)
+        if ($index !== -1)
             return c('fmPHPEditor->SynPHPSyn')->getAttri($prefixs[$index]);
         else
             return false;

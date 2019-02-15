@@ -36,7 +36,7 @@ class AOP_CodeParser
             }
 
             // Correcting CLOSETAG
-            if (is_array($this->tokens[$this->length]) && token_name($this->tokens[$this->length][0]) != "T_CLOSE_TAG") {
+            if (is_array($this->tokens[$this->length]) && token_name($this->tokens[$this->length][0]) !== "T_CLOSE_TAG") {
                 $this->length++; // Increase one (same as $l = count($tok);)
             }
         }
@@ -233,7 +233,7 @@ class AOP_CodeParser
 
         $return = array_search($tokenType, $this->invalidTokens);
 
-        return ($return !== null && $return !== false);
+        return ($return !== null && $return);
     }
 
 
@@ -247,7 +247,7 @@ class AOP_CodeParser
 
         $return = array_search($tokenType, $this->validTokens);
 
-        return ($return !== null && $return !== false);
+        return ($return !== null && $return);
     }
 }
 
@@ -315,7 +315,7 @@ class PHPSyntax {
         
         foreach ($this->skoba as $i=>$sk){
             
-            if (strpos($sk, $sym)!==false){
+            if (strpos($sk, $sym)){
                 return $i;
             }
         }
@@ -327,7 +327,7 @@ class PHPSyntax {
         
         $code = explode(_BR_, $code);
         foreach ($code as $line=>$text)
-            if (stripos($text, $find)!==false)
+            if (stripos($text, $find))
                 return $line+1;
             
         return null;
@@ -342,12 +342,12 @@ class PHPSyntax {
                 $this->quotes_type = '';
                 $result = false;
             
-            } elseif (strpos($this->quotes, $sym)!==false){
+            } elseif (strpos($this->quotes, $sym)){
                 $this->quotes_type = $sym;
                 $this->quotes_line = $line;
                 $result = true;
             } else {
-                $result = $this->quotes_type!='';
+                $result = $this->quotes_type!=='';
             }
             
         } else {

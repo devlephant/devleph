@@ -38,7 +38,7 @@ class eventEngine {
         
         foreach (self::$DATA as $form=>$obj){
             
-            if (strtolower($form)!=$form){
+            if (strtolower($form)!==$form){
                 
                 self::$DATA[strtolower($form)] = self::$DATA[$form];
                 unset(self::$DATA[$form]);
@@ -49,7 +49,7 @@ class eventEngine {
             
             foreach ($objs as $obj=>$list){
                 
-                if (strtolower($obj)!=$obj){
+                if (strtolower($obj)!==$obj){
 
                     self::$DATA[$form][strtolower($obj)] = self::$DATA[$form][$obj];
                     
@@ -186,7 +186,7 @@ class __exEvents {
     
     static function addGlobalVar($name){
         
-        if ($name[0]!='$')
+        if ($name[0]!=='$')
         $name = '$'.$name;
         
         if ($GLOBALS['__addIncCode']){
@@ -288,7 +288,7 @@ class __exEvents {
             mkdir(dirname($_file), 0777, true);
         
         if (!file_exists($_file) ||
-            (md5('<?php ' . self::getEvent($_self,$_eventName))!=md5_file($_file))){
+            (md5('<?php ' . self::getEvent($_self,$_eventName))!==md5_file($_file))){
             file_put_contents($_file, ('<?php '.self::getEvent($_self,$_eventName)."\n"));
         }        
         

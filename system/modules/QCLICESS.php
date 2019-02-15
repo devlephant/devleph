@@ -20,7 +20,7 @@ Class QClicess {
         $ycurs = cursor_pos_y();
         }
         SetCursorPos($x, $y);
-            if($method!='CLICK'){
+            if($method!=='CLICK'){
             $mthd = MOUSEEVENTF_.$button.$method;
             Mouse_Event($mthdOPR[$mthd], $x, $y, 0, 0);
             }

@@ -59,14 +59,14 @@ class TFormProtect extends __TNoVisual {
 	}
 	
 	
-	if ( $form->showModal() != mrOk ){
+	if ( $form->showModal() !== mrOk ){
 		
 	    $mainForm = false;
 	    app::close();
 		
 	} else {
 		
-		if ( $edit->text != $this->key ){
+		if ( $edit->text !== $this->key ){
 			
 			$form = $GLOBALS['_FORMS'][ strtolower($this->errForm) ];
 			if ( $form ){

@@ -246,9 +246,9 @@ class DS_Loader
 			$mainFormName = $mainForm->name;
 		}
 
-		if ($this->config['prog_type'] != 2) {
+		if ($this->config['prog_type'] !== 2) {
 			foreach ($_FORMS as $form => $data) {
-				if ($mainFormName != $form) {
+				if ($mainFormName !== $form) {
 					DSApi::initFormEx($data, $form);
 				}
 			}

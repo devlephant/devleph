@@ -160,7 +160,7 @@ class TDownload extends __TNoVisual {
         $fs = fopen( trim($filename), "w");
         $pos = 0;	
 	
-        while(($str = fread($fh, (int)$buffer)) != null){
+        while(($str = fread($fh, (int)$buffer)) !== null){
             
             $pos += strlen($str);
             
@@ -182,7 +182,7 @@ class TDownload extends __TNoVisual {
     
 	err_status($st_err);
 	   
-        if (err_msg() || ($pos!=$info['size'] && !$obj->isStop)){
+        if (err_msg() || ($pos!==$info['size'] && !$obj->isStop)){
             
             if ($props['onerror'])
 		syncEx($props['onerror'], array($self, err_msg() ? err_msg() : 'error donwload'));

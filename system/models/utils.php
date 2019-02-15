@@ -139,7 +139,7 @@ class myUtils {
             } elseif ($class=='TEvents') {        
                
                 // это для формата старых объектов...
-                if ($real_class != 'TEvents'){
+                if ($real_class !== 'TEvents'){
                     $el = convertOldEvents($el);
                 }
            }
@@ -329,7 +329,7 @@ class myUtils {
             $fmEdit->repaint();
             $fmEdit->show();
         }
-		if( $fmEdit->y != (c("fmMain->shapeSize")->y + 9) ) 
+		if( $fmEdit->y !== (c("fmMain->shapeSize")->y + 9) ) 
 			{
 				$fmEdit->y = c("fmMain->shapeSize")->y + 9;
 				$fmEdit->x = c("fmMain->shapeSize")->x + 8;

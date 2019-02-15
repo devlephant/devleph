@@ -73,7 +73,7 @@ class VARS_editor {
         }
         
         if (strlen($tmp)==0) $tmp = '$x';
-        elseif ($tmp[0]!='$') $tmp = '$'.$tmp;
+        elseif ($tmp[0]!=='$') $tmp = '$'.$tmp;
         
         return $tmp;
     }

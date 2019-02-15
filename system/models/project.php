@@ -119,8 +119,9 @@ class myProject {
         $components = $fmEdit->componentList;
         foreach ($components as $el){
             if ($el->name){
-                
-                $arr = array('NAME'=>$el->name, 'CLASS'=>rtti_class($el->self));
+				$RTclass = rtti_class($el->self);
+                if( $classes && !in_array($RTClass, $classes)) next;
+                $arr = array('NAME'=>$el->name, 'CLASS'=>$RTclass);
                 
                 if (method_exists($el,'__inspectProperties')){
                     $i_props = $el->__inspectProperties();
@@ -131,19 +132,6 @@ class myProject {
                 
                 $result[$_FORMS[$formSelected]][] = $arr;
             }
-        }
-        
-        if ($classes){
-            foreach ($result as $form=>$objects){
-                
-                $tmp[$form] = array();
-                foreach ($objects as $el){
-                    
-                    if (in_array($el['CLASS'],$classes))
-                        $tmp[$form][] = $el;
-                }
-            }
-            $result = $tmp;
         }
         
         return (array)$result;
@@ -556,7 +544,7 @@ class myProject {
         $result = gzcompress( base64_encode(serialize($data)), 9);
 		if( $chks ) foreach( scandir(dirname($file)) as $file_link )
 		{
-			if($file_link != '..' and $file_link != '.' and is_file(dirname($file).'/'.$file_link)){
+			if($file_link !== '..' and $file_link !== '.' and is_file(dirname($file).'/'.$file_link)){
 				$full_link = dirname($file).'/'.$file_link;
 				if(md5($result) == md5(file_get_contents($full_link)))
 					return false;
@@ -761,7 +749,7 @@ class myProject {
         if ($res==mrOk || $__fix==mrOk){
             
             $result['PATH'] = replaceSl(c('fmNewProject->path')->text);
-            if (fileExt($result['PATH'])!='msppr'){
+            if (fileExt($result['PATH'])!=='msppr'){
 				$GLOBALS['__newproject_close'] = false;
                 msg(t('Project file must have a ".msppr" extension'));
                 return false;

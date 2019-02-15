@@ -20,7 +20,7 @@ class myActions {
             Localization::inc($dir . $action . '/lang');
             
             if (!file_exists($dir . $action . '/info.php')){
-				if ( $action != '.svn' )
+				if ( $action !== '.svn' )
                 msg(t('Inccorect "%s" action, file "info.php" not found!', $action));
                 continue;
             }
@@ -365,7 +365,7 @@ class action_Simple {
     static function replaceCommand($command){
         
         /*$command = trim($command);
-        if ($command[strlen($command)-1]!=';'){
+        if ($command[strlen($command)-1]!==';'){
             $command = $command . ';';
         }*/
         
@@ -378,7 +378,7 @@ class action_Simple {
         
         /*
         $command = trim($command);
-        if ($command[strlen($command)-1]!=';'){
+        if ($command[strlen($command)-1]!==';'){
             $command = $command . ';';
         }
                */
@@ -418,7 +418,7 @@ class action_Simple {
             elseif (!$is_str && $str[$i] == ')')
                 $skoba--;
             
-            if (!$is_str && ($skoba!=0 && $str[$i]==','))
+            if (!$is_str && ($skoba!==0 && $str[$i]==','))
                 $dd_q[] = $i;
             elseif ($is_str && $str[$i]==',')
                 $dd_q[] = $i;
@@ -529,7 +529,7 @@ class action_Simple {
         } elseif ($el->use_quote) {
             
             if ( !eregi('^([a-z0-9\_]*)$', trim($value)) ){
-                if ($value[0]!='"')
+                if ($value[0]!=='"')
                     $value = '"' . $value . '"';
             }
         }

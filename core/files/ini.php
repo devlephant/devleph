@@ -401,7 +401,7 @@ class TConfigIni extends TConfig {
 
 function iniConfiger(TConfig $cfg = null){
     $result = new TConfigIni;
-    if ($cfg != null){
+    if ($cfg !== null){
         $result->setArray($cfg->toArray());
     }
     

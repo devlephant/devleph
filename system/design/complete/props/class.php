@@ -126,7 +126,7 @@ class complete_Props {
                 foreach($methods as $method){
                     
                     $prefix = strtolower(substr($method['name'],0,4));
-                    if (($prefix!='set_' && $prefix!='get_') && in_array($method['type'],array('','public'))){
+                    if (($prefix!=='set_' && $prefix!='get_') && in_array($method['type'],array('','public'))){
                         
                         
                         $inline = $method['name'].' ( '. complete_Funcs::getInline($method['params'],$method['defaults']) .' )';
