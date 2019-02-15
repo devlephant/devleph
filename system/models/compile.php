@@ -529,6 +529,8 @@ class myCompile
 
 		if (file_exists($fileExe)) {
 			unlink($fileExe);
+			unlink($p_dir . 'php5ts.dll');
+			unlink($p_dir . 'php.ini');
 		}
 
 		if (!is_dir(dirname($fileExe))) {

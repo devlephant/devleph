@@ -43,10 +43,10 @@ if (!defined('IS_APPLICATION_START')){
 
 
     if (!EMULATE_DVS_EXE){
-		$APPLICATION->title = 'Devel Studio 2018';
+		$APPLICATION->title = 'Devel Studio '.DV_YEAR;
 		
         $fmLogoin = TForm::loadFromFile('dfm\\uLogoin');
-        c("fmLogoin->label9")->caption = "Devel Studio 2018 v".DV_VERSION. " - ".DV_PREFIX;
+        c("fmLogoin->label9")->caption = "Devel Studio ". DV_YEAR ." v".DV_VERSION. " - ".DV_PREFIX;
         $fmLogoin->show();
 		$GLOBALS['APPLICATION']->processMessages();
         $fmMain = TForm::loadFromFile('dfm\uMain',true);

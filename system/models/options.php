@@ -250,6 +250,7 @@ class myOptions {
             
             
             //err_no();
+			pre(c('fmBuildProgram->c_attachphp',1)->checked);
             myCompile::adv_start(
                                  c('fmBuildProgram->path',1)->text,
                                  c('fmBuildProgram->c_attachphp',1)->checked,

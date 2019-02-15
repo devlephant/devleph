@@ -530,6 +530,14 @@ object fmMain: TfmMain
         DesignSize = (
           196
           542)
+		object shape1: TShape
+		  Top = 86
+          Width = 196
+          Height = 8
+		  Brush.Color = clBtnFace
+		  Pen.Style = psClear
+		  Anchors = [akTop, akLeft, akRight, akBottom]
+		end
         object btn_addEvent: TSpeedButton
           Left = 6
           Top = 9
@@ -573,7 +581,7 @@ object fmMain: TfmMain
           Left = 0
           Top = 91
           Width = 196
-          Height = 441
+          Height = 450
           Style = lbOwnerDrawVariable
           Anchors = [akLeft, akTop, akRight, akBottom]
           Ctl3D = False
