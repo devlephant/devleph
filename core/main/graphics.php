@@ -460,9 +460,14 @@ class TBitmap extends TGraphic{
     
     public $parent_object = nil;
     
-    public function __construct($init=true){
-        if ($init)
+    public function __construct($owner=nil, $init=true, $self=nil){
+        if($self!==nil){
+			$this->self = $self;
+		
+		}elseif ($init)
             $this->self = tbitmap_create();
+		if($owner!==nil)
+			$this->owner = $owner;
     }
     
     public function loadFromFile($filename){
@@ -470,7 +475,7 @@ class TBitmap extends TGraphic{
 		$filename = replaceSr(getFileName($filename));
 		
 		if (fileExt($filename)=='bmp'){
-			bitmap_loadfile($this->self,replaceSr($filename));
+			bitmap_loadfile($this->self,$filename);
 		} else {
 		   
 			convert_file_to_bmp($filename, $this->self);
@@ -620,7 +625,7 @@ class TPicture extends TControl{
     function getBitmap(){
 	
 		$self = picture_bitmap($this->self);
-		$result = new TBitmap(false);
+		$result = new TBitmap(nil, false);
 		$result->self = $self;
 		return $result;
     }

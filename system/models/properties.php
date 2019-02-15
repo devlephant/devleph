@@ -1246,6 +1246,7 @@ class myProperties {
         
             
         if (!isset($this->panels[$class])){
+			$theme = DOC_ROOT . 'images/btns/' . myOptions::get('prefs','studio_theme', 'light'); //#ADDOPT;
             
             $panel = new TNextInspector( $fmMain );
             $panel->parent = c('fmPropsAndEvents->tabProps');
@@ -1255,10 +1256,12 @@ class myProperties {
             $panel->HighlightTextColor = 0xC1FFFF;
             $panel->onVSEdit = 'myProperties::VSEdit';
             $panel->onVSToolBarClick = 'myProperties::VSBarClick';
-			gui_propSet($panel->self, 'AppearanceOptions', '[]');
+			$panel->ExpandGlyph->loadFromFile("{$theme}/pp_collapsed.bmp");
+			$panel->CollapseGlyph->loadFromFile("{$theme}/pp_expanded.bmp");
+			$panel->ButtonsStyle = 1; //btCustom
+			//gui_propSet($panel->self, 'AppearanceOptions', '[]');
 			gui_propSet($panel->self, 'Color', clWindow);
 			gui_propSet($panel->self, 'CategoriesColor', clBtnFace);
-            // c("fmMain->pInspector")->parent->parent->color
             $gr = new TNxToolbarItem;
 			gui_propSet(gui_propGet($gr->self, 'Font'), 'Color', clWindowText);
             $gr->caption = t('gr_main');

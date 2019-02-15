@@ -245,7 +245,7 @@ class TIcon extends TControl{
     }
 	
 	function loadFromStr($data, $format = 'bmp'){
-        $bitmap = new TBitmap(false);
+        $bitmap = new TBitmap(nil,false);
         picture_loadstr($bitmap->self, $data, $format);
 		icon_assign($this->self, $bitmap->self);
     }

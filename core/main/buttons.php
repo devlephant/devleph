@@ -24,7 +24,7 @@ class TBitBtn extends TControl {
 	public function get_picture(){
 		
 		if (!isset($this->_picture)){
-			$this->_picture = new TBitmap(false);
+			$this->_picture = new TBitmap(nil,false);
 			$this->_picture->self = gui_propGet($this->self,'Glyph');
 			$this->_picture->parent_object = $this->self;
 		}
