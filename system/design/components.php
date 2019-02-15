@@ -558,7 +558,9 @@ if (EMULATE_DVS_EXE) return;
 	function get_sorted_methods($class)
 	{
 		$res = array();
-		$methods = gui_class_methodList($class);
+
+		$methods = gui_class_isset($class)?gui_class_methodList($class):include( dirname(__FILE__)."/components/methods/$class.php");
+
 		if( empty($methods) ) return $res;
 		foreach( $methods as $method_name=>$parameters )
 		{
@@ -585,10 +587,6 @@ if (EMULATE_DVS_EXE) return;
 			$componentEvents[$classname]	= $e;
 		*/
 		
-		$m = get_sorted_methods($classname);
-		if( !empty($m) )
-			$componentMethods[strtolower($classname)]	= $m;
-		
 	}
 	
 	
@@ -600,11 +598,6 @@ if (EMULATE_DVS_EXE) return;
 	$files = findFiles($dir_n . '/components/events/','php');
 	foreach ($files as $file){
 		$componentEvents[basenameNoExt($file)] = include($dir_n . '/components/events/' . $file);
-	}
-	
-	$files = findFiles($dir_n . '/components/methods/','php');
-	foreach ($files as $file){
-		$componentMethods[strtolower(basenameNoExt($file))] = include($dir_n . '/components/methods/' . $file);
 	}
 	
     $files = findFiles($dir_n . '/components/modifers/','php');
@@ -688,7 +681,6 @@ if (EMULATE_DVS_EXE) return;
         myVars::set2($cp,'_componentPanel');
         myVars::set2($componentProps,'componentProps');
         myVars::set2($componentEvents,'componentEvents');
-        myVars::set2($componentMethods,'componentMethods');
         
         $_winControls[] = 'TTabSheet';
         myVars::set2($_winControls,'_winControls');
