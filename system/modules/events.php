@@ -178,7 +178,8 @@ DSApi::echoController(false);
     }
 
 class __exEvents {
-    
+    private static $res_string;
+	private static $to_store;
     static function setEchoController($obj_or_func){
         
         $GLOBALS['__echoController'] = $obj_or_func;
@@ -186,6 +187,27 @@ class __exEvents {
     
 	static function echo_handler($s, $type)
 	{
+		switch($type)
+		{
+			case 3:
+			{
+				self::$to_store = true;
+			}break;
+			case 2:
+			{
+				if( self::$to_store )
+				{
+					self::$res_string .= $s;
+					return;
+				}
+			}break;
+			case 4:
+			{
+				self::$to_store = false;
+				$s = self::$res_string;
+				self::$res_string = '';
+			}break;
+		}
 		if( is_string($s) )
 				if( !strlen($s) ) return;
 		$controller = $GLOBALS['__echoController'];
