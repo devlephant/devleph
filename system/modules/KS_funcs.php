@@ -131,10 +131,12 @@ function print_right($v){
 	$text = unpack('H*', $text);
 	return base_convert($text[1], 16, 16);
   }
-function hex2bin($hex){ 
-   for($i=0;$i<strlen($hex);$i++) $bin .= str_pad( decbin(hexdec($hex{$i})), 4, '0', STR_PAD_LEFT ); 
-      return $bin; 
-} 
+if( !function_exists('hex2bin') ){
+	function hex2bin($hex){ 
+	   for($i=0;$i<strlen($hex);$i++) $bin .= str_pad( decbin(hexdec($hex{$i})), 4, '0', STR_PAD_LEFT ); 
+		  return $bin; 
+	}
+}
 function char2bin($str) {
     $i = 0;
     do {

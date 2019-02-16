@@ -8,14 +8,67 @@ function random( $x )
 {
 	return mt_rand(0, $x);
 }
-
+function obsafe_print_r($var, $return = false, $html = false, $level = 0) {
+	if( is_null($var) )
+	{
+		$output = '[Null]';
+	}
+	elseif( is_string($var) )
+	{
+		$output = $var;
+	} 
+	elseif( is_resource($var) )
+	{
+		$output = '[Resource ' .get_resource_type($var) . '] #' . (string)(int)$var;
+	}
+	elseif( is_integer($var) || is_float($var) || is_double($var) )
+	{
+		$output =	is_float($var)? 
+					is_nan($var)?'NaN'
+						:is_infinite($var)? 'Inf': $var
+					:$var;
+	}
+	elseif( is_bool($var) )
+	{
+		$output = $var?'1':'0';
+	}elseif( is_array($var) or is_object($var) ) {
+		$spaces = $html ? "&nbsp;" : " ";
+		$newline = $html ? "<br />" : "\n";
+		$spaces = str_repeat($spaces, 4);
+		$tlevel = str_repeat($spaces, $level);
+		$tabs = $spaces;
+		for ($i = 1; $i <= $level; $i++) {
+			$tabs .= $spaces;
+		}
+		if (is_array($var)) {
+			$title = "Array\r\n{$tlevel}(";
+		} elseif (is_object($var)) {
+			$title = get_class($var)." Object\r\n{$tlevel}(";
+		}
+		$output = $title . $newline;
+		foreach($var as $key => $value) {
+			if (is_array($value) || is_object($value)) {
+				$level++;
+				$value = obsafe_print_r($value, true, $html, $level);
+				$level--;
+			} else $value = obsafe_print_r($value, true, $html, 0);
+			$output .= $tabs . "[" . $key . "] => " . $value . $newline;
+		}
+		$output .= $tlevel.')';
+	}
+    if ($return) return $output;
+      else echo $output;
+}
 function pre($obj){
 	if ( sync(__FUNCTION__, func_get_args()) ) return;
 	
 	foreach( func_get_args() as $s ) {
-		if( is_object($s) &&  method_exists($s, '__toString()') )
+		if( is_string($s) )
+		{
+			if( !strlen($s) ) return;
+		}elseif( is_object($s) &&  method_exists($s, '__toString()') ){
 			$s = (string) $s;
-		
+		}
 		gui_message( print_r($s, true) );
 	}
 }

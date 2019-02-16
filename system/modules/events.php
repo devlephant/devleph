@@ -167,7 +167,7 @@ class eventEngine {
 
 $GLOBALS['__exEvents'] = array();
 function setEchoController($obj_or_func){ DSApi::echoController($obj_or_func); }
-DSApi::echoController('pre');
+DSApi::echoController(false);
 
     function setEvetFromFunction($obj, $event, $function){
         
@@ -184,6 +184,33 @@ class __exEvents {
         $GLOBALS['__echoController'] = $obj_or_func;
     }
     
+	static function echo_handler($s, $type)
+	{
+		if( is_string($s) )
+				if( !strlen($s) ) return;
+		$controller = $GLOBALS['__echoController'];
+		 if (is_numeric($controller)) $controller = c($controller);
+			
+		 if ($controller)
+		 {
+			if (is_object($controller)){
+				
+				if ($controller instanceof TChromium)
+					$controller->html .= $s;
+				else
+					$controller->text .= $s;
+				
+			} elseif (is_callable($controller)){
+					call_user_func($controller, $s);
+			}
+		} else {
+		
+			if( is_object($s) &&  method_exists($s, '__toString()') ){
+				$s = (string) $s;
+			}
+			gui_message( obsafe_print_r($s, true) );
+		}
+	}
     static function addGlobalVar($name){
         
         if ($name[0]!=='$')
@@ -226,30 +253,13 @@ class __exEvents {
         else
             $GLOBALS['__ownerComponent'] = gui_owner($self);
         
-        ob_start();
+        ob_start('__exEvents::echo_handler', PHP_OUTPUT_HANDLER_CONT);
     }
     
     static function freeEventInfo(){
         
-        $controller = $GLOBALS['__echoController'];
-        $str = ob_get_contents();
-        ob_end_clean();
-        
-        if (is_numeric($controller)) $controller = c($controller);
-        
-        if ($controller)
-        if (is_object($controller)){
-            
-            if ($controller instanceof TChromium)
-                $controller->html = $str;
-            else
-                $controller->text = $str;
-            
-        } elseif (is_callable($controller)){
-            
-            if ($str)
-				call_user_func($controller, $str);
-        }
+        ob_end_flush();
+
         
         $GLOBALS['__ownerComponent'] = $GLOBALS['__ownerComponent_last'][count($GLOBALS['__ownerComponent_last'])-1];
         unset($GLOBALS['__ownerComponent_last'][count($GLOBALS['__ownerComponent_last'])-1]);

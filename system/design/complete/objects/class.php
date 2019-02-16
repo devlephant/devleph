@@ -27,7 +27,11 @@ class complete_Objects {
         
         
         foreach ($forms as $form => $objs){
-            
+        //тут генерируется c("Form1->
+		//Form1-
+		//Form1->
+		//Object list
+		//список объектов формы тут
             $arr['insert'][] = '"'.$form.'")';
             $arr['item'][] = myComplete::fromBB('[b]'.$form.'[/b]: [$g]TForm');
             if(empty($objs)) next;
