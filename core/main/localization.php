@@ -211,7 +211,7 @@ class Localization {
     static function toEncoding($str){
 	
 	$encoding = self::detectLocale($str);
-	return $encoding = 'windows-1251' ? $str : iconv($encoding, 'windows-1251', $str);
+	return $encoding == 'windows-1251' ? $str : iconv($encoding, 'windows-1251', $str);
     }
     
 }

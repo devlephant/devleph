@@ -1406,9 +1406,6 @@ class myProperties {
     }
     
     static function getMethodsInfo($class){
-        
-        global $componentMethods;
-       
         return (array) get_sorted_methods($class);
     }
     

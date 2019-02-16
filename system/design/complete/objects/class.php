@@ -30,17 +30,7 @@ class complete_Objects {
             
             $arr['insert'][] = '"'.$form.'")';
             $arr['item'][] = myComplete::fromBB('[b]'.$form.'[/b]: [$g]TForm');
-            
-            if ($objs){
-                $arr['insert'][] = '"'.$form.'-';
-                $arr['item'][] = myComplete::fromBB('[b]'.$form.'->[/b]: [$g]TForm');
-            }
-            
-        }
-        
-        foreach ($forms as $form => $objs){
-            
-            
+            if(empty($objs)) next;
             foreach ($objs as $obj){
                 
                 $arr['insert'][] = '"'.$form.'->'.$obj['NAME'].'")';
