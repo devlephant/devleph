@@ -59,7 +59,7 @@ abstract class procHandleMngr{
         if(!processIdExists($id)){
             if(self::$handles[$id])
                 unset(self::$handles[$id]);
-                throw new Exception('Handle meneger: Процесс (PID: '.$id.') не найден. Получение handle невозможно.');
+                throw new Exception('Handle meneger: РџСЂРѕС†РµСЃСЃ (PID: '.$id.') РЅРµ РЅР°Р№РґРµРЅ. РџРѕР»СѓС‡РµРЅРёРµ handle РЅРµРІРѕР·РјРѕР¶РЅРѕ.');
             return false;
         }
         if(!self::$handles[$id])
@@ -231,7 +231,7 @@ class procedure{
         if(!$module)
             return;
         if(!$procedureName)
-            throw new Exception(__CLASS__.' -> Название процедуры не указано!');
+            throw new Exception(__CLASS__.' -> РќР°Р·РІР°РЅРёРµ РїСЂРѕС†РµРґСѓСЂС‹ РЅРµ СѓРєР°Р·Р°РЅРѕ!');
         $this->process = $process;
         $this->module = $module;
         $this->procName = $procedureName;
@@ -256,7 +256,7 @@ class module{
         if(!$process)
             return;
         if(!is_string($module)){
-            throw new Exception(__CLASS__.' -> Нужно передать имя модуля!');     
+            throw new Exception(__CLASS__.' -> РќСѓР¶РЅРѕ РїРµСЂРµРґР°С‚СЊ РёРјСЏ РјРѕРґСѓР»СЏ!');     
         }
         $this->process = $process;
         $this->handle = GetModuleHandle($process->handle(),$module);
@@ -320,14 +320,14 @@ class process{
             return;
         }    
         if($idOrName == 0)
-            throw new Exception(__CLASS__.' -> Процесса с таким PID быть не может!');
+            throw new Exception(__CLASS__.' -> РџСЂРѕС†РµСЃСЃР° СЃ С‚Р°РєРёРј PID Р±С‹С‚СЊ РЅРµ РјРѕР¶РµС‚!');
         if(is_string($idOrName)){
             $id = current(Processes::fromName($idOrName));
             $this->id = $id;
         }elseif(is_int($idOrName)){
             $this->id = $idOrName;
         }else{
-            throw new Exception(__CLASS__.' -> Нужно передать имя процасса, индефикатор или класс Process!');
+            throw new Exception(__CLASS__.' -> РќСѓР¶РЅРѕ РїРµСЂРµРґР°С‚СЊ РёРјСЏ РїСЂРѕС†Р°СЃСЃР°, РёРЅРґРµС„РёРєР°С‚РѕСЂ РёР»Рё РєР»Р°СЃСЃ Process!');
         }
     }
     
@@ -425,7 +425,7 @@ class processList extends processListEach{
             $this->procName = $procName;
             $this->update();
         }else{
-            throw new Exception(__CLASS__.' -> Нужно передать имя процесса!');
+            throw new Exception(__CLASS__.' -> РќСѓР¶РЅРѕ РїРµСЂРµРґР°С‚СЊ РёРјСЏ РїСЂРѕС†РµСЃСЃР°!');
         }
     }
     
