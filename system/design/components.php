@@ -615,14 +615,10 @@ if (EMULATE_DVS_EXE) return;
     ////// создаем панель компонентов ///////// 
 	/*AZ: Вырезал этот код ещё давно, т.к хлам по сути, можно не создавать в этом месте, а из dfm грузить*/
     global $fmComponents;
-    /*$cp = new TComponentPanel($fmComponents);
-    
-    $cp->parent = c('fmComponents');*/
-    //$cp->hide();
-    //$cp->name = 'list';
-    //$cp->text = '';
-    //$cp->align  = 'alClient';
     $cp = c('fmComponents->list');
+	$theme = DOC_ROOT . 'images/btns/' . myOptions::get('prefs','studio_theme', 'light'); //#ADDOPT;
+	$cp->ExpandGlyph->loadFromFile("{$theme}/pc_collapsed.bmp");
+	$cp->CollapseGlyph->loadFromFile("{$theme}/pc_expanded.bmp");
     global $_cComplist;
 	//#LOADER;
 	foreach( $_components as $ikey=>$info )
