@@ -9,8 +9,8 @@ function shortName($file){
         return $file;
 }
 
-// расширение файла без символа ".", все переводит в нижний регистр длЯ удобства
-// сравнениЯ
+// СЂР°СЃС€РёСЂРµРЅРёРµ С„Р°Р№Р»Р° Р±РµР· СЃРёРјРІРѕР»Р° ".", РІСЃРµ РїРµСЂРµРІРѕРґРёС‚ РІ РЅРёР¶РЅРёР№ СЂРµРіРёСЃС‚СЂ РґР»СЏ СѓРґРѕР±СЃС‚РІР°
+// СЃСЂР°РІРЅРµРЅРёСЏ
 function fileExt($file){
     $file = basename($file);
     $k = strrpos($file,'.');
@@ -18,8 +18,8 @@ function fileExt($file){
     return strtolower(substr($file, $k+1, strlen($file)-$k-1));
 }
 
-// возвращает true если файл $file расширениЯ $ext, либо его расширение имеетсЯ
-// в массиве $ext. $ext - массив или строка
+// РІРѕР·РІСЂР°С‰Р°РµС‚ true РµСЃР»Рё С„Р°Р№Р» $file СЂР°СЃС€РёСЂРµРЅРёСЏ $ext, Р»РёР±Рѕ РµРіРѕ СЂР°СЃС€РёСЂРµРЅРёРµ РёРјРµРµС‚СЃСЏ
+// РІ РјР°СЃСЃРёРІРµ $ext. $ext - РјР°СЃСЃРёРІ РёР»Рё СЃС‚СЂРѕРєР°
 function checkExt($file, $ext){
     $file_ext = fileExt($file);
     
@@ -37,7 +37,7 @@ function checkExt($file, $ext){
     return false;
 }
 
-// возвращает название файла без расширениЯ
+// РІРѕР·РІСЂР°С‰Р°РµС‚ РЅР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р° Р±РµР· СЂР°СЃС€РёСЂРµРЅРёСЏ
 function basenameNoExt($file){
     $file = basename($file);
     $ext = fileExt($file);
@@ -64,8 +64,8 @@ function getFileName($str, $check = true){
     return $str;
 }
 
-// поиск файлов в папке...
-// можно искать по расширению exts - список расширений
+// РїРѕРёСЃРє С„Р°Р№Р»РѕРІ РІ РїР°РїРєРµ...
+// РјРѕР¶РЅРѕ РёСЃРєР°С‚СЊ РїРѕ СЂР°СЃС€РёСЂРµРЅРёСЋ exts - СЃРїРёСЃРѕРє СЂР°СЃС€РёСЂРµРЅРёР№
 function findFiles($dir, $exts = null, $recursive = false, $with_dir = false){
     $dir = replaceSl($dir);
     
@@ -101,7 +101,7 @@ function findDirs($dir){
     if (!is_dir($dir)) return array();
     
     $files = scandir($dir);
-	unset($files[0], $files[1]); // remove ‘.’ and ‘..’ from array
+	unset($files[0], $files[1]); // remove РЎ.Рў and РЎ..Рў from array
     
     $result = array();
     foreach ($files as $file){
@@ -120,7 +120,7 @@ function rmdir_recursive($dir) {
     if (!is_dir($dir)) return false;
     
     $files = scandir($dir);
-	unset($files[0], $files[1]); // remove ‘.’ and ‘..’ from array
+	unset($files[0], $files[1]); // remove РЎ.Рў and РЎ..Рў from array
     
     foreach ($files as $file) {
         $file = $dir . '/' . $file;

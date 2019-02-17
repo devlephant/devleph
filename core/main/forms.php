@@ -178,13 +178,13 @@ function asTForm($self){
         return to_object($self,'TForm');
 }
 
-// делает форму $form главной в приложении...
+// РґРµР»Р°РµС‚ С„РѕСЂРјСѓ $form РіР»Р°РІРЅРѕР№ РІ РїСЂРёР»РѕР¶РµРЅРёРё...
 function setMainForm($form){
         set_main_form($form->self);
 }
 
 
-/* TScreen класс... */
+/* TScreen РєР»Р°СЃСЃ... */
 class TScreen extends TComponent{
         
         
@@ -224,7 +224,7 @@ class TScreenEx extends TScreen{
 }
 
 
-/* TApplication класс ... */
+/* TApplication РєР»Р°СЃСЃ ... */
 class TApplication extends TControl{
 
         function terminate(){

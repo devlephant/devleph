@@ -6,12 +6,12 @@
   2016 ver 0.5
   
   Kashaket Company (c) 2016
-  Библиотека для загрузки и сохранения форм из dfm файлов...
+  Р…РёР±Р»РёРѕС‚РµРєР° РґР»В¤ Р·Р°РіСЂСѓР·РєРё Рё СЃРѕС…СЂР°РЅРµРЅРёВ¤ С„РѕСЂРј РёР· dfm С„Р°Р№Р»РѕРІ...
   
   
 */
 
-// создание формы на основе внешнего dfm файла
+// СЃРѕР·РґР°РЅРёРµ С„РѕСЂРјС‹ РЅР° РѕСЃРЅРѕРІРµ РІРЅРµС€РЅРµРіРѕ dfm С„Р°Р№Р»Р°
 function dfm_read($dfm_file_name, $aform = false, $str = false, $form_name = false, $is_runtime = false)
 {
 	if ($dfm_file_name)
@@ -61,7 +61,7 @@ function dfm_read($dfm_file_name, $aform = false, $str = false, $form_name = fal
  return $form->self;
 }
 
-// сохранение формы в dfm файл
+// СЃРѕС…СЂР°РЅРµРЅРёРµ С„РѕСЂРјС‹ РІ dfm С„Р°Р№Р»
 function dfm_write($dfm_file_name, TForm $form)
 {
 	
@@ -103,7 +103,7 @@ function createFormWithEvents($name,$init = false){
 	return $res;
 }
 
-// динамическая загрузка событий для формы...
+// РґРёРЅР°РјРёС‡РµСЃРєР°В¤ Р·Р°РіСЂСѓР·РєР° СЃРѕР±С‹С‚РёР№ РґР»В¤ С„РѕСЂРјС‹...
 function loadFormEvents(TForm &$form){
         
 	

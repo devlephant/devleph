@@ -7,8 +7,8 @@
   
   Dim-S Software (c) 2009
   
-  Îïèñàíèå:
-    Áèáëèîòåêà äëÿ êîìïîíåíòîâ ðåäàêòèðóþùèõ ñâîéñòâ.
+  ÐžÐ¿Ð¸ÑÐ°Ð½Ð¸Ðµ:
+    Ð‘Ð¸Ð±Ð»Ð¸Ð¾Ñ‚ÐµÐºÐ° Ð´Ð»Ñ ÐºÐ¾Ð¼Ð¿Ð¾Ð½ÐµÐ½Ñ‚Ð¾Ð² Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€ÑƒÑŽÑ‰Ð¸Ñ… ÑÐ²Ð¾Ð¹ÑÑ‚Ð².
   
   
   events:
@@ -473,7 +473,7 @@ class TLEdit extends TPanel {
             $this->label->name  = 'label';
             
             $this->edit->text   = '';
-            $this->label->caption = 'Íàâåäèòå ñþäà êóðñîð';
+            $this->label->caption = 'ÐÐ°Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑÑŽÐ´Ð° ÐºÑƒÑ€ÑÐ¾Ñ€';
             $this->edit->color;
             $this->label->layout = 'tlCenter';
             $this->edit_link = $this->edit->self;

@@ -13,7 +13,7 @@
 		functions:
 		setTimer, setTimeout
 		
-  Библиотека для для работы с таймерами и тайм линиями.
+  Р‘РёР±Р»РёРѕС‚РµРєР° РґР»СЏ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ С‚Р°Р№РјРµСЂР°РјРё Рё С‚Р°Р№Рј Р»РёРЅРёСЏРјРё.
   
 */
 
@@ -29,9 +29,9 @@ class TTimerEx extends TPanel{
 	
 	#public $time_out = true;
 	public $_timer;
-	#public $var_name = ''; // название переменной которая освобождается после отработки таймера
-	#public $func_name = ''; // название функции которую нужно выполнить после отработки таймера
-	#public $func_arguments = array(); // аргументы функции...
+	#public $var_name = ''; // РЅР°Р·РІР°РЅРёРµ РїРµСЂРµРјРµРЅРЅРѕР№ РєРѕС‚РѕСЂР°СЏ РѕСЃРІРѕР±РѕР¶РґР°РµС‚СЃСЏ РїРѕСЃР»Рµ РѕС‚СЂР°Р±РѕС‚РєРё С‚Р°Р№РјРµСЂР°
+	#public $func_name = ''; // РЅР°Р·РІР°РЅРёРµ С„СѓРЅРєС†РёРё РєРѕС‚РѕСЂСѓСЋ РЅСѓР¶РЅРѕ РІС‹РїРѕР»РЅРёС‚СЊ РїРѕСЃР»Рµ РѕС‚СЂР°Р±РѕС‚РєРё С‚Р°Р№РјРµСЂР°
+	#public $func_arguments = array(); // Р°СЂРіСѓРјРµРЅС‚С‹ С„СѓРЅРєС†РёРё...
 	#public $eval_str = '';
 	
 	#event onTimer 
@@ -48,7 +48,7 @@ class TTimerEx extends TPanel{
 		}
 		$props = TComponent::__getPropExArray($self);
 		
-		// надо сразу избавляться от продолжения таймера, иначе баг =)
+		// РЅР°РґРѕ СЃСЂР°Р·Сѓ РёР·Р±Р°РІР»СЏС‚СЊСЃСЏ РѕС‚ РїСЂРѕРґРѕР»Р¶РµРЅРёСЏ С‚Р°Р№РјРµСЂР°, РёРЅР°С‡Рµ Р±Р°Рі =)
 		if(isset($props['time_out']))
 		if ($props['time_out']){
 			$obj = _c($self);
@@ -158,8 +158,8 @@ class TTimerEx extends TPanel{
 }
 
 
-// аналог функции setTimeout из Javascript
-// тайминг выполняется единожды...
+// Р°РЅР°Р»РѕРі С„СѓРЅРєС†РёРё setTimeout РёР· Javascript
+// С‚Р°Р№РјРёРЅРі РІС‹РїРѕР»РЅСЏРµС‚СЃСЏ РµРґРёРЅРѕР¶РґС‹...
 function setTimeout($interval,$func){
 	
 	$timer = new TTimerEx();
@@ -171,7 +171,7 @@ function setTimeout($interval,$func){
 	return $timer;
 }
 
-// аналог функции setTimer
+// Р°РЅР°Р»РѕРі С„СѓРЅРєС†РёРё setTimer
 function setTimer($interval,$func){
 	
 	$timer = new TTimerEx();

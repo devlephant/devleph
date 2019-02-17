@@ -284,7 +284,7 @@ class TCanvas extends TControl{
 		canvas_clear($this->self);
     }
     
-    // вывод текста под углом
+    // РІС‹РІРѕРґ С‚РµРєСЃС‚Р° РїРѕРґ СѓРіР»РѕРј
     function textOutAngle($x, $y, $angle, $text){
 		$n = canvas_angle($this->self,null);
 		canvas_angle($this->self,$angle);
@@ -490,7 +490,7 @@ class TBitmap extends TGraphic{
         bitmap_savefile($this->self,replaceSr($filename));
     }
     
-    // загрузка любых форматов...
+    // Р·Р°РіСЂСѓР·РєР° Р»СЋР±С‹С… С„РѕСЂРјР°С‚РѕРІ...
     public function loadAnyFile($filename){
 	
 		$filename = replaceSr(getFileName($filename));
@@ -599,9 +599,9 @@ class TPicture extends TControl{
     
     function loadFromUrl($url, $ext = false){
 	
-	// получаем данные файла
+	// РїРѕР»СѓС‡Р°РµРј РґР°РЅРЅС‹Рµ С„Р°Р№Р»Р°
 	$text = file_get_contents($url);
-	// сохраняем их в файл
+	// СЃРѕС…СЂР°РЅСЏРµРј РёС… РІ С„Р°Р№Р»
 	if (!$ext) $ext = fileExt($url);
 	
 	$file = replaceSl( winLocalPath(CSIDL_TEMPLATES) ) . '/' . md5($url) .'.'. $ext;

@@ -216,7 +216,7 @@ class Localization {
     
 }
     
-    // установка языка
+    // СѓСЃС‚Р°РЅРѕРІРєР° СЏР·С‹РєР°
     //Localization::setLocale();
     function t($text) {
 	    if (func_num_args() == 1) {

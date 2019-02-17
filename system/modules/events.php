@@ -191,7 +191,13 @@ class __exEvents {
 		{
 			case 3:
 			{
+				$stbefore = self::$to_store;
 				self::$to_store = true;
+				if( $stbefore )
+				{
+					gui_message( self::$res_string );
+					self::$res_string = '';
+				}
 			}break;
 			case 2:
 			{

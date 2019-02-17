@@ -138,11 +138,11 @@ class TStringGrid extends TControl {
         file_put_contents($filename, $str);
     }
     
-    // генерируем таблицу по массиву...
+    // РіРµРЅРµСЂРёСЂСѓРµРј С‚Р°Р±Р»РёС†Сѓ РїРѕ РјР°СЃСЃРёРІСѓ...
     function setArray(array $arr, $head = true){
         
         $this->clear();
-        $rowCount = count($arr)+1; // кол-во строк...
+        $rowCount = count($arr)+1; // РєРѕР»-РІРѕ СЃС‚СЂРѕРє...
         if ($rowCount == 1) return;
         
         
@@ -157,9 +157,9 @@ class TStringGrid extends TControl {
             return;
         }
         
-        // получаем названия колонок по ключам из первого массива..
+        // РїРѕР»СѓС‡Р°РµРј РЅР°Р·РІР°РЅРёСЏ РєРѕР»РѕРЅРѕРє РїРѕ РєР»СЋС‡Р°Рј РёР· РїРµСЂРІРѕРіРѕ РјР°СЃСЃРёРІР°..
         $colNames = array_keys($arr[0]);
-        $colCount = count($colNames); // кол-во колонк... 
+        $colCount = count($colNames); // РєРѕР»-РІРѕ РєРѕР»РѕРЅРє... 
         
         $this->colCount = $colCount;
         $this->rowCount = $rowCount;
@@ -169,7 +169,7 @@ class TStringGrid extends TControl {
         // $row is array
         // $col is int
         
-        $this->rows(0, $colNames); // задаем шапку таблицы
+        $this->rows(0, $colNames); // Р·Р°РґР°РµРј С€Р°РїРєСѓ С‚Р°Р±Р»РёС†С‹
         
         $x = 1;
         foreach ($arr as $colName => $rows){
@@ -187,7 +187,7 @@ class TStringGrid extends TControl {
             
         if ($head){
             
-            $colNames = $this->rows(0); // достаем заголовки...
+            $colNames = $this->rows(0); // РґРѕСЃС‚Р°РµРј Р·Р°РіРѕР»РѕРІРєРё...
             
             for ($i=1; $i<$rowCount; $i++){
                 
@@ -213,7 +213,7 @@ class TStringGrid extends TControl {
         return $result;
     }
     
-    // задаем или получаем значени ячейки x,y
+    // Р·Р°РґР°РµРј РёР»Рё РїРѕР»СѓС‡Р°РµРј Р·РЅР°С‡РµРЅРё СЏС‡РµР№РєРё x,y
     function cells($x, $y, $value = null){
         
         if ($value===null)
@@ -238,7 +238,7 @@ class TStringGrid extends TControl {
         grid_row($this->self, $v);
     }
     
-    // задаем строке в таблице массив...
+    // Р·Р°РґР°РµРј СЃС‚СЂРѕРєРµ РІ С‚Р°Р±Р»РёС†Рµ РјР°СЃСЃРёРІ...
     function rows($y, $arr = null){
         
         if ($arr !== null){
@@ -253,7 +253,7 @@ class TStringGrid extends TControl {
         }
     }
     
-    // задаем колонку для таблицы
+    // Р·Р°РґР°РµРј РєРѕР»РѕРЅРєСѓ РґР»СЏ С‚Р°Р±Р»РёС†С‹
     function cols($x, $arr = null){
         
         if ($arr !== null){
@@ -273,7 +273,7 @@ class TStringGrid extends TControl {
         return grid_mouseCoord($this->self, (int)$x, (int)$y);
     }
     
-    // достаем координаты ячейки по координатам $x, $y
+    // РґРѕСЃС‚Р°РµРј РєРѕРѕСЂРґРёРЅР°С‚С‹ СЏС‡РµР№РєРё РїРѕ РєРѕРѕСЂРґРёРЅР°С‚Р°Рј $x, $y
     function mouseToCell($x, $y){
         
         return grid_mouseToCell($this->self, $x, $y);
