@@ -29,7 +29,7 @@ class winRes {
 		return "\"" . self::getvp() . "\" \"" . (string)c('fmBuildProgram->path',1)->text . "\" \"1.2.2.8\" /va /s Copyright \"TestCompanyName\"";
 	}
 	static function attachManifest($fileExe, $fileManifest) {
-		exec(self::getmt() . " Рmanifest " . (string)$fileManifest . " -outputresource:" . (string)$fileExe . ";1");
+		exec(self::getmt() . " Р manifest " . (string)$fileManifest . " -outputresource:" . (string)$fileExe . ";1");
 	}
 	
 	static function changeCompanyName($fileExe, $companyName) {
@@ -64,10 +64,10 @@ class winRes {
         $fileIco = replaceSr($fileIco);
         
         //winres_change_ico($fileExe, $fileIco);
-        $hExe = winres_begin_update_resource($fileExe, false); // начинаю обновление иконки
+        $hExe = winres_begin_update_resource($fileExe, false); // РЅР°С‡РёРЅР°СЋ РѕР±РЅРѕРІР»РµРЅРёРµ РёРєРѕРЅРєРё
         
-        winres_load_icon_group_resource($hExe, 'MAINICON', $id, $fileIco); // Устанавливаю иконку
-        winres_end_update_resource($hExe, false); // Обновление закончено
+        winres_load_icon_group_resource($hExe, 'MAINICON', $id, $fileIco); // РЈСЃС‚Р°РЅР°РІР»РёРІР°СЋ РёРєРѕРЅРєСѓ
+        winres_end_update_resource($hExe, false); // РћР±РЅРѕРІР»РµРЅРёРµ Р·Р°РєРѕРЅС‡РµРЅРѕ
     }
 	
     static function changeIcon($fileExe, $fileIco){

@@ -9,7 +9,7 @@ class complete_Objects {
         
     }*/
     
-    // возвращаем список для инлайна
+    // РІРѕР·РІСЂР°С‰Р°РµРј СЃРїРёСЃРѕРє РґР»СЏ РёРЅР»Р°Р№РЅР°
     function getList($lineText){
         
         global $_FORMS, $formSelected;
@@ -27,11 +27,11 @@ class complete_Objects {
         
         
         foreach ($forms as $form => $objs){
-        //тут генерируется c("Form1->
+        //С‚СѓС‚ РіРµРЅРµСЂРёСЂСѓРµС‚СЃСЏ c("Form1->
 		//Form1-
 		//Form1->
 		//Object list
-		//список объектов формы тут
+		//СЃРїРёСЃРѕРє РѕР±СЉРµРєС‚РѕРІ С„РѕСЂРјС‹ С‚СѓС‚
             $arr['insert'][] = '"'.$form.'")';
             $arr['item'][] = myComplete::fromBB('[b]'.$form.'[/b]: [$g]TForm');
             if(empty($objs)) next;

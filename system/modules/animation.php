@@ -100,22 +100,22 @@ class animate {
             $offset_y = $GLOBALS['__VIEW']['OFFSET_Y'];
         }
         
-        // определим центр окна...
+        // РѕРїСЂРµРґРµР»РёРј С†РµРЅС‚СЂ РѕРєРЅР°...
         //$center_x = intval($f_w / 2) - $offset_x - intval($w/2);
         //$center_y = intval($f_h / 2) - $offset_y - intval($h/2);
         
         $center_x = $offset_x + intval($w/2);
         $center_y = $offset_y + $h;
         
-        // определим позицию объекта по центру...
+        // РѕРїСЂРµРґРµР»РёРј РїРѕР·РёС†РёСЋ РѕР±СЉРµРєС‚Р° РїРѕ С†РµРЅС‚СЂСѓ...
         $center_ox = $x + intval($w / 2);
         $center_oy = $y + intval($h / 2);
         
-        // -top - движение камеры вверх
-        // +top - ... вниз
+        // -top - РґРІРёР¶РµРЅРёРµ РєР°РјРµСЂС‹ РІРІРµСЂС…
+        // +top - ... РІРЅРёР·
         
-        // -left - движение камеры влево
-        // +left - ... вправо
+        // -left - РґРІРёР¶РµРЅРёРµ РєР°РјРµСЂС‹ РІР»РµРІРѕ
+        // +left - ... РІРїСЂР°РІРѕ
         
         $move_x = $center_x - $center_ox;
         $move_y = $center_y - $center_oy - intval($h / 2);

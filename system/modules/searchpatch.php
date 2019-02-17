@@ -1,4 +1,4 @@
-﻿<?
+<?
 function StrPosH($haystack, $needle) {
     $haystack = strpos($haystack, $needle);
     return ($haystack !== false) ? $haystack : 0;
@@ -46,7 +46,7 @@ $f*=$r;
 
 return $f;
 }else{
-return 'Ошибка. Переменная должна быть числом';
+trigger_error('ERROR Variable must be an number, not instance of something other!', E_USER_ERROR);
 }
 } 
 

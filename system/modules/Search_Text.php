@@ -11,7 +11,7 @@ for ($i = 0; $i <= count($text); $i++)
 {
 if($text and $matrix)
  {
-$result = array_diff_assoc($text, $matrix); //находим расхождение
+$result = array_diff_assoc($text, $matrix); //РЅР°С…РѕРґРёРј СЂР°СЃС…РѕР¶РґРµРЅРёРµ
   if($result[$i])
    {
      $res = $result[$i];
@@ -21,7 +21,7 @@ $result = array_diff_assoc($text, $matrix); //находим расхождение
 $matrix = $text;
 return $res;
 }
-//возвращаем текст в виде массива
+//РІРѕР·РІСЂР°С‰Р°РµРј С‚РµРєСЃС‚ РІ РІРёРґРµ РјР°СЃСЃРёРІР°
 public function GetText_array($array){	return preg_split("/[\s,]+/",$array); }
 
 

@@ -1,5 +1,5 @@
 <?php
-    # Àâòîð: ÍßØÈÊ
+    # ÐÐ’Ð¢ÐžÐ : ÐÐ¯Ð¨Ð˜Ðš
     # VER : 0.2
     # Profile: http://community.develstudio.ru/member.php/6675-%D0%9D%D1%8F%D1%88%D0%B8%D0%BA
     # Site :  http://community.develstudio.ru/showthread.php/13619-TResize-%D0%9F%D0%BB%D0%B0%D0%B2%D0%BD%D0%BE%D0%B5-%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5-%D1%80%D0%B0%D0%B7%D0%BC%D0%B5%D1%80%D0%BE%D0%B2-%D0%B8-%D0%BF%D0%BE%D0%B7%D0%B8%D1%86%D0%B8%D0%B8-%D0%BA%D0%BE%D0%BC%D0%BF%D0%BE%D0%BD%D0%B5%D0%BD%D1%82%D0%BE%D0%B2?p=123971#post123971

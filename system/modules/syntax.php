@@ -383,7 +383,7 @@ class PHPSyntax {
                 
                 $type = strpos($this->skoba[$k], $s);
                 
-                if ($type) // çàêðûâàþùèé...
+                if ($type) // Ð·Ð°ÐºÑ€Ñ‹Ð²Ð°ÑŽÑ‰Ð¸Ð¹...
                     $this->skoba_index[$k]--;
                 else {
                     if ($this->skoba_index[$k]==0)
@@ -610,7 +610,7 @@ class PHPSyntax {
                     }
                 }
                 
-                // ñâîéñòâî îáúåêòà
+                // ÑÐ²Ð¾Ð¹ÑÑ‚Ð²Ð¾ Ð¾Ð±ÑŠÐµÐºÑ‚Ð°
                 if ($id==309 && in_array($syn->tokens[$i-2][0],array(T_PUBLIC, T_STATIC, 347))){
                         
                     if (count($result['classes'][$n_class]['methods'])==0){
@@ -628,12 +628,12 @@ class PHPSyntax {
                     }
                 }
                 
-                // êîíñòàíòà êëàññà
+                // ÐºÐ¾Ð½ÑÑ‚Ð°Ð½Ñ‚Ð° ÐºÐ»Ð°ÑÑÐ°
 				if(isset($syn->tokens[$i-2][0]))
                 if ($id==307 && $syn->tokens[$i-2][0]==334){
                     
                     if (count($result['classes'][$n_class]['methods'])==0){
-                        // äîáàâëÿåì êàê ñòàòè÷åñêîå ñâîéñòâî, âñå ðàâíî ýôôåêò òîò æå ïðè îòîáðàæåíèè
+                        // Ð´Ð¾Ð±Ð°Ð²Ð»ÑÐµÐ¼ ÐºÐ°Ðº ÑÑ‚Ð°Ñ‚Ð¸Ñ‡ÐµÑÐºÐ¾Ðµ ÑÐ²Ð¾Ð¹ÑÑ‚Ð²Ð¾, Ð²ÑÐµ Ñ€Ð°Ð²Ð½Ð¾ ÑÑ„Ñ„ÐµÐºÑ‚ Ñ‚Ð¾Ñ‚ Ð¶Ðµ Ð¿Ñ€Ð¸ Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ð¸
                         $result['classes'][$n_class]['properties'][] =
                                 array('name'=>$name, 'type'=>'static');
                             

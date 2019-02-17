@@ -1,7 +1,7 @@
 <?php
 
     
-// ïóòü ê ôàéëó èç ðåñóðñîâ
+// Ð¿ÑƒÑ‚ÑŒ Ðº Ñ„Ð°Ð¹Ð»Ñƒ Ð¸Ð· Ñ€ÐµÑÑƒÑ€ÑÐ¾Ð²
 function res($resName, $to_del = false){
     
     global $__config;
@@ -48,7 +48,7 @@ function resFile($resName){
     return getFileName($resName, false);
 }
 
-// âîçðàùàåò ñòðîêó ðåñóðñà
+// Ð²Ð¾Ð·Ñ€Ð°Ñ‰Ð°ÐµÑ‚ ÑÑ‚Ñ€Ð¾ÐºÑƒ Ñ€ÐµÑÑƒÑ€ÑÐ°
 function getRes($resName){
     
     global $__config;
@@ -59,7 +59,7 @@ function getRes($resName){
     return file_get_contents($file = DOC_ROOT .'/'. $__config['config']['data_dir'].'/'.$resName);
 }
 
-//çàäà¸ò ñòðîêó ðåñóðñà
+//Ð·Ð°Ð´Ð°Ñ‘Ñ‚ ÑÑ‚Ñ€Ð¾ÐºÑƒ Ñ€ÐµÑÑƒÑ€ÑÐ°
 function setRes($resName, $value){
 	
 	global $__config;
@@ -71,7 +71,7 @@ function setRes($resName, $value){
     
 }
 
-// âîçâðàùàåò ìàññèâ âñåõ ïðèêðåïëåííûõ ôàéëîâ
+// Ð²Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ Ð¼Ð°ÑÑÐ¸Ð² Ð²ÑÐµÑ… Ð¿Ñ€Ð¸ÐºÑ€ÐµÐ¿Ð»ÐµÐ½Ð½Ñ‹Ñ… Ñ„Ð°Ð¹Ð»Ð¾Ð²
 function resList(){
 	global $__config;
 	$result = unserialize(exemod_extractstr('$RESLIST$'));

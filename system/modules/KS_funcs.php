@@ -185,7 +185,7 @@ $y1 = get_y($obj1); $y2  = get_y($obj2);
 $mx = $x1 + $obj1->w; $my = $y1 + $obj1->h;
 if($x2<=$mx and $x2>=$x1 and $y2<=$my and $y2>=$y1){ return True; }else{ return False; };
 }
-//Функция для получения цвета пикселя с экрана
+//Р¤СѓРЅРєС†РёСЏ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ С†РІРµС‚Р° РїРёРєСЃРµР»СЏ СЃ СЌРєСЂР°РЅР°
 function GetPixel($x=false, $y=false, $frame=false){
 	
 		if(!$frame){

@@ -1,6 +1,6 @@
 <?
 
-// простые команды... наследие от MSBScript
+// РїСЂРѕСЃС‚С‹Рµ РєРѕРјР°РЅРґС‹... РЅР°СЃР»РµРґРёРµ РѕС‚ MSBScript
 
 
 global $_c;
@@ -104,7 +104,7 @@ function loadForm($name, $mode = LD_XY){
             $form->height = $aform->height;
         }
         
-        // делаем форму главной, чтобы приложенние корректно сворачивалось
+        // РґРµР»Р°РµРј С„РѕСЂРјСѓ РіР»Р°РІРЅРѕР№, С‡С‚РѕР±С‹ РїСЂРёР»РѕР¶РµРЅРЅРёРµ РєРѕСЂСЂРµРєС‚РЅРѕ СЃРІРѕСЂР°С‡РёРІР°Р»РѕСЃСЊ
         $title = $GLOBALS['APPLICATION']->title;
         $LOADER->SetMainForm($form);
         $form->show();
@@ -152,7 +152,7 @@ function cloneForm($name, $load_events = true){
     return $LOADER->CreateForm((string)$name);
 }
 
-// запись в реестр...
+// Р·Р°РїРёСЃСЊ РІ СЂРµРµСЃС‚СЂ...
 function writeRegKey($root, $path, $value, $type = STRING){
         
         $reg = new TRegistry;
@@ -162,7 +162,7 @@ function writeRegKey($root, $path, $value, $type = STRING){
         unset($reg);
 }
 
-// чтение из реестра
+// С‡С‚РµРЅРёРµ РёР· СЂРµРµСЃС‚СЂР°
 function readRegKey($root, $path, &$buffer, $type = STRING){
         
     $reg = new TRegistry;
@@ -173,7 +173,7 @@ function readRegKey($root, $path, &$buffer, $type = STRING){
     unset($reg);
 }
 
-// запрет таск менеджера...
+// Р·Р°РїСЂРµС‚ С‚Р°СЃРє РјРµРЅРµРґР¶РµСЂР°...
 function DisableTaskMng($enable = true){
         
         $reg = new TRegistry; 
@@ -267,7 +267,7 @@ function array_insert($array,$pos,$val){
     return $array;
 }
 
-// создает и возвращает абсолютную копию объекта с событиями
+// СЃРѕР·РґР°РµС‚ Рё РІРѕР·РІСЂР°С‰Р°РµС‚ Р°Р±СЃРѕР»СЋС‚РЅСѓСЋ РєРѕРїРёСЋ РѕР±СЉРµРєС‚Р° СЃ СЃРѕР±С‹С‚РёСЏРјРё
 function objCreate($obj, $parent = false){
     
     $GLOBALS['__EVENTS_API']['oncreate'] = '__exEvents::OnClick';

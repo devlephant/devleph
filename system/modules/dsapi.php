@@ -1,6 +1,6 @@
 <?
 /*
-   класс, который объединяет все возможности использования DS Api 
+   РєР»Р°СЃСЃ, РєРѕС‚РѕСЂС‹Р№ РѕР±СЉРµРґРёРЅСЏРµС‚ РІСЃРµ РІРѕР·РјРѕР¶РЅРѕСЃС‚Рё РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ DS Api 
 */
 
 
@@ -20,20 +20,20 @@ class DSApi {
             eval($func.';');
     }
     
-    // регистрация функции, которая должна выполниться после загрузки всех форм
+    // СЂРµРіРёСЃС‚СЂР°С†РёСЏ С„СѓРЅРєС†РёРё, РєРѕС‚РѕСЂР°СЏ РґРѕР»Р¶РЅР° РІС‹РїРѕР»РЅРёС‚СЊСЃСЏ РїРѕСЃР»Рµ Р·Р°РіСЂСѓР·РєРё РІСЃРµС… С„РѕСЂРј
     static function reg_startFunc($func){
         
         
         $GLOBALS['___startFunctions'][] = $func;
     }
     
-    // регистрация функции, которая должна выполниться до загрузки всех форм
+    // СЂРµРіРёСЃС‚СЂР°С†РёСЏ С„СѓРЅРєС†РёРё, РєРѕС‚РѕСЂР°СЏ РґРѕР»Р¶РЅР° РІС‹РїРѕР»РЅРёС‚СЊСЃСЏ РґРѕ Р·Р°РіСЂСѓР·РєРё РІСЃРµС… С„РѕСЂРј
     static function reg_startFuncBefore($func){
         
         $GLOBALS['___startFunctionsBefore'][] = $func;
     }
     
-    // регистрирует функцию для нового типа события
+    // СЂРµРіРёСЃС‚СЂРёСЂСѓРµС‚ С„СѓРЅРєС†РёСЋ РґР»СЏ РЅРѕРІРѕРіРѕ С‚РёРїР° СЃРѕР±С‹С‚РёСЏ
     static function reg_eventType($type, $callFunc, $params = array('self'), $class = false){
         
         $type = strtolower($type);
@@ -80,20 +80,20 @@ class DSApi {
         return __exEvents::callEventVars($self, $params, $type);
     }
     
-    // регистрирует мега глобальную переменную в DS, которую можно использовать без global
+    // СЂРµРіРёСЃС‚СЂРёСЂСѓРµС‚ РјРµРіР° РіР»РѕР±Р°Р»СЊРЅСѓСЋ РїРµСЂРµРјРµРЅРЅСѓСЋ РІ DS, РєРѕС‚РѕСЂСѓСЋ РјРѕР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ Р±РµР· global
     static function reg_glVar($name){
         
         $name = str_ireplace('$','',$name);
         __exEvents::addGlobalVar($name);
     }
     
-    // устанавливает контролер для вывода контента
+    // СѓСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РєРѕРЅС‚СЂРѕР»РµСЂ РґР»СЏ РІС‹РІРѕРґР° РєРѕРЅС‚РµРЅС‚Р°
     static function echoController($obj_or_func){
         
         $GLOBALS['__echoController'] = $obj_or_func;
     }
     
-    // инициализирует форму по опциям $info
+    // РёРЅРёС†РёР°Р»РёР·РёСЂСѓРµС‚ С„РѕСЂРјСѓ РїРѕ РѕРїС†РёСЏРј $info
     static function initForm($fmEdit, $info){
         
         if (!$info) return false;
@@ -128,14 +128,14 @@ class DSApi {
         $fmEdit->borderIcons = implode(',',$icons);
     }
     
-    // регистрирует события для компонентов из конфига
+    // СЂРµРіРёСЃС‚СЂРёСЂСѓРµС‚ СЃРѕР±С‹С‚РёСЏ РґР»СЏ РєРѕРјРїРѕРЅРµРЅС‚РѕРІ РёР· РєРѕРЅС„РёРіР°
     static function initFormEx($fmEdit, $name){
         
         global $__config;
         self::initForm($fmEdit, $__config['formsInfo'][strtolower($name)]);
     }
     
-    // нестандартная загрузка событий с классами TEvent
+    // РЅРµСЃС‚Р°РЅРґР°СЂС‚РЅР°СЏ Р·Р°РіСЂСѓР·РєР° СЃРѕР±С‹С‚РёР№ СЃ РєР»Р°СЃСЃР°РјРё TEvent
     static function initEvent($form, $form_name = false, $init_funcs = false){
         
         $form_event_load = false;
