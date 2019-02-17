@@ -256,6 +256,9 @@ object fmMain: TfmMain
     Color = clWhite
     Constraints.MinHeight = 29
     Constraints.MinWidth = 40
+	BevelKind = bkFlat
+	BevelInner = bvNone
+	BevelOuter = bvNone
     DragKind = dkDock
     DragMode = dmAutomatic
     TabOrder = 5

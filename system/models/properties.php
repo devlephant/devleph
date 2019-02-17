@@ -1252,6 +1252,7 @@ class myProperties {
             $panel->parent = c('fmPropsAndEvents->tabProps');
             $panel->align  = 'alClient';
             $panel->enableVisualStyles = true;
+			$panel->borderStyle = bsNone;
             $panel->rowHeight = 20;
             $panel->HighlightTextColor = 0xC1FFFF;
             $panel->onVSEdit = 'myProperties::VSEdit';
