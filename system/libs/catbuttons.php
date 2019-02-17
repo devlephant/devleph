@@ -96,9 +96,9 @@ class TCategoryButtons extends TControl {
     
     public function set_smallIcons($v){
         if ($v){
-            $this->buttonOptions = 'boGradientFill,boBoldCaptions,boUsePlusMinus,boCaptionOnlyBorder';
+            $this->buttonOptions = 'boGradientFill,boBoldCaptions,boCaptionOnlyBorder';
         } else {
-            $this->buttonOptions = 'boShowCaptions,boFullSize,boGradientFill,boBoldCaptions,boUsePlusMinus,boCaptionOnlyBorder';
+            $this->buttonOptions = 'boShowCaptions,boFullSize,boGradientFill,boBoldCaptions,boCaptionOnlyBorder';
         }
     }
     
