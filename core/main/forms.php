@@ -243,11 +243,6 @@ class TApplication extends TControl{
                 application_restore();
         }
         
-        function findComponent($name){
-               $id = application_find_component($name);
-               return to_object($id, __rtti_class($id));
-        }
-        
         function messageBox($text,$caption,$flag = 1){
                 return application_messagebox($text,$caption,$flag);
         }

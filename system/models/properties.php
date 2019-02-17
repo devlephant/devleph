@@ -1406,7 +1406,8 @@ class myProperties {
     }
     
     static function getMethodsInfo($class){
-        return (array) get_sorted_methods($class);
+        if( !strlen(trim($class) ) ) return array();
+		return get_sorted_methods($class);
     }
     
     static function fixSplitterMoved($self){

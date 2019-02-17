@@ -860,10 +860,6 @@ class TControl extends TComponent {
             return get_owner($this);
         }
         
-        function findComponent($name){
-            return _c(find_component($this->self,$name));
-        }
-        
         function componentById($id,$type = 'TComponent'){
             return _c(component_by_id($this->self,$id), $type);
         }
