@@ -1,6 +1,8 @@
 object fmPHPEditor: TfmPHPEditor
   Left = 221
   Top = 186
+  Autosize = False
+  BorderStyle = bsSizeable
   Caption = '{php_script_editor}'
   ClientHeight = 597
   ClientWidth = 1011
@@ -16,6 +18,7 @@ object fmPHPEditor: TfmPHPEditor
   Menu = MainMenu
   OldCreateOrder = False
   Position = poDesigned
+  Visible = False
   PixelsPerInch = 96
   TextHeight = 13
   object shapeshape: TShape

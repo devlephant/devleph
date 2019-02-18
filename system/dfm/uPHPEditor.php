@@ -349,8 +349,10 @@ class ev_fmPHPEditor_it_saveevent {
 
 class ev_fmPHPEditor_exit{
     static function onClick(){
+		global $phpeditorClosing;
+		$phpeditorClosing = 1;
 		c('fmPHPEditor->memo')->text = '';
-        c("fmPHPEditor")->hide();
+        c("fmPHPEditor")->close();
     }
 }
 
