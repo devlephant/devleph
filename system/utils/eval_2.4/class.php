@@ -124,6 +124,8 @@
 				Align = alClient
 				Color = clWhite
 				Ctl3D = True
+				BorderStyle = bsNone
+				FontSmoothing = fsmClearType
 				PopupMenu = evalPopupMenu
 				ParentCtl3D = False
 				Font.Charset = DEFAULT_CHARSET
@@ -581,11 +583,10 @@
 	else
 		$bt->caption = $bt->hint;
 	
-	$combo->style = csDropDownList;
+	$combo->style = csOwnerDrawFixed;
 	$combo->parent = $panel;
 	$combo->align = alClient;
 	$combo->parentcolor = true;
-	$combo->bevelKind = 3;
 	$combo->dropDownCount = 16;
 	$combo->font->size = 9;
 	$combo->hint = 'Scripts';

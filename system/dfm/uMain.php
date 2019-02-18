@@ -290,7 +290,7 @@ class evfmMain {
             
             $obj->parent = $list->parent;
             $obj->align  = alTop;
-            $obj->style  = csDropDownList;
+            $obj->style  = csOwnerDrawFixed;
             $obj->text   = array(t('Icons + text'), t('Small Icons'));
 
             $smallIcons = myOptions::get('inspector', 'smallIcons', 0);
@@ -309,6 +309,7 @@ class evfmMain {
             c('fmPropsAndEvents->btn_changeEvent')->onClick = 'myEvents::changeEvent';
             
             gui_propSet(gui_propGet(c("fmObjectInspector->list")->self, 'IconOptions'), 'AutoArrange', 1);
+			$list->BorderStyle = bsNone;
 			
     }
     

@@ -161,7 +161,7 @@ object fmEditorSettings: TfmEditorSettings
     Top = 16
     Width = 234
     Height = 21
-    Style = csDropDownList
+    Style = csOwnerDrawFixed
     ItemHeight = 13
     TabOrder = 4
   end

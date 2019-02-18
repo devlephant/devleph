@@ -85,7 +85,7 @@ object fmFormProperties: TfmFormProperties
       Top = 86
       Width = 337
       Height = 21
-      Style = csDropDownList
+      Style = csOwnerDrawFixed
       ItemHeight = 13
       ItemIndex = 0
       TabOrder = 0
@@ -173,7 +173,7 @@ object fmFormProperties: TfmFormProperties
       Top = 126
       Width = 337
       Height = 21
-      Style = csDropDownList
+      Style = csOwnerDrawFixed
       ItemHeight = 13
       ItemIndex = 0
       TabOrder = 2
@@ -188,7 +188,7 @@ object fmFormProperties: TfmFormProperties
       Top = 166
       Width = 337
       Height = 21
-      Style = csDropDownList
+      Style = csOwnerDrawFixed
       ItemHeight = 13
       ItemIndex = 2
       TabOrder = 3
@@ -244,7 +244,7 @@ object fmFormProperties: TfmFormProperties
       Top = 206
       Width = 337
       Height = 21
-      Style = csDropDownList
+      Style = csOwnerDrawFixed
       ItemHeight = 13
       ItemIndex = 2
       TabOrder = 6

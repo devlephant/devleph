@@ -44,11 +44,11 @@ object fmComponents: TfmComponents
     Left = 0
     Top = 0
     Width = 182
-    Height = 21
+    Height = 22
     Align = alTop
-    Style = csDropDownList
+    Style = csOwnerDrawFixed
     Color = clYellow
-    ItemHeight = 13
+    ItemHeight = 22
     ItemIndex = 0
     TabOrder = 1
     Text = '{Icons + text}'

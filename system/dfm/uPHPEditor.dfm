@@ -55,6 +55,7 @@ object fmPHPEditor: TfmPHPEditor
       Width = 932
       Height = 523
       Align = alClient
+	  FontSmoothing = fsmClearType
       Ctl3D = True
       ParentCtl3D = False
       Font.Color = clWindowText

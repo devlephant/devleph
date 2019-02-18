@@ -80,7 +80,7 @@ object fmProjectOptions: TfmProjectOptions
         Top = 121
         Width = 401
         Height = 21
-        Style = csDropDownList
+        Style = csOwnerDrawFixed
         ItemHeight = 13
         ItemIndex = 0
         TabOrder = 2

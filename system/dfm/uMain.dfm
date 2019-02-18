@@ -297,11 +297,11 @@ object fmMain: TfmMain
       Left = 1
       Top = 1
       Width = 229
-      Height = 24
+      Height = 16
       Align = alTop
-      Style = csDropDownList
+      Style = csOwnerDrawFixed
       Color = clWhite
-      ItemHeight = 13
+      ItemHeight = 17
       ItemIndex = 0
       TabOrder = 1
       Text = '{Icons + text}'
@@ -432,6 +432,8 @@ object fmMain: TfmMain
       Width = 180
       Height = 570
       Cursor = crDefault
+	  Ctl3D = false
+	  BorderStyle = bsNone
 	  HotTrack = true
 	  HotTrackStyles = [htHandPoint]
       Align = alClient

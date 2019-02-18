@@ -159,7 +159,7 @@ object fmBuildProgram: TfmBuildProgram
         Top = 40
         Width = 337
         Height = 21
-        Style = csDropDownList
+        Style = csOwnerDrawFixed
         ItemHeight = 13
         ItemIndex = 0
         TabOrder = 0

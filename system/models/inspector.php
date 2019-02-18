@@ -155,6 +155,7 @@ class myInspect {
         
         
         c('fmObjectInspector->list')->onClick = 'myInspect::click';
+		//c('fmObjectInspector->list')->onChange = 'myInspect::click';
        // c('fmObjectInspector->list',1)->items->selectByCaption($arr);
     }
     

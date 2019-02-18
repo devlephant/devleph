@@ -110,7 +110,7 @@ object fmEasySelectDialog: TfmEasySelectDialog
         Top = 24
         Width = 473
         Height = 22
-        Style = csDropDownList
+        Style = csOwnerDrawFixed
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -12
@@ -166,7 +166,7 @@ object fmEasySelectDialog: TfmEasySelectDialog
         Top = 24
         Width = 225
         Height = 22
-        Style = csDropDownList
+        Style = csOwnerDrawFixed
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -12
