@@ -63,35 +63,34 @@ function getFileName($str, $check = true){
         
     return $str;
 }
-
+function rglob($pattern, $flags = 0) {
+    $files = glob($pattern, $flags); 
+    foreach (glob(dirname($pattern).'/*', GLOB_ONLYDIR|GLOB_NOSORT) as $dir) {
+        $files = array_merge($files, rglob($dir.'/'.basename($pattern), $flags));
+    }
+    return $files;
+}
 // поиск файлов в папке...
 // можно искать по расширению exts - список расширений
 function findFiles($dir, $exts = null, $recursive = false, $with_dir = false){
-    $dir = replaceSl($dir);
-    
-    $result = array();
-    $check_ext = $exts;
-    if (!file_exists($dir)) return array();
-    
-    if ($handle = @opendir($dir))
-        while (($file = readdir($handle)) !== false){
-            
-            if ($file == '.' || $file == '..') continue;
-            if (is_file($dir . '/' . $file)){
-                
-                if ($check_ext){
-                    if (checkExt($file, $exts))
-                        $result[] = $with_dir ? $dir .'/'. $file : $file;
-                } else {
-                    $result[] = $with_dir ? $dir .'/'. $file : $file;
-                }
-            } elseif ($recursive && is_dir($dir . '/' . $file)){
-                
-                $result = array_merge($result, findFiles($dir . '/' . $file, $exts, true, $with_dir));
-            }
-        }
-    
-    return $result;
+    $dir = realpath(str_replace(['\\\\\\', '\\\\', '///', '//'], ['\\', '\\', '/', '/'], $dir));
+	
+    if (!is_dir($dir)) return [];
+	$pattern = is_array($exts)?  
+				"$dir\\*.{" . implode(',', $exts) . "}":
+					is_null($exts)? 
+						"$dir\\*.*": "$dir\\*.$exts";
+	$flag = is_array($exts)? GLOB_BRACE: GLOB_NOSORT;
+	if( !$with_dir )
+	{
+		$result = [];
+		foreach(($recursive? rglob($pattern, $flag): glob($pattern, $flag)) as $file)
+		{
+			$result[] = basename($file);
+		}
+		return $result;
+	}
+	return $recursive? rglob($pattern, $flag): glob($pattern, $flag);
 }
 
 function findDirs($dir){
@@ -139,13 +138,9 @@ function rmdir_recursive($dir) {
 function deleteDir($dir, $dir_del = true, $exts = null){
     
     $dir = replaceSl($dir);
-    $files = findFiles($dir, $exts, true, true);
+    foreach (findFiles($dir, $exts, true, true) as $file)
+        unlink($file);
     
-    foreach ($files as $file){
-        
-        if (file_exists($file))
-            unlink($file);
-    }
     
     if ($dir_del)
         rmdir_recursive($dir);
@@ -174,40 +169,34 @@ function fileUnlock($file){
 }
 
 function dirLock($dir, $exts = null){
-    
-    $files = findFiles($dir, $exts, true, true);
-    foreach ($files as $file)
+
+    foreach (findFiles($dir, $exts, true, true) as $file)
         fileLock($file);
 }
 
-function dirUnlock($dir, $exts = null){
-    $files = findDirs($dir, $exts, true, true);
-    foreach ($files as $file)
+function dirUnlock($dir, $exts = null)
+{
+    foreach (findFiles($dir, $exts, true, true) as $file)
         fileUnlock($file);
 }
 
 
 function file_p_contents($file, $data){
-    
-    $file = replaceSl($file);
     $dir  = dirname($file);
     
     if (!file_exists($dir))
         mkdir($dir, 0777, true);
     
-    return file_put_contents($file, $data);    
+    return file_put_contents(replaceSl($file), $data);    
 }
 
 function x_copy($from, $to){
-    
-    $from = replaceSl($from);
-    $to   = replaceSl($to);
     $dir  = dirname($to);
     
     if (!file_exists($dir))
         mkdir($dir, 0777, true);
         
-    return copy($from, $to);
+    return copy(replaceSl($from), replaceSl($to));
 }
 
 function x_move($from, $to){
