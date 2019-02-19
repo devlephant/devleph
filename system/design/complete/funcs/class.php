@@ -203,9 +203,7 @@ class complete_Funcs {
                                       '[$r]bool[$b] ','[$r]void[$b] ','[$r]int[$b] ','[$r]resource[$b] ','[$r]object[$b] ','[$s]constant[$b] ',
                                       '[$g]class[$b] '),
                                       $text); 
-            //$arr['item'][] = $text;
             $arr['item'][] = myComplete::fromBB($text);
-            //pre($text);
         }
         
         return $arr;
@@ -286,9 +284,7 @@ class complete_Funcs {
             $text = str_replace('constant ', '[$s]constant[$b] ', $text);
             $text = str_replace('class ', '[$g]class[$b] ', $text);
             
-            //$arr['item'][] = $text;
             $arr['item'][] = myComplete::fromBB($text);
-            //pre($text);
         }
         
         $funcsArr = $arr;
