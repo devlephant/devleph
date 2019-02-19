@@ -523,6 +523,7 @@ object fmMain: TfmMain
             DropDownCount = 20
             ItemHeight = 16
             TabOrder = 0
+			TabStop = False
             AutoComplete = True
           end
         end

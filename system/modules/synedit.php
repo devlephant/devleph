@@ -7,19 +7,6 @@ $_c->setConstList(array('ctCode', 'ctHint', 'ctParams'),0);
 	
 class TSynEdit extends TMemo {
 	
-
-	function set_caretX($v)		{ synedit_caret_x($this->self,$v);			}
-	function get_caretX()		{ return synedit_caret_x($this->self,null);	}
-	
-	function set_caretY($v)		{ synedit_caret_y($this->self,$v);			}
-	function get_caretY()		{ return synedit_caret_y($this->self,null);	}
-	
-	function set_selStart($v)	{ synedit_selstart($this->self,$v);			}
-	function get_selStart()		{ synedit_selstart($this->self,null);		}
-	
-	function set_selEnd($v)		{ synedit_selend($this->self,$v);			}
-	function get_selEnd()		{ synedit_selend($this->self,null);			}
-	
 	function set_selLength($v)
 	{
 		$this->selEnd = $this->selStart + $v;

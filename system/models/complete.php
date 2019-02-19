@@ -105,8 +105,8 @@ class myComplete {
 		if( $key == 13 || $key==114){
 			
 			//c( $self )->BeginUndoBlock();
-			$CaretY = synedit_caret_y($self, null) - 1;
-			$CaretX = synedit_caret_x($self, null) - 1;
+			$CaretY = gui_propGet($self, 'CaretY') - 1;
+			$CaretX = gui_propGet($self, 'CaretX') - 1;
 			$line = c( $self )->items->getLine($CaretY);
 			$length = strlen($line) - strlen( substr($line, 0, $CaretX) );
 			if( myComplete::findSymbol( substr($line, 0, $CaretX), "{") && myComplete::findSymbol(substr($line, $CaretX, $length), "}") ) {
@@ -128,8 +128,8 @@ class myComplete {
 				c( $self )->items->setLine($CaretY+2, "}".substr($str1, $spos+1, $length) );//*/
 				//c( $self )->EndUndoBlock();
 				//c( $self )->BeginUndoBlock();
-				synedit_caret_y($self, $CaretY + 2);
-				synedit_caret_x($self, 2 );
+				gui_propSet($self, 'CaretY', $CaretY + 2);
+				gui_propSet($self, 'CaretX', 2);
 				//c( $self )->EndUndoBlock();
 			
 			$key=null;
@@ -147,8 +147,8 @@ class myComplete {
 		
     }
 	static function checkDublicate($self, $key){
-		$CaretY = synedit_caret_y($self, null) - 1;
-		$CaretX = synedit_caret_x($self, null) - 1;
+		$CaretY = gui_propGet($self, 'CaretY') - 1;
+		$CaretX = gui_propGet($self, 'CaretX') - 1;
 		$line = c( $self )->items->getLine($CaretY);
 		$length = strlen($line) - strlen( substr($line, 0, $CaretX) );
 		
@@ -178,8 +178,8 @@ class myComplete {
 		{
 		if( isset($chars[$key]) ) {
 			//c( $self )->BeginUndoBlock();
-			$CaretY = synedit_caret_y($self, null) - 1;
-			$CaretX = synedit_caret_x($self, null) - 1;
+			$CaretY = gui_propGet($self, 'CaretY') - 1;
+			$CaretX = gui_propGet($self, 'CaretX') - 1;
 			$line = c( $self )->items->getLine($CaretY);
 			$length = strlen($line) - strlen( substr($line, 0, $CaretX) );
 			if( !myComplete::checkDublicate($self, $key) ){
@@ -189,14 +189,14 @@ class myComplete {
 			}
 			//c( $self )->EndUndoBlock();
 			//c( $self )->BeginUndoBlock();
-			synedit_caret_x($self, synedit_caret_x($self, null) + 1);
+			gui_PropSet($self, 'CaretX', gui_propGet($self, 'CaretX') + 1);
 			$key = "";
 			//c( $self )->EndUndoBlock();
 		}
 		if( in_array($key, array(')', ']')) ) {
 			if( myComplete::checkDublicate($self, $key) ) {
 				//c( $self )->BeginUndoBlock();
-				synedit_caret_x($self, synedit_caret_x($self, null) + 1);
+				gui_propSet($self, gui_propGet($self, 'CaretX') + 1);
 				$key = "";
 				//c( $self )->EndUndoBlock();
 			}
