@@ -201,6 +201,8 @@ function asObject($obj,$type) //синоним функции описанной
 
 function reg_object($form,$name) //ещё один синоним, но с какой-то странной разницей...
 								//функцию reg_component не нашёл, так что пока одни вопросы.
+								//Функция reg component ищет компонент по владельцу и имени(глобально), возвращая его ID
+								//ReturnValue := integer(FindGlobalComponent(GetFormFromName(Parameters[0].Value),Parameters[1].Value))
 {
     return to_object(reg_component($form,$name));
 }
