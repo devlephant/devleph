@@ -31,7 +31,6 @@ function safe($code, $func){
 
 function sync($function_name){
     
-    //pre($function_name);
 	if ( !isset($GLOBALS['THREAD_SELF']) ) return false;
     if ( !$GLOBALS['THREAD_SELF'] ) return false;
         

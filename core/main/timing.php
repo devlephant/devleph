@@ -179,7 +179,6 @@ function setTimer($interval,$func){
 	$timer->func_name = $func;
 	$timer->time_out  = false;
 	$timer->enable = true;
-	//pre($func);
 	return $timer;
 }
 

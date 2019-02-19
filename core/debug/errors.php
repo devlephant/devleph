@@ -81,8 +81,6 @@ function userErrorHandler($errno = false, $errstr = '', $errfile='', $errline=0,
             return true;
     } }
 	
-    //pre($errstr);
-
     $GLOBALS['__error_last'] = array(
                                      'msg'=>$errstr,
                                      'file'=>$errfile,

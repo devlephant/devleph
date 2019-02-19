@@ -513,7 +513,6 @@ class TComponent extends TObject {
 	    
 	    $result = uni_unserialize($this->getHelpKeyword());
 	    
-	    //if (function_exists('msg')) pre($result);
 	    $this->helpKeyword = uni_serialize(
 			array('CLASS' => $class,
 			      'PARAMS'=> $result['PARAMS'], 
@@ -932,10 +931,6 @@ class TControl extends TComponent {
             
 	    return $res;
 	}
-        
-	function show(){ $this->visible = true; }
-	function hide(){ $this->visible = false; }
-	
 	function get_handle(){
 	    return gui_getHandle($this->self);
 	}

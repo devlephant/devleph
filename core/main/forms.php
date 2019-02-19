@@ -137,9 +137,6 @@ class TForm extends TControl {
 		} else
 			show_window( $this->handle, $mode);
 	}
-	function Hide(){
-			$this->visible = false;
-	}
 	function showModal(){
 		gui_formShowModal( $this->self );
 		return $this->modalResult;

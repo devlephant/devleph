@@ -45,9 +45,6 @@ class TRegistry {
         if (!isset($args[1])) $args[1] = '';
         if (!isset($args[2])) $args[2] = '';
         
-        //msg($this->self);
-        //pre($args);
-        
         return registry_command($this->self, $name, $args[0], $args[1], $args[2]);
     }
     
