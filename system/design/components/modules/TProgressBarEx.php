@@ -136,8 +136,7 @@ class TProgressBarEx extends TScrollBox{
 	 if (!$this->picture->isEmpty()){
 	 $this->_image->picture->Assign( $this->picture );
 	 }
-		$this->_image->w =  $this->w*$pr/100;
-		//$this->_image->w =  ($this->_solidmosaic && $this->_image instanceof TMImage)? ((int)(($this->w*$pr/100) / $this->_image->picture->width))*$this->_image->picture->width:  $this->w*$pr/100;
+		$this->_image->w =  ($this->_solidmosaic && $this->_image instanceof TMImage)? ((int)(($this->w*$pr/100) / $this->_image->picture->graphic->width))*$this->_image->picture->graphic->width:  $this->w*$pr/100;
 	 if ($this->end == true){
 	   if ($this->max == $pos){
 	 $this->_image->w = 0;
@@ -282,6 +281,7 @@ class TProgressBarEx extends TScrollBox{
 		if($this->_image instanceof TMIMage)
 		{
 			$this->_image->stretch = $this->_stretch;
+			$this->_image->update();
 		}
 	}
 	public function get_mosaic()

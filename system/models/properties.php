@@ -50,7 +50,6 @@ class myProperties {
             foreach ($targets as $el){
                 if ($el->link_self) $el = _c($el->link_self);
                 $el->$prop->assign($bitmap);
-				if( $el instanceof TIB )
 					if( method_exists($el, $m) )
 					$el->$m($bitmap);
             }
