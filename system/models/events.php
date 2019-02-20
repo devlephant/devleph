@@ -375,11 +375,12 @@ class myEvents {
         $y = cursor_pos_y();
         
         $class = rtti_class($myEvents->selObj->self);
+		
         $buttons = $myEvents->classes[$class];
+        
         $eventList = c('fmPropsAndEvents->eventList');
         $event  = $eventList->events[$eventList->itemIndex];
-
-        if (isset($eventList->events[0])){
+        if ($eventList->events[0]){
         foreach ($buttons as $btn){
             
             $event = $myEvents->getEvent($btn);
@@ -388,12 +389,14 @@ class myEvents {
             }
         }
         }
-        $edt_Events->popup($x, $y);
+        
         
         //$edt_Events->showModal();
-        if( is_array($buttons) )
+        
         foreach ($buttons as $btn)
             $btn->visible = true;
+			
+		$edt_Events->popup($x, $y);
     }
     
     public static function clickAddEvent($self, $show_editor = false){

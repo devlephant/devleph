@@ -179,7 +179,6 @@ class myCompile
 		}
 
 		$ini = self::generatePHP_Ini();
-		$ini_hash = md5('%*(' . $ini . '@#78');
 
 		if ($attach_ini) {
 			exemod_addstr('$PHPSOULENGINE\\phpini', $ini);
@@ -187,37 +186,18 @@ class myCompile
 		else {
 			file_put_contents($path . '/php.ini', $ini);
 		}
-
-		exemod_addstr('$PHPSOULENGINE\\phpini.hash', $ini_hash);
 		$php5ts = self::copyPHPts(false);
-		$php_hash = md5('%*(' . file_get_contents($php5ts) . '@#78');
-		exemod_addstr('$PHPSOULENGINE\\phpts.hash', $php_hash);
-		exemod_addstr('$PHPSOULENGINE\\phpts.size', intval(filesize($php5ts) * 3) / 4);
+		exemod_addstr('$PHPSOULENGINE\\info', serialize(
+		['version'	=> DV_VERSION,
+		'year'		=> DV_YEAR,
+		'prefix'	=> DV_PREFIX,
+		]
+		));
 	}
 
 	static public function getVersion()
 	{
 		return DV_VERSION.DV_PREFIX.DV_YEAR;
-	}
-
-	static public function getUID()
-	{
-		$uid = '';
-		/*foreach( range('a', 'z') as $n)
-			foreach( str_split(osinfo_diskserial($n)) as $f=>$v)
-				$uid += $f + ord($v);*/
-		$uid = md5(self::getVersion() . $uid . osinfo_displaydevice() . 'DS3');
-		return strtoupper($uid);
-	}
-
-	static public function attachSignature()
-	{
-		$uid = self::getUID();
-		$check_uid = substr(md5('DS3' . $uid), 0, -3);
-		//exemod_addstr('$FOR_ANTIVIRUS_START', '_');
-		exemod_addstr('$PHPSOULENGINE\\sign', $uid);
-		exemod_addstr('$PHPSOULENGINE\\sign.check', $check_uid);
-		//exemod_addstr('$PHPSOULENGINE\\warning.check', sha1('_' . 'DS3'));
 	}
 
 	static public function attachPHPSoulEngine($attach = true)
@@ -440,7 +420,6 @@ class myCompile
 		self::generateIncFile();
 		myModules::inc();
 		self::attachPHPEngine(false, false);
-		self::attachSignature();
 		self::attachPHPSoulEngine(false);
 		self::attachForms(false, false);
 		self::attachModules();
@@ -574,7 +553,6 @@ class myCompile
 		exemod_addstr('$PHPSOULENGINE\\inc.php', self::generateIncFile());
 		self::attachPHPEngine($p_dir, true);
 		myModules::inc($fileExe);
-		self::attachSignature();
 
 		if ($attachSE) {
 			self::attachPHPSoulEngine($attachSE);
