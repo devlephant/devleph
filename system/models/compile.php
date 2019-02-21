@@ -181,7 +181,7 @@ class myCompile
 		$ini = self::generatePHP_Ini();
 
 		if ($attach_ini) {
-			exemod_addstr('$PHPSOULENGINE\\phpini', $ini);
+			exemod_addstr('$PHPSOULENGINE\\php.ini', $ini);
 		}
 		else {
 			file_put_contents($path . '/php.ini', $ini);
