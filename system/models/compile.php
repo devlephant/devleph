@@ -126,10 +126,7 @@ class myCompile
 	{
 		global $projectFile, $exten_dir;
 		$inc = file_get_contents(SYSTEM_DIR . '/blanks/inc.php');
-
-		$hash = md5('%*(' . $inc . '@#78');
 		exemod_addstr('$PHPSOULENGINE\\inc.php', $inc);
-		exemod_addstr('$PHPSOULENGINE\\inc.php.hash', $hash);
 
 		global $myProject;
 		$modules = array();
@@ -141,14 +138,6 @@ class myCompile
 		}
 
 		exemod_addstr('$PHPSOULENGINE\\mods', implode(',', $modules));
-		exemod_addstr('$PHPSOULENGINE\\mods.hash', md5('%*(' . implode(',', $modules) . '@#78'));
-		$md5s = array();
-
-		foreach ($modules as $mod) {
-			$md5s[] = md5_file(dirname(EXE_NAME) . $exten_dir . $mod);
-		}
-
-		exemod_addstr('$PHPSOULENGINE\\mods_m', implode(',', $md5s));
 	}
 
 	static public function generatePHP_Ini()

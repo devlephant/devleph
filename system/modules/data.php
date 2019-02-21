@@ -1,5 +1,8 @@
 <?
-
+function dsversion()
+{
+	return unserialize(exemod_extractstr('$PHPSOULENGINE\\info'));
+}
 function iblockclass_sortlist_uasort($a, $b){
 	
 	//if (!is_array($a) && !is_object($a))
