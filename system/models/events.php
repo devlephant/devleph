@@ -384,19 +384,18 @@ class myEvents {
         foreach ($buttons as $btn){
             
             $event = $myEvents->getEvent($btn);
-            if (in_array(strtolower($event['EVENT']), $eventList->events)){
-                $btn->visible = false;
-            }
+                $btn->visible = in_array(strtolower($event['EVENT']), $eventList->events)?false:true;
         }
-        }
-        
-        
-        //$edt_Events->showModal();
-        
-        foreach ($buttons as $btn)
+        } else {
+			foreach ($buttons as $btn)
             $btn->visible = true;
-			
+		}
+        
+        
+        //$edt_Events->showModal();	
 		$edt_Events->popup($x, $y);
+		foreach ($buttons as $btn)
+            $btn->visible = true;
     }
     
     public static function clickAddEvent($self, $show_editor = false){
