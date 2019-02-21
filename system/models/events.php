@@ -382,7 +382,7 @@ class myEvents {
         $event  = $eventList->events[$eventList->itemIndex];
         if ($eventList->events[0]){
 			foreach ($buttons as $btn)
-                $btn->visible = in_array(strtolower($myEvents->getEvent($btn)['EVENT']), $eventList->events)?false:true;       
+                $btn->visible = !in_array(strtolower($myEvents->getEvent($btn)['EVENT']), $eventList->events);       
         } else {
 			foreach ($buttons as $btn)
 				$btn->visible = true;
