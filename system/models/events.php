@@ -381,14 +381,11 @@ class myEvents {
         $eventList = c('fmPropsAndEvents->eventList');
         $event  = $eventList->events[$eventList->itemIndex];
         if ($eventList->events[0]){
-        foreach ($buttons as $btn){
-            
-            $event = $myEvents->getEvent($btn);
-                $btn->visible = in_array(strtolower($event['EVENT']), $eventList->events)?false:true;
-        }
+			foreach ($buttons as $btn)
+                $btn->visible = in_array(strtolower($myEvents->getEvent($btn)['EVENT']), $eventList->events)?false:true;       
         } else {
 			foreach ($buttons as $btn)
-            $btn->visible = true;
+				$btn->visible = true;
 		}
         
         
