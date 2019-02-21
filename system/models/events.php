@@ -369,14 +369,10 @@ class myEvents {
         global $doChangeEvent, $myEvents;
         $doChangeEvent = false;
         
-        $edt_Events = c('edt_EventTypes->popupMenu');
-        
         $x = cursor_pos_x();
         $y = cursor_pos_y();
-        
-        $class = rtti_class($myEvents->selObj->self);
 		
-        $buttons = $myEvents->classes[$class];
+        $buttons = $myEvents->classes[rtti_class($myEvents->selObj->self)];
         
         $eventList = c('fmPropsAndEvents->eventList');
         $event  = $eventList->events[$eventList->itemIndex];
@@ -388,9 +384,7 @@ class myEvents {
 				$btn->visible = true;
 		}
         
-        
-        //$edt_Events->showModal();	
-		$edt_Events->popup($x, $y);
+		c('edt_EventTypes->popupMenu')->popup($x, $y);
 		foreach ($buttons as $btn)
             $btn->visible = true;
     }
