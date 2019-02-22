@@ -361,7 +361,7 @@ class myProject {
                 $components = $fmEdit->componentList;
                 foreach($components as $el){
                     
-                    if ($el instanceof __TNoVisual){
+                    if (is_subclass_of($el,  '__TNoVisual')){
                         
                         self::convertOldNoVisual($el);
                         $del_objs[] = $el;
