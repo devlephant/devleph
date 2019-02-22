@@ -39,7 +39,7 @@ object fmNewProject: TfmNewProject
       Top = 24
       Width = 141
       Height = 13
-      Caption = '{Path to file project *.upr}'
+      Caption = '{Path to file project *.msppr}'
 	  Transparent = True
     end
     object Label2: TLabel
@@ -78,12 +78,10 @@ object fmNewProject: TfmNewProject
     object c_alldelete: TCheckBox
       Left = 16
       Top = 72
-      Width = 447
+      Width = 488
       Height = 17
-      Anchors = [akLeft, akTop, akRight]
-	  ParentColor = False
-	  Color = clWhite
-      Caption = '{Delete all files and folder in this path}'
+	  Anchors = [akLeft, akTop, akRight]
+      Caption = '{Delete all files and folders in this path}'
       TabOrder = 2
     end
     object BitBtn1: TBitBtn
@@ -109,7 +107,7 @@ object fmNewProject: TfmNewProject
     object startup: TCheckBox
       Left = 16
       Top = 97
-      Width = 300
+      Width = 488
       Height = 17
       Caption = '{Show on Studio startup}'
       Checked = True
