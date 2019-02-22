@@ -72,9 +72,8 @@ function confirm($text){
 	return $res == idYes;
 }
 class __TNoVisual extends TControl {
-    
-    
-	public $real;
+    public $class_name = __CLASS__;
+	
     function __initComponentInfo(){
 	if($this->file && trim($this->file) > ''){
 		$this->setImage(replaceSr($this->file));
@@ -112,7 +111,7 @@ class __TNoVisual extends TControl {
     public function __construct($onwer=nil,$init=true,$self=nil){
         
 		parent::__construct($onwer, $init, $self);
-
+		
 	    if ($init){
 
 			$this->showHint = true;
@@ -142,7 +141,6 @@ class __TNoVisual extends TControl {
     }
     
     public function __loadDesign(){	
-	
 	$this->setImage(myImages::get24(get_class($this)));
 	$this->onDblClick = '__TNoVisual::panelDblClick';
     }
@@ -160,7 +158,10 @@ class __TNoVisual extends TControl {
     function get_visible(){
 	return $this->get_prop('visible');
     }
-    
+    function get_enabled()
+	{
+		return true;
+	}
     static function panelDblClick($self){
 	
 	$name = inputText(t('To change name of object'),t('New Name'),_c($self)->caption);

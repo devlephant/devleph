@@ -146,13 +146,13 @@ class TObject extends _Object {
     
     function isClass($class){
 	if (is_array($class)){
-	    $s_class = strtolower($this->className);
+	    $s_class = strtolower($this->get_className());
 	    foreach ($class as $el)
 		if (strtolower($el)==$s_class)
 		    return true;
 	    return false;
 	} else {
-	    return strtolower($class)==strtolower($this->className);
+	    return strtolower($class)==$s_class;
 	}
     }
     
@@ -509,9 +509,7 @@ class TComponent extends TObject {
 	
 	function __setClass(){
 	    $class = get_class($this);	
-	    
 	    $result = uni_unserialize($this->getHelpKeyword());
-	    
 	    $this->helpKeyword = uni_serialize(
 			array('CLASS' => $class,
 			      'PARAMS'=> $result['PARAMS'], 
@@ -522,7 +520,6 @@ class TComponent extends TObject {
 	function __getPropEx($nm){
 	    
 	    $result = uni_unserialize(control_helpkeyword($this->self, null));
-	    if(!isset($result['PARAMS'][strtolower($nm)])) return;
 			
 		return $result['PARAMS'][strtolower($nm)];
 	}
@@ -787,8 +784,8 @@ class TControl extends TComponent {
 	
 	
 	protected $_font;
-	#public $avisible;
-
+	//public $avisible;
+	
 	function __construct($onwer=nil,$init=true,$self=nil){
 	    parent::__construct($onwer,$init);
 			
