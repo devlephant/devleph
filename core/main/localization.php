@@ -129,29 +129,29 @@ class Localization {
 		control_text($s_obj, self::getMsg(trim($caption)));;
 	    }
 	    
-	    $hint = __rtti_get($s_obj, 'hint');
+	    $hint = gui_propGet($s_obj, 'hint');
 	    
 	    if ($hint && ereg('^{(.+)}$', $hint)){
 		$hint[0] = ' '; $hint[strlen($hint)-1] = ' ';
-		__rtti_set($s_obj, 'hint', self::getMsg(trim($hint)));
+		gui_PropSet($s_obj, 'hint', self::getMsg(trim($hint)));
 	    }
 	    
 	}
 	
 	$s_obj = $form->self;
 	    
-	    $caption = __rtti_get($s_obj, 'caption');
+	    $caption = gui_propGet($s_obj, 'caption');
 	    
 	    if ($caption && ereg('^{(.+)}$', $caption)){
 		$caption[0] = ' '; $caption[strlen($caption)-1] = ' ';
-		__rtti_set($s_obj, 'caption', self::getMsg(trim($caption)));
+		gui_PropSet($s_obj, 'caption', self::getMsg(trim($caption)));
 	    }
 	    
-	    $hint = __rtti_get($s_obj, 'hint');
+	    $hint = gui_propGet($s_obj, 'hint');
 	    
 	    if ($hint && ereg('^{(.+)}$', $hint)){
 		$hint[0] = ' '; $hint[strlen($hint)-1] = ' ';
-		__rtti_set($s_obj, 'hint', self::getMsg(trim($hint)));
+		gui_PropSet($s_obj, 'hint', self::getMsg(trim($hint)));
 	    }
 	
 	

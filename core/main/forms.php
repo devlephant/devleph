@@ -137,15 +137,16 @@ class TForm extends TControl {
 		} else
 			show_window( $this->handle, $mode);
 	}
+	function ShowOnTop($mode = SW_SHOW)
+	{
+		$this->show($mode);
+		$this->BringToFront();
+	}
 	function showModal(){
 		gui_formShowModal( $this->self );
 		return $this->modalResult;
 	}
-        
-	function close(){
-		gui_formClose($this->self);
-	}
-	    
+        	    
 	function set_modalResult($mr){
 		
 		form_modalresult($this->self,$mr);

@@ -454,15 +454,14 @@ class TTransparentPanel extends TControl {
 	
 	public function set_parent($v)
 	{
-		if( !$v->self || !$v->handle ) return;
 		if (is_object($v))
 		{
-			cntr_parent($this->self,$v->self);
+			gui_propSet($this->Self, 'Parent', $v->self);
 			if( $v->tag !== 2012)
 			gui_form_fixdwm($v->handle);
 	    } elseif (is_numeric($v)) {
-			cntr_parent($this->self, $v);
-			gui_form_fixdwm(c($v)->handle);
+			gui_propSet($this->Self, 'Parent', $v);
+			gui_form_fixdwm(gui_propGet($v, 'Handle'));
 		}
 	}
 }

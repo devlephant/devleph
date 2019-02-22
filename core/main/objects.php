@@ -146,13 +146,13 @@ class TObject extends _Object {
     
     function isClass($class){
 	if (is_array($class)){
-	    $s_class = strtolower($this->className);
+	    $s_class = strtolower($this->get_className());
 	    foreach ($class as $el)
 		if (strtolower($el)==$s_class)
 		    return true;
 	    return false;
 	} else {
-	    return strtolower($class)==strtolower($this->className);
+	    return strtolower($class)==$s_class;
 	}
     }
     
@@ -201,6 +201,8 @@ function asObject($obj,$type) //синоним функции описанной
 
 function reg_object($form,$name) //ещё один синоним, но с какой-то странной разницей...
 								//функцию reg_component не нашёл, так что пока одни вопросы.
+								//Функция reg component ищет компонент по владельцу и имени(глобально), возвращая его ID
+								//ReturnValue := integer(FindGlobalComponent(GetFormFromName(Parameters[0].Value),Parameters[1].Value))
 {
     return to_object(reg_component($form,$name));
 }
@@ -394,15 +396,10 @@ function rtti_set($obj, $prop, $val)
 								   //По-другому я хз как проверять объект взят из делфи или нет, может потом составлю реестр классов 
 								  //с помощью UnitClass, и уже там буду проверять...
 				if( is_numeric( $val->self ) and gui_propType($obj, $prop) == tkClass ) { //Если тип свойства - объект
-					
-					gui_propSetObject($obj, $prop, $val->self); //Функция для задания свойства, по-хорошему, стоит объединить и поставить проверку, сейчас займусь
+					gui_propSet($obj, $prop, $val->self); //Функция для задания свойства, по-хорошему, стоит объединить и поставить проверку, сейчас займусь
 					//$obj - объект, $prop - свойство, $val - SELF-объекта
 					return; 
 				}
-		} elseif( is_numeric($val) and gui_propType($obj, $prop) == tkClass  ) { //Если передали число, и тип свойства - объект
-			gui_propSetObject($obj, $prop, $val);
-			//$obj - объект, $prop - свойство, $val - SELF-объекта
-					return;
 		} elseif( is_array($val) )$val = '['. implode(',', $val) . ']';
 
     gui_propSet($obj, $prop, $val);
@@ -410,11 +407,13 @@ function rtti_set($obj, $prop, $val)
 }
 
 function rtti_get($obj,$prop){
+	
 	if( gui_propExists($obj->self, $prop) ){
 		$f = gui_propGet($obj->self, $prop);
    if( is_numeric( $f ) and gui_propType($obj->self, $prop) == tkClass ) { // Проверка типа свойства, если свойство является объектом, то, возвращаем как объект
    //Костыль ниже \/    \/
 	   if( class_exists( gui_class($f) ) ) {
+		   
 			$f = _c($f);
 	   }
    } 	
@@ -510,9 +509,7 @@ class TComponent extends TObject {
 	
 	function __setClass(){
 	    $class = get_class($this);	
-	    
 	    $result = uni_unserialize($this->getHelpKeyword());
-	    
 	    $this->helpKeyword = uni_serialize(
 			array('CLASS' => $class,
 			      'PARAMS'=> $result['PARAMS'], 
@@ -523,7 +520,6 @@ class TComponent extends TObject {
 	function __getPropEx($nm){
 	    
 	    $result = uni_unserialize(control_helpkeyword($this->self, null));
-	    if(!isset($result['PARAMS'][strtolower($nm)])) return;
 			
 		return $result['PARAMS'][strtolower($nm)];
 	}
@@ -788,8 +784,8 @@ class TControl extends TComponent {
 	
 	
 	protected $_font;
-	#public $avisible;
-
+	//public $avisible;
+	
 	function __construct($onwer=nil,$init=true,$self=nil){
 	    parent::__construct($onwer,$init);
 			
@@ -800,18 +796,6 @@ class TControl extends TComponent {
 		}
 		
 		$this->__setAllPropEx($init);
-	}
-	
-	function set_parent($obj){
-	    
-	    if (is_object($obj))
-		cntr_parent($this->self,$obj->self);
-	    elseif (is_numeric($obj))
-		cntr_parent($this->self, $obj);
-	}
-	
-	function get_parent(){
-	    return _c(cntr_parent($this->self,null));
 	}
 	
 	function parentComponents(){
@@ -830,17 +814,18 @@ class TControl extends TComponent {
 	    return $result;
 	}
 	
-	// возвращает список всех компонентов объекта по паренту, а не onwer'y
+	// возвращает список всех компонентов объекта по паренту, а не owner'y
 	function childComponents($recursive = true){
 	    
 	    $result = array();
-	    $owner  = c($this->get_owner());
+		$owner = $this->get_owner();
+	    $owner  = $owner>0? _c($owner): $this;
 	    $links  = $owner->get_componentLinks();
 	   
 	    foreach ($links as $link){
-		
-			if ( cntr_parent($link,null) == $this->self ){
-				$el = c($link);
+
+			if ( gui_Propget($link,'Parent') == $this->self ){
+				$el = _c($link);
 				$result[] = $el;
 				if ($recursive)
 				$result = array_merge($result, $el->childComponents());

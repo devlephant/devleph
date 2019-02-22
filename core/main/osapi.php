@@ -204,8 +204,7 @@ function winLocalPath($type){
 
 function selectDirectory($caption, $root, &$buff){
     
-    $root = replaceSr($root);
-    $res = select_directory($caption, $root);
+    $res = select_directory($caption, replaceSr($root));
     
     if ($res<>null){
         $res  = replaceSl($res);
