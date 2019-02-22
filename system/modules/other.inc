@@ -430,8 +430,6 @@ function setcursorpos($x, $y){}
 
 function setcursor($cursor){}
 
-function setcaretpos($x, $y){}
-
 function mouse_event($name, $x, $y, $param_1, $param_2){}
 
 function clienttoscreen($handle){}
