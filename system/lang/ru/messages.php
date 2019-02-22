@@ -563,7 +563,7 @@ $m['File "%s" already exists! You want to replace this file?'] = 'Файл "%s" уже 
 
 $m['Project'] = 'Проект';
 $m['New Project'] = 'Новый проект';
-$m['Delete all files and folder in this path'] = 'Удалить все файлы и папки по выбраному пути';
+$m['Delete all files and folders in this path'] = 'Удалить все файлы и папки по выбраному пути';
 $m['Show on Studio startup'] = 'Показывать при старте Devel Studio';
 $m['Path to file project *.msppr'] = 'Путь к файлу проекта *.msppr';
 $m['Project file must have a ".msppr" extension'] = 'Файл проекта должен иметь расширение ".msppr"';
