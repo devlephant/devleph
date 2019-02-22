@@ -360,7 +360,7 @@ $m['None']  = 'Нічого';
 $m['Picture'] = 'Картинка';
 $m['flat'] = 'Плоский';
 $m['transparent'] = 'Прозорий';
-$m['Layout picture'] = 'Позиція Картинки';
+$m['Picture Layout'] = 'Позиція Картинки';
 $m['Number glyphs'] = 'К-ть Картинок';
 $m['List'] = 'Список';
 $m['Item Index'] = 'Індекс Списку';
@@ -499,7 +499,7 @@ $m['File "%s" already exists! You want to replace this file?'] = 'Файл "%s" вже 
 
 $m['Project'] = 'Проект';
 $m['New Project'] = 'Новий Проект';
-$m['Delete all files and folder in this path'] = 'Видалити всі файли і папки по обраному путі';
+$m['Delete all files and folders in this path'] = 'Видалити всі файли і папки по обраному путі';
 $m['Show on Studio startup'] = 'Показувати при старті Devel Studio';
 $m['Path to file project *.msppr'] = 'Путь до файлу проекту *.msppr';
 $m['Project file must have a ".msppr" extension'] = 'Файл проекту повинен мати розширення ".msppr"';
