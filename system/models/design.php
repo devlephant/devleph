@@ -283,7 +283,8 @@ class myDesign {
         if ($c['CLASS'] == 'TCursor') return;
         
         $_sc->clearTargets();
-        if ($c){
+        
+		if ($c){
             if(c("fmComponents->c_search")->text !== ''){
 				c("fmComponents->c_search")->text = '';
 				//myOptions::set("components","groups", implode(",",c("fmMain->list")->selectedList));
@@ -303,9 +304,7 @@ class myDesign {
             $class = $c['CLASS'];
 
             $obj = new $class($fmEdit);
-            gui_propSet( $obj->self, 'StyleElements', '[]' );
-            if (($parent->self!==$fmEdit->self) && ($obj instanceof __TNoVisual) ){
-          
+            if (($parent->self!==$fmEdit->self) && is_subclass_of($obj,  '__TNoVisual') ){
                 $x     += getAbsoluteX($parent->self, $fmEdit->self);
                 $y     += getAbsoluteY($parent->self, $fmEdit->self);
                 $parent = $fmEdit;
@@ -357,7 +356,7 @@ class myDesign {
                 $h+= $h % $_sc->gridSize;
             }
 
-            if (($obj instanceof __TNoVisual)){
+            if (is_subclass_of($obj,  '__TNoVisual')){
                 
             } else {
                 $obj->w = round($w / $_sc->gridSize) * $_sc->gridSize;
@@ -366,7 +365,7 @@ class myDesign {
             /////////////////
             
             $obj->parent = $parent;
-            if (($obj instanceof __TNoVisual))
+            if (is_subclass_of($obj,  '__TNoVisual'))
                 $obj->text = '';
             else
                 $obj->text = vsprintf($c['CAPTION'].'%s', $id);
@@ -524,7 +523,7 @@ class myDesign {
         global $targetSelected;
         $obj = _c($targetSelected);
         
-        if (($obj instanceof __TNoVisual)) return;
+        if (is_subclass_of($obj,  '__TNoVisual')) return;
         myInspect::selectObject($obj,
                                 $dx + control_x($targetSelected,null), $dy + control_y($targetSelected,null));
 				

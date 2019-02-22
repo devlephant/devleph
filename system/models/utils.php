@@ -123,7 +123,7 @@ class myUtils {
             if (!in_array($class,array('TEvents','TSizeCtrl','TTabSheet'))){
                 //$_sc->registerTarget($el);
                
-                if (($el instanceof __TNoVisual)){
+                if (is_subclass_of($el,  '__TNoVisual')){
                     $el->label = '';
                     $el->obj   = '';
                     
