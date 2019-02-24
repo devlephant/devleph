@@ -415,7 +415,7 @@ class myProject {
 		self::initLastFiles($projectFile, $dnt);
 		
         $forms	 = file_get_contents($file);
-        $forms   = strlen(str_replace(["\w", "\t", " ", "\r", "\n"],'',$forms))? explode(_BR_,$forms): findfiles(dirname($file), 'dfm', 0, 0);
+        $forms   = strlen(str_replace(["\w", "\t", " ", "\r", "\n"],'',$forms))? explode(_BR_,$forms): findfiles(dirname($file), 'dfm', 0, 0, 0);
 		
         $file_ex = dirname($file).'/'.basenameNoExt($file);
     

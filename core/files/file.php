@@ -72,7 +72,7 @@ function rglob($pattern, $flags = 0) {
 }
 // поиск файлов в папке...
 // можно искать по расширению exts - список расширений
-function findFiles($dir, $exts = null, $recursive = false, $with_dir = false){
+function findFiles($dir, $exts = null, $recursive = false, $with_dir = false, $with_extension = true){
     $dir = realpath(str_replace(['\\\\\\', '\\\\', '///', '//'], ['\\', '\\', '/', '/'], $dir));
 	
     if (!is_dir($dir)) return [];
@@ -85,7 +85,7 @@ function findFiles($dir, $exts = null, $recursive = false, $with_dir = false){
 		$result = [];
 		foreach(($recursive? rglob($pattern, $flag): glob($pattern, $flag)) as $file)
 		{
-			$result[] = basename($file);
+			$result[] = $with_extension? basename($file): basenameNoExt($file);
 		}
 		return $result;
 	}
