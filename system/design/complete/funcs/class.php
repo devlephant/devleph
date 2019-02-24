@@ -58,10 +58,10 @@ class complete_Funcs {
         $funcs = array();
         
         $files = findFiles(dirname($projectFile).'/scripts/','php',false,true);
-		/*if(!empty($myProject->config['modules']))
+		if(!empty($myProject->config['modules']))
 			foreach( $myProject->config['modules'] as $x  )
 				if( file_exists( DS_DIR.'/ext/'.basenameNoExt($x).'.inc' ) ) $files[] = DS_DIR.'/ext/'.basenameNoExt($x).'.inc';
-		*/
+		
         $files = array_merge($files, self::$sourceFiles, findFiles(DOC_ROOT.'/modules/',array('php','inc'),false,true));
         
         foreach($files as $file){
@@ -203,9 +203,7 @@ class complete_Funcs {
                                       '[$r]bool[$b] ','[$r]void[$b] ','[$r]int[$b] ','[$r]resource[$b] ','[$r]object[$b] ','[$s]constant[$b] ',
                                       '[$g]class[$b] '),
                                       $text); 
-            //$arr['item'][] = $text;
             $arr['item'][] = myComplete::fromBB($text);
-            //pre($text);
         }
         
         return $arr;
@@ -286,9 +284,7 @@ class complete_Funcs {
             $text = str_replace('constant ', '[$s]constant[$b] ', $text);
             $text = str_replace('class ', '[$g]class[$b] ', $text);
             
-            //$arr['item'][] = $text;
             $arr['item'][] = myComplete::fromBB($text);
-            //pre($text);
         }
         
         $funcsArr = $arr;

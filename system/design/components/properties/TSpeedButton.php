@@ -24,7 +24,7 @@ $result[] = array(
                   'PROP'=>'picture',
                   );
 $result[] = array(
-                  'CAPTION'=>t('Layout picture'),
+                  'CAPTION'=>t('Picture Layout'),
                   'TYPE'=>'combo',
                   'PROP'=>'layout',
                   'NO_CONST'=>1,

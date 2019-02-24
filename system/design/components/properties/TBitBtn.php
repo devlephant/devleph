@@ -26,7 +26,7 @@ $result[] = array(
                   'CLASS'=>'TBitmap',
                   );
 $result[] = array(
-                  'CAPTION'=>t('Layout picture'),
+                  'CAPTION'=>t('Picture Layout'),
                   'TYPE'=>'combo',
                   'PROP'=>'layout',
 				  'NO_CONST'=>1,

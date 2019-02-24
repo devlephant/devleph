@@ -183,8 +183,8 @@ class DS_Loader
 		}
 
 		global $mainForm;
-		$mainForm = current(&$_FORMS);
-		$mainFormName = strtolower(key(&$_FORMS));
+		$mainForm = current($_FORMS);
+		$mainFormName = strtolower(key($_FORMS));
 		DSApi::initFormEx($mainForm, $mainFormName);
 	}
 
