@@ -2,7 +2,7 @@
 >Commit №215 Filesize:
 <br>35,8Mb (zipped)
 <br>100Mb (on hdd)
-
+<br><a href="https://github.com/KashaketCompany/DevelStudio-3.0-beta/releases">Changelog</a>
 ## EN
 ** Unofficial DevelStudio Patch. **
 <br>Just download, unpack it, and run DS KE.exe to proceed :)
