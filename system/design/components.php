@@ -558,8 +558,8 @@ if (EMULATE_DVS_EXE) return;
 	function get_sorted_methods($class)
 	{
 		$res = array();
-
-		$methods = gui_class_isset($class)?gui_class_methodList($class):include( dirname(__FILE__)."/components/methods/$class.php");
+		if(!gui_class_isset($class)) return include( dirname(__FILE__)."/components/methods/$class.php");
+		$methods = gui_class_methodList($class);
 
 		if( empty($methods) ) return $res;
 		foreach( $methods as $method_name=>$parameters )

@@ -287,15 +287,17 @@ class myCompile
 				$addstr = trim( file_get_contents( dirname($projectFile).'/scripts/'.$file ) );
 				$md5 = md5($addstr);
 				$addstr = php_strip_whitespace_ex($addstr);
-				if(stripos($addstr, '<?'))
+				if(stripos($addstr, '<?')==false)
 				{
 					$addstr = substr($addstr, stripos($addstr,'<?')+2);
 
-					if( strtolower(substr($addstr, 0, 5)) === 'php' )
+					if( strtolower(substr($addstr, 0, 3)) === 'php' )
 						$addstr = substr($addstr, 5);
 				}
-			if( substr($addstr, strlen($addstr)-2) === '?>' )
+			while( substr($addstr, strlen($addstr)-2) === '?>' )
+			{
 				$addstr = substr($addstr, 0, strlen($addstr)-2);
+			}
 				if( !in_array($md5, $md5s) )
 				{
 					$esc[] = $addstr;

@@ -1,7 +1,7 @@
 <?
 
 $GLOBALS['MODULES_INFO'] = array(
-'php_curl.dll' => array('ssleay32.dll','libeay32.dll'),
+'php_curl.dll' => array('ssleay32.dll','libeay32.dll', 'libssh2.dll'),
 'php_http.dll' => array('ssleay32.dll','libeay32.dll'),
 'php_mhash.dll'=> array('libmhash.dll'),
 'php_mcrypt.dll' => array('libmcrypt.dll'),

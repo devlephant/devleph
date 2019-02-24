@@ -1406,7 +1406,12 @@ class myProperties {
     }
     
     static function getMethodsInfo($class){
-        if( !strlen(trim($class) ) ) return array();
+        if( !strlen(trim($class) ) ) return [
+		[
+		'CAPTION'=>t('Free'),
+		'PROP'=>'free()',
+		'INLINE'=>'free ( void )',
+		]];
 		return get_sorted_methods($class);
     }
     

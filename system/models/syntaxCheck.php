@@ -34,6 +34,7 @@ class mySyntaxCheck {
 			$exp = null;
             if (is_array($err)){ // если 
 				if($obj_name==$form) $obj_name = false;
+				
                 self::$errors[$list->itemIndex+count(self::$errors)+1] = ['msg'=>$err['msg'], 'type'=>$err['type'],
                                         'line'=>$err['line'], 'event'=>$event,
                                         'form'=>$form, 'obj'=>$obj_name];
@@ -43,7 +44,7 @@ class mySyntaxCheck {
                 
 				message_beep(MB_ICONERROR);    
 
-				myCompile::addStatus('Error', ': {'.$obj_name.', '.t($err['event']).'}  '.$err['msg'].' '.t('on line').' '. ($err['line']));
+				myCompile::addStatus('Error', ': {'.$obj_name.', '.t($event).'}  '.$err['msg'].' '.t('on line').' '. ($err['line']));
 			}
             
         }
@@ -52,16 +53,18 @@ class mySyntaxCheck {
 	
 	public static function checkFile($filename)
 	{
-		$code = file_get_contents($filename);
+		$code = str_replace(['\t', ' ', '/**/'], ' ', file_get_contents($filename));
 		 if ( !trim($code) ) return;
 			
             $GLOBALS['__error_last'] = false;
 			if(!stripos('!'.$code, '<?')) return;
 			$code = substr($code, stripos($code,'<?')+2);
-			if( strtolower(substr($code, 0, 5)) === 'php' )
+			if( strtolower(substr($code, 0, 3)) === 'php' )
 				$code = substr($code, 5);
-			if( substr($code, strlen($code)-2) === '?>' )
+			while(substr($code, strlen($code)-2) === '?>')
+			{
 				$code = substr($code, 0, strlen($code)-2);
+			}
 			$code = str_replace(['  ', '	'], ' ', $code);
 			
 			$code = preg_replace( "#namespace\W+\S+\;|namespace\W+\S+\W+\;|namespace\S+\;|namespace\S+\W+\;#i", '	', $code, 1 );
@@ -71,7 +74,7 @@ class mySyntaxCheck {
 			$exp = null;
             if (is_array($err)){ // если 
 
-				$event = '/scripts/' . basename($file) . '.php';
+				$event = '/scripts/' . basename($filename);
                 self::$errors[$list->itemIndex+count(self::$errors)+1] = ['msg'=>$err['msg'], 'type'=>$err['type'],
                                         'line'=>$err['line'], 'event'=>$event,
                                         'form'=>'<>', 'obj'=>false];
