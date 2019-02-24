@@ -28,7 +28,7 @@ class mySyntaxCheck {
 				$spos = $spos? $spos-9:28;
 				$err = ['msg' => 'logic error, unexpected \''.substr($exp,9, $spos) .'\' {T_NAMESPACE}', 'line'=>1, 'type'=> E_USER_ERROR];
 			} else {
-				eval('return;'.$code);
+				eval('if(false){'.$code.'}');
 				$err = err_last();
 			}
 			$exp = null;
@@ -65,7 +65,7 @@ class mySyntaxCheck {
 			$code = str_replace(['  ', '	'], ' ', $code);
 			
 			$code = preg_replace( "#namespace\W+\S+\;|namespace\W+\S+\W+\;|namespace\S+\;|namespace\S+\W+\;#i", '	', $code, 1 );
-			eval('return;'.$code);
+			eval('if(false){'.$code.'}');
 			$err = err_last();
 			
 			$exp = null;
