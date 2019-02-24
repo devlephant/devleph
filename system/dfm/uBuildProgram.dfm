@@ -199,12 +199,12 @@ object fmBuildProgram: TfmBuildProgram
         MarginLeft = 0
         MarginRight = 0
       end
-      object use_bcompiler: TCheckBox
+      object c_compress: TCheckBox
         Left = 20
         Top = 176
         Width = 333
         Height = 17
-        Caption = '{Compile with BCompiler}'
+        Caption = '{Compress all binaries}'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11

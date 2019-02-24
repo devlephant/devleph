@@ -191,7 +191,7 @@ class myOptions {
         $ini->write('main','upx_level', c('fmBuildProgram->c_upx')->itemIndex);
         $ini->write('main','company', c('fmBuildProgram->e_companyname')->text);
         $ini->write('main','version', c('fmBuildProgram->e_version')->text);
-        
+        $ini->write('main','c_compress', c('fmBuildProgram->c_compress')->checked);
         $fileIco = SYSTEM_DIR . '/blanks/project.ico';
         if (file_exists($GLOBALS['__iconFile'])){
             
@@ -217,7 +217,7 @@ class myOptions {
         c('fmBuildProgram->c_upx')->itemIndex = $ini->read('main','upx_level', 0);
         c('fmBuildProgram->e_companyname')->text = $ini->read('main','company', '');
         c('fmBuildProgram->e_version')->text = $ini->read('main','version', '1.0.0.0');
-        
+        c('fmBuildProgram->c_compress')->checked = $ini->read('main','c_compress', false);
         $iconFile = $ini->read('main', 'icon', '');
         if ($iconFile){
             c('fmBuildProgram->im_icon')->picture->loadFromFile($iconFile);
@@ -247,10 +247,6 @@ class myOptions {
             }*/
             
             self::saveSettings();
-            
-            
-            //err_no();
-			pre(c('fmBuildProgram->c_attachphp',1)->checked);
             myCompile::adv_start(
                                  c('fmBuildProgram->path',1)->text,
                                  c('fmBuildProgram->c_attachphp',1)->checked,
@@ -260,6 +256,7 @@ class myOptions {
                                  c('fmBuildProgram->e_companyname',1)->text,
                                  c('fmBuildProgram->e_version',1)->text,
                                 /* c('fmBuildProgram->e_filedescription',1)->text */ '',
+								c('fmBuildProgram->c_compress',1)->checked,
                                  myVars::get('__iconFile')
                                 );
             

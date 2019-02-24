@@ -126,10 +126,7 @@ class myCompile
 	{
 		global $projectFile, $exten_dir;
 		$inc = file_get_contents(SYSTEM_DIR . '/blanks/inc.php');
-
-		$hash = md5('%*(' . $inc . '@#78');
 		exemod_addstr('$PHPSOULENGINE\\inc.php', $inc);
-		exemod_addstr('$PHPSOULENGINE\\inc.php.hash', $hash);
 
 		global $myProject;
 		$modules = array();
@@ -141,14 +138,6 @@ class myCompile
 		}
 
 		exemod_addstr('$PHPSOULENGINE\\mods', implode(',', $modules));
-		exemod_addstr('$PHPSOULENGINE\\mods.hash', md5('%*(' . implode(',', $modules) . '@#78'));
-		$md5s = array();
-
-		foreach ($modules as $mod) {
-			$md5s[] = md5_file(dirname(EXE_NAME) . $exten_dir . $mod);
-		}
-
-		exemod_addstr('$PHPSOULENGINE\\mods_m', implode(',', $md5s));
 	}
 
 	static public function generatePHP_Ini()
@@ -179,45 +168,25 @@ class myCompile
 		}
 
 		$ini = self::generatePHP_Ini();
-		$ini_hash = md5('%*(' . $ini . '@#78');
 
 		if ($attach_ini) {
-			exemod_addstr('$PHPSOULENGINE\\phpini', $ini);
+			exemod_addstr('$PHPSOULENGINE\\php.ini', $ini);
 		}
 		else {
 			file_put_contents($path . '/php.ini', $ini);
 		}
-
-		exemod_addstr('$PHPSOULENGINE\\phpini.hash', $ini_hash);
 		$php5ts = self::copyPHPts(false);
-		$php_hash = md5('%*(' . file_get_contents($php5ts) . '@#78');
-		exemod_addstr('$PHPSOULENGINE\\phpts.hash', $php_hash);
-		exemod_addstr('$PHPSOULENGINE\\phpts.size', intval(filesize($php5ts) * 3) / 4);
+		exemod_addstr('$PHPSOULENGINE\\info', serialize(
+		['version'	=> DV_VERSION,
+		'year'		=> DV_YEAR,
+		'prefix'	=> DV_PREFIX,
+		]
+		));
 	}
 
 	static public function getVersion()
 	{
 		return DV_VERSION.DV_PREFIX.DV_YEAR;
-	}
-
-	static public function getUID()
-	{
-		$uid = '';
-		/*foreach( range('a', 'z') as $n)
-			foreach( str_split(osinfo_diskserial($n)) as $f=>$v)
-				$uid += $f + ord($v);*/
-		$uid = md5(self::getVersion() . $uid . osinfo_displaydevice() . 'DS3');
-		return strtoupper($uid);
-	}
-
-	static public function attachSignature()
-	{
-		$uid = self::getUID();
-		$check_uid = substr(md5('DS3' . $uid), 0, -3);
-		//exemod_addstr('$FOR_ANTIVIRUS_START', '_');
-		exemod_addstr('$PHPSOULENGINE\\sign', $uid);
-		exemod_addstr('$PHPSOULENGINE\\sign.check', $check_uid);
-		//exemod_addstr('$PHPSOULENGINE\\warning.check', sha1('_' . 'DS3'));
 	}
 
 	static public function attachPHPSoulEngine($attach = true)
@@ -318,12 +287,15 @@ class myCompile
 				$addstr = trim( file_get_contents( dirname($projectFile).'/scripts/'.$file ) );
 				$md5 = md5($addstr);
 				$addstr = php_strip_whitespace_ex($addstr);
-				if( substr($addstr, 0, 5) == '<?php' )
-					$addstr = substr($addstr, 5);
-				if( substr($addstr, 0, 2) == '<?' )
-					$addstr = substr($addstr, 2);
-				if( substr($addstr, strlen($addstr)-2) == '?>' )
-					$addstr = substr($addstr, 0, strlen($addstr)-2);
+				if(stripos($addstr, '<?'))
+				{
+					$addstr = substr($addstr, stripos($addstr,'<?')+2);
+
+					if( strtolower(substr($addstr, 0, 5)) === 'php' )
+						$addstr = substr($addstr, 5);
+				}
+			if( substr($addstr, strlen($addstr)-2) === '?>' )
+				$addstr = substr($addstr, 0, strlen($addstr)-2);
 				if( !in_array($md5, $md5s) )
 				{
 					$esc[] = $addstr;
@@ -440,7 +412,6 @@ class myCompile
 		self::generateIncFile();
 		myModules::inc();
 		self::attachPHPEngine(false, false);
-		self::attachSignature();
 		self::attachPHPSoulEngine(false);
 		self::attachForms(false, false);
 		self::attachModules();
@@ -497,14 +468,8 @@ class myCompile
 	{
 		global $DEBUG_MODE, $myProject;
 		$DEBUG_MODE = $debug;
-		$exit = false;
+
 		if (!mySyntaxCheck::checkProject()) {
-			$exit = true;
-		}
-
-		mySyntaxCheck::showErrors();
-
-		if ($exit) {
 			return NULL;
 		}
 		myUtils::saveForm();
@@ -517,7 +482,9 @@ class myCompile
 		}
 	}
 
-	static public function adv_start($fileExe, $attachPHP = true, $attachSE = true, $attachData = true, $UPXLevel = 0, $companyName = '', $version = '', $desc = '', $fileIco = '')
+	static public function adv_start($fileExe, $attachPHP = true, $attachSE = true, $attachData = true, $UPXLevel = 0, $companyName = '', $version = '', $desc = '', 
+	$cabin = false,
+	$fileIco = '')
 	{
 		$startTime = microtime(1);
 		global $myProject;
@@ -573,8 +540,7 @@ class myCompile
 		exemod_start($fileExe);
 		exemod_addstr('$PHPSOULENGINE\\inc.php', self::generateIncFile());
 		self::attachPHPEngine($p_dir, true);
-		myModules::inc($fileExe);
-		self::attachSignature();
+		$res1 = $cabin?myModules::inc($fileExe):'';
 
 		if ($attachSE) {
 			self::attachPHPSoulEngine($attachSE);
@@ -594,7 +560,7 @@ class myCompile
 			self::attachResources();
 		}
 
-		myModules::inc($fileExe, $attachPHP);
+		$res1 = $cabin? array_merge($res1, myModules::inc($fileExe, $attachPHP) ): '';
 		$x = 0;
 
 		while (!file_exists($fileExe . '.$$$')) {
@@ -628,8 +594,15 @@ class myCompile
 		if( strlen(trim($companyName)) <= 0 ) $companyName = "Example Company";
 		winRes::changeInfo($fileExe, 'Copyright', $version, $companyName . " (c)" . date("Y"));
 		//*/
-		myUPX::compress($fileExe, $UPXLevel);
-		myUPX::compress(dirname($fileExe).'/php5ts.dll', $UPXLevel);
+		if( $UPXLevel > 0 )
+		{
+			myUPX::compress($fileExe, $UPXLevel);
+			myUPX::compress(dirname($fileExe).'/php5ts.dll', $UPXLevel);
+		}
+		if( $cabin )
+			foreach($res1 as $dll)
+			myUPX::compress($dll, $UPXLevel);
+		$res = null;
 		$endTime = microtime(1);
 		$buildTime = round( $endTime - $startTime, 1 );
 		
