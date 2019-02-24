@@ -287,7 +287,7 @@ function err_msg(){
 }
 
 function err_last(){
-    return $GLOBALS['__error_last'];
+    return isset($GLOBALS['__error_last'])? $GLOBALS['__error_last']: false;
 }
 
 function except_last(){

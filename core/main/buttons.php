@@ -66,11 +66,15 @@ class TPNGGlyph {
 	}
 	
 	public function loadFromFile($file){
-		
-		if ( fileExt($file) == 'png' )
+		switch(fileExt($file))
+		{
+		case 'png':
 			_c($this->self)->loadPNGFile($file);
-		else
+		case 'db':
+			return;
+		default:
 			_c($this->self)->picture->loadFromFile($file);
+		}
 	}
 	
 	public function loadAnyFile($filename){

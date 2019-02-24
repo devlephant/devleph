@@ -337,9 +337,8 @@ function c($str, $check_thread = true){
 	return $res;
 }
 
-function с($str, $cached = false) {
-	if( is_object($str) ) return $str;
-	return __call_component($str, $cached);
+function с($str, $cached = false){
+    return c($str, $cached);
 }
 
 // cSetProp('form.object.caption', 'text')
@@ -387,6 +386,7 @@ function rtti_set($obj, $prop, $val)
 	{
 		
 		$obj = is_object($obj)?$obj->self:$obj;
+		if( !gui_propExists($obj, $prop) ) return;
 		if( gui_propType($obj, $prop) == tkEvent) return;
 		if( is_callable($val) ){
 			if( gui_propType($obj, $prop) == 8) return;
@@ -791,7 +791,11 @@ class TControl extends TComponent {
 			
 		if ($self!==nil) $this->self = $self;
 		if ($init){
+			
 		    $this->avisible = $this->visible;
+			//please, do not remove this at any way
+			/*if( !is_bool(gui_propGet($this->self, 'Enabled')) )
+				pre( gettype(gui_propGet($this->self, 'Enabled')) );*/
 		    $this->aenabled = $this->enabled;
 		}
 		
@@ -1148,6 +1152,11 @@ function __autoload($name)
 	
 	if( substr($name, 0, 2) == 'ev' or  substr($name, 0, 7) == 'modifer' ) return;
 		if( gui_class_isset($name) )
-			eval("class $name extends TControl{}");
+		{	
+			$parent = gui_class_parent($name);
+			$parent = in_array(strtolower($parent), ['tpersistent', 'tinterfacedpersistent', 'iinterface'])? 'TControl': $parent;
+			$parent = class_exists($parent) && strlen($parent)? $parent: 'TControl';
+			eval("class $name extends $parent{}");
+		}
 }
 ?>

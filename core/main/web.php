@@ -38,17 +38,6 @@ $_c->CHROMIUM_EXEC_DEFCSSPATH = 36;
 $_c->CHROMIUM_EXEC_SOURCE = 38;
 $_c->CHROMIUM_EXEC_ADDRESS = 39;
 
-class TChromiumOptions extends TControl{
- public function get_enabled()
-	{
-		return true;
-	}
-	public function get_visible()
-	{
-		return true;
-	}   
-}
-
 class TChromium extends TControl {
     
     
@@ -60,10 +49,6 @@ class TChromium extends TControl {
 		obj_free($self);
 	}
 	public function get_enabled()
-	{
-		return true;
-	}
-	public function get_visible()
 	{
 		return true;
 	}
