@@ -38,10 +38,6 @@ $_c->CHROMIUM_EXEC_DEFCSSPATH = 36;
 $_c->CHROMIUM_EXEC_SOURCE = 38;
 $_c->CHROMIUM_EXEC_ADDRESS = 39;
 
-class TChromiumOptions extends TControl{
-    
-}
-
 class TChromium extends TControl {
     
     
@@ -52,7 +48,10 @@ class TChromium extends TControl {
 		chromium_free($self);
 		obj_free($self);
 	}
-	
+	public function get_enabled()
+	{
+		return true;
+	}
 	public function reload(){
 		chromium_exec($this->self, CHROMIUM_EXEC_RELOAD, 0);
 	}

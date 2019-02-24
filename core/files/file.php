@@ -76,10 +76,9 @@ function findFiles($dir, $exts = null, $recursive = false, $with_dir = false){
     $dir = realpath(str_replace(['\\\\\\', '\\\\', '///', '//'], ['\\', '\\', '/', '/'], $dir));
 	
     if (!is_dir($dir)) return [];
-	$pattern = is_array($exts)?  
-				"$dir\\*.{" . implode(',', $exts) . "}":
-					is_null($exts)? 
-						"$dir\\*.*": "$dir\\*.$exts";
+	$pattern = ($exts===null||!$exts)? 
+						"$dir\\*.*": 
+						is_array($exts)?"$dir\\*.{" . implode(',', $exts) . "}": "$dir\\*.$exts";
 	$flag = is_array($exts)? GLOB_BRACE: GLOB_NOSORT;
 	if( !$with_dir )
 	{

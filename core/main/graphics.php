@@ -490,9 +490,9 @@ class TBitmap extends TGraphic{
         bitmap_savefile($this->self,replaceSr($filename));
     }
     
-    // загрузка любых форматов...
+    // загрузка любых форматов....
     public function loadAnyFile($filename){
-	
+		
 		$filename = replaceSr(getFileName($filename));
 		convert_file_to_bmp($filename, $this->self);
     }
