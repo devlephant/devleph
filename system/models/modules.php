@@ -94,6 +94,7 @@ class myModules {
     static function inc($file = false, $attach_dll = false){
         
         global $myProject, $projectFile, $exten_dir;
+		$result = [];
 		if(file_exists(dirname($projectFile).'/c_php.ini')){
 			$scl = parse_ini_file(dirname($projectFile).'/c_php.ini');
 			$exten_dir = str_replace(array('.\\', '\\'), '/', $scl['extension_dir']);
@@ -115,6 +116,7 @@ class myModules {
             // копируем сам модуль, если не скопирован
             //if (!file_exists(dirname($file).'/ext/'.$mod)){
                 if (!$attach_dll){
+				
                     $md5_1 = $md5_2 = false;
                     
                     if ( is_file($dir.'ext/'.$mod) ){
@@ -137,7 +139,10 @@ class myModules {
                 
                     if (is_file($dir . $dll))
                     if (!file_exists(dirname($file).'/'.$dll))
+					{
                         copy($dir . $dll, dirname($file).'/'.$dll);
+						$result[] = dirname($file).'/'.$dll;
+					}
             }
         }
        
@@ -156,7 +161,7 @@ class myModules {
 			
 	    $class = $el['CLASS'];
 	    $info  = $componentClassesEx[ $class ];
-		//Добавляем "моды"
+		/*/Добавляем "моды"
 		global $myProject;
 		if( isset($myProject->config['mods']) )
 	    if( is_array($myProject->config['mods']) )
@@ -175,6 +180,7 @@ class myModules {
 									copy($xfile, dirname($file).'/'.basename($xfile));
 								} elseif ( is_dir($xfile) ){
 									dir_copy($xfile, dirname($file).'/'.basename($xfile));
+									$result[] = dirname($file).'/'.basename($xfile);
 								}
 						}
 	    			}else{
@@ -190,7 +196,7 @@ class myModules {
 					}
 				}
 			}
-		}
+		}*/
 		
 		if( isset($info['DLLS']) )
 	    if ( is_array($info['DLLS']) ){
@@ -204,12 +210,14 @@ class myModules {
 			
 			if (is_file($xfile)){
 			    copy($xfile, dirname($file).'/'.$dll);
+				$result[] =  dirname($file).'/'.$dll;
 			} elseif ( is_dir($xfile) ){
 			    dir_copy($xfile, dirname($file).'/'.basename($xfile));
 			}
 		    }
 	    }
 	}
+	return $result;
     }
     
     

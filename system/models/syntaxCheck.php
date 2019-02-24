@@ -4,128 +4,99 @@ class mySyntaxCheck {
     
     static $errors;
     static $noerrors;
-    
-    public static function saveFiles($dir, $form, $obj_name){
+	public static function checkForm($form, $obj_name){
         
         $form     = strtolower($form);
         $obj_name = strtolower($obj_name);
-        $result = array();
+		
         if ($form == $obj_name)
             $eventList = eventEngine::$DATA[$form]['--fmedit'];
         else
             $eventList = eventEngine::$DATA[$form][$obj_name];
+		$list = c('fmMain->debugList');
         if($eventList)
         foreach ($eventList as $event=>$code){
             
-            
-            $code = 'if (!function_exists("my_func")){ function my_func() { '.$code."\n".'} }';
-
-            if ( in_array(md5($code),self::$noerrors) || !trim($code) ) continue;
-            
-            if ($form == $obj_name)
-                $file = $dir.'/'.$form.'.'.$event.'.php';                
-            else 
-                $file = $dir.'/'.$form.'.'.$obj_name.'.'.$event.'.php';
-            
-            
-            file_p_contents($file, $code);
-            $result[] = replaceSr($file);
-        }
-        
-        return $result;
-    }
-    
-    function parseErrors($file){
-        $list = c('fmMain->debugList');
-		$file = str_replace('//', '/', $file);
-        $result = file($file);
-		
-        $dir    = dirname($file);
-        foreach ($result as $line){
-            $info = explode('|',$line);
-				$tmp = explode('.', basenameNoExt($info[0]));
-				$event = $tmp[count($tmp)-1];
-				$form  = $tmp[0];
-            if (trim($info[1]) and !( $form == '1!scripts' and (trim($info[1]) == 'Namespace declaration statement has to be the very first statement in the script'))){ // если есть ошибка
-                $obj   = count($tmp)==2 ? '' : $tmp[1];
-                self::$errors[$list->itemIndex+count(self::$errors)+1] = array('msg'=>trim($info[1]), 'type'=>(int)$info[2],
-                                        'line'=>(int)$info[3], 'event'=>$event,
-                                        'form'=>$form, 'obj'=>$obj);
-            } else {
-                if( file_exists( str_replace('//', '/', $dir.'/'.$info[0]) ) )
-					self::$noerrors[] = md5_file( str_replace('//', '/', $dir.'/'.$info[0]) );
-            }
-        }
-    }
-    
-    public static function showErrors(){
-        
-        $list = c('fmMain->debugList');
-        $list->onClick = 'mySyntaxCheck::clickError';
-        $list->onDblClick = 'mySyntaxCheck::dblClickError';
-        foreach ((array)self::$errors as $err){
-            
-            $obj_name = $err['form'];
-            if ($err['obj'])
-                $obj_name .= '->'.$err['obj'];
+            if ( !trim($code) ) continue;
+			
+            $GLOBALS['__error_last'] = false;
+			$exp = explode(_BR_, str_replace(['\t', ' ', '/**/'], '', $code))[0];
+			if( strtolower(substr($exp, 0, 9)) === 'namespace' )
+			{
+				$spos = stripos($exp, ';');
+				$spos = $spos? $spos: stripos($exp, '\\');
+				$spos = $spos? $spos-9:28;
+				$err = ['msg' => 'logic error, unexpected \''.substr($exp,9, $spos) .'\' {T_NAMESPACE}', 'line'=>1, 'type'=> E_USER_ERROR];
+			} else {
+				eval('return;'.$code);
+				$err = err_last();
+			}
+			$exp = null;
+            if (is_array($err)){ // если 
+				if($obj_name==$form) $obj_name = false;
+                self::$errors[$list->itemIndex+count(self::$errors)+1] = ['msg'=>$err['msg'], 'type'=>$err['type'],
+                                        'line'=>$err['line'], 'event'=>$event,
+                                        'form'=>$form, 'obj'=>$obj_name];
+				$list->onClick = 'mySyntaxCheck::clickError';
+				$list->onDblClick = 'mySyntaxCheck::dblClickError';
+                $obj_name = $obj_name? $form .'->'. $obj_name: $form;
                 
-            if ($obj_name=='1!scripts'){
-                $obj_name = t('Скрипт проекта');
-                $err['event'] = '/scripts/'.$err['event'].'.php';
-            }
+				message_beep(MB_ICONERROR);    
+
+				myCompile::addStatus('Error', ': {'.$obj_name.', '.t($err['event']).'}  '.$err['msg'].' '.t('on line').' '. ($err['line']));
+			}
+            
+        }
+        
+    }
+	
+	public static function checkFile($filename)
+	{
+		$code = file_get_contents($filename);
+		 if ( !trim($code) ) return;
+			
+            $GLOBALS['__error_last'] = false;
+			if(!stripos('!'.$code, '<?')) return;
+			$code = substr($code, stripos($code,'<?')+2);
+			if( strtolower(substr($code, 0, 5)) === 'php' )
+				$code = substr($code, 5);
+			if( substr($code, strlen($code)-2) === '?>' )
+				$code = substr($code, 0, strlen($code)-2);
+			$code = str_replace(['  ', '	'], ' ', $code);
+			
+			$code = preg_replace( "#namespace\W+\S+\;|namespace\W+\S+\W+\;|namespace\S+\;|namespace\S+\W+\;#i", '	', $code, 1 );
+			eval('return;'.$code);
+			$err = err_last();
+			
+			$exp = null;
+            if (is_array($err)){ // если 
+
+				$event = '/scripts/' . basename($file) . '.php';
+                self::$errors[$list->itemIndex+count(self::$errors)+1] = ['msg'=>$err['msg'], 'type'=>$err['type'],
+                                        'line'=>$err['line'], 'event'=>$event,
+                                        'form'=>'<>', 'obj'=>false];
+
             message_beep(MB_ICONERROR);    
 
-			myCompile::addStatus('Error', ': {'.$obj_name.', '.t($err['event']).'}  '.$err['msg'].' '.t('on line').' '. ($err['line']));
-			
-        }
-    }
+			myCompile::addStatus('Error', ': {<--'.t('ScriptF').'-->, '.$event.'}  '.$err['msg'].' '.t('on line').' '. ($err['line']));
+            }
+	}
     
     public static function checkProject($prefix = ''){
         
         global $projectFile;
-        self::$errors = array();
-        
-        if (!$prefix)
-            $prefix = md5($projectFile);
-        
-        $dir   = TEMP_DIR.'/ds3/syntaxcheck/'.$prefix.'/';
-        $list  = myProject::getFormsObjects();
-        $files = array();
-        
-        if (file_exists($dir.'/noerror.log')){
+        self::$errors = array();         
+        foreach ( myProject::getFormsObjects() as $form => $objs ){
             
-            self::$noerrors = explode("\n", file_get_contents($dir.'/noerror.log'));
-        }
-        
-        foreach ( $list as $form => $objs ){
-            
-            $files = array_merge( $files, self::saveFiles($dir, $form, $form) );
+            self::checkForm($form, $form);
             foreach ($objs as $obj)
-                $files = array_merge( $files, self::saveFiles($dir, $form, $obj['NAME']) );    
+                self::checkForm($form, $obj['NAME']);    
         }
         
-        
-        $scripts = findFiles( dirname($projectFile).'/scripts/', 'php' );
-        foreach ($scripts as $file){
-            copy(dirname($projectFile).'/scripts/'.$file, $dir.'/1!scripts.'.$file);
-            $files[] = $dir.'/1!scripts.'.$file;
+        foreach (findFiles( dirname($projectFile).'/scripts/', 'php',0,1 ) as $file){
+            self::checkFile($file);
         }
-        
-        
-        if (count($files)==0) return true;
-        file_p_contents($dir.'/files.chk', implode("\n", $files));
-        
-        
-        Kill_Task('phpUtils.exe');
-        shell_execute_wait2(SYSTEM_DIR . '/../phpUtils.exe','"'.$dir.'/files.chk" "'.$dir.'/error.log"', 'open', SW_HIDE);
-        
-        self::parseErrors($dir.'/error.log');
-        file_put_contents($dir.'/noerror.log', implode("\n", self::$noerrors));
-        
-        foreach ($files as $file)
-            unlink($file);
-        
-        
+
         if (count(self::$errors)>0)
             return false;
         else
@@ -142,7 +113,7 @@ class mySyntaxCheck {
         $error = self::$errors[$index];
         if (!$error) return;
         
-        if ($error['form']=='1!scripts'){
+        if ($error['form']=='<>'){
             
             return;
         }
@@ -175,7 +146,7 @@ class mySyntaxCheck {
         
         self::clickError($self);
         
-        if ($error['form']=='1!scripts'){
+        if ($error['form']=='<>'){
             
             global $projectFile;
             

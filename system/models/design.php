@@ -825,7 +825,7 @@ class myDesign {
 			c('fmMain->itemLock',1)->picture->loadFromFile( DOC_ROOT . "images/btns/{$theme}/mi_unlock.bmp" );
 			c('fmMain->itemLock',1)->caption = t("Unlock component");
 		}
-        ñ('fmMain->itemGroup',1)->caption = count(self::getGroup($selObj))>0 ?
+        c('fmMain->itemGroup',1)->caption = count(self::getGroup($selObj))>0 ?
                                             t('Ungroup') : t('Group');
     }
     

@@ -287,12 +287,15 @@ class myCompile
 				$addstr = trim( file_get_contents( dirname($projectFile).'/scripts/'.$file ) );
 				$md5 = md5($addstr);
 				$addstr = php_strip_whitespace_ex($addstr);
-				if( substr($addstr, 0, 5) == '<?php' )
-					$addstr = substr($addstr, 5);
-				if( substr($addstr, 0, 2) == '<?' )
-					$addstr = substr($addstr, 2);
-				if( substr($addstr, strlen($addstr)-2) == '?>' )
-					$addstr = substr($addstr, 0, strlen($addstr)-2);
+				if(stripos($addstr, '<?'))
+				{
+					$addstr = substr($addstr, stripos($addstr,'<?')+2);
+
+					if( strtolower(substr($addstr, 0, 5)) === 'php' )
+						$addstr = substr($addstr, 5);
+				}
+			if( substr($addstr, strlen($addstr)-2) === '?>' )
+				$addstr = substr($addstr, 0, strlen($addstr)-2);
 				if( !in_array($md5, $md5s) )
 				{
 					$esc[] = $addstr;
@@ -465,14 +468,8 @@ class myCompile
 	{
 		global $DEBUG_MODE, $myProject;
 		$DEBUG_MODE = $debug;
-		$exit = false;
+
 		if (!mySyntaxCheck::checkProject()) {
-			$exit = true;
-		}
-
-		mySyntaxCheck::showErrors();
-
-		if ($exit) {
 			return NULL;
 		}
 		myUtils::saveForm();
@@ -485,7 +482,9 @@ class myCompile
 		}
 	}
 
-	static public function adv_start($fileExe, $attachPHP = true, $attachSE = true, $attachData = true, $UPXLevel = 0, $companyName = '', $version = '', $desc = '', $fileIco = '')
+	static public function adv_start($fileExe, $attachPHP = true, $attachSE = true, $attachData = true, $UPXLevel = 0, $companyName = '', $version = '', $desc = '', 
+	$cabin = false,
+	$fileIco = '')
 	{
 		$startTime = microtime(1);
 		global $myProject;
@@ -541,7 +540,7 @@ class myCompile
 		exemod_start($fileExe);
 		exemod_addstr('$PHPSOULENGINE\\inc.php', self::generateIncFile());
 		self::attachPHPEngine($p_dir, true);
-		myModules::inc($fileExe);
+		$res1 = $cabin?myModules::inc($fileExe):'';
 
 		if ($attachSE) {
 			self::attachPHPSoulEngine($attachSE);
@@ -561,7 +560,7 @@ class myCompile
 			self::attachResources();
 		}
 
-		myModules::inc($fileExe, $attachPHP);
+		$res1 = $cabin? array_merge($res1, myModules::inc($fileExe, $attachPHP) ): '';
 		$x = 0;
 
 		while (!file_exists($fileExe . '.$$$')) {
@@ -595,8 +594,15 @@ class myCompile
 		if( strlen(trim($companyName)) <= 0 ) $companyName = "Example Company";
 		winRes::changeInfo($fileExe, 'Copyright', $version, $companyName . " (c)" . date("Y"));
 		//*/
-		myUPX::compress($fileExe, $UPXLevel);
-		myUPX::compress(dirname($fileExe).'/php5ts.dll', $UPXLevel);
+		if( $UPXLevel > 0 )
+		{
+			myUPX::compress($fileExe, $UPXLevel);
+			myUPX::compress(dirname($fileExe).'/php5ts.dll', $UPXLevel);
+		}
+		if( $cabin )
+			foreach($res1 as $dll)
+			myUPX::compress($dll, $UPXLevel);
+		$res = null;
 		$endTime = microtime(1);
 		$buildTime = round( $endTime - $startTime, 1 );
 		
