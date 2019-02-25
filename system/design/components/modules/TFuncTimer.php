@@ -17,16 +17,16 @@ class TFuncTimer extends __TNoVisual {
 			{
 				call_user_func($obj->onTimer, $obj->self);
 			} else if( method_exists($obj, $obj->onTimer) ) {
-				call_user_method($obj->onTimer, $obj, $obj->self);
+				call_user_func([$obj, $obj->onTimer], $obj->self);
 			} else if( class_exists($obj->onTimer) ) if( method_exists($obj->onTimer, 'onTimer') )
-				call_user_method('onTimer', $obj->onTimer, $obj->self);
+				call_user_func([$obj->onTimer,'onTimer'], $obj->self);
 				
 		}else if( is_callable($obj->onTimer))
 		{
 			call_user_func($obj->onTimer, $obj->self);
 		} else if( is_object($obj->onTimer) )
 			if( method_exists($obj->onTimer, 'onTimer') )
-				call_user_method('onTimer', $obj->onTimer, $obj->self);
+				call_user_func([$obj->onTimer, 'onTimer'], $obj->self);
 	}
     }
     

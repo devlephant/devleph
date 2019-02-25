@@ -441,7 +441,13 @@ class myCompile
 		myDesign::szRefresh();
 		err_status($_e);
 	}
-
+	static function checkphp($file)
+	{
+		if( file_exists($file) )
+		if( filesize($file) === filesize(dirname(DOC_ROOT).'/php5ts.dll') )
+			return true;
+		return false;
+	}
 	static public function copyPHPts($to)
 	{
 		global $projectFile;
@@ -460,7 +466,7 @@ class myCompile
 
 		$m = 0;
 
-		if (!file_exists($p_dir . 'php5ts.dll'))
+		if (!self::checkphp(($p_dir . 'php5ts.dll')))
 		copy($php_dir . 'php5ts.dll', $p_dir . 'php5ts.dll');
 		
 		return $p_dir . 'php5ts.dll';

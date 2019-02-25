@@ -484,23 +484,7 @@ class TCheckListBox extends TControl {
 	}
 }
 
-class TSplitter extends TControl {
-	
-}
-
-class TStaticText extends TControl {
-	
-}
-
-class TControlBar extends TControl {
-	
-}
-
-
-
-class TColorBox extends TControl {
-	
-}
+class TSplitter extends TControl {function get_enabled(){return true;}}
 
 class TStatusBar extends TControl {
 	
@@ -513,15 +497,6 @@ class TStatusBar extends TControl {
 			$this->simplePanel   = true;
 		}
 	}
-}
-
-class TColorListBox extends TControl {
-	
-}
-
-
-class TTabSet extends TControl {
-	
 }
 
 
