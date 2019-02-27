@@ -22,9 +22,9 @@ function res($resName, $to_del = false){
     
     if (!is_dir(dirname($to_file)))
         mkdir(dirname($to_file),0777,true);
-    
+    exemod_start(param_str(0));
     exemod_extractfile('$RES$'.$resName, $to_file);
-    
+    exemod_finish();
     if ($to_del){
         
         setInterval($to_del, 'if(is_writable("'.replaceSl($to_file).'")) unlink("'.replaceSl($to_file).'");');
@@ -53,8 +53,12 @@ function getRes($resName){
     
     global $__config;
     
-    if ($__config['config']['attachData'])
-        return exemod_extractstr('$RES$'.$resName);
+    if ($__config['config']['attachData']){
+		exemod_start(param_str(0));
+        $result = exemod_extractstr('$RES$'.$resName);
+		exemod_finish();
+		return $result;
+	}
 	
     return file_get_contents($file = DOC_ROOT .'/'. $__config['config']['data_dir'].'/'.$resName);
 }
@@ -74,7 +78,9 @@ function setRes($resName, $value){
 // возвращает массив всех прикрепленных файлов
 function resList(){
 	global $__config;
+	exemod_start(param_str(0));
 	$result = unserialize(exemod_extractstr('$RESLIST$'));
+	exemod_finish();
 	if(empty($result) || !is_array($result))
 		return findFiles( realpath( DOC_ROOT .'/'. $__config['config']['data_dir'].'/' ), null, true );
     return (!empty($result))? str_replace('$RES$','',$result): $result;

@@ -78,11 +78,6 @@ class myCompile
 		$list->itemIndex = $list->items->count-1;	
 	}
 	
-	static public function afterLoad()
-	{
-		//define('DS_DEBUG_MODE', false);
-	}
-
 	static public function addCompileCode($code)
 	{
 		self::$codes[] = $code;
@@ -370,8 +365,6 @@ class myCompile
 			$exten_dir = str_replace(array('.\\', '\\'), '/', $scl['extension_dir']);
 		}
 		
-		
-		$_e = err_status(false);
 		global $myProject;
 		myUtils::saveForm();
 		myDesign::szRefresh();
@@ -381,27 +374,23 @@ class myCompile
 		$php_dir = dirname(replaceSl(EXE_NAME)) . '/php/';
 		$p_dir = dirname($projectFile) . '/php/';
 		$exeFile = dirname($projectFile) . '/' . basenameNoExt($projectFile) . '.exe';
-
+		
 		if (file_exists($exeFile)) {
 			if(	$ProjectProc <>0 ){
 				exec('taskkill /pid '.$ProjectProc.' /T /F');
 				$ProjectProc = 0;
 			}
-			$s_err = err_status(false);
-			$id = unlink($exeFile);
+			unlink($exeFile);
 			for ($q = 0; $q < 20; $q++) {
 				if (file_exists($exeFile)) {
 					unlink($exeFile);
 				}
 			}
-
-			err_status($s_err);
 			if (file_exists($exeFile) && $check) {
 				myCompile::setStatus('Warning', t('Файл программы занят, пробуем снова') . '...');
 				sleep(1);
 				return self::_start(false);
 			}
-
 			if (file_exists($exeFile)) {
 				myCompile::setStatus('Error', t('Файл программы занят, попробуйте уничтожить её процесс') . '!');
 				message_beep(MB_ICONERROR);
@@ -410,16 +399,16 @@ class myCompile
 		}
 
 		x_copy(self::getExeModule(), $exeFile);
-		exemod_start(self::getExeModule());
+		exemod_finish();
+		exemod_start($exeFile);
 		self::generateIncFile();
 		myModules::inc();
 		self::attachPHPEngine(false, false);
 		self::attachPHPSoulEngine(false);
 		self::attachForms(false, false);
 		self::attachModules();
-		exemod_saveexe($exeFile);
+		exemod_save();
 		exemod_finish();
-		
 		$fileIco = myVars::get('__iconFile');
 		//self::setStatus('Debug', 'Icon: '.$fileIco);
 		
@@ -504,8 +493,8 @@ class myCompile
 
 		if (file_exists($fileExe)) {
 			unlink($fileExe);
-			unlink($p_dir . 'php5ts.dll');
-			unlink($p_dir . 'php.ini');
+			unlink(dirname($fileExe) . '/php5ts.dll');
+			unlink(dirname($fileExe) . '/php.ini');
 		}
 
 		if (!is_dir(dirname($fileExe))) {
@@ -529,22 +518,10 @@ class myCompile
 		if (file_exists($fileIco)) {
 			while (!is_writable($fileExe)) {
 			}
-
-			
 		}
-
-		winRes::changeIcon($fileExe, $fileIco);
-		/*
-		winRes::changeVersion($fileExe, $version);
-		winRes::changeInfo($fileExe, 'ProductVersion', $version, $version);
-		winRes::changeInfo($fileExe, 'FileVersion', $version, $version);
-		if( strlen(trim($companyName)) <= 0 ) $companyName = "Example Company";
-		winRes::changeInfo($fileExe, 'Copyright', $version, $companyName . " (c)" . date("Y"));
-		//*/
-		
 		$p_dir = false;
 		self::copyPHPts(dirname($fileExe));
-
+		exemod_finish();
 		exemod_start($fileExe);
 		exemod_addstr('$PHPSOULENGINE\\inc.php', self::generateIncFile());
 		self::attachPHPEngine($p_dir, true);
@@ -570,30 +547,9 @@ class myCompile
 
 		$res1 = $cabin? array_merge($res1, myModules::inc($fileExe, $attachPHP) ): '';
 		$x = 0;
-
-		while (!file_exists($fileExe . '.$$$')) {
-			exemod_saveexe($fileExe . '.$$$');
-			$x++;
-
-			if (50 < $x) {
-				break;
-			}
-		}
-
+		exemod_save();
 		exemod_finish();
-		
-		unlink($fileExe);
 
-		if (file_exists($fileExe . '.$$$')) {
-			while (!rename($fileExe . '.$$$', $fileExe)) {
-			}
-		}
-
-		if ($attachPHP) {
-			unlink($p_dir . 'php5ts.dll');
-			unlink($p_dir . 'php.ini');
-			rmdir($p_dir);
-		}
 		winRes::changeIcon($fileExe, $fileIco);
 		/*
 		winRes::changeVersion($fileExe, $version);

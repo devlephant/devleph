@@ -22,9 +22,10 @@ class DS_Loader
 	public function __construct()
 	{
 		global $LOADER;
+		if($LOADER == $this) return;
 		$LOADER = $this;
+		
 		$this->initVars();
-
 		if (!$this->loadSE()) {
 			gui_message("FATAL ERROR OF LOADING");
 			return NULL;
@@ -37,6 +38,7 @@ class DS_Loader
 		$this->loadForms();
 		DSApi::__doStartFunc();
 		$this->startApp();
+		exemod_finish();
 	}
 
 	public function InitVars()
@@ -243,7 +245,7 @@ class DS_Loader
 		$this->isStart = true;
 	}
 }
-	
+exemod_start(param_str(0));
 if ( !( $globals['LOADER'] = new DS_Loader ) )
 {
 	die();
