@@ -45,7 +45,7 @@ class DS_Loader
 	{
 		srand();
 		$GLOBALS['APP_DESIGN_MODE'] = false;
-		$this->tmpDir = win_tempdir();
+		$this->tmpDir = getenv('TEMP');
 		$this->exeName = param_str(0);
 		$this->startTime = microtime(1);
 		chdir(dirname($this->exeName));

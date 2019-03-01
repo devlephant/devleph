@@ -77,7 +77,7 @@ class myHistory {
     
     static function dir(){
         
-        $dir = replaceSl( win_tempdir() . '\\DS\\History\\' . md5($projectFile) . '\\' );
+        $dir = replaceSl( getenv('TEMP') . '\\DS\\History\\' . md5($projectFile) . '\\' );
         return $dir;
     }
     
