@@ -457,13 +457,18 @@ function set_event($self, $event, $value){
 }
 
 function uni_serialize($str){
-	    
-	    return base64_encode(serialize($str));
+	return base64_encode(igbinary_serialize($str));
 }
 
 function uni_unserialize($str){
-
-		$result = unserialize(base64_decode($str));
+	    
+	    $st = err_status(0);
+	    $result = igbinary_unserialize(base64_decode($str));
+	    
+	    if ( err_msg() ){
+			$result = unserialize(base64_decode($str));
+	    }
+	    err_status($st);
 	    
 	    return $result;
 }
