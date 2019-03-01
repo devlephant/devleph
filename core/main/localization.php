@@ -52,7 +52,7 @@ class Localization {
 	
 	foreach ($xml as $item){
 	    
-	    $__M[(string)$item->n] = iconv('utf-8', 'windows-1251', (string)$item->v );
+	    $__M[self::toEncoding((string)$item->n)] = self::toEncoding((string)$item->v );
 	}
 	
 	

@@ -218,7 +218,7 @@ $GLOBALS['Desktop']= winLocalPath(CSIDL_DESKTOP);
 $GLOBALS['StartUp']= winLocalPath(CSIDL_STARTMENU);
 
 define('EXE_NAME',replaceSl(param_str(0)),false);
-define('TEMP_DIR',replaceSl(win_tempdir()), false);
+define('TEMP_DIR',replaceSl(getenv('TEMP')), false);
 define('DESKTOP_DIR', replaceSl($GLOBALS['Desktop']));
 
 for ($i=0;$i<=param_count();$i++)
