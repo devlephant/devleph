@@ -1,0 +1,5 @@
+[main] 
+name=TSock
+author=DENFER
+ver=1.0.0 alpha
+desc=Компонент для работы с Socket.IO сервером

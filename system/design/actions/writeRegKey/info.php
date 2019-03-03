@@ -1,7 +1,7 @@
 <?
 
 /*
-    SoulEngine actions
+    DevelStudio actions
 
     Dim-S Software (c) 2009
                                      Has created Haker
