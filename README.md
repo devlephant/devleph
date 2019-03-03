@@ -13,7 +13,7 @@ Unicode partially support (will be full as soon as possible)
 ** Unofficial DevelStudio Patch. **
 <br>Just download, unpack it, and run DS KE.exe to proceed :)
 
-Compatible SoulEngine Version Can Be Found -> <a href="https://github.com/Kashaket/soulengine">HERE</a>
+Compatible SoulEngine Version Can Be Found -> <a href="https://github.com/KashaketCompany/soulengine">HERE</a>
 
 Autors: Andrew Zenin, Artem Ukolov<br>Testing: Vyascheslav Novikov (Manofjoe), Alexander Kobozev ([s]Alex)
 
@@ -29,7 +29,7 @@ For the full debug, you can create file 'lookout_log.txt' near Ds Ke.exe, all er
 ** Неофициальная правка DevelStudio. **
 <br>Просто скачайте, распакуйте это, и запустите DS KE.exe для использования :)
 
-Совместимая версия SoulEngine может быть найдена -> <a href="https://github.com/Kashaket/soulengine">Здесь</a>
+Совместимая версия SoulEngine может быть найдена -> <a href="https://github.com/KashaketCompany/soulengine">Здесь</a>
 
 Авторы: Андрей Зенин, Артём Уколов<BR>Тестировщики: Вячеслав Новиков (Manofjoe), Александр Кобозев ([s]Alex)
 
