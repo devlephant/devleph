@@ -637,7 +637,7 @@ if (EMULATE_DVS_EXE) return;
 			if(isset($c['MODULES']))
             foreach ((array)$c['MODULES'] as $mod){
                 
-                if ( ! extension_loaded(str_ireplace('php_','',basenameNoExt($mod))) ){
+                if ( ! extension_loaded(substr(basenameNoExt($mod),4)) && basenameNoExt($mod) !== 'php_squall' ){
 					gui_Message(t('Пропишите %s модуль в /core/php.ini в секцию extensions', $mod));
 					/*AZ:Нужно бы функцию dl() портировать, кстати, тут ещё нужна проверка на то, есть ли эта строка в php.ini
 						т.к бывают ошибки с загрузкой расширений, а не их отсутствие в загр. секции, что не есть хорошо*/

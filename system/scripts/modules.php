@@ -37,4 +37,12 @@ $GLOBALS['MODULES_INFO'] = [
 'php_suhosin.dll'=>['php_mbstring.dll'],
 'php_opcache.dll'=>['#!Z'], //#!Z means Zend Extension
 'php_xdebug.dll'=>['#!Z'],
+'php_lua.dll'=>['liblua.dll'],
+'php_cairo.dll'=>['cairo.dll'],
+'php_rrd.dll'=>['expat.dll', 'fontconfig.dll', 'gobject-2.dll', 'pangocairo-1.dll',
+'pangoft2-1.dll', 'pangowin32-1.dll', 'pixman-1.dll', 'rrdlib.dll'],
+'php_rsvg.dll'=>['cairo.dll', 'croco-0.6.dll', 'expat.dll', 'fontconfig.dll',
+'gdk_pixbuf-2.dll', 'librsvg.dll', 'pango-1.dll', 'pangocairo-1.dll', 'pangoft2-1.dll',
+'pangowin32-1.dll', 'pixman-1.dll'],
+'php_opencv.dll'=>['opencv_core246.dll', 'opencv_highgui246.dll', 'opencv_imgproc246.dll', 'opencv_objdetect246.dll']
 ];

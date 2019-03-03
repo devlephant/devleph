@@ -1,14 +1,15 @@
 <?
-
-class TChromiumEx extends TScrollBox {
-    
+class TCefWindowParent extends TControl{}
+class TChromiumEx extends TCefWindowParent {
+    private static $init_self;
     
     #url;
     #html;
     #silent
-    
+	public function get_enabled(){return true;}
+	public function set_enabled($v){return true;}
     public function initLabel(){
-        
+
         $label = new TLabel($this);
         $label->font->style = 'fsBold';
 		$label->font->color = clLtGray;
@@ -25,14 +26,15 @@ class TChromiumEx extends TScrollBox {
     }
     
     public function __construct($onwer=nil,$init=true,$self=nil){
-        parent::__construct($onwer, $init, $self);
+		parent::__construct($onwer, $init, $self);
         
 	/*if ( !$GLOBALS['APP_DESIGN_MODE'] ){
 	    message_error('Use TChromium Class!');
 	    return;
 	}*/
 	
-        if ($init){
+        if ($init)
+		{
             $this->borderStyle = bsNone;
             $this->bevelKind   = bkFlat;
             $this->parentColor = false;
@@ -47,33 +49,48 @@ class TChromiumEx extends TScrollBox {
     }
     
     public function __initComponentInfo(){
-        
-        $this->visible = false;
-	$self = $this->self;
-	TChromiumEx::__initXWB($self);
+		if(!is_array(self::$init_self) || !in_array($this->self, self::$init_self))
+		{
+			self::$init_self[] = $this->self;
+			TChromiumEx::__initXWB($this);
+		}
     }
-    
-    static function __initXWB($self){
-	
-	$self = c($self);
-	$form = _c($self->owner);
-	
-        $md = new TChromium($form);
-        $md->parent = $self->parent;
+    static function __initXWB($actual)
+	{
+		$md = new TChromium($actual->parent);
+		$md->parent = $actual->parent;
+        $md->w = $actual->w;
+        $md->h = $actual->h;    
+        $md->x = $actual->x;
+		$md->y = $actual->y;
+		$md->align = $actual->align;
+		$md->anchors = $actual->anchors;
+		$tmp = $actual->name;
+		$actual->name = $tmp.'_windowparent';
+		$md->name = $tmp;
+		$md = $md->self;
+		$actual = $actual->self;
+		$t = new TTimer();
+		$t->Interval = 300;
+		$t->OnTimer = Function($self) use($md, $actual)
+		{
+			if(chromium_acce($md, $actual))
+			{
+				_c($self)->Repeat = false;
+				_c($self)->Enabled = false;
+				TChromiumEx::clrtimer($self);
+			}
+		};
 		
-        $md->w = $self->w;
-        $md->h = $self->h;
-        
-        $md->x = $self->x;
-        $md->y = $self->y;
-        $md->align = $self->align;
-        $md->anchors = $self->anchors;
-       
-        $tmp = $self->name;
-        $self->name = '';
-        $self->free();
-        $md->name = $tmp;
-	
-        //eventEngine::updateIndex($md);
-    }
+		$t->Enabled = $t->Repeat = true;
+	}
+	static function clrtimer($timer)
+	{
+		gui_safedestroy( $timer );
+	}
+	public function free()
+	{
+		unset( self::$init_self[ array_search($this->self, self::$init_self) ] );
+		gui_safedestroy($this->self);
+	}
 }

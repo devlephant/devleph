@@ -344,13 +344,33 @@ class myProject {
             
         return $result;
     }   
-    
+	static function convertAs($obj, $class)
+	{
+		global $fmEdit;
+        $obj_name = $obj->name;
+        $obj->name = '';
+        $props = TComponent::__getPropExArray($obj->self);
+        
+       
+        $result = new $class($fmEdit);
+        $result->parent = $fmEdit;
+        
+        $result->name = $obj_name;
+        $result->x = $obj->x;
+        $result->y = $obj->y;
+        
+        
+        foreach ($props as $key=>$value)
+            $result->$key = $value;
+   
+        return $result;
+	}
     static function checkOldFormat(){
         
         $GLOBALS['IS_OLD_PROJECT'] = false;
-        if (self::cfg('DV_VERSION')=='' || self::cfg('DV_VERSION')=='2.0.0.0'){
+        if (self::cfg('DV_VERSION')=='' || version_compare(self::cfg('DV_VERSION'), DV_VERSION, '<')){
             alert(t("Вы пытаетесь загрузить проект старого формата. Данный формат будет конвертирован!"));
-            return false;
+           // return false;
             
             global $_FORMS, $fmEdit;
             
@@ -360,8 +380,15 @@ class myProject {
                 
                 $components = $fmEdit->componentList;
                 foreach($components as $el){
-                    
-                    if (is_subclass_of($el,  '__TNoVisual')){
+					if (strtolower(rtti_class($el->self))=='tanbutton')
+					{
+						self::convertAs($el, 'TSB');
+						$del_objs[] = $el;
+					}elseif (get_class($el)=='TButton')
+					{
+						self::convertAs($el, 'TBitBtn');
+						$del_objs[] = $el;
+                    }elseif (is_subclass_of($el,  '__TNoVisual')){
                         
                         self::convertOldNoVisual($el);
                         $del_objs[] = $el;
@@ -372,16 +399,15 @@ class myProject {
                         if ($obj_name === '')
                             $obj_name = '--fmedit';
                         
-                        if ($obj_name){
-                            
+                        if ($obj_name)
+						{    
                             $obj_ind  = $fmEdit->findComponent($obj_name)->componentIndex;
                             if (($obj_ind+1) || $obj_name=='--fmedit'){
                                 $events   = $el->list;
                                 eventEngine::$DATA[strtolower($form)][strtolower($obj_name)] = $events;
                             }
                         }
-                        
-                        $del_objs[] = $el; 
+                        $del_objs[] = $el;
                     }
                 }
                 
