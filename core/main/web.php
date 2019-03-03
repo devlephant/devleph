@@ -52,6 +52,10 @@ class TChromium extends TControl {
 	{
 		return true;
 	}
+	public function get_visible()
+	{
+		return true;
+	}
 	public function reload(){
 		chromium_exec($this->self, CHROMIUM_EXEC_RELOAD, 0);
 	}

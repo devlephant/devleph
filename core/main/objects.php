@@ -463,6 +463,7 @@ function uni_serialize($str){
 function uni_unserialize($str){
 	    
 	    $st = err_status(0);
+		err_clear();
 	    $result = igbinary_unserialize(base64_decode($str));
 	    
 	    if ( err_msg() ){
