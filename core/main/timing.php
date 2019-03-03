@@ -1,11 +1,9 @@
 <?
 /*
   
-  SoulEngine Timing Library
+  PHP4Delphi Timing Library
   
-  2015 ver 4
-  
-  Dim-S Software (c) 2015
+  2019 ver 7
 		
 		classes:
 		TTimer,TTimerEx

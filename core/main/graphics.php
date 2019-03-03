@@ -1,11 +1,9 @@
 <?
 /*
   
-  SoulEngine Graphics Library
+  PHP4Delphi Graphics Library
   
-  2017 ver 3.0
-  
-  Kashaket Company (c) 2017
+  2018 ver 3.1
   
 */
 global $_c;

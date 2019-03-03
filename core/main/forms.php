@@ -1,12 +1,9 @@
 <?
 /*
   
-  SoulEngine Forms Library
+  PHP4Delphi Forms Library
   
-  2017 ver 1.3
-  
-  Kashaket Company (c) 2017
-  
+  2017 ver 1.3 
 				TApplication, TScreen, TScreenEx, TForm
   
 */

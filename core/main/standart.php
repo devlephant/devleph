@@ -1,15 +1,14 @@
 <?
 /*
   
-  SoulEngine Standart Library
+  PHP4Delphi Standart Library
   
-  2016 ver 2
+  2019 ver 4.3
   
-  Kashaket Company (c) 2016
-  
-				TLabel, TEdit, TMemo, TRichEdit, TCheckBox,
-				TRadioButton, TListBox, TComboBox, TProgressBar,
-				TScrollBar, TGroupBox, TRadioGroup, TPanel
+  Classes:
+	TLabel, TEdit, TMemo, TRichEdit, TCheckBox,
+	TRadioButton, TListBox, TComboBox, TProgressBar,
+	TScrollBar, TGroupBox, TRadioGroup, TPanel
   
 */
 

@@ -1,11 +1,10 @@
 <?
 /*
   
-  SoulEngine Delphi Form reader & writer
+  DevelStudio Delphi Form reader & writer
   
-  2016 ver 0.5
-  
-  Kashaket Company (c) 2016
+  2017 ver 1.0.1
+ 
   Ѕиблиотека дл¤ загрузки и сохранени¤ форм из dfm файлов...
   
   

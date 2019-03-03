@@ -1,11 +1,9 @@
 <?
 /*
   
-  SoulEngine Buttons Library
+  PHP4Delphi Buttons Library
   
   2009 ver 0.1
-  
-  Dim-S Software (c) 2009
   
 */
 

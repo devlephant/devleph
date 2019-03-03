@@ -1,11 +1,8 @@
 <?
 /*
-    SoulEngine Config library
-    
-    2009.04 v0.1
-    
-    Dim-S Software (c) 2009
-    
+    Zend Framework Config library
+	~Version 2009.03.24
+	
     This code from Zend Framework and modifity
     * @category   Zend
     * @package    Zend_Config

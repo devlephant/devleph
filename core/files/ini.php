@@ -1,10 +1,8 @@
 <?
 /*
-    SoulEngine ConfigIni library
+    PHP4Delphi ConfigIni library
     
     2009.04 v0.1
-    
-    Dim-S Software (c) 2009
 */
 
 class __ini {

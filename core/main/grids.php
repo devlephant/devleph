@@ -2,11 +2,8 @@
 
 /*
   
-  PHP SoulEngine
-  SoulStream (c) 2010
-  
-  ver 1.0.3
-  21/12/2009
+  PHP4Delphi Grids Library
+  ver 1.0.4 - 2017
   
   Grid Library
   

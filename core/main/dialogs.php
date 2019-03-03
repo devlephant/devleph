@@ -1,11 +1,9 @@
 <?
 /*
   
-  SoulEngine Dialogs Library
+  PHP4Delphi Dialogs Library
   
-  2016 ver 4
-  
-  Kashaket Company (c) 2016
+  2017 ver 5
   
 				TColorDialog, TCommonDialog, TDMSColorDialog, TFindDialog,
 				TFontDialog, TOpenDialog, TPageSetupDialog, TPrintDialog,

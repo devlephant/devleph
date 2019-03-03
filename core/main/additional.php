@@ -1,11 +1,11 @@
 <?
 /*
   
-  SoulEngine Additional Library
+  PHP4Delphi Additional Library
   
   2017 ver 4
   
-  Kashaket Company (c) 2017
+  Classes:
   
 				TAlign, TBevel, TBrush, TCanvas, TCheckListBox,
 				TColorBox, TColorListBox, TControlBar, TCoolTrayIcon,

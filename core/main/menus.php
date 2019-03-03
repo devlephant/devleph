@@ -1,12 +1,8 @@
 <?
 /*
+  PHP4Delphi Menus Library
   
-  SoulEngine Menu Library
-  
-  2019 ver 1.3
-  
-  Kashaket Company (c) 2019
-  
+  2019 ver 1.3  
 */
 
 function menuDinamicSetText($menu, $text){

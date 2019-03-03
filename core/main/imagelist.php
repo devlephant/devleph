@@ -1,11 +1,9 @@
 <?
 /*
   
-  SoulEngine ImageList Library
+  PHP4Delphi ImageList Library
   
-  2009 ver 0.2
-  
-  Dim-S Software (c) 2009
+  2018 ver 1.3
   
 */
 global $_c;

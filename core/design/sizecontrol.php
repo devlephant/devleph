@@ -1,7 +1,7 @@
 <?
 /*
   
-  SoulEngine Run-Time Design Library
+  DevelStudio Run-Time Design Library
   
   2009.04 ver 0.2
   

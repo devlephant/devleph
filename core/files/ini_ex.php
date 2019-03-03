@@ -1,6 +1,6 @@
 <?
 /*
-    SoulEngine ConfigIni library
+    DevelStudio ConfigIni library
     
     2009.04 v0.1
     

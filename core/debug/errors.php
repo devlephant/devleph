@@ -2,13 +2,17 @@
 
 /*
  
-    PHP Soul Engine Error Hooker
+	DevelStudio Error Hooker
     
-    2018.02 ver 0.3
+    2019.02 ver 1.4
     
-    Main function:
-        __error_hook(type, filename, line, msg)
-       
+    Main Handlers:
+        userErrorHandler, userFatalHandler, userExceptionHandler;
+		
+	Main functions:
+		Error status: __error_hook / error_message / error_msg, 
+		Errors: 	err_no, err_yes, err_status, err_msg, err_last, err_clear
+		Exceptions:	except_last, except_msg, except_clear
     
 */
 $GLOBALS['__error_types'] = array (
@@ -301,6 +305,12 @@ function except_last(){
 function except_msg(){
 	if( isset($GLOBALS['__exception_last']) )
 		return $GLOBALS['__exception_last']->getMessage();
+}
+
+function except_clear()
+{
+	if( isset($GLOBALS['__exception_last']) )
+		unset($GLOBALS['__exception_last']);
 }
 errors_init();
 

@@ -3,8 +3,8 @@
 
 /*
  
-    PHP Soul Engine
-    11.2009 ver 1.0
+    PHP SoulEngine Functions
+    11.2017 ver 1.1
     
 */
 

@@ -1,12 +1,8 @@
 <?
 /*
+  PHP4Delphi key functions library
   
-  SoulEngine key functions library
-  
-  2017 ver 2
-  
-  Kashaket Company (c) 2017
-  
+  2019 ver 2.1
 */
 global $_c;
 

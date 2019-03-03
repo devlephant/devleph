@@ -3,7 +3,7 @@
 
 /*
  
-    PHP Soul Engine WindowsRegistry
+    DevelStudio WindowsRegistry
     
     2009.10 ver 1.0   
     

@@ -1,13 +1,12 @@
 <?
 /*
   
-  SoulEngine Objects Library
+  PHP4Delphi Objects Library
   
-  2017 ver 3
+  2019 ver 4
   
-  Kashaket Company (c) 2016
-  
-				_Object, TObject, TComponent, TFont, TRealFont, TControl
+  Classes:
+  _Object, TObject, TComponent, TFont, TRealFont, TControl
   
 */
 define('nil',-1);
