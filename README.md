@@ -1,7 +1,7 @@
 # DevelStudio-3.0-beta
 >Commit №238 Filesize:
-<br>494Mb (zipped)
-<br>178Mb (on hdd)
+<br>178Mb (zipped)
+<br>494Mb (on hdd)
 <br><a href="https://github.com/KashaketCompany/DevelStudio-3.0-beta/releases">Changelog</a>
 ## ShortScript
 PHP 5.6.40 (5.3.x - 5.6.x Support)
