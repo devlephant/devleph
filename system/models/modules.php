@@ -161,7 +161,7 @@ class myModules {
 			
 	    $class = $el['CLASS'];
 	    $info  = $componentClassesEx[ $class ];
-		/*/Добавляем "моды"
+		//Добавляем "моды"
 		global $myProject;
 		if( isset($myProject->config['mods']) )
 	    if( is_array($myProject->config['mods']) )
@@ -176,11 +176,11 @@ class myModules {
 								$xfile = file_exists('ext/mods/'.$moo.'/'.$f)? 'ext/mods/'.$moo.'/'.$f: replaceSl(dirname(EXE_NAME)).'/'.$f;
 								if ( !file_exists($xfile) ) continue;
 	
-								if (is_file($xfile)){
-									copy($xfile, dirname($file).'/'.basename($xfile));
-								} elseif ( is_dir($xfile) ){
+								if ( is_dir($xfile) ){
 									dir_copy($xfile, dirname($file).'/'.basename($xfile));
 									$result[] = dirname($file).'/'.basename($xfile);
+								}elseif (is_file($xfile)){
+									copy($xfile, dirname($file).'/'.basename($xfile));
 								}
 						}
 	    			}else{
@@ -188,15 +188,15 @@ class myModules {
 								$xfile = file_exists('ext/mods/'.$moo.'/'.$f)? 'ext/mods/'.$moo.'/'.$f: replaceSl(dirname(EXE_NAME)).'/'.$f;
 								if ( !file_exists($xfile) ) continue;
 	
-								if (is_file($xfile)){
-									copy($xfile, dirname($file).'/'.basename($xfile));
-								} elseif ( is_dir($xfile) ){
+								if ( is_dir($xfile) ){
 									dir_copy($xfile, dirname($file).'/'.basename($xfile));
+								}elseif (is_file($xfile)){
+									copy($xfile, dirname($file).'/'.basename($xfile));
 								}
 					}
 				}
 			}
-		}*/
+		}//
 		
 		if( isset($info['DLLS']) )
 	    if ( is_array($info['DLLS']) ){

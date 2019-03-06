@@ -125,13 +125,13 @@ function dir_copy($dir, $to){
     dir_create($to);
     $to = replaceSl($to);
     $dir = replaceSl($dir);
-    
+    $dir = realpath(str_replace(['\\\\\\', '\\\\', '///', '//'], ['\\', '\\', '/', '/'], $dir));
     $result = array();
     if (!is_dir($dir)) return false;
     
     $files = findFiles($dir, null, true, true);
+	
     foreach ($files as $file){
-        
         $result[] = str_ireplace($dir,'',$file);
         file_copy($file, $to .'/'. str_replace($dir,'',$file));
     }
