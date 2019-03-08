@@ -80,8 +80,8 @@ class Localization {
 	    if (!$s1 and !$s2)
 		    return $name;
 		
-		    if ($s1) return $GLOBALS['__LANG_MESSAGES'][$name];
-		    if ($s2) return $GLOBALS['__LANG_MESSAGES'][$name.'.'].'.';
+		    if ($s1) return self::toEncoding($GLOBALS['__LANG_MESSAGES'][$name]);
+		    if ($s2) return self::toEncoding($GLOBALS['__LANG_MESSAGES'][$name.'.'].'.');
     }
     
     static function setLocale($lang = 'ru'){
@@ -114,6 +114,7 @@ class Localization {
 		    if (ereg('^{(.+)}$', $x)){
 			$x[0] = ' '; $x[strlen($x)-1] = ' ';
 			$tmp[$q] = self::getMsg(trim($x));
+			//pre([trim($x), self::getMsg(trim($x))]);
 		    }
 		}
 		
@@ -208,7 +209,6 @@ class Localization {
     }
     
     static function toEncoding($str){
-	
 	$encoding = self::detectLocale($str);
 	$defEnc = (function_exists('delphi_is_uc') && delphi_is_uc())? 'utf-8': 'windows-1251';
 	return $encoding == $defEnc ? $str : iconv($encoding, $defEnc, $str);
