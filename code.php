@@ -1,1 +1,1 @@
-pre( get_loaded_extensions() );
+pre( delphi_get_author() );

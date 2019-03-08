@@ -9,13 +9,13 @@ class TWiFi extends __TNoVisual {
 	static function getInformation(){
 		global $result;
 		$list = shell_exec('netsh wlan show networks');
-		$result = iconv('CP866','CP1251',$list);
+		$result = (function_exists('delphi_is_uc') &&  delphi_is_uc())? iconv('CP866', 'UTF-8', $list) :iconv('CP866','CP1251',$list);
 		return $result . _BR_;
 	}
 	static function networksList(){
-		$txt = null;
+
 		$list = shell_exec('netsh wlan show networks');
-		$result = iconv('CP866', 'CP1251', $list);
+		$result = (function_exists('delphi_is_uc') &&  delphi_is_uc())? iconv('CP866', 'UTF-8', $list) :iconv('CP866','CP1251',$list);
 		$txt .= $result ._BR_;
 		
 		$text = $txt;
@@ -35,7 +35,7 @@ class TWiFi extends __TNoVisual {
 	static function showInterface(){
 		global $res;
 		$list = shell_exec('netsh wlan show interface');
-		$res = iconv('CP866','CP1251',$list);
+		$res = (function_exists('delphi_is_uc') &&  delphi_is_uc())? iconv('CP866', 'UTF-8', $list) :iconv('CP866','CP1251',$list);
 		return $res . _BR_;
 	}
 	static function connection(){

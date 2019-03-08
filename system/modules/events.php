@@ -800,7 +800,7 @@ DSApi::reg_eventParams('OnGetDownloadHandler',
 DSApi::reg_eventParams('OnConsoleMessage',
     array('message', 'source', 'line', '&continue'));
 
-DSApi::reg_eventParams('OnLoadStart',		array());
+DSApi::reg_eventParams('OnLoadStart',		array('self'));
 DSApi::reg_eventParams('OnLoadEnd',array('httpStatus', '&continue'));
 DSApi::reg_eventParams('OnLoadError',array('errorCode', 'failedUrl', 'errorText', '&continue'));
 DSApi::reg_eventParams('OnStatusMessage',array('value', 'status', '&continue'));

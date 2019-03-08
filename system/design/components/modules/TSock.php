@@ -132,7 +132,7 @@
 		
 		Public Static Function StringDecode($string)
 		{
-			 return iconv('utf-8', 'windows-1251', $string);;
+			return iconv('utf-8', 'windows-1251', $string);
 		}
 		
 		Public Static Function StringEncode($string)
@@ -154,10 +154,13 @@
 				   $var->$m = self::json_fix_cyr($v, $decode);
 			   }
 		   } elseif (is_string($var)) {
+			   if(!function_exists('delphi_is_uc') || !delphi_is_uc())
+			   {
 				if($decode)
 					$var = self::StringDecode($var);
 				else
 					$var = self::StringEncode($var);
+			   }
 		   }
 		   return $var;
 		}
