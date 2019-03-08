@@ -87,7 +87,7 @@ class myProject {
         
         if ( count($classes)>0 ){
             
-            message(t('В проекте используются следующие несуществующие классы:')."\n\r\n\r".
+            message(t('Р’ РїСЂРѕРµРєС‚Рµ РёСЃРїРѕР»СЊР·СѓСЋС‚СЃСЏ СЃР»РµРґСѓСЋС‰РёРµ РЅРµСЃСѓС‰РµСЃС‚РІСѓСЋС‰РёРµ РєР»Р°СЃСЃС‹:')."\n\r\n\r".
                     implode(',', $classes));
         }
     }
@@ -222,7 +222,7 @@ class myProject {
         
         if (file_exists($xfile)){
             
-            if (confirm(t('Are you shure to open "%s" ?',$xfile)))
+            if (confirm(t('Are you sure to open "%s" ?',$xfile)))
                 self::open($xfile, true, false);
         }
     }
@@ -237,7 +237,7 @@ class myProject {
         
         if (file_exists($xfile)){
             
-            if (confirm(t('Are you shure to open "%s" ?',$xfile)))
+            if (confirm(t('Are you sure to open "%s" ?',$xfile)))
                 self::openFromDVS($xfile);
         }
 	}
@@ -369,7 +369,7 @@ class myProject {
         
         $GLOBALS['IS_OLD_PROJECT'] = false;
         if (self::cfg('DV_VERSION')=='' || version_compare(self::cfg('DV_VERSION'), DV_VERSION, '<')){
-            alert(t("Вы пытаетесь загрузить проект старого формата. Данный формат будет конвертирован!"));
+            alert(t("Р’С‹ РїС‹С‚Р°РµС‚РµСЃСЊ Р·Р°РіСЂСѓР·РёС‚СЊ РїСЂРѕРµРєС‚ СЃС‚Р°СЂРѕРіРѕ С„РѕСЂРјР°С‚Р°. Р”Р°РЅРЅС‹Р№ С„РѕСЂРјР°С‚ Р±СѓРґРµС‚ РєРѕРЅРІРµСЂС‚РёСЂРѕРІР°РЅ!"));
            // return false;
             
             global $_FORMS, $fmEdit;
@@ -490,7 +490,7 @@ class myProject {
         
         global $projectFile, $_FORMS, $myProject;
         
-        // в событии сохранения передавался $self элемента меню, из-за чего в файл подставлялся $self - индетификатор
+        // РІ СЃРѕР±С‹С‚РёРё СЃРѕС…СЂР°РЅРµРЅРёСЏ РїРµСЂРµРґР°РІР°Р»СЃСЏ $self СЌР»РµРјРµРЅС‚Р° РјРµРЅСЋ, РёР·-Р·Р° С‡РµРіРѕ РІ С„Р°Р№Р» РїРѕРґСЃС‚Р°РІР»СЏР»СЃСЏ $self - РёРЅРґРµС‚РёС„РёРєР°С‚РѕСЂ
         if (is_numeric($file)) $file = false; // fix bug _empty() when compile
         
         
@@ -522,7 +522,7 @@ class myProject {
         
     }
     
-    // сохранить проект в формате .DVS - Devel Studio Format
+    // СЃРѕС…СЂР°РЅРёС‚СЊ РїСЂРѕРµРєС‚ РІ С„РѕСЂРјР°С‚Рµ .DVS - Devel Studio Format
     static function saveAsDVS($file,$chks=true){
         
         $file = replaceSl($file);
@@ -536,25 +536,25 @@ class myProject {
         global $projectFile, $_FORMS, $myProject;
         
         $dir  = dirname($projectFile);
-        $data = array(); // здесь храним структуру файла...
+        $data = array(); // Р·РґРµСЃСЊ С…СЂР°РЅРёРј СЃС‚СЂСѓРєС‚СѓСЂСѓ С„Р°Р№Р»Р°...
         $data['CONFIG']    = $myProject->config;
         $data['formsInfo'] = $myProject->formsInfo;
         $data['add_info']  = $myProject->add_info;
         $data['eventDATA'] = eventEngine::$DATA;
         
-        /* запись скриптов */
+        /* Р·Р°РїРёСЃСЊ СЃРєСЂРёРїС‚РѕРІ */
         $scripts = findFiles($dir.'/scripts/','php');
         foreach($scripts as $x_file)
             $data['scripts'][$x_file] = file_get_contents($dir.'/scripts/'.$x_file);
         /****************/
         
         
-        /* запись ресурсов */
+        /* Р·Р°РїРёСЃСЊ СЂРµСЃСѓСЂСЃРѕРІ */
         if (trim($myProject->config['data_dir'])){
             $data_dir = $dir.'/'.$myProject->config['data_dir'].'/';
             $files = findFiles($data_dir,null,true,true);
             foreach($files as $x_file){
-                $data['data'][ str_replace($data_dir,'/',$x_file) ] = gzcompress( file_get_contents($x_file), 9 );     
+                $data['data'][ str_replace($data_dir,'/',$x_file) ] = file_get_contents($x_file);     
             }
         }
         
@@ -568,7 +568,7 @@ class myProject {
             }
         }
         
-        $result = gzcompress( base64_encode(serialize($data)), 9);
+        $result = base64_encode(serialize($data));
 		if( $chks ) foreach( scandir(dirname($file)) as $file_link )
 		{
 			if($file_link !== '..' and $file_link !== '.' and is_file(dirname($file).'/'.$file_link)){
@@ -593,7 +593,7 @@ class myProject {
         myUtils::$forms = array();
     }
     
-    // открыть файл проекта формата DVS...
+    // РѕС‚РєСЂС‹С‚СЊ С„Р°Р№Р» РїСЂРѕРµРєС‚Р° С„РѕСЂРјР°С‚Р° DVS...
     static function openFromDVS($file, $dir = false){
         
         $file = replaceSl($file);
@@ -633,7 +633,7 @@ class myProject {
         $_e = err_status(false);
         
             $result = file_get_contents($file);
-            $x = unserialize(base64_decode(gzuncompress($result)));
+            $x = unserialize(base64_decode($result));
             
             if (!$x)
                 $result = unserialize(base64_decode($result));
@@ -660,7 +660,7 @@ class myProject {
             if (!is_dir(dirname($x_file)))
                 mkdir( dirname($x_file), 0777, true);
             
-            file_put_contents($x_file, gzuncompress($x_data) );
+            file_put_contents($x_file, base64_decode($x_data) );
         }
     
         $_FORMS = array();
@@ -715,13 +715,13 @@ class myProject {
     
     static function projectLastProjects($self){
         
-        $file = str_replace('//', '/', replaceSl(
+        $file = str_replace(array('//', '/'), '/', replaceSl(
             str_replace('%dsApps%', replaceSr(DS_USERDIR), _c($self)->items->selected)
             ) );
-        
+		
         if (file_exists($file)){
             
-            if (confirm(t('Are you shure to open "%s" ?',$file))) 
+            if (confirm(t('Are you sure to open "%s" ?',$file))) 
 			{
 				$GLOBALS['__newproject_close'] = false;
                 self::open($file, true, false);

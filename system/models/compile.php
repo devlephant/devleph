@@ -184,9 +184,10 @@ class myCompile
 		return DV_VERSION.DV_PREFIX.DV_YEAR;
 	}
 
-	static public function attachPHPSoulEngine($attach = true)
+	static public function generateSoulEngine($attach = true)
 	{
 		global $projectFile;
+		
 		$build = new DS_BuildSoulEngine(dirname(EXE_NAME) . '/core/');
 
 		if ($attach) {
@@ -273,7 +274,7 @@ class myCompile
 		}
 		
 		$str = php_strip_whitespace_ex($str);
-		exemod_addstr('$X_MODULES', gzcompress($str, 5));
+		exemod_addstr('$X_MODULES', base64_encode($str));
 		$files = findFiles( dirname($projectFile).'/scripts/', 'php' );	
 		if(!empty($files))
 		{
@@ -302,11 +303,11 @@ class myCompile
 		}
 		if( empty($esc) )
 		{
-			exemod_addstr('$X_S', gzcompress( serialize(false), 9));
+			exemod_addstr('$X_S', base64_encode( serialize(false), 9));
 		}
 		else
 		{
-			exemod_addstr('$X_S', gzcompress( serialize($esc), 9));
+			exemod_addstr('$X_S', base64_encode( serialize($esc), 9));
 		}
 		
 		self::$codes = array();
@@ -335,8 +336,8 @@ class myCompile
 
 			$compileDATA = eventEngine::$DATA;
 
-		exemod_addstr('$_EVENTS', gzcompress(serialize($compileDATA), 9));
-		exemod_addstr('$F\\Xforms', gzcompress(serialize($data), 9));
+		exemod_addstr('$_EVENTS', base64_encode(serialize($compileDATA), 9));
+		exemod_addstr('$F\\Xforms', base64_encode(serialize($data), 9));
 	}
 
 	static public function getExeModule()
@@ -369,7 +370,7 @@ class myCompile
 		myUtils::saveForm();
 		myDesign::szRefresh();
 		$startTime = microtime(1);
-		myCompile::setStatus('', t('Çàïóñê ïðîåêòà') . '...');
+		myCompile::setStatus('', t('Ð—Ð°Ð¿ÑƒÑÐº Ð¿Ñ€Ð¾ÐµÐºÑ‚Ð°') . '...');
 
 		$php_dir = dirname(replaceSl(EXE_NAME)) . '/php/';
 		$p_dir = dirname($projectFile) . '/php/';
@@ -387,12 +388,12 @@ class myCompile
 				}
 			}
 			if (file_exists($exeFile) && $check) {
-				myCompile::setStatus('Warning', t('Ôàéë ïðîãðàììû çàíÿò, ïðîáóåì ñíîâà') . '...');
+				myCompile::setStatus('Warning', t('Ð¤Ð°Ð¹Ð» Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼Ð¼Ñ‹ Ð·Ð°Ð½ÑÑ‚, Ð¿Ñ€Ð¾Ð±ÑƒÐµÐ¼ ÑÐ½Ð¾Ð²Ð°') . '...');
 				sleep(1);
 				return self::_start(false);
 			}
 			if (file_exists($exeFile)) {
-				myCompile::setStatus('Error', t('Ôàéë ïðîãðàììû çàíÿò, ïîïðîáóéòå óíè÷òîæèòü å¸ ïðîöåññ') . '!');
+				myCompile::setStatus('Error', t('Ð¤Ð°Ð¹Ð» Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼Ð¼Ñ‹ Ð·Ð°Ð½ÑÑ‚, Ð¿Ð¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹Ñ‚Ðµ ÑƒÐ½Ð¸Ñ‡Ñ‚Ð¾Ð¶Ð¸Ñ‚ÑŒ ÐµÑ‘ Ð¿Ñ€Ð¾Ñ†ÐµÑÑ') . '!');
 				message_beep(MB_ICONERROR);
 				return false;
 			}
@@ -404,7 +405,7 @@ class myCompile
 		self::generateIncFile();
 		myModules::inc();
 		self::attachPHPEngine(false, false);
-		self::attachPHPSoulEngine(false);
+		self::generateSoulEngine(false);
 		self::attachForms(false, false);
 		self::attachModules();
 		exemod_save();
@@ -424,7 +425,7 @@ class myCompile
 		
 		$vtime = round( microtime(1) - $startTime, 1 );
 		$vtime = $vtime>=60? round($vtime/60,1).t('min.'): $vtime.t('sec.');
-		myCompile::setStatus('Successfull', t('Çàïóñê çàâåðøåí çà ') . $vtime );
+		myCompile::setStatus('Successfull', t('Ð—Ð°Ð¿ÑƒÑÐº Ð·Ð°Ð²ÐµÑ€ÑˆÐµÐ½ Ð·Ð° ') . $vtime );
 		unset($_e, $vtime);
 		shell_execute(0, 'open', replaceSr($exeFile), ' -c ' . receiver_handle(), replaceSr(dirname($exeFile)), SW_SHOW);
 		myDesign::szRefresh();
@@ -485,7 +486,7 @@ class myCompile
 	{
 		$startTime = microtime(1);
 		global $myProject;
-		myCompile::setStatus('', t('Ñáîðêà ïðîãðàììû') . '...');
+		myCompile::setStatus('', t('Ð¡Ð±Ð¾Ñ€ÐºÐ° Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼Ð¼Ñ‹') . '...');
 		$debug_enabled = $myProject->config['debug']['enabled'];
 		$myProject->config['debug']['enabled'] = false;
 		myUtils::saveForm();
@@ -505,7 +506,7 @@ class myCompile
 		x_copy(self::getExeModule(), $fileExe);
 
 		if (err_msg()) {
-			myCompile::setStatus('Warning', t('Íåò äîñòóïà äëÿ çàïèñè ê âûáðàííîé ïàïêå!'));
+			myCompile::setStatus('Warning', t('ÐÐµÑ‚ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð° Ð´Ð»Ñ Ð·Ð°Ð¿Ð¸ÑÐ¸ Ðº Ð²Ñ‹Ð±Ñ€Ð°Ð½Ð½Ð¾Ð¹ Ð¿Ð°Ð¿ÐºÐµ!'));
 			$myProject->config['debug']['enabled'] = $debug_enabled;
 			return false;
 		}
@@ -528,7 +529,7 @@ class myCompile
 		$res1 = $cabin?myModules::inc($fileExe):'';
 
 		if ($attachSE) {
-			self::attachPHPSoulEngine($attachSE);
+			self::generateSoulEngine($attachSE);
 
 			while (!is_writable($fileExe)) {
 			}
@@ -570,7 +571,7 @@ class myCompile
 		$endTime = microtime(1);
 		$buildTime = round( $endTime - $startTime, 1 );
 		
-		myCompile::setStatus('Successfull', t('Ñáîðêà çàâåðøåíà') . '. ('.$buildTime.' ñåê.)');
+		myCompile::setStatus('Successfull', t('Ð¡Ð±Ð¾Ñ€ÐºÐ° Ð·Ð°Ð²ÐµÑ€ÑˆÐµÐ½Ð°') . '. ('.$buildTime.' ÑÐµÐº.)');
 
 		err_status($_e);
 		$myProject->config['debug']['enabled'] = $debug_enabled;
@@ -639,6 +640,3 @@ class myCompile
 		return array('code' => $code, 'rDATA' => $rDATA, 'classes' => $classes);
 	}
 }
-
-return __LINE__;
-return NULL;

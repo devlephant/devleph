@@ -7,7 +7,7 @@ $cp = c('fmComponents->list');
 		_c($cpgr)->free();
 		$cp->groups = $cp->items = array();
 	}
-    ////// обновляем панель компонентов /////////
+    ////// РѕР±РЅРѕРІР»СЏРµРј РїР°РЅРµР»СЊ РєРѕРјРїРѕРЅРµРЅС‚РѕРІ /////////
     
         $componentClasses = array();
         $groups = c('fmComponents->list')->groups;
@@ -38,7 +38,7 @@ $cp = c('fmComponents->list');
 		_c($cpgr)->free();
 		$cp->groups = $cp->items = array();
 	}
-    ////// обновляем панель компонентов /////////
+    ////// РѕР±РЅРѕРІР»СЏРµРј РїР°РЅРµР»СЊ РєРѕРјРїРѕРЅРµРЅС‚РѕРІ /////////
     
         $componentClasses = array();
         $groups = c('fmComponents->list')->groups;
@@ -70,7 +70,7 @@ class evfmMain {
                 
                 $dsg_cfg->main->lastVer = $last_ver;
                 
-                if (messageBox(t("Воу, ты устарел,\nуже доступна версия %s\nОбновить программу?",$last_ver), t('.: Мастер обновления :.'), MB_YESNO)==mrYes){
+                if (messageBox(t("Р’РѕСѓ, С‚С‹ СѓСЃС‚Р°СЂРµР»,\nСѓР¶Рµ РґРѕСЃС‚СѓРїРЅР° РІРµСЂСЃРёСЏ %s\nРћР±РЅРѕРІРёС‚СЊ РїСЂРѕРіСЂР°РјРјСѓ?",$last_ver), t('.: РњР°СЃС‚РµСЂ РѕР±РЅРѕРІР»РµРЅРёСЏ :.'), MB_YESNO)==mrYes){
                     
                     ev_it_masterupdate::onClick();
                     //run(dirname(EXE_NAME).'/update.exe');
@@ -111,7 +111,7 @@ class evfmMain {
     }
 
     
-    // сохранение настроек программы...
+    // СЃРѕС…СЂР°РЅРµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РїСЂРѕРіСЂР°РјРјС‹...
     static function saveMainConfig(){
         
         global $dsg_cfg, $_sc, $fmEdit, $fmComponents, $fmMain, $fmObjInspect;

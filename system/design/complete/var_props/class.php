@@ -84,7 +84,7 @@ class complete_Var_Props {
         return $class;
     }
     
-    // возвращаем список для инлайна
+    // РІРѕР·РІСЂР°С‰Р°РµРј СЃРїРёСЃРѕРє РґР»СЏ РёРЅР»Р°Р№РЅР°
     function getList($lineText){
         
         preg_match_all('%(\$[a-z\_]{1}[a-zA-Z0-9\_]{0,60})(.*)%i', $lineText, $var);

@@ -22,7 +22,7 @@ class myMasters {
         
         $dir = SYSTEM_DIR . self::UTIL_DIR . $code;
         
-        /// файл языка
+        /// С„Р°Р№Р» СЏР·С‹РєР°
         Localization::inc($dir . '/lang');
         
         if (file_exists($dir . '/info.php')){

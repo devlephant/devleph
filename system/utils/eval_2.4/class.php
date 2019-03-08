@@ -9,7 +9,7 @@
 	c('fmMain->hd_leftform')->ShortCut = '';
 	c('fmMain->hd_rightform')->ShortCut = '';
 	
-	// Ôîðìà äèàëîãà ñîõðàíåíèÿ ñêðèïòà
+	// Ð¤Ð¾Ñ€Ð¼Ð° Ð´Ð¸Ð°Ð»Ð¾Ð³Ð° ÑÐ¾Ñ…Ñ€Ð°Ð½ÐµÐ½Ð¸Ñ ÑÐºÑ€Ð¸Ð¿Ñ‚Ð°
 	$str = "object dlgEval_saveScript: TForm
 			  BorderIcons = []
 			  BorderStyle = bsDialog
@@ -67,7 +67,7 @@
 	$dlgEval = new TForm();
 	gui_stringToComponent($dlgEval->self, $str);
 	
-	// Eval ðåäàêòîð
+	// Eval Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¾Ñ€
 	$str = "
 	object TabSheet3: TTabSheet
 		Name = ''
@@ -454,7 +454,7 @@
 	if( is_file($file = __DIR__.'/eval.tmp') )
 		$memo->text = file_get_contents($file);
 	
-	// Êíîïêà RUN, èñïîëíåíèå êîäà èç memo
+	// ÐšÐ½Ð¾Ð¿ÐºÐ° RUN, Ð¸ÑÐ¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ðµ ÐºÐ¾Ð´Ð° Ð¸Ð· memo
 	$bt = new TSpeedButton($page);
 	$bt->parent = $panel;
 	$bt->align = alLeft;
@@ -469,7 +469,7 @@
 			eval($code);
 		} else {
 			message_beep(66);
-			messageDlg('Îøèáêà ñèíòàêñèñà!', mtError, MB_OK);
+			messageDlg('ÐžÑˆÐ¸Ð±ÐºÐ° ÑÐ¸Ð½Ñ‚Ð°ÐºÑÐ¸ÑÐ°!', mtError, MB_OK);
 		}
 		
 	};
@@ -478,7 +478,7 @@
 	else
 		$bt->caption = $bt->hint;
 	
-	// Íàâîðî÷åííûé ðàçäåëèòåëü ãðóïïû êíîïîê :)
+	// ÐÐ°Ð²Ð¾Ñ€Ð¾Ñ‡ÐµÐ½Ð½Ñ‹Ð¹ Ñ€Ð°Ð·Ð´ÐµÐ»Ð¸Ñ‚ÐµÐ»ÑŒ Ð³Ñ€ÑƒÐ¿Ð¿Ñ‹ ÐºÐ½Ð¾Ð¿Ð¾Ðº :)
 	$l = new TLabel($page);
 	$l->parent = $panel;
 	$l->align = alLeft;
@@ -489,7 +489,7 @@
 	$l->layout = tlTop;
 	$l->w = 7;
 	
-	// Êíîïêà UNDO, îòìåíèòü
+	// ÐšÐ½Ð¾Ð¿ÐºÐ° UNDO, Ð¾Ñ‚Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ
 	$bt = new TSpeedButton($page);
 	$bt->parent = $panel;
 	$bt->align = alLeft;
@@ -503,7 +503,7 @@
 	else
 		$bt->caption = $bt->hint;
 	
-	// Êíîïêà REDO, ïîâòîðèòü
+	// ÐšÐ½Ð¾Ð¿ÐºÐ° REDO, Ð¿Ð¾Ð²Ñ‚Ð¾Ñ€Ð¸Ñ‚ÑŒ
 	$bt = new TSpeedButton($page);
 	$bt->parent = $panel;
 	$bt->align = alLeft;
@@ -517,7 +517,7 @@
 	else
 		$bt->caption = $bt->hint;
 	
-	// Ðàçäåëèòåëü
+	// Ð Ð°Ð·Ð´ÐµÐ»Ð¸Ñ‚ÐµÐ»ÑŒ
 	$l = new TLabel($page);
 	$l->parent = $panel;
 	$l->align = alLeft;
@@ -528,7 +528,7 @@
 	$l->layout = tlTop;
 	$l->w = 7;
 	
-	// Êíîïêà NEW, íîûé ñêðèïò
+	// ÐšÐ½Ð¾Ð¿ÐºÐ° NEW, Ð½Ð¾Ñ‹Ð¹ ÑÐºÑ€Ð¸Ð¿Ñ‚
 	$bt = new TSpeedButton($page);
 	$bt->parent = $panel;
 	$bt->align = alLeft;
@@ -537,7 +537,7 @@
 	$bt->flat = true;
 	$bt->hint = 'New';
 	$bt->onClick = function()use($memo){
-		if(messageDlg('Íå ñîõðàíåííûé ñêðèïò áóäåò ïîòåðÿí! Ñîçäàòü íîâûé ñêðèïò?', mtCustom, MB_YESNO) == mrNo)
+		if(messageDlg('ÐÐµ ÑÐ¾Ñ…Ñ€Ð°Ð½ÐµÐ½Ð½Ñ‹Ð¹ ÑÐºÑ€Ð¸Ð¿Ñ‚ Ð±ÑƒÐ´ÐµÑ‚ Ð¿Ð¾Ñ‚ÐµÑ€ÑÐ½! Ð¡Ð¾Ð·Ð´Ð°Ñ‚ÑŒ Ð½Ð¾Ð²Ñ‹Ð¹ ÑÐºÑ€Ð¸Ð¿Ñ‚?', mtCustom, MB_YESNO) == mrNo)
 			return;
 		$memo->text = '';};
 	if( is_file($file = __DIR__.'/img/new.png') )
@@ -545,7 +545,7 @@
 	else
 		$bt->caption = $bt->hint;
 	
-	// Êíîïêà SAVE, ñîõðàíåíèå ñêðèïòà
+	// ÐšÐ½Ð¾Ð¿ÐºÐ° SAVE, ÑÐ¾Ñ…Ñ€Ð°Ð½ÐµÐ½Ð¸Ðµ ÑÐºÑ€Ð¸Ð¿Ñ‚Ð°
 	$bt = new TSpeedButton($page);
 	$bt->parent = $panel;
 	$bt->align = alLeft;
@@ -558,18 +558,18 @@
 		$file = __DIR__.'/scripts/'.$fname.'.script';
 		if(is_file($file)){
 			message_beep(66);
-			if(messageDlg('Ïåðåçàïèñàòü ñêðèïò "'.$fname.'"?', mtCustom, MB_YESNO) == mrNo)
+			if(messageDlg('ÐŸÐµÑ€ÐµÐ·Ð°Ð¿Ð¸ÑÐ°Ñ‚ÑŒ ÑÐºÑ€Ð¸Ð¿Ñ‚ "'.$fname.'"?', mtCustom, MB_YESNO) == mrNo)
 				return;
 			file_put_contents($file, $memo->text);
 		}else
-			messageDlg('Ñêðèïò íå íàéäåí!', mtCustom, MB_OK);
+			messageDlg('Ð¡ÐºÑ€Ð¸Ð¿Ñ‚ Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½!', mtCustom, MB_OK);
 	};
 	if( is_file($file = __DIR__.'/img/save.png') )
 		$bt->loadPicture($file);
 	else
 		$bt->caption = $bt->hint;
 	
-	// Êíîïêà SAVE_AS, ñîõðàíåíèå ñêðèïòà êàê ...
+	// ÐšÐ½Ð¾Ð¿ÐºÐ° SAVE_AS, ÑÐ¾Ñ…Ñ€Ð°Ð½ÐµÐ½Ð¸Ðµ ÑÐºÑ€Ð¸Ð¿Ñ‚Ð° ÐºÐ°Ðº ...
 	$bt = new TSpeedButton($page);
 	$bt->parent = $panel;
 	$bt->align = alLeft;
@@ -597,7 +597,7 @@
 		$combo->text = $list;
 	};
 	
-	// Êíîïêà LOAD, çàãðóçêà âûáðàííîãî ñêðèïòà â ìåìî
+	// ÐšÐ½Ð¾Ð¿ÐºÐ° LOAD, Ð·Ð°Ð³Ñ€ÑƒÐ·ÐºÐ° Ð²Ñ‹Ð±Ñ€Ð°Ð½Ð½Ð¾Ð³Ð¾ ÑÐºÑ€Ð¸Ð¿Ñ‚Ð° Ð² Ð¼ÐµÐ¼Ð¾
 	$bt = new TSpeedButton($page);
 	$bt->parent = $panel;
 	$bt->align = alLeft;
@@ -609,11 +609,11 @@
 		$file = __DIR__.'/scripts/'.$combo->intext.'.script';
 		if(is_file($file)){
 			message_beep(66);
-			if(messageDlg('Íå ñîõðàíåííûé ñêðèïò áóäåò ïîòåðÿí! Çàãðóçèòü âûáðàííûé ñêðèïò?', mtCustom, MB_YESNO) == mrNo)
+			if(messageDlg('ÐÐµ ÑÐ¾Ñ…Ñ€Ð°Ð½ÐµÐ½Ð½Ñ‹Ð¹ ÑÐºÑ€Ð¸Ð¿Ñ‚ Ð±ÑƒÐ´ÐµÑ‚ Ð¿Ð¾Ñ‚ÐµÑ€ÑÐ½! Ð—Ð°Ð³Ñ€ÑƒÐ·Ð¸Ñ‚ÑŒ Ð²Ñ‹Ð±Ñ€Ð°Ð½Ð½Ñ‹Ð¹ ÑÐºÑ€Ð¸Ð¿Ñ‚?', mtCustom, MB_YESNO) == mrNo)
 				return;
 			$memo->text = file_get_contents($file);
 		}else{
-			messageDlg('Ñêðèïò íå íàéäåí!', mtCustom, MB_OK);
+			messageDlg('Ð¡ÐºÑ€Ð¸Ð¿Ñ‚ Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½!', mtCustom, MB_OK);
 			$combo->setFocus();
 		}
 	};
@@ -622,7 +622,7 @@
 	else
 		$bt->caption = $bt->hint;
 	
-	// Êíîïêà DELETE, óäàëåíèå âûáðàííîãî ñêðèïòà
+	// ÐšÐ½Ð¾Ð¿ÐºÐ° DELETE, ÑƒÐ´Ð°Ð»ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð±Ñ€Ð°Ð½Ð½Ð¾Ð³Ð¾ ÑÐºÑ€Ð¸Ð¿Ñ‚Ð°
 	$bt = new TSpeedButton($page);
 	$bt->parent = $panel;
 	$bt->align = alLeft;
@@ -634,7 +634,7 @@
 		$file = __DIR__.'/scripts/'.$combo->intext.'.script';
 		if(is_file($file)){
 			message_beep(66);
-			if(messageDlg('Âû äåéñòâèòåëüíî õîòèòå óäàëèòü âûáðàííûé ñêðèïò?', mtCustom, MB_YESNO) == mrNo)
+			if(messageDlg('Ð’Ñ‹ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾ Ñ…Ð¾Ñ‚Ð¸Ñ‚Ðµ ÑƒÐ´Ð°Ð»Ð¸Ñ‚ÑŒ Ð²Ñ‹Ð±Ñ€Ð°Ð½Ð½Ñ‹Ð¹ ÑÐºÑ€Ð¸Ð¿Ñ‚?', mtCustom, MB_YESNO) == mrNo)
 				return;
 			unlink($file);
 			dir_search(__DIR__.'/scripts/', $list, 'script', 0, 0);
@@ -642,7 +642,7 @@
 				$list[$k] = basenameNoExt($v);
 			$combo->text = $list;
 		}else{
-			messageDlg('Ñêðèïò íå íàéäåí!', mtCustom, MB_OK);
+			messageDlg('Ð¡ÐºÑ€Ð¸Ð¿Ñ‚ Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½!', mtCustom, MB_OK);
 			$combo->setFocus();
 		}
 	};
@@ -651,7 +651,7 @@
 	else
 		$bt->caption = $bt->hint;
 	
-	// Êíîïêà DO, âûïîëíåíèå âûáðàííîãî ñêðèïòà èç ôàéëà
+	// ÐšÐ½Ð¾Ð¿ÐºÐ° DO, Ð²Ñ‹Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ðµ Ð²Ñ‹Ð±Ñ€Ð°Ð½Ð½Ð¾Ð³Ð¾ ÑÐºÑ€Ð¸Ð¿Ñ‚Ð° Ð¸Ð· Ñ„Ð°Ð¹Ð»Ð°
 	$bt = new TSpeedButton($page);
 	$bt->parent = $panel;
 	$bt->align = alRight;
@@ -669,10 +669,10 @@
 				eval($code);
 			} else {
 				message_beep(66);
-				messageDlg('Îøèáêà ñèíòàêñèñà!', mtError, MB_OK);
+				messageDlg('ÐžÑˆÐ¸Ð±ÐºÐ° ÑÐ¸Ð½Ñ‚Ð°ÐºÑÐ¸ÑÐ°!', mtError, MB_OK);
 			}
 		}else{
-			messageDlg('Ñêðèïò íå íàéäåí!', mtCustom, MB_OK);
+			messageDlg('Ð¡ÐºÑ€Ð¸Ð¿Ñ‚ Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½!', mtCustom, MB_OK);
 			$combo->setFocus();
 		}
 	};
@@ -681,7 +681,7 @@
 	else
 		$bt->caption = $bt->hint;
 	
-	// Êíîïêà ÎÊ, ñîõðàíåíèå ñêðèïòà
+	// ÐšÐ½Ð¾Ð¿ÐºÐ° ÐžÐš, ÑÐ¾Ñ…Ñ€Ð°Ð½ÐµÐ½Ð¸Ðµ ÑÐºÑ€Ð¸Ð¿Ñ‚Ð°
 	$dlgEval->findComponent('button_save_ok')->onClick = function()use($dlgEval,$memo, $combo){
 		$fname = $dlgEval->findComponent('edit_script_name')->text;
 		if( trim($fname) <> ''){
@@ -690,18 +690,18 @@
 			$file = __DIR__.'/scripts/'.$fname;
 			if(is_file($file)) {
 				message_beep(66);
-				if(messageDlg('Ñêðèïò ñ òàêèì èìåíåì óæå ñóùåñòâóåò! Çàìåíèòü?', mtCustom, MB_YESNO) == mrNo)
+				if(messageDlg('Ð¡ÐºÑ€Ð¸Ð¿Ñ‚ Ñ Ñ‚Ð°ÐºÐ¸Ð¼ Ð¸Ð¼ÐµÐ½ÐµÐ¼ ÑƒÐ¶Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚! Ð—Ð°Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ?', mtCustom, MB_YESNO) == mrNo)
 					return;
 			}
 			file_put_contents($file, $memo->text);
 			$dlgEval->hide();
 		}else{
-			messageDlg('Ââåäèòå èìÿ ñêðèïòà!', mtCustom, MB_OK);
+			messageDlg('Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¸Ð¼Ñ ÑÐºÑ€Ð¸Ð¿Ñ‚Ð°!', mtCustom, MB_OK);
 			$dlgEval->findComponent('edit_script_name')->setFocus();
 		}
 	};
 	
-	// Îòîáðàæåíèå äèàëîãà ñîõðàíåíèÿ ñêðèïòà
+	// ÐžÑ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð¸Ð°Ð»Ð¾Ð³Ð° ÑÐ¾Ñ…Ñ€Ð°Ð½ÐµÐ½Ð¸Ñ ÑÐºÑ€Ð¸Ð¿Ñ‚Ð°
 	$dlgEval->onShow = function()use($dlgEval){
 		$dlgEval->findComponent('edit_script_name')->text = '';
 		$dlgEval->findComponent('edit_script_name')->setFocus();};

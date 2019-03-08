@@ -1,5 +1,5 @@
 <?
-// инициализация всех компонентов, которые можно добавлять на форму
+// РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РІСЃРµС… РєРѕРјРїРѕРЅРµРЅС‚РѕРІ, РєРѕС‚РѕСЂС‹Рµ РјРѕР¶РЅРѕ РґРѕР±Р°РІР»СЏС‚СЊ РЅР° С„РѕСЂРјСѓ
 
 global $_c;
 $_c->gdHorizontal	= 0;
@@ -168,7 +168,7 @@ if (EMULATE_DVS_EXE) return;
 				'TYPE'=>'check',
 				'UPDATE_DSGN'=>1
 			),
-		/*на php 5.3 это никак не сократить :-( печалька*/
+		/*РЅР° php 5.3 СЌС‚Рѕ РЅРёРєР°Рє РЅРµ СЃРѕРєСЂР°С‚РёС‚СЊ :-( РїРµС‡Р°Р»СЊРєР°*/
 		'Integer'=>
 			array(
 				'TYPE'=>'number',
@@ -217,7 +217,7 @@ if (EMULATE_DVS_EXE) return;
 		'TAlign'=>
 			array(
 				'TYPE'=>'combo',
-				'VALUES'=>$GLOBALS['align_meta'], //оптимизация
+				'VALUES'=>$GLOBALS['align_meta'], //РѕРїС‚РёРјРёР·Р°С†РёСЏ
 				'ADD_GROUP'=>true
 			),
 		'TBitmap'=>
@@ -229,14 +229,14 @@ if (EMULATE_DVS_EXE) return;
 		'TButtonLayout'=>
 			array(
 				'TYPE'=>'combo',
-				'VALUES'=>$GLOBALS['btnly_meta'], //оптимизация
+				'VALUES'=>$GLOBALS['btnly_meta'], //РѕРїС‚РёРјРёР·Р°С†РёСЏ
 				'NO_CONST'=>1,
 				'UPDATE_DSGN'=>1
 			),
 		'TModalResult'=>
 			array(
 				'TYPE'=>'combo',
-				'VALUES'=>$GLOBALS['mores_meta'] //оптимизация
+				'VALUES'=>$GLOBALS['mores_meta'] //РѕРїС‚РёРјРёР·Р°С†РёСЏ
 			),
 		'TButtonKind'=>
 			array(
@@ -278,7 +278,7 @@ if (EMULATE_DVS_EXE) return;
 			),
 		
 			//SIZES AND POSITION//
-		   //РАЗМЕРЫ И ПОЗИЦИЯ //
+		   //Р РђР—РњР•Р Р« Р РџРћР—РР¦РРЇ //
 		'TSizeConstraints'=>
 			array(
 				'TYPE'=>'sizes',
@@ -286,9 +286,9 @@ if (EMULATE_DVS_EXE) return;
 				'UPDATE_DSGN'=>1
 			),
 	);
-	//CAPTION - указывать вручную придётся
-	//'NO_CONST'=>true, - указывать придётся, если для константы используется перевод, вот так вот
-	//PROP - зависит от случая
+	//CAPTION - СѓРєР°Р·С‹РІР°С‚СЊ РІСЂСѓС‡РЅСѓСЋ РїСЂРёРґС‘С‚СЃСЏ
+	//'NO_CONST'=>true, - СѓРєР°Р·С‹РІР°С‚СЊ РїСЂРёРґС‘С‚СЃСЏ, РµСЃР»Рё РґР»СЏ РєРѕРЅСЃС‚Р°РЅС‚С‹ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РїРµСЂРµРІРѕРґ, РІРѕС‚ С‚Р°Рє РІРѕС‚
+	//PROP - Р·Р°РІРёСЃРёС‚ РѕС‚ СЃР»СѓС‡Р°СЏ
 	
 	function sort_props(&$props, $class, $typeC = array(
 				0=>'TCaption',
@@ -612,8 +612,8 @@ if (EMULATE_DVS_EXE) return;
     foreach ($files as $file)
         require $dir_n . '/editor_types/' . $file;
 	
-    ////// создаем панель компонентов ///////// 
-	/*AZ: Вырезал этот код ещё давно, т.к хлам по сути, можно не создавать в этом месте, а из dfm грузить*/
+    ////// СЃРѕР·РґР°РµРј РїР°РЅРµР»СЊ РєРѕРјРїРѕРЅРµРЅС‚РѕРІ ///////// 
+	/*AZ: Р’С‹СЂРµР·Р°Р» СЌС‚РѕС‚ РєРѕРґ РµС‰С‘ РґР°РІРЅРѕ, С‚.Рє С…Р»Р°Рј РїРѕ СЃСѓС‚Рё, РјРѕР¶РЅРѕ РЅРµ СЃРѕР·РґР°РІР°С‚СЊ РІ СЌС‚РѕРј РјРµСЃС‚Рµ, Р° РёР· dfm РіСЂСѓР·РёС‚СЊ*/
     global $fmComponents;
     $cp = c('fmComponents->list');
 	$theme = DOC_ROOT . 'images/btns/' . myOptions::get('prefs','studio_theme', 'light'); //#ADDOPT;
@@ -638,9 +638,9 @@ if (EMULATE_DVS_EXE) return;
             foreach ((array)$c['MODULES'] as $mod){
                 
                 if ( ! extension_loaded(substr(basenameNoExt($mod),4)) && basenameNoExt($mod) !== 'php_squall' ){
-					gui_Message(t('Пропишите %s модуль в /core/php.ini в секцию extensions', $mod));
-					/*AZ:Нужно бы функцию dl() портировать, кстати, тут ещё нужна проверка на то, есть ли эта строка в php.ini
-						т.к бывают ошибки с загрузкой расширений, а не их отсутствие в загр. секции, что не есть хорошо*/
+					gui_Message(t('РџСЂРѕРїРёС€РёС‚Рµ %s РјРѕРґСѓР»СЊ РІ /core/php.ini РІ СЃРµРєС†РёСЋ extensions', $mod));
+					/*AZ:РќСѓР¶РЅРѕ Р±С‹ С„СѓРЅРєС†РёСЋ dl() РїРѕСЂС‚РёСЂРѕРІР°С‚СЊ, РєСЃС‚Р°С‚Рё, С‚СѓС‚ РµС‰С‘ РЅСѓР¶РЅР° РїСЂРѕРІРµСЂРєР° РЅР° С‚Рѕ, РµСЃС‚СЊ Р»Рё СЌС‚Р° СЃС‚СЂРѕРєР° РІ php.ini
+						С‚.Рє Р±С‹РІР°СЋС‚ РѕС€РёР±РєРё СЃ Р·Р°РіСЂСѓР·РєРѕР№ СЂР°СЃС€РёСЂРµРЅРёР№, Р° РЅРµ РёС… РѕС‚СЃСѓС‚СЃС‚РІРёРµ РІ Р·Р°РіСЂ. СЃРµРєС†РёРё, С‡С‚Рѕ РЅРµ РµСЃС‚СЊ С…РѕСЂРѕС€Рѕ*/
 					//dl($mod);
                 }
             }

@@ -27,7 +27,7 @@ class complete_Vars {
         return $result;
     }
     
-    // возвращаем список для инлайна
+    // РІРѕР·РІСЂР°С‰Р°РµРј СЃРїРёСЃРѕРє РґР»СЏ РёРЅР»Р°Р№РЅР°
     function getList($lineText){
         
         

@@ -306,7 +306,7 @@ class myOptions {
 			}
 			
 			$dir = c('fmOptions->backup_dir')->text;
-			if ( !eregi('$([.\-\_a-zа-яА-Я0-9]+)', $dir) )
+			if ( !eregi('$([.\-\_a-zР°-СЏРђ-РЇ0-9]+)', $dir) )
 				$dir = 'backup';
 				
 			myOptions::set('backup','dir', $dir);
@@ -354,7 +354,7 @@ class myBackup {
 	static function doInterval($thks=true){
 		
 		global $projectFile;
-		if ( !eregi('$([.\-\_a-zа-яА-Я0-9]+)', $projectFile) )
+		if ( !eregi('$([.\-\_a-zР°-СЏРђ-РЇ0-9]+)', $projectFile) )
 			self::$dir = 'backup';
 		
 		$dir = dirname($projectFile) .'/'. self::$dir . '/';
@@ -367,7 +367,7 @@ class myBackup {
 		while ( is_file( $dir . $file . $from . '.dvs' ) ) $from++; 
 		
 		$src = $dir . $file . $from . '.dvs';
-		if(myProject::saveAsDVS($src,$thks) ) myCompile::setStatus('Backup', t('Создание резервной копии').date(' ( H:i )'));
+		if(myProject::saveAsDVS($src,$thks) ) myCompile::setStatus('Backup', t('РЎРѕР·РґР°РЅРёРµ СЂРµР·РµСЂРІРЅРѕР№ РєРѕРїРёРё').date(' ( H:i )'));
 		$check = $dir . $file .($from - self::$count - 1) . '.dvs';
 		
 		if ( is_file( $check ) ){

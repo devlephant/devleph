@@ -4,7 +4,7 @@
 class complete_var_Hints {
     
     
-    // возвращаем список для инлайна
+    // РІРѕР·РІСЂР°С‰Р°РµРј СЃРїРёСЃРѕРє РґР»СЏ РёРЅР»Р°Р№РЅР°
     function getList($lineText){
         
         global $_FORMS, $formSelected, $funcInfos, $addFuncs;
@@ -15,7 +15,7 @@ class complete_var_Hints {
             
         $exText = trim(preg_replace('#^(\$[a-z\_]{1}[a-zA-Z0-9\_]{0,60})->#i','',$lineText));
         $var    = substr($lineText,0, strlen($lineText)-strlen($exText)-2); // "->" -2
-        $method = substr($exText, 0, strlen($method)-1); // убираем скобку в конце
+        $method = substr($exText, 0, strlen($method)-1); // СѓР±РёСЂР°РµРј СЃРєРѕР±РєСѓ РІ РєРѕРЅС†Рµ
         
         $class = complete_Var_Props::getVarClass($var);
         

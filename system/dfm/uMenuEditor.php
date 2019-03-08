@@ -159,7 +159,7 @@ class menuEditor {
         $params1 = self::getParam($from);
         $params2 = self::getParam($to);
         
-        if ($from > $to){ // ââåðõ ïåðåìåùàåì
+        if ($from > $to){ // Ð²Ð²ÐµÑ€Ñ… Ð¿ÐµÑ€ÐµÐ¼ÐµÑ‰Ð°ÐµÐ¼
             
             if ($params1['level']-$params2['level']>1){
                 $params1['level'] = $params2['level']+1;

@@ -4,7 +4,7 @@
 class complete_obj_Hints {
     
     
-    // âîçâðàùàåì ñïèñîê äëÿ èíëàéíà
+    // Ð²Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÐ¼ ÑÐ¿Ð¸ÑÐ¾Ðº Ð´Ð»Ñ Ð¸Ð½Ð»Ð°Ð¹Ð½Ð°
     function getList($lineText){
         
         global $_FORMS, $formSelected, $funcInfos, $addFuncs;
@@ -18,7 +18,7 @@ class complete_obj_Hints {
         
         $exText = trim(preg_replace('#^c\(\"([a-z0-9\_\>\-]*)\"\)->#i','',$lineText));
         $object = substr($lineText,0, strlen($lineText)-strlen($exText)-2); // "->" -2
-        $method = substr($exText, 0, strlen($method)-1); // óáèðàåì ñêîáêó â êîíöå
+        $method = substr($exText, 0, strlen($method)-1); // ÑƒÐ±Ð¸Ñ€Ð°ÐµÐ¼ ÑÐºÐ¾Ð±ÐºÑƒ Ð² ÐºÐ¾Ð½Ñ†Ðµ
         
         
         preg_match_all('%c\(\"([a-z0-9\_\-\>]+)\"\)%i', $object, $arrx);

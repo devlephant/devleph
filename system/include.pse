@@ -133,8 +133,7 @@ if (!defined('IS_APPLICATION_START')){
         
         global $myProperties;
         $myProperties->generateAllClasses();
-    
-        require 'scripts/fmMain.php';
+		
         include 'scripts/hotkeys.php';
     
         $GLOBALS['APPLICATION']->processMessages();

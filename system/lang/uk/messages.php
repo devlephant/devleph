@@ -296,7 +296,7 @@ $m['TPopupMenu_Caption'] = 'Випадаюче Меню';
 $m['TMainMenu_Caption']  = 'Головне Меню';
 $m['TMenuItem_Caption']  = 'Пункт Меню';
 $m['TProgressBar_Caption'] = 'Прогрес';
-$m['TStatusBar_Caption'] = 'Статус-панель';
+$m['TStatusBar_Caption'] = 'Статус-Паанель';
 $m['TTrackBar_Caption'] = 'Промотувач';
 $m['TScrollBox_Caption'] = 'Контейнер';
 $m['TScrollBar_Caption'] = 'Прокручувач';
@@ -710,7 +710,7 @@ $m['Page Size'] = 'Розмір сторінки';
 $m['Hot Key'] = 'Гаряча клавіша';
 
 $m['clear_list'] = 'Очистити список';
-$m['Are you shure to open "%s" ?'] = 'Ви точно впевнені, що бажаєте відкрити "%s" ?';
+$m['Are you sure to open "%s" ?'] = 'Ви точно впевнені, що бажаєте відкрити "%s" ?';
 
 $m['Left Popup'] = 'ЛКМ - Випадаюче меню';
 $m['Hint'] = 'Підказка';

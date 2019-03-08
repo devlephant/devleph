@@ -218,7 +218,7 @@ class ev_fmEditorSettings {
         self::$font = new TLabel( $form );
         self::$font->parent = $form;
         self::$font->caption = c("fmPHPEditor->memo")->font->name;
-        self::$font->hint = 'Èçìåíèòü';
+        self::$font->hint = 'Ð˜Ð·Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ';
         self::$font->autoSize = false;
         self::$font->y = 228;
         self::$font->x = 90;

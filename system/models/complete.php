@@ -61,7 +61,7 @@ class myComplete {
             $completeList[] = $info;
         }
         	
-        // ñîðòèðóåì âåñü ìàññèâ ïî ïîëþ ÑÎÐÒ
+        // ÑÐ¾Ñ€Ñ‚Ð¸Ñ€ÑƒÐµÐ¼ Ð²ÐµÑÑŒ Ð¼Ð°ÑÑÐ¸Ð² Ð¿Ð¾ Ð¿Ð¾Ð»ÑŽ Ð¡ÐžÐ Ð¢
         BlockData::sortList($completeList, 'SORT');
         
 		c('fmLogoin->label5')->caption = 'Initializing... 100%';

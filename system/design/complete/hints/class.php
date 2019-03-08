@@ -10,7 +10,7 @@ class complete_Hints {
     }*/
     
     
-    // возвращаем список для инлайна
+    // РІРѕР·РІСЂР°С‰Р°РµРј СЃРїРёСЃРѕРє РґР»СЏ РёРЅР»Р°Р№РЅР°
     function getList($lineText){
         
         global $_FORMS, $formSelected, $funcInfos, $addFuncs;

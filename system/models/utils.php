@@ -138,7 +138,7 @@ class myUtils {
                 
             } elseif ($class=='TEvents') {        
                
-                // это для формата старых объектов...
+                // СЌС‚Рѕ РґР»СЏ С„РѕСЂРјР°С‚Р° СЃС‚Р°СЂС‹С… РѕР±СЉРµРєС‚РѕРІ...
                 if ($real_class !== 'TEvents'){
                     $el = convertOldEvents($el);
                 }
@@ -381,7 +381,7 @@ class myUtils {
         if (!$name || is_numeric($name))
             $name = $_FORMS[$formSelected];
             
-        if ( !confirm(t('Вы точно хотите удалить форму "'.$name.'"?')) ) return;    
+        if ( !confirm(t('Р’С‹ С‚РѕС‡РЅРѕ С…РѕС‚РёС‚Рµ СѓРґР°Р»РёС‚СЊ С„РѕСЂРјСѓ "'.$name.'"?')) ) return;    
         
         c('fmMain->tabForms')->tabs->delete($formSelected);
         if ($formSelected == 0)
@@ -602,8 +602,8 @@ class myUtils {
             
             
             self::saveForm();
-            self::createForm($name); // создаем форму из бланка...
-            self::loadForm($name); // загружаем форму в проект...
+            self::createForm($name); // СЃРѕР·РґР°РµРј С„РѕСЂРјСѓ РёР· Р±Р»Р°РЅРєР°...
+            self::loadForm($name); // Р·Р°РіСЂСѓР¶Р°РµРј С„РѕСЂРјСѓ РІ РїСЂРѕРµРєС‚...
             
         }
     }
@@ -644,7 +644,7 @@ class myUtils {
         
     }
     
-    // реальное число компонентов на форме...
+    // СЂРµР°Р»СЊРЅРѕРµ С‡РёСЃР»Рѕ РєРѕРјРїРѕРЅРµРЅС‚РѕРІ РЅР° С„РѕСЂРјРµ...
     static function componentCount(){
         
         global $fmEdit;

@@ -38,10 +38,6 @@ function php_strip_whitespace_ex($source){
 }
 
 
-class DS_Build {
-
-}
-
 class DS_BuildSoulEngine {
 
 	public $modules;
@@ -52,7 +48,6 @@ class DS_BuildSoulEngine {
 		
 		$this->core_dir = $core_dir;
 		$file = file_get_contents( $core_dir . '/include.php' );
-		
 		$data = explode('/* %START_MODULES% */', $file);
 		$this->parseModules( $data[1] );
 		$this->core = $data[0];
@@ -73,6 +68,7 @@ class DS_BuildSoulEngine {
 				$this->modules[] = $tmp;
 			}
 		}
+		
 	}
 	
 	public function SaveToFile( $file = false ){
@@ -102,8 +98,8 @@ class DS_BuildSoulEngine {
 			$str = substr($str, 0, -2);
 		/*****/
 			
-		
-		$str = gzcompress( php_strip_whitespace_ex($str) );
+		$str = base64_encode( php_strip_whitespace_ex($str) );
+
 		if (!$file)
 			return $str;
 			

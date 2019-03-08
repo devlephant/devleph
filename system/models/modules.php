@@ -56,7 +56,7 @@ class myModules {
         return false;
     }
     
-    // возвращает список необходимых для подключения модулей...
+    // РІРѕР·РІСЂР°С‰Р°РµС‚ СЃРїРёСЃРѕРє РЅРµРѕР±С…РѕРґРёРјС‹С… РґР»СЏ РїРѕРґРєР»СЋС‡РµРЅРёСЏ РјРѕРґСѓР»РµР№...
     static function getNeed(){
         
         global $myProject, $fmEdit, $_components;
@@ -90,7 +90,7 @@ class myModules {
             $myProject->config['modules'][] = $module;
     }
     
-    // attach_dll прикреплять к ехе расширения
+    // attach_dll РїСЂРёРєСЂРµРїР»СЏС‚СЊ Рє РµС…Рµ СЂР°СЃС€РёСЂРµРЅРёСЏ
     static function inc($file = false, $attach_dll = false){
         
         global $myProject, $projectFile, $exten_dir;
@@ -113,7 +113,7 @@ class myModules {
             
              
 
-            // копируем сам модуль, если не скопирован
+            // РєРѕРїРёСЂСѓРµРј СЃР°Рј РјРѕРґСѓР»СЊ, РµСЃР»Рё РЅРµ СЃРєРѕРїРёСЂРѕРІР°РЅ
             //if (!file_exists(dirname($file).'/ext/'.$mod)){
                 if (!$attach_dll){
 				
@@ -134,7 +134,7 @@ class myModules {
                 }
             //}
             
-            // копируем зависимые dll-ки модуля...
+            // РєРѕРїРёСЂСѓРµРј Р·Р°РІРёСЃРёРјС‹Рµ dll-РєРё РјРѕРґСѓР»СЏ...
             foreach ((array)$GLOBALS['MODULES_INFO'][$mod] as $dll){
                 
                     if (is_file($dir . $dll))
@@ -161,7 +161,7 @@ class myModules {
 			
 	    $class = $el['CLASS'];
 	    $info  = $componentClassesEx[ $class ];
-		//Добавляем "моды"
+		//Р”РѕР±Р°РІР»СЏРµРј "РјРѕРґС‹"
 		global $myProject;
 		if( isset($myProject->config['mods']) )
 	    if( is_array($myProject->config['mods']) )
@@ -170,7 +170,7 @@ class myModules {
 			if( file_exists($dir) && is_dir($dir) && file_exists($dir.'.php') ){
 				$ifo = include $dir.'.php';
 				if(	is_array($ifo)	){
-					if ( is_array($ifo['DLLS']) ){ //Добавляем прочие файлы
+					if ( is_array($ifo['DLLS']) ){ //Р”РѕР±Р°РІР»СЏРµРј РїСЂРѕС‡РёРµ С„Р°Р№Р»С‹
 						foreach($ifo['DLLS'] as $f){
 							if (file_exists(dirname($file).'/'.$f)) continue;
 								$xfile = file_exists('ext/mods/'.$moo.'/'.$f)? 'ext/mods/'.$moo.'/'.$f: replaceSl(dirname(EXE_NAME)).'/'.$f;
@@ -221,7 +221,7 @@ class myModules {
     }
     
     
-    // очищаем от лишних модулей и dll
+    // РѕС‡РёС‰Р°РµРј РѕС‚ Р»РёС€РЅРёС… РјРѕРґСѓР»РµР№ Рё dll
     static function clear(){
         
         global $myProject, $projectFile, $exten_dir;
@@ -237,12 +237,12 @@ class myModules {
         $files   = findFiles(dirname($projectFile).$exten_dir,'dll');
         
         foreach ($files as $file){
-            // если файл отсутствует в модулях, удаляем
+            // РµСЃР»Рё С„Р°Р№Р» РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚ РІ РјРѕРґСѓР»СЏС…, СѓРґР°Р»СЏРµРј
             if (!in_array($file, $modules)){
                 
                 unlink(dirname($projectFile).$exten_dir.$file);
                 
-                // удаляем зависимые dll-ки
+                // СѓРґР°Р»СЏРµРј Р·Р°РІРёСЃРёРјС‹Рµ dll-РєРё
                 foreach ((array)$info[$file] as $dll)
                     if (file_exists(dirname($projectFile).'/'.$dll))
                         unlink(dirname($projectFile).'/'.$dll);

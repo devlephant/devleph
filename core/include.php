@@ -134,7 +134,7 @@ include_lib('main','dfmreader');
 include_lib('main','forms');
 include_lib('main','dialogs');
 
-include_lib('alphacontrols','sDialogs');
+
 
 include_lib('main','standart');
 include_lib('main','timing');

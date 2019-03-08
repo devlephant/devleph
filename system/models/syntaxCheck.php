@@ -32,7 +32,7 @@ class mySyntaxCheck {
 				$err = err_last();
 			}
 			$exp = null;
-            if (is_array($err)){ // åñëè 
+            if (is_array($err)){ // ÐµÑÐ»Ð¸ 
 				if($obj_name==$form) $obj_name = false;
 				
                 self::$errors[$list->itemIndex+count(self::$errors)+1] = ['msg'=>$err['msg'], 'type'=>$err['type'],
@@ -72,7 +72,7 @@ class mySyntaxCheck {
 			$err = err_last();
 			
 			$exp = null;
-            if (is_array($err)){ // åñëè 
+            if (is_array($err)){ // ÐµÑÐ»Ð¸ 
 
 				$event = '/scripts/' . basename($filename);
                 self::$errors[$list->itemIndex+count(self::$errors)+1] = ['msg'=>$err['msg'], 'type'=>$err['type'],

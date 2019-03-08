@@ -1,6 +1,6 @@
 <?
 
-// модуль нестандартных диалогов...
+// РјРѕРґСѓР»СЊ РЅРµСЃС‚Р°РЅРґР°СЂС‚РЅС‹С… РґРёР°Р»РѕРіРѕРІ...
 
 function __inputTextKeyDownEvent($self, $key, $shift){
     
@@ -40,7 +40,7 @@ function inputText($caption, $text, $value='', $xy = true){
         return false;
 }
 
-// диалог для текста...
+// РґРёР°Р»РѕРі РґР»СЏ С‚РµРєСЃС‚Р°...
 class TTextDialog extends TPanel {
     
     
@@ -96,7 +96,7 @@ class TTextDialog extends TPanel {
 	}
 }
 
-// диалог для размеров...
+// РґРёР°Р»РѕРі РґР»СЏ СЂР°Р·РјРµСЂРѕРІ...
 class TSizesDialog extends TPanel {
     
     
@@ -190,7 +190,7 @@ class TSizesDialog extends TPanel {
 
 }
 
-// диалог для картинки...
+// РґРёР°Р»РѕРі РґР»СЏ РєР°СЂС‚РёРЅРєРё...
 class TImageDialog extends TPanel {
     
     
@@ -286,7 +286,7 @@ class TImageDialog extends TPanel {
     
 }
 
-//диалог для меню...
+//РґРёР°Р»РѕРі РґР»СЏ РјРµРЅСЋ...
 class TMenuDialog extends TPanel {
     
     
@@ -307,7 +307,7 @@ class TMenuDialog extends TPanel {
         c('edt_menuEditor',1)->result = $v;
     }
 }
-//диалог выбора объекта...
+//РґРёР°Р»РѕРі РІС‹Р±РѕСЂР° РѕР±СЉРµРєС‚Р°...
 class TObjectsDialog extends TPanel {
     
     

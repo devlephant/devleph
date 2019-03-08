@@ -1,6 +1,6 @@
 <?
 /*
-   êëàññ, êîòîðûé îáúåäèíÿåò âñå âîçìîæíîñòè èñïîëüçîâàíèÿ DS Api 
+   ÐºÐ»Ð°ÑÑ, ÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ð¹ Ð¾Ð±ÑŠÐµÐ´Ð¸Ð½ÑÐµÑ‚ Ð²ÑÐµ Ð²Ð¾Ð·Ð¼Ð¾Ð¶Ð½Ð¾ÑÑ‚Ð¸ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ð½Ð¸Ñ DS Api 
 */
 
 define('API_EVENT_EXIT',1);
@@ -28,7 +28,7 @@ class CApi extends DSApi {
         return $params;
     }
     
-    // óñòàíîâèòü êîìïîíåíò èç ôàéëà .dscomponent
+    // ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð¸Ñ‚ÑŒ ÐºÐ¾Ð¼Ð¿Ð¾Ð½ÐµÐ½Ñ‚ Ð¸Ð· Ñ„Ð°Ð¹Ð»Ð° .dscomponent
     static function installPak($info){
         
         if (!is_array($info)) $info = self::readDSPak($info);

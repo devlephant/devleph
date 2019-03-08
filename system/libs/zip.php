@@ -25,7 +25,7 @@
 
 /*
  include zip.lib.php
-    $data = "òåêñò ôàéëà";
+    $data = "Ñ‚ÐµÐºÑÑ‚ Ñ„Ð°Ð¹Ð»Ð°";
     $name = "filename.txt";
     $zipfile = new zipfile();
     $zipfile->addFile($data, $name);

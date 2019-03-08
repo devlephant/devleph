@@ -4,7 +4,7 @@
 class complete_static_Hints {
     
     
-    // возвращаем список для инлайна
+    // РІРѕР·РІСЂР°С‰Р°РµРј СЃРїРёСЃРѕРє РґР»СЏ РёРЅР»Р°Р№РЅР°
     function getList($lineText){
         
         global $_FORMS, $formSelected, $funcInfos, $addFuncs;
@@ -17,7 +17,7 @@ class complete_static_Hints {
         $class = '';
         
         list($class, $method) = explode('::', $lineText);
-        $method = substr($method, 0, strlen($method)-1); // убираем скобку в конце
+        $method = substr($method, 0, strlen($method)-1); // СѓР±РёСЂР°РµРј СЃРєРѕР±РєСѓ РІ РєРѕРЅС†Рµ
         $class = trim($class);
         $methods = array_merge( myProperties::getMethodsInfo($class), complete_Static_Props::getDynMethodsInfo($class));
         

@@ -21,7 +21,7 @@ class ev_fmRunDebug_btn_add {
         
         $arr['type'] = 'glVars';
         c('edt_inputText')->formStyle = fsStayOnTop;
-        $res = inputText('Íîâàÿ ïåðåìåííàÿ', 'Ââåäèòå èìÿ ãëîáàëüíîé ïåðåìåííîé');
+        $res = inputText('ÐÐ¾Ð²Ð°Ñ Ð¿ÐµÑ€ÐµÐ¼ÐµÐ½Ð½Ð°Ñ', 'Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¸Ð¼Ñ Ð³Ð»Ð¾Ð±Ð°Ð»ÑŒÐ½Ð¾Ð¹ Ð¿ÐµÑ€ÐµÐ¼ÐµÐ½Ð½Ð¾Ð¹');
         c('edt_inputText')->formStyle = fsNormal;
         $res = str_replace('$','',$res);
         if ($res){
@@ -59,7 +59,7 @@ class ev_fmRunDebug_btn_edit {
         $res = str_replace('$','',$res);
         
         c('edt_inputText')->formStyle = fsStayOnTop;
-        $res = inputText('Ïåðåèìåííîâàíèå', 'Ââåäèòå íîâîå èìÿ ïåðåìåííîé');
+        $res = inputText('ÐŸÐµÑ€ÐµÐ¸Ð¼ÐµÐ½Ð½Ð¾Ð²Ð°Ð½Ð¸Ðµ', 'Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð²Ð¾Ðµ Ð¸Ð¼Ñ Ð¿ÐµÑ€ÐµÐ¼ÐµÐ½Ð½Ð¾Ð¹');
         c('edt_inputText')->formStyle = fsNormal;
         
         

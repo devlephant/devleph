@@ -13,7 +13,7 @@ class myDesign {
         return $_FORMS[$formSelected];
     }
     
-    // возвратить список компонентов (имен) в группе
+    // РІРѕР·РІСЂР°С‚РёС‚СЊ СЃРїРёСЃРѕРє РєРѕРјРїРѕРЅРµРЅС‚РѕРІ (РёРјРµРЅ) РІ РіСЂСѓРїРїРµ
     static function getGroup($obj){
         
         $arr  = (array)myProject::cfg('_grouping');
@@ -29,7 +29,7 @@ class myDesign {
         return array();
     }
     
-    // добавляет выделенные элементы в группу...
+    // РґРѕР±Р°РІР»СЏРµС‚ РІС‹РґРµР»РµРЅРЅС‹Рµ СЌР»РµРјРµРЅС‚С‹ РІ РіСЂСѓРїРїСѓ...
     static function addGroup(){
         
         global $_sc;
@@ -107,7 +107,7 @@ class myDesign {
         myProject::cfg('_grouping',$arr);   
     }
     
-    // удаляет объект из всех групп
+    // СѓРґР°Р»СЏРµС‚ РѕР±СЉРµРєС‚ РёР· РІСЃРµС… РіСЂСѓРїРї
     static function delObjFromGroups($obj){
         
         $arr  = (array)myProject::cfg('_grouping');
@@ -225,7 +225,7 @@ class myDesign {
         global $fmEdit;
         
         if (is_object($class)) $class = $class->className;
-        $classInfo = self::getClassInfo($class); // информация о класса...
+        $classInfo = self::getClassInfo($class); // РёРЅС„РѕСЂРјР°С†РёСЏ Рѕ РєР»Р°СЃСЃР°...
         
         $name = $classInfo['NAME'];
         $i = 1;
@@ -243,7 +243,7 @@ class myDesign {
     static function getNoExistsName($class){
         
         $i = self::getNoExistsNameIndex($class);
-        $classInfo = self::getClassInfo($class); // информация о класса...
+        $classInfo = self::getClassInfo($class); // РёРЅС„РѕСЂРјР°С†РёСЏ Рѕ РєР»Р°СЃСЃР°...
         return vsprintf($classInfo['NAME'].'%s', $i);
     }
     
