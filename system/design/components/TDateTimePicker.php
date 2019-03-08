@@ -1,7 +1,7 @@
 
 <?
 return array(
-'GROUP'   => 'Списки',
+'GROUP'   => 'Lists',
 'CLASS'   => basenameNoExt(__FILE__),
 'CAPTION' => t('TDateTimePicker_Caption'),
 'SORT'    => 63,

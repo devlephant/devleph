@@ -1,7 +1,7 @@
 
 <?
 return array(
-'GROUP'   => 'Медиа',
+'GROUP'   => 'Multimedia',
 'CLASS'   => basenameNoExt(__FILE__),
 'CAPTION' => 'Squall '.t('Player'),
 'SORT'    => 740,

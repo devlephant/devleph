@@ -2,7 +2,7 @@
 
 $result = array();
 
-$result['GROUP']   = 'Списки';
+$result['GROUP']   = 'Lists';
 $result['CLASS']   = basenameNoExt(__FILE__);
 $result['CAPTION'] = t('ColorBox');
 $result['SORT']    = 57;

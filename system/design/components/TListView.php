@@ -1,7 +1,7 @@
 
 <?
 return array(
-'GROUP'   => 'Списки',
+'GROUP'   => 'Lists',
 'CLASS'   => basenameNoExt(__FILE__),
 'CAPTION' => t('TListView'),
 'SORT'    => 84,

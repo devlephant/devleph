@@ -1,7 +1,7 @@
 
 <?
 return array(
-'GROUP'   => 'Контейнеры',
+'GROUP'   => 'Containers',
 'CLASS'   => basenameNoExt(__FILE__),
 'CAPTION' => t('TTabControl_Caption'),
 'SORT'    => 410,

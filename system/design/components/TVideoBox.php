@@ -1,7 +1,7 @@
 
 <?
 return array(
-'GROUP'   => 'Медиа',
+'GROUP'   => 'Multimedia',
 'CLASS'   => basenameNoExt(__FILE__),
 'CAPTION' => t('TVideoBox'),
 'SORT'    => 450,

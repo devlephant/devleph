@@ -1,7 +1,7 @@
 
 <?
 return array(
-'GROUP'   => 'Списки',
+'GROUP'   => 'Lists',
 'CLASS'   => basenameNoExt(__FILE__),
 'CAPTION' => t('TMainMenu_Caption'),
 'SORT'    => 86,

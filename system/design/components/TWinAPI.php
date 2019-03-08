@@ -1,7 +1,7 @@
 
 <?
 return array(
-'GROUP'   => 'Функции',
+'GROUP'   => 'Functions',
 'CLASS'   => basenameNoExt(__FILE__),
 'CAPTION' => 'Windows API',
 'SORT'    => 1600,

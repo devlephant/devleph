@@ -1,7 +1,7 @@
 
 <?
 return array(
-'GROUP'   => 'Текстовые поля',
+'GROUP'   => 'Text Fields',
 'CLASS'   => basenameNoExt(__FILE__),
 'CAPTION' => t('TRichEdit_Caption'),
 'SORT'    => 405,

@@ -1,7 +1,7 @@
 
 <?
 return array(
-'GROUP'   => 'Фигуры',
+'GROUP'   => 'Shapes',
 'CLASS'   => basenameNoExt(__FILE__),
 'CAPTION' => t('TBevel_Caption'),
 'SORT'    => 11,

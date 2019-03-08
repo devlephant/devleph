@@ -1,7 +1,7 @@
 
 <?
 return array(
-'GROUP'   => 'Текст',
+'GROUP'   => 'Captions',
 'CLASS'   => basenameNoExt(__FILE__),
 'CAPTION' => t('TLinkLabel_Caption'),
 'SORT'    => 9,

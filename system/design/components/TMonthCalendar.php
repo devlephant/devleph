@@ -1,6 +1,6 @@
 <?
 return array(
-'GROUP'   => 'Списки',
+'GROUP'   => 'Lists',
 'CLASS'   => basenameNoExt(__FILE__),
 'CAPTION' => t('TMonthCalendar_Caption'),
 'SORT'    => 613,

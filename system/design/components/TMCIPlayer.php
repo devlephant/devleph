@@ -1,6 +1,6 @@
 <?
 return array(
-'GROUP'   => 'Медиа',
+'GROUP'   => 'Multimedia',
 'CLASS'   => basenameNoExt(__FILE__),
 'CAPTION' => 'MCI '.t('Player'),
 'SORT'    => 613,

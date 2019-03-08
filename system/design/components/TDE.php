@@ -1,2 +1,2 @@
 
-<? return array( 'GROUP' =>'Функции', 'CLASS' =>basenameNoExt(__FILE__), 'CAPTION' => t('Data Encoder'), 'SORT' =>1601, 'NAME' =>'DataEncoder', );
+<? return array( 'GROUP' =>'Functions', 'CLASS' =>basenameNoExt(__FILE__), 'CAPTION' => t('Data Encoder'), 'SORT' =>1601, 'NAME' =>'DataEncoder', );

@@ -1,7 +1,7 @@
 
 <?
 return array(
-'GROUP'   => 'Бары',
+'GROUP'   => 'Bars',
 'CLASS'   => basenameNoExt(__FILE__),
 'CAPTION' => t('TTrackBar_Caption'),
 'SORT'    => 440,

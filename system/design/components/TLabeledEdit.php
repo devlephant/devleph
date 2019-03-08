@@ -1,7 +1,7 @@
 
 <?
 return array(
-'GROUP'   => 'Текстовые поля',
+'GROUP'   => 'Text Fields',
 'CLASS'   => basenameNoExt(__FILE__),
 'CAPTION' => t('TLabeledEdit_Caption'),
 'SORT'    => 70,

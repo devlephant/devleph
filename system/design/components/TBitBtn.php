@@ -1,7 +1,7 @@
 
 <?
 return array(
-'GROUP'   => 'Êíîïêè',
+'GROUP'   => 'Buttons',
 'CLASS'   => basenameNoExt(__FILE__),
 'CAPTION' => t('TButton_Caption'),
 'SORT'    => 1,

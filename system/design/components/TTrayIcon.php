@@ -1,7 +1,7 @@
 
 <?
 return array(
-'GROUP'   => 'Программа',
+'GROUP'   => 'Program',
 'CLASS'   => basenameNoExt(__FILE__),
 'CAPTION' => t('TTrayIcon_Caption'),
 'SORT'    => 780,
