@@ -1,12 +1,11 @@
 <?
 
 class Localization {
-    
     static function init() {
         
         $lang_dir  = defined('USER_LANG_DIR') ? USER_LANG_DIR : 'lang';
         $lang_file = DOC_ROOT.'/'.$lang_dir.'/'.$GLOBALS['__LOCALE_LANG'].'/messages.php';
-	
+		
         if (isset($GLOBALS['__LANG_MESSAGES'])) unset($GLOBALS['__LANG_MESSAGES']);
             
 	$GLOBALS['__LANG_MESSAGES'] = array();
@@ -211,7 +210,8 @@ class Localization {
     static function toEncoding($str){
 	
 	$encoding = self::detectLocale($str);
-	return $encoding == 'windows-1251' ? $str : iconv($encoding, 'windows-1251', $str);
+	$defEnc = (function_exists('delphi_is_uc') && delphi_is_uc())? 'utf-8': 'windows-1251';
+	return $encoding == $defEnc ? $str : iconv($encoding, $defEnc, $str);
     }
     
 }
