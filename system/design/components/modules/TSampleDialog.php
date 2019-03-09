@@ -37,9 +37,9 @@ class TSampleDialog extends __TNoVisual {
 	    
 	    if ( $buttons[$id] ){
 		if (c($obj->link)->resultAsText)
-		    ñ($obj->frm)->result = $buttons[$id];
+		    c($obj->frm)->result = $buttons[$id];
 		else
-		    ñ($obj->frm)->result = $id;
+		    c($obj->frm)->result = $id;
 		
 		c($obj->frm)->close();
 	    }
