@@ -1,5 +1,5 @@
 [main]
 title=Ukrainian Language
-charset=UKRANIAN_CHARSET
+charset=OEM_CHARSET
 sort=3
 message=Будь ласка, перезагрузіть программму...
