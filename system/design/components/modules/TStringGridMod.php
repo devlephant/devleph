@@ -66,10 +66,10 @@ class TStringGridMod extends TStringGrid {
 
 	function addRow($index = "END"){
 		switch ($index) {
-			case "HOME" : $n = $this->fixedRows; break; // в начало
-			case "PREV" : $n = $this->row; break; // выше
-			case "NEXT" : $n = $this->row+1; break; // ниже
-			case "END"  : $n = $this->rowCount; break; // в конец
+			case "HOME" : $n = $this->fixedRows; break; // РІ РЅР°С‡Р°Р»Рѕ
+			case "PREV" : $n = $this->row; break; // РІС‹С€Рµ
+			case "NEXT" : $n = $this->row+1; break; // РЅРёР¶Рµ
+			case "END"  : $n = $this->rowCount; break; // РІ РєРѕРЅРµС†
 			default : if(is_numeric($index)){$n = $index;}else{$n = $this->rowCount;}
 		}
 		$this->rowCount += 1;
@@ -82,10 +82,10 @@ class TStringGridMod extends TStringGrid {
 
 	function addCol($index = "END"){
 		switch ($index) {
-			case "HOME" : $n = $this->fixedCols; break; // в начало
-			case "PREV" : $n = $this->col; break; // выше
-			case "NEXT" : $n = $this->col+1; break; // ниже
-			case "END"  : $n = $this->colCount; break; // в конец
+			case "HOME" : $n = $this->fixedCols; break; // РІ РЅР°С‡Р°Р»Рѕ
+			case "PREV" : $n = $this->col; break; // РІС‹С€Рµ
+			case "NEXT" : $n = $this->col+1; break; // РЅРёР¶Рµ
+			case "END"  : $n = $this->colCount; break; // РІ РєРѕРЅРµС†
 			default : if(is_numeric($index)){$n = $index;}else{$n = $this->colCount;}
 		}
 		$this->colCount += 1;

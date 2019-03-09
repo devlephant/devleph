@@ -113,7 +113,7 @@ class TFormProtect extends __TNoVisual {
 		$form = $v;
 	
 	if ( !$GLOBALS['APP_DESIGN_MODE'] && !($form instanceof TForm) ){
-		pre('Çàäàéòå ôîðìó äëÿ ââîäà, à íå ÷òî-òî äðóãîå!');
+		pre('Ð—Ð°Ð´Ð°Ð¹Ñ‚Ðµ Ñ„Ð¾Ñ€Ð¼Ñƒ Ð´Ð»Ñ Ð²Ð²Ð¾Ð´Ð°, Ð° Ð½Ðµ Ñ‡Ñ‚Ð¾-Ñ‚Ð¾ Ð´Ñ€ÑƒÐ³Ð¾Ðµ!');
 	}
 	
 	$this->_form = $form->self;

@@ -4,9 +4,6 @@ class TFunction extends __TNoVisual {
     
     
     public $rand;
-    #public $icon = 'F';
-    #parameters
-    #description
     
     public function __inspectProperties(){
 	
@@ -57,7 +54,7 @@ class TFunction extends __TNoVisual {
 	    return eval('return '.$this->onExecute . '('.implode(',',$names).');');
     }
     
-    // универсальный метод
+    // СѓРЅРёРІРµСЂСЃР°Р»СЊРЅС‹Р№ РјРµС‚РѕРґ
     function __register($form_name, $name, $info, $eventList){
 	
 	$prs = $info['parameters'];
@@ -128,19 +125,22 @@ class TFunction extends __TNoVisual {
             
 	    $code .= 'if ( defined("DEBUG_OWNER_WINDOW") ){
 			    $__file = syncEx("__exEvents::callFileName", array($self, "onexecute"));
-	                    return include($__file); }';
+	                    $__file = include($__file); 
+						__exEvents::freeEventInfo();
+						return $__file;
+						}';
 	    $code .= ' else {';
 	    if (is_array($eventList))
 		$code.= $eventList['onexecute'];
 	    else
 		$code.= $eventList;
-	    $code .= "\n".'}
-	    
+	    $code .= "\n".'
 		__exEvents::freeEventInfo();
+		}
 	    }';
 	    
-	    // обязательно надо делать так, иначе если у ф-ии будет ретурн, то пространство формы не высвободится
-	    // и получится глюк при обращении к коротким именам компонентов, вот так вот :(
+	    // РѕР±СЏР·Р°С‚РµР»СЊРЅРѕ РЅР°РґРѕ РґРµР»Р°С‚СЊ С‚Р°Рє, РёРЅР°С‡Рµ РµСЃР»Рё Сѓ С„-РёРё Р±СѓРґРµС‚ СЂРµС‚СѓСЂРЅ, С‚Рѕ РїСЂРѕСЃС‚СЂР°РЅСЃС‚РІРѕ С„РѕСЂРјС‹ РЅРµ РІС‹СЃРІРѕР±РѕРґРёС‚СЃСЏ
+	    // Рё РїРѕР»СѓС‡РёС‚СЃСЏ РіР»СЋРє РїСЂРё РѕР±СЂР°С‰РµРЅРёРё Рє РєРѕСЂРѕС‚РєРёРј РёРјРµРЅР°Рј РєРѕРјРїРѕРЅРµРЅС‚РѕРІ, РІРѕС‚ С‚Р°Рє РІРѕС‚ :(
 	    $code .= _BR_.' function '.$name.'('.$names.'){';
 	    
 	    if ( $info['isSync'] )
@@ -153,6 +153,7 @@ class TFunction extends __TNoVisual {
 		$code .= '$result = _______'.$name.'('.implode(',',$real_names).');';
 	    
 	    $code .= '
+		
 		return $result;
 	    }' ;
 	    
