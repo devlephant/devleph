@@ -426,9 +426,7 @@ class TPanel extends TControl {
 		return $this->_constraints;
 	}
 }
-class TDSPanel extends TPanel {
-
-}
+class TDSPanel extends TPanel {}
 class TTransparentPanel extends TControl {
 	
 	protected $_constraints;

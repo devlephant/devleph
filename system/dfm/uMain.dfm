@@ -651,11 +651,11 @@ object fmMain: TfmMain
       Width = 757
       Height = 548
 	  StyleElements = []
+	  Color = clWhite
+	  ParentColor = False
       Align = alClient
       BorderStyle = bsNone
 	  BevelOuter = bvNone
-	  Color = clWhite
-	  ParentColor = False
       TabOrder = 1
       ExplicitWidth = 699
       ExplicitHeight = 764

@@ -752,7 +752,7 @@ class ev_fmMain_shapeSize {
             if ($aSize) return;
             
             $obj->cursor = $curType;
-            global $fmEdit;
+            
             if( $fmEdit->y !== (c("fmMain->shapeSize")->y + 9) ) 
 			{
 				$fmEdit->y = c("fmMain->shapeSize")->y + 9;
