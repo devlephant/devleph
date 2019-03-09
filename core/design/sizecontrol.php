@@ -36,7 +36,7 @@ $_c->setConstList('scsReady', 'scsMoving', 'scsSizing', 0);
 class TSizeCtrl extends TControl{
     
     
-    public $targets = array();
+    public $targets = [];
     //public $targets_ex = array();
     
     public function set_enable($b){ sizectrl_enable($this->self, $b); }
@@ -96,19 +96,19 @@ class TSizeCtrl extends TControl{
     public function clearTargets(){
         
         sizectrl_clear_targets($this->self);
-        $this->targets = array();
+        $this->targets = [];
         //$this->targets_ex = array();
     }
     
     public function unRegisterAll(){
         sizectrl_unregister_all($this->self);
-        $this->targets = array();
+        $this->targets = [];
         //$this->targets_ex = array();
     }
     
     public function update(){
         sizectrl_update($this->self);
-        $this->targets_ex = array();
+        $this->targets_ex = [];
     }
     
     public function updateBtns(){
@@ -122,7 +122,7 @@ class TSizeCtrl extends TControl{
     
     public function get_targets_ex(){
         
-        $result = array();
+        $result = [];
             $tmp = $this->getSelected();
             foreach ($tmp as $link)
                 $result[$link] = _c($link);

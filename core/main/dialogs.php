@@ -39,17 +39,17 @@ global $_c, $APPLICATION;
 	$_c->MB_HELP = 0x004000;
 
 //TMsgDlgType = (mtWarning, mtError, mtInformation, mtConfirmation, mtCustom);
-$_c->setConstList(array('mtWarning', 'mtError', 'mtInformation', 'mtConfirmation', 'mtCustom'), 0);
-$_c->setConstList(array('fdScreen', 'fdPrinter', 'fdBoth'), 0);
+$_c->setConstList(['mtWarning', 'mtError', 'mtInformation', 'mtConfirmation', 'mtCustom'], 0);
+$_c->setConstList(['fdScreen', 'fdPrinter', 'fdBoth'], 0);
 
 function messageBox($text,$caption,$flag = MB_OK){
 	
-	return syncEx('application_messagebox', array($text, $caption, $flag));
+	return syncEx('application_messagebox', [$text, $caption, $flag]);
 }
 
 function messageDlg($text, $type = mtInformation, $flag = MB_OK){
 	
-	return syncEx('message_dlg', array($text, $type, $flag));
+	return syncEx('message_dlg', [$text, $type, $flag]);
 }
 
 function message($text, $mode = mtCustom){
@@ -221,9 +221,8 @@ class TCommonDialog extends TControl{
 	function show(){return $this->execute();}
 	
 	function get_files(){
-		
-		$tmp = (array)explode(_BR_, dialog_items($this->self));
-		foreach ($tmp as $el)
+		$result = [];
+		foreach (explode(_BR_, dialog_items($this->self)) as $el)
 		if ($el)
 		$result[] = replaceSl($el);
 		
@@ -232,14 +231,9 @@ class TCommonDialog extends TControl{
 	
 	function setOption($name, $value = true, $ex = false){
 		
-		$options = array();
-		if ($ex)
-			$tmp = explode(',',$this->optionsEx);
-		else {
-			$tmp = explode(',',$this->options);
-		}
+		$options = [];
 		
-		foreach ($tmp as $el)
+		foreach (($ex?explode(',',$this->optionsEx):explode(',',$this->options)) as $el)
 		if ($el)
 			$options[] = trim($el);
 		

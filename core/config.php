@@ -17,8 +17,8 @@ class TConfig{
     protected $_data;
     
     
-    public function __construct(array $data = array()){
-        $this->_data = array();
+    public function __construct(array $data = []){
+        $this->_data = [];
         $this->setArray($data);   
     }
     

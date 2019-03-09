@@ -19,10 +19,10 @@ class __ini {
         
         $_error_pattern     =    '[ini] %s',
 
-        $_settings          =    array (
-            'ini'        =>    array (),
-            'default'    =>    array ()
-        )
+        $_settings          =    [
+            'ini'        =>    [],
+            'default'    =>    []
+        ]
     ;
 
 /*
@@ -193,9 +193,9 @@ class __ini {
     /**
      * required vars
      */
-        $comments            = array ( '/#[^\n]*/', '/\/\/[^\n]*/'    );
-        $ini                 = array ();
-        $arr_content        = array ();
+        $comments           = [ '/#[^\n]*/', '/\/\/[^\n]*/' ];
+        $ini                = [];
+        $arr_content        = [];
 
         $current_section    = FALSE;
 
@@ -370,7 +370,7 @@ class TConfigIni extends TConfig {
     protected $_result;
     
     
-    public function __construct(array $data = array()){
+    public function __construct(array $data = []){
         
         parent::__construct($data);
         $this->ini = new TIniFile;

@@ -45,7 +45,7 @@ function userErrorHandler($errno = false, $errstr = '', $errfile='', $errline=0,
 	if($errno == E_DEPRECATED) return;
 	if( file_exists('lookout_log.txt') && defined('DS_DEBUG_MODE') )
 		if( constant('DS_DEBUG_MODE') ){
-			file_put_contents('lookout_log.txt', print_r( array($errno, $errstr, $errfile, $errline), true)."\r\n", FILE_APPEND);
+			file_put_contents('lookout_log.txt', print_r( [$errno, $errstr, $errfile, $errline], true)."\r\n", FILE_APPEND);
 			$rret = true;
 		}
 	
@@ -81,16 +81,16 @@ function userErrorHandler($errno = false, $errstr = '', $errfile='', $errline=0,
 	if(isset($GLOBALS['THREAD_SELF']))
     if ($GLOBALS['__show_errors'] && $GLOBALS['THREAD_SELF']){
         
-        if (sync('userErrorHandler', array($errno, $errstr, $errfile, $errline, false, $GLOBALS['__eventInfo'])))
+        if (sync(__FUNCTION__, [$errno, $errstr, $errfile, $errline, false, $GLOBALS['__eventInfo']]))
             return true;
     } }
 	
-    $GLOBALS['__error_last'] = array(
+    $GLOBALS['__error_last'] = [
                                      'msg'=>$errstr,
                                      'file'=>$errfile,
                                      'line'=>$errline,
                                      'type'=>$errno,
-                                     );
+                                     ];
     
     if( $rret )  return;
 	if(!isset($GLOBALS['__show_errors'])) {
@@ -118,19 +118,19 @@ function userErrorHandler($errno = false, $errstr = '', $errfile='', $errline=0,
 		} else {
 			call_user_func_array(
 				'userExceptionHandler',
-				array(
+				[
 					new ErrorException($_errstr[0], $errno, 0, $errfile, $errline),
 					$__str,
 					$__class,
 					$errcontext
-				)
+				]
 			);
 			return;
 		}
 	}
 	
     if (defined('DEBUG_OWNER_WINDOW')){
-        $result = array();        
+        $result = [];        
         $result['type'] = 'error';
         $result['script'] = $errfile;
         $result['event']  = $__eventInfo['name'];
@@ -200,7 +200,7 @@ function userFatalHandler($errno = false, $errstr = '', $errfile='', $errline=0)
 function userExceptionHandler($e, $_tc=false, $_class=false, $errcontext=false){
 	if(	!is_object($e) && !is_subclass_of($e, 'Exception') ) return;
 	$class = ($_class)? $_class: get_class($e);
-	$type = array( t($class), MB_ICONINFORMATION);
+	$type = [ t($class), MB_ICONINFORMATION ];
 	$errname = $e->getCode();
 	$msg = $e->getMessage();
 	$errfile = $e->getFile();
@@ -223,7 +223,7 @@ function userExceptionHandler($e, $_tc=false, $_class=false, $errcontext=false){
 	if (!$GLOBALS['__show_errors']) return;
 	
 	if(isset($GLOBALS['THREAD_SELF'])) if ($GLOBALS['__show_errors'] && $GLOBALS['THREAD_SELF'])
-        if (sync(__FUNCTION__, array($e, $_tc, $_class)))
+        if (sync(__FUNCTION__, [$e, $_tc, $_class]))
             return;
 	
 	$GLOBALS['__exception_last'] = $e;

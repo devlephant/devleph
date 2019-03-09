@@ -3,13 +3,13 @@
   
   PHP4Delphi Buttons Library
   
-  2009 ver 0.1
+  2019 ver 1
   
 */
 
 global $_c;
 
-$_c->setConstList(array('blGlyphLeft', 'blGlyphRight', 'blGlyphTop', 'blGlyphBottom'),0);
+$_c->setConstList(['blGlyphLeft', 'blGlyphRight', 'blGlyphTop', 'blGlyphBottom'],0);
 
 class TButton extends TControl {
 	

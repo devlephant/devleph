@@ -27,9 +27,9 @@ $_c->lsCenter = 3;
 $_c->lsArrow = 4;
 $_c->lsArrowOut = 4;
 
-$_c->setConstList(array('sbsNone', 'sbsSingle', 'sbsSunken'),0);
+$_c->setConstList(['sbsNone', 'sbsSingle', 'sbsSunken'],0);
 
-$_c->setConstList(array('iaLeft', 'iaTop'),0);
+$_c->setConstList(['iaLeft', 'iaTop'],0);
 $_c->stBoth = 0;
 $_c->stData = 1;
 $_c->stNone = 2;
@@ -67,65 +67,65 @@ $_c->PAK_OPEN_CREATE = 3;
 $_c->PER_PACK = 0;
 $_c->PER_UNPACK = 1;
 
-$_c->setConstList(array('fsBold', 'fsItalic', 'fsUnderline', 'fsStrikeOut'),0);
+$_c->setConstList(['fsBold', 'fsItalic', 'fsUnderline', 'fsStrikeOut'],0);
 $_c->bsRaised = 0;
 $_c->bsLowered = 1;
-$_c->setConstList(array('tsNone', 'tsAuto', 'tsManual'),0);
+$_c->setConstList(['tsNone', 'tsAuto', 'tsManual'],0);
 $_c->rsLine = 0;
 $_c->rsNone = 1;
 $_c->rsPattern = 2;
 $_c->rsUpdate = 3;
-$_c->setConstList(array('rsLine', 'rsNone', 'rsPattern', 'rsUpdate'),0);
+$_c->setConstList(['rsLine', 'rsNone', 'rsPattern', 'rsUpdate'],0);
 $_c->dmActiveForm = 0;
 $_c->dmDesktop = 1;
 $_c->dmMainForm = 2;
 $_c->dmPrimary = 3;
-$_c->setConstList( array('dmActiveForm', 'dmDesktop', 'dmMainForm', 'dmPrimary'), 0);
+$_c->setConstList( ['dmActiveForm', 'dmDesktop', 'dmMainForm', 'dmPrimary'], 0);
 $_c->poNone = 0;
 $_c->poPrintToFit = 1;
 $_c->poProportional = 2;
-$_c->setConstList( array('poNone', 'poPrintToFit', 'poProportional' ), 0);
+$_c->setConstList( ['poNone', 'poPrintToFit', 'poProportional' ], 0);
 //TAlign = (alNone, alTop, alBottom, alLeft, alRight, alClient, alCustom);
-$_c->setConstList(array('alNone', 'alTop', 'alBottom', 'alLeft', 'alRight', 'alClient', 'alCustom'),0);
-$_c->setConstList(array('tsTabs', 'tsButtons', 'tsFlatButtons', 'tsNone', 'tsAuto', 'tsManual'),0);
-$_c->setConstList(array('tpTop', 'tpBottom', 'tpLeft', 'tpRight'),0);
-$_c->setConstList(array('ptBottom', 'ptLeft', 'ptNone', 'ptRight', 'ptTop'), 0);
-$_c->setConstList(array('bkCustom', 'bkOK', 'bkCancel', 'bkHelp', 'bkYes', 'bkNo', 'bkClose', 'bkAbort', 'bkRetry', 'bkIgnore', 'bkAll'), 0);
-$_c->setConstList(array('ssRegular', 'ssHotTrack', 'ssFlat'),0);
-$_c->setConstList(array('lbStandard', 'lbOwnerDrawFixed', 'lbOwnerDrawVariable',
-    'lbVirtual', 'lbVirtualOwnerDraw'),0);
-$_c->setConstList(array('cbUnchecked', 'cbChecked', 'cbGrayed'),0);
+$_c->setConstList(['alNone', 'alTop', 'alBottom', 'alLeft', 'alRight', 'alClient', 'alCustom'],0);
+$_c->setConstList(['tsTabs', 'tsButtons', 'tsFlatButtons', 'tsNone', 'tsAuto', 'tsManual'],0);
+$_c->setConstList(['tpTop', 'tpBottom', 'tpLeft', 'tpRight'],0);
+$_c->setConstList(['ptBottom', 'ptLeft', 'ptNone', 'ptRight', 'ptTop'], 0);
+$_c->setConstList(['bkCustom', 'bkOK', 'bkCancel', 'bkHelp', 'bkYes', 'bkNo', 'bkClose', 'bkAbort', 'bkRetry', 'bkIgnore', 'bkAll'], 0);
+$_c->setConstList(['ssRegular', 'ssHotTrack', 'ssFlat'],0);
+$_c->setConstList(['lbStandard', 'lbOwnerDrawFixed', 'lbOwnerDrawVariable',
+    'lbVirtual', 'lbVirtualOwnerDraw'],0);
+$_c->setConstList(['cbUnchecked', 'cbChecked', 'cbGrayed'],0);
 
-$_c->setConstList(array('trHorizontal', 'trVertical'), 0);
-$_c->setConstList(array('tmBottomRight', 'tmTopLeft', 'tmBoth'), 0);
+$_c->setConstList(['trHorizontal', 'trVertical'], 0);
+$_c->setConstList(['tmBottomRight', 'tmTopLeft', 'tmBoth'], 0);
 
-$_c->setConstList(array('sbHorizontal', 'sbVertical'), 0);
-$_c->setConstList(array('scLineUp', 'scLineDown', 'scPageUp', 'scPageDown', 'scPosition',
-    'scTrack', 'scTop', 'scBottom', 'scEndScroll'),0);
+$_c->setConstList(['sbHorizontal', 'sbVertical'], 0);
+$_c->setConstList(['scLineUp', 'scLineDown', 'scPageUp', 'scPageDown', 'scPosition',
+    'scTrack', 'scTop', 'scBottom', 'scEndScroll'],0);
 
-$_c->setConstList(array('dfShort','dfLong'), 0);
-$_c->setConstList(array('dmComboBox','dmUpDown'), 0);
-$_c->setConstList(array('dtkDate','dtkTime'), 0);
+$_c->setConstList(['dfShort','dfLong'], 0);
+$_c->setConstList(['dmComboBox','dmUpDown'], 0);
+$_c->setConstList(['dtkDate','dtkTime'], 0);
 
-$_c->setConstList(array('bsBox', 'bsFrame', 'bsTopLine', 'bsBottomLine', 'bsLeftLine',
-                                'bsRightLine', 'bsSpacer'),0);
-$_c->setConstList(array('fpDefault','fpVariable', 'fpFixed'), 0);
-$_c->setConstList(array('fqDefault', 'fqDraft', 'fqProof', 'fqNonAntialiased', 'fqAntialiased', 'fqClearType', 'fqClearTypeNatural'), 0);
+$_c->setConstList(['bsBox', 'bsFrame', 'bsTopLine', 'bsBottomLine', 'bsLeftLine',
+                                'bsRightLine', 'bsSpacer'],0);
+$_c->setConstList(['fpDefault','fpVariable', 'fpFixed'], 0);
+$_c->setConstList(['fqDefault', 'fqDraft', 'fqProof', 'fqNonAntialiased', 'fqAntialiased', 'fqClearType', 'fqClearTypeNatural'], 0);
 function _addfont(&$arr){
-	$arr[] = array(
+	$arr[] = [
                   'CAPTION'=>t('font'),
                   'TYPE'=>'font',
                   'PROP'=>'font',
                   'CLASS'=>'TFont',
                   'UPDATE_DSGN'=>1,
-                  );
-	$arr[] = array('CAPTION'=>t('Font Color'), 'PROP'=>'font->color');
-	$arr[] = array('CAPTION'=>t('Font Size'), 'PROP'=>'font->size');
-	$arr[] = array('CAPTION'=>t('Font Height'), 'PROP'=>'font->height');
-	$arr[] = array('CAPTION'=>t('Font Pitch'), 'PROP'=>'font->pitch');
-	$arr[] = array('CAPTION'=>t('Font Quality'), 'PROP'=>'font->quality');
-	$arr[] = array('CAPTION'=>t('Font Orientation'), 'PROP'=>'font->orientation');
-	$arr[] = array('CAPTION'=>t('Font Style'), 'PROP'=>'font->style');
+                  ];
+	$arr[] = ['CAPTION'=>t('Font Color'), 'PROP'=>'font->color'];
+	$arr[] = ['CAPTION'=>t('Font Size'), 'PROP'=>'font->size'];
+	$arr[] = ['CAPTION'=>t('Font Height'), 'PROP'=>'font->height'];
+	$arr[] = ['CAPTION'=>t('Font Pitch'), 'PROP'=>'font->pitch'];
+	$arr[] = ['CAPTION'=>t('Font Quality'), 'PROP'=>'font->quality'];
+	$arr[] = ['CAPTION'=>t('Font Orientation'), 'PROP'=>'font->orientation'];
+	$arr[] = ['CAPTION'=>t('Font Style'), 'PROP'=>'font->style'];
 }
 class TCoolTrayIcon extends TControl {
 	
@@ -423,7 +423,7 @@ class TCheckListBox extends TControl {
 	}
 	
 	function get_checkedItems(){
-		$result = array();
+		$result = [];
 		$list = $this->items->lines;
 		if (count($list))
 		foreach ($list as $index=>$v){
@@ -446,7 +446,7 @@ class TCheckListBox extends TControl {
 	}
 	
 	function unCheckedAll(){
-		$this->checkedItems = array();
+		$this->checkedItems = [];
 	}
 	
 	function checkedAll(){
@@ -654,7 +654,7 @@ class TPageControl extends TControl {
 	function get_pagesList(){
 		
 		$pages = $this->pages();
-		$result = array();
+		$result = [];
 		
 		
 		for($i=0; $i<count($pages); $i++){
@@ -757,10 +757,9 @@ class TListItems extends TControl {
 	
 	function get_selected(){
 		
-		$result = array();
-		$arr = explode(',',listitems_command($this->self, 'selected', 0,0));
+		$result = [];
 		
-		foreach ($arr as $el) if ($el!=='')
+		foreach (explode(',',listitems_command($this->self, 'selected', 0,0)) as $el) if ($el!=='')
 			$result[] = $el;
 		
 		return $result;
@@ -827,10 +826,9 @@ class TListItems extends TControl {
 	}
 	
 	function get_selectedCaption(){
-		
-		$arr    = $this->selected;
-		$result = array();
-		foreach ($arr as $id){
+
+		$result = [];
+		foreach ($this->selected as $id){
 			
 			$result[] = $this->get($id)->caption;
 		}
@@ -963,7 +961,7 @@ class TTreeView extends TControl {
 	}  
 	
 	public function get_AllItemSelected() {
-		$Result = array();
+		$Result= [];
 		$Base  = explode(PHP_EOL, tree_gettext($this->self));
 		$Level = null;
 		for($i = $this->absIndex; $i >= 0; --$i) {

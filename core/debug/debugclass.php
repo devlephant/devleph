@@ -10,7 +10,7 @@ class DebugClass {
 	
 	public function __construct($name){
 		if ( is_numeric($name) )
-			$this->nameParam = syncEx('gui_propGet', array($name, 'name'));
+			$this->nameParam = syncEx('gui_propGet', [$name, 'name']);
 		else
 			$this->nameParam = $name;
 	}
@@ -58,7 +58,7 @@ class ThreadDebugClass extends DebugClass {
 
 class ThreadObjectReceiver
 {
-	private static $block = array();
+	private static $block = [];
 	private $name;
 	public function __construct($name)
 	{
@@ -71,7 +71,7 @@ class ThreadObjectReceiver
 		if ($key = $GLOBALS['THREAD_SELF']) {
 			if ($block) {
 				$block = ($block < 10 ? 10 : $block) * 1000;
-				while(SyncEx('ThreadObjectReceiver::block', array($name, $key)) !== 'true') {
+				while(SyncEx('ThreadObjectReceiver::block', [$name, $key]) !== 'true') {
 				//while(self::block($name, $key) !== 'true') {
 					usleep($block);
 				}
@@ -115,7 +115,7 @@ class ThreadObjectReceiver
 
 	public function __get($name)
 	{
-		return SyncEx('ThreadObjectReceiver::get', array($this->name, $name));
+		return SyncEx('ThreadObjectReceiver::get', [$this->name, $name]);
 	}
 
 
@@ -131,7 +131,7 @@ class ThreadObjectReceiver
 
 	public function __set($name, $value)
 	{
-		Sync('ThreadObjectReceiver::set', array($this->name, $name, $value));
+		Sync('ThreadObjectReceiver::set', [$this->name, $name, $value]);
 	}
 
 
@@ -151,7 +151,7 @@ class ThreadObjectReceiver
 
 	public function __call($name, $args)
 	{
-		return SyncEx('ThreadObjectReceiver::call', array($this->name, $name, $args));
+		return SyncEx('ThreadObjectReceiver::call', [$this->name, $name, $args]);
 	}
 
 
@@ -160,13 +160,13 @@ class ThreadObjectReceiver
 		if (!isset($GLOBALS['___t_objects'][$name])) {
 			$GLOBALS['___t_objects'][$name] = __call_component($name);
 		}
-		$res = call_user_func_array(array($GLOBALS['___t_objects'][$name], $method), $args);
+		$res = call_user_func_array([$GLOBALS['___t_objects'][$name], $method], $args);
 		$GLOBALS['APPLICATION']->ProcessMessages();
 		return $res;
 	}
 	
 	public function __toString(){
-		return SyncEx('ThreadObjectReceiver::toString', array($this->name));
+		return SyncEx('ThreadObjectReceiver::toString', [$this->name]);
 	}
 	
 	public static function toString($name){
@@ -174,7 +174,7 @@ class ThreadObjectReceiver
 			$GLOBALS['___t_objects'][$name] = __call_component($name);
 		}
 		
-		return method_exists($GLOBALS['___t_objects'][$name], '__toString()')? call_user_func_array(array($GLOBALS['___t_objects'][$name], $method), array()) :print_r($GLOBALS['___t_objects'][$name], true);
+		return method_exists($GLOBALS['___t_objects'][$name], '__toString()')? call_user_func_array([$GLOBALS['___t_objects'][$name], $method], []) :print_r($GLOBALS['___t_objects'][$name], true);
 	}
 	
 	public function __get_self(){

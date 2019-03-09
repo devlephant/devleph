@@ -1,6 +1,6 @@
 <?php
 return array(
-'GROUP'   => 'Графики',
+'GROUP'   => 'Charts',
 'CLASS'   => basenameNoExt(__FILE__),
 'CAPTION' => t('TSimpleGraph_Caption'),
 'SORT'    => 228,

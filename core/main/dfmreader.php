@@ -43,7 +43,7 @@ function dfm_read($dfm_file_name, $aform = false, $str = false, $form_name = fal
 		
 		if (!$GLOBALS['APP_DESIGN_MODE'] || $is_runtime){
 			
-			if (!$el->isClass(array('TEvents','TTabSheet')) && !$el->name){
+			if (!$el->isClass(['TEvents','TTabSheet']) && !$el->name){
 				$el->free();
 				continue;
 			}
@@ -109,12 +109,12 @@ function loadFormEvents(TForm &$form){
         $name = $form->name;
 	$objs_l = $form->componentLinks;
         
-        $events = array('onClick','onClose','onCloseQuery','onDblClick','onKeyUp','onKeyPress','onKeyDown',
+        $events = ['onClick','onClose','onCloseQuery','onDblClick','onKeyUp','onKeyPress','onKeyDown',
                         'onMouseDown','onMouseUp','onMouseMove','onMouseEnter','onMouseLeave','onCanResize',
                         'onChange','onChanging','onShow','onPaint','onResize','onHide','onActivate','onDeactivate',
                         'onDestroy','onSelect','onTimer','onScroll', 'onMouseCursor','onDockDrop','onDockOver',
 			'onUndock','onStartDock','onEndDock',
-                        'OnDuringSizeMove','OnStartSizeMove','OnEndSizeMove','OnPopup');
+                        'OnDuringSizeMove','OnStartSizeMove','OnEndSizeMove','OnPopup'];
         
         for ($i=0;$i<count($objs_l);$i++){
 		$self = $objs_l[$i];

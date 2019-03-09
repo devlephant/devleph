@@ -99,12 +99,12 @@ function findDirs($dir){
     
     $dir = replaceSl($dir);
     
-    if (!is_dir($dir)) return array();
+    if (!is_dir($dir)) return [];
     
     $files = scandir($dir);
 	unset($files[0], $files[1]); // remove С.Т and С..Т from array
     
-    $result = array();
+    $result = [];
     foreach ($files as $file){
         
         if (is_dir($dir .'/'. $file)){

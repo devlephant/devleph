@@ -78,7 +78,7 @@ class TIniFileEx {
             $array = array_keys($this->arr[$section]);
             return $array;
         }
-        return array();
+        return [];
     }
     
     function updateFile(){

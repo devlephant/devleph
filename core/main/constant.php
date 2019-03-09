@@ -82,7 +82,7 @@ const max = 2147483647;
 const TYPE = 'Integer';
 
 //Variables
-protected static $TYPES = array('bgr', 'rgb', 'hsv', 'hsl', 'cmyk', 'hex');
+protected static $TYPES = ['bgr', 'rgb', 'hsv', 'hsl', 'cmyk', 'hex'];
 protected static $classname = __CLASS__;
 static $def = 'bgr';
 protected static $list;
@@ -181,7 +181,7 @@ protected $name;
 				
 				case 'bgr': {
 					 if( !$this->check_value($cls, 'BGR') ) 		return false;
-					$this->rgb	= array($cls[2], $cls[1], $cls[0]);			} break;
+					$this->rgb	= [$cls[2], $cls[1], $cls[0]];			} break;
 					
 				case 'rgb': {
 					 if( !$this->check_value($cls, 'RGB') ) 		return false;
@@ -227,7 +227,7 @@ protected $name;
 	public function __construct($color)
 	{
 		if( func_num_args() < 1 ) {
-			$arguments = array(clWhite);
+			$arguments = [clWhite];
 			return false;
 		}
 		//получение аргументов вызова конструктора
@@ -276,12 +276,12 @@ protected $name;
 		}
 		} break;
 		case 3: {
-			if( !$this->switchdef(array($arguments[0], $arguments[1], $arguments[2])) )					return false;
+			if( !$this->switchdef([$arguments[0], $arguments[1], $arguments[2]]) )					return false;
 			
 		} break;
 		case 4: {
 			if( is_string($argumets[3]) ) {
-				if( !$this->switchdef(array($arguments[0], $arguments[1], $arguments[2]), $argumets[3]) )	return false;
+				if( !$this->switchdef([$arguments[0], $arguments[1], $arguments[2]], $argumets[3]) )	return false;
 				
 			} else {
 				
@@ -379,8 +379,8 @@ protected $name;
 		switch( strtolower(trim($name)) )
 		{
 			 // Formats
-			 case 'bgr':	{ return	array( (int)$this->rgb[2], (int)$this->rgb[1],(int) $this->rgb[0] );					} break;
-			 case 'rgb':	{ return	array( (int)$this->rgb[0], (int)$this->rgb[1], (int)$this->rgb[2] );					} break;
+			 case 'bgr':	{ return	[ (int)$this->rgb[2], (int)$this->rgb[1],(int) $this->rgb[0] ];							} break;
+			 case 'rgb':	{ return	[ (int)$this->rgb[0], (int)$this->rgb[1], (int)$this->rgb[2] ];							} break;
 			 case 'hsv':	{ return	self::RGBtoHSV((int)$this->rgb[0], (int)$this->rgb[1], (int)$this->rgb[2]);				} break;
 			 case 'hsl':	{ return 	self::RGBtoHSL((int)$this->rgb[0], (int)$this->rgb[1], (int)$this->rgb[2]);				} break;
 			 case 'cmyk':	{ return 	self::RGBtoCMYK((int)$this->rgb[0], (int)$this->rgb[1], (int)$this->rgb[2]);			} break;
@@ -420,7 +420,7 @@ protected $name;
 			 //Formats
 			 case 'bgr': { 
 			 if( !$this->check_value($value, 'BGR') ) 			return false;
-			 $this->rgb   		= array((int)$value[2], (int)$value[1], (int)$value[0]);
+			 $this->rgb   		= [(int)$value[2], (int)$value[1], (int)$value[0]];
 			 return true;
 			 																										} break;
 			 case 'rgb': { 
@@ -469,25 +469,25 @@ protected $name;
 			 case 'contrast':	{ 
 			 $value = $value/222;
 				if( !$this->check_val($value, 'TColor contrast property', 'num', 22.2) )		return false;
-									$this->rgb		= array($f(($this->rgb[0] /255) + (0.02126 * ($value)), 1/2.2), 
+									$this->rgb		= [$f(($this->rgb[0] /255) + (0.02126 * ($value)), 1/2.2), 
 															$f(($this->rgb[1] /255) + (0.07152 * ($value)), 1/2.2),
-															$f(($this->rgb[2] /255) + (0.00722 * ($value)), 1/2.2));
+															$f(($this->rgb[2] /255) + (0.00722 * ($value)), 1/2.2)];
 																																	} break;
 			 case 'hue':		{
 				  if( !$this->check_val($value, self::$classname . ' hue property', 'num', 360)	)			return false;
-									$this->hsv		= array($value, $this->hsv[1], $this->hsv[2]);									} break;
+									$this->hsv		= [$value, $this->hsv[1], $this->hsv[2]];									} break;
 			 case 'saturation':	{
 				  if( !$this->check_val($value, self::$classname . ' saturation property', 'num', 100) )	return false;
-									$this->hsv		= array($this->hsv[0], $value, $this->hsv[2]);									} break;
+									$this->hsv		= [$this->hsv[0], $value, $this->hsv[2]];									} break;
 			 case 'vibrance':	{
 				  if( !$this->check_val($value, self::$classname . ' vibrance property', 'num', 100) )		return false;
-									$this->hsv		= array($this->hsv[0], $this->hsv[1], $value);									} break;
+									$this->hsv		= [$this->hsv[0], $this->hsv[1], $value];									} break;
 			 case 'lightness':	{
 				  if( !$this->check_val($value, self::$classname . ' lightness property', 'num', 255) )		return false;
-									$this->hsl		= array($this->hsl[0], $this->hsl[1], $value/100);									} break;
+									$this->hsl		= [$this->hsl[0], $this->hsl[1], $value/100];									} break;
 			 case 'darkness':	{
 				  if( !$this->check_val($value, self::$classname . ' darkness property', 'num', 255) )		return false;
-									$this->hsl		= array($this->hsl[0], $this->hsl[1], 255 - ($value));							} break;
+									$this->hsl		= [$this->hsl[0], $this->hsl[1], 255 - ($value)];							} break;
 									
 			 case 'name': 		{
 				  if( !$this->check_val($value, self::$classname . ' name', 'string', 255) )				return false;
@@ -524,7 +524,7 @@ protected $name;
 					$ret2	= ($args[1] instanceof self::$classname)? $args[1]: self::__invoke($args[1]);
 				
 		} elseif ( $cargs == 3 && is_numeric($args[0]) && is_numeric($args[1]) && is_numeric($args[2]) ) 						 {
-					$ret2 	= self::__invoke(array($args[0], $args[1], $args[2]), strtolower(self::$def));
+					$ret2 	= self::__invoke([$args[0], $args[1], $args[2]], strtolower(self::$def));
 				
 		} elseif ( $cargs == 4 && is_numeric($args[0]) && is_numeric($args[1]) && is_numeric($args[2]) && is_numeric($args[3]) ) {
 					$ret2	= self::__invoke($args, 'cmyk');
@@ -656,7 +656,7 @@ protected $name;
 	public static  function HEXtoRGB($hex)
 	{
 		$hex = preg_replace("/[^0-9A-Fa-f]/", '', $hex);
-		$rgb = array();
+		$rgb = [];
 	
 		if (strlen($hex) == 6) {
 			
@@ -686,7 +686,7 @@ protected $name;
 	
 	public static function DHEXtoRGB($hexStr)
 	{
-		$rgb = array();
+		$rgb = [];
 		
 		$rgb[0] = $hexStr & 0xFF;
 		$rgb[1] = ($hexStr >> 8) & 0xFF;
@@ -716,7 +716,7 @@ protected $name;
         $v = $max;          // 'value' is always the highest value from RGB
         $delta = $max-$min; // get midway between highest and lowest, this is our delta!
 		if ($delta == 0) $delta = 1;
-        if ($max == 0)  return Array(0,0,0); // this is black, if the biggest value is 0
+        if ($max == 0)  return [0,0,0]; // this is black, if the biggest value is 0
     
         $s = 100*($delta/$max);  // 'saturation' is our delta divided by max 
         
@@ -729,7 +729,7 @@ protected $name;
         
         // we can't be having negatives.. if it's in negatives, add 360 (full circle)
         $h = ($h < 0) ? $h = 0: $h;
-        return Array(ceil($h),ceil($s),ceil(100*($v/255)));
+        return [ceil($h),ceil($s),ceil(100*($v/255))];
 	}
 	
 	public static function HSVtoRGB ($h, $s, $v)
@@ -741,7 +741,7 @@ protected $name;
         if ($s == 0)
 		{
 			$v = floor($v*2.55);
-			return array($v, $v, $v);
+			return [$v, $v, $v];
 		} // this is grey
     
         $h/=60;              // move hue into 1-6 (primary & secondary colors)
@@ -764,7 +764,7 @@ protected $name;
             case 4: $red = $color3; $green = $color1; $blue = $v; break;
             case 5: $red = $v; $green = $color1; $blue = $color2; break;
         }
-        return array($red, $green, $blue);
+        return [$red, $green, $blue];
 	}
 	
 	public static function RGBtoHSL( $r, $g, $b )
@@ -798,7 +798,7 @@ protected $name;
 						break;
 				}			        	        
 		}
-	return array( round( $h, 2 ), round( $s, 2 ), round( $l, 2 ) );
+	return [ round( $h, 2 ), round( $s, 2 ), round( $l, 2 ) ];
 	}
 	
 	public static function HSLtoRGB( $h, $s, $l )
@@ -834,7 +834,7 @@ protected $name;
 		$r = ( $r + $m ) * 255;
 		$g = ( $g + $m ) * 255;
 		$b = ( $b + $m  ) * 255;
-	return array( floor( $r ), floor( $g ), floor( $b ) );
+	return [ floor( $r ), floor( $g ), floor( $b ) ];
 	}
 	
 	public static function RGBtoCMYK($r, $g, $b)
@@ -847,18 +847,18 @@ protected $name;
 		
 		if ($min == 1) {
 			
-			return array(0,0,0,1);
+			return [0,0,0,1];
 		} else {
 			
 				$K = $min;
 				$tK = 1 - $K;
 			
-            return array(
+            return [
 				($tC - $K) / $tK,
 				($tM - $K) / $tK,
 				($tY - $K) / $tK,
 				$K
-            );
+            ];
 		}
 	}
 	
@@ -868,16 +868,16 @@ protected $name;
 		$g = 1 - ($m * (1 - $k) + $k);
 		$b = 1 - ($y * (1 - $k) + $k);
 		
-		return array(
+		return [
 			(integer) (($r * 255) + 0.5),
 			(integer) (($g * 255) + 0.5),
 			(integer) (($b * 255) + 0.5),
-		);
+		];
 	}
 	
 	public static function BGRtoRGB($b, $g, $r)
 	{
-		return array($r, $g, $b);
+		return [$r, $g, $b];
 	}
 	
 	public static function COLORtoRGB($color)
@@ -964,12 +964,12 @@ protected $name;
 	
 	public function mix( $color )
 	{
-		$color = call_user_func_array(array(self::$classname, "__invoke"), func_get_args());
+		$color = call_user_func_array([self::$classname, "__invoke"], func_get_args());
 		if( isset($color->rgb) ) {
-		$this->rgb = array(	round(($this->rgb[0] + $color->rgb[0])/2), 
+		$this->rgb = [	round(($this->rgb[0] + $color->rgb[0])/2), 
 							round(($this->rgb[1] + $color->rgb[1])/2),
 							round(($this->rgb[2] + $color->rgb[2])/2)
-						   );
+						   ];
 			return true;
 		}
 		return false;
@@ -977,12 +977,12 @@ protected $name;
 	
 	public function unmix( $color )
 	{	
-		$color = call_user_func_array(array(self::$classname, "__invoke"), func_get_args());
+		$color = call_user_func_array([self::$classname, "__invoke"], func_get_args());
 		if( isset($color->rgb) ) {
-		$this->rgb = array(	round(($this->rgb[0] - $color->rgb[0])/2), 
+		$this->rgb = [	round(($this->rgb[0] - $color->rgb[0])/2), 
 							round(($this->rgb[1] - $color->rgb[1])/2),
 							round(($this->rgb[2] - $color->rgb[2])/2)
-						   );
+						   ];
 			return true;
 		}
 		return false;
@@ -991,12 +991,12 @@ protected $name;
 	public function add( $color )
 	{
 		if( is_numeric($color) && $color < 256 ) {
-			$this->rgb = array( $this->rgb[0] + $color,  $this->rgb[1] + $color,  $this->rgb[2] + $color );
+			$this->rgb = [ $this->rgb[0] + $color,  $this->rgb[1] + $color,  $this->rgb[2] + $color ];
 			return true;
 		} else {
-			$color = call_user_func_array(array(self::$classname, "__invoke"), func_get_args());
+			$color = call_user_func_array([self::$classname, "__invoke"], func_get_args());
 			if( isset($color->rgb) )
-				$this->rgb = array( $this->rgb[0] + $color->rgb[0],  $this->rgb[1] + $color->rgb[1],  $this->rgb[2] + $color->rgb[2] );
+				$this->rgb = [ $this->rgb[0] + $color->rgb[0],  $this->rgb[1] + $color->rgb[1],  $this->rgb[2] + $color->rgb[2] ];
 			
 			return isset($color->rgb);
 		}
@@ -1005,12 +1005,12 @@ protected $name;
 	public function subtract( $color )
 	{
 		if( is_numeric($color) && $color < 256 ) {
-			$this->rgb = array( $this->rgb[0] - $color,  $this->rgb[1] - $color,  $this->rgb[2] - $color );
+			$this->rgb = [ $this->rgb[0] - $color,  $this->rgb[1] - $color,  $this->rgb[2] - $color ];
 			return true;
 		} else {
-			$color = call_user_func_array(array(self::$classname, "__invoke"), func_get_args());
+			$color = call_user_func_array([self::$classname, "__invoke"], func_get_args());
 			if( isset($color->rgb) )
-				$this->rgb = array( $this->rgb[0] - $color->rgb[0],  $this->rgb[1] - $color->rgb[1],  $this->rgb[2] - $color->rgb[2] );
+				$this->rgb = [ $this->rgb[0] - $color->rgb[0],  $this->rgb[1] - $color->rgb[1],  $this->rgb[2] - $color->rgb[2] ];
 			
 			return isset($color->rgb);
 		}
@@ -1019,13 +1019,13 @@ protected $name;
 	public function gradient ($c, $Step)
 	{
 		$Step--;
-		$color = call_user_func_array(array(self::$classname, "__invoke"), array_slice(func_get_args(), 0, func_num_args()-1));
-		$GradientColors = array();
+		$color = call_user_func_array([self::$classname, "__invoke"], array_slice(func_get_args(), 0, func_num_args()-1));
+		$GradientColors = [];
 		
 		if( $Step == 1 )
 			return $this;
 		elseif( $Step == 2 )
-			return array($this, $color);
+			return [$this, $color];
 		
 		for($I=0;$I<=2;$I++)
 		{
@@ -1034,9 +1034,9 @@ protected $name;
 
 		for($i = 0; $i <= $Step; $i++)
 		{
-			$rgb = array(floor($this->rgb[0] - ($Steps[0] * $i)),
+			$rgb = [floor($this->rgb[0] - ($Steps[0] * $i)),
 										floor($this->rgb[1] - ($Steps[1] * $i)),
-										floor($this->rgb[2] - ($Steps[2] * $i)));
+										floor($this->rgb[2] - ($Steps[2] * $i))];
 			if( min($rgb) > 0 && max($rgb) < 256) 
 				$GradientColors[] =  new self::$classname(	$rgb, 'rgb');
 		}
@@ -1049,11 +1049,11 @@ protected $name;
 		if( is_int($v) || is_integer($v) || is_float($v) ) {
 			if( $v <= 255 ){
 				if( !$this->check_val($v, 'Color multiplier', 'int', 255) )				return false;
-				$this->rgb = array( $this->rgb[0] * $v,  $this->rgb[1] * $v,  $this->rgb[2] * $v );
+				$this->rgb = [ $this->rgb[0] * $v,  $this->rgb[1] * $v,  $this->rgb[2] * $v ];
 				return true;
 			}
 		}
-		$v = call_user_func_array(array(self::$classname, "__invoke"), func_get_args());
+		$v = call_user_func_array([self::$classname, "__invoke"], func_get_args());
 				if( isset($v->rgb) )
 					for($i=0;$i<=3;$i++) 
 						{
@@ -1080,7 +1080,7 @@ protected $name;
 		
 			}
 		}
-		$v = call_user_func_array(array(self::$classname, "__invoke"), func_get_args());
+		$v = call_user_func_array([self::$classname, "__invoke"], func_get_args());
 				if( isset($v->rgb) )
 					for($i=0;$i<=3;$i++) 
 						{
@@ -1096,24 +1096,24 @@ protected $name;
 	public function increase( int $percent )
 	{
 		if( !$this->check_val($v, 'Color increasement percent', 'int', 100) )	return false;
-		$this->rgb = array($this->rgb[0] + (($this->rgb[0]/100) * $percent),
+		$this->rgb = [$this->rgb[0] + (($this->rgb[0]/100) * $percent),
 					$this->rgb[1] + (($this->rgb[1]/100) * $percent),
-					$this->rgb[2] + (($this->rgb[2]/100) * $percent));
+					$this->rgb[2] + (($this->rgb[2]/100) * $percent)];
 		return true;
 	}
 	
 	public function decrease( int $percent )
 	{
 		if( !$this->check_val($v, 'Color decreasement percent', 'int', 100) )	return false;
-		$this->rgb = array($this->rgb[0] - (($this->rgb[0]/100) * $percent),
+		$this->rgb = [$this->rgb[0] - (($this->rgb[0]/100) * $percent),
 					$this->rgb[1] - (($this->rgb[1]/100) * $percent),
-					$this->rgb[2] - (($this->rgb[2]/100) * $percent));
+					$this->rgb[2] - (($this->rgb[2]/100) * $percent)];
 		return true;
 	}
 	
 	public function assume( $color )
 	{
-		$color = call_user_func_array(array(self::$classname, "__invoke"), func_get_args());
+		$color = call_user_func_array([self::$classname, "__invoke"], func_get_args());
 		if( $this->isstatic ) {
 			trigger_error("Static ".self::$classname." cannot be assumed to",	E_USER_ERROR);
 			return false;
@@ -1125,7 +1125,7 @@ protected $name;
 	
 	public function assign( $color )
 	{
-		$color = call_user_func_array(array(self::$classname, "__invoke"), func_get_args());
+		$color = call_user_func_array([self::$classname, "__invoke"], func_get_args());
 		if( $this->isstatic ) {
 			trigger_error("Static ".self::$classname." cannot be assigned to",	E_USER_ERROR);
 			return false;
@@ -1208,7 +1208,7 @@ protected $name;
 }
 
 function TColor( $color ) {
-	return call_user_func_array(array("TColor", "__invoke"), func_get_args());
+	return call_user_func_array(["TColor", "__invoke"], func_get_args());
 }
 
 ?>

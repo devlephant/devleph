@@ -155,10 +155,10 @@ class DS_Loader
 
 	public function LoadForms()
 	{
-		$formsData = unserialize(exemod_extractstr('$F\\Xforms'));
+		$formsData = unserialize(gzuncompress(base64_decode(exemod_extractstr('$F\\Xforms'))));
 		if( empty($formsData) ) return;
 		$this->formsData = array_change_key_case($formsData);
-		eventEngine::$DATA = unserialize(exemod_extractstr('$_EVENTS'));
+		eventEngine::$DATA = unserialize(gzuncompress(base64_decode(exemod_extractstr('$_EVENTS'))));
 		global $_FORMS;
 		global $__config;
 		$i = -1;

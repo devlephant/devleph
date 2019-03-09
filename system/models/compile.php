@@ -335,8 +335,8 @@ class myCompile
 
 			$compileDATA = eventEngine::$DATA;
 
-		exemod_addstr('$_EVENTS', serialize($compileDATA));
-		exemod_addstr('$F\\Xforms', serialize($data));
+		exemod_addstr('$_EVENTS', base64_encode(gzcompress(serialize($compileDATA),5)));
+		exemod_addstr('$F\\Xforms', base64_encode(gzcompress(serialize($data),5)));
 	}
 
 	static public function getExeModule()
