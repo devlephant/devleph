@@ -184,10 +184,9 @@ class myCompile
 		return DV_VERSION.DV_PREFIX.DV_YEAR;
 	}
 
-	static public function generateSoulEngine($attach = true)
+	static public function attachPHPSoulEngine($attach = true)
 	{
 		global $projectFile;
-		
 		$build = new DS_BuildSoulEngine(dirname(EXE_NAME) . '/core/');
 
 		if ($attach) {
@@ -303,11 +302,11 @@ class myCompile
 		}
 		if( empty($esc) )
 		{
-			exemod_addstr('$X_S', base64_encode( serialize(false), 9));
+			exemod_addstr('$X_S', base64_encode(serialize(false)));
 		}
 		else
 		{
-			exemod_addstr('$X_S', base64_encode( serialize($esc), 9));
+			exemod_addstr('$X_S', base64_encode(serialize($esc)));
 		}
 		
 		self::$codes = array();
@@ -336,8 +335,8 @@ class myCompile
 
 			$compileDATA = eventEngine::$DATA;
 
-		exemod_addstr('$_EVENTS', base64_encode(serialize($compileDATA), 9));
-		exemod_addstr('$F\\Xforms', base64_encode(serialize($data), 9));
+		exemod_addstr('$_EVENTS', serialize($compileDATA));
+		exemod_addstr('$F\\Xforms', serialize($data));
 	}
 
 	static public function getExeModule()
@@ -405,7 +404,7 @@ class myCompile
 		self::generateIncFile();
 		myModules::inc();
 		self::attachPHPEngine(false, false);
-		self::generateSoulEngine(false);
+		self::attachPHPSoulEngine(false);
 		self::attachForms(false, false);
 		self::attachModules();
 		exemod_save();
@@ -529,7 +528,7 @@ class myCompile
 		$res1 = $cabin?myModules::inc($fileExe):'';
 
 		if ($attachSE) {
-			self::generateSoulEngine($attachSE);
+			self::attachPHPSoulEngine($attachSE);
 
 			while (!is_writable($fileExe)) {
 			}
@@ -640,3 +639,6 @@ class myCompile
 		return array('code' => $code, 'rDATA' => $rDATA, 'classes' => $classes);
 	}
 }
+
+return __LINE__;
+return NULL;

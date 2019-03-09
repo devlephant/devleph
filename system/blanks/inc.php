@@ -64,7 +64,8 @@ class DS_Loader
 			application_terminate();
 			exit();
 		}
-		eval(base64_decode($this->soulEngine));
+
+		eval( gzuncompress(base64_decode($this->soulEngine)));
 		
 		$this->soulEngine = '';
 		return true;
@@ -72,13 +73,13 @@ class DS_Loader
 
 	public function LoadModules()
 	{
+		
 		$modules = base64_decode(exemod_extractstr('$X_MODULES'));
 		eval( '?>' . $modules);
 		$modules = unserialize( base64_decode(exemod_extractstr('$X_S')) );
 		
 		if( is_array($modules) )
 		{
-			
 			foreach($modules as $s)
 			{
 				eval($s);
@@ -154,10 +155,10 @@ class DS_Loader
 
 	public function LoadForms()
 	{
-		$formsData = unserialize(base64_decode(exemod_extractstr('$F\\Xforms')));
+		$formsData = unserialize(exemod_extractstr('$F\\Xforms'));
 		if( empty($formsData) ) return;
 		$this->formsData = array_change_key_case($formsData);
-		eventEngine::$DATA = unserialize(base64_decode(exemod_extractstr('$_EVENTS')));
+		eventEngine::$DATA = unserialize(exemod_extractstr('$_EVENTS'));
 		global $_FORMS;
 		global $__config;
 		$i = -1;
