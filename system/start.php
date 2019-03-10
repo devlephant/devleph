@@ -12,7 +12,7 @@
 		$GLOBALS['ALL_CONFIG'] = $ini->arr;
 		define('DV_YEAR',		2019, 	 false );
 		define('DV_VERSION',	'3.0.4', false );
-		define('DV_PREFIX',		'Fix Release', false );
+		define('DV_PREFIX',		'Pre-Release', false );
     }
 	
     require 'libs/mvc.php';

@@ -334,18 +334,10 @@ class __exEvents {
     }
     
     static function callCode($_self, $_eventName){
-        
         $self   = c($_self);
-        
         self::setEventInfo($_self, $_eventName);
         eval( enc_getValue('__incCode') );
-        
-        if (defined('DEBUG_OWNER_WINDOW'))            
-            include self::callFileName($_self, $_eventName);
-        else 
-            eval( self::getEvent($_self,$_eventName) );
-            
-            
+        eval( self::getEvent($_self,$_eventName) );
         self::freeEventInfo();
     }
     
@@ -354,11 +346,7 @@ class __exEvents {
         $self   = c($_self); $shift  = explode(',', $shift);
         
         self::setEventInfo($_self, $_eventName);
-
-        if (defined('DEBUG_OWNER_WINDOW'))            
-            include self::callFileName($_self, $_eventName);
-        else 
-            eval( self::getEvent($_self,$_eventName) );
+		eval( self::getEvent($_self,$_eventName) );
         
         self::freeEventInfo();
     }
@@ -370,12 +358,7 @@ class __exEvents {
         self::setEventInfo($_self, $_eventName);
         
         eval( enc_getValue('__incCode') );
-        
-        if (defined('DEBUG_OWNER_WINDOW'))            
-            include self::callFileName($_self, $_eventName);
-        else 
-            eval( self::getEvent($_self,$_eventName) );
-            
+        eval( self::getEvent($_self,$_eventName) );    
         self::freeEventInfo();
     }
     
@@ -385,11 +368,7 @@ class __exEvents {
         
         self::setEventInfo($_self, $_eventName);
         eval( enc_getValue('__incCode') );
-        
-        if (defined('DEBUG_OWNER_WINDOW'))            
-            include self::callFileName($_self, $_eventName);
-        else 
-            eval( self::getEvent($_self,$_eventName) );
+        eval( self::getEvent($_self,$_eventName) );
         self::freeEventInfo();
     }
     
@@ -400,11 +379,7 @@ class __exEvents {
         
         self::setEventInfo($_self, $_eventName);
         eval( enc_getValue('__incCode') );
-        
-        if (defined('DEBUG_OWNER_WINDOW'))            
-            include self::callFileName($_self, $_eventName);
-        else 
-            eval( self::getEvent($_self,$_eventName) );
+        eval( self::getEvent($_self,$_eventName) );
         self::freeEventInfo();
     }
     
@@ -414,11 +389,7 @@ class __exEvents {
         
         self::setEventInfo($_self, $_eventName);
         eval( enc_getValue('__incCode') );
-        
-        if (defined('DEBUG_OWNER_WINDOW'))            
-            include self::callFileName($_self, $_eventName);
-        else 
-            eval( self::getEvent($_self,$_eventName) );
+        eval( self::getEvent($_self,$_eventName) );
         self::freeEventInfo();
     }
     
@@ -428,11 +399,7 @@ class __exEvents {
         
         self::setEventInfo($_self, $_eventName);
         eval( enc_getValue('__incCode') );
-        
-        if (defined('DEBUG_OWNER_WINDOW'))            
-            include self::callFileName($_self, $_eventName);
-        else 
-            eval( self::getEvent($_self,$_eventName) );
+        eval( self::getEvent($_self,$_eventName) );
         self::freeEventInfo();
     }
     
@@ -442,11 +409,7 @@ class __exEvents {
         
         self::setEventInfo($_self, $_eventName);
         eval( enc_getValue('__incCode') );
-        
-        if (defined('DEBUG_OWNER_WINDOW'))            
-            include self::callFileName($_self, $_eventName);
-        else 
-            eval( self::getEvent($_self,$_eventName) );
+        eval( self::getEvent($_self,$_eventName) );
         self::freeEventInfo();
     }
     
@@ -459,11 +422,7 @@ class __exEvents {
         $self = _c($_self);
         self::setEventInfo($_self, $_eventName);
         eval( enc_getValue('__incCode') );
-        
-        if (defined('DEBUG_OWNER_WINDOW'))            
-            include self::callFileName($_self, $_eventName);
-        else 
-            eval( self::getEvent($_self,$_eventName) );
+        eval( self::getEvent($_self,$_eventName) );
         self::freeEventInfo();
     }
     
@@ -476,11 +435,7 @@ class __exEvents {
         $self = _c($_self);
         self::setEventInfo($_self, $_eventName);
         eval( enc_getValue('__incCode') );
-        
-        if (defined('DEBUG_OWNER_WINDOW'))            
-            include self::callFileName($_self, $_eventName);
-        else 
-            eval( self::getEvent($_self,$_eventName) );
+        eval( self::getEvent($_self,$_eventName) );
         self::freeEventInfo();
     }
     
@@ -504,11 +459,7 @@ class __exEvents {
         self::setEventInfo($__self, $__name);
         
             eval( enc_getValue('__incCode') );
-            
-            if (defined('DEBUG_OWNER_WINDOW'))            
-                $res = include self::callFileName($_self, $_eventName);
-            else 
-                $res = eval( self::getEvent($_self,$_eventName) );
+            $res = eval( self::getEvent($_self,$_eventName) );
             
         self::freeEventInfo();
             
@@ -581,11 +532,7 @@ class __exEvents {
         
         self::setEventInfo($_self, __FUNCTION__);
             eval( enc_getValue('__incCode') );
-            
-            if (defined('DEBUG_OWNER_WINDOW'))            
-                $res = include self::callFileName($_self, __FUNCTION__);
-            else 
-                $res = eval( self::getEvent($_self,__FUNCTION__) );
+            $res = eval( self::getEvent($_self,__FUNCTION__) );
         self::freeEventInfo();
     }
     
@@ -595,11 +542,7 @@ class __exEvents {
         
         self::setEventInfo($_self, __FUNCTION__);
             eval( enc_getValue('__incCode') );
-            
-            if (defined('DEBUG_OWNER_WINDOW'))            
-                $res = include self::callFileName($_self, __FUNCTION__);
-            else 
-                $res = eval( self::getEvent($_self,__FUNCTION__) );
+            $res = eval( self::getEvent($_self,__FUNCTION__) );
         self::freeEventInfo();
     }
     
@@ -609,11 +552,7 @@ class __exEvents {
         
         self::setEventInfo($_self, __FUNCTION__);
             eval( enc_getValue('__incCode') );
-            
-            if (defined('DEBUG_OWNER_WINDOW'))            
-                $res = include self::callFileName($_self, __FUNCTION__);
-            else 
-                $res = eval( self::getEvent($_self,__FUNCTION__) );
+            $res = eval( self::getEvent($_self,__FUNCTION__) );
         self::freeEventInfo();
     }
     
@@ -623,10 +562,7 @@ class __exEvents {
         
         self::setEventInfo($_self, __FUNCTION__);
             eval( enc_getValue('__incCode') );            
-            if (defined('DEBUG_OWNER_WINDOW'))            
-                $res = include self::callFileName($_self, __FUNCTION__);
-            else 
-                $res = eval( self::getEvent($_self,__FUNCTION__) );
+            $res = eval( self::getEvent($_self,__FUNCTION__) );
         self::freeEventInfo();
     }
     
@@ -636,10 +572,7 @@ class __exEvents {
         
         self::setEventInfo($_self, __FUNCTION__);
             eval( enc_getValue('__incCode') );            
-            if (defined('DEBUG_OWNER_WINDOW'))            
-                $res = include self::callFileName($_self, __FUNCTION__);
-            else 
-                $res = eval( self::getEvent($_self,__FUNCTION__) );
+            $res = eval( self::getEvent($_self,__FUNCTION__) );
         self::freeEventInfo();
     }
     
@@ -648,10 +581,7 @@ class __exEvents {
         $self   = c($_self);
         self::setEventInfo($_self, __FUNCTION__);
             eval( enc_getValue('__incCode') );            
-            if (defined('DEBUG_OWNER_WINDOW'))            
-                $res = include self::callFileName($_self, __FUNCTION__);
-            else 
-                $res = eval( self::getEvent($_self,__FUNCTION__) );
+            $res = eval( self::getEvent($_self,__FUNCTION__) );
         self::freeEventInfo();
     }
     
@@ -666,10 +596,7 @@ class __exEvents {
         
         self::setEventInfo($_self, __FUNCTION__);
             eval( enc_getValue('__incCode') );            
-            if (defined('DEBUG_OWNER_WINDOW'))            
-                $res = include self::callFileName($_self, __FUNCTION__);
-            else 
-                $res = eval( self::getEvent($_self,__FUNCTION__) );
+            $res = eval( self::getEvent($_self,__FUNCTION__) );
         self::freeEventInfo();
     }
     
@@ -679,10 +606,7 @@ class __exEvents {
         
         self::setEventInfo($_self, __FUNCTION__);
             eval( enc_getValue('__incCode') );            
-            if (defined('DEBUG_OWNER_WINDOW'))            
-                $res = include self::callFileName($_self, __FUNCTION__);
-            else 
-                $res = eval( self::getEvent($_self,__FUNCTION__) );
+            $res = eval( self::getEvent($_self,__FUNCTION__) );
         self::freeEventInfo();
     }
     
@@ -692,10 +616,7 @@ class __exEvents {
         
         self::setEventInfo($_self, __FUNCTION__);
             eval( enc_getValue('__incCode') );            
-            if (defined('DEBUG_OWNER_WINDOW'))            
-                $res = include self::callFileName($_self, __FUNCTION__);
-            else 
-                $res = eval( self::getEvent($_self,__FUNCTION__) );
+            $res = eval( self::getEvent($_self,__FUNCTION__) );
         self::freeEventInfo();
     }
     
@@ -705,10 +626,7 @@ class __exEvents {
         
         self::setEventInfo($_self, __FUNCTION__);
             eval( enc_getValue('__incCode') );            
-            if (defined('DEBUG_OWNER_WINDOW'))            
-                $res = include self::callFileName($_self, __FUNCTION__);
-            else 
-                $res = eval( self::getEvent($_self,__FUNCTION__) );
+			$res = eval( self::getEvent($_self,__FUNCTION__) );
         self::freeEventInfo();
     }
     
@@ -718,10 +636,7 @@ class __exEvents {
         
         self::setEventInfo($_self, __FUNCTION__);
             eval( enc_getValue('__incCode') );            
-            if (defined('DEBUG_OWNER_WINDOW'))            
-                $res = include self::callFileName($_self, __FUNCTION__);
-            else 
-                $res = eval( self::getEvent($_self,__FUNCTION__) );
+            $res = eval( self::getEvent($_self,__FUNCTION__) );
         self::freeEventInfo();
     }
     
@@ -731,10 +646,7 @@ class __exEvents {
         
         self::setEventInfo($_self, __FUNCTION__);
             eval( enc_getValue('__incCode') );            
-            if (defined('DEBUG_OWNER_WINDOW'))            
-                $res = include self::callFileName($_self, __FUNCTION__);
-            else 
-                $res = eval( self::getEvent($_self,__FUNCTION__) );
+            $res = eval( self::getEvent($_self,__FUNCTION__) );
         self::freeEventInfo();
     }
     
@@ -744,10 +656,7 @@ class __exEvents {
         
         self::setEventInfo($_self, __FUNCTION__);
             eval( enc_getValue('__incCode') );            
-            if (defined('DEBUG_OWNER_WINDOW'))            
-                $res = include self::callFileName($_self, __FUNCTION__);
-            else 
-                $res = eval( self::getEvent($_self,__FUNCTION__) );
+            $res = eval( self::getEvent($_self,__FUNCTION__) );
         self::freeEventInfo();
     }
 
@@ -757,11 +666,8 @@ class __exEvents {
         $self   = c($_self);
         
         self::setEventInfo($_self, __FUNCTION__);
-            eval( enc_getValue('__incCode') );            
-            if (defined('DEBUG_OWNER_WINDOW'))            
-                $res = include self::callFileName($_self, __FUNCTION__);
-            else 
-                $res = eval( self::getEvent($_self,__FUNCTION__) );
+            eval( enc_getValue('__incCode') );
+            $res = eval( self::getEvent($_self,__FUNCTION__) );
         self::freeEventInfo();
     }
 }

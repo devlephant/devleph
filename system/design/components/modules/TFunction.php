@@ -70,16 +70,11 @@ class TFunction extends __TNoVisual {
 	    $code = /*_BR_.*/'function ___thread_'.$name.'($self){ eval(enc_getValue("__incCode"));';
 	    $code.= ' $_thread = TThread::get($self); extract( $_thread->args ); ';
 	    $code.= ' __exEvents::setEventInfo($self, "onexecute");';
-	    
-	    $code .= 'if ( defined("DEBUG_OWNER_WINDOW") ){
-			    include $_thread->__file;
-			}';
-	    $code .= 'else {';
 	    if (is_array($eventList))
 		$code.= $eventList['onexecute'];
 	    else
 		$code.= $eventList;
-	    $code .= "\n".'}';
+	    $code .= "\n";
 		
 	    $code .= "\n".';__exEvents::freeEventInfo();';
 	    $code.= _BR_.'}';
@@ -98,12 +93,10 @@ class TFunction extends __TNoVisual {
 	    }
 	    
 	    $code .= '$th = new TThread("___thread_'.$name.'");'.
-		    '$th->priority = '.(int)$info['priority'].';'.
-		    '$th->args = $args;'.
-		    'if(defined("DEBUG_OWNER_WINDOW")){
-			$th->__file = __exEvents::callFileName($self, "onexecute");;
-		    }'.
-		    '$th->resume();';
+		    '$th->priority = '.(int)$info['priority'].';
+		    $th->args = $args;
+		    }
+		    $th->resume();';
 		    
 	    $code .= _BR_.' return $th; }';
 	    
@@ -121,22 +114,13 @@ class TFunction extends __TNoVisual {
 	    else	
 		$code .= '$self = (int)USER_FUNCTION_SELF_'.strtolower($name).';';
 	    
-	    $code.= ' __exEvents::setEventInfo($self, "onexecute");';
-            
-	    $code .= 'if ( defined("DEBUG_OWNER_WINDOW") ){
-			    $__file = syncEx("__exEvents::callFileName", array($self, "onexecute"));
-	                    $__file = include($__file); 
-						__exEvents::freeEventInfo();
-						return $__file;
-						}';
-	    $code .= ' else {';
+	    $code.= ' __exEvents::setEventInfo($self, "onexecute");' . "\r\n";
 	    if (is_array($eventList))
 		$code.= $eventList['onexecute'];
 	    else
 		$code.= $eventList;
 	    $code .= "\n".'
 		__exEvents::freeEventInfo();
-		}
 	    }';
 	    
 	    // обязательно надо делать так, иначе если у ф-ии будет ретурн, то пространство формы не высвободится
