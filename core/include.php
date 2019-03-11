@@ -8,6 +8,16 @@ function random( $x )
 {
 	return mt_rand(0, $x);
 }
+function parent_sum_prop_all($obj, $prop)
+{
+	$res = 0;
+	while($obj->parent){
+		$obj = $obj->parent;
+		if(is_numeric($obj->$prop)){	$res += $obj->$prop;	}
+	}
+	return $res;
+}
+
 function obsafe_print_r($var, $return = false, $html = false, $level = 0) {
 	if( is_null($var) )
 	{

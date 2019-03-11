@@ -690,7 +690,9 @@ class ev_fmMain_c_tcursor{
 }
 
 class ev_fmMain_shapeSize {
-    
+    private static $self_object;
+	private static $timer;
+	
     static function typeCursor($self, $x, $y){
         
         $obj = toObject($self);
@@ -719,33 +721,38 @@ class ev_fmMain_shapeSize {
         c('fmMain->pDockMain',1)->doubleBuffer = true;
         
         
-        $obj = c($self);
+        $obj = _c($self);
         $_preX = $obj->w - $x;
         $_preY = $obj->h - $y;
         $shapeSize = true;
         
         $curType = self::typeCursor($self, $x, $y);
         $obj->cursor = $curType;
+		self::$self_object = $self;
+		self::$timer 	   = Timer::setInterval( __CLASS__ . '::onTimer', 100 );
     }
     
-    static function onMouseMove($self, $shift, $x, $y){
+    static function onTimer($self){
         
         global $curType, $shapeSize, $_preY, $_preX, $fmEdit;
         
-        $obj = _c($self);
-        $w   = $obj->w;
-        $h   = $obj->h;
-        
-        $fW   = $fmEdit->w;
-        $fH   = $fmEdit->h;
-        $minW = $fmEdit->constraints->minWidth;
-        $minH = $fmEdit->constraints->minHeight;
-        $maxW = $fmEdit->constraints->maxWidth;
-        $maxH = $fmEdit->constraints->maxHeight;
-        $aSize= $fmEdit->autoSize;
-        $gridSize = myOptions::get('sc','gridSize',8);
-
-        if ($shapeSize){
+        $obj = _c(self::$self_object);
+	/////// Просто ужаснейший костыль, наверное. но другого выхода не нашёл \\\\\\\
+		$x = cursor_pos_x() - parent_sum_prop_all($obj, 'x');
+		$y = cursor_pos_y() - parent_sum_prop_all($obj, 'y');
+        if ($shapeSize)
+		{
+			$w   = $obj->w;
+			$h   = $obj->h;
+			
+			$fW   = $fmEdit->w;
+			$fH   = $fmEdit->h;
+			$minW = $fmEdit->constraints->minWidth;
+			$minH = $fmEdit->constraints->minHeight;
+			$maxW = $fmEdit->constraints->maxWidth;
+			$maxH = $fmEdit->constraints->maxHeight;
+			$aSize= $fmEdit->autoSize;
+			$gridSize = myOptions::get('sc','gridSize',8);
         
             if ($fW<0 || $fH<0) return;
                 
@@ -788,11 +795,20 @@ class ev_fmMain_shapeSize {
             $obj->cursor = self::typeCursor($obj, $x, $y);
         }
     }
-    
+    static function onMouseMove($self, $shift, $x, $y)
+	{
+		global $shapeSize;
+		if( !$shapeSize )
+		{
+			$obj = _c($self);
+			$obj->cursor = self::typeCursor($obj, $x, $y);
+		}
+	}
     static function onMouseUp($self, $shift, $x, $y){
         
         global $shapeSize;
         $shapeSize = false;
+		Timer::ClearTimer(self::$timer);
     }
 }
 
