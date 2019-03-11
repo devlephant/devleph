@@ -549,16 +549,15 @@ class myDesign {
         
         
         if ($button == 1){
-			$_componentPanel->unSelect();
+            $_componentPanel->unSelect();
             $selectedClass = false;
             myVars::set(true, 'popupShow');
             myVars::set(false, 'isMouseDown');
-            
+            self::formProps(true);
+            $_sc->clearTargets();
             return;
         } else {
             myVars::set(true, 'isMouseDown');
-			self::formProps(true);
-            $_sc->clearTargets();
         }
         
        // c('fmMain')->text = $button;
@@ -576,16 +575,16 @@ class myDesign {
     
     static function mouseMove($self, $shift, $x, $y){
         
-        global $_designSel, $fmEdit, $_startAY, $_startAX, $isMouseDown, $_startX, $_startY;
+        global $_designSel, $fmEdit, $_startAY, $_startAX, $isMouseDown;
         
             //$ax = $_designSel->x;
             //$ay = $_designSel->y;
-            if ($isMouseDown && abs($_startX-$x)>10 && abs($_startY-$y)>10){
+                    if ($isMouseDown && abs($_startX-$x)>10 && abs($_startY-$y)>10){
                 
                 if (!$_designSel){
                     //$fmEdit->doubleBuffer = true;
                     $_designSel = new TForm;
-					gui_propSet($_designSel->self, 'StyleElements', '[]');
+					//gui_propSet($_designSel->self, 'StyleElements', '[]');
                     $_designSel->visible = 0;
                     $_designSel->AlphaBlend = true;
                     $_designSel->Color = myOptions::get('sc', 'SelectColor', clBlack);//#ADDOPT; , all ready
@@ -632,9 +631,9 @@ class myDesign {
         myVars::set(false, 'isMouseDown');
         myVars::set(true, '__sizeAndMove');
         
-        
-        if (!$_designSel && $button!==1){
-            $_sc->clearTargets();
+        $_sc->clearTargets();
+        if (!$_designSel && $button!=1){
+            
             if ($selectedClass) {
                 
                 self::createComponent($x, $y, $fmEdit);        
@@ -680,6 +679,7 @@ class myDesign {
                     $i++;
                     $_sc->addTarget($el);
                     if ($i==1){
+                
                         $myEvents->generate($el);
                         $myProperties->generate($el->self, c('fmPropsAndEvents->tabProps',1));
                     }
@@ -711,7 +711,7 @@ class myDesign {
         $tmp['h'] = control_h($self, null);
         return Geometry::collision2D($tmp, array('x'=>$x,'y'=>$y,'w'=>$w,'h'=>$h));
     }
-    
+   
     static function formProps($clear = false){
         global $myProperties,$myEvents,$fmEdit;
 		
