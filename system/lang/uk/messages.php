@@ -1,4 +1,20 @@
 <?
+$m['Starting Project'] = 'Запуск Проекту';
+$m['Project file is busy, let\'s try again'] = 'Файл проекту зайнятий, спробуйте знову';
+$m['Start Finished for'] = 'Запуск Завершено за';
+$m['Project file is busy, try to stop his process'] = 'Файл проекту зайнятий, спробуйте зупинити його процесс';
+$m['Building Project'] = 'Конструювання Проекту';
+$m['Selected directory is inaccessible'] = 'Обраний шлях недоступний';
+$m['Fatal error of project compiling'] = 'Фатальний збій конструювання проекту';
+$m['Building Completed'] = 'Конструювання Завершено';
+$m['Info'] = 'Інформація';
+$m['Error'] = 'Помилка';
+$m['Success'] = 'Вдалося';
+$m['Warning'] = 'Попередження';
+$m['Project'] = 'Проект';
+$m['Debug'] = 'Налагодження';
+$m['min.'] = 'хв.';
+$m['sec.'] = 'сек.';
 $m['Copy link'] = 'Копіювати';
 $m['Selector Color'] = 'Колір Виділення';
 $m['enc_chng_dg'] = 'Увага, код може зіпсуватися! Збережіть його перед зміною кодування.

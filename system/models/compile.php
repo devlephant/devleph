@@ -21,7 +21,7 @@ class myCompile
 			case 'Error':
 				$list->setitemfontcolor($list->items->count-1, 8421631);
 				break;
-			case 'Successfull':
+			case 'Success':
 				$list->setitemfontcolor($list->items->count-1, 0x00FF8000);
 				break;
 			case 'Warning':
@@ -56,7 +56,7 @@ class myCompile
 			case 'Error':
 				$list->setitemfontcolor($list->items->count-1, 8421631);
 				break;
-			case 'Successfull':
+			case 'Success':
 				$list->setitemfontcolor($list->items->count-1, 0x00FF8000);
 				break;
 			case 'Warning':
@@ -369,7 +369,7 @@ class myCompile
 		myUtils::saveForm();
 		myDesign::szRefresh();
 		$startTime = microtime(1);
-		myCompile::setStatus('', t('Запуск проекта') . '...');
+		myCompile::setStatus('', t('Starting Project') . '...');
 
 		$php_dir = dirname(replaceSl(EXE_NAME)) . '/php/';
 		$p_dir = dirname($projectFile) . '/php/';
@@ -386,13 +386,16 @@ class myCompile
 					unlink($exeFile);
 				}
 			}
-			if (file_exists($exeFile) && $check) {
-				myCompile::setStatus('Warning', t('Файл программы занят, пробуем снова') . '...');
+			if (file_exists($exeFile) && $check)
+			{
 				sleep(1);
 				return self::_start(false);
 			}
 			if (file_exists($exeFile)) {
-				myCompile::setStatus('Error', t('Файл программы занят, попробуйте уничтожить её процесс') . '!');
+				myCompile::setStatus('Error', t(
+				(DS_DEBUG_MODE)?
+				'Project file is busy, let\'s try again':
+				'Project file is busy, try to stop his process') . '!');
 				message_beep(MB_ICONERROR);
 				return false;
 			}
@@ -424,7 +427,7 @@ class myCompile
 		
 		$vtime = round( microtime(1) - $startTime, 1 );
 		$vtime = $vtime>=60? round($vtime/60,1).t('min.'): $vtime.t('sec.');
-		myCompile::setStatus('Successfull', t('Запуск завершен за ') . $vtime );
+		myCompile::setStatus('Success', t('Start Finished for') . ' ' . $vtime );
 		unset($_e, $vtime);
 		shell_execute(0, 'open', replaceSr($exeFile), ' -c ' . receiver_handle(), replaceSr(dirname($exeFile)), SW_SHOW);
 		myDesign::szRefresh();
@@ -485,7 +488,7 @@ class myCompile
 	{
 		$startTime = microtime(1);
 		global $myProject;
-		myCompile::setStatus('', t('Сборка программы') . '...');
+		myCompile::setStatus('', t('Building Project') . '...');
 		$debug_enabled = $myProject->config['debug']['enabled'];
 		$myProject->config['debug']['enabled'] = false;
 		myUtils::saveForm();
@@ -502,10 +505,11 @@ class myCompile
 		}
 
 		$_e = err_status(false);
+		err_clear();
 		x_copy(self::getExeModule(), $fileExe);
-
+		
 		if (err_msg()) {
-			myCompile::setStatus('Warning', t('Нет доступа для записи к выбранной папке!'));
+			myCompile::setStatus('Warning', t('Selected directory is inaccessible') . '!');
 			$myProject->config['debug']['enabled'] = $debug_enabled;
 			return false;
 		}
@@ -516,7 +520,18 @@ class myCompile
 		}
 
 		if (file_exists($fileIco)) {
+			$x=0;
 			while (!is_writable($fileExe)) {
+				$x++;
+				if($x>30)
+				{
+					myCompile::setStatus('Error', t(
+					(DS_DEBUG_MODE)?
+					'Project file is busy, let\'s try again':
+					'Project file is busy, try to stop his process') . '!');
+					message_beep(MB_ICONERROR);
+					return false;
+				}
 			}
 		}
 		$p_dir = false;
@@ -529,12 +544,23 @@ class myCompile
 
 		if ($attachSE) {
 			self::attachPHPSoulEngine($attachSE);
-
+			
+			$x=0;
 			while (!is_writable($fileExe)) {
+				$x++;
+				if($x>30)
+				{
+					myCompile::setStatus('Error', t(
+					(DS_DEBUG_MODE)?
+					'Project file is busy, let\'s try again':
+					'Project file is busy, try to stop his process') . '!');
+					message_beep(MB_ICONERROR);
+					return false;
+				}
 			}
 		}
 		else {
-			gui_message('Fatal error of project compiling');
+			myCompile::setStatus('Error', t('Fatal error of project compiling') . '!');
 			x_copy(DOC_ROOT . '/blanks/soulEngine.pak', dirname($fileExe) . '/soulEngine.pak');
 		}
 
@@ -567,10 +593,9 @@ class myCompile
 			foreach($res1 as $dll)
 			myUPX::compress($dll, $UPXLevel);
 		$res = null;
-		$endTime = microtime(1);
-		$buildTime = round( $endTime - $startTime, 1 );
-		
-		myCompile::setStatus('Successfull', t('Сборка завершена') . '. ('.$buildTime.' сек.)');
+		$vtime = round( microtime(1) - $startTime, 1 );
+		$vtime = $vtime>=60? round($vtime/60,1).t('min.'): $vtime.t('sec.');
+		myCompile::setStatus('Success', t('Building Completed') . '. ( '.$vtime.' )');
 
 		err_status($_e);
 		$myProject->config['debug']['enabled'] = $debug_enabled;

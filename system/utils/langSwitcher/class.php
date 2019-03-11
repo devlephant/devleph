@@ -1,13 +1,15 @@
 <?
 
 
-function langSwitcher($lag){
+function langSwitcher($lang){
 	if(c('lang_it_'.trim( myOptions::get('main','lang', LANG_ID) ))->self)
 		c('lang_it_'.trim( myOptions::get('main','lang', LANG_ID) ))->enabled = true;
-	if(c('lang_it_'.trim($lag['lang']))->self)
-		c('lang_it_'.trim($lag['lang']))->enabled = false;
-   myOptions::set('main','lang',$lag['lang']);
-   pre($lag['message']);
+	if(c('lang_it_'.trim($lang['lang']))->self)
+		c('lang_it_'.trim($lang['lang']))->enabled = false;
+   myOptions::set('main','lang',$lang['lang']);
+
+   if( isset($lang['message']) && trim($lang['message']) !== '' )
+	pre(Localization::toEncoding($lang['message']));
 }
 
 $langs = findFiles(DOC_ROOT.'/lang/','lng',false,true);
