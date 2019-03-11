@@ -8,6 +8,7 @@ function random( $x )
 {
 	return mt_rand(0, $x);
 }
+
 function parent_sum_prop_all($obj, $prop)
 {
 	$res = 0;
@@ -16,6 +17,16 @@ function parent_sum_prop_all($obj, $prop)
 		if(is_numeric($obj->$prop)){	$res += $obj->$prop;	}
 	}
 	return $res;
+}
+
+function cursor_offsetted_x($o)
+{
+	return cursor_pos_x() - (is_object($o)?parent_sum_prop_all($o, 'x'):$o) - GetSystemMetrics(32);
+}
+
+function cursor_offsetted_y($o)
+{
+	return cursor_pos_y() - (is_object($o)?parent_sum_prop_all($o, 'y'):$o) - GetSystemMetrics(51) - GetSystemMetrics(32);
 }
 
 function obsafe_print_r($var, $return = false, $html = false, $level = 0) {
