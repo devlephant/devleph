@@ -66,7 +66,8 @@ class myProperties {
         }
         
         $dlg->free();
-    }
+		self::updateProps();
+	}
     
     function VSComponentsClick($self){
         
@@ -93,7 +94,7 @@ class myProperties {
         }
         
         $dlg->free();
-        
+        self::updateProps();
     }
     
     function VSSizesClick($self){
@@ -112,6 +113,7 @@ class myProperties {
         }
         $_sc->update();  // fix bug
         $dlg->free();
+		self::updateProps();
     }
     
     function VSFontClick($self){
@@ -139,6 +141,7 @@ class myProperties {
         }
         
         $dlg->free();
+		self::updateProps();
     }
     
     function VSColorClick($self){
@@ -175,6 +178,7 @@ class myProperties {
 
 			
         $dlg->free();
+		self::updateProps();
     }
     function VSTIBClick($self)
 	{
@@ -204,6 +208,7 @@ class myProperties {
 		unset($prev);
 		self::setTibDsgn(c($self), count($ib->$prop) );
 		$_sc->update();  // fix bug
+		self::updateProps();	// fix bug
 	}
 	public static function setTibDsgn($obj, $cnt)
 	{
@@ -253,6 +258,7 @@ class myProperties {
         }
         
         $dlg->free(); 
+		self::updateProps();
     }
     
     function VSButtonClick($self){
@@ -285,6 +291,7 @@ class myProperties {
         }
         
         $dlg->free();
+		self::updateProps();
     }
     
     function VSEdit($self, $link, $value, $CAN){
@@ -386,6 +393,7 @@ class myProperties {
             
             //$myProperties->unFocusPanel();
         }
+		self::updateProps();
     }
     
     static function VSBarClick($self, $prop, $index){
@@ -408,6 +416,7 @@ class myProperties {
             $el->$prop = $value;
         }
         $_sc->update();  // fix bug
+		self::updateProps();
     }
     
     function formSelect($self, $form){
@@ -530,21 +539,15 @@ class myProperties {
     
     function _setProps($update = false){
         
-        global $_c, $toSetProp;
+        global $_c, $toSetProp, $fmEdit;
         $toSetProp = true;
-        
+        if( !is_object($this->selObj) )
+			$this->selObj = $fmEdit;
         $elements = $this->params[$this->selObj->className];
         
         foreach ($elements as $self=>$param){
             
             if (!isset($param['TYPE'])) continue;
-            
-            if ($update){
-                if (in_array($param['PROP'],array('x','y','w','h','name')) )
-                    $param['UPDATE_DSGN'] = true;
-            }
-            
-            if ($update && !$param['UPDATE_DSGN']) continue;
             
             $prop = is_array($param['PROP']) ? $param['PROP'][0] : $param['PROP'];
             $value = $this->selObj->$prop;
@@ -711,8 +714,8 @@ class myProperties {
 		}
         $edt->loadPicture(myImages::get24('Pick'));
         $edt->buttonWidth = 19;
-		$__fix = isset($param['REAL_PROP'])? $param['REAL_PROP']: '';
-		if(trim($__fix)>'')
+
+		if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
 			$edt->hint = $param['CAPTION']."\r\n[->{$param['REAL_PROP']}]";
 		else
 			$edt->hint = $param['CAPTION']."\r\n[->{$param['PROP']}]";
@@ -739,8 +742,7 @@ class myProperties {
 		}
         $edt->loadPicture(myImages::get24('Pick'));
         $edt->buttonWidth = 19;
-        $__fix = isset($param['REAL_PROP'])? $param['REAL_PROP']: '';
-		if(trim($__fix)>'')
+        if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
 			$edt->hint = $param['CAPTION']."\r\n[->{$param['REAL_PROP']}]";
 		else
 			$edt->hint = $param['CAPTION']."\r\n[->{$param['PROP']}]";
@@ -768,8 +770,7 @@ class myProperties {
 		}
         $edt->loadPicture(myImages::get24('Pick'));
         $edt->buttonWidth = 19;
-        $__fix = isset($param['REAL_PROP'])? $param['REAL_PROP']: '';
-		if(trim($__fix)>'')
+        if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
 			$edt->hint = $param['CAPTION']."\r\n[->{$param['REAL_PROP']}]";
 		else
 			$edt->hint = $param['CAPTION']."\r\n[->{$param['PROP']}]";
@@ -797,8 +798,7 @@ class myProperties {
 		}
         $edt->loadPicture(myImages::get24('Pick'));
         $edt->buttonWidth = 19;
-        $__fix = isset($param['REAL_PROP'])? $param['REAL_PROP']: '';
-		if(trim($__fix)>'')
+        if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
 			$edt->hint = $param['CAPTION']."\r\n[->{$param['REAL_PROP']}]";
 		else
 			$edt->hint = $param['CAPTION']."\r\n[->{$param['PROP']}]";
@@ -824,8 +824,7 @@ class myProperties {
 		}
         $edt->loadPicture(myImages::get24('Pick'));
         $edt->buttonWidth = 19;
-        $__fix = isset($param['REAL_PROP'])? $param['REAL_PROP']: '';
-		if(trim($__fix)>'')
+        if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
 			$edt->hint = $param['CAPTION']."\r\n[->{$param['REAL_PROP']}]";
 		else
 			$edt->hint = $param['CAPTION']."\r\n[->{$param['PROP']}]";
@@ -848,8 +847,7 @@ class myProperties {
 		}else{
 			$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
 		}
-        $__fix = isset($param['REAL_PROP'])? $param['REAL_PROP']: '';
-		if(trim($__fix)>'')
+        if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
 			$edt->hint = $param['CAPTION']."\r\n[->{$param['REAL_PROP']}]";
 		else
 			$edt->hint = $param['CAPTION']."\r\n[->{$param['PROP']}]";
@@ -877,8 +875,7 @@ class myProperties {
 			$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
 		}
         
-        $__fix = isset($param['REAL_PROP'])? $param['REAL_PROP']: '';
-		if(trim($__fix)>'')
+        if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
 			$edt->hint = $param['CAPTION']."\r\n[->{$param['REAL_PROP']}]";
 		else
 			$edt->hint = $param['CAPTION']."\r\n[->{$param['PROP']}]";
@@ -914,8 +911,7 @@ class myProperties {
                 $propFormH = $edt;
         }
         
-        $__fix = isset($param['REAL_PROP'])? $param['REAL_PROP']: '';
-		if(trim($__fix)>'')
+        if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
 			$edt->hint = $param['CAPTION']."\r\n[->{$param['REAL_PROP']}]";
 		else
 			$edt->hint = $param['CAPTION']."\r\n[->{$param['PROP']}]";
@@ -941,8 +937,7 @@ class myProperties {
 		}
         $edt->loadPicture(myImages::get24('Pick'));
         $edt->buttonWidth = 19;
-        $__fix = isset($param['REAL_PROP'])? $param['REAL_PROP']: '';
-		if(trim($__fix)>'')
+        if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
 			$edt->hint = $param['CAPTION']."\r\n[->{$param['REAL_PROP']}]";
 		else
 			$edt->hint = $param['CAPTION']."\r\n[->{$param['PROP']}]";
@@ -969,8 +964,7 @@ class myProperties {
 		}
         $edt->loadPicture(myImages::get24('Pick'));
         $edt->buttonWidth = 19;
-        $__fix = isset($param['REAL_PROP'])? $param['REAL_PROP']: '';
-		if(trim($__fix)>'')
+        if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
 			$edt->hint = $param['CAPTION']."\r\n[->{$param['REAL_PROP']}]";
 		else
 			$edt->hint = $param['CAPTION']."\r\n[->{$param['PROP']}]";
@@ -1001,8 +995,7 @@ class myProperties {
         if (count($param['VALUES']))
             $edt->text = $param['VALUES'];
         
-        $__fix = isset($param['REAL_PROP'])? $param['REAL_PROP']: '';
-		if(trim($__fix)>'')
+        if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
 			$edt->hint = $param['CAPTION']."\r\n[->{$param['REAL_PROP']}]";
 		else
 			$edt->hint = $param['CAPTION']."\r\n[->{$param['PROP']}]";
@@ -1043,8 +1036,7 @@ class myProperties {
 		}else{
 			$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
 		}
-        $__fix = isset($param['REAL_PROP'])? $param['REAL_PROP']: '';
-		if(trim($__fix)>'')
+        if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
 			$edt->hint = $param['CAPTION']."\r\n[->{$param['REAL_PROP']}]";
 		else
 			$edt->hint = $param['CAPTION']."\r\n[->{$param['PROP']}]";
@@ -1072,8 +1064,7 @@ class myProperties {
 		}else{
 			$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
 		}
-        $__fix = isset($param['REAL_PROP'])? $param['REAL_PROP']: '';
-		if(trim($__fix)>'')
+        if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
 			$edt->hint = $param['CAPTION']."\r\n[->{$param['REAL_PROP']}]";
 		else
 			$edt->hint = $param['CAPTION']."\r\n[->{$param['PROP']}]";
@@ -1101,8 +1092,7 @@ class myProperties {
         $edt->TextKind = 'tkCustom';
         $edt->TrueText = t('Yes');
         $edt->FalseText = t('No');
-        $__fix = isset($param['REAL_PROP'])? $param['REAL_PROP']: '';
-		if(trim($__fix)>'')
+        if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
 			$edt->hint = $param['CAPTION']."\r\n[->{$param['REAL_PROP']}]";
 		else
 			$edt->hint = $param['CAPTION']."\r\n[->{$param['PROP']}]";
@@ -1127,8 +1117,7 @@ class myProperties {
 			$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
 		}
         
-       $__fix = isset($param['REAL_PROP'])? $param['REAL_PROP']: '';
-		if(trim($__fix)>'')
+       if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
 			$edt->hint = $param['CAPTION']."\r\n[->{$param['REAL_PROP']}]";
 		else
 			$edt->hint = $param['CAPTION']."\r\n[->{$param['PROP']}]";;

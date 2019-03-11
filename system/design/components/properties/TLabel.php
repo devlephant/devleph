@@ -14,7 +14,7 @@ $result[] = array(
                   'CAPTION'=>t('Text'),
                   'TYPE'=>'text',
                   'PROP'=>'caption',
-                  'UPDATE_DSGN'=>1,
+                  
                   );
 _addfont($result);
 
@@ -29,7 +29,7 @@ $result[] = array(
                   'CAPTION'=>t('Auto Size'),
                   'TYPE'=>'check',
                   'PROP'=>'autoSize',
-                  'UPDATE_DSGN'=>1,
+                  
                   );
 
 $result[] = array(
@@ -103,9 +103,9 @@ $result[] = array(
                   'ADD_GROUP'=>true,
                   );
 
-$result[] = array('CAPTION'=>t('p_Left'), 'PROP'=>'x','TYPE'=>'number','ADD_GROUP'=>1,'UPDATE_DSGN'=>1);
-$result[] = array('CAPTION'=>t('p_Top'), 'PROP'=>'y','TYPE'=>'number','ADD_GROUP'=>1,'UPDATE_DSGN'=>1);
-$result[] = array('CAPTION'=>t('Width'), 'PROP'=>'w','TYPE'=>'number','ADD_GROUP'=>1,'UPDATE_DSGN'=>1);
-$result[] = array('CAPTION'=>t('Height'), 'PROP'=>'h','TYPE'=>'number','ADD_GROUP'=>1,'UPDATE_DSGN'=>1);
+$result[] = array('CAPTION'=>t('p_Left'), 'PROP'=>'x','TYPE'=>'number','ADD_GROUP'=>1);
+$result[] = array('CAPTION'=>t('p_Top'), 'PROP'=>'y','TYPE'=>'number','ADD_GROUP'=>1);
+$result[] = array('CAPTION'=>t('Width'), 'PROP'=>'w','TYPE'=>'number','ADD_GROUP'=>1);
+$result[] = array('CAPTION'=>t('Height'), 'PROP'=>'h','TYPE'=>'number','ADD_GROUP'=>1);
 
 return $result;

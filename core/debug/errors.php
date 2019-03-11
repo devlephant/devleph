@@ -199,14 +199,11 @@ function userFatalHandler($errno = false, $errstr = '', $errfile='', $errline=0)
 
 function userExceptionHandler($e, $_tc=false, $_class=false, $errcontext=false){
 	if(	!is_object($e) && !is_subclass_of($e, 'Exception') ) return;
-	$class = ($_class)? $_class: get_class($e);
-	$type = [ t($class), MB_ICONINFORMATION ];
+	$type = [ t(($_class)? $_class: get_class($e)), MB_ICONINFORMATION ];
 	$errname = $e->getCode();
 	$msg = $e->getMessage();
 	$errfile = $e->getFile();
 	$line = $e->getLine();
-
-	$tc = ($_tc)? $_tc: (strlen( $e->getTraceAsString() ) <= 3 )? '[ Information about the code cannot be gathered ]' : $e->getTraceAsString();
 	
 	if (defined('ERROR_NO_WARNING') && (bool) constant('ERROR_NO_WARNING')){
         if ($errname == E_WARNING || $errname == E_CORE_WARNING || $errname == E_USER_WARNING) return;
@@ -237,7 +234,7 @@ function userExceptionHandler($e, $_tc=false, $_class=false, $errcontext=false){
         $arr[] = t('File').': ' . $errfile;
         $arr[] = t('On Line').': ' . $line;
     
-	$arr[] = t('Code').': '._BR_.$tc;
+	$arr[] = t('Code') . ': ' . _BR_ . ($_tc)? $_tc: (strlen( $e->getTraceAsString() ) <= 3 )? '[ Information about the code cannot be gathered ]' : $e->getTraceAsString();
 	
 	message_beep($type[1]);
 	messageBox( implode(_BR_, $arr), appTitle() . ': Exception', $type[1]);

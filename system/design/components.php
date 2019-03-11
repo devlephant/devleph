@@ -40,39 +40,39 @@ if (EMULATE_DVS_EXE) return;
 	$localization = (bool)( (int)myOptions::get('prefs','translate_combos', "0") );//#ADDOPT;
 	//Properties generation
 	/*Delphi Objects Align*/
-	$GLOBALS['align_meta'] = array('alNone', 'alTop', 'alBottom', 'alLeft', 'alRight', 'alClient', 'alCustom');
+	$GLOBALS['align_meta'] = ['alNone', 'alTop', 'alBottom', 'alLeft', 'alRight', 'alClient', 'alCustom'];
 	/*Button Layout*/
-	$GLOBALS['btnly_meta'] = array('blGlyphLeft', 'blGlyphRight', 'blGlyphTop', 'blGlyphBottom');
+	$GLOBALS['btnly_meta'] = ['blGlyphLeft', 'blGlyphRight', 'blGlyphTop', 'blGlyphBottom'];
 	/*Button Kind*/
-	$GLOBALS['btnkn_meta'] = array('bkCustom', 'bkOK', 'bkCancel', 'bkHelp',
+	$GLOBALS['btnkn_meta'] = ['bkCustom', 'bkOK', 'bkCancel', 'bkHelp',
 									'bkYes', 'bkNo', 'bkClose', 'bkAbort',
-									'bkRetry', 'bkIgnore', 'bkAll');
+									'bkRetry', 'bkIgnore', 'bkAll'];
 	/*Modal Results*/
-	$GLOBALS['mores_meta'] = array('mrNone', 'mrOk', 'mrCancel', 'mrAbort', 'mrRetry', 'mrIgnore', 'mrYes', 'mrNo',
-						'mrAll', 'mrNoToAll', 'mrYesToAll');
+	$GLOBALS['mores_meta'] = ['mrNone', 'mrOk', 'mrCancel', 'mrAbort', 'mrRetry', 'mrIgnore', 'mrYes', 'mrNo',
+						'mrAll', 'mrNoToAll', 'mrYesToAll'];
 	/*Bevel Shape*/
-	$GLOBALS['bvshp_meta'] = array('bsBox', 'bsFrame', 'bsTopLine', 'bsBottomLine', 'bsLeftLine',
-                                'bsRightLine', 'bsSpacer');
+	$GLOBALS['bvshp_meta'] = ['bsBox', 'bsFrame', 'bsTopLine', 'bsBottomLine', 'bsLeftLine',
+                                'bsRightLine', 'bsSpacer'];
 	/*Bevel Style*/
-	$GLOBALS['bvstl_meta'] = array('bsLowered', 'bsRaised');
+	$GLOBALS['bvstl_meta'] = ['bsLowered', 'bsRaised'];
 	/*Category Buttons Gradient Direction*/
-	$GLOBALS['gradd_meta'] = array('gdHorizontal', 'gdVertical');
+	$GLOBALS['gradd_meta'] = ['gdHorizontal', 'gdVertical'];
 	/*Delphi Object Bevel Dimensions Styles*/
-	$GLOBALS['bvdim_meta'] = array('bvNone', 'bvLowered', 'bvRaised', 'bvSpace');
+	$GLOBALS['bvdim_meta'] = ['bvNone', 'bvLowered', 'bvRaised', 'bvSpace'];
 	/*Delphi Object Bevel Overall Kind*/
-	$GLOBALS['bvkid_meta'] = array('bkNone', 'bkTile', 'bkSoft', 'bkFlat');
+	$GLOBALS['bvkid_meta'] = ['bkNone', 'bkTile', 'bkSoft', 'bkFlat'];
 	/*Delphi Object Border Style*/
-	$GLOBALS['bsstl_meta'] = array('bsNone', 'bsSingle');
+	$GLOBALS['bsstl_meta'] = ['bsNone', 'bsSingle'];
 	/*Delphi Text Alignment*/
-	$GLOBALS['txtal_meta'] = array('taLeftJustify', 'taRightJustify', 'taCenter');
+	$GLOBALS['txtal_meta'] = ['taLeftJustify', 'taRightJustify', 'taCenter'];
 	/*Text Vertical Alignment*/
-	$GLOBALS['txval_meta'] = array('tlTop', 'tlCenter', 'tlBottom');
+	$GLOBALS['txval_meta'] = ['tlTop', 'tlCenter', 'tlBottom'];
 	/*Delphi Combobox States*/
-	$GLOBALS['cbsts_meta'] = array('cbUnchecked', 'cbChecked', 'cbGrayed');
+	$GLOBALS['cbsts_meta'] = ['cbUnchecked', 'cbChecked', 'cbGrayed'];
 	/*Delphi ListBox Styles*/
-	$GLOBALS['lbstl_meta'] = array('lbStandard', 'lbOwnerDrawFixed', 'lbOwnerDrawVariable', 'lbVirtual', 'lbVirtualOwnerDraw');
+	$GLOBALS['lbstl_meta'] = ['lbStandard', 'lbOwnerDrawFixed', 'lbOwnerDrawVariable', 'lbVirtual', 'lbVirtualOwnerDraw'];
 	/*Delphi Colors Meta (Standart)*/
-	$GLOBALS['colrs_meta'] = array(
+	$GLOBALS['colrs_meta'] = [
     							  'clBlack', 'clMaroon', 'clGreen', 'clOlive',
     							  'clNavy', 'clPurple', 'clTeal', 'clGray',
     							  'clSilver', 'clRed', 'clLime', 'clYellow',
@@ -86,211 +86,197 @@ if (EMULATE_DVS_EXE) return;
     							  'clInfoText', 'clMenu', 'clMenuBar', 'clMenuHighlight',
     							  'clMenuText', 'clNone', 'clScrollBar', 'cl3DDkShadow',
     							  'cl3DLight', 'clWindow', 'clWindowFrame', 'clWindowText',
-    							  );
+							];
 	/*Delphi Brush Styles*/
-	$GLOBALS['brush_meta'] = array('bsSolid', 'bsClear', 'bsHorizontal', 'bsVertical','bsFDiagonal', 'bsBDiagonal', 'bsCross', 'bsDiagCross');
+	$GLOBALS['brush_meta'] = ['bsSolid', 'bsClear', 'bsHorizontal', 'bsVertical','bsFDiagonal', 'bsBDiagonal', 'bsCross', 'bsDiagCross'];
 	/*Delphi Shape Types*/
-	$GLOBALS['spstl_meta'] = array('stRectangle', 'stSquare', 'stRoundRect', 'stRoundSquare', 'stEllipse', 'stCircle');
+	$GLOBALS['spstl_meta'] = ['stRectangle', 'stSquare', 'stRoundRect', 'stRoundSquare', 'stEllipse', 'stCircle'];
 	/*Delphi Pen Styles*/
-	$GLOBALS['penst_meta'] = array('psSolid', 'psDash', 'psDot', 'psDashDot', 'psDashDotDot', 'psClear', 'psInsideFrame', 'psUserStyle', 'psAlternate');
+	$GLOBALS['penst_meta'] = ['psSolid', 'psDash', 'psDot', 'psDashDot', 'psDashDotDot', 'psClear', 'psInsideFrame', 'psUserStyle', 'psAlternate'];
 	/*Delphi Pen Modes*/
-	$GLOBALS['penms_meta'] = array('pmBlack', 'pmWhite', 'pmNop', 'pmNot', 'pmCopy', 'pmNotCopy',
+	$GLOBALS['penms_meta'] = ['pmBlack', 'pmWhite', 'pmNop', 'pmNot', 'pmCopy', 'pmNotCopy',
                                     'pmMergePenNot', 'pmMaskPenNot', 'pmMergeNotPen', 'pmMaskNotPen', 'pmMerge',
-                                    'pmNotMerge', 'pmMask', 'pmNotMask', 'pmXor', 'pmNotXor');
+                                    'pmNotMerge', 'pmMask', 'pmNotMask', 'pmXor', 'pmNotXor'];
 	/*Delphi Combobox Styles*/
-	$GLOBALS['cbstl_meta'] = array('csDropDown', 'csSimple', 'csDropDownList', 'csOwnerDrawFixed','csOwnerDrawVariable');
+	$GLOBALS['cbstl_meta'] = ['csDropDown', 'csSimple', 'csDropDownList', 'csOwnerDrawFixed','csOwnerDrawVariable'];
 	/*Delphi Edit CharCases*/
-	$GLOBALS['edtcc_meta'] = array('ecLowerCase', 'ecNormal', 'ecUpperCase');
+	$GLOBALS['edtcc_meta'] = ['ecLowerCase', 'ecNormal', 'ecUpperCase'];
 	/*Delphi Dragging Modes*/
-	$GLOBALS['drgmd_meta'] = array('dmManual', 'dmAutomatic');
+	$GLOBALS['drgmd_meta'] = ['dmManual', 'dmAutomatic'];
 	/*Delphi Dragging Kinds*/
-	$GLOBALS['drgkd_meta'] = array('dkDock', 'dkDrag');
+	$GLOBALS['drgkd_meta'] = ['dkDock', 'dkDrag'];
 	/*Delphi VCL Date Format*/
-	$GLOBALS['datef_meta'] = array('dfShort','dfLong');
+	$GLOBALS['datef_meta'] = ['dfShort','dfLong'];
 	/*Date Modes*/
-	$GLOBALS['datem_meta'] = array('dmComboBox','dmUpDown');
+	$GLOBALS['datem_meta'] = ['dmComboBox','dmUpDown'];
 	/*DateTimeKinds*/
-	$GLOBALS['dtkkd_meta'] = array('dtkDate','dtkTime');
+	$GLOBALS['dtkkd_meta'] = ['dtkDate','dtkTime'];
 	/*Font Devices*/
-	$GLOBALS['fntde_meta'] = array('fdScreen', 'fdPrinter', 'fdBoth');
+	$GLOBALS['fntde_meta'] = ['fdScreen', 'fdPrinter', 'fdBoth'];
 	/*Forms Border Styles*/
-	$GLOBALS['frmbds_meta'] = array('bsNone', 'bsSingle', 'bsSizeable', 'bsDialog', 'bsToolWindow', 'bsSizeToolWin');
+	$GLOBALS['frmbds_meta'] = ['bsNone', 'bsSingle', 'bsSizeable', 'bsDialog', 'bsToolWindow', 'bsSizeToolWin'];
 	/*Default Monitors*/
-	$GLOBALS['defmns_meta'] = array('dmActiveForm', 'dmDesktop', 'dmMainForm', 'dmPrimary');
+	$GLOBALS['defmns_meta'] = ['dmActiveForm', 'dmDesktop', 'dmMainForm', 'dmPrimary'];
 	/*Print Scale Options*/
-	$GLOBALS['prsopt_meta'] = array('poNone', 'poPrintToFit', 'poProportional');
+	$GLOBALS['prsopt_meta'] = ['poNone', 'poPrintToFit', 'poProportional'];
 	/*Thread Priorities*/
-	$GLOBALS['thpriors_meta'] = array('tpIdle', 'tpLowest', 'tpLower', 'tpNormal', 'tpHigher', 'tpHighest',
-                                    'tpTimeCritical');
+	$GLOBALS['thpriors_meta'] = ['tpIdle', 'tpLowest', 'tpLower', 'tpNormal', 'tpHigher', 'tpHighest',
+                                    'tpTimeCritical'];
 	/*Icon Arrangement*/
-	$GLOBALS['iar_meta'] = array('iaLeft', 'iaTop');
+	$GLOBALS['iar_meta'] = ['iaLeft', 'iaTop'];
 	/*ListView Sort Types*/
-	$GLOBALS['lstsort_meta'] = array('stBoth', 'stData', 'stNone', 'stText');
+	$GLOBALS['lstsort_meta'] = ['stBoth', 'stData', 'stNone', 'stText'];
 	/*ListView View Styles*/
-	$GLOBALS['lstvst_meta'] = array('vsIcon', 'vsSmallIcon', 'vsList', 'vsReport');
+	$GLOBALS['lstvst_meta'] = ['vsIcon', 'vsSmallIcon', 'vsList', 'vsReport'];
 	/*Scrollbars Styles*/
-	$GLOBALS['memscrst_meta'] = array('ssNone', 'ssHorizontal', 'ssVertical', 'ssBoth');
+	$GLOBALS['memscrst_meta'] = ['ssNone', 'ssHorizontal', 'ssVertical', 'ssBoth'];
 	/*PageControl Thumb Styles*/
-	$GLOBALS['pthbstl_meta'] = array('tsTabs', 'tsButtons', 'tsFlatButtons');
+	$GLOBALS['pthbstl_meta'] = ['tsTabs', 'tsButtons', 'tsFlatButtons'];
 	/*Progressbar Orientation*/
-	$GLOBALS['prorients_meta'] = array('pbHorizontal', 'pbVertical');
+	$GLOBALS['prorients_meta'] = ['pbHorizontal', 'pbVertical'];
 	/*Scrollbar Styles*/
-	$GLOBALS['sbposts_meta'] = array('sbHorizontal', 'sbVertical');
+	$GLOBALS['sbposts_meta'] = ['sbHorizontal', 'sbVertical'];
 	/*Splitter Resize Style*/
-	$GLOBALS['rsstyles_meta'] = array('rsLine', 'rsNone', 'rsPattern', 'rsUpdate');
+	$GLOBALS['rsstyles_meta'] = ['rsLine', 'rsNone', 'rsPattern', 'rsUpdate'];
 	/*Static Border Styles*/
-	$GLOBALS['sbstyles_meta'] = array('sbsNone', 'sbsSingle', 'sbsSunken');
+	$GLOBALS['sbstyles_meta'] = ['sbsNone', 'sbsSingle', 'sbsSunken'];
 	/*TrackBar Orientation*/
-	$GLOBALS['trorients_meta'] = array('trHorizontal', 'trVertical');
+	$GLOBALS['trorients_meta'] = ['trHorizontal', 'trVertical'];
 	/*TrackBar Tooltip Positions*/
-	$GLOBALS['trtpposts_meta'] = array('ptBottom', 'ptLeft', 'ptNone', 'ptRight', 'ptTop');
+	$GLOBALS['trtpposts_meta'] = ['ptBottom', 'ptLeft', 'ptNone', 'ptRight', 'ptTop'];
 	/*TrackBar TickMarks*/
-	$GLOBALS['tckmrks_meta'] = array('tmBottomRight', 'tmTopLeft', 'tmBoth');
+	$GLOBALS['tckmrks_meta'] = ['tmBottomRight', 'tmTopLeft', 'tmBoth'];
 	/*TrackBar Ticks Styles*/
-	$GLOBALS['tckstls_meta'] = array('tsNone', 'tsAuto', 'tsManual');
+	$GLOBALS['tckstls_meta'] = ['tsNone', 'tsAuto', 'tsManual'];
 	/*TUpDown Orientations*/
-	$GLOBALS['tupsoris_meta'] = array('udHorizontal', 'udVertical');
+	$GLOBALS['tupsoris_meta'] = ['udHorizontal', 'udVertical'];
 
 	/*TTrayIcon BallonHint Types/Flags*/
 	$GLOBALS['ttrbls_types_meta'] = ($localization)? 
-							array(0 => t('None'),
+							[ 0 => t('None'),
 							  1 => t('Information'),
 							  2 => t('Warning'),
 							  3 => t('Error'),
 							  4 => t('Last Icon'),
-							  5 => t('Tray Icon')): 
-							array('trfNone', 'trfInfo', 'trfWarning', 'trfError', 'trfLastIcon', 'trfTrayIcon');
+							  5 => t('Tray Icon')]: 
+							['trfNone', 'trfInfo', 'trfWarning', 'trfError', 'trfLastIcon', 'trfTrayIcon'];
 	
-	$GLOBALS['metatypes'] = array(
+	$GLOBALS['metatypes'] = [
 	
 		'Boolean'=>
-			array(
-				'TYPE'=>'check',
-				'UPDATE_DSGN'=>1
-			),
-		/*на php 5.3 это никак не сократить :-( печалька*/
+			[
+				'TYPE'=>'check'
+			],
+		/*Да, время настало, уже не 5.3 :)*/
 		'Integer'=>
-			array(
-				'TYPE'=>'number',
-				'UPDATE_DSGN'=>1
-			),
+			[
+				'TYPE'=>'number'
+			],
 		'NativeInt'=>
-			array(
-				'TYPE'=>'number',
-				'UPDATE_DSGN'=>1
-			),
+			[
+				'TYPE'=>'number'
+			],
 		'SmallInt'=>
-			array(
-				'TYPE'=>'number',
-				'UPDATE_DSGN'=>1
-			),
+			[
+				'TYPE'=>'number'
+			],
 		'BigInt'=>
-			array(
-				'TYPE'=>'number',
-				'UPDATE_DSGN'=>1
-			),
+			[
+				'TYPE'=>'number'
+			],
 		'Double'=>
-			array(
-				'TYPE'=>'number',
-				'UPDATE_DSGN'=>1
-			),
+			[
+				'TYPE'=>'number'
+			],
 		'Single'=>
-			array(
-				'TYPE'=>'number',
-				'UPDATE_DSGN'=>1
-			),
+			[
+				'TYPE'=>'number'
+			],
 		'string'=>
-			array(
-				'TYPE'=>'text',
-				'UPDATE_DSGN'=>1
-			),
-		'TCaption'=>
-			array(
+			[
 				'TYPE'=>'text'
-			),
+			],
+		'TCaption'=>
+			[
+				'TYPE'=>'text'
+			],
 		'TFont'=>
-			array(
+			[
 				'TYPE'=>'font',
-				'CLASS'=>'TFont',
-				'UPDATE_DSGN'=>true
-			),
+				'CLASS'=>'TFont'
+			],
 		'TAlign'=>
-			array(
+			[
 				'TYPE'=>'combo',
-				'VALUES'=>$GLOBALS['align_meta'], //оптимизация
-				'ADD_GROUP'=>true
-			),
+				'VALUES'=>$GLOBALS['align_meta'] //оптимизация
+			],
 		'TBitmap'=>
-			array(
+			[
 				'TYPE'=>'image',
-				'CLASS'=>'TBitmap',
-				'UPDATE_DSGN'=>1
-			),
+				'CLASS'=>'TBitmap'
+			],
 		'TButtonLayout'=>
-			array(
+			[
 				'TYPE'=>'combo',
 				'VALUES'=>$GLOBALS['btnly_meta'], //оптимизация
-				'NO_CONST'=>1,
-				'UPDATE_DSGN'=>1
-			),
+				'NO_CONST'=>1
+			],
 		'TModalResult'=>
-			array(
+			[
 				'TYPE'=>'combo',
 				'VALUES'=>$GLOBALS['mores_meta'] //оптимизация
-			),
+			],
 		'TButtonKind'=>
-			array(
+			[
 				'TYPE'=>'combo',
-				'VALUES'=>$GLOBALS['btnkn_meta'],
-				'UPDATE_DSGN'=>1
-			),
+				'VALUES'=>$GLOBALS['btnkn_meta']
+			],
 		'TBevelShape'=>
-			array(
+			[
 				'TYPE'=>'combo',
 				'VALUES'=>$GLOBALS['bvshp_meta']
-			),
+			],
 		'TBevelStyle'=>
-			array(
+			[
 				'TYPE'=>'combo',
 				'VALUES'=>$GLOBALS['bvstl_meta']
-			),
+			],
 		'TBevelCut'=>
-			array(
+			[
 				'TYPE'=>'combo',
 				'VALUES'=>$GLOBALS['bvdim_meta'],
 				'NO_CONST'=>true,
-			),
+			],
 		'TBevelKind'=>
-			array(
+			[
 				'TYPE'=>'combo',
 				'VALUES'=>$GLOBALS['bvkid_meta'],
 				'NO_CONST'=>true,
-			),
+			],
 		'TGradientDirection'=>
-			array(
+			[
 				'TYPE'=>'combo',
 				'VALUES'=>$GLOBALS['gradd_meta'],
 				'NO_CONST'=>true,
-			),
+			],
 		'TColor'=>
-			array(
+			[
 				'TYPE'=>'color'
-			),
+			],
 		
 			//SIZES AND POSITION//
 		   //РАЗМЕРЫ И ПОЗИЦИЯ //
 		'TSizeConstraints'=>
-			array(
+			[
 				'TYPE'=>'sizes',
-				'ADD_GROUP'=>true,
-				'UPDATE_DSGN'=>1
-			),
-	);
+				'ADD_GROUP'=>true
+			],
+	];
 	//CAPTION - указывать вручную придётся
 	//'NO_CONST'=>true, - указывать придётся, если для константы используется перевод, вот так вот
 	//PROP - зависит от случая
 	
-	function sort_props(&$props, $class, $typeC = array(
+	function sort_props(&$props, $class, $typeC = [
 				0=>'TCaption',
 				1=>'string',
 				2=>'TFont',
@@ -303,9 +289,9 @@ if (EMULATE_DVS_EXE) return;
 				9=>'TButtonGlyph',
 				10=>'TButtonLayout',
 				11=>'TNumGlyphs',
-			))
+			])
 	{
-		$sorted = $unsorted = array();
+		$sorted = $unsorted = [];
 		foreach($props as $prop=>$type)
 		{
 			if( gui_class_prop_iswritable($class, $prop) )
@@ -315,7 +301,7 @@ if (EMULATE_DVS_EXE) return;
 					$unsorted[$prop] = $type;
 				}
 		}
-		$props = array();
+		$props = [];
 		if( !empty($sorted) )
 		foreach( $sorted as $p )
 		{
@@ -332,7 +318,7 @@ if (EMULATE_DVS_EXE) return;
 	function get_sorted_props($class)
 	{
 		$localization = (bool)( (int)myOptions::get('prefs','translate_combos', "0") );//#ADDOPT;
-		$res	= array();
+		$res	= [];
 		$props	= gui_class_proparray($class);
 		if( empty($props) ) return $res;
 		sort_props($props, $class);
@@ -347,40 +333,36 @@ if (EMULATE_DVS_EXE) return;
 				case 'HelpKeyword':{
 				} break;
 				case 'Left':{
-				$res[] = array(
+				$res[] = [
 					'CAPTION'=>t('p_Left'),
 					'PROP'=>'x',
 					'TYPE'=>'number',
-					'ADD_GROUP'=>true,
-					'UPDATE_DSGN'=>1
-					);
+					'ADD_GROUP'=>true
+					];
 				} break;
 				case 'Top':{
-				$res[] = array(
+				$res[] = [
 					'CAPTION'=>t('p_Top'),
 					'PROP'=>'y',
 					'TYPE'=>'number',
-					'ADD_GROUP'=>true,
-					'UPDATE_DSGN'=>1
-					);
+					'ADD_GROUP'=>true
+					];
 				} break;
 				case 'Width':{
-				$res[] = array(
+				$res[] = [
 					'CAPTION'=>t('Width'),
 					'PROP'=>'w',
 					'TYPE'=>'number',
-					'ADD_GROUP'=>true,
-					'UPDATE_DSGN'=>1
-					);
+					'ADD_GROUP'=>true
+					];
 				} break;
 				case 'Height':{
-				$res[] = array(
+				$res[] = [
 					'CAPTION'=>t('Height'),
 					'PROP'=>'h',
 					'TYPE'=>'number',
-					'ADD_GROUP'=>true,
-					'UPDATE_DSGN'=>1
-					);
+					'ADD_GROUP'=>true
+					];
 				} break;
 				default:{
 					if( isset($GLOBALS['metatypes'][$type]) )
@@ -424,7 +406,7 @@ if (EMULATE_DVS_EXE) return;
 	return $res;
 	}
 	//Properties generation end
-	function sort_events(&$events, $typeC = array(
+	function sort_events(&$events, $typeC = [
 				0=>'OnClick',
 				1=>'OnDblClick',
 				2=>'OnMouseActivate',
@@ -448,7 +430,7 @@ if (EMULATE_DVS_EXE) return;
 				23=>'OnHide',
 				24=>'OnResize',
 				25=>'OnPaint',
-			))
+			])
 	{
 		$sorted = $unsorted = array();
 		foreach($events as $event=>$type)
@@ -475,7 +457,7 @@ if (EMULATE_DVS_EXE) return;
 
 	function get_sorted_events($class)
 	{
-		$props = $events = $res = array();
+		$props = $events = $res = [];
 		$props	= gui_class_proparray($class);
 		if( empty($props) ) return $res;
 		
@@ -492,12 +474,12 @@ if (EMULATE_DVS_EXE) return;
 			$a = gui_get_event_paramss($class, $prop);
 			if( $a !== '!' ) 
 			{
-				$res[strtolower($prop)] = array(
+				$res[strtolower($prop)] = [
                   'CAPTION'=> t($prop),
                   'EVENT'=> strtolower(substr($prop, 0, 1)) . substr($prop, 1),
                   'INFO'=>'%func%(' . $a . ')',
                   'ICON'=> strtolower($prop),
-                  );
+                  ];
 			}
 			
 		}
@@ -557,7 +539,7 @@ if (EMULATE_DVS_EXE) return;
 	}
 	function get_sorted_methods($class)
 	{
-		$res = array();
+		$res = [];
 		if(!gui_class_isset($class)) return include( dirname(__FILE__)."/components/methods/$class.php");
 		$methods = gui_class_methodList($class);
 
@@ -565,11 +547,11 @@ if (EMULATE_DVS_EXE) return;
 		foreach( $methods as $method_name=>$parameters )
 		{
 			//if( empty($parameters) ) continue;
-			$res[] = array(
+			$res[] = [
 					  'CAPTION'=> t($method_name),
 					  'PROP'=> strtolower(substr($method_name, 0, 1)) . substr($method_name, 1),
 					  'INLINE'=> convertReturnType($class, $method_name, gui_methodrtype($class, $method_name)). $method_name . ' ' . str_replace(array('Boolean'), array('Bool'),  $parameters),
-					  );
+					  ];
 		}
 		return $res;
 	}

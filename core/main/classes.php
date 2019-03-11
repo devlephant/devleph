@@ -301,8 +301,7 @@ class TStream extends TObject{
             
             if ($in_charset)
 			{
-				$fchar = (function_exists('delphi_is_uc') && delphi_is_uc())? 'utf-8': 'windows-1251';
-                $this->text = (!$out_charset)?iconv($in_charset, $fchar, file_get_contents($file)) :iconv($in_charset, $out_charset, file_get_contents($file));
+                $this->text = (!$out_charset)?iconv($in_charset, ((function_exists('delphi_is_uc') && delphi_is_uc())? 'utf-8': 'windows-1251'), file_get_contents($file)) :iconv($in_charset, $out_charset, file_get_contents($file));
 			}
             else
                 $this->text = file_get_contents($file);

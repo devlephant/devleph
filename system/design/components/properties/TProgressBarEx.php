@@ -18,7 +18,6 @@ $result[] = array(
                   'CAPTION'=>t('Picture'),
                   'TYPE'=>'image',
                   'PROP'=>'picture',
-				  'UPDATE_DSGN'=>true
                   );
 $result[] = array(
                   'CAPTION'=>t('Transparent'),
@@ -49,7 +48,7 @@ $result[] = array(
                   'CAPTION'=>t('Position'),
                   'TYPE'=>'number',
                   'PROP'=>'position',
-				  'UPDATE_DSGN'=>1,
+				  
                   );					  
 $result[] = array(
                   'CAPTION'=>t('Color'),
@@ -99,9 +98,9 @@ $result[] = array(
                   'REAL_PROP'=>'visible',
                   'ADD_GROUP'=>true,
                   );
-$result[] = array('CAPTION'=>t('p_Left'), 'PROP'=>'x','TYPE'=>'number','ADD_GROUP'=>1,'UPDATE_DSGN'=>1);
-$result[] = array('CAPTION'=>t('p_Top'), 'PROP'=>'y','TYPE'=>'number','ADD_GROUP'=>1,'UPDATE_DSGN'=>1);
-$result[] = array('CAPTION'=>t('Width'), 'PROP'=>'w','TYPE'=>'number','ADD_GROUP'=>1,'UPDATE_DSGN'=>1);
-$result[] = array('CAPTION'=>t('Height'), 'PROP'=>'h','TYPE'=>'number','ADD_GROUP'=>1,'UPDATE_DSGN'=>1);
+$result[] = array('CAPTION'=>t('p_Left'), 'PROP'=>'x','TYPE'=>'number','ADD_GROUP'=>1);
+$result[] = array('CAPTION'=>t('p_Top'), 'PROP'=>'y','TYPE'=>'number','ADD_GROUP'=>1);
+$result[] = array('CAPTION'=>t('Width'), 'PROP'=>'w','TYPE'=>'number','ADD_GROUP'=>1);
+$result[] = array('CAPTION'=>t('Height'), 'PROP'=>'h','TYPE'=>'number','ADD_GROUP'=>1);
 
 return $result;

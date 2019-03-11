@@ -19,7 +19,6 @@ $result[] = array(
                   'TYPE'=>'combo',
                   'PROP'=>'orientation',
                   'VALUES'=>array('udHorizontal', 'udVertical'),
-				  'UPDATE_DSGN'=>1
                   );
 				  
 $result[] = array(

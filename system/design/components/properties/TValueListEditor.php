@@ -50,7 +50,7 @@ $result[] = array(
 				'CAPTION'=>t('DefaultDrawing'),
 				'TYPE'=>'check',
 				'PROP'=>'DefaultDrawing',
-				'UPDATE_DSGN'=>1,
+				
 				);
 $result[] = array( 
 				'CAPTION'=>t('DoColumnTitles'),
@@ -243,9 +243,9 @@ $result[] = array(
                   'ADD_GROUP'=>true,
                   );
 
-$result[] = array('CAPTION'=>t('p_Left'), 'PROP'=>'x','TYPE'=>'number','ADD_GROUP'=>1,'UPDATE_DSGN'=>1);
-$result[] = array('CAPTION'=>t('p_Top'), 'PROP'=>'y','TYPE'=>'number','ADD_GROUP'=>1,'UPDATE_DSGN'=>1);
-$result[] = array('CAPTION'=>t('Width'), 'PROP'=>'w','TYPE'=>'number','ADD_GROUP'=>1,'UPDATE_DSGN'=>1);
-$result[] = array('CAPTION'=>t('Height'), 'PROP'=>'h','TYPE'=>'number','ADD_GROUP'=>1,'UPDATE_DSGN'=>1);
+$result[] = array('CAPTION'=>t('p_Left'), 'PROP'=>'x','TYPE'=>'number','ADD_GROUP'=>1);
+$result[] = array('CAPTION'=>t('p_Top'), 'PROP'=>'y','TYPE'=>'number','ADD_GROUP'=>1);
+$result[] = array('CAPTION'=>t('Width'), 'PROP'=>'w','TYPE'=>'number','ADD_GROUP'=>1);
+$result[] = array('CAPTION'=>t('Height'), 'PROP'=>'h','TYPE'=>'number','ADD_GROUP'=>1);
 return $result; //возвращаем результат
 //Сейчас главное - сохранить файл в соответствии с именем компонента...

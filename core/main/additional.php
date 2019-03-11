@@ -117,7 +117,6 @@ function _addfont(&$arr){
                   'TYPE'=>'font',
                   'PROP'=>'font',
                   'CLASS'=>'TFont',
-                  'UPDATE_DSGN'=>1,
                   ];
 	$arr[] = ['CAPTION'=>t('Font Color'), 'PROP'=>'font->color'];
 	$arr[] = ['CAPTION'=>t('Font Size'), 'PROP'=>'font->size'];
