@@ -405,4 +405,30 @@ function iniConfiger(TConfig $cfg = null){
     
     return $result;
 }
+
+function save_ini_string(array $input, &$str)
+{
+	$str = '';
+	foreach($input as $key=>$value)
+	{
+		
+		if( is_array($value) )
+		{
+			$str .= "['$key']"._BR_;
+			foreach($value as $k=>$v)
+				$str .= $k.'=' . (is_string($v)?'"'.$v.'"':$v) ._BR_;
+		}
+		else
+		{
+			$str .= $key.'=' . (is_string($v)?'"'.$value.'"':$value)._BR_;
+		}
+	}
+}
+
+function save_ini_file(array $input, $file)
+{
+	$s = '';
+	save_ini_string($input, $s);
+	file_put_contents($file, $s, LOCK_EX);
+}
 ?>

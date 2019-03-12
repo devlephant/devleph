@@ -91,7 +91,7 @@ class myModules {
     }
     
     // attach_dll прикреплять к ехе расширения
-    static function inc($file = false, $attach_dll = false){
+    static function inc($file = false, $attach_dll = false, $copy = true){
         
         global $myProject, $projectFile, $exten_dir;
 		$result = [];
@@ -109,6 +109,7 @@ class myModules {
         
         $myProject->config['modules'] = array_unique($myProject->config['modules']);
         $real = array();
+		if($copy)
         foreach ((array)$myProject->config['modules'] as $mod){
             
              

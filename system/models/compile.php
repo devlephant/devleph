@@ -134,23 +134,45 @@ class myCompile
 
 		exemod_addstr('$PHPSOULENGINE\\mods', implode(',', $modules));
 	}
-
-	static public function generatePHP_Ini()
+	static public function checkisext(array $n)
+		{
+			foreach($n as $r)
+				if( substr($n, 0, 4) == 'php_' && (substr($n, -4)=='.dll'||substr($n, -3)=='.so'))
+					return $n;
+			return false;
+		}
+	static public function generatePHP_Ini($moveext = true)
 	{
 		global $myProject,$projectFile,$exten_dir;
+		
 		if(!file_exists(dirname($projectFile).'/c_php.ini')) copy( dirname(EXE_NAME) . '/core/c_php.ini', dirname($projectFile).'/c_php.ini');
-		$php_ini = file_get_contents(dirname($projectFile).'/c_php.ini');
+			$php_ini = file_get_contents(dirname($projectFile).'/c_php.ini');
 		$myProject->config['modules'] = array_unique($myProject->config['modules']);
 		$str = '';
-		$md5s = array();
-
-		foreach ((array) $myProject->config['modules'] as $mod) {
-			if (file_exists(dirname(EXE_NAME) . $exten_dir . $mod)) {
-				$str .= 'extension=' . $mod . "\n";
+		$already = [];
+		if( !empty((array)$myProject->config['modules']) )
+		{
+			foreach ($myProject->config['modules'] as $mod) {
+				if (file_exists(dirname(EXE_NAME) . $exten_dir . $mod))
+				{
+					if(!empty($already) && in_array($mod, $already)) continue;
+					if(isset($GLOBALS['MODULES_INFO'][$mod]) && ($a = self::checkisext($GLOBALS['MODULES_INFO'][$mod])) && $a)
+					{
+						$str .=  ((isset($GLOBALS['MODULES_INFO'][$a]) && in_array(' Z', $GLOBALS['MODULES_INFO'][$a]))?
+								'zend_extension':'extension=') . $a . "\n";
+						$already[] = $a;
+					}
+					$str .= ((isset($GLOBALS['MODULES_INFO'][$mod]) && in_array(' Z', $GLOBALS['MODULES_INFO'][$mod]))?
+							'zend_extension':'extension=') . $mod . "\n";
+				}
 			}
-		}
+			
+			$php_ini = ($moveext)?str_ireplace('; %_modules_% ;', $str, $php_ini):
+			preg_replace("#extension_dir=\"\S+\"|extension_dir\s+=\s+\"\S+\"|extension_dir\s+=\"\S+\"|extension_dir=\s+\"\S+\"#i", 'extension_dir="' . dirname(EXE_NAME) . $exten_dir . '"',
+			str_ireplace('; %_modules_% ;', $str, $php_ini));
 
-		$php_ini = str_ireplace('; %_modules_% ;', $str, $php_ini);
+		}
+		
 		return $php_ini;
 	}
 
@@ -162,15 +184,14 @@ class myCompile
 			$path = dirname($projectFile);
 		}
 
-		$ini = self::generatePHP_Ini();
-
+		$ini = self::generatePHP_Ini($attach_ini);
+		
 		if ($attach_ini) {
 			exemod_addstr('$PHPSOULENGINE\\php.ini', $ini);
-		}
-		else {
+		} else {
 			file_put_contents($path . '/php.ini', $ini);
 		}
-		$php5ts = self::copyPHPts(false);
+		self::copyPHPts(false);
 		exemod_addstr('$PHPSOULENGINE\\info', serialize(
 		['version'	=> DV_VERSION,
 		'year'		=> DV_YEAR,
@@ -405,7 +426,7 @@ class myCompile
 		exemod_finish();
 		exemod_start($exeFile);
 		self::generateIncFile();
-		myModules::inc();
+		myModules::inc(false,false,false);
 		self::attachPHPEngine(false, false);
 		self::attachPHPSoulEngine(false);
 		self::attachForms(false, false);
