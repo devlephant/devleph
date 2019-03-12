@@ -593,7 +593,7 @@ class myProject {
         myUtils::$forms = array();
     }
     
-    // открыть файл проекта формата DVS...
+    // открыть файл проекта формата .DVS...
     static function openFromDVS($file, $dir = false){
         
         $file = replaceSl($file);
