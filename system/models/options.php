@@ -347,9 +347,9 @@ class myOptions {
 
 class myBackup {
 	
-	static $timer;
-	static $dir;
-	static $count;
+	public static $timer;
+	public static $dir;
+	public static $count;
 	
 	static function doInterval($thks=true){
 		
@@ -367,7 +367,7 @@ class myBackup {
 		while ( is_file( $dir . $file . $from . '.dvs' ) ) $from++; 
 		
 		$src = $dir . $file . $from . '.dvs';
-		if(myProject::saveAsDVS($src,$thks) ) myCompile::setStatus('Backup', t('Создание резервной копии').date(' ( H:i )'));
+		if(myProject::saveAsDVS($src,$thks) ) myCompile::setStatus('Backup', t('Backup created').date(' ( H:i:s )'));
 		$check = $dir . $file .($from - self::$count - 1) . '.dvs';
 		
 		if ( is_file( $check ) ){
@@ -379,14 +379,17 @@ class myBackup {
 		
 		if ( $min < 1 )
 			$min = 1;
+		if( !(bool)myOptions::get('backup','active',true) ) return;
 		if(isset(self::$timer)){
 			self::$timer->interval = $min * 60000;
-		} else self::$timer = Timer::setInterval('myBackup::doInterval', $min * 60000);
+		} else self::$timer = _c(Timer::setInterval('myBackup::doInterval', $min * 60000));
 	}
 	
 	static function setActive($active){
 		if(isset(self::$timer))
+		{
 			self::$timer->enable = (bool)$active;
+		} else if((bool)$active) self::$timer = _c(Timer::setInterval('myBackup::doInterval',  myOptions::get('backup','interval',2) * 60000));
 	}
 	
 	static function updateSettings(){
@@ -396,20 +399,16 @@ class myBackup {
 			$cnt = count(findFiles(dirname($projectFile).'/'.$myProject->config['data_dir'].'/','dvs',true,true));
 		else $cnt = 3;
         }else $cnt = 3;
-		self::setActive( myOptions::get('backup','active',true) );
+		self::setActive( (bool)myOptions::get('backup','active',true) );
 		self::setInterval( myOptions::get('backup','interval',2) );
 		self::$dir = myOptions::get('backup','dir','backup');
 		self::$count = myOptions::get('backup','count',$cnt);
-		if ( myOptions::get('backup','active',true) )
-			self::doInterval();
 	}
 	
 	static function init(){
 		if( c('fmOptions->backup_active')->self )
 			if((bool)c('fmOptions->backup_active')->checked)
-				if(!isset(self::$timer))
-					self::$timer = Timer::setInterval('myBackup::doInterval', 60000 * myOptions::get('backup','interval',2));	
+				if((bool)myOptions::get('backup','active',true) && !isset(self::$timer))
+					self::$timer = _c(Timer::setInterval('myBackup::doInterval', 60000 * myOptions::get('backup','interval',2)));
 	}
 }
-
-myBackup::init();

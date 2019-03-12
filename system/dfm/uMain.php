@@ -80,11 +80,17 @@ class evfmMain {
     }
 	static function onShow($self){
 		global $fmEdit, $fmMain;
+		static $i;
 		if( trim(c("fmMain->c_formComponents")->intext) == ':TForm'){
 			c("fmMain->c_formComponents")->intext = $fmEdit->name.' :TForm';
 		}
 		myDesign::bugfixFormProps();
-		self::aftershow();
+		if( !isset($i) )
+		{
+			$i = true;
+			myBackup::init();
+			self::aftershow();
+		}
 	}
     static function aftershow()
 	{

@@ -59,7 +59,7 @@ object fmOptions: TfmOptions
         Top = 126
         Width = 25
         Height = 13
-        Caption = '{min}'
+        Caption = '{min.}'
       end
       object Label5: TLabel
         Left = 248
