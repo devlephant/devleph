@@ -439,7 +439,7 @@ class myCompile
 		if (!file_exists($fileIco)) {
 			$fileIco = SYSTEM_DIR . '/blanks/project.ico';
 		}	
-	
+
 		if (file_exists($fileIco)) {
 			//if (!is_writable($exeFile)) {}
 

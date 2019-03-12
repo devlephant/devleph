@@ -71,7 +71,15 @@ class winRes {
     }
 	
     static function changeIcon($fileExe, $fileIco){
-        self::changeIconId($fileExe, 1, $fileIco);
-    }
+        //self::changeIconId($fileExe, 1, $fileIco);
+		$fileExe = replaceSr($fileExe);
+        $fileIco = replaceSr($fileIco);
+        
+        //winres_change_ico($fileExe, $fileIco);
+        $hExe = winres_begin_update_resource($fileExe, false); // начинаю обновление иконки
+		winres_load_icon_group_resource($hExe, 'MAINICON', 1033, $fileIco); // Устанавливаю иконку
+        winres_end_update_resource($hExe, false); // Обновление закончено
+        
+	}
 }
 ?>
