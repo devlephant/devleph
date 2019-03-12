@@ -136,8 +136,8 @@ class myOptions {
 			}
             $myProject->config['modules'] = $list->checkedItems;
             
-            myModules::clear();
-            myModules::inc();
+            //myModules::clear();
+			//myModules::inc();
             
             myProject::save();
             c("fmMain->statusBar")->caption = " ".replaceSr($projectFile);
