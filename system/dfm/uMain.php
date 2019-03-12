@@ -88,8 +88,8 @@ class evfmMain {
 		if( !isset($i) )
 		{
 			$i = true;
-			myBackup::init();
 			self::aftershow();
+			myBackup::init();
 		}
 	}
     static function aftershow()

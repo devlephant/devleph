@@ -97,7 +97,7 @@ if (!defined('IS_APPLICATION_START')){
         TForm::loadFromFile('dfm\uBuildProgram'); 
 		c("fmBuildProgram->im_icon")->loadFromFile(DOC_ROOT . 'blanks/project.ico');
         TForm::loadFromFile('dfm\uBuildCompleted',true);
-        TForm::loadFromFile('dfm\uOptionBuild',true);
+        TForm::loadFromFile('dfm\uProjectOptions',true);
          
         TForm::loadFromFile('dfm\uOptions', true);
         TForm::loadFromFile('dfm\uSizesPosition');
