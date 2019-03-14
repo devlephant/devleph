@@ -56,7 +56,7 @@ $result[] = array(
                   'PROP'=>'color',
                   );
 $result[] = array(
-                  'CAPTION'=>t('Progress color'),
+                  'CAPTION'=>t('Progress Color'),
                   'TYPE'=>'color',
                   'PROP'=>'ProgressColor',
                   );

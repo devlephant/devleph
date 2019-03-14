@@ -29,14 +29,15 @@ class TProgressBarEx extends TScrollBox{
 		if( $sl )
 		{
 			TProgressBarEx::$init_self[] = $this->self;
-			$this->_picture = new TImage();
-			if(strlen(trim($this->adata))>0)
-			{
-				gui_ReadStr($this->_picture->self, $this->adata);
-			}
-			//$this->_picture->parent_object = $this->self;
-			//$this->_picture->owner = $this->self;
-			$this->setdsgn();
+			
+				$this->_picture = new TImage();
+				if(strlen(trim($this->adata))>0)
+				{
+					gui_ReadStr($this->_picture->self, $this->adata);
+				}
+				//$this->_picture->parent_object = $this->self;
+				//$this->_picture->owner = $this->self;
+				$this->setdsgn();
 			$this->_cup = false;
 			$this->set_position($this->_position);
 		}else $this->_cup = false;

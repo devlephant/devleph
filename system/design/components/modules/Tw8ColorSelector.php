@@ -15,10 +15,9 @@ Class Tw8ColorSelector Extends TScrollBox{
 	  $this->autoScroll = false;
 	  $this->autosize = false;
 	  $this->DoubleBuffered = true;
-	 
-	  $BG = new TShape; $BG->Parent = $this; $BG->w = 270; $BG->h = 123; $BG->PenColor = clWhite;
-
-	  if( !$GLOBALS['APP_DESIGN_MODE'] ) {
+	  
+	  if( !$GLOBALS['APP_DESIGN_MODE'] )
+	  {
 		$M = new TTImer; $M->Enabled = False; $M->Repeat = True; 
 		$M->Interval = ($this->dragAnim)? 30: 15;
 		$this->_timer_m = $M;
@@ -583,6 +582,7 @@ $this->_toDelete = $GLOBALS['APP_DESIGN_MODE']? array($M->self, $S->self, $BA->s
 		if( $sl )
 		{
 			Tw8ColorSelector::$init_self[] = $this->self;
+			if($self <= 0 || $GLOBALS['APP_DESIGN_MODE'])
 			$this->__initComponentInfo();
 		}
 		
