@@ -7,6 +7,17 @@ Class Tw8ColorSelector Extends TScrollBox{
  
  Public Function __initComponentInfo()
  {
+		$exit = false;
+		if( !empty( Tw8ColorSelector::$init_self ) )
+			if( in_array($this->self, Tw8ColorSelector::$init_self) ) $exit = true;
+		
+		if( $exit )
+		{
+			return;
+		} else {
+			Tw8ColorSelector::$init_self[] = $this->self;
+		}
+		
       $thi = &$this;
 	 
       $this->w = 270;
@@ -575,16 +586,8 @@ $this->_toDelete = $GLOBALS['APP_DESIGN_MODE']? array($M->self, $S->self, $BA->s
 			$this->colors = $color; 
 			}
 		}
-		$sl = true;
-		if( !empty( Tw8ColorSelector::$init_self ) )
-			if( in_array($this->self, Tw8ColorSelector::$init_self) ) $sl = false;
 		
-		if( $sl )
-		{
-			Tw8ColorSelector::$init_self[] = $this->self;
-			if($self <= 0 || $GLOBALS['APP_DESIGN_MODE'])
-			$this->__initComponentInfo();
-		}
+		$this->__initComponentInfo();
 		
 		IF($init){	
 			/*$this->autosize = True;*/
