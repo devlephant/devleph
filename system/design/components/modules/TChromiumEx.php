@@ -90,7 +90,10 @@ class TChromiumEx extends TCefWindowParent {
 	}
 	public function free()
 	{
-		unset( self::$init_self[ array_search($this->self, self::$init_self) ] );
-		gui_safedestroy($this->self);
+		if( is_array(self::$init_self) )
+			unset( self::$init_self[ array_search($this->self, self::$init_self) ] );
+	
+	if( gui_isset($this->self) )
+		gui_destroy($this->self);
 	}
 }
