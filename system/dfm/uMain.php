@@ -95,6 +95,8 @@ class evfmMain {
     static function aftershow()
 	{
 		global $_sc;
+		// запускаем таймер для проверки позиции курсора...
+		Timer::setInterval('initEditorHotKeys', 250);
 			if( !empty(self::$visfix) )
 			{
 				foreach( self::$visfix as $v )
@@ -735,7 +737,16 @@ class ev_fmMain_shapeSize {
         $curType = self::typeCursor($self, $x, $y);
         $obj->cursor = $curType;
 		self::$self_object = $self;
-		self::$timer 	   = Timer::setInterval( __CLASS__ . '::onTimer', 8 );
+		if(!isset(self::$timer))
+		{
+			self::$timer 	   = new TTimerEx();
+			self::$timer->interval = 5;
+			self::$timer->workbackground = true;
+			self::$timer->repeat = true;
+			self::$timer->prioruty = tpTimeCritical;
+			self::$timer->onTimer = __CLASS__ . '::onTimer';
+		}
+		self::$timer->enabled = true;
     }
     
     static function onTimer($self){
@@ -816,7 +827,7 @@ class ev_fmMain_shapeSize {
         
         global $shapeSize;
         $shapeSize = false;
-		Timer::ClearTimer(self::$timer);
+		self::$timer->enabled = false;
     }
 }
 
