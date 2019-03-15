@@ -403,11 +403,12 @@ class myBackup {
 		self::$count = myOptions::get('backup','count',$cnt);
 	}
 	
-	static function init(){
+	static function init()
+	{
 		if( c('fmOptions->backup_active')->self )
 			if((bool)c('fmOptions->backup_active')->checked)
 				if((bool)myOptions::get('backup','active',true))
-					if((!isset(self::$timer)||!is_object(self::$timer))
+					if(!isset(self::$timer)||!is_object(self::$timer))
 					{
 						self::$timer = _c(Timer::setInterval('myBackup::doInterval', 60000 * myOptions::get('backup','interval',2)));
 					}
