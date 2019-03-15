@@ -583,7 +583,7 @@ $m['Shape']     = 'Фігура';
 
 $m['Version']   = 'Версія';
 $m['Company Name'] = 'Назва компанії';
-$m['Other'] = 'Іньше';
+$m['Other'] = 'Інше';
 $m['Icon']  = 'Іконка';
 $m['Path for your program'] = 'Путь до вашої программи';
 $m['Build Master'] = 'Мастер збірки';

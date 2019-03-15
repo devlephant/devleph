@@ -7,6 +7,7 @@ if (!defined('IS_APPLICATION_START')){
 	
 	if( isset($_PARAMS[2]) ){
 		if (fileExt($_PARAMS[2])=='dvsexe') {
+			$GLOBALS['APPLICATION']->DefaultFont->name = 'Segoe UI';
 			define_ex('EMULATE_DVS_EXE', true);    
 		} else {
 			define_ex('EMULATE_DVS_EXE', false); //V-touch.skf

@@ -10,7 +10,7 @@ object edt_menuEditor: Tedt_menuEditor
   Font.Color = clWindowText
   Font.Height = -11
   Font.Quality = fqClearTypeNatural
-  Font.Name = 'Tahoma'
+  Font.Name = 'Segoe UI'
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
