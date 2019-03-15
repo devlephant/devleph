@@ -190,6 +190,7 @@ class TProgressBarEx extends TScrollBox{
 	
 	public function free()
 	{
+		if( is_array(TProgressBarEx::$init_self) )
 		if( array_search($this->self, TProgressBarEx::$init_self) )
 			unset( TProgressBarEx::$init_self[array_search($this->self, TProgressBarEx::$init_self)] );
 		

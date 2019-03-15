@@ -599,6 +599,7 @@ $this->_toDelete = $GLOBALS['APP_DESIGN_MODE']? array($M->self, $S->self, $BA->s
 
 	function free()
 	{
+		if( is_array(Tw8ColorSelector::$init_self) )
 		if( array_search($this->self, Tw8ColorSelector::$init_self) )
 			unset( Tw8ColorSelector::$init_self[array_search($this->self, Tw8ColorSelector::$init_self)] );
 		

@@ -735,7 +735,7 @@ class ev_fmMain_shapeSize {
         $curType = self::typeCursor($self, $x, $y);
         $obj->cursor = $curType;
 		self::$self_object = $self;
-		self::$timer 	   = Timer::setInterval( __CLASS__ . '::onTimer', 100 );
+		self::$timer 	   = Timer::setInterval( __CLASS__ . '::onTimer', 8 );
     }
     
     static function onTimer($self){
