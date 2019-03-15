@@ -377,15 +377,16 @@ class myBackup {
 		if ( $min < 1 )
 			$min = 1;
 		if( !(bool)myOptions::get('backup','active',true) ) return;
-		if(isset(self::$timer)){
+		if(isset(self::$timer) && is_object(self::$timer)){
 			self::$timer->interval = $min * 60000;
 		} else self::$timer = _c(Timer::setInterval('myBackup::doInterval', $min * 60000));
 	}
 	
 	static function setActive($active){
-		if(isset(self::$timer))
+		if(isset(self::$timer) && is_object(self::$timer))
 		{
-			self::$timer->enable = (bool)$active;
+			if( !$active )
+				self::$timer = Timer::ClearTimer(self::$timer);
 		} else if((bool)$active) self::$timer = _c(Timer::setInterval('myBackup::doInterval',  myOptions::get('backup','interval',2) * 60000));
 	}
 	
@@ -405,7 +406,14 @@ class myBackup {
 	static function init(){
 		if( c('fmOptions->backup_active')->self )
 			if((bool)c('fmOptions->backup_active')->checked)
-				if((bool)myOptions::get('backup','active',true) && !isset(self::$timer))
-					self::$timer = _c(Timer::setInterval('myBackup::doInterval', 60000 * myOptions::get('backup','interval',2)));
+				if((bool)myOptions::get('backup','active',true))
+					if((!isset(self::$timer)||!is_object(self::$timer))
+					{
+						self::$timer = _c(Timer::setInterval('myBackup::doInterval', 60000 * myOptions::get('backup','interval',2)));
+					}
+					else 
+					{
+						self::$timer->interval = 60000 * myOptions::get('backup','interval',2);
+					}
 	}
 }
