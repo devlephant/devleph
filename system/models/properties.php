@@ -712,7 +712,7 @@ class myProperties {
 		}else{
 			$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
 		}
-        $edt->loadPicture(myImages::get24('Pick'));
+        $edt->ButtonCaption = '...';
         $edt->buttonWidth = 19;
 
 		if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
@@ -740,7 +740,7 @@ class myProperties {
 		}else{
 			$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
 		}
-        $edt->loadPicture(myImages::get24('Pick'));
+        $edt->ButtonCaption = '...';
         $edt->buttonWidth = 19;
         if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
 			$edt->hint = $param['CAPTION']."\r\n[->{$param['REAL_PROP']}]";
@@ -768,7 +768,7 @@ class myProperties {
 		}else{
 			$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
 		}
-        $edt->loadPicture(myImages::get24('Pick'));
+        $edt->ButtonCaption = '...';
         $edt->buttonWidth = 19;
         if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
 			$edt->hint = $param['CAPTION']."\r\n[->{$param['REAL_PROP']}]";
@@ -796,7 +796,7 @@ class myProperties {
 		}else{
 			$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
 		}
-        $edt->loadPicture(myImages::get24('Pick'));
+        $edt->ButtonCaption = '...';
         $edt->buttonWidth = 19;
         if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
 			$edt->hint = $param['CAPTION']."\r\n[->{$param['REAL_PROP']}]";
@@ -822,7 +822,7 @@ class myProperties {
 		}else{
 			$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
 		}
-        $edt->loadPicture(myImages::get24('Pick'));
+        $edt->ButtonCaption = '...';
         $edt->buttonWidth = 19;
         if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
 			$edt->hint = $param['CAPTION']."\r\n[->{$param['REAL_PROP']}]";
@@ -855,7 +855,7 @@ class myProperties {
         $edt->buttonWidth = 19;
         $edt->value       = '('. t('Font options') .')';
         
-        $edt->loadPicture(myImages::get24('Pick'));
+        $edt->ButtonCaption = '...';
         
         $edt->onButtonClick = 'myProperties::VSFontClick';
         
@@ -883,7 +883,7 @@ class myProperties {
         $edt->buttonWidth = 19;
         $edt->value       = '('. t('Font options') .')';
         
-        $edt->loadPicture(myImages::get24('Pick'));
+        $edt->ButtonCaption = '...';
         
         $edt->onButtonClick = 'myProperties::VSFontClick';
         
@@ -935,7 +935,7 @@ class myProperties {
 		}else{
 			$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
 		}
-        $edt->loadPicture(myImages::get24('Pick'));
+        $edt->ButtonCaption = '...';
         $edt->buttonWidth = 19;
         if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
 			$edt->hint = $param['CAPTION']."\r\n[->{$param['REAL_PROP']}]";
@@ -962,7 +962,7 @@ class myProperties {
 		}else{
 			$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
 		}
-        $edt->loadPicture(myImages::get24('Pick'));
+        $edt->ButtonCaption = '...';
         $edt->buttonWidth = 19;
         if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
 			$edt->hint = $param['CAPTION']."\r\n[->{$param['REAL_PROP']}]";
@@ -1042,7 +1042,7 @@ class myProperties {
 			$edt->hint = $param['CAPTION']."\r\n[->{$param['PROP']}]";
         $edt->showHint    = true;
         $edt->buttonWidth = 19;
-        $edt->loadPicture(myImages::get24('Pick'));
+        $edt->ButtonCaption = '...';
         $edt->caption = $param['CAPTION'];
         
         $edt->onButtonClick = 'myProperties::VSComponentsClick';
@@ -1126,7 +1126,7 @@ class myProperties {
         $edt->buttonWidth = 19;
         $edt->value       = '('.t('Sizes & Position').')';;
         
-        $edt->loadPicture(myImages::get24('Pick'));
+        $edt->ButtonCaption = '...';
         
         $edt->onButtonClick = 'myProperties::VSSizesClick';
         $this->params[$class][$edt->self] =& $param;

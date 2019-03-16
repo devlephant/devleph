@@ -1,4 +1,5 @@
 <?
+$m['Hover it by cursor'] = 'Наведите сюда курсор';
 $m['Starting Project'] = 'Запуск Проекта';
 $m['Project file is busy, let\'s try again'] = 'Файл проекта занят, попробуйте снова';
 $m['Start Finished for'] = 'Запуск Завершен за';

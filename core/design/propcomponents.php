@@ -473,7 +473,7 @@ class TLEdit extends TPanel {
             $this->label->name  = 'label';
             
             $this->edit->text   = '';
-            $this->label->caption = 'Наведите сюда курсор';
+            $this->label->caption = t('Hover it by cursor');
             $this->edit->color;
             $this->label->layout = 'tlCenter';
             $this->edit_link = $this->edit->self;

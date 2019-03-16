@@ -755,7 +755,7 @@ class ev_fmMain_shapeSize {
         
         $obj = _c(self::$self_object);
 	/////// Просто ужаснейший костыль, наверное. но другого выхода не нашёл \\\\\\\
-		$x = cursor_offsetted_x($obj);
+		$x = cursor_offsetted_x($obj)  + $obj->parent->HorzScrollBar->position;
 		$y = cursor_offsetted_y($obj) - 20 + $obj->parent->VertScrollBar->position;
 		//20, position - фикс бага с TScrollBox, т.к при перемещении формы он задаёт ей позицию как пожелает
 		
