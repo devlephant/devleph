@@ -266,7 +266,6 @@ object fmFindErrors: TfmFindErrors
       Caption = '{Error}'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clGray
-      Font.Height = -11
       Font.Name = 'Segoe UI'
       Font.Style = [fsBold]
       ParentFont = False
@@ -279,7 +278,6 @@ object fmFindErrors: TfmFindErrors
       Caption = 'Command'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -11
       Font.Name = 'Segoe UI'
       Font.Style = [fsBold]
       ParentFont = False
@@ -302,7 +300,6 @@ object fmFindErrors: TfmFindErrors
       Caption = 'Command'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -11
       Font.Name = 'Segoe UI'
       Font.Style = []
       ParentFont = False
@@ -315,7 +312,6 @@ object fmFindErrors: TfmFindErrors
       Caption = '{Object:}'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clMaroon
-      Font.Height = -11
       Font.Name = 'Segoe UI'
       Font.Style = [fsBold]
       ParentFont = False
@@ -328,7 +324,6 @@ object fmFindErrors: TfmFindErrors
       Caption = '-------'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clRed
-      Font.Height = -11
       Font.Name = 'Segoe UI'
       Font.Style = []
       ParentFont = False
@@ -341,7 +336,6 @@ object fmFindErrors: TfmFindErrors
       Caption = '{Event %s}'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -11
       Font.Name = 'Segoe UI'
       Font.Style = [fsBold]
       ParentFont = False
@@ -369,11 +363,10 @@ object fmFindErrors: TfmFindErrors
       Font.Style = []
       TabOrder = 0
       Gutter.Font.Color = clWindowText
-      Gutter.Font.Height = -11
       Gutter.Font.Name = 'Courier New'
       Gutter.Font.Style = []
       Gutter.Width = 0
-      Highlighter = SynPHPSynb
+      Highlighter = fmPHPEditor.SynPHPSyn
       ReadOnly = True
 	  Visible = True
 	  ExplicitTop = 128
@@ -447,15 +440,5 @@ object fmFindErrors: TfmFindErrors
       TabOrder = 4
       TabOnEnter = False
     end
-  end
-  object SynPHPSynb: TSynPHPSyn
-    CommentAttri.Foreground = clSilver
-    NumberAttri.Foreground = clBlue
-    StringAttri.Foreground = 16512
-    SymbolAttri.Foreground = 4194304
-    VariableAttri.Foreground = clGreen
-    VariableAttri.Style = [fsBold]
-    Left = 600
-    Top = 32
   end
 end

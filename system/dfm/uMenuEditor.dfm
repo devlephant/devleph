@@ -8,7 +8,6 @@ object edt_menuEditor: Tedt_menuEditor
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -11
   Font.Quality = fqClearTypeNatural
   Font.Name = 'Segoe UI'
   Font.Style = []

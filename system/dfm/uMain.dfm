@@ -7,7 +7,6 @@ object fmMain: TfmMain
   Color = clWhite
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -13
   Font.Name = 'Segoe UI'
   Font.Size = 8
   Font.Quality = fqClearTypeNatural
@@ -48,7 +47,6 @@ object fmMain: TfmMain
     Color = clWhite
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
-    Font.Height = -12
     Font.Name = 'Segoe UI'
     Font.Style = []
 	BevelOuter = bvNone
@@ -170,7 +168,6 @@ object fmMain: TfmMain
       Anchors = [akLeft, akTop, akRight]
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
-      Font.Height = -13
       Font.Name = 'Segoe UI'
       Font.Style = []
       ParentFont = False
@@ -179,32 +176,6 @@ object fmMain: TfmMain
       TabOrder = 0
     end
   end
-  object statusBar: TLabel
-    Left = 0
-    Top = 753
-    Width = 726
-    Height = 24
-    Color = clWhite
-    TransParent = False
-    Cursor = crHandPoint
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -10
-    Font.Name = 'Segoe UI Light'
-    Font.Size = 10
-    Font.Style = [fsBold]
-    Align = alBottom
-    ExplicitWidth = 836
-  end
-  object cr_bicycle2: TShape
-    Left = 0
-    Top = 780
-	Width = 726
-	Height = 2
-	Align = alBottom
-    Brush.Style = bsClear
-	Pen.Style = psClear
-  end
   object tmpEdit: TEdit
     Left = 0
     Top = 8
@@ -212,7 +183,6 @@ object fmMain: TfmMain
     Height = 22
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -13
     Font.Name = 'Segoe UI'
     Font.Style = []
     ParentFont = False
@@ -271,7 +241,6 @@ object fmMain: TfmMain
       ButtonFlow = cbfVertical
       ButtonHeight = 26
       ButtonWidth = 32
-      ButtonOptions = [boFullSize,  boGradientFill, boShowCaptions, boBoldCaptions, boCaptionOnlyBorder]
       BevelOuter = bvNone
       BevelInner = bvNone
       BorderStyle = bsNone
@@ -279,8 +248,7 @@ object fmMain: TfmMain
       BackgroundGradientColor = clWhite
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -12
-      Font.Size = 9
+      Font.Size = 8
       Font.Name = 'Segoe UI'
       Font.Style = []
       Font.Quality = fqClearTypeNatural
@@ -484,7 +452,6 @@ object fmMain: TfmMain
       Align = alClient
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -13
       Font.Name = 'Segoe UI'
       Font.Style = []
       ParentFont = False
@@ -554,7 +521,6 @@ object fmMain: TfmMain
           Caption = '{Add Event}'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
-          Font.Height = -12
           Font.Name = 'Segoe UI'
           Font.Style = [fsBold]
           ParentFont = False
@@ -593,7 +559,6 @@ object fmMain: TfmMain
           Ctl3D = False
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
-          Font.Height = -16
           Font.Name = 'Segoe UI'
           Font.Style = []
           ItemHeight = 25
@@ -700,7 +665,6 @@ object fmMain: TfmMain
     DragMode = dmAutomatic
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -13
     Font.Name = 'Segoe UI'
     Font.Style = []
     ParentFont = False
@@ -727,7 +691,6 @@ object fmMain: TfmMain
           Color = clWhite
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
-          Font.Height = -12
           Font.Name = 'Segoe UI'
           Font.Style = []
           ItemHeight = 15
@@ -1725,5 +1688,31 @@ object fmMain: TfmMain
       Caption = '{fp__toright_move}'
       ShortCut = 8231
     end
+  end
+  object statusBar: TLabel
+    Left = 0
+    Top = 753
+    Width = 726
+    Height = 24
+    Color = clWhite
+    TransParent = False
+    Cursor = crHandPoint
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -10
+    Font.Name = 'Segoe UI Light'
+    Font.Size = 10
+    Font.Style = [fsBold]
+    Align = alBottom
+    ExplicitWidth = 836
+  end
+  object cr_bicycle2: TShape
+    Left = 0
+    Top = 780
+	Width = 726
+	Height = 2
+	Align = alBottom
+    Brush.Style = bsClear
+	Pen.Style = psClear
   end
 end

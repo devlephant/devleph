@@ -4,7 +4,7 @@ $fmphpeditor_lastAction = false;
 $s = c("fmPHPEditor->memo");
 $s->rightEdge  = false;
 $s->font->name = 'Trebuchet MS';
-$s->font->size = 11;
+$s->font->size = 10;
 $s->wordWrap   = true;
 $s->options    = '[eoAutoIndent, eoDragDropEditing, eoEnhanceEndKey, eoGroupUndo, eoHalfPageScroll, eoShowScrollHint, eoSmartTabDelete, eoTabIndent, eoHideShowScrollbars]';
 

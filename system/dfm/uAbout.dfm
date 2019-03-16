@@ -9,7 +9,7 @@ object fmAbout: TfmAbout
   Color = clWhite
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -11
+  Font.Size = 8
   Font.Quality = fqClearTypeNatural
   Font.Name = 'Segoe UI'
   Font.Style = []
@@ -43,7 +43,7 @@ object fmAbout: TfmAbout
     Caption = '{desns_sc}'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -11
+    
     Font.Name = 'Segoe UI'
     Font.Style = []
     ParentFont = False
@@ -57,7 +57,7 @@ object fmAbout: TfmAbout
     Caption = 'Andrew Ivanov'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
-    Font.Height = -11
+    
     Font.Name = 'Segoe UI'
     Font.Style = []
     ParentFont = False
@@ -70,7 +70,7 @@ object fmAbout: TfmAbout
     Caption = '{devs_p}'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -11
+    
     Font.Name = 'Segoe UI'
     Font.Style = []
     ParentFont = False
@@ -84,7 +84,7 @@ object fmAbout: TfmAbout
     Caption = 'Andrew Zenin'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
-    Font.Height = -11
+    
     Font.Name = 'Segoe UI'
     Font.Style = []
     ParentFont = False
@@ -98,7 +98,7 @@ object fmAbout: TfmAbout
     Caption = 'Artem Ukolov'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
-    Font.Height = -11
+    
     Font.Name = 'Segoe UI'
     Font.Style = []
     ParentFont = False
@@ -119,7 +119,7 @@ object fmAbout: TfmAbout
     Caption = '{tesrs_p}'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -11
+    
     Font.Name = 'Segoe UI'
     Font.Style = []
     ParentFont = False
@@ -133,7 +133,7 @@ object fmAbout: TfmAbout
     Caption = 'Manofjoe'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
-    Font.Height = -11
+    
     Font.Name = 'Segoe UI'
     Font.Style = []
     ParentFont = False
@@ -149,7 +149,7 @@ object fmAbout: TfmAbout
     Caption = 'Kashaket'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlue
-    Font.Height = -11
+    
     Font.Name = 'Segoe UI'
     Font.Style = []
     ParentFont = False
@@ -166,7 +166,7 @@ object fmAbout: TfmAbout
     Caption = 'Alex MMII'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlue
-    Font.Height = -11
+    
     Font.Name = 'Segoe UI'
     Font.Style = []
     ParentFont = False
@@ -182,7 +182,7 @@ object fmAbout: TfmAbout
     Caption = 'Alexander Kobozev'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
-    Font.Height = -11
+    
     Font.Name = 'Segoe UI'
     Font.Style = []
     ParentFont = False
@@ -196,7 +196,7 @@ object fmAbout: TfmAbout
     Caption = 'Andrew Zenin'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
-    Font.Height = -11
+    
     Font.Name = 'Segoe UI'
     Font.Style = []
     ParentFont = False
@@ -212,7 +212,7 @@ object fmAbout: TfmAbout
     Caption = #1056#1072#1079#1088#1072#1073#1086#1090#1095#1080#1082#1080
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlue
-    Font.Height = -11
+    
     Font.Name = 'Segoe UI'
     Font.Pitch = fpFixed
     Font.Style = []

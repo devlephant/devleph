@@ -371,7 +371,6 @@ class TControlCanvas extends TCanvas {
 				
 				$this->font = new TCanvasFont;
 				$this->font->self = canvas_font($this->self);
-			$this->font->size = 15;
 		
 		if (($ctrl instanceof TControl) || ($ctrl instanceof TBitMap) || ($ctrl instanceof TPicture))
 			$this->control = $ctrl;

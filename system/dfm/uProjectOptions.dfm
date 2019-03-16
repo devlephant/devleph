@@ -9,7 +9,6 @@ object fmProjectOptions: TfmProjectOptions
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -11
   Font.Name = 'Segoe UI'
   Font.Size = 8
   Font.Quality = fqClearTypeNatural
@@ -192,7 +191,6 @@ object fmProjectOptions: TfmProjectOptions
 		Align = alClient
 		Ctl3D = False
 		Font.Color = clWindowText
-		Font.Height = -13
 		Font.Name = 'Courier New'
 		Font.Pitch = fpFixed
 		Font.Style = []

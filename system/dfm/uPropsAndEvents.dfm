@@ -11,7 +11,6 @@ object fmPropsAndEvents: TfmPropsAndEvents
   DragMode = dmAutomatic
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -11
   Font.Quality = fqClearTypeNatural
   Font.Name = 'Segoe UI'
   Font.Size = 8
@@ -78,7 +77,6 @@ object fmPropsAndEvents: TfmPropsAndEvents
         Caption = '{Add Event}'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -11
         Font.Name = 'Segoe UI'
 		Font.Size = 8
         Font.Style = [fsBold]
@@ -215,7 +213,6 @@ object fmPropsAndEvents: TfmPropsAndEvents
         Ctl3D = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -13
         Font.Name = 'Segoe UI'
 		Font.Size = 8
         Font.Style = []

@@ -10,7 +10,6 @@ object fmEasySelectDialog: TfmEasySelectDialog
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -11
   Font.Name = 'Segoe UI'
   Font.Style = []
   Font.Size = 8
@@ -56,7 +55,6 @@ object fmEasySelectDialog: TfmEasySelectDialog
         Style = lbOwnerDrawFixed
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clMaroon
-        Font.Height = -13
         Font.Name = 'Segoe UI'
 		Font.Size = 8
         Font.Style = [fsBold]
@@ -82,7 +80,6 @@ object fmEasySelectDialog: TfmEasySelectDialog
         Style = lbOwnerDrawFixed
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clGreen
-        Font.Height = -13
         Font.Name = 'Segoe UI'
 		Font.Size = 8
         Font.Style = [fsBold]
@@ -113,7 +110,6 @@ object fmEasySelectDialog: TfmEasySelectDialog
         Style = csOwnerDrawFixed
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -12
         Font.Name = 'Segoe UI'
 		Font.Size = 8
         Font.Style = []
@@ -169,7 +165,6 @@ object fmEasySelectDialog: TfmEasySelectDialog
         Style = csOwnerDrawFixed
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -12
         Font.Name = 'Segoe UI'
 		Font.Size = 8
         Font.Style = []
@@ -257,7 +252,6 @@ object fmEasySelectDialog: TfmEasySelectDialog
         Height = 22
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -12
         Font.Name = 'Segoe UI'
 		Font.Size = 8
         Font.Style = []
@@ -348,7 +342,6 @@ object fmEasySelectDialog: TfmEasySelectDialog
         Caption = '{Global}'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -11
         Font.Name = 'Segoe UI'
 		Font.Size = 8
         Font.Style = [fsBold]
@@ -362,7 +355,6 @@ object fmEasySelectDialog: TfmEasySelectDialog
         Caption = '{Local}'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -11
         Font.Name = 'Segoe UI'
 		Font.Size = 8
         Font.Style = [fsBold]
@@ -458,7 +450,6 @@ object fmEasySelectDialog: TfmEasySelectDialog
           Cursor = crHandPoint
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clGreen
-          Font.Height = -11
           Font.Name = 'Segoe UI'
 		  Font.Size = 8
           Font.Style = [fsBold]
@@ -475,7 +466,6 @@ object fmEasySelectDialog: TfmEasySelectDialog
           Cursor = crHandPoint
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clMaroon
-          Font.Height = -11
           Font.Name = 'Segoe UI'
 		  Font.Size = 8
           Font.Style = [fsBold]
@@ -501,7 +491,6 @@ object fmEasySelectDialog: TfmEasySelectDialog
         Style = lbOwnerDrawFixed
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clMaroon
-        Font.Height = -11
         Font.Name = 'Segoe UI'
         Font.Style = []
 		Font.Size = 8
@@ -550,7 +539,6 @@ object fmEasySelectDialog: TfmEasySelectDialog
     Height = 25
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -13
     Font.Name = 'Courier New'
     Font.Style = []
     TabOrder = 4

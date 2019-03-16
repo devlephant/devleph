@@ -8,7 +8,6 @@ object fmSizesPosition: TfmSizesPosition
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -11
   Font.Name = 'Segoe UI'
   Font.Size = 8
   Font.Quality = fqClearTypeNatural
@@ -71,7 +70,6 @@ object fmSizesPosition: TfmSizesPosition
       Caption = 'X:'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -11
       Font.Name = 'Segoe UI'
 	  Font.Size = 8
       Font.Style = [fsBold]
@@ -85,7 +83,6 @@ object fmSizesPosition: TfmSizesPosition
       Caption = 'Y:'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -11
       Font.Name = 'Segoe UI'
 	  Font.Size = 8
       Font.Style = [fsBold]
@@ -99,7 +96,6 @@ object fmSizesPosition: TfmSizesPosition
       Caption = 'W:'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -11
       Font.Name = 'Segoe UI'
 	  Font.Size = 8
       Font.Style = [fsBold]
@@ -113,7 +109,6 @@ object fmSizesPosition: TfmSizesPosition
       Caption = 'H:'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -11
       Font.Name = 'Segoe UI'
 	  Font.Size = 8
       Font.Style = [fsBold]

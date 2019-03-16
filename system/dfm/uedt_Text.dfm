@@ -10,9 +10,9 @@ object edt_Text: Tedt_Text
   Constraints.MinWidth = 350
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -11
   Font.Quality = fqClearTypeNatural
   Font.Name = 'Segoe UI'
+  Font.Size = 8
   Font.Style = []
   OldCreateOrder = False
   Position = poDesigned
@@ -169,7 +169,6 @@ object edt_Text: Tedt_Text
     PopupMenu = Popup
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -12
     Font.Name = 'Segoe UI'
     Font.Style = []
     ParentCtl3D = False

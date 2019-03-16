@@ -9,7 +9,6 @@ object fmEditorSettings: TfmEditorSettings
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -11
   Font.Name = 'Segoe UI'
   Font.Size = 8
   Font.Quality = fqClearTypeNatural
@@ -57,7 +56,6 @@ object fmEditorSettings: TfmEditorSettings
     Caption = '{Category}'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -11
     Font.Name = 'Segoe UI'
     Font.Style = [fsBold]
 	Font.Size = 8
@@ -72,7 +70,6 @@ object fmEditorSettings: TfmEditorSettings
     Caption = '{ok}'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -11
     Font.Name = 'Segoe UI'
     Font.Style = [fsBold]
 	Font.Size = 8
@@ -173,7 +170,6 @@ object fmEditorSettings: TfmEditorSettings
     Caption = '-'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -11
     Font.Name = 'Segoe UI'
     Font.Style = [fsBold]
 	Font.Size = 8
@@ -188,7 +184,6 @@ object fmEditorSettings: TfmEditorSettings
     Caption = '+'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -11
     Font.Name = 'Segoe UI'
 	Font.Size = 8
     Font.Style = [fsBold]

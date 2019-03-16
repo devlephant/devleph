@@ -10,7 +10,6 @@ object fmPHPEditor: TfmPHPEditor
   Constraints.MinHeight = 350
   Color = clWhite
   Font.Color = clWindowText
-  Font.Height = -11
   Font.Name = 'Segoe UI'
   Font.Size = 8
   Font.Quality = fqClearTypeNatural
@@ -109,7 +108,6 @@ object fmPHPEditor: TfmPHPEditor
         Caption = '{Errors and Warnings:}'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -11
         Font.Name = 'Segoe UI'
 		Font.Size = 8
         Font.Style = [fsBold]
@@ -126,7 +124,6 @@ object fmPHPEditor: TfmPHPEditor
         Caption = '-'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -11
         Font.Name = 'Segoe UI'
 		Font.Size = 8
         Font.Style = [fsBold]
@@ -553,7 +550,6 @@ object fmPHPEditor: TfmPHPEditor
       Anchors = [akLeft, akBottom]
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -11
       Font.Name = 'Segoe UI'
 	  Font.Size = 8
       Font.Style = [fsBold]
@@ -570,7 +566,6 @@ object fmPHPEditor: TfmPHPEditor
       Caption = '{cancel}'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -11
       Font.Name = 'Segoe UI'
 	  Font.Size = 8
       Font.Style = [fsBold]
@@ -602,7 +597,6 @@ object fmPHPEditor: TfmPHPEditor
       Caption = '{ok}'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -11
       Font.Name = 'Segoe UI'
 	  Font.Size = 8
       Font.Style = [fsBold]
@@ -729,13 +723,11 @@ object fmPHPEditor: TfmPHPEditor
     TriggerChars = '.'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -11
     Font.Name = 'Segoe UI'
 	Font.Size = 8
     Font.Style = []
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clBtnText
-    TitleFont.Height = -11
     TitleFont.Name = 'Segoe UI'
 	TitleFont.Size = 8
     TitleFont.Style = [fsBold]
@@ -754,13 +746,11 @@ object fmPHPEditor: TfmPHPEditor
     TriggerChars = '.'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -11
     Font.Name = 'Segoe UI'
 	Font.Size = 8
     Font.Style = []
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clBtnText
-    TitleFont.Height = -11
     TitleFont.Name = 'Segoe UI'
 	TitleFont.Size = 8
     TitleFont.Style = [fsBold]

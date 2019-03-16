@@ -14,8 +14,7 @@ object fmEdit: TForm
   Color = 15132390
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'Tahoma'
+  Font.Name = 'Segoe UI'
   Font.Style = []
   OldCreateOrder = False
   Position = poDesigned
@@ -36,8 +35,7 @@ object fmEdit: TForm
     Caption = #1057#1082#1088#1080#1087#1090#1099' '#1087#1088#1086#1075#1088#1072#1084#1084#1099
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Segoe UI'
     Font.Style = [fsBold]
     ParentFont = False
   end
@@ -69,8 +67,7 @@ object fmEdit: TForm
       'dCI7czo3OiLR7+jx7uoxIjtzOjE6InciO2Q6MTYwO3M6MToiaCI7ZDoxNjA7fX0='
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -13
-    Font.Name = 'Tahoma'
+    Font.Name = 'Segoe UI'
     Font.Style = []
     ItemHeight = 16
     ParentFont = False
@@ -239,8 +236,7 @@ object fmEdit: TForm
     Caption = #1054#1050
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Tahoma'
+    Font.Name = 'Segoe UI'
     Font.Style = [fsBold]
     ModalResult = 2
     ParentFont = False

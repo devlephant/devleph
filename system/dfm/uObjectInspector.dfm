@@ -11,7 +11,6 @@ object fmObjectInspector: TfmObjectInspector
   DragMode = dmAutomatic
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -11
   Font.Quality = fqClearTypeNatural
   Font.Name = 'Segoe UI'
   Font.Size = 8

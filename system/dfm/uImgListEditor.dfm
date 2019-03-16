@@ -15,7 +15,6 @@ object fmImgListEditor: TfmImgListEditor
   Color = clWhite
   Font.Charset = DEFAULT_CHARSET
   Font.Color = 3552822
-  Font.Height = -11
   Font.Name = 'Segoe UI'
   Font.Size = 8
   Font.Quality = fqClearTypeNatural
@@ -87,7 +86,6 @@ object fmImgListEditor: TfmImgListEditor
     Ctl3D = False
     Font.Charset = DEFAULT_CHARSET
     Font.Color = 3552822
-    Font.Height = -11
     Font.Name = 'Segoe UI'
 	Font.Size = 8
     Font.Style = []

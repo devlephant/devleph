@@ -10,7 +10,7 @@ object fmRunDebug: TfmRunDebug
   Constraints.MinWidth = 300
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -11
+  Font.Size = 8
   Font.Quality = fqClearTypeNatural
   Font.Name = 'Tahoma'
   Font.Style = []
@@ -134,8 +134,6 @@ object fmRunDebug: TfmRunDebug
     Anchors = [akLeft, akTop, akRight]
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clGreen
-    Font.Height = -13
-    Font.Name = 'Courier New'
     Font.Style = [fsBold]
     ItemHeight = 16
     ParentFont = False
@@ -149,7 +147,6 @@ object fmRunDebug: TfmRunDebug
     Anchors = [akLeft, akTop, akRight, akBottom]
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -11
     Font.Name = 'Courier New'
     Font.Style = []
     ParentFont = False

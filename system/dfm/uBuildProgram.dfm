@@ -10,7 +10,6 @@ object fmBuildProgram: TfmBuildProgram
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -11
   Font.Quality = fqClearTypeNatural
   Font.Name = 'Segoe UI'
   Font.Size = 8
@@ -43,7 +42,6 @@ object fmBuildProgram: TfmBuildProgram
       Caption = '{Save settings}'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
-      Font.Height = -11
       Font.Name = 'Segoe UI'
 	  Font.Size = 8
       Font.Style = []
@@ -148,7 +146,6 @@ object fmBuildProgram: TfmBuildProgram
         Caption = '...'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
-        Font.Height = -11
         Font.Name = 'Segoe UI'
 		Font.Size = 8
         Font.Style = []
@@ -207,7 +204,6 @@ object fmBuildProgram: TfmBuildProgram
         Caption = '{Compress all binaries}'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -11
         Font.Name = 'Segoe UI'
 		Font.Size = 8
         Font.Style = [fsBold]
@@ -224,7 +220,6 @@ object fmBuildProgram: TfmBuildProgram
       Caption = '{Build}'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -11
       Font.Name = 'Segoe UI'
 	  Font.Size = 8
       Font.Style = [fsBold]

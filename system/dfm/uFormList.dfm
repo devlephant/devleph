@@ -10,7 +10,6 @@ object fmFormList: TfmFormList
   Constraints.MinWidth = 262
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -11
   Font.Quality = fqClearTypeNatural
   Font.Name = 'Segoe UI'
   Font.Size = 8

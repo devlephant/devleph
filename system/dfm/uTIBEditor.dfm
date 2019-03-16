@@ -15,7 +15,6 @@ object fmTIB: TForm
   Color = clWhite
   Font.Charset = DEFAULT_CHARSET
   Font.Color = 3552822
-  Font.Height = -11
   Font.Name = 'Segoe UI'
   Font.Size = 8
   Font.Style = []
@@ -86,7 +85,6 @@ object fmTIB: TForm
     Ctl3D = False
     Font.Charset = DEFAULT_CHARSET
     Font.Color = 3552822
-    Font.Height = -11
     Font.Name = 'Segoe UI'
 	Font.Size = 8
     Font.Style = []

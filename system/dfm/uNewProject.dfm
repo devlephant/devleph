@@ -11,7 +11,6 @@ object fmNewProject: TfmNewProject
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -11
   Font.Quality = fqClearTypeNatural
   Font.Name = 'Segoe UI'
   Font.Size = 8
@@ -50,7 +49,6 @@ object fmNewProject: TfmNewProject
       Caption = '{Open Last project:}'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -11
       Font.Name = 'Segoe UI'
 	  Font.Size = 8
       Font.Style = [fsBold]

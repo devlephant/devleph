@@ -12,7 +12,6 @@ object fmComponents: TfmComponents
   DragMode = dmAutomatic
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -11
   Font.Name = 'Segoe UI'
   Font.Size = 8
   Font.Quality = fqClearTypeNatural
@@ -31,7 +30,6 @@ object fmComponents: TfmComponents
     ButtonFlow = cbfVertical
     ButtonHeight = 26
     ButtonWidth = 32
-    ButtonOptions = [boFullSize, boGradientFill, boShowCaptions, boBoldCaptions, boUsePlusMinus, boCaptionOnlyBorder]
     Images = fmMain.MainImages24
     BackgroundGradientDirection = gdVertical
     Categories = <>
