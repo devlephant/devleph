@@ -138,8 +138,6 @@ class ev_fmEditorSettings {
     function sizeChange($self)
     {
         $self = c($self);
-        
-        //c('fmPHPEditor->memo')->font->size = (int) $self->text;
         $int = (int) $self->Text;
         if( $int < 1 )
             $int = 1;
@@ -156,8 +154,6 @@ class ev_fmEditorSettings {
     function fontChange($self)
     {
         $self = c($self);
-        
-        //c('fmPHPEditor->memo')->font->size = (int) $self->text;
         $font = new TFontDialog;
         
         $font->font->name = c("fmPHPEditor->memo")->font->name;

@@ -30,7 +30,7 @@ class TStringGridMod extends TStringGrid {
 		parent::__construct($onwer,$init,$self);
 		if($init){
 			$this->font->name = "Courier New";
-			$this->font->size = 8;
+			$this->font->size = 9;
 			$this->defaultColWidth = 100;
 			$this->defaultRowHeight = 18;
 			$this->rowCount = 2;

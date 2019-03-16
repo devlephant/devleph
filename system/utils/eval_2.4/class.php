@@ -483,7 +483,7 @@
 	$l->parent = $panel;
 	$l->align = alLeft;
 	$l->font->color = 0xAAA6A7;
-	$l->font->size = 8;
+	$l->font->size = 9;
 	$l->caption = '|';
 	$l->alignment = taCenter;
 	$l->layout = tlTop;
@@ -522,7 +522,7 @@
 	$l->parent = $panel;
 	$l->align = alLeft;
 	$l->font->color = 0xAAA6A7;
-	$l->font->size = 8;
+	$l->font->size = 9;
 	$l->caption = '|';
 	$l->alignment = taCenter;
 	$l->layout = tlTop;
@@ -588,7 +588,7 @@
 	$combo->align = alClient;
 	$combo->parentcolor = true;
 	$combo->dropDownCount = 16;
-	$combo->font->size = 8;
+	$combo->font->size = 9;
 	$combo->hint = 'Scripts';
 	$combo->onFocus = function()use($combo){
 		dir_search(__DIR__.'/scripts/', $list, 'script', 0, 0);

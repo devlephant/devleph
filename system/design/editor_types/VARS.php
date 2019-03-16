@@ -26,7 +26,7 @@ class VARS_editor {
         
         $obj->font->color = clGreen;
         $obj->font->style = 'fsBold';
-        $obj->font->size  = 8;
+        $obj->font->size  = 9;
         $obj->itemIndex = $editor['ITEM_INDEX'] ? $editor['ITEM_INDEX'] : 0;
         
         $this->use_quote = $editor['USE_QUOTE'];

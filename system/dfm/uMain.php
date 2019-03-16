@@ -329,6 +329,7 @@ class evfmMain {
             case mrYes:{
 				
 				myUtils::stop();
+				myUtils::saveForm();
 				MyProject::save();
 				
 				Timer::clearTimers();
