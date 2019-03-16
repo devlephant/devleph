@@ -16,7 +16,7 @@ object fmTIB: TForm
   Font.Charset = DEFAULT_CHARSET
   Font.Color = 3552822
   Font.Name = 'Segoe UI'
-  Font.Size = 8
+  Font.Size = 9
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
@@ -86,7 +86,7 @@ object fmTIB: TForm
     Font.Charset = DEFAULT_CHARSET
     Font.Color = 3552822
     Font.Name = 'Segoe UI'
-	Font.Size = 8
+	Font.Size = 9
     Font.Style = []
     ItemHeight = 13
     ParentColor = True

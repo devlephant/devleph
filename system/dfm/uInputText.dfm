@@ -10,7 +10,7 @@ object edt_inputText: Tedt_inputText
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Name = 'Segoe UI'
-  Font.Size = 8
+  Font.Size = 9
   Font.Quality = fqClearTypeNatural
   Font.Style = []
   OldCreateOrder = False
@@ -52,7 +52,7 @@ object edt_inputText: Tedt_inputText
     Width = 282
     Height = 21
     Font.Name = 'Segoe UI'
-	Font.Size = 8
+	Font.Size = 9
     Font.Style = [fsBold]
     ParentFont = False
 	Color = clWhite

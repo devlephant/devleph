@@ -10,7 +10,7 @@ object fmRunDebug: TfmRunDebug
   Constraints.MinWidth = 300
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Size = 8
+  Font.Size = 9
   Font.Quality = fqClearTypeNatural
   Font.Name = 'Tahoma'
   Font.Style = []

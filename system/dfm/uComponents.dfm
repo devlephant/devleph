@@ -13,7 +13,7 @@ object fmComponents: TfmComponents
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Name = 'Segoe UI'
-  Font.Size = 8
+  Font.Size = 9
   Font.Quality = fqClearTypeNatural
   Font.Style = []
   OldCreateOrder = False

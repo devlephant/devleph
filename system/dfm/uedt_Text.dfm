@@ -12,7 +12,7 @@ object edt_Text: Tedt_Text
   Font.Color = clWindowText
   Font.Quality = fqClearTypeNatural
   Font.Name = 'Segoe UI'
-  Font.Size = 8
+  Font.Size = 9
   Font.Style = []
   OldCreateOrder = False
   Position = poDesigned

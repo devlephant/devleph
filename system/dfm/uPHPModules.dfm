@@ -9,7 +9,7 @@ object fmPHPModules: TfmPHPModules
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Name = 'Segoe UI'
-  Font.Size = 8
+  Font.Size = 9
   Font.Quality = fqClearTypeNatural
   Font.Style = []
   OldCreateOrder = False
@@ -103,7 +103,7 @@ object fmPHPModules: TfmPHPModules
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Name = 'Segoe UI'
-	Font.Size = 8
+	Font.Size = 9
     Font.Style = []
     ParentFont = False
     TabOrder = 0
@@ -116,7 +116,7 @@ object fmPHPModules: TfmPHPModules
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Name = 'Segoe UI'
-	  Font.Size = 8
+	  Font.Size = 9
       Font.Style = []
       ItemHeight = 25
       Items.Strings = (

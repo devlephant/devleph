@@ -22,7 +22,7 @@ object fmEdit: TForm
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'Segoe UI'
-  Font.Size = 8
+  Font.Size = 9
   Font.Quality = fqClearTypeNatural
   Font.Style = []
   FormStyle = fsStayOnTop

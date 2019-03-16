@@ -10,7 +10,7 @@ object fmEditorSettings: TfmEditorSettings
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Name = 'Segoe UI'
-  Font.Size = 8
+  Font.Size = 9
   Font.Quality = fqClearTypeNatural
   Font.Style = []
   OldCreateOrder = False
@@ -58,7 +58,7 @@ object fmEditorSettings: TfmEditorSettings
     Font.Color = clWindowText
     Font.Name = 'Segoe UI'
     Font.Style = [fsBold]
-	Font.Size = 8
+	Font.Size = 9
     ParentFont = False
   end
   object BitBtn1: TBitBtn
@@ -72,7 +72,7 @@ object fmEditorSettings: TfmEditorSettings
     Font.Color = clWindowText
     Font.Name = 'Segoe UI'
     Font.Style = [fsBold]
-	Font.Size = 8
+	Font.Size = 9
     ModalResult = 1
     ParentFont = False
     TabOrder = 0
@@ -172,7 +172,7 @@ object fmEditorSettings: TfmEditorSettings
     Font.Color = clWindowText
     Font.Name = 'Segoe UI'
     Font.Style = [fsBold]
-	Font.Size = 8
+	Font.Size = 9
     ParentFont = False
     TabOrder = 5
   end
@@ -185,7 +185,7 @@ object fmEditorSettings: TfmEditorSettings
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Name = 'Segoe UI'
-	Font.Size = 8
+	Font.Size = 9
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 6

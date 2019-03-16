@@ -10,7 +10,7 @@ object edt_ImageView: Tedt_ImageView
   Color = clWhite
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Size = 8
+  Font.Size = 9
   Font.Quality = fqClearTypeNatural
   Font.Name = 'Segoe UI'
   Font.Style = []

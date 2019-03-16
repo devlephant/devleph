@@ -13,7 +13,7 @@ object fmPropsAndEvents: TfmPropsAndEvents
   Font.Color = clWindowText
   Font.Quality = fqClearTypeNatural
   Font.Name = 'Segoe UI'
-  Font.Size = 8
+  Font.Size = 9
   Font.Style = []
   FormStyle = fsStayOnTop
   OldCreateOrder = False
@@ -78,7 +78,7 @@ object fmPropsAndEvents: TfmPropsAndEvents
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Name = 'Segoe UI'
-		Font.Size = 8
+		Font.Size = 9
         Font.Style = [fsBold]
         ParentFont = False
         ParentShowHint = False
@@ -214,7 +214,7 @@ object fmPropsAndEvents: TfmPropsAndEvents
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Name = 'Segoe UI'
-		Font.Size = 8
+		Font.Size = 9
         Font.Style = []
         ItemHeight = 25
         ParentCtl3D = False

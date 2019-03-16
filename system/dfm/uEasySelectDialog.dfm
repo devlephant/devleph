@@ -12,7 +12,7 @@ object fmEasySelectDialog: TfmEasySelectDialog
   Font.Color = clWindowText
   Font.Name = 'Segoe UI'
   Font.Style = []
-  Font.Size = 8
+  Font.Size = 9
   Font.Quality = fqClearTypeNatural
   OldCreateOrder = False
   Position = poScreenCenter
@@ -56,7 +56,7 @@ object fmEasySelectDialog: TfmEasySelectDialog
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clMaroon
         Font.Name = 'Segoe UI'
-		Font.Size = 8
+		Font.Size = 9
         Font.Style = [fsBold]
         ItemHeight = 22
         Items.Strings = (
@@ -81,7 +81,7 @@ object fmEasySelectDialog: TfmEasySelectDialog
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clGreen
         Font.Name = 'Segoe UI'
-		Font.Size = 8
+		Font.Size = 9
         Font.Style = [fsBold]
         ItemHeight = 22
         ParentFont = False
@@ -111,7 +111,7 @@ object fmEasySelectDialog: TfmEasySelectDialog
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Name = 'Segoe UI'
-		Font.Size = 8
+		Font.Size = 9
         Font.Style = []
         ItemHeight = 0
         ParentFont = False
@@ -166,7 +166,7 @@ object fmEasySelectDialog: TfmEasySelectDialog
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Name = 'Segoe UI'
-		Font.Size = 8
+		Font.Size = 9
         Font.Style = []
         ItemHeight = 0
         ParentFont = False
@@ -253,7 +253,7 @@ object fmEasySelectDialog: TfmEasySelectDialog
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Name = 'Segoe UI'
-		Font.Size = 8
+		Font.Size = 9
         Font.Style = []
         ParentFont = False
         TabOrder = 2
@@ -343,7 +343,7 @@ object fmEasySelectDialog: TfmEasySelectDialog
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Name = 'Segoe UI'
-		Font.Size = 8
+		Font.Size = 9
         Font.Style = [fsBold]
         ParentFont = False
       end
@@ -356,7 +356,7 @@ object fmEasySelectDialog: TfmEasySelectDialog
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Name = 'Segoe UI'
-		Font.Size = 8
+		Font.Size = 9
         Font.Style = [fsBold]
         ParentFont = False
       end
@@ -451,7 +451,7 @@ object fmEasySelectDialog: TfmEasySelectDialog
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clGreen
           Font.Name = 'Segoe UI'
-		  Font.Size = 8
+		  Font.Size = 9
           Font.Style = [fsBold]
           ParentFont = False
           ReadOnly = True
@@ -467,7 +467,7 @@ object fmEasySelectDialog: TfmEasySelectDialog
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clMaroon
           Font.Name = 'Segoe UI'
-		  Font.Size = 8
+		  Font.Size = 9
           Font.Style = [fsBold]
           ParentFont = False
           ReadOnly = True
@@ -493,7 +493,7 @@ object fmEasySelectDialog: TfmEasySelectDialog
         Font.Color = clMaroon
         Font.Name = 'Segoe UI'
         Font.Style = []
-		Font.Size = 8
+		Font.Size = 9
         ItemHeight = 20
         Items.Strings = (
           'DOC_ROOT'

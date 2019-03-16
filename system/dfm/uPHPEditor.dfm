@@ -11,7 +11,7 @@ object fmPHPEditor: TfmPHPEditor
   Color = clWhite
   Font.Color = clWindowText
   Font.Name = 'Segoe UI'
-  Font.Size = 8
+  Font.Size = 9
   Font.Quality = fqClearTypeNatural
   Font.Style = []
   Menu = MainMenu
@@ -109,7 +109,7 @@ object fmPHPEditor: TfmPHPEditor
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Name = 'Segoe UI'
-		Font.Size = 8
+		Font.Size = 9
         Font.Style = [fsBold]
         ParentFont = False
       end
@@ -125,7 +125,7 @@ object fmPHPEditor: TfmPHPEditor
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Name = 'Segoe UI'
-		Font.Size = 8
+		Font.Size = 9
         Font.Style = [fsBold]
         ParentFont = False
         ParentShowHint = False
@@ -551,7 +551,7 @@ object fmPHPEditor: TfmPHPEditor
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Name = 'Segoe UI'
-	  Font.Size = 8
+	  Font.Size = 9
       Font.Style = [fsBold]
       ParentFont = False
       ExplicitWidth = 3
@@ -567,7 +567,7 @@ object fmPHPEditor: TfmPHPEditor
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Name = 'Segoe UI'
-	  Font.Size = 8
+	  Font.Size = 9
       Font.Style = [fsBold]
       ParentFont = False
       Autosize = False
@@ -598,7 +598,7 @@ object fmPHPEditor: TfmPHPEditor
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Name = 'Segoe UI'
-	  Font.Size = 8
+	  Font.Size = 9
       Font.Style = [fsBold]
       ParentFont = False
       Autosize = False
@@ -724,12 +724,12 @@ object fmPHPEditor: TfmPHPEditor
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Name = 'Segoe UI'
-	Font.Size = 8
+	Font.Size = 9
     Font.Style = []
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clBtnText
     TitleFont.Name = 'Segoe UI'
-	TitleFont.Size = 8
+	TitleFont.Size = 9
     TitleFont.Style = [fsBold]
 	DefaultType = ctCode
     Columns = <>
@@ -747,12 +747,12 @@ object fmPHPEditor: TfmPHPEditor
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Name = 'Segoe UI'
-	Font.Size = 8
+	Font.Size = 9
     Font.Style = []
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clBtnText
     TitleFont.Name = 'Segoe UI'
-	TitleFont.Size = 8
+	TitleFont.Size = 9
     TitleFont.Style = [fsBold]
     Columns = <>
     Resizeable = True

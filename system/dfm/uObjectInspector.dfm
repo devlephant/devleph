@@ -13,7 +13,7 @@ object fmObjectInspector: TfmObjectInspector
   Font.Color = clWindowText
   Font.Quality = fqClearTypeNatural
   Font.Name = 'Segoe UI'
-  Font.Size = 8
+  Font.Size = 9
   Font.Style = []
   OldCreateOrder = False
   Position = poDefault

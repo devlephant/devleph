@@ -12,7 +12,7 @@ object fmBuildProgram: TfmBuildProgram
   Font.Color = clWindowText
   Font.Quality = fqClearTypeNatural
   Font.Name = 'Segoe UI'
-  Font.Size = 8
+  Font.Size = 9
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
@@ -43,7 +43,7 @@ object fmBuildProgram: TfmBuildProgram
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Name = 'Segoe UI'
-	  Font.Size = 8
+	  Font.Size = 9
       Font.Style = []
     end
     object path: TEdit
@@ -147,7 +147,7 @@ object fmBuildProgram: TfmBuildProgram
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
         Font.Name = 'Segoe UI'
-		Font.Size = 8
+		Font.Size = 9
         Font.Style = []
         ParentFont = False
       end
@@ -205,7 +205,7 @@ object fmBuildProgram: TfmBuildProgram
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Name = 'Segoe UI'
-		Font.Size = 8
+		Font.Size = 9
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 3
@@ -221,7 +221,7 @@ object fmBuildProgram: TfmBuildProgram
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Name = 'Segoe UI'
-	  Font.Size = 8
+	  Font.Size = 9
       Font.Style = [fsBold]
       ModalResult = 1
       ParentFont = False

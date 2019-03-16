@@ -13,7 +13,7 @@ object fmLogoin: TfmLogoin
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'Segoe UI'
-  Font.Size = 8
+  Font.Size = 9
   Font.Quality = fqClearTypeNatural
   Font.Style = []
   OldCreateOrder = False
@@ -30,7 +30,7 @@ object fmLogoin: TfmLogoin
     Font.Color = clWhite
     Font.Height = -19
     Font.Name = 'Segoe UI'
-	Font.Size = 8
+	Font.Size = 9
     Font.Style = [fsBold]
     ParentFont = False
     Transparent = True
@@ -23001,7 +23001,7 @@ object fmLogoin: TfmLogoin
       Font.Color = 0
       Font.Height = -11
       Font.Name = 'Segoe UI'
-	  Font.Size = 8
+	  Font.Size = 9
       Font.Style = []
       ParentFont = False
       Transparent = True

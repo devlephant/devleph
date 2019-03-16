@@ -13,7 +13,7 @@ object fmNewProject: TfmNewProject
   Font.Color = clWindowText
   Font.Quality = fqClearTypeNatural
   Font.Name = 'Segoe UI'
-  Font.Size = 8
+  Font.Size = 9
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
@@ -50,7 +50,7 @@ object fmNewProject: TfmNewProject
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Name = 'Segoe UI'
-	  Font.Size = 8
+	  Font.Size = 9
       Font.Style = [fsBold]
       ParentFont = False
 	  Transparent = True
