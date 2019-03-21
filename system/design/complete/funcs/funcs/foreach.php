@@ -1,8 +1,8 @@
 <?
-
-return array(
-             'DESC'=>'Цикл',
-             'INLINE'=>'foreach ( array arr as key=>value )',
-             'SEEALSO'=>array('while', 'do', 'for'),
-             'CATEGORY'=>'Синтаксис',
-             );
+return
+[
+	'DESC'=>'Цикл',
+	'INLINE'=>'foreach ( array arr as key=>value )',
+	'SEEALSO'=>['while', 'do', 'for'],
+	'CATEGORY'=>'Синтаксис',
+];

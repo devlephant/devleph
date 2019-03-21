@@ -71,9 +71,12 @@ class complete_Funcs {
             foreach($info['functions'] as $func){
                 
                 $inline = 'mixed '.$func['name'] .' ( '. self::getInline($func['params'],$func['defaults']) .' )';
-                $funcs[$func['name']] = array('NAME'=>$func['name'],
-                                              'INLINE'=>$inline,
-                                              'DESC'=>$func['desc']);
+                $funcs[$func['name']] = 
+										[
+											'NAME'=>$func['name'],
+											'INLINE'=>$inline,
+											'DESC'=>$func['desc']
+										];
             }
             
             foreach($info['classes'] as $class){
@@ -83,7 +86,7 @@ class complete_Funcs {
                     $inline .= '( ' . self::getInline($class['construct']['params'],$class['construct']['defaults']) . ' )';
                 }
                 
-                $funcs[$class['name']] = array('NAME'=>$class['name'], 'INLINE'=>$inline, 'info'=>$class);
+                $funcs[$class['name']] =	['NAME'=>$class['name'], 'INLINE'=>$inline, 'info'=>$class];
             }
         }
         
@@ -114,9 +117,11 @@ class complete_Funcs {
                     
                     $inline .= ' )';
                     
-                    $funcs[$obj['NAME']] = array('NAME'=>$obj['NAME'],
-                                                'INLINE'=>$inline,
-                                                'DESC'=>$obj['description']);
+                    $funcs[$obj['NAME']] =	[
+												'NAME'=>$obj['NAME'],
+												'INLINE'=>$inline,
+												'DESC'=>$obj['description']
+											];
                 }
         
         if ($sort)
@@ -169,14 +174,14 @@ class complete_Funcs {
             $classes = include DOC_ROOT . '/design/complete/classes.php';
             
             foreach ($classes as $class)
-                $funcs[] = array('NAME'=>$class, 'INLINE'=>'class '.$class.' ');
+                $funcs[] = ['NAME'=>$class, 'INLINE'=>'class '.$class.' '];
         }
         
         BlockData::sortList($funcs, 'NAME');
         
         global $_c;
         foreach ($_c->defines as $const=>$value){
-            $funcs[] = array('NAME'=>$const,'INLINE'=>'constant '.$const.' ');
+            $funcs[] = ['NAME'=>$const,'INLINE'=>'constant '.$const.' '];
         }
         
         $funcsArr = self::generateBB( $funcs );
@@ -184,7 +189,7 @@ class complete_Funcs {
     
     static function generateBB($funcs){
         
-        $arr = array('insert'=>[],'item'=>[]);
+        $arr = ['insert'=>[],'item'=>[]];
         foreach ($funcs as $i=>$info){
             
             $func = $info['NAME'];
@@ -197,12 +202,12 @@ class complete_Funcs {
                 $text = $func;
             
             //$text.= '[$b]';
-            $text = str_replace(array($func.' ','nubmer ','float ','mixed ','string ','array ','bool ','void ','int ','resource ','object ',
-                                      'constant ','class '),
-                                array('[b]'.$func.'[/b] ','[$r]number[$b] ','[$r]float[$b] ','[$r]mixed[$b] ','[$r]string[$b] ','[$r]array [$b]',
-                                      '[$r]bool[$b] ','[$r]void[$b] ','[$r]int[$b] ','[$r]resource[$b] ','[$r]object[$b] ','[$s]constant[$b] ',
-                                      '[$g]class[$b] '),
-                                      $text); 
+            $text = str_replace(
+			[$func.' ','nubmer ','float ','mixed ','string ','array ','bool ','void ','int ','resource ','object ', 'constant ','class '],
+			['[b]'.$func.'[/b] ','[$r]number[$b] ','[$r]float[$b] ','[$r]mixed[$b] ','[$r]string[$b] ','[$r]array [$b]',
+			'[$r]bool[$b] ','[$r]void[$b] ','[$r]int[$b] ','[$r]resource[$b] ','[$r]object[$b] ','[$s]constant[$b] ',
+			'[$g]class[$b] '],
+			$text); 
             $arr['item'][] = myComplete::fromBB($text);
         }
         
@@ -248,14 +253,14 @@ class complete_Funcs {
             $classes = include DOC_ROOT . '/design/complete/classes.php';
             
             foreach ($classes as $class)
-                $funcs[] = array('NAME'=>$class, 'INLINE'=>'class '.$class.' ');
+                $funcs[] = ['NAME'=>$class, 'INLINE'=>'class '.$class.' '];
         }
         
         BlockData::sortList($funcs, 'NAME');
         
         global $_c;
         foreach ($_c->defines as $const=>$value){
-            $funcs[] = array('NAME'=>$const,'INLINE'=>'constant '.$const.' ');
+            $funcs[] = ['NAME'=>$const,'INLINE'=>'constant '.$const.' '];
         }
         
         foreach ($funcs as $i=>$info){

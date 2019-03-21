@@ -1,8 +1,8 @@
 <?
-
-return array(
-             'DESC'=>'',
-             'INLINE'=>'global <variables>',
-             'SEEALSO'=>[],
-             'CATEGORY'=>'Синтаксис',
-             );
+return
+[
+	'DESC'=>'',
+	'INLINE'=>'global <variables>',
+	'SEEALSO'=>[],
+	'CATEGORY'=>'Синтаксис',
+];

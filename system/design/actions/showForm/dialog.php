@@ -1,13 +1,16 @@
 <?$r = []; 
-$r[] = array(
-             'TYPE'=>'INPUT_DLG',
-             'CAPTION'=>t('Form'),
-             'USE_QUOTE'=>false,
-             );
-$r[] = array(
-             'TYPE'=>'COMBO',
-             'CAPTION'=>t('Mode'),
-             'VALUES'=>array('SW_SHOW',
-                            'SW_SHOWMODAL'),
-             );
+$r[] =	[
+			'TYPE'=>'INPUT_DLG',
+			'CAPTION'=>t('Form'),
+			'USE_QUOTE'=>false,
+		];
+$r[] =	[
+			'TYPE'=>'COMBO',
+			'CAPTION'=>t('Mode'),
+			'VALUES'=>
+					[
+						'SW_SHOW',
+						'SW_SHOWMODAL'
+					],
+		];
 return $r;

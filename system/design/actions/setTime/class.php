@@ -4,13 +4,9 @@
 class action_setTime extends action_Simple {
     
     
-    static function getLineParams($line, $action = false){
-        
-        $k = strrpos($line,'->');
-        
-        $pr1 = substr($line, 0, $k);
-        
-        return array($pr1);
+    static function getLineParams($line, $action = false)
+	{
+        return [substr($line, 0, strrpos($line,'->'))];
     }
     
     static function getResult($command, $params_str, $action){

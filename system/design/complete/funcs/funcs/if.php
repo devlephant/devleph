@@ -1,8 +1,8 @@
 <?
-
-return array(
-             'DESC'=>'Условие',
-             'INLINE'=>'if ( <condition> )',
-             'SEEALSO'=>array('switch'),
-             'CATEGORY'=>'Синтаксис',
-             );
+return
+[
+	'DESC'=>'Условие',
+	'INLINE'=>'if ( <condition> )',
+	'SEEALSO'=>array('switch'),
+	'CATEGORY'=>'Синтаксис',
+];

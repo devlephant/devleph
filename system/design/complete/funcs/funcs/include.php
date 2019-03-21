@@ -1,7 +1,8 @@
 <?
 
-return array(
-             'DESC'=>'Подключить php-скрипт',
-             'INLINE'=>'mixed include ( string fileName )',
-             'SEEALSO'=>array('require','include_once'),
-             );
+return 
+[
+	'DESC'=>'Подключить php-скрипт',
+	'INLINE'=>'mixed include ( string fileName )',
+	'SEEALSO'=>['require','include_once'],
+];
