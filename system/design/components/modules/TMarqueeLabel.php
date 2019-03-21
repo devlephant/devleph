@@ -22,7 +22,7 @@ class TMarqueeLabel extends TLabel {
 		}
 	}
 
-	public function CreateTTimer($func, $interval, $Enabled = true, $p = false, $param = array()) {
+	public function CreateTTimer($func, $interval, $Enabled = true, $p = false, $param = []) {
 		$TTimerNew = gui_create('TTimer', null);
 		gui_propSet($TTimerNew, 'interval', (int)$interval);
 		if(!$p)

@@ -13,7 +13,7 @@ function __doDebugGlobalVars(){
     global $__DEBUG_GLVARS, $APPLICATION;
     
     $result['type'] = 'glVars';
-    $result['glVars'] = array();
+    $result['glVars'] = [];
     
     foreach ((array)$__DEBUG_GLVARS as $name){
         

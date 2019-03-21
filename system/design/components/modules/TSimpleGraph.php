@@ -12,7 +12,7 @@ class TSimpleGraph extends TImage
 		parent::__construct( $owner, $init, $self );
 		if( $init )
 		{
-			$this->_charts = array();//initial chart\\
+			$this->_charts = [];//initial chart\\
 		}
 	}
 	

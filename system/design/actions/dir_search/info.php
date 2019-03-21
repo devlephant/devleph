@@ -6,7 +6,7 @@
     Dim-S Software (c) 2009
 */
 
-$n = array();
+$n = [];
         
   $n['PREG'] = '%dir_search\((.*)\)[\;]?%i';   
  

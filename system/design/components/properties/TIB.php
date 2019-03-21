@@ -3,7 +3,7 @@
 /* xsnakes */
 /* TIB v1.3*/
 
-$result = array();
+$result = [];
 
 
 $result[] = array(

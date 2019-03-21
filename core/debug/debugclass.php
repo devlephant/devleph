@@ -96,7 +96,7 @@ class ThreadObjectReceiver
 	public static function unBlock($name)
 	{
 #		if($GLOBALS['THREAD_SELF']) {
-#			Sync('ThreadObjectReceiver::unBlock', array($name));
+#			Sync('ThreadObjectReceiver::unBlock', [$name]);
 #		} else {
 			self::$block[$name] = null;
 #		}

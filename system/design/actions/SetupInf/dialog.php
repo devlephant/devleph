@@ -1,5 +1,5 @@
 <?
-$r = array();
+$r = [];
 $r[] = array(
              'TYPE'=>'INPUT_DLG',
              'CAPTION'=>t('Patch to the driver'),

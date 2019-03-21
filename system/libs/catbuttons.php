@@ -85,7 +85,7 @@ class TCategoryButtons extends TControl {
     public function get_selectedList(){
         
         $groups = $this->groups;
-        $result = array();
+        $result = [];
         
         foreach ($groups as $tmp=>$self)
             if (!_c($self)->collapsed)

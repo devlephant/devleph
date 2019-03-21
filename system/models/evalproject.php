@@ -3,7 +3,7 @@
 /* эмуляция загрузки проекта в программу, как работающую...*/
     
     enc_setValue('__incCode', 'global $APPLICATION, $SCREEN, $_c, $progDir, $_PARAMS, $argv;');
-    $GLOBALS['__evalProject_md5scripts'] = array();
+    $GLOBALS['__evalProject_md5scripts'] = [];
     
 class evalProject {
     
@@ -31,8 +31,8 @@ class evalProject {
             
         $result = file_get_contents($file);
         
-        $GLOBALS['___startFunctions'] = array();
-        $GLOBALS['___startFunctionsBefore'] = array();
+        $GLOBALS['___startFunctions'] = [];
+        $GLOBALS['___startFunctionsBefore'] = [];
         
         $_e = err_status(false);
         $x = unserialize(base64_decode(gzuncompress($result)));    

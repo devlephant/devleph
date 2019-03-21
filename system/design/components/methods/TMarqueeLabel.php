@@ -1,5 +1,5 @@
 <?
-$result = array();
+$result = [];
 
 
 $result[] = array(

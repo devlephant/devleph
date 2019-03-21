@@ -7,7 +7,7 @@ class TFormProtect extends __TNoVisual {
     #public $icon = 'T';    
 	
     static function callError($self){
-	DSApi::callEvent($self, array(), 'OnError');
+	DSApi::callEvent($self, [], 'OnError');
     }
     
     function __trialTime($self){

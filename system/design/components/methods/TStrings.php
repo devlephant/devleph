@@ -1,6 +1,6 @@
 <?
 
-$result = array();
+$result = [];
 
 
 
@@ -107,7 +107,7 @@ $result[] = array(
                   );
 $result[] = array(
                   'CAPTION'=>t('setArray'),
-                  'PROP'=>'setArray()',
+                  'PROP'=>'set[]',
                   'INLINE'=>'setArray ($array)',
                   );
 $result[] = array(

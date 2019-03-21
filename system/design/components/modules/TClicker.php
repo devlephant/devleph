@@ -505,7 +505,7 @@ $shap->OnMouseUp = Function($self) use ($move,$labe,$numb,$time,$prog,$shap,$Inf
 $Point->OnClick = Function($self)
 {
   Global $__nv;
-  $points = array();
+  $points = [];
   Foreach($__nv as $p)
   {
    $points[] = $p;

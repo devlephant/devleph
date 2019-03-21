@@ -29,7 +29,7 @@ Class TThumbButton {
 }
 
 class TThumbButtonArray {
-	public $Value = array();
+	public $Value = [];
 	
 	public function add(TThumbButton $elm1,
 						TThumbButton $elm2 = null, TThumbButton $elm3 = null,
@@ -63,7 +63,7 @@ class TThumbButtonArray {
 	}
 	
 	public function ToArray() { 
-		$ListBtn = array();
+		$ListBtn = [];
 		$i = 0;
 		foreach($this->Value as $v) {
 			if($v->dwMask !== null)	 $ListBtn[$i]['dwmask']	 = $v->dwMask;
@@ -218,7 +218,7 @@ Class TWinTaskbar {
 
     public function SetThumbnailClip(TRect $AClipRect) {
 		if ($this->IsCreate()) {
-			$arrAClipRect = array();
+			$arrAClipRect = [];
 			if($AClipRect->Left !== null)	 $arrAClipRect['left']	 = $AClipRect->Left;
 			if($AClipRect->Top !== null)	 $arrAClipRect['top']	 = $AClipRect->Top;
 			if($AClipRect->Right !== null)	 $arrAClipRect['right']	 = $AClipRect->Right;
@@ -244,7 +244,7 @@ Class TWinTaskbar {
 	
     public function ThumbBarAddButtons(TThumbButtonArray $AButtonList) {
 		if ($this->IsCreate() and (!empty($AButtonList->Value))) {
-			return TBThumbBarAddButtons($this->Self, $AButtonList->ToArray(), $this->MainWindow());			
+			return TBThumbBarAddButtons($this->Self, $AButtonList->To[], $this->MainWindow());			
 		} else 
 			return false;
     }
@@ -255,7 +255,7 @@ Class TWinTaskbar {
 	
     public function ThumbBarUpdateButtons(TThumbButtonArray $AButtonList) {
 		if ($this->IsCreate() and (!empty($AButtonList->Value))) {
-			return TBThumbBarUpdateButtons($this->Self, $AButtonList->ToArray(), $this->MainWindow());
+			return TBThumbBarUpdateButtons($this->Self, $AButtonList->To[], $this->MainWindow());
 		} else 
 			return false;
     }

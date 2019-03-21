@@ -39,7 +39,7 @@ class TDownload extends __TNoVisual {
         //$fp = fopen($path,"r");
         $inf = stream_get_meta_data($fp);
            
-        $result = array();
+        $result = [];
         foreach($inf["wrapper_data"] as $i=>$v){
             $v = explode(":",$v);
             array_map('trim', $v);
@@ -117,7 +117,7 @@ class TDownload extends __TNoVisual {
 	$obj->isBusy = false;
     }
     
-    static function _start($self = false, $props = array(), $th = false){
+    static function _start($self = false, $props = [], $th = false){
         
         $st_err = err_status(false);
         

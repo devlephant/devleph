@@ -23,8 +23,8 @@ class myModules {
         
         $forms = myProject::getFormsObjects();
         
-        $result  = array();
-        $classes = array();
+        $result  = [];
+        $classes = [];
         foreach ($forms as $objs)
         foreach ($objs as $el){
             if (!in_array($el['CLASS'],$classes) && file_exists(SYSTEM_DIR.'/design/components/modules/'.$el['CLASS'].'.phpe2')){
@@ -44,7 +44,7 @@ class myModules {
         
         $forms = myProject::getFormsObjects();
         
-        $result  = array();
+        $result  = [];
         foreach ($forms as $objs)
         foreach ($objs as $el){
             
@@ -108,7 +108,7 @@ class myModules {
         self::getNeed();
         
         $myProject->config['modules'] = array_unique($myProject->config['modules']);
-        $real = array();
+        $real = [];
 		if($copy)
         foreach ((array)$myProject->config['modules'] as $mod){
             

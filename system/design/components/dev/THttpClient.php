@@ -1,6 +1,6 @@
 <?
 
-$result = array();
+$result = [];
 
 $result['GROUP']   = 'internet';
 $result['CLASS']   = basenameNoExt(__FILE__);

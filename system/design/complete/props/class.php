@@ -54,8 +54,8 @@ class complete_Props {
     
     function _getList($class, $add='->'){
         
-        $arr['insert'] = array();
-        $arr['item']   = array();
+        $arr['insert'] = [];
+        $arr['item']   = [];
         
         
         $events = myEvents::getEventsInfo($class);
@@ -111,7 +111,7 @@ class complete_Props {
     
     function getDynMethodsInfo($x_class){
         
-        $result = array();
+        $result = [];
         $x_class  = strtolower($x_class);
         $info   = complete_Funcs::getFormFunctions();
         
@@ -145,11 +145,11 @@ class complete_Props {
     
     function getDynPropsInfo($x_class){
         
-        $result = array();
+        $result = [];
         $x_class  = strtolower($x_class);
         $info   = complete_Funcs::getFormFunctions();
         
-        $tmp_exists = array();
+        $tmp_exists = [];
         
         foreach ($info as $class){
             

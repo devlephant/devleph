@@ -13,7 +13,7 @@ class CApi extends DSApi {
         
         $info = parse_ini_file( $file, true );
         
-        $params = array();
+        $params = [];
         $params['name'] = $info['main']['name'];
         $params['ver'] = $info['main']['ver'];
         $params['author'] = $info['main']['author'];
@@ -36,7 +36,7 @@ class CApi extends DSApi {
         if (!$info['name']) return;
         
         $err = err_status(0);
-        $result = array();
+        $result = [];
         $dir = dirname($info['file']);
         
         if (is_dir($dir.'/components/'))
@@ -163,7 +163,7 @@ class CApi extends DSApi {
         }
     }
     
-    static function doEvent($event, $params = array()){
+    static function doEvent($event, $params = []){
         
         $is_def = false;
 		if(!isset($GLOBALS[__CLASS__])) return true;

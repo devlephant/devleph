@@ -1,4 +1,4 @@
-<? $result =array(); $result[] =array( 'CAPTION'=>'Выполнить', 'PROP'=>'ec()', 'INLINE'=>'ec( ) - Выполнить', );return $result;
+<? $result =[]; $result[] =array( 'CAPTION'=>'Выполнить', 'PROP'=>'ec()', 'INLINE'=>'ec( ) - Выполнить', );return $result;
 /*
     
 $$$$$___$$$$$___$$$$$$__$$$$$$__$$$$$___$$$$$

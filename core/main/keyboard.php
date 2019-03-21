@@ -17,7 +17,7 @@ class HotKey {
 	const MODIFER = 1;
 	const KEY = 2;
     */
-	private static $fncs = array();
+	private static $fncs = [];
     static function event($modifer, $key){
         
         if(!empty(self::$fncs))
@@ -35,7 +35,7 @@ class HotKey {
 		
         reg_hot_key(rand(),$modifer, $key);
         
-       self::$fncs[] = array($func_name, $modifer, $key);
+       self::$fncs[] = [$func_name, $modifer, $key];
     }
 	static function remove($modifer, $key, $func_name = false){
 
@@ -54,14 +54,14 @@ class HotKey {
 	}
 	static function getEvents($func_name)
 	{
-		$res = array();
+		$res = [];
 		foreach(self::$fncs as $i=>$e)
-				if($e[0]==$func_name) $res[] = array($e[1], $e[2]);
+				if($e[0]==$func_name) $res[] = [$e[1], $e[2]];
 		return $res;
 	}
 	static function getFuncs($modifer, $key)
 	{
-		$res = array();
+		$res = [];
 		foreach(self::$fncs as $i=>$e)
 				if($e[1]==$modifer&&$e[2]==$key) $res[] = $e[0];
 		return $res;

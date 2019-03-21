@@ -1,5 +1,5 @@
 <?
-$result = array();
+$result = [];
 
 $result[] = array('CAPTION'=>t('Text'),'TYPE'=>'text','PROP'=>'caption');
 _addfont($result);

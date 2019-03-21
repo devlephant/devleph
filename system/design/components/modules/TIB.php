@@ -61,7 +61,7 @@ class TIB extends TMImage{
    }
 
    public function clear(){
-     $this->images = array();
+     $this->images = [];
      $this->picture->clear();
    }
 

@@ -60,7 +60,7 @@ class myProject {
         if ($value === null){
 			if( isset($myProject->add_info[$name]) )
 				return $myProject->add_info[$name];
-			return array();
+			return [];
         } elseif ($value === false)
             unset($myProject->add_info[$name]);
         else
@@ -69,7 +69,7 @@ class myProject {
     
     static function showIncorrect(){
         global $myProject;
-        $classes = array();
+        $classes = [];
 		if($myProject->formsInfo)
         foreach ($myProject->formsInfo as $form=>$data){
             
@@ -107,15 +107,15 @@ class myProject {
         
         global $myProject, $_FORMS, $formSelected, $fmEdit;
         
-        $result = array();
+        $result = [];
         for ($i=0;$i<count($_FORMS);$i++){
             
-            $result[$_FORMS[$i]] = array();
+            $result[$_FORMS[$i]] = [];
 			if(isset($myProject->formsInfo[$_FORMS[$i]]))
             $result[$_FORMS[$i]] = $myProject->formsInfo[$_FORMS[$i]]['objects'];
         }
         
-        $result[$_FORMS[$formSelected]] = array();
+        $result[$_FORMS[$formSelected]] = [];
         $components = $fmEdit->componentList;
         foreach ($components as $el){
             if ($el->name){
@@ -154,7 +154,7 @@ class myProject {
             $info[$p] = $fmEdit->$p;
         }
         
-        $info['objects'] = array();
+        $info['objects'] = [];
         $components = $fmEdit->componentList;
         foreach ($components as $el){
             
@@ -245,7 +245,7 @@ class myProject {
     static function lastClearClick($self){
         
         global $lastFiles;
-        $lastFiles = array();
+        $lastFiles = [];
         self::initLastFiles();
     }
     
@@ -376,7 +376,7 @@ class myProject {
             
             foreach ($_FORMS as $form){
                 myUtils::loadForm($form);
-                $del_objs = array();
+                $del_objs = [];
                 
                 $components = $fmEdit->componentList;
                 foreach($components as $el){
@@ -502,7 +502,7 @@ class myProject {
         
         if (!file_exists(dirname($projectFile).'/'.basenameNoExt($projectFile).'.inf')){
             
-            $myProject->config['debug'] = array();
+            $myProject->config['debug'] = [];
             $myProject->config['debug']['enabled'] = true;
 			$myProject->config['apptitle'] = 'Project';
             $myProject->config['data_dir'] = 'data';
@@ -536,7 +536,7 @@ class myProject {
         global $projectFile, $_FORMS, $myProject;
         
         $dir  = dirname($projectFile);
-        $data = array(); // здесь храним структуру файла...
+        $data = []; // здесь храним структуру файла...
         $data['CONFIG']    = $myProject->config;
         $data['formsInfo'] = $myProject->formsInfo;
         $data['add_info']  = $myProject->add_info;
@@ -590,7 +590,7 @@ class myProject {
             $form->free();
         
 	$_sc = false;
-        myUtils::$forms = array();
+        myUtils::$forms = [];
     }
     
     // открыть файл проекта формата .DVS...
@@ -663,7 +663,7 @@ class myProject {
             file_put_contents($x_file, base64_decode($x_data) );
         }
     
-        $_FORMS = array();
+        $_FORMS = [];
         
         foreach ($result['DFM'] as $form=>$data){
             
@@ -815,16 +815,16 @@ class myProject {
             if (!CApi::doEvent('onNewProject',array('filename'=>$result['PATH']))) return;
             /****** ---- *****/
             
-            $_FORMS = array();
+            $_FORMS = [];
             c('fmMain->tabForms')->tabs->clear();
             $projectFile = $result['PATH'];
             
             if (file_exists($projectFile))
                 unlink($projectFile);
             
-            $myProject->config['modules'] = array();
+            $myProject->config['modules'] = [];
             
-            $myProject->config['debug'] = array();
+            $myProject->config['debug'] = [];
             $myProject->config['debug']['enabled'] = true;
             $myProject->config['data_dir'] = 'data';
             
@@ -838,7 +838,7 @@ class myProject {
             
 
             $myProject->config['apptitle'] = 'Project'.$i;
-            eventEngine::$DATA = array();
+            eventEngine::$DATA = [];
 
             myUtils::saveProject();
             myUtils::createForm('Form1');

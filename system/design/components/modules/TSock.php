@@ -8,7 +8,7 @@
 	define("TSock_Private", 2);
 	
 	global $__TSock_Config;
-	$__TSock_Config = array();
+	$__TSock_Config = [];
 	
 	Class TSock extends __TNoVisual 
 	{
@@ -143,7 +143,7 @@
 		Public Static Function json_fix_cyr($var, $decode = false)
 		{
 		   if (is_array($var)) {
-			   $new = array();
+			   $new = [];
 			   foreach ($var as $k => $v) {
 				   $new[self::json_fix_cyr($k, $decode)] = json_fix_cyr($v, $decode);
 			   }

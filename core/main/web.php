@@ -89,7 +89,7 @@ class TChromium extends TControl {
 	}
 	
 	public function setFocus($enable = true){
-		chromium_exec($this->self, CHROMIUM_EXEC_SETFOCUS, array((bool)$enable));
+		chromium_exec($this->self, CHROMIUM_EXEC_SETFOCUS, [(bool)$enable]);
 	}
 	
 	public function reloadIgnoreCache(){
@@ -101,23 +101,23 @@ class TChromium extends TControl {
 	}
 	
 	public function sendFocusEvent($event){
-		chromium_exec($this->self, CHROMIUM_EXEC_SETFOCUSEVENT, array((int)$event));
+		chromium_exec($this->self, CHROMIUM_EXEC_SETFOCUSEVENT, [(int)$event]);
 	}
 	
 	public function sendKeyEvent($type, $key, $modifers, $sysChar, $imeChar){
-		chromium_exec($this->self, CHROMIUM_EXEC_SETEVENTKEY, array( (int)$type, (int)$key, (int)$modifers, (int)$sysChar, (int)$imeChar ));
+		chromium_exec($this->self, CHROMIUM_EXEC_SETEVENTKEY, [(int)$type, (int)$key, (int)$modifers, (int)$sysChar, (int)$imeChar]);
 	}
 	
 	public function sendMouseClickEvent($x, $y, $type, $mouseUp, $clickCount){
-		chromium_exec($this->self, CHROMIUM_EXEC_MOUSECLICKEVENT, array( (int)$x, (int)$y, (int)$type, (int)$mouseUp, (int)$clickCount ));
+		chromium_exec($this->self, CHROMIUM_EXEC_MOUSECLICKEVENT, [(int)$x, (int)$y, (int)$type, (int)$mouseUp, (int)$clickCount]);
 	}
 	
 	public function load($url){
-		chromium_exec($this->self, CHROMIUM_EXEC_LOAD, array( (string)$url ));
+		chromium_exec($this->self, CHROMIUM_EXEC_LOAD, [(string)$url]);
 	}
 	
 	public function scrollBy($x, $y){
-		chromium_exec($this->self, CHROMIUM_EXEC_SCROLLBY, array( (int)$x, (int)$y ));
+		chromium_exec($this->self, CHROMIUM_EXEC_SCROLLBY, [(int)$x, (int)$y]);
 	}
 	
 	public function undo(){
@@ -165,22 +165,22 @@ class TChromium extends TControl {
 	}
 	
 	public function loadUrl($url){
-		chromium_exec($this->self, CHROMIUM_EXEC_LOADURL, array((string)$url));
+		chromium_exec($this->self, CHROMIUM_EXEC_LOADURL, [(string)$url]);
 	}
 	
 	public function loadString($str, $url = false){
 	    if ( !$url )
 		$url = 'file:///' . DOC_ROOT;
 		
-		chromium_exec($this->self, CHROMIUM_EXEC_LOADSTRING, array((string)$str, (string)$url));
+		chromium_exec($this->self, CHROMIUM_EXEC_LOADSTRING, [(string)$str, (string)$url]);
 	}
 	
 	public function loadFile($file, $url = 'about:blank'){
-		chromium_exec($this->self, CHROMIUM_EXEC_LOADFILE, array((string)$file, (string)$url));
+		chromium_exec($this->self, CHROMIUM_EXEC_LOADFILE, [(string)$file, (string)$url]);
 	}
 	
 	public function executeJs($js, $jsUrl = 'about:blank', $startLine = 0){
-		chromium_exec($this->self, CHROMIUM_EXEC_EXECUTEJS, array((string)$js, (string)$jsUrl, (int)$startLine));
+		chromium_exec($this->self, CHROMIUM_EXEC_EXECUTEJS, [(string)$js, (string)$jsUrl, (int)$startLine]);
 	}
 	
 	public function callJs($call, $args, $aThis = null, $jsUrl = 'about:blank'){
@@ -216,7 +216,7 @@ class TChromium extends TControl {
 	}
 	
 	public function set_defaultEncoding($str){
-		chromium_exec($this->self, CHROMIUM_EXEC_DEFENCODING, array($str));
+		chromium_exec($this->self, CHROMIUM_EXEC_DEFENCODING, [$str]);
 	}
 	
 	public function get_defaultCSSPath(){
@@ -224,7 +224,7 @@ class TChromium extends TControl {
 	}
 	
 	public function set_defaultCSSPath($str){
-		chromium_exec($this->self, CHROMIUM_EXEC_DEFCSSPATH, array($str));
+		chromium_exec($this->self, CHROMIUM_EXEC_DEFCSSPATH, [$str]);
 	}
 	
 	public function set_Source($str){

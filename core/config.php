@@ -58,7 +58,7 @@ class TConfig{
     
     public function toArray()
     {
-        $array = array();
+        $array = [];
         foreach ($this->_data as $key => $value) {
             if ($value instanceof TConfig) {
                 $array[$key] = $value->toArray();
@@ -76,7 +76,7 @@ class TConfig{
     
     public function __clone()
     {
-      $array = array();
+      $array = [];
       foreach ($this->_data as $key => $value) {
           if ($value instanceof TConfig) {
               $array[$key] = clone $value;

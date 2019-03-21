@@ -1,4 +1,4 @@
-<? $result =array(); $result[] =array( 'CAPTION'=>t('Data'), 'TYPE'=>'text', 'PROP'=>'data', );$result[] =array( 'CAPTION'=>t('Type'), 'TYPE'=>'combo', 'PROP'=>'type', 'VALUES'=> array('_base64_encode_', '_base64_decode_','_gzuncompress_','_gzcompress_', '_unserialize_', '_serialize_'), );$result[] =array( 'CAPTION'=>t('Serialize value'), 'TYPE'=>'check', 'PROP'=>'serialize', );return $result;
+<? $result =[]; $result[] =array( 'CAPTION'=>t('Data'), 'TYPE'=>'text', 'PROP'=>'data', );$result[] =array( 'CAPTION'=>t('Type'), 'TYPE'=>'combo', 'PROP'=>'type', 'VALUES'=> array('_base64_encode_', '_base64_decode_','_gzuncompress_','_gzcompress_', '_unserialize_', '_serialize_'), );$result[] =array( 'CAPTION'=>t('Serialize value'), 'TYPE'=>'check', 'PROP'=>'serialize', );return $result;
 /*
     
 $$$$$___$$$$$___$$$$$$__$$$$$$__$$$$$___$$$$$

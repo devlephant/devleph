@@ -56,9 +56,9 @@ class BlockData {
     }
     
     static function getItems($arr, $value, $name = 'ID'){
-		if (!is_array($arr)) return array();
+		if (!is_array($arr)) return [];
 		
-		$result = array();
+		$result = [];
 		foreach ($arr as $item){
 			if ($item[$name] == $value) $result[]=$item;
 		}

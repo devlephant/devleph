@@ -3,7 +3,7 @@ global $_c;
 $_c->setConstList(array('vsIcon', 'vsSmallIcon', 'vsList', 'vsReport'),0);
 $_c->setConstList(array('bkNone', 'bkTile', 'bkSoft', 'bkFlat'),0);
     
-$result = array();
+$result = [];
 
 $result[] = array(
                   'CAPTION'=>t('Align'),

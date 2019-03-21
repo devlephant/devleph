@@ -1,7 +1,7 @@
 <?
 
 
-$n = array();
+$n = [];
 
     
     $n['PREG'] = '%animate::collision\((.*)\)%i';

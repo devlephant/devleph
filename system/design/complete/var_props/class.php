@@ -13,7 +13,7 @@ class complete_Var_Props {
         
             $str = $code;
             $str = str_replace('$',_BR_.'$',$str);
-            $arr = array();
+            $arr = [];
             preg_match_all('#(.*)'.str_replace('$','\\$',$var).'([ ]*)=([ ]*)new([ ]+)([a-z0-9\_]+)(.*)#i', $str, $arr);
             
             $class = trim($arr[5][count($arr[5])-1]);
@@ -63,7 +63,7 @@ class complete_Var_Props {
             global $phpMemo;
             $str = $phpMemo->text;
             $str = str_replace('$',_BR_.'$',$str);
-            $arr = array();
+            $arr = [];
             preg_match_all('#(.*)'.str_replace('$','\\$',$var).'([ ]*)=([ ]*)new([ ]+)([a-z0-9\_]+)(.*)#i', $str, $arr);
             
             $class = trim($arr[5][count($arr[5])-1]);

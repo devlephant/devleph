@@ -5,9 +5,9 @@ global $_c;
 $_c->gdHorizontal	= 0;
 $_c->gdVertical		= 1;
 
-$_components = array();
-$componentProps   = array();
-$componentEvents  = array();
+$_components = [];
+$componentProps   = [];
+$componentEvents  = [];
 $files = (defined('DS_DEBUG_MODE') && constant('DS_DEBUG_MODE'))? array_merge(findFiles(dirname(__FILE__) . '/components/','php',0,1), findFiles(dirname(__FILE__) . '/components/dev/','php',0,1)) :findFiles(dirname(__FILE__) . '/components/','php',0,1);
 $dir_n  = dirname(__FILE__);
 foreach ($files as $file){
@@ -384,7 +384,7 @@ if (EMULATE_DVS_EXE) return;
 						
 						if(	$localization && isset($res[count($res)-1]['VALUES']) )
 						{
-							$r = array();
+							$r = [];
 							foreach( $res[count($res)-1]['VALUES'] as $v )
 							{
 								if( is_numeric($v) )
@@ -432,7 +432,7 @@ if (EMULATE_DVS_EXE) return;
 				25=>'OnPaint',
 			])
 	{
-		$sorted = $unsorted = array();
+		$sorted = $unsorted = [];
 		foreach($events as $event=>$type)
 		{
 			if( in_array($event, $typeC) ) {
@@ -441,7 +441,7 @@ if (EMULATE_DVS_EXE) return;
 				$unsorted[$event] = $type;
 			}
 		}
-		$events = array();
+		$events = [];
 		if(!empty($sorted))
 		foreach( $sorted as $p )
 		{
@@ -611,9 +611,9 @@ if (EMULATE_DVS_EXE) return;
 		}
 	}
 	$_cComplist = $_components;
-        $_winControls = array();
-        $componentClasses = array();
-        $groups = array();
+        $_winControls = [];
+        $componentClasses = [];
+        $groups = [];
         foreach ($_components as $c){
             
 			if(isset($c['MODULES']))

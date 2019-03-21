@@ -3,6 +3,6 @@
 return array(
              'DESC'=>'',
              'INLINE'=>'global <variables>',
-             'SEEALSO'=>array(),
+             'SEEALSO'=>[],
              'CATEGORY'=>'Синтаксис',
              );

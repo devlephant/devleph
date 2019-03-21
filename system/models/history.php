@@ -12,13 +12,13 @@ class myHistory {
         
         if ($__toRedo){
             unset($HISTORY_ARRAY[$_FORMS[$formSelected]]);
-            $HISTORY_ARRAY[$_FORMS[$formSelected]] = array();
+            $HISTORY_ARRAY[$_FORMS[$formSelected]] = [];
             $GLOBALS['historyIndex'] = 0;
             $__toRedo = false;
             $__toUndo = false;
         }
         
-        $arr = array();
+        $arr = [];
         foreach ($objects as $el){
             
             $el = toObject($el);
@@ -85,7 +85,7 @@ class myHistory {
         
         global $projectFile;
         
-        $GLOBALS['HISTORY_ARRAY'] = array();
+        $GLOBALS['HISTORY_ARRAY'] = [];
             
         myVars::set(0, 'historyIndex');
     }

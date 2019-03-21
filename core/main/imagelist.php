@@ -13,7 +13,7 @@ $_c->itImage = 0;
 $_c->itMask  = 1;
 
 // DrawingStyle
-$_c->setConstList (array('dsFocus', 'dsSelected', 'dsNormal', 'dsTransparent'), 0);
+$_c->setConstList (['dsFocus', 'dsSelected', 'dsNormal', 'dsTransparent'], 0);
 
 class TImageList extends TControl {
     

@@ -37,7 +37,7 @@ class TSizeCtrl extends TControl{
     
     
     public $targets = [];
-    //public $targets_ex = array();
+    //public $targets_ex = [];
     
     public function set_enable($b){ sizectrl_enable($this->self, $b); }
     public function get_enable()  { return sizectrl_enable($this->self, null); }
@@ -97,13 +97,13 @@ class TSizeCtrl extends TControl{
         
         sizectrl_clear_targets($this->self);
         $this->targets = [];
-        //$this->targets_ex = array();
+        //$this->targets_ex = [];
     }
     
     public function unRegisterAll(){
         sizectrl_unregister_all($this->self);
         $this->targets = [];
-        //$this->targets_ex = array();
+        //$this->targets_ex = [];
     }
     
     public function update(){

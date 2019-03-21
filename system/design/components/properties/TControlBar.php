@@ -1,6 +1,6 @@
 <?
 
-$result = array();
+$result = [];
 $result[] = array(
                   'CAPTION'=>t('Ctl3D'),
                   'TYPE'=>'check',

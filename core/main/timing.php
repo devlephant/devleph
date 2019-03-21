@@ -29,7 +29,7 @@ class TTimerEx extends TPanel{
 	public $_timer;
 	#public $var_name = ''; // название переменной которая освобождается после отработки таймера
 	#public $func_name = ''; // название функции которую нужно выполнить после отработки таймера
-	#public $func_arguments = array(); // аргументы функции...
+	#public $func_arguments = []; // аргументы функции...
 	#public $eval_str = '';
 	
 	#event onTimer 
@@ -200,9 +200,9 @@ function setBackTimer($interval, $func){
 
 class Timer {
 	
-	static $exec = array();
-	static $data = array();
-	static $free = array();
+	static $exec = [];
+	static $data = [];
+	static $free = [];
 	
 	static function createTimer(){
 		

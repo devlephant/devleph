@@ -12,7 +12,7 @@ class INPUT_DLG_editor {
         
         $str = c('fmPHPEditor.memo')->text;
         $str = str_replace('$',_BR_.'$',$str);
-        $arr = array();
+        $arr = [];
         preg_match_all('#(.*)(\$[a-z\_]{1}[a-zA-Z0-9\_]{0,60})(.*)#', $str, $arr);
         
         sort($arr[2]);

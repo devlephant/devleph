@@ -101,7 +101,7 @@ abstract class Password
             throw new Exception("No suitable random number generator available");
         }
 
-        $salt = str_replace(array('+', '$'), array('.', ''), base64_encode($buffer));
+        $salt = str_replace(['+', '$'], ['.', ''], base64_encode($buffer));
 
         return $salt;
     }
@@ -135,7 +135,7 @@ abstract class Password
             $salt = self::generateSalt();
         } else {
             // Remove dollar signs from the salt, as we use that as a separator.
-            $salt = str_replace(array('+', '$'), array('.', ''), base64_encode($salt));
+            $salt = str_replace(['+', '$'], ['.', ''], base64_encode($salt));
         }
 
         $hash = scrypt($password, $salt, $N, $r, $p, self::$_keyLength);

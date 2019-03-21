@@ -135,7 +135,7 @@ class TSizesDialog extends TPanel {
         
         if (c('fmSizesPosition',1)->showModal()==mrOk){
             
-            $anchors = array();
+            $anchors = [];
             if (c('fmSizesPosition->c_left',1)->checked)
                 $anchors[] = 'akLeft';
                 

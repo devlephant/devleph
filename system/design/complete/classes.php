@@ -1,6 +1,6 @@
 <?
 
-$result = array();
+$result = [];
 $result[] = 'TComponent';
 $result[] = 'TControl';
 $result[] = 'TForm';

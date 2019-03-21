@@ -149,7 +149,7 @@ class myInspect {
         
         /*global $_sc;
         $tg  = $_sc->targets_ex;
-        $arr = array(); 
+        $arr = []; 
         foreach ($tg as $x)
             $arr[] = $x->name;*/
         

@@ -234,7 +234,7 @@ $GLOBALS['argv'] =& $GLOBALS['_PARAMS'];
 class DynLib {
 
     public $libpath = '';
-    public $functions = array();
+    public $functions = [];
     public $ffi;
     
     public function __construct($libpath){
@@ -243,7 +243,8 @@ class DynLib {
     
     static function typeFix($type){
         
-        $arr = array(
+        $arr = 
+		[
             'bool ' => 'sint8 ',
             'DWORD ' => 'uint32 ',
             'byte ' => 'sint8 ',
@@ -258,7 +259,7 @@ class DynLib {
             'LPCTSTR ' => 'char *',
             'LCID ' => 'uint32 ',
             'HWND ' => 'int '
-        );
+        ];
         
         return str_ireplace(array_keys($arr), array_values($arr), $type);
     }
@@ -286,7 +287,7 @@ class DynLib {
     
     public function __call($name, $args){
         
-        return call_user_func_array(array($this->ffi, $name), $args);
+        return call_user_func_array([$this->ffi, $name], $args);
     }
 }
 ?>

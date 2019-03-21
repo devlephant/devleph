@@ -1,11 +1,11 @@
 <?php
 class dstudio_loader
 {
-	public static function include( $file )
+	public static function inc( $file )
 	{
 		
 	}
-	public static function require( $file )
+	public static function req( $file )
 	{
 		
 	}

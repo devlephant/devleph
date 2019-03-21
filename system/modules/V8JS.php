@@ -1,5 +1,5 @@
 <?
-	$GLOBALS["__chromium_allowedcall_push"] = array();
+	$GLOBALS["__chromium_allowedcall_push"] = [];
 	
 	function chromium_allowedcall_push($func){
 		if(is_callable($func)){

@@ -11,7 +11,7 @@ class TDataVar extends __TNoVisual {
     
     static function callStartChange($self){
         
-        __exEvents::callEventEx($self, array(), 'OnStartChange');
+        __exEvents::callEventEx($self, [], 'OnStartChange');
     }
     
     public function __inspectProperties(){

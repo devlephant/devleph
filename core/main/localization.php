@@ -8,7 +8,7 @@ class Localization {
 		
         if (isset($GLOBALS['__LANG_MESSAGES'])) unset($GLOBALS['__LANG_MESSAGES']);
             
-	$GLOBALS['__LANG_MESSAGES'] = array();
+		$GLOBALS['__LANG_MESSAGES'] = [];
 			
         
 	    if (file_exists($lang_file)){
@@ -21,7 +21,7 @@ class Localization {
     
     // 
     static function inc($file){
-	$__M = array(); //fix bug...
+	$__M = []; //fix bug...
 	$file = replaceSl($file);
 	$dir = dirname($file);
 	
@@ -174,13 +174,14 @@ class Localization {
     
     static function detectLocale($str){
 
-	    $charsets = Array(
-		'koi8-r' => 0,
-		'windows-1251' => 0,
-		'cp866' => 0,
-		'utf-8' => 0,
-		'mac' => 0
-		);
+	    $charsets =
+		[
+			'koi8-r' => 0,
+			'windows-1251' => 0,
+			'cp866' => 0,
+			'utf-8' => 0,
+			'mac' => 0
+		];
 	
 	for ( $i = 0, $length = strlen($str); $i < $length; $i++ ) {
 	$char = ord($str[$i]);
@@ -223,7 +224,7 @@ class Localization {
 		    return Localization::getMsg($text);
 	    }
 		
-	    $arg = array();
+	    $arg = [];
 	    for($i = 1; $i < func_num_args(); $i++) {
 	        $arg[] = func_get_arg($i); 
 	    }

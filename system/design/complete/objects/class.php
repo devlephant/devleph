@@ -14,8 +14,8 @@ class complete_Objects {
         
         global $_FORMS, $formSelected;
         
-        $arr['item']   = array();
-        $arr['insert'] = array();
+        $arr['item']   = [];
+        $arr['insert'] = [];
         
         $forms = myProject::getFormsObjects();
         

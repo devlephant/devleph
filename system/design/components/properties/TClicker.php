@@ -1,4 +1,4 @@
 <?
 
-$result = array();
+$result = [];
 return $result;

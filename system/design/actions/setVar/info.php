@@ -7,7 +7,7 @@
                                      Has created Haker
 */
 
-$n = array();
+$n = [];
 
     
     $n['PREG'] = '%\$([a-z]{1})([a-z0-9\_]*)([ ]+)=(.*)%i';

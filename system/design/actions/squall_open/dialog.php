@@ -1,6 +1,6 @@
 <?
 
-$r = array();
+$r = [];
 
 $r[] = array(
              'TYPE'=>'OBJECTS',

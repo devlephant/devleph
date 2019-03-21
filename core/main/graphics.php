@@ -7,25 +7,24 @@
   
 */
 global $_c;
-
-$_c->setConstList(array('bsSolid', 'bsClear', 'bsHorizontal', 'bsVertical',
-    'bsFDiagonal', 'bsBDiagonal', 'bsCross', 'bsDiagCross'),0);
+$_c->setConstList(['bsSolid', 'bsClear', 'bsHorizontal', 'bsVertical',
+    'bsFDiagonal', 'bsBDiagonal', 'bsCross', 'bsDiagCross'],0);
 
 /* TPenMode = (pmBlack, pmWhite, pmNop, pmNot, pmCopy, pmNotCopy,
     pmMergePenNot, pmMaskPenNot, pmMergeNotPen, pmMaskNotPen, pmMerge,
     pmNotMerge, pmMask, pmNotMask, pmXor, pmNotXor);
 */
-$_c->setConstList(array('pmBlack', 'pmWhite', 'pmNop', 'pmNot', 'pmCopy', 'pmNotCopy',
+$_c->setConstList(['pmBlack', 'pmWhite', 'pmNop', 'pmNot', 'pmCopy', 'pmNotCopy',
     'pmMergePenNot', 'pmMaskPenNot', 'pmMergeNotPen', 'pmMaskNotPen', 'pmMerge',
-    'pmNotMerge', 'pmMask', 'pmNotMask', 'pmXor', 'pmNotXor'),0);
+    'pmNotMerge', 'pmMask', 'pmNotMask', 'pmXor', 'pmNotXor'],0);
 
 /* TPenStyle = (psSolid, psDash, psDot, psDashDot, psDashDotDot, psClear,
     psInsideFrame);
 */
-$_c->setConstList(array('psSolid', 'psDash', 'psDot', 'psDashDot', 'psDashDotDot', 'psClear',
-    'psInsideFrame', 'psUserStyle', 'psAlternate'),0);
+$_c->setConstList(['psSolid', 'psDash', 'psDot', 'psDashDot', 'psDashDotDot', 'psClear',
+    'psInsideFrame', 'psUserStyle', 'psAlternate'],0);
 
-$_c->setConstList(array('stRectangle', 'stSquare', 'stRoundRect', 'stRoundSquare', 'stEllipse', 'stCircle'),0);
+$_c->setConstList(['stRectangle', 'stSquare', 'stRoundRect', 'stRoundSquare', 'stEllipse', 'stCircle'],0);
 
 
   $_c->COLOR_SCROLLBAR = 0;

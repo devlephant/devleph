@@ -137,7 +137,7 @@ class group {
         
         global $SCREEN;
         $forms  = $SCREEN->formList();
-        $result = array();
+        $result = [];
         foreach ($forms as $el)
             if (eregi($str, $el->name))
                 $result[] = $el;
@@ -203,7 +203,7 @@ class group {
     
     public function clear(){
         
-        $this->objects = array();
+        $this->objects = [];
     }
     
     public function addObject($obj){
@@ -216,7 +216,7 @@ class group {
     
     static function set($self, $nm, $value){
 
-        if (in_array(strtolower($nm),array('x','y','w','h')))
+        if (in_array(strtolower($nm),['x','y','w','h']))
             return control_xywh($self, $nm, $value);
         
         _c($self)->$nm = $value;
@@ -227,7 +227,7 @@ class group {
         if (!method_exists($this, $name)){
             
             foreach ((array)$this->objects as $obj){
-                call_user_func(array(_c($obj), $name), $args);
+                call_user_func([_c($obj), $name], $args);
             }
         }
     }

@@ -1,6 +1,6 @@
 <?
 
-$n = array();
+$n = [];
 
     
     $n['PREG'] = '%app::restore()%i';

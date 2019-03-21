@@ -7,7 +7,7 @@
                                      Has created Haker
 */
 
-$n = array();
+$n = [];
         
   $n['PREG'] = '%LoadForm\((.*)\)[\;]?%i';   
   $n['COMMAND'] = 'LoadForm';  

@@ -6,7 +6,7 @@
     
 
     class TResize {
-        private static $TimerTick = array();
+        private static $TimerTick = [];
         public static $CallBackInSitu = null;
 
         public static function SetInSitu($CallBack) {
@@ -24,7 +24,7 @@
             }
         }
         
-        public static function Start($obj, $v = array(), $speed  = 15) {
+        public static function Start($obj, $v = [], $speed  = 15) {
             if($obj = array_key_exists($name = is_object($obj) ? $obj->name : $obj, self::$TimerTick)
                 ? self::$TimerTick[$name][0] 
                 : (is_object($obj)

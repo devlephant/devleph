@@ -9,8 +9,8 @@ class myActions {
         $dir = SYSTEM_DIR . '/design/actions/';
         $actions = findDirs($dir);
         
-        $result = array();
-        $groups = array();
+        $result = [];
+        $groups = [];
         
         $id_icon = 0;
         foreach ($actions as $id=>$action){
@@ -34,7 +34,7 @@ class myActions {
             if (file_exists($dir . $action . '/class.php'))
                 require $dir . $action . '/class.php';
             
-            $item = array();
+            $item = [];
             $item['CODE'] = $action;
             $item['ID']   = $id;
             
@@ -102,7 +102,7 @@ class myActions {
             
             /* очень грузит начальную загрузку среды, поэтому создаем диалоги по необходимости,
               а не сразу все...
-            $params = array();
+            $params = [];
             // создаем форму диалог, в парамс достаем объекты формы...
             $item['DIALOG'] = self::createDialog($action, $item, $params);
             // записываем объекты формы сюда..
@@ -403,8 +403,8 @@ class action_Simple {
 		}
         
         $is_str = false;
-        $dd_q   = array();
-        $d_q    = array();
+        $dd_q   = [];
+        $d_q    = [];
         $skoba  = 0;
         for($i=0;$i<strlen($str);$i++){
             
@@ -544,7 +544,7 @@ class action_Simple {
             
             $id = myActions::getActionByCODE_id($action['CODE']);
             
-            $params = array();
+            $params = [];
             $form   = myActions::createDialog($action['CODE'],$action, $params);
 			
             $arrayActions[$id]['DIALOG'] =& $form;
@@ -564,7 +564,7 @@ class action_Simple {
             $command    = $tmp->getLineCommand(self::getLine(), $action);
         } else {
             $command = $action['COMMAND'];
-            $params_str = array();    
+            $params_str = [];    
         }
         
             foreach ($action['PARAMS_OBJS'] as $i=>$el){
@@ -584,7 +584,7 @@ class action_Simple {
         
         if (!count($action['PARAMS_OBJS']) || $form->showModal() == mrOk){
             
-            $result = array();
+            $result = [];
             foreach ($action['PARAMS_OBJS'] as $i=>$el){
                 
                 $value = $el->getValue();

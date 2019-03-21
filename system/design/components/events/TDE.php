@@ -1,4 +1,4 @@
 <?php
-$result = array();
+$result = [];
 return $result;
 ?>

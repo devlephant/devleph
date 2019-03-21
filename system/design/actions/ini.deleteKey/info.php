@@ -7,7 +7,7 @@
                                      Has created Haker
 */
 
-$n = array();
+$n = [];
 
     
     $n['PREG'] = '%ini::deleteKey\((.*)\)%i';

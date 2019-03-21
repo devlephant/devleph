@@ -44,10 +44,10 @@ class AOP_CodeParser
         $this->index = $this->init;
 
         // Initial Invalid Tokens (blank array means none)
-        $this->invalidTokens = array();
+        $this->invalidTokens = [];
 
         // Initial Valid Tokens (blank array means all)
-        $this->validTokens = array();
+        $this->validTokens = [];
     }
 
 
@@ -72,7 +72,7 @@ class AOP_CodeParser
     }
 
 
-    function setValidTokens($validTokens = array())
+    function setValidTokens($validTokens = [])
     {
         if (!is_array($validTokens)) {
             $validTokens = array($validTokens);
@@ -88,7 +88,7 @@ class AOP_CodeParser
     }
 
 
-    function setInvalidTokens($invalidTokens = array())
+    function setInvalidTokens($invalidTokens = [])
     {
         if (!is_array($invalidTokens)) {
             $invalidTokens = array($invalidTokens);
@@ -449,7 +449,7 @@ class PHPSyntax {
         $tmp = str_replace(_BR_,' ', $org_code);
         preg_match_all('/c\(\"([a-z\_0-9\-\>]+)\"\)/i', $tmp, $arr);
         preg_match_all('/c\(\\\'([a-z\_0-9\-\>]+)\\\'\)/i', $tmp, $arr2);
-        $check_objs = array();
+        $check_objs = [];
         
         $arr[1] = array_merge($arr[1], $arr2[1]);
         
@@ -468,7 +468,7 @@ class PHPSyntax {
         }
     }
     
-    public function addError($type, $msg, $line = -1, $prs = array()){
+    public function addError($type, $msg, $line = -1, $prs = []){
         
         $this->errors[] = array('type'=>$type, 'msg'=>$msg, 'line'=>$line, 'prs'=>$prs);
     }
@@ -498,7 +498,7 @@ class PHPSyntax {
     
     public function check($code){
         
-        $this->errors = array();
+        $this->errors = [];
         
         $result = $this->checkSkoba($code);
         $this->checkDivZero($result, $code);
@@ -528,10 +528,10 @@ class PHPSyntax {
         if (!$doc_root)
             $doc_root = DOC_ROOT;
         
-        $result['functions'] = array();
-        $result['classes']   = array(); // + methods
-        $result['vars']      = array();
-        $result['consts']    = array();
+        $result['functions'] = [];
+        $result['classes']   = []; // + methods
+        $result['vars']      = [];
+        $result['consts']    = [];
         
         $to_add_func   = true;
         $to_add_method = false;
@@ -557,7 +557,7 @@ class PHPSyntax {
                 
 				if(isset($syn->tokens[$i-2][0]))
                 if ($syn->tokens[$i-2][0]==T_CLASS){
-                    $result['classes'][$name] = array('name'=>$name, 'methods'=>array(),'construct'=>false);
+                    $result['classes'][$name] = array('name'=>$name, 'methods'=>[],'construct'=>false);
                     $n_class = $name;
                 }
                 
@@ -573,8 +573,8 @@ class PHPSyntax {
 						$desc = '';
 					}
                     
-                    $params   = array();
-                    $defaults = array();
+                    $params   = [];
+                    $defaults = [];
                     for($k=$i;$k<count($syn->tokens);$k++){
                             
                             if ($syn->tokens[$k][0]==T_VARIABLE){

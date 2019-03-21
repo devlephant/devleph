@@ -3,7 +3,7 @@ $act_panel = c('fmMain->action_panel');
 
 class design_Reader{
     
-    public $controls = array();
+    public $controls = [];
     
     public function loadConfig($dir){
         $dir = replaceSl($dir);

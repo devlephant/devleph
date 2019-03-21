@@ -149,7 +149,7 @@ class TMenuItem extends TControl {
 		return menuitem_itemcount($this->self);
 	}
 	public function get_items(){
-		$res = array();
+		$res = [];
 		if( menuitem_itemcount($this->self) <= 0 ) return $res;
 		for($i=0;$i<menuitem_itemcount($this->self);$i++)
 		{
@@ -252,7 +252,7 @@ class TPopupMenu extends TControl {
 	}
 	
 	function get_items(){
-		$result = array();
+		$result = [];
 		for ($i=0;$i<popup_item_count($this->self)-1;$i++){
 			$result[] = _c(popup_item_id($this->self, $i));
 		}

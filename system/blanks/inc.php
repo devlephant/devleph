@@ -9,7 +9,7 @@ class DS_Loader
 	public $startTime;
 	public $formsData;
 	public $isStart = false;
-	private $checks = array();
+	private $checks = [];
 
 	static public function InitLoader($no_load = false)
 	{
@@ -99,7 +99,7 @@ class DS_Loader
 			if($this->config['debug']['enabled'] )
 				define('DEBUG_OWNER_WINDOW', param_str(2));
 			
-			Receiver::send(param_str(2), array('RECEIVER_HANDLE'=>receiver_handle()));
+			Receiver::send(param_str(2), ['RECEIVER_HANDLE'=>receiver_handle()]);
 		}
 
 		define('ERROR_NO_WARNING', (bool) $this->config['debug']['no_warnings']);

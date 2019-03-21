@@ -1,5 +1,5 @@
 ﻿<?
-$result = array(); //Объявляем переменную для свойств
+$result = []; //Объявляем переменную для свойств
 $result[] = array( 
 				'CAPTION'=>t('Color'),
 				'TYPE'=>'color',

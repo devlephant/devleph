@@ -1,6 +1,6 @@
 <?
 
-$result = array();
+$result = [];
 
 $result['GROUP']   = 'dialogs';
 $result['CLASS']   = basenameNoExt(__FILE__);

@@ -20,7 +20,7 @@ class myEvents {
         if (isset($componentEvents[$class]))
             return $componentEvents[$class];
         else
-            return array();
+            return [];
     }
     
     static function phpEditorShow($self){
@@ -34,7 +34,7 @@ class myEvents {
         $find = c('fmPHPEditor->f_text')->text;
         $reg  = val('fmPHPEditor->c_register');
         
-        $GLOBALS['__find'] = array();
+        $GLOBALS['__find'] = [];
         
         if (!$text || !$find) return;
         
@@ -292,7 +292,7 @@ class myEvents {
         }
             
         unset($this->buttons);
-        $this->buttons = array();
+        $this->buttons = [];
     }
     
     function genList(){

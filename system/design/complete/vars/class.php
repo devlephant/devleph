@@ -11,7 +11,7 @@ class complete_Vars {
     
     function getFormVars(){
         
-        $result = array();
+        $result = [];
         $forms  = myProject::getFormsObjects();
       
         foreach($forms as $form)
@@ -76,8 +76,8 @@ class complete_Vars {
         $vars = array_unique($vars);
         sort($vars);
         
-        $arr['item']   = array();
-        $arr['insert'] = array();
+        $arr['item']   = [];
+        $arr['insert'] = [];
         
         if (!count($vars)) return false;
         

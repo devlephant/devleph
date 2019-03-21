@@ -639,7 +639,7 @@ class myProperties {
                 //$obj->inText = $this->selObj->$prop;
                 /*global $_FORMS, $formSelected;
                 $forms = myProject::getFormsObjects();
-                $items = array();
+                $items = [];
                 
                 if ($param['ONE_FORM']){
                     
@@ -659,7 +659,7 @@ class myProperties {
                 
             } elseif ($param['TYPE']=='files') {
                 
-                $items = array();
+                $items = [];
                 
                 global $projectFile;
                 $files = findFiles(dirname($projectFile), $param['EXT'], $param['RECURSIVE'], true);
@@ -1360,7 +1360,7 @@ class myProperties {
     static function getPropertyText($code){
         
         global $componentProps;
-        $result = array();
+        $result = [];
         
         foreach ((array)$componentProps as $x)
             foreach ((array)$x as $el){
@@ -1380,7 +1380,7 @@ class myProperties {
     static function getPropertiesInfo($class){
         
         global $componentProps;
-        $result = array();
+        $result = [];
         
         foreach ((array)$componentProps[$class] as $el){
             

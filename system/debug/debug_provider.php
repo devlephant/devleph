@@ -21,15 +21,16 @@ class __dcProvider{
 		if( isset($GLOBALS['__exEvents']['__daemon__'][5]) ){
 			_dcReceiver::Send(
 				constant('DEBUG_OWNER_WINDOW'),
-				array(
+				[
 					'type' => "incall_message",
 					'subject' => "debug_mode_receiver",
-					'data' => array(
+					'data' =>
+					[
 						'message_type' => '',
 						'status' => 'received',
 						'indata_md5' => md5( print_r($GLOBALS['__exEvents']['__daemon__'][5], true) ),
-						),
-					),
+					],
+				]
 				);
 			unset($GLOBALS['__exEvents']['__daemon__'][5]);
 		}

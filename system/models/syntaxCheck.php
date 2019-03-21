@@ -88,7 +88,7 @@ class mySyntaxCheck {
     public static function checkProject($prefix = ''){
         
         global $projectFile;
-        self::$errors = array();         
+        self::$errors = [];         
         foreach ( myProject::getFormsObjects() as $form => $objs ){
             
             self::checkForm($form, $form);

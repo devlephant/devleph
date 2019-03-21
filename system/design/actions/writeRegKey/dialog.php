@@ -1,4 +1,4 @@
-<?$r = array(); 
+<?$r = []; 
 $r[] = array(
              'TYPE'=>'COMBO',
              'CAPTION'=>t('Section'),             

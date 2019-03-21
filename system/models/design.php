@@ -26,14 +26,14 @@ class myDesign {
                     return $group;	
 			}
         
-        return array();
+        return [];
     }
     
     // добавляет выделенные элементы в группу...
     static function addGroup(){
         
         global $_sc;
-        $group   = array();
+        $group   = [];
         $targets = $_sc->targets_ex;
         $arr  = (array)myProject::cfg('_grouping');
         
@@ -881,7 +881,7 @@ class myDesign {
         
         $components = $_sc->targets_ex;
         
-        $unlinks = array();
+        $unlinks = [];
         foreach ($components as $el){
             $childs = $el->childComponents();
             foreach ($childs as $child)

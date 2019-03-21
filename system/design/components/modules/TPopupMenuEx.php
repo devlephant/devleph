@@ -15,7 +15,7 @@ class TPopupMenuEx extends __TNoVisual{
 	//pre($this->data);
 	$obj = new TPopupMenu(_c($this->owner));
         
-	$list = array();
+	$list = [];
 	
 	$data = explode(_BR_,$this->data);
 	$list[0] = $obj;
@@ -28,7 +28,7 @@ class TPopupMenuEx extends __TNoVisual{
 	    
 	    $item = str_replace(chr(9),' ',$item);
             
-            $params = array();
+            $params = [];
             $k      = strpos($item,'[');
             if ($k!==false){
                 $text   = trim(substr($item, 0, $k));

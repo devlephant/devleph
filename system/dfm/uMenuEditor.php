@@ -4,12 +4,12 @@ class menuEditor {
     
     static function resultToText($result){
         
-        $return = array();
+        $return = [];
         
         foreach((array)$result as $item){
             $item = str_replace(chr(9),' ',$item);
             
-            $params = array();
+            $params = [];
             $k      = strpos($item,'[');
             if ($k!==false){
                 $text   = substr($item, 0, $k);
@@ -39,7 +39,7 @@ class menuEditor {
 			
             $item = $result[$index];
             
-            $params = array();
+            $params = [];
             $k      = strpos($item,'[');
             if ($k!==false){
                 $text   = (substr($item, 0, $k));

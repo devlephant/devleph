@@ -10,11 +10,11 @@
 global $_c;
 
 /* results of dialogs and forms */
-$_c->setConstList(array(
+$_c->setConstList([
 			'idOk','idCancel','idAbort','idRetry','idIgnore',
 			'idYes','idNo','idClose','idHelp','idTryAgain',
 			'idContinue'
-                        ));
+                        ]);
 
 $_c->mrNone     = 0;
 $_c->mrOk       = idOk;
@@ -55,7 +55,9 @@ $_c->mrYesToAll = mrNoToAll + 1;
   $_c->crSizeAll     = -22;
   
 
- $GLOBALS['cursors_meta'] = array(0 =>'crDefault',
+ $GLOBALS['cursors_meta'] = 
+	[
+		  0 =>'crDefault',
 	      -1=>'crNone',
 	      -2=>'crArrow',
 	      -3=>'crCross',
@@ -77,30 +79,30 @@ $_c->mrYesToAll = mrNoToAll + 1;
 	      -19=>'crAppStart',
 	      -20=>'crHelp',
 	      -21=>'crHandPoint',
-	);
+	];
  
 
   
 /* close type */
-$_c->setConstList(array('caNone', 'caHide', 'caFree', 'caMinimize'),0);
+$_c->setConstList(['caNone', 'caHide', 'caFree', 'caMinimize'],0);
   
 /* window state */
-$_c->setConstList(array('wsNormal','wsMinimized','wsMaximized'),0);
+$_c->setConstList(['wsNormal','wsMinimized','wsMaximized'],0);
 
 //TFormStyle = (fsNormal, fsMDIChild, fsMDIForm, fsStayOnTop);
-$_c->setConstList(array('fsNormal', 'fsMDIChild', 'fsMDIForm', 'fsStayOnTop'),0);
+$_c->setConstList(['fsNormal', 'fsMDIChild', 'fsMDIForm', 'fsStayOnTop'],0);
 
 //TFormBorderStyle = (bsNone, bsSingle, bsSizeable, bsDialog, bsToolWindow, bsSizeToolWin);
-$_c->setConstList(array('bsNone', 'bsSingle', 'bsSizeable', 'bsDialog', 'bsToolWindow', 'bsSizeToolWin'),0);
+$_c->setConstList(['bsNone', 'bsSingle', 'bsSizeable', 'bsDialog', 'bsToolWindow', 'bsSizeToolWin'],0);
 
-$_c->setConstList(array('poDesigned', 'poDefault', 'poDefaultPosOnly', 'poDefaultSizeOnly', 'poScreenCenter',
-			'poDesktopCenter', 'poMainFormCenter', 'poOwnerFormCenter'),0);
+$_c->setConstList(['poDesigned', 'poDefault', 'poDefaultPosOnly', 'poDefaultSizeOnly', 'poScreenCenter',
+			'poDesktopCenter', 'poMainFormCenter', 'poOwnerFormCenter'],0);
 
-$_c->setConstList(array('dmManual', 'dmAutomatic'), 0);
-$_c->setConstList(array('dkDock', 'dkDrag'), 0);
+$_c->setConstList(['dmManual', 'dmAutomatic'], 0);
+$_c->setConstList(['dkDock', 'dkDrag'], 0);
 
-class TForm extends TControl {
-	
+class TForm extends TControl
+{
 	
 	protected $_constraints;
 	protected $icon;
@@ -198,9 +200,9 @@ class TScreen extends TComponent{
         }
         
         function formList(){
-                $forms = array();
+                $forms = [];
                 $count = $this->get_formcount();
-                        
+                if($count<=0) return [];        
                         for ($i=0; $i<$count; $i++){
                                 $forms[] = asTForm($this->formById($i));
                         }

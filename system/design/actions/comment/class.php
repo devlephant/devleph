@@ -11,7 +11,7 @@ class action_comment extends action_Simple {
         $pr1 = substr($line, 0, $k+2);
         $pr2 = substr($line, $k+2, strlen($line)-strlen($pr1));
         
-        return array(trim($pr2));
+        return [trim($pr2)];
     }
     
     static function getResult($command, $params_str, $action){

@@ -124,7 +124,7 @@ class myCompile
 		exemod_addstr('$PHPSOULENGINE\\inc.php', $inc);
 
 		global $myProject;
-		$modules = array();
+		$modules = [];
 		
 		foreach ((array) $myProject->config['modules'] as $mod) {
 			if (file_exists(dirname(EXE_NAME) . $exten_dir . $mod)) {
@@ -229,7 +229,7 @@ class myCompile
 
 
 		$files = findFiles($dir, NULL, true, true);
-		$aliases = array();
+		$aliases = [];
 
 		foreach ($files as $file) {
 			$file = str_replace($dir . '/', '', $file);
@@ -245,7 +245,7 @@ class myCompile
 	{
 		global $exten_dir, $projectFile;
 		self::callModifers();
-		$md5s = array();
+		$md5s = [];
 		$dir = SYSTEM_DIR . '/modules/';
 		$files = findFiles($dir, 'php', false, true);
 
@@ -330,7 +330,7 @@ class myCompile
 			exemod_addstr('$X_S', base64_encode(serialize($esc)));
 		}
 		
-		self::$codes = array();
+		self::$codes = [];
 	}
 
 	static public function attachForms($attachData = false)
@@ -648,8 +648,8 @@ class myCompile
 	public function generateEventsClasses($DATA)
 	{
 		$code = '<? /* autocode from DS Compiler */' . _BR_ . _BR_ . _BR_;
-		$rDATA = array();
-		$classes = array();
+		$rDATA = [];
+		$classes = [];
 
 		foreach ($DATA as $form => $objs) {
 			if ($form[0] == '-') {

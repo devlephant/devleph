@@ -15,17 +15,17 @@
 
 global $_c;
 
-$_c->setConstList(array('csDropDown', 'csSimple', 'csDropDownList', 'csOwnerDrawFixed',
-    'csOwnerDrawVariable'),0);
+$_c->setConstList(['csDropDown', 'csSimple', 'csDropDownList', 'csOwnerDrawFixed',
+    'csOwnerDrawVariable'],0);
 
-$_c->setConstList(array('taLeftJustify', 'taRightJustify', 'taCenter'),0);
-$_c->setConstList(array('tlTop', 'tlCenter', 'tlBottom'),0);
-$_c->setConstList(array('ecNormal', 'ecUpperCase', 'ecLowerCase'),0);
-$_c->setConstList(array('ssNone', 'ssHorizontal', 'ssVertical', 'ssBoth'),0);
-$_c->setConstList(array('bvNone', 'bvLowered', 'bvRaised', 'bvSpace'),0);
+$_c->setConstList(['taLeftJustify', 'taRightJustify', 'taCenter'],0);
+$_c->setConstList(['tlTop', 'tlCenter', 'tlBottom'],0);
+$_c->setConstList(['ecNormal', 'ecUpperCase', 'ecLowerCase'],0);
+$_c->setConstList(['ssNone', 'ssHorizontal', 'ssVertical', 'ssBoth'],0);
+$_c->setConstList(['bvNone', 'bvLowered', 'bvRaised', 'bvSpace'],0);
 
-$_c->setConstList(array('doNoOrient', 'doHorizontal', 'doVertical'),0);
-//$_c->setConstList(array('mrNone','mrOk','mrCancel','mrAbort','mrRetry','mrIgnore','mrYes','mrNo','mrAll','mrNoToAll','mrYesToAll'),0);
+$_c->setConstList(['doNoOrient', 'doHorizontal', 'doVertical'],0);
+//$_c->setConstList(['mrNone','mrOk','mrCancel','mrAbort','mrRetry','mrIgnore','mrYes','mrNo','mrAll','mrNoToAll','mrYesToAll'],0);
 
 class TLabel extends TControl {
 	
@@ -281,7 +281,7 @@ class TListBox extends TControl {
 	function getSelected(){
 		
 		$c      = $this->items->count;
-		$result = array();
+		$result = [];
 		
 		for ($i=0;$i<$c;$i++){
 			
@@ -294,7 +294,7 @@ class TListBox extends TControl {
 	function unSelectedAll(){
 		
 		$c      = $this->items->count;
-		$result = array();
+		$result = [];
 		for ($i=0;$i<$c;$i++){			
 			$this->isSelected($i, false);
 		}
@@ -351,8 +351,8 @@ class TComboBox extends TControl {
 		return $this->get_prop('text');
 	}
 }
-
-$_c->setConstList(array('pbHorizontal', 'pbVertical'),0);
+// TProgressBarOrientation
+$_c->setConstList(['pbHorizontal', 'pbVertical'],0);
 
 class TProgressBar extends TControl {
 	

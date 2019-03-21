@@ -17,14 +17,9 @@ class TStringGrid extends TControl {
     
     function setOption($name, $value = true, $ex = false){
 		
-		$options = array();
-		if ($ex)
-			$tmp = explode(',',$this->optionsEx);
-		else {
-			$tmp = explode(',',$this->options);
-		}
+		$options = [];
 		
-		foreach ($tmp as $el)
+		foreach ( (($ex)? explode(',',$this->optionsEx): explode(',',$this->options)) as $el)
 		if ($el)
 			$options[] = trim($el);
 		
@@ -40,10 +35,9 @@ class TStringGrid extends TControl {
 				$options[] = $name;
 		}
 		
-		if ($ex){
-			$this->optionsEx = implode(',', (array)$options);
-		}
-		else
+		($ex)?
+			$this->optionsEx = implode(',', (array)$options)
+		:
 			$this->options = implode(',', (array)$options);
 	}
 	
@@ -80,7 +74,7 @@ class TStringGrid extends TControl {
     function setString($str, $head = true){
         
         $tmp = explode(_BR_, $str);
-        $arr = array();
+        $arr = [];
         
         if (!$head){
             foreach ($tmp as $line){
@@ -92,7 +86,7 @@ class TStringGrid extends TControl {
             for ($i=1;$i<count($tmp);$i++){
                 $line = explode(chr(9), $tmp[$i]);
                 
-                $result = array();
+                $result = [];
                 
                 foreach ($colNames as $id=>$name)
                 $result[$name] = $line[$id];
@@ -180,7 +174,7 @@ class TStringGrid extends TControl {
         
         $rowCount = $this->rowCount;
         $colCount = $this->colCount;
-        $result   = array();
+        $result   = [];
             
         if ($head){
             

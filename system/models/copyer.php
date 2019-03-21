@@ -7,7 +7,7 @@ class myCopyer {
     
     function stripChilds($str){
         
-        $result = array();
+        $result = [];
         $lines = explode(_BR_, $str);
         $is_child = true;
         
@@ -61,8 +61,8 @@ class myCopyer {
         
         $childs = $object->childComponents();
         
-        $result = array();
-        $events = array();
+        $result = [];
+        $events = [];
         foreach ($childs as $el){
             if ($el instanceof TTabSheet) continue;
             
@@ -95,7 +95,7 @@ class myCopyer {
         $buffer['component'] = self::toString($object);
         $buffer['events']    = self::getComponentEvent($object);
         $buffer['pageIndex'] = $object->pageIndex;
-        $buffer['childs_events'] = array();
+        $buffer['childs_events'] = [];
         $buffer['childs']    = self::getComponentInfo($object, $buffer['childs_events']);        
         $buffer['info']      = array('name'=>$object->name, 'class'=>$object->className);
         
@@ -104,7 +104,7 @@ class myCopyer {
     
     function toBufferList($objects, $cut = false, $unuseBuff = false){
         
-        $buffer = array();
+        $buffer = [];
         $buffer['is_cut'] = $cut;
         
         foreach ($objects as $el){
@@ -209,7 +209,7 @@ class myCopyer {
         }
         
         if (! is_array($buffer) ) return;
-        $result = array();
+        $result = [];
         foreach ($buffer as $x=>$component){
             if (!is_numeric($x)) continue;
             

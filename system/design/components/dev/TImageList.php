@@ -1,6 +1,6 @@
 <?
 
-$result = array();
+$result = [];
 
 $result['GROUP']   = 'system';
 $result['CLASS']   = basenameNoExt(__FILE__);

@@ -82,7 +82,7 @@ class Pointer
 /* Class for Object with property ala java */
 class _Object {  
     
-    protected $props = array();
+    protected $props = [];
     
     function __get($nm) {
 	    $s = 'get_'.$nm;
@@ -343,7 +343,7 @@ function с($str, $cached = false){
 // cSetProp('form.object.caption', 'text')
 function cSetProp($str, $value){
     
-    $str = str_ireplace(array('font.', '->'),array('font','.'),$str);
+    $str = str_ireplace(['font.', '->'],['font','.'],$str);
     $obj = c(substr($str, 0, strrpos($str,'.')));
     $method = substr($str, strrpos($str, ".")+1, strlen($str) - strrpos($str, '.'));
 
@@ -358,7 +358,7 @@ function cSetProp($str, $value){
 // cGetProp('MainForm->Button_1->Caption');
 function cGetProp($str){
     
-    $str = str_ireplace(array('font.', '->'),array('font','.'),$str);
+    $str = str_ireplace(['font.', '->'],['font','.'],$str);
     
     $obj = c(substr($str, 0, strrpos($str,'.')));
     $method = substr($str, strrpos($str, ".")+1, strlen($str) - strrpos($str, '.'));
@@ -374,7 +374,7 @@ function p($str){
 // cCallMethod('form.object.setFocus')
 function cCallMethod($str){
     
-    $str = str_ireplace(array('font.', '->'),array('font','.'),$str);
+    $str = str_ireplace(['font.', '->'],['font','.'],$str);
     $obj = c(substr($str, 0, strrpos($str,'.')));
     $method = substr($str, strrpos($str, ".")+1, strlen($str) - strrpos($str, '.'));
 
@@ -505,10 +505,13 @@ class TComponent extends TObject {
 		$result['PARAMS'][$nm] = $val;
 	    
 	    
-	    $this->setHelpKeyword( uni_serialize(
-				array('CLASS' => $class,
-					  'PARAMS'=> $result['PARAMS'], 
-				))
+	    $this->setHelpKeyword( 
+			uni_serialize(
+					[
+						  'CLASS' => $class,
+						  'PARAMS'=> $result['PARAMS'], 
+					]
+				)
 			);
 	}
 	
@@ -516,9 +519,11 @@ class TComponent extends TObject {
 	    $class = get_class($this);	
 	    $result = uni_unserialize($this->getHelpKeyword());
 	    $this->helpKeyword = uni_serialize(
-			array('CLASS' => $class,
-			      'PARAMS'=> $result['PARAMS'], 
-			));
+				[
+					  'CLASS' => $class,
+					  'PARAMS'=> $result['PARAMS'] 
+				]
+			);
 	}
 	
 	// достаем свойство...
@@ -809,7 +814,7 @@ class TControl extends TComponent {
 	
 	function parentComponents(){
 	    
-	    $result = array();
+	    $result = [];
 	    $components = $this->controlList;
 	    
 	    foreach ($components as $el){
@@ -826,7 +831,7 @@ class TControl extends TComponent {
 	// возвращает список всех компонентов объекта по паренту, а не owner'y
 	function childComponents($recursive = true){
 	    
-	    $result = array();
+	    $result = [];
 		$owner = $this->get_owner();
 	    $owner  = $owner>0? _c($owner): $this;
 	    $links  = $owner->get_componentLinks();
@@ -878,7 +883,7 @@ class TControl extends TComponent {
 	}
         
     function get_componentList(){
-        $res = array();
+        $res = [];
         $count = $this->componentCount();
 	    
         for ($i=0;$i<$count;$i++){
@@ -889,7 +894,7 @@ class TControl extends TComponent {
     }
 	
     function get_controlList(){
-        $res = array();
+        $res = [];
         $count = $this->controlCount();
         for ($i=0;$i<$count;$i++){
             $res[] = $this->controlById($i);
@@ -916,7 +921,7 @@ class TControl extends TComponent {
 	
 	function get_componentLinks(){
 	    
-	    $res = array();
+	    $res = [];
             $count = $this->componentCount();
             for ($i=0;$i<$count;$i++){
 			
@@ -1102,7 +1107,7 @@ class TControl extends TComponent {
 	
 	function get_dockList(){
 	    
-	    $result = array();
+	    $result = [];
 	    $c = $this->get_dockClientCount();
 	    
 	    for($i=0;$i<$c;$i++)
@@ -1127,7 +1132,7 @@ class TControl extends TComponent {
 
 function cMethodExists($str){
          
-    $str = str_ireplace(array('font.', '->'),array('font','.'),$str);
+    $str = str_ireplace(['font.', '->'],['font','.'],$str);
     
     $obj = c(substr($str, 0, strrpos($str,'.')));
     $method = substr($str, strrpos($str, ".")+1, strlen($str) - strrpos($str, '.'));

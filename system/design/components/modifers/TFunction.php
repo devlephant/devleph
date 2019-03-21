@@ -5,7 +5,7 @@ class modifer_TFunction {
     
     /*function listEvent(){
         
-        return array();
+        return [];
     }*/
     
     function toResult($form_name, $name, $info, $eventList){

@@ -1,6 +1,6 @@
 <?
 
-$result = array();
+$result = [];
 
 $result[] = array(
                   'CAPTION'=>t('On Mouse Enter'),

@@ -1,11 +1,11 @@
 <?
 // Resizer by kurandx
 class resize{ 
-    static $objects = array(); 
+    static $objects = []; 
     static $speed = 15; 
     static function resize_object($obj, $params=false) 
     {
-		if(!$params) $params = array();
+		if(!$params) $params = [];
 		$pars = array('x', 'y', 'w', 'h', 'func', 'speed', 'time');
 		$s = 7;
 		for($i=0;$i<$s;++$i)

@@ -140,8 +140,8 @@ class myCodegen
 
 	public function doCompileEventDATA($DATA, $forms, &$classes)
 	{
-		$rDATA = array();
-		$classes = array();
+		$rDATA = [];
+		$classes = [];
 
 		foreach ($forms as $form => $objs ) {
 			$form = strtolower($form);

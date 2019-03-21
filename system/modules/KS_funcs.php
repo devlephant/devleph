@@ -14,7 +14,7 @@
 			// Creator: Andrew Zenin //
 			///////////////////////////
 function parent_get_prop_all($obj, $prop){
-    $arr = array();
+    $arr = [];
 	while($obj->parent){
 		$obj = $obj->parent;
 		if($obj->$prop){	$arr[] = $obj->$prop;	}
@@ -37,7 +37,7 @@ function parent_set_prop_all($obj, $prop, $value, $bool=1, $res=false){
 		}
 		return $res;
 	}
-    $arr = array();
+    $arr = [];
 	while($obj->parent){
 		$obj = $obj->parent;
 		if(isset($obj->$prop)){	$obj->$prop = $value; }
@@ -89,7 +89,7 @@ function get_y($obj){
 }
 
 	function strend2($start,$end,$text){
-	$res = array();
+	$res = [];
 	foreach(explode($start, $text) as $rec){
 	$res[] = strend($start,$end,$start.$rec);
 	}
@@ -213,7 +213,7 @@ function arr_gd($length, $color_1='', $color_2=''){
     }
     if(empty($color_1)){ $color_1 = array(0,0,255); }else{ $color_1 = explode(",", $color_1); };
     if(empty($color_2)){ $color_2 = array(255,0,0); }else{ $color_2 = explode(",", $color_2); };
-        $res = array();
+        $res = [];
 
         for ($i=1;$i<=$length;$i++){
                 for ($ii=0;$ii<4;$ii++){

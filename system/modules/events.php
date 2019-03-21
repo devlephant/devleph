@@ -123,7 +123,7 @@ class eventEngine {
     
     static function eventList($object){
         
-		if( !isset(self::$DATA[strtolower(self::$form)][strtolower($object)]) ) return array();
+		if( !isset(self::$DATA[strtolower(self::$form)][strtolower($object)]) ) return [];
         return array_keys((array)self::$DATA[strtolower(self::$form)][strtolower($object)]);
     }
     
@@ -134,7 +134,7 @@ class eventEngine {
     
     static function listEventsEx($obj){
         
-        $result = array();
+        $result = [];
         $events = self::listEvents($obj);
 		
 		if(is_array($events))
@@ -148,7 +148,7 @@ class eventEngine {
         
         global $fmEdit;
         
-        self::$DATA['--indexes'][self::$form] = array();
+        self::$DATA['--indexes'][self::$form] = [];
         foreach ((array)self::$DATA[self::$form] as $obj_name=>$code){
             
             if ($obj_name == '--fmedit')
@@ -165,7 +165,7 @@ class eventEngine {
 }
 
 
-$GLOBALS['__exEvents'] = array();
+$GLOBALS['__exEvents'] = [];
 function setEchoController($obj_or_func){ DSApi::echoController($obj_or_func); }
 DSApi::echoController(false);
 

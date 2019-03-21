@@ -184,7 +184,7 @@ function f($function){
 	unset($args[0]);
 	$args = array_values($args);
 	
-	$names = array();
+	$names = [];
 	foreach ($args as $i=>$var){
 	    $var     = 'var'.$i;
 	    $$var    = $args[$i];

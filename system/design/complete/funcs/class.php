@@ -55,7 +55,7 @@ class complete_Funcs {
     function getScriptsFunctions($sort = false){
         
         global $projectFile, $myProject;
-        $funcs = array();
+        $funcs = [];
         
         $files = findFiles(dirname($projectFile).'/scripts/','php',false,true);
 		if(!empty($myProject->config['modules']))
@@ -96,7 +96,7 @@ class complete_Funcs {
         
         if ($dynamicFuncs) return $dynamicFuncs;
         
-        $funcs = array();
+        $funcs = [];
         $forms = myProject::getFormsObjects();
         foreach($forms as $form)
             foreach($form as $obj)
@@ -152,8 +152,8 @@ class complete_Funcs {
         
         global $funcsArr;
         
-        $arr['item']   = array();
-        $arr['insert'] = array();
+        $arr['item']   = [];
+        $arr['insert'] = [];
         
         $funcs = unserialize(file_get_contents(dirname(__FILE__).'/func_infos.db'));
         
@@ -184,7 +184,7 @@ class complete_Funcs {
     
     static function generateBB($funcs){
         
-        $arr = array('insert'=>array(),'item'=>array());
+        $arr = array('insert'=>[],'item'=>[]);
         foreach ($funcs as $i=>$info){
             
             $func = $info['NAME'];
@@ -231,8 +231,8 @@ class complete_Funcs {
             return self::dynamicFuncs( $funcsArr );
         }
         
-        $arr['item']   = array();
-        $arr['insert'] = array();
+        $arr['item']   = [];
+        $arr['insert'] = [];
         
         $funcs = unserialize(file_get_contents(dirname(__FILE__).'/func_infos.db'));
         

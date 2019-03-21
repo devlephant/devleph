@@ -211,7 +211,7 @@ class ev_lst_objects {
             $class = $arr[$findex][$index]['CLASS'];
         
         $arr = myProperties::getPropertiesInfo($class);
-        $result = array();
+        $result = [];
         foreach ($arr as $el)
             $result[] = $el['CAPTION'];
         

@@ -5,11 +5,11 @@ $cp = c('fmComponents->list');
 
 	foreach($cp->groups as $cpgr){
 		_c($cpgr)->free();
-		$cp->groups = $cp->items = array();
+		$cp->groups = $cp->items = [];
 	}
     ////// обновляем панель компонентов /////////
     
-        $componentClasses = array();
+        $componentClasses = [];
         $groups = c('fmComponents->list')->groups;
         foreach ($_cComplist as $c){
 			if( strpos(strtolower(' '.$c['CAPTION'] .' - '. $c['CLASS']), strtolower($text)) ||
@@ -36,11 +36,11 @@ global $_cComplist;
 $cp = c('fmComponents->list');
 	foreach($cp->groups as $cpgr){
 		_c($cpgr)->free();
-		$cp->groups = $cp->items = array();
+		$cp->groups = $cp->items = [];
 	}
     ////// обновляем панель компонентов /////////
     
-        $componentClasses = array();
+        $componentClasses = [];
         $groups = c('fmComponents->list')->groups;
         foreach ($_cComplist as $c){
 			if (!in_array($c['GROUP'], $groups)){
@@ -60,7 +60,7 @@ $cp = c('fmComponents->list');
 }
 
 class evfmMain {
-    public static $visfix = array();
+    public static $visfix = [];
     static function checkVer($file_info, $last_ver){
         
         global $dsg_cfg;

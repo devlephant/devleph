@@ -55,7 +55,7 @@ class TStringGridMod extends TStringGrid {
 			$index = $grid->fixedRows;
 		}
 		for($y = $index; $y < $grid->rowCount; $y++){
-			$grid->rows($y, array());
+			$grid->rows($y, []);
 		}
 		if(is_array($fixCols)){
 			foreach($fixCols as $x=>$arr){
@@ -76,7 +76,7 @@ class TStringGridMod extends TStringGrid {
 		for($i = $this->rowCount; $i > $n; $i--){
 			$this->rows($i, $this->rows($i-1));
 		}
-		$this->rows($n, array());
+		$this->rows($n, []);
 		$this->row = $n;
 	}
 
@@ -92,7 +92,7 @@ class TStringGridMod extends TStringGrid {
 		for($i = $this->colCount; $i > $n; $i--){
 			$this->cols($i, $this->cols($i-1));
 		}
-		$this->cols($n, array());
+		$this->cols($n, []);
 		$this->col = $n;
 	}
 
@@ -110,7 +110,7 @@ class TStringGridMod extends TStringGrid {
 				}
 				$this->rowCount -= 1;
 			}else{
-				$this->rows($index, array());
+				$this->rows($index, []);
 			}
 		}
 	}
@@ -129,7 +129,7 @@ class TStringGridMod extends TStringGrid {
 				}
 				$this->colCount -= 1;
 			}else{
-				$this->cols($index, array());
+				$this->cols($index, []);
 			}
 		}
 	}
@@ -200,19 +200,19 @@ class TStringGridMod extends TStringGrid {
 		$this->colCount = $colCount;
 		if($cfr){
 			for($i = 0; $i < $this->fixedRows; $i++){
-				$this->rows($i, array());
+				$this->rows($i, []);
 			}
 		}
 		if($cfc){
 			for($i = 0; $i < $this->fixedCols; $i++){
-				$this->cols($i, array());
+				$this->cols($i, []);
 			}
 		}
 		$n = 0;
 		for($i=$frows; $i<$rowCount; $i++){
 			$arr = $array[$n++];
 			if($fcols){
-				$re = array();
+				$re = [];
 				for($f = 0; $f < $fcols; $f++){
 					$fixCols = $this->cols($f);
 					$re[] = $fixCols[$i];
@@ -260,19 +260,19 @@ class TStringGridMod extends TStringGrid {
 		$this->rowCount = $rowCount;
 		if($cfr){
 			for($i = 0; $i < $this->fixedCols; $i++){
-				$this->cols($i, array());
+				$this->cols($i, []);
 			}
 		}
 		if($cfc){
 			for($i = 0; $i < $this->fixedRows; $i++){
-				$this->rows($i, array());
+				$this->rows($i, []);
 			}
 		}
 		$n = 0;
 		for($i=$fcols; $i<$colCount; $i++){
 			$arr = $array[$n++];
 			if($frows){
-				$re = array();
+				$re = [];
 				for($f = 0; $f < $frows; $f++){
 					$fixRows = $this->rows($f);
 					$re[] = $fixRows[$i];

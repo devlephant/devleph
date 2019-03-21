@@ -117,7 +117,7 @@ class DSApi {
             $fmEdit->visible = $info['visible'];
         }
         
-        $icons = array();
+        $icons = [];
         if ($info['i_close'] || !isset($info['i_close']))
             $icons[] = 'biSystemMenu';
         if ($info['i_min'] || !isset($info['i_min']))

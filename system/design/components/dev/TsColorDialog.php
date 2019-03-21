@@ -1,6 +1,6 @@
 <?
 
-$result = array();
+$result = [];
 
 $result['GROUP']   = 'Alpha Dialogs';
 $result['CLASS']   = basenameNoExt(__FILE__);

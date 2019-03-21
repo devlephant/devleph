@@ -2,8 +2,8 @@
 
 global $_IMAGES16, $_IMAGES24, $_IMAGES32, $allImages;
 
-$allImages = array();
-$is_exists = array();
+$allImages = [];
+$is_exists = [];
 $c         = 0;
 $root1	   = SYSTEM_DIR . '/images/';
 $root2	   = SYSTEM_DIR . '/images/btns/' . myOptions::get('prefs','studio_theme', 'light') . '/';

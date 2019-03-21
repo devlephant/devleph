@@ -5,9 +5,9 @@ return call_user_func_array($name, array_slice(func_get_args(), 1, func_num_args
 
 switch( strtolower($name) )
 {
-case 'gui_class_proparray': return array(); break;
-case 'gui_proparray': return array(); break;
-case 'gui_methodlist': return array(); break;
+case 'gui_class_proparray': return []; break;
+case 'gui_proparray': return []; break;
+case 'gui_methodlist': return []; break;
 default: return false; break;
 }
 };

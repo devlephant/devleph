@@ -126,7 +126,7 @@ function dir_copy($dir, $to){
     $to = replaceSl($to);
     $dir = replaceSl($dir);
     $dir = realpath(str_replace(['\\\\\\', '\\\\', '///', '//'], ['\\', '\\', '/', '/'], $dir));
-    $result = array();
+    $result = [];
     if (!is_dir($dir)) return false;
     
     $files = findFiles($dir, null, true, true);

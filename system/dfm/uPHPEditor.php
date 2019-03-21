@@ -495,7 +495,7 @@ class EditorSynt
 			$s->free();
 			unset( $syntItems[$e] );
 		}
-		$syntItems = array();
+		$syntItems = [];
 	}
 	
 	static function loadFirstSyntax()

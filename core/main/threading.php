@@ -15,8 +15,8 @@
 */
 
 global $_c;
-$_c->setConstList(array('tpIdle', 'tpLowest', 'tpLower', 'tpNormal', 'tpHigher', 'tpHighest',
-    'tpTimeCritical'),0);
+$_c->setConstList(['tpIdle', 'tpLowest', 'tpLower', 'tpNormal', 'tpHigher', 'tpHighest',
+    'tpTimeCritical'],0);
 
 
 function safe($code, $func){
@@ -37,7 +37,7 @@ function sync($function_name){
         //$th = TThread::get($GLOBALS['THREAD_SELF']);
         
         if ( func_num_args() == 1 ){
-            gui_threadSync($GLOBALS['THREAD_SELF'], 'TThread::__syncFull', igbinary_serialize(array('___callback'=>$function_name)));
+            gui_threadSync($GLOBALS['THREAD_SELF'], 'TThread::__syncFull', igbinary_serialize(['___callback'=>$function_name]));
         } else {
             
             $args = func_get_arg(1);
@@ -83,7 +83,7 @@ function thread_inPool($func, $callback = null){
             $th->resume();
         }
     } else {
-        TThread::$pool[] = array($func, $callback);    
+        TThread::$pool[] = [$func, $callback];    
     }
 }
 
@@ -241,7 +241,7 @@ class TThread {
     public function __get($name){
         
         if ( method_exists($this, 'get_' . $name) )
-            return call_user_func(array($this, 'get_'.$name));
+            return call_user_func([$this, 'get_'.$name]);
             
         $result = igbinary_unserialize(gui_threadData($this->self, $name));
 	return $result;
@@ -250,7 +250,7 @@ class TThread {
     public function __set($name, $value){
 
         if ( method_exists($this, 'set_' . $name) )
-            return call_user_func(array($this, 'set_'.$name), $value);
+            return call_user_func([$this, 'set_'.$name], $value);
         
         gui_threadData($this->self, $name, igbinary_serialize($value));
     }

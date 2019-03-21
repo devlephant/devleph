@@ -8,7 +8,7 @@ class myComplete {
     static function updateComponentList(){
         
         $combo = c('fmPHPEditor->c_component');
-        $text = array();
+        $text = [];
         
         $forms = myProject::getFormsObjects();
         foreach($forms as $form=>$list){
@@ -396,7 +396,7 @@ class myComplete {
         
         $checker = new PHPSyntax;
         $checker->check($code);
-        $lines   = array();
+        $lines   = [];
         
         foreach ($checker->errors as $err){
             
