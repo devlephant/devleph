@@ -1,6 +1,5 @@
-<?
-
-return array(
+<?return
+[
 'GROUP'=>'Lists',
 'CLASS'=>basenameNoExt(__FILE__),
 'CAPTION'=>t('TCategoryButtons_Caption'),
@@ -9,4 +8,4 @@ return array(
 'buttonOptions'=>'boShowCaptions,boFullSize,boGradientFill,boBoldCaptions,boCaptionOnlyBorder',
 'W'=>20,
 'H'=>45,
-);
+];

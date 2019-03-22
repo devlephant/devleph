@@ -117,7 +117,7 @@ class TProgressBarEx extends TScrollBox{
 	 }
     public function load_image( $file ){
 		if( file_exists($file) )
-			if( in_array(fileExt($file), array('png', 'jpg', 'jpeg', 'emf', 'wmf', 'tiff', 'tif', 'gif', 'ico', 'bmp', 'svg') ) ) {
+			if( in_array(fileExt($file), ['png', 'jpg', 'jpeg', 'emf', 'wmf', 'tiff', 'tif', 'gif', 'ico', 'bmp', 'svg'] ) ) {
 				$this->_file = $file;
 				return true;
 			}
@@ -309,7 +309,8 @@ class TProgressBarEx extends TScrollBox{
 	}
 	private static function formatResult($str, $pos, $max)
 	{
-		$str = str_replace( array('{$pos}', '{pos}', '{$position}', '{position}', '$pos', '%pos','$position','%position', '%s1', '%i1', '%d2'), $pos, $str);
-		return str_replace( array('{$max}', '{max}', '{$maximum}', '{maximum}', '$max', '%max', '$maximum', '%maximum', '%s2', '%i2', '%d2'), $max, $str);
+		return str_ireplace( ['{$max}', '{max}', '{$maximum}', '{maximum}', '$max', '%max', '$maximum', '%maximum', '%s2', '%i2', '%d2'], $max,
+		str_replace( ['{$pos}', '{pos}', '{$position}', '{position}', '$pos', '%pos','$position','%position', '%s1', '%i1', '%d2'], $pos, $str)
+		);
 	}
 }

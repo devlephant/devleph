@@ -51,7 +51,7 @@ class TMarqueeLabel extends TLabel {
 
     public function __initComponentInfo(){
         parent::__initComponentInfo();
-		$this->CreateTTimer('TMarqueeLabel::running_line', $this->IntervalTimer, true, true, array($this));
+		$this->CreateTTimer('TMarqueeLabel::running_line', $this->IntervalTimer, true, true, [$this]);
     }
 
 	public function running_line($self, $obj) {

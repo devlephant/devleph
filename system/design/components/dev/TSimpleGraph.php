@@ -1,5 +1,6 @@
 <?php
-return array(
+return
+[
 'GROUP'   => 'Charts',
 'CLASS'   => basenameNoExt(__FILE__),
 'CAPTION' => t('TSimpleGraph_Caption'),
@@ -7,4 +8,4 @@ return array(
 'NAME'    => 'sgraph',
 'W' => 288,
 'H' => 180,
-);
+];

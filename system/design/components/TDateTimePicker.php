@@ -1,6 +1,6 @@
-
 <?
-return array(
+return
+[
 'GROUP'   => 'Lists',
 'CLASS'   => basenameNoExt(__FILE__),
 'CAPTION' => t('TDateTimePicker_Caption'),
@@ -8,4 +8,4 @@ return array(
 'NAME'    => 'dateTime',
 'W'       => 20,
 'H'       => 2,
-);
+];

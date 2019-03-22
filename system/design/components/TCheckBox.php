@@ -1,6 +1,5 @@
-
-<?
-return array(
+<?return
+[
 'GROUP'   => 'gcontrols',
 'CLASS'   => basenameNoExt(__FILE__),
 'CAPTION' => t('TCheckBox_Caption'),
@@ -8,4 +7,4 @@ return array(
 'NAME'    => 'checkbox',
 'W'       => 20,
 'H'       => 2,
-);
+];

@@ -7,7 +7,7 @@ class TFunction extends __TNoVisual {
     
     public function __inspectProperties(){
 	
-	return array('parameters','description','toRegister','workBackground','priority','isSync');
+	return ['parameters','description','toRegister','workBackground','priority','isSync'];
     }
     
     public function __initComponentInfo(){
@@ -38,7 +38,7 @@ class TFunction extends __TNoVisual {
 	$args  = func_get_args();
 	
 	
-	$names = array($this->self, '$names');
+	$names = [$this->self, '$names'];
 	$names = array_merge($names,explode(_BR_,trim($this->parameters)));
 	
 	    foreach ($names as $i=>$var){
@@ -85,7 +85,7 @@ class TFunction extends __TNoVisual {
 	    $code .= _BR_.'function '.$name.'('.$names.'){';
 	    
 	    $code .= '$self = (int)USER_FUNCTION_SELF_'.strtolower($name).';
-	              $args = array("self"=>$self);';
+	              $args = ["self"=>$self];';
 	    $x_names = explode(',',$names);
 	    foreach ($x_names as $x_name){
 		if ($x_name!=='')
@@ -129,7 +129,7 @@ class TFunction extends __TNoVisual {
 	    
 	    if ( $info['isSync'] )
 		$code .= 'if ($GLOBALS["THREAD_SELF"]) {
-			$result = syncEx("'.$name.'", array('.implode(',',$real_names).'));
+			$result = syncEx("'.$name.'", ['.implode(',',$real_names).']);
 		    } else {
 			$result = _______'.$name.'('.implode(',',$real_names).');
 		    }';

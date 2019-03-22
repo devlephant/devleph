@@ -47,11 +47,11 @@ class Tw8Toggle extends TShape {
 					}
 				} else {
 					if ($border->switched){
-						resize::resize_object($Thumb, array("x" => $border->x));
+						resize::resize_object($Thumb, ["x" => $border->x]);
 						$Thumb->brush->Color = $border->disabledColor;
 						$border->switched = false;
 					} else {
-						resize::resize_object($Thumb, array("x" => $border->x + $Thumb->w));
+						resize::resize_object($Thumb, ["x" => $border->x + $Thumb->w]);
 						$Thumb->brush->Color = $border->enabledColor;
 						$border->switched = true;
 					}

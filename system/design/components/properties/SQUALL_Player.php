@@ -2,62 +2,62 @@
 
 $result = [];
 
-$result[] = array(
+$result[] = [
                   'CAPTION'=>t('File name'),
                   'TYPE'=>'files',
-                  'EXT'=>array('wav','mp3','mp2','ogg','wave'),
+                  'EXT'=>['wav','mp3','mp2','ogg','wave'],
                   'RECURSIVE'=>true,
                   'PROP'=>'fileName',
-                  );
-$result[] = array(
+			];
+$result[] = [
                   'CAPTION'=>t('Volume').' (0-100%)',
                   'TYPE'=>'number',
                   'PROP'=>'volume',
-                  );
-$result[] = array(
+            ];
+$result[] = [
                   'CAPTION'=>t('Loop'),
                   'TYPE'=>'check',
                   'PROP'=>'loop',
-                  );
-$result[] = array(
+			];
+$result[] = [
                   'CAPTION'=>t('Panorama'). ' (0-100)',
                   'TYPE'=>'number',
                   'PROP'=>'pan',
-                  );
-$result[] = array(
+            ];
+$result[] =	[
                   'CAPTION'=>t('Frequency').' (0, 100-100000)',
                   'TYPE'=>'number',
                   'PROP'=>'frequency',
-                  );
+            ];
 
-$result[] = array(
+$result[] = [
                   'CAPTION'=>t('Position').' (0-100%)',
                   'TYPE'=>'number',
                   'PROP'=>'positionPr',
-                  );
+            ];
 
-$result[] = array(
+$result[] =	[
                   'CAPTION'=>t('Pause'),
                   'TYPE'=>'',
                   'PROP'=>'pause',
-                  );
+            ];
 
-$result[] = array(
+$result[] = [
                   'CAPTION'=>t('Length'),
                   'TYPE'=>'',
                   'PROP'=>'length',
-                  );
+            ];
 
-$result[] = array(
+$result[] = [
                   'CAPTION'=>t('Length (Milliseconds)'),
                   'TYPE'=>'',
                   'PROP'=>'lengthMs',
-                  );
-$result[] = array(
+            ];
+$result[] =	[
                   'CAPTION'=>t('Position'),
                   'TYPE'=>'',
                   'PROP'=>'position',
-                  );
+            ];
 
 $result[] = array(
                   'CAPTION'=>t('Position (Milliseconds)'),

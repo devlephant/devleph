@@ -24,7 +24,7 @@ Function Target($Obj,$Color = 0xe74c3c)
 	  {
 	    
         $Obj = c($self);
-        $arr = Array( Cursor_Pos_X() - $Obj->X , Cursor_Pos_Y() - $Obj->Y );
+        $arr = [ Cursor_Pos_X() - $Obj->X , Cursor_Pos_Y() - $Obj->Y ];
  
         Timer::SetInterval(Function($Move) Use ($_S1,$_S2,$_S3,$_S4,$_S5,$_S6,$_S7,$_S8,$_OBJ,$_TT_,$arr,$Obj){
         IF(Get_Key_State(1)<0)
@@ -59,7 +59,7 @@ Function Target($Obj,$Color = 0xe74c3c)
 	  {
 	    
         $Obj = c($self);
-        $arr = Array( Cursor_Pos_X() - $Obj->X , Cursor_Pos_Y() - $Obj->Y );
+        $arr = [ Cursor_Pos_X() - $Obj->X , Cursor_Pos_Y() - $Obj->Y ];
  
         Timer::SetInterval(Function($Move) Use ($_S1,$_S2,$_S3,$_S4,$_S5,$_S6,$_S7,$_S8,$_OBJ,$_TT_,$arr,$Obj){
         IF(Get_Key_State(1)<0)
@@ -91,7 +91,7 @@ Function Target($Obj,$Color = 0xe74c3c)
 	  {
 	    
         $Obj = c($self);
-        $arr = Array( Cursor_Pos_X() - $Obj->X , Cursor_Pos_Y() - $Obj->Y );
+        $arr = [ Cursor_Pos_X() - $Obj->X , Cursor_Pos_Y() - $Obj->Y ];
  
         Timer::SetInterval(Function($Move) Use ($_S1,$_S2,$_S3,$_S4,$_S5,$_S6,$_S7,$_S8,$_OBJ,$_TT_,$arr,$Obj){
         IF(Get_Key_State(1)<0)
@@ -128,7 +128,7 @@ Function Target($Obj,$Color = 0xe74c3c)
 	  {
 	    
         $Obj = c($self);
-        $arr = Array( Cursor_Pos_X() - $Obj->X , Cursor_Pos_Y() - $Obj->Y );
+        $arr = [ Cursor_Pos_X() - $Obj->X , Cursor_Pos_Y() - $Obj->Y ];
  
         Timer::SetInterval(Function($Move) Use ($_S1,$_S2,$_S3,$_S4,$_S5,$_S6,$_S7,$_S8,$_OBJ,$_TT_,$arr,$Obj){
         IF(Get_Key_State(1)<0)
@@ -162,7 +162,7 @@ Function Target($Obj,$Color = 0xe74c3c)
 	  {
 	    
         $Obj = c($self);
-        $arr = Array( Cursor_Pos_X() - $Obj->X , Cursor_Pos_Y() - $Obj->Y );
+        $arr = [ Cursor_Pos_X() - $Obj->X , Cursor_Pos_Y() - $Obj->Y ];
  
  
         Timer::SetInterval(Function($Move) Use ($_S1,$_S2,$_S3,$_S4,$_S5,$_S6,$_S7,$_S8,$_OBJ,$_TT_,$arr,$Obj){
@@ -195,7 +195,7 @@ Function Target($Obj,$Color = 0xe74c3c)
 	  {
 	    
         $Obj = c($self);
-        $arr = Array( Cursor_Pos_X() - $Obj->X , Cursor_Pos_Y() - $Obj->Y );
+        $arr = [ Cursor_Pos_X() - $Obj->X , Cursor_Pos_Y() - $Obj->Y ];
  
         Timer::SetInterval(Function($Move) Use ($_S1,$_S2,$_S3,$_S4,$_S5,$_S6,$_S7,$_S8,$_OBJ,$_TT_,$arr,$Obj){
         IF(Get_Key_State(1)<0)
@@ -230,7 +230,7 @@ Function Target($Obj,$Color = 0xe74c3c)
 	  {
 	    
         $Obj = c($self);
-        $arr = Array( Cursor_Pos_X() - $Obj->X , Cursor_Pos_Y() - $Obj->Y );
+        $arr = [ Cursor_Pos_X() - $Obj->X , Cursor_Pos_Y() - $Obj->Y ];
  
  
         Timer::SetInterval(Function($Move) Use ($_S1,$_S2,$_S3,$_S4,$_S5,$_S6,$_S7,$_S8,$_OBJ,$_TT_,$arr,$Obj){
@@ -262,7 +262,7 @@ Function Target($Obj,$Color = 0xe74c3c)
 	  {
 	    
         $Obj = c($self);
-        $arr = Array( Cursor_Pos_X() - $Obj->X , Cursor_Pos_Y() - $Obj->Y );
+        $arr = [ Cursor_Pos_X() - $Obj->X , Cursor_Pos_Y() - $Obj->Y ];
  
         Timer::SetInterval(Function($Move) Use ($_S1,$_S2,$_S3,$_S4,$_S5,$_S6,$_S7,$_S8,$_OBJ,$_TT_,$arr,$Obj){
         IF(Get_Key_State(1)<0)
@@ -371,7 +371,7 @@ Function Move()
 {
  Global $_S1,$_S2,$_S3,$_S4,$_S5,$_S6,$_S7,$_S8,$_OBJ,$_TT_;
 
- $arr = Array( Cursor_Pos_X() - $_OBJ->X , Cursor_Pos_Y() - $_OBJ->Y );
+ $arr = [ Cursor_Pos_X() - $_OBJ->X , Cursor_Pos_Y() - $_OBJ->Y ];
   Timer::SetInterval(Function($Move1) Use ($_S1,$_S2,$_S3,$_S4,$_S5,$_S6,$_S7,$_S8,$_OBJ,$_TT_,$arr) { 
   
  IF(Get_Key_State(1)<0)

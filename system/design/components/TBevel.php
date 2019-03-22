@@ -1,6 +1,5 @@
-
-<?
-return array(
+<?return
+[
 'GROUP'   => 'Shapes',
 'CLASS'   => basenameNoExt(__FILE__),
 'CAPTION' => t('TBevel_Caption'),
@@ -8,4 +7,4 @@ return array(
 'NAME'    => 'bevel',
 'W' => 20,
 'H' => 20,
-);
+];

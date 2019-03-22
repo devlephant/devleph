@@ -24,15 +24,15 @@ class TDownload extends __TNoVisual {
     
     static function callComplete($self, $html){
 	
-        DSApi::callEvent($self, array('html'=>$html), 'OnComplete');
+        DSApi::callEvent($self, ['html'=>$html], 'OnComplete');
     }
     
     static function callError($self, $err){
-        DSApi::callEvent($self, array('error'=>$err), 'OnError');
+        DSApi::callEvent($self, ['error'=>$err], 'OnError');
     }
     
     static function callDownload($self, $pos, $max){
-        DSApi::callEvent($self, array('pos'=>$pos,'max'=>$max), 'OnDownload');
+        DSApi::callEvent($self, ['pos'=>$pos,'max'=>$max], 'OnDownload');
     }
     
     static function fileInfo($fp){
@@ -63,7 +63,7 @@ class TDownload extends __TNoVisual {
     static function loadForObject($self, $filename, $to_del = false, $th = false){
 	
 	if ( $th ){
-	    sync('TDownload::loadForObject', array($self, $filename, $to_del));
+	    sync('TDownload::loadForObject', [$self, $filename, $to_del]);
 	    return;
 	}
 	
@@ -89,8 +89,7 @@ class TDownload extends __TNoVisual {
 	
         
 	if ( $th ){
-	    sync('TDownload::loadForProgress', array($self, $progress, $pos, $max));
-	    //return $th->syncFull('', $self, $progress, $pos, $max);
+	    sync('TDownload::loadForProgress', [$self, $progress, $pos, $max]);
             return;
 	}
 
@@ -138,11 +137,11 @@ class TDownload extends __TNoVisual {
             
             if ($props['onerror']){
                 $err = err_msg();
-		syncEx($props['onerror'], array($self, $err));
+		syncEx($props['onerror'], [$self, $err]);
             }
             
             err_status($st_err);
-	    syncEx('TDownload::_endDownload', array($self));
+	    syncEx('TDownload::_endDownload', [$self]);
             return;
         }
         
@@ -171,7 +170,7 @@ class TDownload extends __TNoVisual {
 	    TDownload::loadForProgress($self, $props['setprogress'], $pos, $info['size'], $th);
 	    
             if ($props['ondownload'])
-		syncEx($props['ondownload'], array($self, $pos, $info['size']));
+		syncEx($props['ondownload'], [$self, $pos, $info['size']]);
 		
             if ($obj->isStop){
                 break;
@@ -185,7 +184,7 @@ class TDownload extends __TNoVisual {
         if (err_msg() || ($pos!==$info['size'] && !$obj->isStop)){
             
             if ($props['onerror'])
-		syncEx($props['onerror'], array($self, err_msg() ? err_msg() : 'error donwload'));
+		syncEx($props['onerror'], [$self, err_msg() ? err_msg() : 'error donwload']);
 	    
         } else {
 	    
@@ -196,10 +195,10 @@ class TDownload extends __TNoVisual {
 	    TDownload::loadForObject($self, $filename, !trim($props['path']), $th);
 	    
 	    if ($props['oncomplete'] && !$obj->isStop && $pos>=$info['size'])
-		syncEx($props['oncomplete'], array($self, file_get_contents($filename)));
+		syncEx($props['oncomplete'], [$self, file_get_contents($filename)]);
         }
 	
-	syncEx('TDownload::_endDownload', array($self));
+	syncEx('TDownload::_endDownload', [$self]);
     }
     
     static function _startThread($self){

@@ -132,13 +132,10 @@ class TSampleDialog extends __TNoVisual {
 	parent::__construct($onwer,$init,$self);
     	
         if ($init){
-	    
-	    $props = array('cursorDialog'=>crHandPoint, 'buttonsWidth'=>80, 'buttonsHeight'=>25,
-                         'buttonFocus'=>0,'formColor'=>0xE6E6E6,'useHotKey'=>true,
-                         'buttonFSize'=>8,'buttonFColor'=>clBlack);
-	    
-	    foreach ($props as $prop=>$val)
-		$this->$prop = $val;
+			foreach (['cursorDialog'=>crHandPoint, 'buttonsWidth'=>80, 'buttonsHeight'=>25,
+							 'buttonFocus'=>0,'formColor'=>0xE6E6E6,'useHotKey'=>true,
+							 'buttonFSize'=>8,'buttonFColor'=>clBlack] as $prop=>$val)
+			$this->$prop = $val;
         }
     }
     

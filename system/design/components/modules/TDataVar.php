@@ -16,7 +16,7 @@ class TDataVar extends __TNoVisual {
     
     public function __inspectProperties(){
 	
-	return array('varName');
+	return ['varName'];
     }
     
     public function __initComponentInfo(){

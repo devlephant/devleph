@@ -1,6 +1,7 @@
 
 <?
-return array(
+return
+[
 'GROUP'   => 'Lists',
 'CLASS'   => basenameNoExt(__FILE__),
 'CAPTION' => t('TValueListEditor'),
@@ -8,4 +9,4 @@ return array(
 'NAME'    => 'values',
 'W' => 25,
 'H' => 20,
-);
+];

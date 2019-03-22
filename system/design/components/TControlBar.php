@@ -1,6 +1,5 @@
-
-<?
-return array(
+<?return
+[
 'GROUP'   => 'Bars',
 'CLASS'   => basenameNoExt(__FILE__),
 'CAPTION' => t('Moveable Bars'),
@@ -9,4 +8,4 @@ return array(
 'WINCONTROL' => true,
 'W' => 20,
 'H' => 4,
-);
+];

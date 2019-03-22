@@ -1,8 +1,8 @@
 <?
 
-	DSApi::reg_eventType( 'OnConnect', 'TSock::OnConnect', array('self','Connection'), 'TSock' );
-	DSApi::reg_eventType( 'OnDisconnect', 'TSock::OnDisconnect', array('self','Connection'), 'TSock' );
-	DSApi::reg_eventType( 'OnData', 'TSock::OnData', array('self','Connection', 'Data', 'Type'), 'TSock' );
+	DSApi::reg_eventType( 'OnConnect', 'TSock::OnConnect', ['self','Connection'], 'TSock' );
+	DSApi::reg_eventType( 'OnDisconnect', 'TSock::OnDisconnect', ['self','Connection'], 'TSock' );
+	DSApi::reg_eventType( 'OnData', 'TSock::OnData', ['self','Connection', 'Data', 'Type'], 'TSock' );
 
 	define("TSock_Public", 1);
 	define("TSock_Private", 2);
@@ -70,7 +70,7 @@
 				$__TSock_Config[$self]->ID = $Connection;
 				$Connection = null;
 			}
-			__exEvents::callEventEx( $self, array('Connection' => $Connection), 'OnConnect' );
+			__exEvents::callEventEx( $self, ['Connection' => $Connection], 'OnConnect' );
 		}
 		
 		Public Static Function OnDisconnect( $self, $Connection )
@@ -83,12 +83,12 @@
 				$Connection = null;
 			}
 		
-			__exEvents::callEventEx( $self, array('Connection' => $Connection), 'OnDisconnect' );
+			__exEvents::callEventEx( $self, ['Connection' => $Connection], 'OnDisconnect' );
 		}
 		
 		Public Static Function OnData( $self, $Connection, $Data, $Type )
 		{
-			__exEvents::callEventEx( $self, array('Connection' => $Connection, 'Data' => $Data, 'Type' => $Type), 'OnData' );
+			__exEvents::callEventEx( $self, ['Connection' => $Connection, 'Data' => $Data, 'Type' => $Type], 'OnData' );
 		}
 		
 		Public Function __TSockInit($self)

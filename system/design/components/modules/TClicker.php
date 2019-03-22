@@ -166,7 +166,7 @@ Function Set($x,$y){
 }
 
 Function Get($i){
- $arr = array("x"=>cursor_pos_x(),"y"=>cursor_pos_y());
+ $arr = ["x"=>cursor_pos_x(),"y"=>cursor_pos_y()];
     IF($i == "xy"){ Return $arr; }
 ELSEIF($i == "x"){ Return $arr['x']; }
 ELSEIF($i == "y"){ Return $arr['y']; }

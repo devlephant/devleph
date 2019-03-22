@@ -8,6 +8,4 @@ $result['CAPTION'] = t('TColorDialogEx_Caption');
 $result['SORT']    = 58;
 $result['NAME']    = 'colorDlg';
 
-//$result['MODULES'] = array('php_squall.dll');
-
 return $result;

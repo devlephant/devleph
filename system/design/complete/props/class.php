@@ -131,7 +131,7 @@ class complete_Props {
                         
                         $inline = $method['name'].' ( '. complete_Funcs::getInline($method['params'],$method['defaults']) .' )';
                         if (count($method['params'])==0) $method['name'] .= '()';
-                        $result[] = array('PROP'=>$method['name'],'INLINE'=>$inline);
+                        $result[] = ['PROP'=>$method['name'],'INLINE'=>$inline];
                     }
                 }
                 
@@ -162,7 +162,7 @@ class complete_Props {
                     if ($prop['type'] == 'public'){
                         
                         $inline = $prop['name'];
-                        $result[] = array('PROP'=>$prop['name'],'CAPTION'=>' public property');
+                        $result[] = ['PROP'=>$prop['name'],'CAPTION'=>' public property'];
                     }
                     
                 } 
@@ -178,7 +178,7 @@ class complete_Props {
                         
                         $tmp_exists[] = $prop;
                         $inline = $method['name'].' ( '. complete_Funcs::getInline($method['params'],$method['defaults']) .' )';
-                        $result[] = array('PROP'=>$prop,'CAPTION'=>$inline);
+                        $result[] = ['PROP'=>$prop,'CAPTION'=>$inline];
                     }
                 }
                 

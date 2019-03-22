@@ -33,20 +33,27 @@ class TIB extends TMImage{
     if($index!==false and $file!==false){
      if( is_file($file) ){
       $arr = $this->images;
-      $arr[$index] = array( file_get_contents($file), strtoupper(fileExt($file)) );
+      $arr[$index] = [ file_get_contents($file), strtoupper(fileExt($file)) ];
       $this->images = $arr;
-     }
+     } elseif( is_array($file) )
+	 {
+		$arr = $this->images;
+		$arr[$index] = $file;
+		$this->images = $arr;
+	 }
     }
    }
 
    public function add($file=false){
     if($file!==false){
      if( is_file($file) ){
-      $arr = $this->images;
-      $arr[] = array( file_get_contents($file), strtoupper(fileExt($file)) );
-      $this->images = $arr;
+      $this->images[] = array( file_get_contents($file), strtoupper(fileExt($file)) );
       return count($arr)-1;
-     }
+     } elseif( is_array($file) )
+	 {
+      $this->images[] = $file;
+      return count($this->images)-1;
+	 }
     }
    }
 

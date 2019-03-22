@@ -91,7 +91,7 @@ class complete_Static_Props {
                         else
                             $inline = '[$r]'.$inline.'';
                             
-                        $result[] = array('PROP'=>$prop['name'],'INLINE'=>myComplete::fromBB($inline));
+                        $result[] = ['PROP'=>$prop['name'],'INLINE'=>myComplete::fromBB($inline)];
                     }
                     
                 } 
@@ -103,7 +103,7 @@ class complete_Static_Props {
                     if (in_array($method['type'],array('','static'))){
                         
                         $inline = $method['name'].' ( '. complete_Funcs::getInline($method['params'],$method['defaults']) .' )';
-                        $result[] = array('PROP'=>$method['name'],'INLINE'=>$inline,'ONE'=>count($method['params'])===0);
+                        $result[] = ['PROP'=>$method['name'],'INLINE'=>$inline,'ONE'=>count($method['params'])===0];
                     }
                 }
                 
