@@ -11,7 +11,7 @@ Chromium 69.0.3 (Flash, Javascript, HTML5 native support)
 Unicode partially support (will be full as soon as possible)
 ## EN
 ** DevelStudio Community Update **
-<br>Just download, unpack it, and run DS CV.exe to proceed :)
+<br>Just download, unpack it, and run DS CU.exe to proceed :)
 
 Compatible SoulEngine Version Can Be Found -> <a href="https://github.com/KashaketCompany/soulengine">HERE</a>
 
@@ -27,13 +27,13 @@ For the full debug, you can create file 'lookout_log.txt' near Ds Ke.exe, all er
 
 ## RU
 ** Сообщественное обновление DevelStudio. **
-<br>Просто скачайте, распакуйте это, и запустите DS KE.exe для использования :)
+<br>Просто скачайте, распакуйте это, и запустите DS CU.exe для использования :)
 
 Совместимая версия SoulEngine может быть найдена -> <a href="https://github.com/KashaketCompany/soulengine">Здесь</a>
 
 Авторы: Сообщество DevelStudio <BR>Тестировщики: Вячеслав Новиков (Manofjoe), Александр Кобозев ([s]Alex)
 
-Добавлен запуск в режиме отладки через bat (командную строку), если вам не нравится так запускать студию, просто создайте файл ссылки (*.lnk) на DS Ke с параметром -debug
+Добавлен запуск в режиме отладки через bat (командную строку), если вам не нравится так запускать студию, просто создайте файл ссылки (*.lnk) на DS CU с параметром -debug
 <br>Заметьте: эта особенность впервые была добавлена в DS Ke 3.0.2 Beta
 
 Для полной отладки вы можете создать файл 'lookout_log.txt' возле Ds Ke.exe, в него будут записаны все ошибки на стороне php в процессе использования студии
