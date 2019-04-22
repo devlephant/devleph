@@ -571,27 +571,21 @@ if (EMULATE_DVS_EXE) return;
 		
 	}
 	
-	
-	$files = findFiles($dir_n . '/components/properties/','php');
-	foreach ($files as $file){
+	foreach (findFiles($dir_n . '/components/properties/','php')as $file){
 		$componentProps[basenameNoExt($file)] = include($dir_n . '/components/properties/' . $file);
 	}
-		
-	$files = findFiles($dir_n . '/components/events/','php');
-	foreach ($files as $file){
+	
+	foreach (findFiles($dir_n . '/components/events/','php') as $file){
 		$componentEvents[basenameNoExt($file)] = include($dir_n . '/components/events/' . $file);
 	}
 	
-    $files = findFiles($dir_n . '/components/modifers/','php');
-    foreach ($files as $file){
+    foreach (findFiles($dir_n . '/components/modifers/','php') as $file){
         require($dir_n . '/components/modifers/' . $file);
     }
 	
     BlockData::sortList($_components, 'SORT');
     
-    
-    $files = findFiles($dir_n . '/editor_types/','php');
-    foreach ($files as $file)
+    foreach (findFiles($dir_n . '/editor_types/','php') as $file)
         require $dir_n . '/editor_types/' . $file;
 	
     ////// создаем панель компонентов ///////// 
