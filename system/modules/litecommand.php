@@ -72,7 +72,7 @@ function runWith($file, $program){
 
 
 
-$_c->setConstList(array('LD_NONE','LD_XY','LD_XYWH'), 0);
+$_c->setConstList(['LD_NONE','LD_XY','LD_XYWH'], 0);
 
 function loadForm($name, $mode = LD_XY){
     

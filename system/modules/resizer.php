@@ -6,15 +6,15 @@ class resize{
     static function resize_object($obj, $params=false) 
     {
 		if(!$params) $params = [];
-		$pars = array('x', 'y', 'w', 'h', 'func', 'speed', 'time');
+		$pars = ['x', 'y', 'w', 'h', 'func', 'speed', 'time'];
 		$s = 7;
 		for($i=0;$i<$s;++$i)
 		{
 			if(!isset($params[$pars[$i]])) $params[$pars[$i]] = false;
 		}
 		if($params['time']!==false) $params['time'] += microtime(1);
-		$sides = array($params['x'], $params['y'], $params['w'], $params['h']);
-        resize::$objects[$obj->self] = array($sides, $params['func'], $params['speed'], $params['time']); 
+		$sides = [$params['x'], $params['y'], $params['w'], $params['h']];
+        resize::$objects[$obj->self] = [$sides, $params['func'], $params['speed'], $params['time']]; 
     } 
     static function set_speed($i)
     { 
@@ -34,7 +34,7 @@ class resize{
             foreach($objs as $self=>$data) 
             { 
                 list($sides, $func, $speed, $time) = $data; 
-				$sname = array('Left', 'Top', 'Width', 'Height');
+				$sname = ['Left', 'Top', 'Width', 'Height'];
 
 				$s = 4;
 				if( $time !== false )if( $time > $m ) continue;

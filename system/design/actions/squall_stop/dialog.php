@@ -3,6 +3,6 @@ return
 [
 	'TYPE'=>'OBJECTS',
 	'CAPTION'=>t('SQUALL Player'),
-	'CLASSES'=>array('TSQUALLPlayer'),
+	'CLASSES'=>['TSQUALLPlayer'],
 	'USE_QUOTE'=>false,
 ];

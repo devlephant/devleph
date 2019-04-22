@@ -2,7 +2,7 @@
 
 
 global $_c;
-$_c->setConstList(array('ctCode', 'ctHint', 'ctParams'),0);
+$_c->setConstList(['ctCode', 'ctHint', 'ctParams'],0);
 
 	
 class TSynEdit extends TMemo {
@@ -237,7 +237,7 @@ class TSynCustomHighlighter extends TControl {
 class TSynPHPSyn extends TSynCustomHighlighter {
 	
 
-	static $prefixs = array('Comment', 'Identifier', 'Key', 'Number', 'Space', 'String', 'Symbol', 'Variable');
+	static $prefixs = ['Comment', 'Identifier', 'Key', 'Number', 'Space', 'String', 'Symbol', 'Variable'];
 	
 	function saveAttr($prefix, &$arr){
 		

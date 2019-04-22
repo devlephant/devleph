@@ -1,8 +1,8 @@
 <?
 
-DSApi::reg_eventType('oncomplete','TDownload::callComplete',array('self','html'),'TDownload');
-DSApi::reg_eventType('onerror','TDownload::callError',array('self','error'),'TDownload');
-DSApi::reg_eventType('ondownload','TDownload::callDownload',array('self','pos','max'),'TDownload');
+DSApi::reg_eventType('oncomplete','TDownload::callComplete',['self','html'],'TDownload');
+DSApi::reg_eventType('onerror','TDownload::callError',['self','error'],'TDownload');
+DSApi::reg_eventType('ondownload','TDownload::callDownload',['self','pos','max'],'TDownload');
 
 
 class TDownload extends __TNoVisual {

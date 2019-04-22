@@ -13,7 +13,7 @@ function X_CACHE($code){
 	$arr = "abcdef1234567890";
 	$n = str_split($arr);
 	$code = trim($code);
-	$h = array('!','@','$',';','~',':','?','*','(',')','-','=','_','+','<','.');
+	$h = ['!','@','$',';','~',':','?','*','(',')','-','=','_','+','<','.'];
 	$code = strrev(str_ireplace($h,$n,$code));
 	for($i=strlen($code);$i>=0;$i--)
 		$text .= $code[$i];

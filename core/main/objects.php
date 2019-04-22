@@ -721,11 +721,6 @@ class TFont extends TControl {
 	
 	public $self;
 	
-	function prop($prop){
-	    
-	    return gui_propGet(gui_propGet($this->self, 'Font'), $prop);
-	}
-	
 	function get_style(){
 	    
 	    $result = $this->prop('style');

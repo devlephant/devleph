@@ -681,41 +681,41 @@ function ___getEvent($self, $name){
 }
 
 
-DSApi::reg_eventParams('onKeyUp',			array('self','&key','shift'));
-DSApi::reg_eventParams('onKeyDown',			array('self','&key','shift'));
-DSApi::reg_eventParams('onKeyPress',		array('self','&key'));
-DSApi::reg_eventParams('onMouseDown',		array('self','button','shift','x','y'));
-DSApi::reg_eventParams('onMouseUp',			array('self','button','shift','x','y'));
-DSApi::reg_eventParams('onMouseMove',		array('self','shift','x','y'));
-DSApi::reg_eventParams('onMouseWheel',		array('self','shift', 'wheelDelta', 'x', 'y', '&handled'));
-DSApi::reg_eventParams('onCloseQuery',		array('self','&canClose'));
-DSApi::reg_eventParams('onScroll',			array('self','scrollCode', '&scrollPos'));
-DSApi::reg_eventParams('onScrollVert',			array('self','scrollCode', '&scrollPos'));
-DSApi::reg_eventParams('onScrollHorz',			array('self','scrollCode', '&scrollPos'));
+DSApi::reg_eventParams('onKeyUp',			['self','&key','shift']);
+DSApi::reg_eventParams('onKeyDown',			['self','&key','shift']);
+DSApi::reg_eventParams('onKeyPress',		['self','&key']);
+DSApi::reg_eventParams('onMouseDown',		['self','button','shift','x','y']);
+DSApi::reg_eventParams('onMouseUp',			['self','button','shift','x','y']);
+DSApi::reg_eventParams('onMouseMove',		['self','shift','x','y']);
+DSApi::reg_eventParams('onMouseWheel',		['self','shift', 'wheelDelta', 'x', 'y', '&handled']);
+DSApi::reg_eventParams('onCloseQuery',		['self','&canClose']);
+DSApi::reg_eventParams('onScroll',			['self','scrollCode', '&scrollPos']);
+DSApi::reg_eventParams('onScrollVert',			['self','scrollCode', '&scrollPos']);
+DSApi::reg_eventParams('onScrollHorz',			['self','scrollCode', '&scrollPos']);
 
-DSApi::reg_eventParams('onBeforePopup',		array('self', 'url', '&continue'));
-DSApi::reg_eventParams('onBeforeBrowse',	array('self', 'url', 'method', 'navType', 'isRedirect', '&continue'));
-DSApi::reg_eventParams('onBeforeMenu',		array('self', 'x', 'y', 'linkUrl', 'imageUrl', 'pageUrl', 'frameUrl', 'selectText', '&continue'));
+DSApi::reg_eventParams('onBeforePopup',		['self', 'url', '&continue']);
+DSApi::reg_eventParams('onBeforeBrowse',	['self', 'url', 'method', 'navType', 'isRedirect', '&continue']);
+DSApi::reg_eventParams('onBeforeMenu',		['self', 'x', 'y', 'linkUrl', 'imageUrl', 'pageUrl', 'frameUrl', 'selectText', '&continue']);
 
 DSApi::reg_eventParams('OnAuthCredentials',
-    array('isProxy', 'port', 'host', 'realm', 'scheme', 'username', 'password', '&continue'));
+    ['isProxy', 'port', 'host', 'realm', 'scheme', 'username', 'password', '&continue']);
 
 DSApi::reg_eventParams('OnGetDownloadHandler',
-    array('url', 'mimeType', 'fileName', 'contentLength', '&continue'));
+    ['url', 'mimeType', 'fileName', 'contentLength', '&continue']);
 
 DSApi::reg_eventParams('OnConsoleMessage',
-    array('message', 'source', 'line', '&continue'));
+    ['message', 'source', 'line', '&continue']);
 
-DSApi::reg_eventParams('OnLoadStart',		array('self'));
-DSApi::reg_eventParams('OnLoadEnd',array('httpStatus', '&continue'));
-DSApi::reg_eventParams('OnLoadError',array('errorCode', 'failedUrl', 'errorText', '&continue'));
-DSApi::reg_eventParams('OnStatusMessage',array('value', 'status', '&continue'));
+DSApi::reg_eventParams('OnLoadStart',		['self']);
+DSApi::reg_eventParams('OnLoadEnd',['httpStatus', '&continue']);
+DSApi::reg_eventParams('OnLoadError',['errorCode', 'failedUrl', 'errorText', '&continue']);
+DSApi::reg_eventParams('OnStatusMessage',['value', 'status', '&continue']);
 
-DSApi::reg_eventParams('OnAddressChange',array('url'));
-DSApi::reg_eventParams('OnTitleChange',array('title', '&continue'));
-DSApi::reg_eventParams('OnTooltip',array('text', '&continue'));
+DSApi::reg_eventParams('OnAddressChange',['url']);
+DSApi::reg_eventParams('OnTitleChange',['title', '&continue']);
+DSApi::reg_eventParams('OnTooltip',['text', '&continue']);
 
-DSApi::reg_eventParams('OnContentsSizeChange',array('width', 'height'));
+DSApi::reg_eventParams('OnContentsSizeChange',['width', 'height']);
 
-DSApi::reg_eventParams('onDropFiles',array('self','files', 'x', 'y'));
+DSApi::reg_eventParams('onDropFiles',['self','files', 'x', 'y']);
 ?>

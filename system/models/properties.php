@@ -1292,14 +1292,12 @@ class myProperties {
 				}
 					
                 if (method_exists($this,'createX'.$prop['TYPE'])){
-                        
-                        $method = 'createX'.$prop['TYPE'];
-                        $this->$method($prop, $class);
+					
+                        $this->{'createX'.$prop['TYPE']}($prop, $class);
 
                         if ($prop['TYPE']=='font'){
                             $xprop = array('CAPTION'=>t('Font Color'), 'TYPE'=>'color', 'PROP'=>'fontColor', 'REAL_PROP'=>'font->color');
-                            $method = 'createX'.$xprop['TYPE'];
-                            $this->$method($xprop, $class);
+                            $this->{'createX'.$xprop['TYPE']}($xprop, $class);
 						}	
 						 if ($prop['TYPE']=='font' or (strtolower($prop['CAPTION'])==strtolower(t('Font Color')) and $prop['TYPE']=='color')){
 							$xr = array('CAPTION'=>t('Font Size'), 'TYPE'=>'number', 'PROP'=>'fontsize', 'REAL_PROP'=>'font->size');
@@ -1307,21 +1305,16 @@ class myProperties {
 							$xo = array('CAPTION'=>t('Font Pitch'), 'TYPE'=>'combo', 'PROP'=>'fontpitch', 'REAL_PROP'=>'font->pitch', 'VALUES'=>array('fpDefault','fpVariable', 'fpFixed'));
 							$xq = array('CAPTION'=>t('Font Quality'), 'TYPE'=>'combo', 'PROP'=>'fontquality', 'REAL_PROP'=>'font->quality', 'VALUES'=>array('fqDefault', 'fqDraft', 'fqProof', 'fqNonAntialiased', 'fqAntialiased', 'fqClearType', 'fqClearTypeNatural'));
 							$xla = array('CAPTION'=>t('Font Orientation'), 'TYPE'=>'number', 'PROP'=>'fontori', 'REAL_PROP'=>'font->orientation');
-
-							$method = 'createX'.$xr['TYPE'];
-                            $this->$method($xr, $class);
 							
-							$method = 'createX'.$xt['TYPE'];
-                            $this->$method($xt, $class);
+                            $this->{'createX'.$xr['TYPE']}($xr, $class);
 							
-							$method = 'createX'.$xo['TYPE'];
-                            $this->$method($xo, $class);
+                            $this->{'createX'.$xt['TYPE']}($xt, $class);
 							
-							$method = 'createX'.$xq['TYPE'];
-                            $this->$method($xq, $class);
+                            $this->{'createX'.$xo['TYPE']}($xo, $class);
 							
-							$method = 'createX'.$xla['TYPE'];
-                            $this->$method($xla, $class);
+                            $this->{'createX'.$xq['TYPE']}($xq, $class);
+							
+							$this->{'createX'.$xla['TYPE']}($xla, $class);
 						}
                 }
             }

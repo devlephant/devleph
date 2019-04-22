@@ -3,6 +3,6 @@ return
 [
 	'DESC'=>'',
 	'INLINE'=>'continue',
-	'SEEALSO'=>array('break', 'exit'),
+	'SEEALSO'=>['break', 'exit'],
 	'CATEGORY'=>'Синтаксис',
 ];

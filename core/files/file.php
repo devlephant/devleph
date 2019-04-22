@@ -70,6 +70,12 @@ function rglob($pattern, $flags = 0) {
     }
     return $files;
 }
+function rglobP(&$p, $pattern, $flags = 0) {
+    $p = array_merge($p, glob($pattern, $flags)); 
+    foreach (glob(dirname($pattern).'/*', GLOB_ONLYDIR|GLOB_NOSORT) as $dir) {
+        $p = array_merge($p, rglob($dir.'/'.basename($pattern), $flags));
+    }
+}
 // поиск файлов в папке...
 // можно искать по расширению exts - список расширений
 function findFiles($dir, $exts = null, $recursive = false, $with_dir = false, $with_extension = true){
@@ -92,7 +98,32 @@ function findFiles($dir, $exts = null, $recursive = false, $with_dir = false, $w
 		}
 		return $result;
 	}
-	return $recursive? rglob($pattern, $flag): glob($pattern, $flag);
+		return $recursive? rglob($pattern, $flag): glob($pattern, $flag);
+}
+function findFilesP(&$p, $dir, $exts = null, $recursive = false, $with_dir = false, $with_extension = true){
+    $dir = realpath(str_replace(['\\\\\\', '\\\\', '///', '//'], ['\\', '\\', '/', '/'], $dir));
+	
+    if (!is_dir($dir)) return [];
+	$pattern = (($exts==null) or (!(bool)$exts))? 
+						"$dir\\*.*": 
+						(is_array($exts))? 
+							(empty($exts))? "$dir\\*.*":
+							"$dir\\*.{" . implode(',', $exts) . "}":
+						"$dir\\*.$exts";
+	$flag = is_array($exts)? GLOB_BRACE: GLOB_NOSORT;
+	if( !$with_dir )
+	{
+		foreach(($recursive? rglob($pattern, $flag): glob($pattern, $flag)) as $file)
+		{
+			$p[] = $with_extension? basename($file): basenameNoExt($file);
+		}
+	} else
+			if( $recursive )
+			{
+				rglobP($p, $pattern, $flag);
+			} else {
+				$p = array_merge($p, glob($pattern, $flag));
+			};
 }
 
 function findDirs($dir){

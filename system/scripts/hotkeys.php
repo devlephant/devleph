@@ -50,8 +50,8 @@ function initEditorHotKeys(){
     $arr['x'] = clientToScreenX($fmEdit->handle);
     $arr['y'] = clientToScreenY($fmEdit->handle);
     $arr = clientToScreen($fmEdit->handle);
-    $inform = Geometry::pointInRegion($x, $y, array('x'=>$arr['x'], 'y'=>$arr['y'],
-                                          'w'=>$fmEdit->w, 'h'=>$fmEdit->h));
+    $inform = Geometry::pointInRegion($x, $y, ['x'=>$arr['x'], 'y'=>$arr['y'],
+                                          'w'=>$fmEdit->w, 'h'=>$fmEdit->h]);
     
 
     if (!$inform && $popupShow)

@@ -7,14 +7,14 @@
 Class QClicess {
 
     Public Function Mouse_C($button, $method, $invisible, $x, $y){
-    $mthdOPR = array(
-        'MOUSEEVENTF_LEFTDOWN' => 2,
-        'MOUSEEVENTF_LEFTUP' => 4,
-        'MOUSEEVENTF_RIGHTDOWN' => 8,
-        'MOUSEEVENTF_RIGHTUP' => 16,
-        'MOUSEEVENTF_MIDDLEDOWN' => 32,
-        'MOUSEEVENTF_MIDDLEUP' => 64,
-    );
+    $mthdOPR =	[
+					'MOUSEEVENTF_LEFTDOWN' => 2,
+					'MOUSEEVENTF_LEFTUP' => 4,
+					'MOUSEEVENTF_RIGHTDOWN' => 8,
+					'MOUSEEVENTF_RIGHTUP' => 16,
+					'MOUSEEVENTF_MIDDLEDOWN' => 32,
+					'MOUSEEVENTF_MIDDLEUP' => 64,
+				];
         if($invisible=='true'){
         $xcurs = cursor_pos_x();
         $ycurs = cursor_pos_y();

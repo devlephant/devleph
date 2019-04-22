@@ -34,7 +34,7 @@ class DSApi {
     }
     
     // регистрирует функцию для нового типа события
-    static function reg_eventType($type, $callFunc, $params = array('self'), $class = false){
+    static function reg_eventType($type, $callFunc, $params = ['self'], $class = false){
         
         $type = strtolower($type);
         
@@ -68,7 +68,7 @@ class DSApi {
 		else 
 			$result = '$self';
             
-        return str_replace(array('$&', '&&&', '&&'), array('&$', '&', '&'), $result);
+        return str_replace(['$&', '&&&', '&&'], ['&$', '&', '&'], $result);
     }
     
     static function callEvent($self, $params, $type){
@@ -170,7 +170,7 @@ class DSApi {
                     $self = $el->self;
                 }
                 
-                    $GLOBALS['__exEvents'][$self] = array('events'=>$eventList, 'obj_name'=>$obj_name);
+                    $GLOBALS['__exEvents'][$self] = ['events'=>$eventList, 'obj_name'=>$obj_name];
                     foreach ((array)$eventList as $x=>$code){
                         
                         

@@ -100,7 +100,7 @@ class complete_Static_Props {
                 foreach($methods as $method){
                     
                     
-                    if (in_array($method['type'],array('','static'))){
+                    if (in_array($method['type'],['','static'])){
                         
                         $inline = $method['name'].' ( '. complete_Funcs::getInline($method['params'],$method['defaults']) .' )';
                         $result[] = ['PROP'=>$method['name'],'INLINE'=>$inline,'ONE'=>count($method['params'])===0];

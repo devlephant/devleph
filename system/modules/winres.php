@@ -15,7 +15,7 @@ class winRes {
 			$fdir = ( defined('SYSTEM_DIR') )? constant('SYSTEM_DIR') . 'blanks/manifest/' : DOC_ROOT . '/';
 
 		if( is_file( realpath( $fdir . 'verpatch.exe' ) ) )
-			return str_replace(array("/"), array("\\"), $fdir . 'verpatch.exe');
+			return str_replace("/", "\\", $fdir . 'verpatch.exe');
 		
 		return 'verpatch.exe';
 	}

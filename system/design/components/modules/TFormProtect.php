@@ -1,5 +1,5 @@
 <?
-DSApi::reg_eventType('onerror','TFormProtect::callError',array('self'),'TFormProtect');
+DSApi::reg_eventType('onerror','TFormProtect::callError',['self'],'TFormProtect');
 
 class TFormProtect extends __TNoVisual {
     

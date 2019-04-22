@@ -3,6 +3,6 @@ return
 [
 	'DESC'=>'Условие',
 	'INLINE'=>'if ( <condition> )',
-	'SEEALSO'=>array('switch'),
+	'SEEALSO'=>['switch'],
 	'CATEGORY'=>'Синтаксис',
 ];

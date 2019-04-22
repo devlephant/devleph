@@ -211,8 +211,8 @@ function arr_gd($length, $color_1='', $color_2=''){
         $color_2   = hexdec($color_2[0].$color_2[1]).",".hexdec($color_2[2].$color_2[3]).",".hexdec($color_2[4].$color_2[5]);
         $color_1 = hexdec($color_1[0].$color_1[1]).",".hexdec($color_1[2].$color_1[3]).",".hexdec($color_1[4].$color_1[5]);
     }
-    if(empty($color_1)){ $color_1 = array(0,0,255); }else{ $color_1 = explode(",", $color_1); };
-    if(empty($color_2)){ $color_2 = array(255,0,0); }else{ $color_2 = explode(",", $color_2); };
+    if(empty($color_1)){ $color_1 = [0,0,255]; }else{ $color_1 = explode(",", $color_1); };
+    if(empty($color_2)){ $color_2 = [255,0,0]; }else{ $color_2 = explode(",", $color_2); };
         $res = [];
 
         for ($i=1;$i<=$length;$i++){

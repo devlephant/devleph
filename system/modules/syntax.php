@@ -75,7 +75,7 @@ class AOP_CodeParser
     function setValidTokens($validTokens = [])
     {
         if (!is_array($validTokens)) {
-            $validTokens = array($validTokens);
+            $validTokens = [$validTokens];
         }
 
         $this->validTokens = $validTokens;
@@ -91,7 +91,7 @@ class AOP_CodeParser
     function setInvalidTokens($invalidTokens = [])
     {
         if (!is_array($invalidTokens)) {
-            $invalidTokens = array($invalidTokens);
+            $invalidTokens = [$invalidTokens];
         }
 
         $this->invalidTokens = $invalidTokens;
@@ -281,11 +281,11 @@ class PHPSyntax {
     
     public function __construct(){
         
-        $this->skoba = array(
+        $this->skoba =		[
                              '{}',
                              '()',
                              '[]',
-                             );
+                            ];
         $this->quotes = '"\'';
         
         $this->errortype = array (
@@ -470,7 +470,7 @@ class PHPSyntax {
     
     public function addError($type, $msg, $line = -1, $prs = []){
         
-        $this->errors[] = array('type'=>$type, 'msg'=>$msg, 'line'=>$line, 'prs'=>$prs);
+        $this->errors[] = ['type'=>$type, 'msg'=>$msg, 'line'=>$line, 'prs'=>$prs];
     }
     
     public function initErrors(){
@@ -557,7 +557,7 @@ class PHPSyntax {
                 
 				if(isset($syn->tokens[$i-2][0]))
                 if ($syn->tokens[$i-2][0]==T_CLASS){
-                    $result['classes'][$name] = array('name'=>$name, 'methods'=>[],'construct'=>false);
+                    $result['classes'][$name] = ['name'=>$name, 'methods'=>[],'construct'=>false];
                     $n_class = $name;
                 }
                 
@@ -581,7 +581,7 @@ class PHPSyntax {
                                 $params[] = $syn->tokens[$k][1];
                                 $defaults[] = null;
                             } elseif (in_array($syn->tokens[$k][0],
-                                             array(T_LNUMBER,T_DNUMBER,T_CONSTANT_ENCAPSED_STRING,T_BOOL_CAST,T_ARRAY_CAST))
+                                             [T_LNUMBER,T_DNUMBER,T_CONSTANT_ENCAPSED_STRING,T_BOOL_CAST,T_ARRAY_CAST])
                                     ){
                                 $defaults[count($defaults)-1] = $syn->tokens[$k][1];
                             } elseif (strtolower($syn->tokens[$k][1])=='null') {
@@ -594,34 +594,32 @@ class PHPSyntax {
                     if ($n_class){
                         $type = '';
                         
-                        if ( in_array($syn->tokens[$i-4][1],array('static','private','public')) )
+                        if ( in_array($syn->tokens[$i-4][1],['static','private','public']) )
                             $type = $syn->tokens[$i-4][1];
                         
-                        $x_func = array('name'=>$name,'params'=>$params,'defaults'=>$defaults,'desc'=>$desc,'type'=>$type);
-                        
-                        if (substr($name,0,2)=='__') $x_func['type'] = 'private';
+                        $x_func = ['name'=>$name,'params'=>$params,'defaults'=>$defaults,'desc'=>$desc,'type'=>((substr($name,0,2)=='__')?'private':$type)];
                         
                         if ($name=='__construct' || $name==$n_class)
                             $result['classes'][$n_class]['construct'] = $x_func;
                         
                         $result['classes'][$n_class]['methods'][] = $x_func;
                     } else {
-                        $result['functions'][$name] = array('name'=>$name,'params'=>$params,'defaults'=>$defaults,'desc'=>$desc);
+                        $result['functions'][$name] = ['name'=>$name,'params'=>$params,'defaults'=>$defaults,'desc'=>$desc];
                     }
                 }
                 
                 // свойство объекта
-                if ($id==309 && in_array($syn->tokens[$i-2][0],array(T_PUBLIC, T_STATIC, 347))){
+                if ($id==309 && in_array($syn->tokens[$i-2][0],[T_PUBLIC, T_STATIC, 347])){
                         
                     if (count($result['classes'][$n_class]['methods'])==0){
                         
                         if ($syn->tokens[$i-2][0]==T_PUBLIC || $syn->tokens[$i-2][0]==347){
                             
                             $result['classes'][$n_class]['properties'][] =
-                                array('name'=>str_replace('$','',$name), 'type'=>'public');
+                                ['name'=>str_replace('$','',$name), 'type'=>'public'];
                         } elseif ($syn->tokens[$i-2][0]==T_STATIC){
                             $result['classes'][$n_class]['properties'][] =
-                                array('name'=>$name, 'type'=>'static');    
+                                ['name'=>$name, 'type'=>'static'];    
                         }
                         
                         $last_sec = T_PUBLIC;
@@ -635,7 +633,7 @@ class PHPSyntax {
                     if (count($result['classes'][$n_class]['methods'])==0){
                         // добавляем как статическое свойство, все равно эффект тот же при отображении
                         $result['classes'][$n_class]['properties'][] =
-                                array('name'=>$name, 'type'=>'static');
+                                ['name'=>$name, 'type'=>'static'];
                             
                         $last_sec = T_PUBLIC;
                     }
@@ -654,7 +652,7 @@ class PHPSyntax {
                             }
                         }
                             
-                        $result['vars'][$name] = array('name'=>$name,'type'=>$type);
+                        $result['vars'][$name] = ['name'=>$name,'type'=>$type];
                     }
                 }
                 

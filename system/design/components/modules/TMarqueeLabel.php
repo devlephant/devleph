@@ -29,7 +29,7 @@ class TMarqueeLabel extends TLabel {
 			event_set($TTimerNew, 'OnTimer', $func);
 		else
 			event_set($TTimerNew, 'OnTimer', function($self) use ($func, $param){
-				call_user_func_array($func, array_merge(array($self), $param));
+				call_user_func_array($func, array_merge([$self], $param));
 				unset($func, $param);
 			});
 

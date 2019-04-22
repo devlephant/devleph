@@ -19,7 +19,7 @@ Function Get($url){
 Function Put($url,$data,$continue = false){
    $arr = Explode(" | ",$data);
    $arr = implode("&",$arr);
-   $arr = str_replace(array("->","-> "," ->"," = "," =","= ","="),"=",$arr);
+   $arr = str_replace(["->","-> "," ->"," = "," =","= ","="],"=",$arr);
    $post = "$url?$arr";
    IF($continue == ""){ $continue = true;} else { $continue = $continue; }
    IF($continue == true){File_get_contents($post);}

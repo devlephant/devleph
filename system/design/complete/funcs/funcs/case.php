@@ -3,6 +3,6 @@ return
 [
 	'DESC'=>'Ёлемент множественного услови€',
 	'INLINE'=>'case <value>: <code>; break;',
-	'SEEALSO'=>array('if', 'switch'),
+	'SEEALSO'=>['if', 'switch'],
 	'CATEGORY'=>'—интаксис',
 ];

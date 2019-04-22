@@ -126,7 +126,7 @@ class complete_Props {
                 foreach($methods as $method){
                     
                     $prefix = strtolower(substr($method['name'],0,4));
-                    if (($prefix!=='set_' && $prefix!='get_') && in_array($method['type'],array('','public'))){
+                    if (($prefix!=='set_' && $prefix!='get_') && in_array($method['type'],['','public'])){
                         
                         
                         $inline = $method['name'].' ( '. complete_Funcs::getInline($method['params'],$method['defaults']) .' )';
@@ -174,7 +174,7 @@ class complete_Props {
                     $prefix = strtolower(substr($method['name'],0,4));
                     $prop = str_ireplace($prefix,'',$method['name']);
                         
-                    if (($prefix=='set_' || $prefix=='get_') && in_array($method['type'],array('','public')) && !in_array($prop, $tmp_exists)){
+                    if (($prefix=='set_' || $prefix=='get_') && in_array($method['type'],['','public']) && !in_array($prop, $tmp_exists)){
                         
                         $tmp_exists[] = $prop;
                         $inline = $method['name'].' ( '. complete_Funcs::getInline($method['params'],$method['defaults']) .' )';

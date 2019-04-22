@@ -43,8 +43,8 @@
                         $rw = $rh = $ry = $rx = false;
                         event_set($t[1], 'onTimer', function($self) use (&$t, $obj, &$speed, &$rw, &$rh, &$ry, &$rx) {
                             foreach($t[2] as $i => $prop) {
-                                if(!(${'r' . $i} = ($t[2][$i] == $p0 = call_user_func_array('control_' . $i, array($obj, null)))))
-                                    call_user_func_array('control_' . $i, array($obj, $p0 + (($r = ($prop - $p0) / 100 * $speed) > 0 ? ceil($r) : floor($r))));
+                                if(!(${'r' . $i} = ($t[2][$i] == $p0 = call_user_func_array('control_' . $i, [$obj, null]))))
+                                    call_user_func_array('control_' . $i, [$obj, $p0 + (($r = ($prop - $p0) / 100 * $speed) > 0 ? ceil($r) : floor($r))]);
                             }
                             
                             if($rw and $rh and $ry and $rx) {
@@ -53,15 +53,15 @@
                                 $t[3] = false;
                             
                                 if($t[4] !== null) {
-                                    call_user_func_array($t[4], array($obj));
+                                    call_user_func_array($t[4], [$obj]);
                                 } elseif(TResize::$CallBackInSitu !== null) {
-                                    call_user_func_array(TResize::$CallBackInSitu, array($obj));
+                                    call_user_func_array(TResize::$CallBackInSitu, [$obj]);
                                 }
                             }
                         });
                     }
                     
-                    $t[2] = array('x' => control_x($obj, null), 'y' => control_y($obj, null), 'h' => control_h($obj, null), 'w' => control_w($obj, null));
+                    $t[2] = ['x' => control_x($obj, null), 'y' => control_y($obj, null), 'h' => control_h($obj, null), 'w' => control_w($obj, null)];
                     $t[3] = true;
                     $t[4] = null;
                     foreach($v as $i => $v)

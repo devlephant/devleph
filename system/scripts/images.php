@@ -8,8 +8,8 @@ $c         = 0;
 $root1	   = SYSTEM_DIR . '/images/';
 $root2	   = SYSTEM_DIR . '/images/btns/' . myOptions::get('prefs','studio_theme', 'light') . '/';
 
-$files = array_merge( findFiles($root2.'24/', array('bmp','png','gif')),
-findFiles($root1 . '24/', array('bmp','png','gif')) );
+$files = array_merge( findFiles($root2.'24/',['bmp','png','gif']),
+findFiles($root1 . '24/',['bmp','png','gif']) );
 
 foreach ($files as $i=>$file){
     
@@ -40,5 +40,5 @@ foreach ($files as $i=>$file){
         
     
     $is_exists[] = basenameNoExt($file);
-    $allImages[basenameNoExt($file)] = array('ID' => $i-$c, 'FILE'=>$file);
+    $allImages[basenameNoExt($file)] = ['ID' => $i-$c, 'FILE'=>$file];
 }
