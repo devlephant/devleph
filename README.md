@@ -10,12 +10,12 @@ Chromium 69.0.3 (Flash, Javascript, HTML5 native support)
 
 Unicode partially support (will be full as soon as possible)
 ## EN
-** Unofficial DevelStudio Patch. **
-<br>Just download, unpack it, and run DS KE.exe to proceed :)
+** DevelStudio Community Update **
+<br>Just download, unpack it, and run DS CV.exe to proceed :)
 
 Compatible SoulEngine Version Can Be Found -> <a href="https://github.com/KashaketCompany/soulengine">HERE</a>
 
-Autors: Andrew Zenin, Artem Ukolov<br>Testing: Vyascheslav Novikov (Manofjoe), Alexander Kobozev ([s]Alex)
+Autors: DS Community<br>Testing: Vyascheslav Novikov (Manofjoe), Alexander Kobozev ([s]Alex)
 
 Added debug launch via bat-cmd, if you don't like to use this way, just create link (*.lnk) with parameter -debug.
 <br>Note: This feature was added firstly in DS Ke 3.0.2 Beta
@@ -26,12 +26,12 @@ For the full debug, you can create file 'lookout_log.txt' near Ds Ke.exe, all er
 ---
 
 ## RU
-** Неофициальная правка DevelStudio. **
+** Сообщественное обновление DevelStudio. **
 <br>Просто скачайте, распакуйте это, и запустите DS KE.exe для использования :)
 
 Совместимая версия SoulEngine может быть найдена -> <a href="https://github.com/KashaketCompany/soulengine">Здесь</a>
 
-Авторы: Андрей Зенин, Артём Уколов<BR>Тестировщики: Вячеслав Новиков (Manofjoe), Александр Кобозев ([s]Alex)
+Авторы: Сообщество DevelStudio <BR>Тестировщики: Вячеслав Новиков (Manofjoe), Александр Кобозев ([s]Alex)
 
 Добавлен запуск в режиме отладки через bat (командную строку), если вам не нравится так запускать студию, просто создайте файл ссылки (*.lnk) на DS Ke с параметром -debug
 <br>Заметьте: эта особенность впервые была добавлена в DS Ke 3.0.2 Beta
