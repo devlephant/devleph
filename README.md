@@ -1,3 +1,9 @@
+# Stats
+45% complete
+[❚❚❚❚⫴⫴⫴⫴⫴⫴]
+
+<br>Working on  the:
+<br><a href="https://github.com/KashaketCompany/DevelStudio-3.0-beta/projects/1">:wrench:Fixes</a>
 # DevelStudio-3.0-beta
 >Commit №238 Filesize:
 <br>178Mb (zipped)
