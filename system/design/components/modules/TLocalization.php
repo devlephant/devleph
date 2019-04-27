@@ -66,7 +66,7 @@ class TLocalization extends __TNoVisual {
                 if ($x_form)
                     Localization::localForm( $x_form );
                 else
-                    error_msg("Form '$form' is not loading...");
+                    dsErrorDebug::msg("Form '$form' is not loading...");
             }
             
         }

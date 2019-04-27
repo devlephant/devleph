@@ -2,7 +2,7 @@
 return
 [
 	'DESC'=>'¬ключить вывод ошибок',
-	'INLINE'=>'void err_yes ( void )',
-	'SEEALSO'=>['err_no','err_msg','err_last'],
+	'INLINE'=>'void dsErrorDebug::display ( void )',
+	'SEEALSO'=>['dsErrorDebug::hide','dsErrorDebug::getLastMsg','dsErrorDebug::getLast'],
 	'CATEGORY'=>'‘ункции обработки ошибок',
 ];

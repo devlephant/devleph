@@ -14,7 +14,7 @@
 function dfm_read($dfm_file_name, $aform = false, $str = false, $form_name = false, $is_runtime = false)
 {
 	if ($dfm_file_name)
-		checkFile($dfm_file_name);
+		dsErrorDebug::checkFile($dfm_file_name);
 
 	if (!$aform)
 		$form = new TForm( $GLOBALS['APPLICATION'] );

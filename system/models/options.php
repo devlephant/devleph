@@ -257,7 +257,7 @@ class myOptions {
                                  myVars::get('__iconFile')
                                 );
             
-            if (false && err_msg()){
+            if (false && dsErrorDebug::getLastMsg()){
             
                 msg(t('Please, select correct path for your program!'));
                 self::BuildProgram();
@@ -265,7 +265,7 @@ class myOptions {
             }
             
             
-            //err_yes();
+            //dsErrorDebug::display();
             
             message_beep(66);
             c('fmBuildCompleted->e_filename',1)->text = c('fmBuildProgram->path',1)->text;

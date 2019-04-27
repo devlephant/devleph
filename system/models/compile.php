@@ -452,7 +452,7 @@ class myCompile
 		unset($_e, $vtime);
 		shell_execute(0, 'open', replaceSr($exeFile), ' -c ' . receiver_handle(), replaceSr(dirname($exeFile)), SW_SHOW);
 		myDesign::szRefresh();
-		err_status($_e);
+		dsErrorDebug::ErrStatus($_e);
 	}
 	static function checkphp($file)
 	{
@@ -525,11 +525,11 @@ class myCompile
 			mkdir(dirname($fileExe), 511, true);
 		}
 
-		$_e = err_status(false);
-		err_clear();
+		$_e = dsErrorDebug::ErrStatus(false);
+		dsErrorDebug::clearErr();
 		x_copy(self::getExeModule(), $fileExe);
 		
-		if (err_msg()) {
+		if (dsErrorDebug::getLastMsg()) {
 			myCompile::setStatus('Warning', t('Selected directory is inaccessible') . '!');
 			$myProject->config['debug']['enabled'] = $debug_enabled;
 			return false;
@@ -618,7 +618,7 @@ class myCompile
 		$vtime = $vtime>=60? round($vtime/60,1).t('min.'): $vtime.t('sec.');
 		myCompile::setStatus('Success', t('Building Completed') . '. ( '.$vtime.' )');
 
-		err_status($_e);
+		dsErrorDebug::ErrStatus($_e);
 		$myProject->config['debug']['enabled'] = $debug_enabled;
 		
 		return true;

@@ -169,14 +169,14 @@ function reload_included() {
   } 
 } 
 function eval2( $code, $quite ){
-	$aerr = err_status();
-	if($aerr and $quite){ err_no(); }; 
+	$aerr = dsErrorDebug::ErrStatus();
+	if($aerr and $quite){ dsErrorDebug::hide(); }; 
 	if( is_array($code) ){
 		foreach($code as $str){
 		if(is_array($str) ){ eval2($str, $quite); }else if(is_string($str)){ eval($str); };
 		}
 	}else if(is_string($str)){ eval($str); };
-	if($aerr and $quite){ err_yes(); };
+	if($aerr and $quite){ dsErrorDebug::display(); };
 }
 
 function is_on_obj($obj2, $obj1){

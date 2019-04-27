@@ -34,7 +34,7 @@ class evalProject {
         $GLOBALS['___startFunctions'] = [];
         $GLOBALS['___startFunctionsBefore'] = [];
         
-        $_e = err_status(false);
+        $_e = dsErrorDebug::ErrStatus(false);
         $x = unserialize(base64_decode(gzuncompress($result)));    
         if (!$x)
             $result = unserialize(base64_decode($result));
@@ -42,7 +42,7 @@ class evalProject {
             $result = $x;
             
         unset($x);
-        err_status($_e);
+        dsErrorDebug::ErrStatus($_e);
         
         
         $this->config    = $result['CONFIG'];
@@ -141,7 +141,7 @@ class evalProject {
     public function loadFormStr($str, $name){
         
         if (c($name)->valid()){         
-            error_msg('Form "'.$name.'" is already exists!');
+            dsErrorDebug::msg('Form "'.$name.'" is already exists!');
         }
         
         $str  = str_ireplace('fsMDIChild','fsNormal',$str);
@@ -161,7 +161,7 @@ class evalProject {
         
         $name = basenameNoExt($dfm_file);
         
-        if (c($name)->valid()) error_msg('Form "'.$name.'" is already exists!');
+        if (c($name)->valid()) dsErrorDebug::msg('Form "'.$name.'" is already exists!');
         
         $str  = file_get_contents($dfm_file);
         $str  = str_ireplace('fsMDIChild','fsNormal',$str);

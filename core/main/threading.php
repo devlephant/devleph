@@ -267,7 +267,7 @@ class TThread {
     
     // call when run thread
     static function __init(){
-        errors_init();
+        dsErrorDebug::init();
         if ( class_exists('DS_Loader') )
               DS_Loader::InitLoader(true);
     }

@@ -3,7 +3,7 @@
 		pre($argv);
 		$tt = microtime(1);
 	}else{
-		err_status(false); // отключение вывода ошибок
+		dsErrorDebug::ErrStatus(false); // отключение вывода ошибок
     }    
 	
 	if (!EMULATE_DVS_EXE){

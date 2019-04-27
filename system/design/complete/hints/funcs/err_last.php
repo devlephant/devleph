@@ -2,7 +2,7 @@
 return
 [
 	'DESC'=>'Возвращает информацию о последней ошибке',
-	'INLINE'=>'array err_last ( void )',
-	'SEEALSO'=>['err_no','err_msg','err_yes'],
+	'INLINE'=>'array dsErrorDebug::getLast ( void )',
+	'SEEALSO'=>['dsErrorDebug::hide','dsErrorDebug::getLastMsg','dsErrorDebug::display'],
 	'CATEGORY'=>'Функции обработки ошибок'
 ];

@@ -630,7 +630,7 @@ class myProject {
                 return false;
         }
          
-        $_e = err_status(false);
+        $_e = dsErrorDebug::ErrStatus(false);
         
             $result = file_get_contents($file);
             $x = unserialize(base64_decode($result));
@@ -642,7 +642,7 @@ class myProject {
             
             unset($x);
         
-        err_status($_e);
+        dsErrorDebug::ErrStatus($_e);
         
         $myProject->config    = $result['CONFIG'];
         $myProject->formsInfo = $result['formsInfo'];

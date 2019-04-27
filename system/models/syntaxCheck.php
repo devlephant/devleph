@@ -4,7 +4,8 @@ class mySyntaxCheck {
     
     static $errors;
     static $noerrors;
-	public static function checkForm($form, $obj_name){
+	public static function checkForm($form, $obj_name)
+	{
         
         $form     = strtolower($form);
         $obj_name = strtolower($obj_name);
@@ -19,7 +20,7 @@ class mySyntaxCheck {
             
             if ( !trim($code) ) continue;
 			
-            $GLOBALS['__error_last'] = false;
+            dsErrorDebug::clearErr();
 			$exp = explode(_BR_, str_replace(['\t', ' ', '/**/'], '', $code))[0];
 			if( strtolower(substr($exp, 0, 9)) === 'namespace' )
 			{
@@ -29,10 +30,10 @@ class mySyntaxCheck {
 				$err = ['msg' => 'logic error, unexpected \''.substr($exp,9, $spos) .'\' {T_NAMESPACE}', 'line'=>1, 'type'=> E_USER_ERROR];
 			} else {
 				eval('if(false){' . $code . _BR_ . '}');
-				$err = err_last();
+				$err = dsErrorDebug::getLast();
 			}
 			$exp = null;
-            if (is_array($err)){ // если 
+            if (is_array($err) && $err['msg']){ // если 
 				if($obj_name==$form) $obj_name = false;
 				
                 self::$errors[$list->itemIndex+count(self::$errors)+1] = ['msg'=>$err['msg'], 'type'=>$err['type'],
@@ -56,7 +57,7 @@ class mySyntaxCheck {
 		$code = str_replace(['\t', ' ', '/**/'], ' ', file_get_contents($filename));
 		 if ( !trim($code) ) return;
 			
-            $GLOBALS['__error_last'] = false;
+            dsErrorDebug::clearErr();
 			if(!stripos('!'.$code, '<?')) return;
 			$code = substr($code, stripos($code,'<?')+2);
 			if( strtolower(substr($code, 0, 3)) === 'php' )
@@ -69,10 +70,10 @@ class mySyntaxCheck {
 			
 			$code = preg_replace( "#namespace\W+\S+\;|namespace\W+\S+\W+\;|namespace\S+\;|namespace\S+\W+\;#i", '	', $code, 1 );
 			eval('if(false){' . $code . _BR_ . '}');
-			$err = err_last();
+			$err = dsErrorDebug::getLast();
 			
 			$exp = null;
-            if (is_array($err)){ // если 
+            if (is_array($err) && $err['msg']){ // если 
 
 				$event = '/scripts/' . basename($filename);
                 self::$errors[$list->itemIndex+count(self::$errors)+1] = ['msg'=>$err['msg'], 'type'=>$err['type'],

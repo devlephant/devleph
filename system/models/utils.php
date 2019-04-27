@@ -294,7 +294,6 @@ class myUtils {
             $fmEdit->w = 50;
             $fmEdit->x = 10;
             $fmEdit->y = 10;
-            //self::loadFormDFM(SYSTEM_DIR . '/blanks/form.dfm', $fmEdit);
             self::loadFormDFM($file, $fmEdit);
             $fmEdit->x = 10;
             $fmEdit->y = 10;
@@ -318,7 +317,6 @@ class myUtils {
             $fmEdit->w = 50;
             $fmEdit->x = 10;
             $fmEdit->y = 10;
-            //self::loadFormDFM(SYSTEM_DIR . '/blanks/form.dfm', $fmEdit);
             self::loadFormDFM($file, $fmEdit);
             $fmEdit->x = 10;
             $fmEdit->y = 10;
@@ -381,7 +379,7 @@ class myUtils {
         if (!$name || is_numeric($name))
             $name = $_FORMS[$formSelected];
             
-        if ( !confirm(t('Вы точно хотите удалить форму "'.$name.'"?')) ) return;    
+        if ( !confirm(t('Are you sure to delete form "%s"?',$name)) ) return; 	
         
         c('fmMain->tabForms')->tabs->delete($formSelected);
         if ($formSelected == 0)
@@ -480,7 +478,7 @@ class myUtils {
             global $_FORMS, $formSelected;
             foreach ($_FORMS as $el){
                 if (strtolower($el)==strtolower($new_name)){
-                    msg(t('Form %s already exists in project',$el));
+                    msg(t('Form %s already exists in the project',$el));
                     return false;
                 }
             }
@@ -595,7 +593,7 @@ class myUtils {
             
             foreach ($_FORMS as $el){
                 if (strtolower($el)==strtolower($name)){
-                    msg(t('Form %s already exists in project',$el));
+                    msg(t('Form %s already exists in the project',$el));
                     return false;
                 }
             }

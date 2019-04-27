@@ -35,7 +35,7 @@ class CApi extends DSApi {
         
         if (!$info['name']) return;
         
-        $err = err_status(0);
+        $err = dsErrorDebug::ErrStatus(0);
         $result = [];
         $dir = dirname($info['file']);
         
@@ -73,7 +73,7 @@ class CApi extends DSApi {
         file_p_contents(DOC_ROOT.'/ext/'.$ds_name.'.info', serialize($result));
         x_copy($info['file'], DOC_ROOT.'/ext/'.$ds_name.'.dspak');
         
-        err_status($err);
+        dsErrorDebug::ErrStatus($err);
     }
     
     static function unInstallPak($name){

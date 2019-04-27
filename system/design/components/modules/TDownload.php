@@ -118,7 +118,7 @@ class TDownload extends __TNoVisual {
     
     static function _start($self = false, $props = [], $th = false){
         
-        $st_err = err_status(false);
+        $st_err = dsErrorDebug::ErrStatus(false);
         
         $obj = c($self,0);
         $url = $props['url'];	
@@ -133,14 +133,14 @@ class TDownload extends __TNoVisual {
         $url = trim($url);	
 	$fh = fopen($url, "r");
 	
-	if (err_last()){
+	if (dsErrorDebug::getLastMsg()){
             
             if ($props['onerror']){
-                $err = err_msg();
+                $err = dsErrorDebug::getLastMsg();
 		syncEx($props['onerror'], [$self, $err]);
             }
             
-            err_status($st_err);
+            dsErrorDebug::ErrStatus($st_err);
 	    syncEx('TDownload::_endDownload', [$self]);
             return;
         }
@@ -179,18 +179,18 @@ class TDownload extends __TNoVisual {
             fwrite($fs, $str);
         }
     
-	err_status($st_err);
+	dsErrorDebug::ErrStatus($st_err);
 	   
-        if (err_msg() || ($pos!==$info['size'] && !$obj->isStop)){
+        if (dsErrorDebug::getLastMsg() || ($pos!==$info['size'] && !$obj->isStop)){
             
             if ($props['onerror'])
-		syncEx($props['onerror'], [$self, err_msg() ? err_msg() : 'error donwload']);
+		syncEx($props['onerror'], [$self, dsErrorDebug::getLastMsg() ? dsErrorDebug::getLastMsg() : 'error donwload']);
 	    
         } else {
 	    
-            $st_err = err_status(false);
+            $st_err = dsErrorDebug::ErrStatus(false);
             fclose($fs);            
-            err_status($st_err);
+            dsErrorDebug::ErrStatus($st_err);
             
 	    TDownload::loadForObject($self, $filename, !trim($props['path']), $th);
 	    

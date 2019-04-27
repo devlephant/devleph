@@ -111,7 +111,7 @@ class evfmMain {
 	}
     static function getLastVer(){
         
-        err_no();
+        dsErrorDebug::hide();
         $file_info = file("http://kashaproduct.at.ua/ds/last.txt");
         $last_ver = $file_info[3];
             
@@ -452,7 +452,7 @@ class ev_it_helpbook {
         return shell_execute(0,'open','http://help.develstudio.ru/Vvedenie-16.html','','',SW_SHOW);
         
         if (!file_exists(DOC_ROOT . '/lang/' . LANG_ID . '/help.chm'))
-            error_message(t('Help book not found for this language'));
+            dsErrorDebug::msg(t('Help book not found for this language'));
         else
             shell_execute(0,'open', DOC_ROOT . '/lang/' . LANG_ID . '/help.chm');
     }
