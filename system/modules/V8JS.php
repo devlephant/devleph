@@ -1,4 +1,6 @@
 <?
+if( class_exists('V8JS', false) )
+{
 	$GLOBALS["__chromium_allowedcall_push"] = [];
 	
 	function chromium_allowedcall_push($func){
@@ -8,4 +10,5 @@
 		}
 	}
 	chromium_allowedcall_push("V8JS::CallVirtual");
+}
 ?>

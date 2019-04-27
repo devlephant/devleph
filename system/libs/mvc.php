@@ -62,7 +62,7 @@ class Loader {
         }
         
         $class = 'my'.$file;
-        if (class_exists($class))
+        if (class_exists($class, false))
             if (method_exists($class, 'afterLoad')){
                 
                 $tmp = new $class;

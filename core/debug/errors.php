@@ -325,10 +325,121 @@ class dsErrorDebug
 	}
 }
 
+class dsErrorClassUndefined
+{
+	public final function __construct(...$args)
+	{
+		$class = get_class($this);
+		trigger_error("Unable to create Class \"{$class}, because class Does Not Exist". 
+		"\"\nInfo:\n\tParams:\n" . print_r($args) . "\n\tClass name:{$class}\nClass Does Not Exist!", E_USER_ERROR);
+	}
+	
+	public final function __destruct()
+	{
+		$class = get_class($this);
+		trigger_error("Cannot destruct instance of \"{$class}\", because class Does Not Exist". 
+		"\"\nInfo:\n\tClass name:{$class}\nClass Does Not Exist!", E_USER_ERROR);
+	}
+	
+	public final function __get($name)
+	{
+		$class = get_class($this);
+		trigger_error(
+		"Unable to get property \"{$name}\", because class \"{$class}\" Does Not Exist!" .
+		"\nInfo:n\tProperty: {$class}::{$name}\n\tClass name:{$class}", E_USER_ERROR);
+		return NULL;
+	}
+	
+	public final function __isset($name)
+	{
+		$class = get_class($this);
+		trigger_error(
+		"Property does not exist because of non-existant class \"{$class}\"".
+		"\nInfo:n\tProperty: {$class}::{$name}\n\tClass name:{$class}", E_USER_ERROR);
+		return FALSE;
+	}
+	
+	public final function __unset($name)
+	{
+		$class = get_class($this);
+		trigger_error(
+		"Cannot unset property \"{$name}\", because class \"{$class}\" Does Not Exist!".
+		"\nInfo:n\tProperty: {$class}::{$name}\n\tClass name:{$class}", E_USER_ERROR);
+	}
+	
+	public final function __set($name, $value)
+	{
+		$class = get_class($this);
+		trigger_error(
+		"Unable to set property \"{$name}\", because class \"{$class}\" Does Not Exist!" .
+		"\nInfo:\n\tProperty:{$class}::{$name}\n\tValue:\n".print_r($value,true)."\nClass name:{$class}", E_USER_ERROR);
+		return FALSE;
+	}
+	
+	public final function __invoke(...$args)
+	{
+		$class = get_class($this);
+		trigger_error("Cannot invoke Class \"{$class}, because class Does Not Exist". 
+		"\"\nInfo:\n\tParams:\n" . print_r($args) . "\n\tClass name:{$class}\nClass Does Not Exist!", E_USER_ERROR);
+		return NULL;
+	}
+	
+	public final function __call($name, $args)
+	{
+		$class = get_class($this);
+		trigger_error("Unable to call dynamic method \"{$name}\", because class \"{$class}\" Does Not Exist!" .
+		"\nInfo:\n\tMethod name: {$class}::{$name}\n\tParams:\n" . print_r($args,true) . "\n\tClass name:{$class}", E_USER_ERROR);
+		return NULL;
+	}
+	
+	public static final function  __callStatic($name, $args)
+	{
+		$class = get_class($this);
+		trigger_error("Unable to call static method \"{$name}\", because class \"{$class}\" Does Not Exist!" .
+		"\nInfo:\n\tMethod name: {$class}::{$name}\n\tParams:\n" . print_r($args,true) . "\n\tClass name:{$class}", E_USER_ERROR);
+		return NULL;
+	}
+	
+	public static final function __set_state($a)
+	{
+		$class = get_class($this);
+		trigger_error("Cannot import instace of \"{$class}\", because class Does Not Exist". 
+		"\"\nInfo:\n\tClass name:{$class}\n\tInput:\n".print_r($a,true)."\nClass Does Not Exist!", E_USER_ERROR); 
+	}
+	
+	public final function __toString()
+	{
+		$class = get_class($this);
+		trigger_error("Cannot convert instance of \"{$class}\" to string, because class Does Not Exist". 
+		"\"\nInfo:\n\tClass name:{$class}\nClass Does Not Exist!", E_USER_ERROR);
+		return "Class \"{$class}\" Does Not Exist!";
+	}
+	
+	public final function __debuginfo()
+	{
+		return ["Error"=>"Class \"{$class}\" Does Not Exist!"];
+	}
+	
+	public final function __sleep()
+	{
+		$class = get_class($this);
+		trigger_error("Cannot serialize instance of \"{$class}\", because class Does Not Exist". 
+		"\"\nInfo:\n\tClass name:{$class}\nClass Does Not Exist!", E_USER_ERROR);
+		return [];
+	}
+	
+	public final function __wakeup()
+	{
+		$class = get_class($this);
+		trigger_error("Cannot unserialize instance of \"{$class}\", because class Does Not Exist". 
+		"\"\nInfo:\n\tClass name:{$class}\nClass Does Not Exist!", E_USER_ERROR);
+	}
+}
 dsErrorDebug::init();
 
 dsErrorDebug::hide();
     date_default_timezone_set(date_default_timezone_get());
     ini_set('date.timezone', date_default_timezone_get());
 dsErrorDebug::display();
+
 ?>

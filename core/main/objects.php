@@ -1161,7 +1161,10 @@ function __autoload($name)
 			$parent = gui_class_parent($name);
 			$parent = in_array(strtolower($parent), ['tpersistent', 'tinterfacedpersistent', 'iinterface'])? 'TControl': $parent;
 			$parent = class_exists($parent) && strlen($parent)? $parent: 'TControl';
-			eval("class $name extends $parent{}");
+			eval("class $name extends $parent{};");
+		} else {
+			if($name !== 'TSynSelectedColor')
+			eval("class $name extends dsErrorClassUndefined{};");
 		}
 }
 ?>

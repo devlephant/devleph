@@ -599,7 +599,7 @@ if (EMULATE_DVS_EXE) return;
 	//#LOADER;
 	foreach( $_components as $ikey=>$info )
 	{
-		if( !class_exists($info['CLASS']) )
+		if( !class_exists($info['CLASS']) || is_subclass_of ($info['CLASS'], 'dsErrorClassUndefined') )
 		{
 			unset( $_components[$ikey] );
 		}
