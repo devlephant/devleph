@@ -16,15 +16,9 @@ class TSimpleGraph extends TImage
 		}
 	}
 	
-	private function init()
-	{
-		if( !c($this->_canv->self) ) {
-			$this->_canv = new TControlCanvas($this);
-		}
-	}
 	private function _drawBg()
 	{
-		$this->_canv->clear();
+		$this->canvas->clear();
 	}
 	private function _drawLine( $line )
 	{

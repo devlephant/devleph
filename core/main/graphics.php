@@ -357,22 +357,10 @@ class TControlCanvas extends TCanvas {
     
     
     
-    function __construct($ctrl = false){
+    function __construct($cntrl = 0)
+	{
 		parent::__construct(nil,true,nil);
-		
-		$this->self = control_canvas();
-		
-			$this->brush = new TBrush;
-				$this->brush->self = canvas_brush($this->self);
-				
-				$this->pen = new TPen;
-				$this->pen->self = canvas_pen($this->self);
-				
-				$this->font = new TCanvasFont;
-				$this->font->self = canvas_font($this->self);
-		
-		if (($ctrl instanceof TControl) || ($ctrl instanceof TBitMap) || ($ctrl instanceof TPicture))
-			$this->control = $ctrl;
+		$this->self = component_canvas( is_object($cntrl)?$cntrl->self:(int)$cntrl );
     }
     
     function get_control(){
@@ -384,16 +372,6 @@ class TControlCanvas extends TCanvas {
 		
 		if (method_exists($v,'getCanvas')){
 			$this->self = $v->getCanvas()->self;
-				
-				$this->brush = new TBrush;
-				$this->brush->self = canvas_brush($this->self);
-				
-				$this->pen = new TPen;
-				$this->pen->self = canvas_pen($this->self);
-				
-				$this->font = new TCanvasFont;
-				$this->font->self = canvas_font($this->self);
-			$this->font->size = 15;
 		} else {
 			canvas_control($this->self, $v->self);
 		}

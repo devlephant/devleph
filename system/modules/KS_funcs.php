@@ -231,10 +231,9 @@ function arr_gd($length, $color_1='', $color_2=''){
         return $res;
 }
 
-function create_gradient($obj, TControlCanvas $canv, $col1 = clWhite, $col2 = clLtGray, $hz=false, $both=false){
+function create_gradient($obj, TCanvas $canv, $col1 = clWhite, $col2 = clLtGray, $hz=false, $both=false){
 	if(!$canv){
-		$canv = new TControlCanvas( $obj );
-		$canv->control = $obj;
+		$canv = $obj->canvas;
 	}
 
 	if(!$hz){

@@ -9,7 +9,7 @@
 		dsErrorDebug
 		
     Main Handlers:
-        userErrorHandler, userFatalHandler, userExceptionHandler;
+        userErrorHandler, userFatalHandler, userExceptionHandler
 		
 	Main functions:
 		Error status:	msg,
@@ -39,6 +39,7 @@ class dsErrorDebug
 	PRIVATE STATIC $__show;
 	PRIVATE STATIC $__error;
 	PRIVATE STATIC $__exception;
+	
 	public static final function init(){
 		
 		self::$__show = true;
