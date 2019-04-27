@@ -199,7 +199,7 @@ class dsErrorDebug
 		switch (call_user_func( self::$fShowError, ($str)))
 		{	
 			case mrCancel: return true; break;
-			case mrOk:{ application_terminate(); return false; }break;
+			case mrOk:{ application_terminate(); die(); return false; }break;
 		}
 		return;
 	}
