@@ -1,5 +1,5 @@
 # Stats
-45% complete
+45% complete :heavy_check_mark:
 [❚❚❚❚⫴⫴⫴⫴⫴⫴]
 
 <br>Working on  the:
