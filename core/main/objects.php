@@ -1155,7 +1155,7 @@ function val($str, $value = null){
 function __autoload($name)
 {
 	
-	if( substr($name, 0, 2) == 'ev' or  substr($name, 0, 7) == 'modifer' ) return;
+	if( $name == 'TSynSelectedColor' or substr($name, 0, 2) == 'ev' or  substr($name, 0, 7) == 'modifer' ) return;
 		if( gui_class_isset($name) )
 		{	
 			$parent = gui_class_parent($name);
@@ -1163,7 +1163,6 @@ function __autoload($name)
 			$parent = class_exists($parent) && strlen($parent)? $parent: 'TControl';
 			eval("class $name extends $parent{};");
 		} else {
-			if($name !== 'TSynSelectedColor')
 			eval("class $name extends dsErrorClassUndefined{};");
 		}
 }
