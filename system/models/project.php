@@ -750,6 +750,7 @@ class myProject {
 			if( $GLOBALS['__newproject_close']  )
 			{
 				application_terminate();
+				die();
 				$GLOBALS['__newproject_close'] = 'exit';
 			}
 		};
@@ -788,6 +789,7 @@ class myProject {
 		if( $GLOBALS['__newproject_close'] && !$result )
 			{
 				application_terminate();
+				die();
 				$GLOBALS['__newproject_close'] = 'exit';
 			} else $GLOBALS['__newproject_close'] = false;
         return $result;
