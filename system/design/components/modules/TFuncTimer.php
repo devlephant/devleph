@@ -8,7 +8,6 @@ class TFuncTimer extends __TNoVisual {
      
     public static function doTimer($self){
 	$obj = _c(_c($self)->owner);
-	//pre($obj);
 	if ($obj->onTimer){
 		if( is_string($obj->onTimer) )
 		{
@@ -42,12 +41,11 @@ class TFuncTimer extends __TNoVisual {
 	$timer->repeat   = $props['repeat'];
 	$timer->workbackground = $props['workbackground'];
 	$timer->priority = $props['priority'];
-	//$timer->onTimer = TFuncTimer::onTimer;
-	//pre($this->background);
+
 	$timer->onTimer  = $props['onTimer'];
 	
 	$tmp = $this->name;
-	//$this->free();
+	
 	$this->name = '';
 	$timer->name = $tmp;
 	eventEngine::updateIndex($timer);
@@ -57,7 +55,6 @@ class TFuncTimer extends __TNoVisual {
 	parent::__construct($onwer, $init, $self);
   
         if ($init){
-            //$this->color = 0x0;
 	    $this->background = 0;
 	    $this->priority   = tpNormal;
 	    $this->interval = 1000;

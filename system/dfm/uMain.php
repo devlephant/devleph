@@ -73,7 +73,6 @@ class evfmMain {
                 if (messageBox(t("Воу, ты устарел,\nуже доступна версия %s\nОбновить программу?",$last_ver), t('.: Мастер обновления :.'), MB_YESNO)==mrYes){
                     
                     ev_it_masterupdate::onClick();
-                    //run(dirname(EXE_NAME).'/update.exe');
                 }
             }
         }

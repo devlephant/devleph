@@ -1337,10 +1337,6 @@ object fmMain: TfmMain
       end
     end
   end
-  object MainImages16: TImageList
-    Left = 632
-    Top = 48
-  end
   object MainImages32: TImageList
     Height = 32
     ImageType = itMask

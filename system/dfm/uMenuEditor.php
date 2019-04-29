@@ -212,7 +212,6 @@ class menuEditor {
             $tmp = self::getParam($i);
             
             if (is_int($tmp['level']) && $params['level']>=$tmp['level']){
-                //unset($result[$i]);
                 break;    
             } else 
                 unset($result[$i]);

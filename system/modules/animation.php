@@ -9,7 +9,6 @@ class animate {
         if (count($vspeed))
         foreach ($vspeed as $self=>$speed){
             if (link_null($self)){
-               // pre($self);
                 unset($vspeed[$self]);
                 continue;
             }
@@ -61,7 +60,6 @@ class animate {
                         $event[0] = ' '; $event = ltrim($event);
                         f($event, $self, $toobj);
                     } else {
-                        //pre("$event($self, $toobj)");
                         $event($self, $toobj);
                     }
                 }

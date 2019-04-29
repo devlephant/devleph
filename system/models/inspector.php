@@ -80,7 +80,6 @@ class myInspect {
         global $myInspect, $inspectList;
         
         $item = $myInspect->objects[$obj->self];
-        //pre($myInspect);
         if ($item){
             $id = $inspectList->items->indexOf($item);
             if ($id > -1)
@@ -109,7 +108,6 @@ class myInspect {
     static function generate($form){
         
         global $inspectList;
-        //lockWindowUpdate($inspectList->handle);
         
         $hor = gui_getScrollPos($inspectList->self, 0);
         $ver = gui_getScrollPos($inspectList->self, 1);
@@ -146,17 +144,7 @@ class myInspect {
     }
     
     static function updateSelected(){
-        
-        /*global $_sc;
-        $tg  = $_sc->targets_ex;
-        $arr = []; 
-        foreach ($tg as $x)
-            $arr[] = $x->name;*/
-        
-        
-        c('fmObjectInspector->list')->onClick = 'myInspect::click';
-		//c('fmObjectInspector->list')->onChange = 'myInspect::click';
-       // c('fmObjectInspector->list',1)->items->selectByCaption($arr);
+		c('fmObjectInspector->list')->onClick = 'myInspect::click';
     }
     
     static function click($self){
@@ -205,23 +193,18 @@ class myInspect {
         
         global $_FORMS, $formSelected, $fmEdit;
         $text = $_FORMS[$formSelected] . ' [w:'.$fmEdit->w.' h:'.$fmEdit->h.']';
-        //c('fmObjectInspector->status',1)->SimpleText = $text;
     }
     
     static function selectObject($obj, $dx = false, $dy = false){
         
         
         if (!$obj){
-            //c('fmObjectInspector->status',1)->SimpleText = '';
             return;
         }
         if ($dx)
             $text = $obj->name . ' [x:' . $dx . ' y:'.$dy . ']';
         else
             $text = $obj->name . ' [x:' . $obj->x . ' y:'.$obj->y . ']';
-        
-        //c('fmObjectInspector->status',1)->SimpleText = $text;
-        //c('fmObjectInspector->status',1)->onDblClick = 'myInspect::changeNameClick';
     }
 }
 

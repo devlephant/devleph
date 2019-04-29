@@ -10,8 +10,6 @@ class TMainMenuEx extends __TNoVisual{
     }
     
     public function __initComponentInfo(){
-			
-	//pre($this->data);
 	parent::__initComponentInfo();
 	$obj = new TMainMenu(_c($this->owner));
         

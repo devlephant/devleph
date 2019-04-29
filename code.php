@@ -1,1 +1,0 @@
-pre( get_extension_funcs('winres') );

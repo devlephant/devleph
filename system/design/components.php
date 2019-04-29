@@ -614,7 +614,7 @@ if (EMULATE_DVS_EXE) return;
             foreach ((array)$c['MODULES'] as $mod){
                 
                 if ( ! extension_loaded(substr(basenameNoExt($mod),4)) && basenameNoExt($mod) !== 'php_squall' ){
-					gui_Message(t('Пропишите %s модуль в /core/php.ini в секцию extensions', $mod));
+					gui_Message(t("Please, add module \"%s\" to the /core/php.ini in \"extensions\" section", $mod));
 					/*AZ:Нужно бы функцию dl() портировать, кстати, тут ещё нужна проверка на то, есть ли эта строка в php.ini
 						т.к бывают ошибки с загрузкой расширений, а не их отсутствие в загр. секции, что не есть хорошо*/
 					//dl($mod);
@@ -631,7 +631,6 @@ if (EMULATE_DVS_EXE) return;
             }
     
             $btn = $cp->addButton($c['GROUP']);
-           // $btn->onClick = 'myDesign::selectClass(0, _c('.$btn->self.')); _empty';
             
             $componentClasses[$btn->self] = $c;
            

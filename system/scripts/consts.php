@@ -1,6 +1,4 @@
 <?
-      
-    myVars::set( c('fmMain->MainImages16'), '_IMAGES16' );
     myVars::set( c('fmMain->MainImages24'), '_IMAGES24' ); 
     myVars::set( c('fmMain->MainImages32'), '_IMAGES32' );
     
@@ -10,11 +8,7 @@
 	myVars::set( c('fmMain->editorPopup'), 'editorPopup' );
     myVars::set( c('fmMain->formsPopur'), 'formsPopur');
     myVars::set( c('fmMain->MainMenu'), '_MENU' );
-   
-    global $_MENU; $_MENU->images = c('fmMain->MainImages16');
     
-    
-	
     myVars::set( c('fmMain->formsPopur'), 'formsPopur');
     
     myVars::set( c('fmPHPEditor'), 'fmPHPEditor');

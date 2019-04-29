@@ -77,7 +77,6 @@ class TLinkLabel extends TLabel {
 	    $x = c($link);
             
 	    if ($x->valid()){
-		//pre("obj");
 		if (method_exists($x,'showModal'))
 		    $x->showModal();
 		else

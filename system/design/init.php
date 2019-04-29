@@ -86,7 +86,6 @@ if (!EMULATE_DVS_EXE){
     c('fmLogoin->label5')->caption = 'Initializing... 78%';
     $fmMain->caption = 'Devel Studio KE'. DV_YEAR;
     
-    //$fmEdit->align = 'alCustom';
     $fmMain->popupMenu = c('fmMain->editorPopup');
     $fmEdit->popupMenu = c('fmMain->editorPopup');
     $_sc->popupMenu    = c('fmMain->editorPopup');

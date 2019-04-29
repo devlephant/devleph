@@ -28,7 +28,6 @@ class complete_static_Hints {
                 
                 if ($func['INLINE']){
                     $arr['item'] = '::'.$func['INLINE'];
-                    //$arr['item'] = substr($arr['item'],strpos($arr['item'],' ')+1, strlen($arr['item']) - strpos($arr['item'],' '));
                     $arr['item'] = str_replace(',',';', $arr['item']);
                 }
                 else

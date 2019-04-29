@@ -200,8 +200,6 @@ class complete_Funcs {
                 $text = $info['INLINE'];
             else
                 $text = $func;
-            
-            //$text.= '[$b]';
             $text = str_replace(
 			[$func.' ','nubmer ','float ','mixed ','string ','array ','bool ','void ','int ','resource ','object ', 'constant ','class '],
 			['[b]'.$func.'[/b] ','[$r]number[$b] ','[$r]float[$b] ','[$r]mixed[$b] ','[$r]string[$b] ','[$r]array [$b]',
@@ -273,8 +271,6 @@ class complete_Funcs {
                 $text = $info['INLINE'];
             else
                 $text = $func;
-            
-            //$text.= '[$b]';
             $text = str_replace($func.' ', '[b]'.$func.'[/b] ', $text);
             $text = str_replace('nubmer ', '[$r]number[$b] ',$text);
             $text = str_replace('float ', '[$r]float[$b] ', $text);

@@ -24,7 +24,6 @@ if (!defined('IS_APPLICATION_START')){
     
     global $APPLICATION;
     
-    //$APPLICATION->showMainForm = true;
     if (EMULATE_DVS_EXE){
         set_include_path(DOC_ROOT2);
         ini_set('include_path', DOC_ROOT2);
@@ -51,10 +50,6 @@ if (!defined('IS_APPLICATION_START')){
         $fmLogoin->show();
 		$GLOBALS['APPLICATION']->processMessages();
         $fmMain = TForm::loadFromFile('dfm\uMain',true);
-		//put here
-		//gui_form_fixdwm( $fmMain->handle );
-        //$fmMain->position = 'poScreenCenter';
-        //$fmMain->windowState = 'wsMaximized';
         $GLOBALS['fmMain'] =& $fmMain;
         setMainForm($fmMain);
         $APPLICATION->mainFormOnTaskBar = true;
@@ -151,7 +146,6 @@ if (!defined('IS_APPLICATION_START')){
 		
 		c('fmMain->panelPropEvent')->onChange = 'myProperties::fixSplitterMoved';
 		$fmMain->onResize = 'myProperties::fixSplitterMoved';
-		//$fmMain->show();
 		myProperties::fixSplitterMoved(0);
     }
      

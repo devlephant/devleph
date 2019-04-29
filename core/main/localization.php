@@ -114,7 +114,6 @@ class Localization {
 		    if (ereg('^{(.+)}$', $x)){
 			$x[0] = ' '; $x[strlen($x)-1] = ' ';
 			$tmp[$q] = self::getMsg(trim($x));
-			//pre([trim($x), self::getMsg(trim($x))]);
 		    }
 		}
 		
@@ -217,8 +216,7 @@ class Localization {
     
 }
     
-    // установка языка
-    //Localization::setLocale();
+    // установка языка - Localization::setLocale();
     function t($text) {
 	    if (func_num_args() == 1) {
 		    return Localization::getMsg($text);

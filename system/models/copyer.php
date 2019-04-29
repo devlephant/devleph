@@ -233,8 +233,6 @@ class myCopyer {
             foreach ($component['childs'] as $y=>$child){
                     
                     if (!$child['name']) continue;
-                    
-                    //$p_name = ();
                     $parent = $form->findComponent($buffer[$x]['childs'][$y]['parent']);
                     if (is_numeric($child['index'])){
                         $pages  = $parent->pages();
@@ -252,10 +250,6 @@ class myCopyer {
                 else {
                     self::toComponent($cmp, $child['component']);
                 }
-                
-                    if (is_numeric($child['index'])){
-                        //$cmp->y -= $pages->tabHeight ? $pages->tabHeight : 18;
-                    }
                     
                 if ($cmp instanceof TPageControl){
                     $cmp->pageIndex = $child['pageIndex'];

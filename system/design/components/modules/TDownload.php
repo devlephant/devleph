@@ -36,7 +36,6 @@ class TDownload extends __TNoVisual {
     }
     
     static function fileInfo($fp){
-        //$fp = fopen($path,"r");
         $inf = stream_get_meta_data($fp);
            
         $result = [];

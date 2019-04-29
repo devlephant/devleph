@@ -199,7 +199,6 @@ class TChromium extends TControl {
 	
 	public function set_url($url){
 	    $this->loadUrl($url);
-		//chromium_prop($this->self, CHROMIUM_EXEC_URL, (string)$url);
 	}
 	
 	public function get_url(){

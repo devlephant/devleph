@@ -3,15 +3,12 @@
 
 
 function clearEditorHotKeys(){
-    //pre(c('fmMain->itemDel'));
     c('fmMain->itemDel',true)->shortCut = '';
     c('fmMain->itemCopy',true)->shortCut = '';
     c('fmMain->itemCut',true)->shortCut = '';
     c('fmMain->itemPaste',true)->shortCut = '';
     
     global $fmEdit, $fmMain, $editorPopup, $_sc;
-    
-    //$editorPopup->AutoPopur  = false;
     $fmEdit->popupMenu = null;
     $fmMain->popupMenu = null;
     $_sc->popupMenu    = null;
@@ -26,12 +23,10 @@ function setEditorHotKeys(){
     global $fmEdit, $fmMain, $editorPopup, $_sc;
     
     if (myVars::get('__sizeAndMove')){
-        //$editorPopup->AutoPopur  = false;
         $fmEdit->popupMenu = null;
         $fmMain->popupMenu = null;
         $_sc->popupMenu    = null;
     } else {
-        //$editorPopup->AutoPopur  = true;
         $fmEdit->popupMenu = $editorPopup;
         $fmMain->popupMenu = $editorPopup;
         $_sc->popupMenu    = $editorPopup;
@@ -45,8 +40,6 @@ function initEditorHotKeys(){
    
     $x = cursor_pos_x();
     $y = cursor_pos_y();
-    
-    //$inform = true;
     $arr['x'] = clientToScreenX($fmEdit->handle);
     $arr['y'] = clientToScreenY($fmEdit->handle);
     $arr = clientToScreen($fmEdit->handle);
@@ -55,18 +48,7 @@ function initEditorHotKeys(){
     
 
     if (!$inform && $popupShow)
-        $inform = true;
-    
-    /*$inform = $fmEdit->focused;*/
-    
-    /*
-    $inform = $inform && ($x > $fmEdit->left + $add_x);
-    $inform = $inform && ($y > $fmEdit->top + $add_y);
-    
-    $inform = $inform && ($x < $fmEdit->left + $add_x + $fmEdit->width);
-    $inform = $inform && ($y < $fmEdit->top + $add_y + $fmEdit->height);   
-    */
-    
+        $inform = true;    
     if ($inform)
         setEditorHotKeys();
     else

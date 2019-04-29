@@ -9,7 +9,6 @@ function __inputTextKeyDownEvent($self, $key, $shift){
     } elseif ($key==VK_RETURN){
         c('edt_inputText')->close();
         c('edt_inputText')->modalResult = mrOk;
-        //$GLOBALS['__inputtext_modalresult'] = mrOk;
     }
 }
 

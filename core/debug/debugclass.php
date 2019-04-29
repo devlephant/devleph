@@ -72,7 +72,6 @@ class ThreadObjectReceiver
 			if ($block) {
 				$block = ($block < 10 ? 10 : $block) * 1000;
 				while(SyncEx('ThreadObjectReceiver::block', [$name, $key]) !== 'true') {
-				//while(self::block($name, $key) !== 'true') {
 					usleep($block);
 				}
 			}

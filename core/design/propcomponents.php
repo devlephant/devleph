@@ -22,7 +22,7 @@ global $_c;
 
 class TEditBtn extends TPanel {
     
-    const BUTTON_HEIGTH = 26;
+    const BUTTON_HEIGHT = 26;
     
     public $btn;
     public $edit;
@@ -86,7 +86,6 @@ class TEditBtn extends TPanel {
             
             $this->edit = new TEdit($this);
             $this->edit->parent = $this;
-            //$this->edit->height = self::BUTTON_HEIGTH;
             
             $this->edit->name = 'edit';
             $this->btn->name  = 'btn';
@@ -106,20 +105,18 @@ class TEditBtn extends TPanel {
         $this->caption = ' ';
         $this->edit->left = 0;
         $this->edit->top = 0;
-        //$this->edit->height = self::BUTTON_HEIGTH;
         
-        $this->edit->width = $this->width - self::BUTTON_HEIGTH - 4;
+        $this->edit->width = $this->width - self::BUTTON_HEIGHT - 4;
     
         $this->edit->anchors = 'akLeft, akRight, akTop';
         
         $this->btn->top = 0;
-        $this->btn->width = self::BUTTON_HEIGTH;
+        $this->btn->width = self::BUTTON_HEIGHT;
         $this->btn->height = $this->edit->height;
-        $this->btn->left = $this->width - self::BUTTON_HEIGTH;
+        $this->btn->left = $this->width - self::BUTTON_HEIGHT;
         $this->caption = ' ';
-	$this->btn->flat = true;
+		$this->btn->flat = true;
         $this->btn->anchors = 'akRight, akTop';
-        //$this->__getAddSource();
     }
     
     public function set_text($v){
@@ -185,10 +182,9 @@ class TEditDialog extends TEditBtn {
         if ($class)
         if ($init){
             $this->dlg = new $class($this);
-            //$this->dlg->name = 'dlg';
             $this->dlg_link = $this->dlg->self;
         } else {
-            $this->dlg = _c($this->dlg_link);//$this->findComponent('dlg');
+            $this->dlg = _c($this->dlg_link);
         }
         
         $this->onSelectClick = get_class($this) . '::selectDialog';
@@ -393,7 +389,7 @@ global $_c;
 
 class TLEdit extends TPanel {
     
-    const BUTTON_HEIGTH = 26;
+    const BUTTON_HEIGHT = 26;
     
     public $label;
     public $edit;
@@ -467,7 +463,6 @@ class TLEdit extends TPanel {
             
             $this->edit = new TEdit($this);
             $this->edit->parent = $this;
-            //$this->edit->height = self::BUTTON_HEIGTH;
             
             $this->edit->name = 'edit';
             $this->label->name  = 'label';
@@ -502,7 +497,6 @@ class TLEdit extends TPanel {
         $this->caption = ' ';
         $this->edit->left = 0;
         $this->edit->top = 0;
-        //$this->edit->height = $this->height;
         
         $this->edit->width = $this->width;
     
@@ -513,9 +507,8 @@ class TLEdit extends TPanel {
         $this->label->height = $this->edit->height;
         $this->label->left = 0;
         $this->caption = ' ';
-	$this->label->layout = 'tlCenter';
+		$this->label->layout = 'tlCenter';
         $this->label->anchors = 'akLeft, akRight, akTop, akBottom';
-        //$this->__getAddSource();
 	$this->edit->visible = 0;
     }
         public function set_text($v){

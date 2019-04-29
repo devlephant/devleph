@@ -282,5 +282,6 @@ function appTitle(){
 
 function halt(){
        application_terminate();
+	   die();
 }
 ?>

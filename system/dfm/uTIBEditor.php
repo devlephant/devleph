@@ -1,11 +1,10 @@
 <?
-/* xsnakes */
-/* TIB v1.3*/
+/* xsnakes, LZ/AZ/LAZARUS XD */
+/* TIB v1.5*/
 	c('fmTIB')->doubleBuffered = 1;
 	$dlg = new TOpenDialog( c('fmTIB') );
 	$dlg->filter = DLG_FILTER_PICTURES;
 	$dlg->name = 'openDlg1';
-/////////////////////////////////////////////////////////////////////////////////
 	c('fmTIB->listBox1')->onClick = function(){
 		if( c('fmTIB->listBox1')->itemIndex > -1 ){
 		        $tib = c('fmTIB')->tib;

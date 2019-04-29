@@ -26,7 +26,6 @@ class TFunction extends __TNoVisual {
         if ($init){
 	    $this->priority = tpIdle;
             $this->toRegister = true;
-	    //$this->color = 0x0;
 	}
     }
     
@@ -140,8 +139,6 @@ class TFunction extends __TNoVisual {
 		
 		return $result;
 	    }' ;
-	    
-	    //pre($code);
         }
 	
 	return $code;

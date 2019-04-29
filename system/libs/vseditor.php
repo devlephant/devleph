@@ -67,14 +67,12 @@ class TNxPropertyItem extends TControl {
 class TNxToolbarItem extends TNxPropertyItem {
     
     public function addItem($class, $caption){
-        
-        //$class = str_ireplace('Nx','VS', $class);
-        
+		
         return  vs_item_add($this->self, $class, $caption);
     }
     
     public function add($item, $caption){
-        
+		
         return $this->addItem(get_class($item), $caption);
     }
 }

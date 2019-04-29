@@ -57,6 +57,5 @@ $result[] = 'TWebBrowser';
 $result[] = 'TControlCanvas';
 $result[] = 'SQUALL_Player';
 $result[] = 'TChromium';
-//$result[] = 'TSizeCtrl';
 
 return $result;

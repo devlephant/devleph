@@ -25,23 +25,8 @@ function menuDinamicSetText($menu, $text){
 	}
 }
 
-class TMainMenu extends TControl {
-		
-	
-	function set_images(TImageList $il){
-		//rtti_set($this, 'Images', $il->self);
-	}
-	
-	function get_images(){
-		
-		//return _c(rtti_get($this, 'Images'));
-	}
-	
-	function get_items(){
-		
-		return _c( rtti_get($this, 'Items') );
-	}
-	
+class TMainMenu extends TControl
+{
 	function addItem(TMenuItem $item, $parent_item = false){
 		
 		if ($parent_item)

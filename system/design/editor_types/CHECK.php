@@ -24,8 +24,6 @@ class CHECK_editor {
     }
     
     function enterKeyDown($self, $key){
-        
-        // x_x
         $form = _c(_c(_c($self)->owner)->owner);
         if ($key==VK_RETURN){
             

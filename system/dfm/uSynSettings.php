@@ -62,7 +62,6 @@ class ev_fmEditorSettings {
     function updateHighLightCfg(){
         
         c('fmEditorSettings->c_config')->text = self::getHighlight();
-        //c('fmEditorSettings->c_config')->itemIndex = c('fmEditorSettings->c_config')->items->count - 1;
 		c('fmEditorSettings->c_config')->items->selected = myOptions::get('syntax','highlight', 'Notepad++ Style');
     }
     
@@ -97,10 +96,6 @@ class ev_fmEditorSettings {
         $ini = new TIniFileEx($file);
         c('fmPHPEditor->SynPHPSyn')->loadFromArray($ini->arr);
         c('fmPHPEditor->memo')->color = $ini->read('main','color',clWhite);
-        
-		//c('fmPHPEditor->l_eventinfo')->font->color = clGray;
-		//c('fmPHPEditor->l_eventinfo')->color = $ini->read('gutter','color',clWhite);
-		//c('fmPHPEditor->l_eventinfo')->transparent = False;
 		c('fmPHPEditor->memo')->ActiveLineColor = $ini->read('main','ActiveLineColor',c('fmPHPEditor->memo')->color);
         
         gui_propSet( c('fmPHPEditor->memo')->gutter, 'color', $ini->read('gutter','color',clWhite) );

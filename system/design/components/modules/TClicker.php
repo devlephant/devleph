@@ -378,7 +378,7 @@ $numb->caption = $__cv;
 $numb->parent = $Form;
 $numb->autoSize = true;
 $numb->name = "number".$__cv;
-//$numb->visible = false;
+
 $numb->x = $shap->x - 18;
 $numb->y = $shap->y - 2;
 

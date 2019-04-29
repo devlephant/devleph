@@ -10,9 +10,7 @@ class TPopupMenuEx extends __TNoVisual{
     }
     
     public function __initComponentInfo(){
-			
 	parent::__initComponentInfo();
-	//pre($this->data);
 	$obj = new TPopupMenu(_c($this->owner));
         
 	$list = [];
@@ -62,9 +60,7 @@ class TPopupMenuEx extends __TNoVisual{
 	    $org->addItem($x);
             
             if ($func){
-                
-		$x->onClick = $func;
-                //setEvetFromFunction($x,'onClick',$func);
+			$x->onClick = $func;
             }
 	    if ($name)
                 $x->name = $name;

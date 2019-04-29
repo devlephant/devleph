@@ -4,11 +4,7 @@ function dsversion()
 	return unserialize(exemod_extractstr('$PHPSOULENGINE\\info'));
 }
 function iblockclass_sortlist_uasort($a, $b){
-	
-	//if (!is_array($a) && !is_object($a))
 	$a1 = BlockData::toNormalType($a[$GLOBALS['iblockclass_sortlist_sort']]);
-	
-	//if (!is_array($b) && !is_object($b))
 	$b1 = BlockData::toNormalType($b[$GLOBALS['iblockclass_sortlist_sort']]);
 	
 	

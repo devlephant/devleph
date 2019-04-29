@@ -225,7 +225,7 @@ class myDesign {
         global $fmEdit;
         
         if (is_object($class)) $class = $class->className;
-        $classInfo = self::getClassInfo($class); // информация о класса...
+        $classInfo = self::getClassInfo($class); // информация о классe...
         
         $name = $classInfo['NAME'];
         $i = 1;
@@ -243,7 +243,7 @@ class myDesign {
     static function getNoExistsName($class){
         
         $i = self::getNoExistsNameIndex($class);
-        $classInfo = self::getClassInfo($class); // информация о класса...
+        $classInfo = self::getClassInfo($class); // информация о классe...
         return vsprintf($classInfo['NAME'].'%s', $i);
     }
     

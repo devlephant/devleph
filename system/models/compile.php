@@ -137,9 +137,9 @@ class myCompile
 	static public function checkisext(array $n)
 		{
 			foreach($n as $r)
-				if( substr($n, 0, 4) == 'php_' && (substr($n, -4)=='.dll'||substr($n, -3)=='.so'))
-					return $n;
-			return false;
+				if( substr($r, 0, 4) == 'php_' && (substr($r, -4)=='.dll'||substr($r, -3)=='.so'))
+					return $r;
+			return -1;
 		}
 	static public function generatePHP_Ini($moveext = true)
 	{
@@ -397,17 +397,13 @@ class myCompile
 		$exeFile = dirname($projectFile) . '/' . basenameNoExt($projectFile) . '.exe';
 		
 		if (file_exists($exeFile)) {
-			if(	$ProjectProc <>0 ){
+			if(	$ProjectProc <>0 )
+			{
 				exec('taskkill /pid '.$ProjectProc.' /T /F');
 				$ProjectProc = 0;
 			}
 			unlink($exeFile);
-			for ($q = 0; $q < 20; $q++) {
-				if (file_exists($exeFile)) {
-					unlink($exeFile);
-				}
-			}
-			if (file_exists($exeFile) && $check)
+			if ($check && file_exists($exeFile))
 			{
 				sleep(1);
 				return self::_start(false);
@@ -429,22 +425,13 @@ class myCompile
 		myModules::inc(false,false,false);
 		self::attachPHPEngine(false, false);
 		self::attachPHPSoulEngine(false);
-		self::attachForms(false, false);
+		self::attachForms(false);
 		self::attachModules();
 		exemod_save();
 		exemod_finish();
 		$fileIco = myVars::get('__iconFile');
-		//self::setStatus('Debug', 'Icon: '.$fileIco);
 		
-		if (!file_exists($fileIco)) {
-			$fileIco = SYSTEM_DIR . '/blanks/project.ico';
-		}	
-
-		if (file_exists($fileIco)) {
-			//if (!is_writable($exeFile)) {}
-
-			winRes::changeIcon($exeFile, $fileIco);
-		}
+		winRes::changeIcon($exeFile, (file_exists($fileIco)?$fileIco:SYSTEM_DIR . '/blanks/project.ico'));
 		
 		$vtime = round( microtime(1) - $startTime, 1 );
 		$vtime = $vtime>=60? round($vtime/60,1).t('min.'): $vtime.t('sec.');
@@ -514,15 +501,15 @@ class myCompile
 		$myProject->config['debug']['enabled'] = false;
 		myUtils::saveForm();
 		$fileExe = replaceSl($fileExe);
-
+		$dir = dirname($fileExe);
 		if (file_exists($fileExe)) {
 			unlink($fileExe);
-			unlink(dirname($fileExe) . '/php5ts.dll');
-			unlink(dirname($fileExe) . '/php.ini');
+			if( is_file($dir . '/php5ts.dll') )
+				unlink($dir . '/php5ts.dll');
 		}
 
-		if (!is_dir(dirname($fileExe))) {
-			mkdir(dirname($fileExe), 511, true);
+		if (!is_dir($dir)) {
+			mkdir($dir, 511, true);
 		}
 
 		$_e = dsErrorDebug::ErrStatus(false);
@@ -556,12 +543,15 @@ class myCompile
 			}
 		}
 		$p_dir = false;
-		self::copyPHPts(dirname($fileExe));
+		self::copyPHPts($dir);
 		exemod_finish();
 		exemod_start($fileExe);
 		exemod_addstr('$PHPSOULENGINE\\inc.php', self::generateIncFile());
 		self::attachPHPEngine($p_dir, true);
-		$res1 = $cabin?myModules::inc($fileExe):'';
+		if( $cabin )
+			$res1 = myModules::inc($fileExe);
+		else 
+			myModules::inc($fileExe);
 
 		if ($attachSE) {
 			self::attachPHPSoulEngine($attachSE);
@@ -582,7 +572,7 @@ class myCompile
 		}
 		else {
 			myCompile::setStatus('Error', t('Fatal error of project compiling') . '!');
-			x_copy(DOC_ROOT . '/blanks/soulEngine.pak', dirname($fileExe) . '/soulEngine.pak');
+			x_copy(DOC_ROOT . '/blanks/soulEngine.pak', $dir . '/soulEngine.pak');
 		}
 
 		self::attachForms($attachData);
@@ -591,8 +581,10 @@ class myCompile
 		if ($attachData) {
 			self::attachResources();
 		}
-
-		$res1 = $cabin? array_merge($res1, myModules::inc($fileExe, $attachPHP) ): '';
+		if( $cabin)
+			$res1 = array_merge($res1, myModules::inc($fileExe, $attachPHP) );
+		else
+			myModules::inc($fileExe, $attachPHP);
 		$x = 0;
 		exemod_save();
 		exemod_finish();
@@ -608,7 +600,7 @@ class myCompile
 		if( $UPXLevel > 0 )
 		{
 			myUPX::compress($fileExe, $UPXLevel);
-			myUPX::compress(dirname($fileExe).'/php5ts.dll', $UPXLevel);
+			myUPX::compress($dir.'/php5ts.dll', $UPXLevel);
 		}
 		if( $cabin )
 			foreach($res1 as $dll)

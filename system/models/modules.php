@@ -202,8 +202,6 @@ class myModules {
 		if( isset($info['DLLS']) )
 	    if ( is_array($info['DLLS']) ){
 		    foreach($info['DLLS'] as $dll){
-			    
-			//pre($info);
 			if (file_exists(dirname($file).'/'.$dll))
 			    continue;
 			

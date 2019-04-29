@@ -30,7 +30,6 @@ class myDebug {
     static function regGlVars($arr){
         
         global $__DEBUG_GLVARS;
-        //c('fmRunDebug',1)->show();
         $list = c('fmRunDebug->varList',1);
         $index = $list->itemIndex;
         $var   = $list->items->selected;

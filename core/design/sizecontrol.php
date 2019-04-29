@@ -37,7 +37,6 @@ class TSizeCtrl extends TControl{
     
     
     public $targets = [];
-    //public $targets_ex = [];
     
     public function set_enable($b){ sizectrl_enable($this->self, $b); }
     public function get_enable()  { return sizectrl_enable($this->self, null); }
@@ -82,28 +81,21 @@ class TSizeCtrl extends TControl{
     }
     
     public function unRegisterTarget($target){
-        
-        
-        //unset($this->targets_ex[$target->self]);
         sizectrl_unregister($this->self, $target->self);
     }
     
     public function registerTarget($target){
-        
         sizectrl_register($this->self, $target->self);
     }
     
     public function clearTargets(){
-        
         sizectrl_clear_targets($this->self);
         $this->targets = [];
-        //$this->targets_ex = [];
     }
     
     public function unRegisterAll(){
         sizectrl_unregister_all($this->self);
         $this->targets = [];
-        //$this->targets_ex = [];
     }
     
     public function update(){

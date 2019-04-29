@@ -45,12 +45,8 @@ class TEditImageDialog extends TEditDialog {
     }
     
     function selectDialog($self){
-        
         $obj = _c(_c($self)->owner);
-        
-        //$obj->dlg->value = $obj->value;
         if ($obj->dlg->execute($obj->imagelist)){
-            //$obj->value = $obj->dlg->value;
             if ($obj->onSelect){
                 $v = $obj->value;
                 eval($obj->onSelect . '(' . $obj->self . ',$v);');
@@ -95,8 +91,6 @@ class TEditFormDialog extends TEditDialog {
     
     
     function __construct($onwer=nil,$init=true,$self=nil){
-        //$this->dlg_type = 'TImageDialog';
-       
         parent::__construct($onwer,$init,$self);
         $this->readOnly = true;
     }
@@ -134,9 +128,7 @@ class TEditMenuDialog extends TEditDialog {
     
     function __construct($onwer=nil,$init=true,$self=nil){
         $this->dlg_type = 'TMenuDialog';
-       
         parent::__construct($onwer,$init,$self);
-        //$this->readOnly = true;
     }
     
     

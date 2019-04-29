@@ -136,6 +136,8 @@ $_c->setConstList(['stRectangle', 'stSquare', 'stRoundRect', 'stRoundSquare', 's
 
 ///////////////////////////////////////////////////////////////////////////////
 ///                             TPoint                                      ///
+///	Main graphical position class, which  stores x, y integer values		///
+//	Used for Windows API (WinAPI for short) only							///
 ///////////////////////////////////////////////////////////////////////////////
 class TPoint{
     
@@ -150,6 +152,8 @@ class TPoint{
 
 ///////////////////////////////////////////////////////////////////////////////
 ///                             TRect                                       ///
+///	Rectangle data storage - position and sizes (height, width)				///
+///	Used both by WinAPI and VCL framework									///
 ///////////////////////////////////////////////////////////////////////////////
 class TRect{
     
@@ -177,6 +181,7 @@ function point($x,$y){
 
 ///////////////////////////////////////////////////////////////////////////////
 ///                             TPen, TBrush                                ///
+///	I do not really want to explain you thia things							///
 ///////////////////////////////////////////////////////////////////////////////
 class TPen extends TComponent{
     

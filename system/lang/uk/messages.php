@@ -832,16 +832,16 @@ $m['Down Status'] = 'Статус натиснення';
 $m['Language'] = 'Мова';
 $m['Lang dir'] = 'Директорія із мовами';
 $m['Locale all forms'] = 'Переклад для усіх форм';
-$m['Forms (names) for locale'] = 'Форми (іменя) для перекладу';
+$m['Forms (names) for locale'] = 'Форми (назви) для перекладу';
 $m['Save lang in register'] = 'Хранити мову в реєстрі';
 
 $m['selStart'] = 'Початок виділення';
 $m['selLength']= 'Довжина виділення';
 $m['selText']  = 'Виділенний текст';
-$m['Scripts Master'] = 'Мастер скриптів';
+$m['Scripts Master'] = 'Майстер Скриптів';
 
 $m['gr_internet'] = 'Інтернет';
-$m['Loading...'] = 'Загрузка...';
+$m['Loading...'] = 'Завантаження...';
 $m['Load icon file'] = 'Завантажити іконку';
 $m['Description'] = 'Опис';
 $m['Show hint'] = 'Показувати підказку';
@@ -940,14 +940,13 @@ $m['Properties and Events'] = 'Параметри і Події';
 $m['Inspector'] = 'Інспектор';
 $m['Debug Info'] = 'Відладжувальна інформація';
 $m['Console'] = 'Консоль';
-$m['Выполнить код'] = 'Виконати код';
-$m['Исполнить код'] = 'Виконати код';
-$m['Execute code'] =  'Виконати код';
+$m['Execute code'] = 'Виконати код';
 
 $m['Compile with BCompiler'] = 'Компілювати з BCompiler\'ом';
 $m['Build'] = 'Зібрати';
 $m['Save settings'] = 'Зберегти налаштування';
 $m['Form %s already exists in the project'] = 'Форма "%s" вже існує в проекті';
+$m["Please, add module \"%s\" to the /core/php.ini in \"extensions\" section"] = 'Будь ласка, пропишіть модуль "%s" у /core/php.ini у секцію "extensions"';
 $m['Are you sure to delete form "%s"?'] = 'Ви впевнені, що бажаєте видалити форму "%s"?';
 $m['Bold'] = 'Жирний';
 $m['Italic'] = 'Нахиленний';

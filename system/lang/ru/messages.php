@@ -992,6 +992,7 @@ $m['Compile with BCompiler'] = 'Компилировать с BCompiler\'ом';
 $m['Build'] = 'Собрать';
 $m['Save settings'] = 'Сохранить настройки';
 $m['Form %s already exists in the project'] = 'Форма "%s" уже существует в проекте';
+$m["Please, add module \"%s\" to the /core/php.ini in \"extensions\" section"] = 'Пропишите модуль "%s" в /core/php.ini в секцию "extensions"';
 $m['Are you sure to delete form "%s"?'] = 'Вы точно желаете удалить форму "%s"?';
 $m['Bold'] = 'Жирный';
 $m['Italic'] = 'Наклонный';

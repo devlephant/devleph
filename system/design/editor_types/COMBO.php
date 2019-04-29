@@ -23,7 +23,6 @@ class COMBO_editor {
         $obj->x = 10;
         $obj->y = $y + $label->h + 5;
         $obj->onKeyDown = 'COMBO_editor::enterKeyDown';
-        //if(current($editor['VALUES'])
         $obj->items->setArray($editor['VALUES']);
         $obj->itemIndex = $editor['ITEM_INDEX'] ? $editor['ITEM_INDEX'] : 0;
         
@@ -36,8 +35,6 @@ class COMBO_editor {
     }
     
     function enterKeyDown($self, $key){
-        
-        // x_x
         $form = _c(_c(_c($self)->owner)->owner);
         if ($key==VK_RETURN){
             

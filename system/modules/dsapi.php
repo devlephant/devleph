@@ -13,8 +13,6 @@ class DSApi {
     }
     
     static function __doStartFunc(){
-        
-        //pre((array)$GLOBALS['___startFunctions']);
 		if( !isset($GLOBALS['___startFunctions']) ) return;
         foreach((array)$GLOBALS['___startFunctions'] as $func)
             eval($func.';');

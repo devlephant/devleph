@@ -48,7 +48,6 @@ class evfmPHPEditor {
 	static function onShow($self)
 	{
 		c("fmPHPEditor->ok_cn")->visible = false;
-		//c("fmPHPEditor->tlCancel")->enabled = false;
 	}
 	static function onCloseQuery($self, &$canClose)
 	{
@@ -465,9 +464,6 @@ class EditorSynt
 		}
 	}
 	}
-		//c('fmPHPEditor->l_eventinfo')->font->color = clGray;
-		//c('fmPHPEditor->l_eventinfo')->color = $ini->read('gutter','color',clWhite);
-		//c('fmPHPEditor->l_eventinfo')->transparent = False;
 		c('fmPHPEditor->memo')->ActiveLineColor = $ini->read('main','ActiveLineColor',c('fmPHPEditor->memo')->color);
         gui_propSet( c('fmPHPEditor->memo')->gutter->self, 'color', $ini->read('gutter','color',clWhite) );
         gui_propSet( c('fmPHPEditor->memo')->gutter->self, 'font.color', $ini->read('gutter','fontcolor',clGray) );
@@ -559,10 +555,6 @@ class ev_fmPHPEditor_options {
         if (c('fmEditorSettings')->showModal()!==mrOk){
             c('fmPHPEditor->SynPHPSyn')->loadFromArray($arr);
             c('fmPHPEditor->memo')->color = $ini->read('main','color',clWhite);
-            
-            //c('fmPHPEditor->l_eventinfo')->font->color = $ini->read('gutter','fontcolor',clGray);
-            //c('fmPHPEditor->l_eventinfo')->color = $ini->read('gutter','color',clWhite);
-            //c('fmPHPEditor->l_eventinfo')->transparent = False;
             c('fmPHPEditor->memo')->ActiveLineColor = $ini->read('main','ActiveLineColor',c('fmPHPEditor->memo')->color);
             
             gui_propSet( c('fmPHPEditor->memo')->gutter, 'color', $ini->read('gutter','color',clWhite) );

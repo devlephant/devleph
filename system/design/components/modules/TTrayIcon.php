@@ -50,7 +50,6 @@ class TTrayIcon extends __TNoVisual {
         $tmp = $this->name;
         $this->name = '';
         $tray->name = $tmp;
-        //eventEngine::updateIndex($tray);
     }
 }
 
