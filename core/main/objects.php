@@ -76,7 +76,7 @@ class Pointer
 {
 	public function __construct($self)
 	{
-		$this->self = $f;
+		$this->self = $self;
 	}
 }	
 /* Class for Object with property ala java */
@@ -163,7 +163,6 @@ class TObject extends _Object {
 	
 		if (class_exists('animate'))
 			animate::objectFree($this->self);
-		
 		gui_destroy($this->self);
 		//obj_free($this->self);	
     }
@@ -172,10 +171,8 @@ class TObject extends _Object {
 		
 		if (class_exists('animate'))
 			animate::objectFree($this->self);
-			
 		gui_safeDestroy($this->self);
 	}
-    
     function destroy(){
         $this->free();
     }
@@ -294,50 +291,29 @@ function _c($self = false, $check_thread = true){
 	
      return to_object($self,rtti_class($self));
 }
-
 function c_Alias($org, $alias){
     
     $GLOBALS['__OBJ_ALIAS'][$org][] = $alias;
 }
-
-
-
-function __call_component($str, $check_thread = true){
-    if( isset($GLOBALS['THREAD_SELF']) )	
-	    if ( $check_thread && $GLOBALS['THREAD_SELF'] )
-		   return new ThreadDebugClass($self);
-	    
-	    if (is_numeric($str))
-		return _c($str, $check_thread);
-    
-	    if (isset($GLOBALS['__OBJ_ALIAS'])){
-		    foreach ($GLOBALS['__OBJ_ALIAS'] as $org=>$alias){
-				$str = str_ireplace($alias, $org, $str);
-		    }
-	    }
-    
-	    $res = findComponent($str);
-	    if ( !$res ){
-		return new DebugClass($str);
-	    }
-	
-    $result = asObject($res,rtti_class($res->self));
-    
-    return $result;
-}
-
 function c($str, $check_thread = true){
 	if( is_object($str) ) return $str;
-	$res = isset($GLOBALS['THREAD_SELF'])? ThreadObjectReceiver::c($str): __call_component($str);
-	
-	if ( !is_object($res) )
-		return new DebugClass($str);
-	
-	return $res;
+	if( $check_thread && isset($GLOBALS['THREAD_SELF']) ) {
+		return ThreadObjectReceiver::c($str);
+	} elseif(is_numeric($str))
+	{
+		return to_object($str,rtti_class($str));		
+	} else {
+		if (isset($GLOBALS['__OBJ_ALIAS']))
+		    foreach ($GLOBALS['__OBJ_ALIAS'] as $org=>$alias)
+				$str = str_ireplace($alias, $org, $str);
+		$res = findComponent($str);
+	}
+
+    return is_object($res)? to_object($res->self,rtti_class($res->self)): new DebugClass($str);
 }
 
-function с($str, $cached = false){
-    return c($str, $cached);
+function с($str, $check_thread = false){
+    return c($str, $check_thread);
 }
 
 // cSetProp('form.object.caption', 'text')
@@ -569,7 +545,6 @@ class TComponent extends TObject {
 	    
         if ($self !== nil)
              $this->self = $self;
-	    
 		
 	   $this->__setAllPropEx($init);
 	}

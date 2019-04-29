@@ -85,7 +85,7 @@ class ThreadObjectReceiver
 			return $GLOBALS['___t_self'][$name];
 		} else {
 			if (!isset($GLOBALS['___t_objects'][$name])) {
-				$GLOBALS['___t_objects'][$name] = __call_component($name);
+				$GLOBALS['___t_objects'][$name] = c($name,0);
 			}
 			return $GLOBALS['___t_objects'][$name];
 		}
@@ -121,7 +121,7 @@ class ThreadObjectReceiver
 	public static function get($name, $property)
 	{
 		if (!isset($GLOBALS['___t_objects'][$name])) {
-			$GLOBALS['___t_objects'][$name] = __call_component($name);
+			$GLOBALS['___t_objects'][$name] = c($name,0);
 		}
 		$GLOBALS['APPLICATION']->ProcessMessages();
 		return $GLOBALS['___t_objects'][$name]->$property;
@@ -137,7 +137,7 @@ class ThreadObjectReceiver
 	public static function set($name, $property, $value)
 	{
 		if (!isset($GLOBALS['___t_objects'][$name])) {
-			$GLOBALS['___t_objects'][$name] = __call_component($name);
+			$GLOBALS['___t_objects'][$name] = c($name,0);
 		}
 		if( is_object($value) ) {
 			$GLOBALS['___t_objects'][$name]->$property = ($value instanceof ThreadObjectReceiver)? $value->__get_self(): $value;
@@ -157,7 +157,7 @@ class ThreadObjectReceiver
 	public static function call($name, $method, $args)
 	{
 		if (!isset($GLOBALS['___t_objects'][$name])) {
-			$GLOBALS['___t_objects'][$name] = __call_component($name);
+			$GLOBALS['___t_objects'][$name] = c($name,0);
 		}
 		$res = call_user_func_array([$GLOBALS['___t_objects'][$name], $method], $args);
 		$GLOBALS['APPLICATION']->ProcessMessages();
@@ -170,14 +170,14 @@ class ThreadObjectReceiver
 	
 	public static function toString($name){
 		if (!isset($GLOBALS['___t_objects'][$name])) {
-			$GLOBALS['___t_objects'][$name] = __call_component($name);
+			$GLOBALS['___t_objects'][$name] = c($name,0);
 		}
 		
 		return method_exists($GLOBALS['___t_objects'][$name], '__toString()')? call_user_func_array([$GLOBALS['___t_objects'][$name], $method], []) :print_r($GLOBALS['___t_objects'][$name], true);
 	}
 	
 	public function __get_self(){
-		return __call_component($this->name);
+		return c($this->name,0);
 	}
 	
 	public function valid(){

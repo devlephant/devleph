@@ -31,13 +31,6 @@ foreach ($files as $i=>$file){
 		$_IMAGES32->addFromFile($root1 . '32/' . $file);
     } else    $_IMAGES32->addFromFile($root1 . '32/empty.bmp');
         
-    if (file_exists($root2 . '16/' . $file)){
-        $_IMAGES16->addFromFile($root2 . '16/' . $file);
-	} elseif (file_exists($root1 . '16/' . $file)){
-        $_IMAGES16->addFromFile($root1 . '16/' . $file);
-	} else
-        $_IMAGES16->addFromFile($root1 . '16/empty.bmp');
-        
     
     $is_exists[] = basenameNoExt($file);
     $allImages[basenameNoExt($file)] = ['ID' => $i-$c, 'FILE'=>$file];
