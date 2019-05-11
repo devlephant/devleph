@@ -631,8 +631,12 @@ class myProject {
          
             $result = file_get_contents($file);
             //pre([$file, $result]);
+			if(strlen($result)>0)
             $result = is_gzcompressed($result)? unserialize(base64_decode(gzuncompress($result))): unserialize(base64_decode($result));
-        
+			if(!is_array($result)) 
+			{
+				dssMessages::error(DSS_FATAL_ERROR, t('Project file is corrupt or empty!'));
+			}
         $myProject->config    = $result['CONFIG'];
         $myProject->formsInfo = $result['formsInfo'];
         $myProject->add_info  = $result['add_info'];
