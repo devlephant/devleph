@@ -35,6 +35,7 @@
 	}
     loader::modules('modules');
 	if (!EMULATE_DVS_EXE){
+	loader::lib('(debug)studio-only');
     loader::lib('syntax');
     loader::lib('zip');
     loader::lib('vseditor');

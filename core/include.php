@@ -147,7 +147,7 @@ set_include_path(DOC_ROOT);
 $_SERVER['DOCUMENT_ROOT'] = DOC_ROOT;
 $_SERVER['MODULE_DIR'] = MODULE_DIR;
 $_SERVER['ENGINE_DIR'] = ENGINE_DIR;
-include_lib('debug', 'studio-only.php');
+
 /* %START_MODULES% */
 include_lib('main','constant');
 include_lib('debug','errors');
