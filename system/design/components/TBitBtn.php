@@ -5,6 +5,7 @@
 'CAPTION' => t('TButton_Caption'),
 'SORT'    => 1,
 'NAME'    => 'button',
+'REPLACE' => ['TButton', 'TsButton'],
 'W' => 20,
 'H' => 4,
 ];

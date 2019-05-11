@@ -629,7 +629,15 @@ if (EMULATE_DVS_EXE) return;
                 $cp->addSection($c['GROUP'],t('gr_'.$c['GROUP']));
                 $groups[] = $c['GROUP'];
             }
-    
+			if(isset($c['REPLACE']))
+			{
+				if( is_array($c['REPLACE']) )
+				{
+					foreach($c['REPLACE'] as $reps)
+						myProject::addReplaceable($reps, $c['CLASS']);
+				} else
+					myProject::addReplaceable($c['REPLACE'], $c['CLASS']);
+			}
             $btn = $cp->addButton($c['GROUP']);
             
             $componentClasses[$btn->self] = $c;

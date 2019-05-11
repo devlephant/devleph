@@ -5,7 +5,8 @@ class myProject {
     public $formsInfo;
     public $config;
     public $add_info;
-    
+    private static $repclasses;
+	
     static function registerFileType(){
 		
         registerFileType('dvs', dirname(EXE_NAME).'/DS KE.exe');
@@ -365,6 +366,10 @@ class myProject {
    
         return $result;
 	}
+	static function addReplaceable($class, $replaceAs)
+	{
+		self::$repclasses[ strtolower($class) ] = $replaceAs;
+	}
     static function checkOldFormat(){
         
         if (self::cfg('DV_VERSION')=='' || version_compare(self::cfg('DV_VERSION'), DV_VERSION, '<')){
@@ -379,13 +384,14 @@ class myProject {
                 
                 $components = $fmEdit->componentList;
                 foreach($components as $el){
-					if (strtolower(rtti_class($el->self))=='tanbutton')
+					$realClass = strtolower(rtti_class($el->self));
+					if ( isset(self::$repclasses[$realClass]) )
 					{
-						self::convertAs($el, 'TSB');
+						self::convertAs($el, self::$repclasses[$realClass]);
 						$del_objs[] = $el;
-					}elseif (get_class($el)=='TButton')
+					}elseif (isset(self::$repclasses[get_class($el)]))
 					{
-						self::convertAs($el, 'TBitBtn');
+						self::convertAs($el, self::$repclasses[get_class($el)]);
 						$del_objs[] = $el;
                     }elseif (is_subclass_of($el,  '__TNoVisual')){
                         
