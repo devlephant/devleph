@@ -994,6 +994,7 @@ $m['Save settings'] = 'Сохранить настройки';
 $m['Form %s already exists in the project'] = 'Форма "%s" уже существует в проекте';
 $m["Please, add module \"%s\" to the /core/php.ini in \"extensions\" section"] = 'Пропишите модуль "%s" в /core/php.ini в секцию "extensions"';
 $m['Are you sure to delete form "%s"?'] = 'Вы точно желаете удалить форму "%s"?';
+$m['You\'re trying to load old-format project. This project will be converted!'] = 'Вы пытаетесь загрузить проект старого формата. Данный проект будет конвертирован!';
 $m['Bold'] = 'Жирный';
 $m['Italic'] = 'Наклонный';
 $m['Underline'] = 'Подчеркнутый';

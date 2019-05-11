@@ -367,10 +367,9 @@ class myProject {
 	}
     static function checkOldFormat(){
         
-        $GLOBALS['IS_OLD_PROJECT'] = false;
         if (self::cfg('DV_VERSION')=='' || version_compare(self::cfg('DV_VERSION'), DV_VERSION, '<')){
-            alert(t("Вы пытаетесь загрузить проект старого формата. Данный формат будет конвертирован!"));
-           // return false;
+			$GLOBALS['IS_OLD_PROJECT'] = true;
+            alert(t("You're trying to load old-format project. This project will be converted!"));
             
             global $_FORMS, $fmEdit;
             
@@ -630,19 +629,9 @@ class myProject {
                 return false;
         }
          
-        $_e = dsErrorDebug::ErrStatus(false);
-        
             $result = file_get_contents($file);
-            $x = unserialize(base64_decode($result));
-            
-            if (!$x)
-                $result = unserialize(base64_decode($result));
-            else
-                $result = $x;
-            
-            unset($x);
-        
-        dsErrorDebug::ErrStatus($_e);
+            //pre([$file, $result]);
+            $result = is_gzcompressed($result)? unserialize(base64_decode(gzuncompress($result))): unserialize(base64_decode($result));
         
         $myProject->config    = $result['CONFIG'];
         $myProject->formsInfo = $result['formsInfo'];

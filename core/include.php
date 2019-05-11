@@ -19,6 +19,11 @@ function parent_sum_prop_all($obj, $prop)
 	return $res;
 }
 
+function is_gzcompressed($str)
+{
+	$str = str_split(substr($str,0,2));
+	return ord($str[0]) == 120 && ord($str[1]) == 218;
+}
 function cursor_offsetted_x($o)
 {
 	return cursor_pos_x() - (is_object($o)?parent_sum_prop_all($o, 'x'):$o) - GetSystemMetrics(32);

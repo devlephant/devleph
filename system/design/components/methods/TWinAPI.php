@@ -5,307 +5,307 @@ $result = [];
 $result[] = array(
                   'CAPTION'=>'FindWindow',
                   'PROP'=>'FindWindow()',
-                  'INLINE'=>'FindWindow ( char WindowName ) - поиск окна по загаловку.',
+                  'INLINE'=>'FindWindow ( char WindowName ) - РїРѕРёСЃРє РѕРєРЅР° РїРѕ Р·Р°РіР°Р»РѕРІРєСѓ.',
                   );
 
 $result[] = array(
                   'CAPTION'=>'AnimateWindow',
                   'PROP'=>'AnimateWindow()',
-                  'INLINE'=>'AnimateWindow ( int hWnd, int dwTime, int dwFlags ) - Анимация Окна.',
+                  'INLINE'=>'AnimateWindow ( int hWnd, int dwTime, int dwFlags ) - РђРЅРёРјР°С†РёСЏ РћРєРЅР°.',
                   );
 				 
 $result[] = array(
                   'CAPTION'=>'ArrangeIconicWindows',
                   'PROP'=>'ArrangeIconicWindows()',
-                  'INLINE'=>'ArrangeIconicWindows ( int hWnd ) - упорядочивает все минимизированные (в виде иконок) окна указанного родительского окна.',
+                  'INLINE'=>'ArrangeIconicWindows ( int hWnd ) - СѓРїРѕСЂСЏРґРѕС‡РёРІР°РµС‚ РІСЃРµ РјРёРЅРёРјРёР·РёСЂРѕРІР°РЅРЅС‹Рµ (РІ РІРёРґРµ РёРєРѕРЅРѕРє) РѕРєРЅР° СѓРєР°Р·Р°РЅРЅРѕРіРѕ СЂРѕРґРёС‚РµР»СЊСЃРєРѕРіРѕ РѕРєРЅР°.',
                   );
 				  
 $result[] = array(
                   'CAPTION'=>'BringWindowToTop',
                   'PROP'=>'BringWindowToTop()',
-                  'INLINE'=>'BringWindowToTop ( int hWnd ) - перемещает окно на передний план и активизирует его',
+                  'INLINE'=>'BringWindowToTop ( int hWnd ) - РїРµСЂРµРјРµС‰Р°РµС‚ РѕРєРЅРѕ РЅР° РїРµСЂРµРґРЅРёР№ РїР»Р°РЅ Рё Р°РєС‚РёРІРёР·РёСЂСѓРµС‚ РµРіРѕ',
                   );				  
 				  
 $result[] = array(
                   'CAPTION'=>'ChildWindowFromPoint',
                   'PROP'=>'ChildWindowFromPoint()',
-                  'INLINE'=>'ChildWindowFromPoint ( int hWndParent, int X, int Y ) - определяет, какое из дочерних окон содержит указанные координаты.',
+                  'INLINE'=>'ChildWindowFromPoint ( int hWndParent, int X, int Y ) - РѕРїСЂРµРґРµР»СЏРµС‚, РєР°РєРѕРµ РёР· РґРѕС‡РµСЂРЅРёС… РѕРєРѕРЅ СЃРѕРґРµСЂР¶РёС‚ СѓРєР°Р·Р°РЅРЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹.',
                   );	
 				  
 $result[] = array(
                   'CAPTION'=>'ChildWindowFromPointEx',
                   'PROP'=>'ChildWindowFromPointEx()',
-                  'INLINE'=>'ChildWindowFromPointEx ( int hWndParent, int X, int Y [, int uFlags = CWP_ALL] ) - определяет, какое из дочерних окон содержит указанные координаты.',
+                  'INLINE'=>'ChildWindowFromPointEx ( int hWndParent, int X, int Y [, int uFlags = CWP_ALL] ) - РѕРїСЂРµРґРµР»СЏРµС‚, РєР°РєРѕРµ РёР· РґРѕС‡РµСЂРЅРёС… РѕРєРѕРЅ СЃРѕРґРµСЂР¶РёС‚ СѓРєР°Р·Р°РЅРЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹.',
                   );	
 
 $result[] = array(
                   'CAPTION'=>'CloseWindow',
                   'PROP'=>'CloseWindow()',
-                  'INLINE'=>'CloseWindow ( int hWnd ) - минимизирует указанное окно.',
+                  'INLINE'=>'CloseWindow ( int hWnd ) - РјРёРЅРёРјРёР·РёСЂСѓРµС‚ СѓРєР°Р·Р°РЅРЅРѕРµ РѕРєРЅРѕ.',
                   );	
 
 $result[] = array(
                   'CAPTION'=>'DestroyWindow',
                   'PROP'=>'DestroyWindow()',
-                  'INLINE'=>'DestroyWindow ( int hWnd ) - разрушает указанное окно (но не завершает приложение.',
+                  'INLINE'=>'DestroyWindow ( int hWnd ) - СЂР°Р·СЂСѓС€Р°РµС‚ СѓРєР°Р·Р°РЅРЅРѕРµ РѕРєРЅРѕ (РЅРѕ РЅРµ Р·Р°РІРµСЂС€Р°РµС‚ РїСЂРёР»РѕР¶РµРЅРёРµ.',
                   );
 				  
 $result[] = array(
                   'CAPTION'=>'EnableWindow',
                   'PROP'=>'EnableWindow()',
-                  'INLINE'=>'EnableWindow ( int hWnd, bool bEnable ) - разрешает или блокирует ввод с мыши и с клавиатуры в окно.',
+                  'INLINE'=>'EnableWindow ( int hWnd, bool bEnable ) - СЂР°Р·СЂРµС€Р°РµС‚ РёР»Рё Р±Р»РѕРєРёСЂСѓРµС‚ РІРІРѕРґ СЃ РјС‹С€Рё Рё СЃ РєР»Р°РІРёР°С‚СѓСЂС‹ РІ РѕРєРЅРѕ.',
                   );	
 				  
 $result[] = array(
                   'CAPTION'=>'GetActiveWindow',
                   'PROP'=>'GetActiveWindow()',
-                  'INLINE'=>'GetActiveWindow ( void ) - возвращает дескриптор активного окна.',
+                  'INLINE'=>'GetActiveWindow ( void ) - РІРѕР·РІСЂР°С‰Р°РµС‚ РґРµСЃРєСЂРёРїС‚РѕСЂ Р°РєС‚РёРІРЅРѕРіРѕ РѕРєРЅР°.',
                   );
 
 $result[] = array( 
                   'CAPTION'=>'GetAncestor',
                   'PROP'=>'GetAncestor()',
-                  'INLINE'=>'GetAncestor ( int hWnd [, int gaFlags = GA_PARENT] ) - возвращает дескриптор родителя заданного окна.',
+                  'INLINE'=>'GetAncestor ( int hWnd [, int gaFlags = GA_PARENT] ) - РІРѕР·РІСЂР°С‰Р°РµС‚ РґРµСЃРєСЂРёРїС‚РѕСЂ СЂРѕРґРёС‚РµР»СЏ Р·Р°РґР°РЅРЅРѕРіРѕ РѕРєРЅР°.',
                   );
 
 $result[] = array( 
                   'CAPTION'=>'SetWindowPos',
                   'PROP'=>'SetWindowPos()',
-                  'INLINE'=>'SetWindowPos ( int hWnd, int hWndInsertAfter, int X, int Y, int W, int H, int uFlags ) - изменяет pазмеp, положение и поpядок окна.',
+                  'INLINE'=>'SetWindowPos ( int hWnd, int hWndInsertAfter, int X, int Y, int W, int H, int uFlags ) - РёР·РјРµРЅСЏРµС‚ pР°Р·РјРµp, РїРѕР»РѕР¶РµРЅРёРµ Рё РїРѕpСЏРґРѕРє РѕРєРЅР°.',
                   );				  
 
 $result[] = array( 
                   'CAPTION'=>'GetDesktopWindow',
                   'PROP'=>'GetDesktopWindow()',
-                  'INLINE'=>'GetDesktopWindow ( void ) - возвращает дескриптор рабочего стола.',
+                  'INLINE'=>'GetDesktopWindow ( void ) - РІРѕР·РІСЂР°С‰Р°РµС‚ РґРµСЃРєСЂРёРїС‚РѕСЂ СЂР°Р±РѕС‡РµРіРѕ СЃС‚РѕР»Р°.',
                   );	
 
 $result[] = array( 
                   'CAPTION'=>'GetFocus',
                   'PROP'=>'GetFocus()',
-                  'INLINE'=>'GetFocus ( void ) - дескриптор окна, на котором установлен фокус.',
+                  'INLINE'=>'GetFocus ( void ) - РґРµСЃРєСЂРёРїС‚РѕСЂ РѕРєРЅР°, РЅР° РєРѕС‚РѕСЂРѕРј СѓСЃС‚Р°РЅРѕРІР»РµРЅ С„РѕРєСѓСЃ.',
                   );
 				  
 $result[] = array(
                   'CAPTION'=>'GetForegroundWindow',
                   'PROP'=>'GetForegroundWindow()',
-                  'INLINE'=>'GetForegroundWindow ( void ) - дескриптор приоритетного окна',
+                  'INLINE'=>'GetForegroundWindow ( void ) - РґРµСЃРєСЂРёРїС‚РѕСЂ РїСЂРёРѕСЂРёС‚РµС‚РЅРѕРіРѕ РѕРєРЅР°',
                   );
 				  
 $result[] = array(
                   'CAPTION'=>'GetLastActivePopup',
                   'PROP'=>'GetLastActivePopup()',
-                  'INLINE'=>'GetLastActivePopup ( int hWnd ) - возвращает дескриптор всплывающего окна, которое было активным последний раз, владельцем которого является указанное окно.',
+                  'INLINE'=>'GetLastActivePopup ( int hWnd ) - РІРѕР·РІСЂР°С‰Р°РµС‚ РґРµСЃРєСЂРёРїС‚РѕСЂ РІСЃРїР»С‹РІР°СЋС‰РµРіРѕ РѕРєРЅР°, РєРѕС‚РѕСЂРѕРµ Р±С‹Р»Рѕ Р°РєС‚РёРІРЅС‹Рј РїРѕСЃР»РµРґРЅРёР№ СЂР°Р·, РІР»Р°РґРµР»СЊС†РµРј РєРѕС‚РѕСЂРѕРіРѕ СЏРІР»СЏРµС‚СЃСЏ СѓРєР°Р·Р°РЅРЅРѕРµ РѕРєРЅРѕ.',
                   );
 				  
 $result[] = array(
                   'CAPTION'=>'GetLayeredWindowAttributes',
                   'PROP'=>'GetLayeredWindowAttributes()',
-                  'INLINE'=>'GetLayeredWindowAttributes ( int hWnd ) - возвращает атрибуты многослойного окна.',
+                  'INLINE'=>'GetLayeredWindowAttributes ( int hWnd ) - РІРѕР·РІСЂР°С‰Р°РµС‚ Р°С‚СЂРёР±СѓС‚С‹ РјРЅРѕРіРѕСЃР»РѕР№РЅРѕРіРѕ РѕРєРЅР°.',
                   );				  
 				  
 $result[] = array(
                   'CAPTION'=>'GetShellWindow',
                   'PROP'=>'GetShellWindow()',
-                  'INLINE'=>'GetShellWindow ( void ) - возвращает дескриптор оболочки Windows.',
+                  'INLINE'=>'GetShellWindow ( void ) - РІРѕР·РІСЂР°С‰Р°РµС‚ РґРµСЃРєСЂРёРїС‚РѕСЂ РѕР±РѕР»РѕС‡РєРё Windows.',
                   );	
 
 $result[] = array(
                   'CAPTION'=>'GetSysColor',
                   'PROP'=>'GetSysColor()',
-                  'INLINE'=>'GetSysColor ( int nIndex ) - возвращает цвета элементов Windows.',
+                  'INLINE'=>'GetSysColor ( int nIndex ) - РІРѕР·РІСЂР°С‰Р°РµС‚ С†РІРµС‚Р° СЌР»РµРјРµРЅС‚РѕРІ Windows.',
                   );
 
 $result[] = array(
                   'CAPTION'=>'GetTopWindow',
                   'PROP'=>'GetTopWindow()',
-                  'INLINE'=>'GetTopWindow ( int hWnd ) - возвращает дескриптор дочернего окна верхнего уровня, указанного окна.',
+                  'INLINE'=>'GetTopWindow ( int hWnd ) - РІРѕР·РІСЂР°С‰Р°РµС‚ РґРµСЃРєСЂРёРїС‚РѕСЂ РґРѕС‡РµСЂРЅРµРіРѕ РѕРєРЅР° РІРµСЂС…РЅРµРіРѕ СѓСЂРѕРІРЅСЏ, СѓРєР°Р·Р°РЅРЅРѕРіРѕ РѕРєРЅР°.',
                   );
 
 $result[] = array(
                   'CAPTION'=>'GetWindow',
                   'PROP'=>'GetWindow()',
-                  'INLINE'=>'GetWindow ( int hWnd, int wCmd ) - возвращает дескриптор окна, которое имеет указанное отношение в указанном окне.',
+                  'INLINE'=>'GetWindow ( int hWnd, int wCmd ) - РІРѕР·РІСЂР°С‰Р°РµС‚ РґРµСЃРєСЂРёРїС‚РѕСЂ РѕРєРЅР°, РєРѕС‚РѕСЂРѕРµ РёРјРµРµС‚ СѓРєР°Р·Р°РЅРЅРѕРµ РѕС‚РЅРѕС€РµРЅРёРµ РІ СѓРєР°Р·Р°РЅРЅРѕРј РѕРєРЅРµ.',
                   );
 				  
 $result[] = array(
                   'CAPTION'=>'GetWindowLong',
                   'PROP'=>'GetWindowLong()',
-                  'INLINE'=>'GetWindowLong ( int hWnd , int nIndex ) - возвращает определенную информацию об указанном окне.',
+                  'INLINE'=>'GetWindowLong ( int hWnd , int nIndex ) - РІРѕР·РІСЂР°С‰Р°РµС‚ РѕРїСЂРµРґРµР»РµРЅРЅСѓСЋ РёРЅС„РѕСЂРјР°С†РёСЋ РѕР± СѓРєР°Р·Р°РЅРЅРѕРј РѕРєРЅРµ.',
                   );
 
 $result[] = array(
                   'CAPTION'=>'GetWindowRect',
                   'PROP'=>'GetWindowRect()',
-                  'INLINE'=>'GetWindowRect ( int hWnd ) - возвращает размеры ограничивающего прямоугольника указанного окна.',
+                  'INLINE'=>'GetWindowRect ( int hWnd ) - РІРѕР·РІСЂР°С‰Р°РµС‚ СЂР°Р·РјРµСЂС‹ РѕРіСЂР°РЅРёС‡РёРІР°СЋС‰РµРіРѕ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРєР° СѓРєР°Р·Р°РЅРЅРѕРіРѕ РѕРєРЅР°.',
                   );
 				  
 $result[] = array(
                   'CAPTION'=>'GetClientRect',
                   'PROP'=>'GetClientRect()',
-                  'INLINE'=>'GetClientRect ( int hWnd ) - возвращает координаты клиентской области окна.',
+                  'INLINE'=>'GetClientRect ( int hWnd ) - РІРѕР·РІСЂР°С‰Р°РµС‚ РєРѕРѕСЂРґРёРЅР°С‚С‹ РєР»РёРµРЅС‚СЃРєРѕР№ РѕР±Р»Р°СЃС‚Рё РѕРєРЅР°.',
                   );				    
 				  	   
 $result[] = array(
                   'CAPTION'=>'SwitchToThisWindow',
                   'PROP'=>'SwitchToThisWindow()',
-                  'INLINE'=>'SwitchToThisWindow ( int hWnd , int fAltTab ) - переключает фокус на указанное окно и переносит его на передний план.',
+                  'INLINE'=>'SwitchToThisWindow ( int hWnd , int fAltTab ) - РїРµСЂРµРєР»СЋС‡Р°РµС‚ С„РѕРєСѓСЃ РЅР° СѓРєР°Р·Р°РЅРЅРѕРµ РѕРєРЅРѕ Рё РїРµСЂРµРЅРѕСЃРёС‚ РµРіРѕ РЅР° РїРµСЂРµРґРЅРёР№ РїР»Р°РЅ.',
                   );				  
 				  
 $result[] = array(
                   'CAPTION'=>'IsChild',
                   'PROP'=>'IsChild()',
-                  'INLINE'=>'IsChild ( int hWndParent, int hWnd ) - проверяет, является ли указанное окно hWnd дочерним окном для hWndParent.',
+                  'INLINE'=>'IsChild ( int hWndParent, int hWnd ) - РїСЂРѕРІРµСЂСЏРµС‚, СЏРІР»СЏРµС‚СЃСЏ Р»Рё СѓРєР°Р·Р°РЅРЅРѕРµ РѕРєРЅРѕ hWnd РґРѕС‡РµСЂРЅРёРј РѕРєРЅРѕРј РґР»СЏ hWndParent.',
                   );
 				  
 $result[] = array(
                   'CAPTION'=>'IsGUIThread',
                   'PROP'=>'IsGUIThread()',
-                  'INLINE'=>'IsGUIThread ( [int bConvert = false] ) - проверяет, является ли вызывающий поток потоком GUI.',
+                  'INLINE'=>'IsGUIThread ( [int bConvert = false] ) - РїСЂРѕРІРµСЂСЏРµС‚, СЏРІР»СЏРµС‚СЃСЏ Р»Рё РІС‹Р·С‹РІР°СЋС‰РёР№ РїРѕС‚РѕРє РїРѕС‚РѕРєРѕРј GUI.',
                   );					  
 				  
 $result[] = array(
                   'CAPTION'=>'IsHungAppWindow',
                   'PROP'=>'IsHungAppWindow()',
-                  'INLINE'=>'IsHungAppWindow ( int hWnd ) - проверяет, считает ли система, что указанное окно не отвечает.',
+                  'INLINE'=>'IsHungAppWindow ( int hWnd ) - РїСЂРѕРІРµСЂСЏРµС‚, СЃС‡РёС‚Р°РµС‚ Р»Рё СЃРёСЃС‚РµРјР°, С‡С‚Рѕ СѓРєР°Р·Р°РЅРЅРѕРµ РѕРєРЅРѕ РЅРµ РѕС‚РІРµС‡Р°РµС‚.',
                   );					  
 				  				  
 $result[] = array(
                   'CAPTION'=>'IsIconic',
                   'PROP'=>'IsIconic()',
-                  'INLINE'=>'IsIconic ( int hWnd ) - проверяет, является ли указанное окно минимизированным.',
+                  'INLINE'=>'IsIconic ( int hWnd ) - РїСЂРѕРІРµСЂСЏРµС‚, СЏРІР»СЏРµС‚СЃСЏ Р»Рё СѓРєР°Р·Р°РЅРЅРѕРµ РѕРєРЅРѕ РјРёРЅРёРјРёР·РёСЂРѕРІР°РЅРЅС‹Рј.',
                   );								  
 				  
 $result[] = array(
                   'CAPTION'=>'IsWindow',
                   'PROP'=>'IsWindow()',
-                  'INLINE'=>'IsWindow ( int hWnd ) - проверяет, существует ли окно с указанным дескриптор.',
+                  'INLINE'=>'IsWindow ( int hWnd ) - РїСЂРѕРІРµСЂСЏРµС‚, СЃСѓС‰РµСЃС‚РІСѓРµС‚ Р»Рё РѕРєРЅРѕ СЃ СѓРєР°Р·Р°РЅРЅС‹Рј РґРµСЃРєСЂРёРїС‚РѕСЂ.',
                   );	
 				  
 $result[] = array(
                   'CAPTION'=>'IsWindowEnabled',
                   'PROP'=>'IsWindowEnabled()',
-                  'INLINE'=>'IsWindowEnabled ( int hWnd ) - проверяет, является ли указанное окно доступным для ввода информации с мыши и клавиатуры.',
+                  'INLINE'=>'IsWindowEnabled ( int hWnd ) - РїСЂРѕРІРµСЂСЏРµС‚, СЏРІР»СЏРµС‚СЃСЏ Р»Рё СѓРєР°Р·Р°РЅРЅРѕРµ РѕРєРЅРѕ РґРѕСЃС‚СѓРїРЅС‹Рј РґР»СЏ РІРІРѕРґР° РёРЅС„РѕСЂРјР°С†РёРё СЃ РјС‹С€Рё Рё РєР»Р°РІРёР°С‚СѓСЂС‹.',
                   );		
 				  
 $result[] = array(
                   'CAPTION'=>'IsWindowUnicode',
                   'PROP'=>'IsWindowUnicode()',
-                  'INLINE'=>'IsWindowUnicode ( int hWnd ) - проверяет, является ли указанное окно окном Unicode.',
+                  'INLINE'=>'IsWindowUnicode ( int hWnd ) - РїСЂРѕРІРµСЂСЏРµС‚, СЏРІР»СЏРµС‚СЃСЏ Р»Рё СѓРєР°Р·Р°РЅРЅРѕРµ РѕРєРЅРѕ РѕРєРЅРѕРј Unicode.',
                   );				  
 				  
 $result[] = array(
                   'CAPTION'=>'IsWindowVisible',
                   'PROP'=>'IsWindowVisible()',
-                  'INLINE'=>'IsWindowVisible ( int hWnd ) - проверяет, является ли указанное окно видимым.',
+                  'INLINE'=>'IsWindowVisible ( int hWnd ) - РїСЂРѕРІРµСЂСЏРµС‚, СЏРІР»СЏРµС‚СЃСЏ Р»Рё СѓРєР°Р·Р°РЅРЅРѕРµ РѕРєРЅРѕ РІРёРґРёРјС‹Рј.',
                   );					  
 				  
 $result[] = array(
                   'CAPTION'=>'IsZoomed',
                   'PROP'=>'IsZoomed()',
-                  'INLINE'=>'IsZoomed ( int hWnd ) - проверяет, максимизировано ли указанное окно.',
+                  'INLINE'=>'IsZoomed ( int hWnd ) - РїСЂРѕРІРµСЂСЏРµС‚, РјР°РєСЃРёРјРёР·РёСЂРѕРІР°РЅРѕ Р»Рё СѓРєР°Р·Р°РЅРЅРѕРµ РѕРєРЅРѕ.',
                   );					  
 				  
 $result[] = array(
                   'CAPTION'=>'LockSetForegroundWindow',
                   'PROP'=>'LockSetForegroundWindow()',
-                  'INLINE'=>'LockSetForegroundWindow ( bool uLockCode ) - блокирует или разрешает вызов функции SetForegroundWindow( void ).',
+                  'INLINE'=>'LockSetForegroundWindow ( bool uLockCode ) - Р±Р»РѕРєРёСЂСѓРµС‚ РёР»Рё СЂР°Р·СЂРµС€Р°РµС‚ РІС‹Р·РѕРІ С„СѓРЅРєС†РёРё SetForegroundWindow( void ).',
                   );	
 				  
 $result[] = array(
                   'CAPTION'=>'MoveWindow',
                   'PROP'=>'MoveWindow()',
-                  'INLINE'=>'MoveWindow ( int hWnd, int X, int Y, int W, int H [, bool bRepaint = true] ) - изменяет положение и размеры указанного окна.',
+                  'INLINE'=>'MoveWindow ( int hWnd, int X, int Y, int W, int H [, bool bRepaint = true] ) - РёР·РјРµРЅСЏРµС‚ РїРѕР»РѕР¶РµРЅРёРµ Рё СЂР°Р·РјРµСЂС‹ СѓРєР°Р·Р°РЅРЅРѕРіРѕ РѕРєРЅР°.',
                   );
 				  
 $result[] = array(
                   'CAPTION'=>'OpenIcon',
                   'PROP'=>'OpenIcon()',
-                  'INLINE'=>'OpenIcon ( int hWnd ) - восстанавливает минимизированное окно к его предыдущим размерам и положению, затем активизирует его.',
+                  'INLINE'=>'OpenIcon ( int hWnd ) - РІРѕСЃСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РјРёРЅРёРјРёР·РёСЂРѕРІР°РЅРЅРѕРµ РѕРєРЅРѕ Рє РµРіРѕ РїСЂРµРґС‹РґСѓС‰РёРј СЂР°Р·РјРµСЂР°Рј Рё РїРѕР»РѕР¶РµРЅРёСЋ, Р·Р°С‚РµРј Р°РєС‚РёРІРёР·РёСЂСѓРµС‚ РµРіРѕ.',
                   );				  
 				  
 $result[] = array(
                   'CAPTION'=>'SetActiveWindow',
                   'PROP'=>'SetActiveWindow()',
-                  'INLINE'=>'SetActiveWindow ( int hWnd ) - активизирует указанное окно.',
+                  'INLINE'=>'SetActiveWindow ( int hWnd ) - Р°РєС‚РёРІРёР·РёСЂСѓРµС‚ СѓРєР°Р·Р°РЅРЅРѕРµ РѕРєРЅРѕ.',
                   );					  
 				  
 $result[] = array(
                   'CAPTION'=>'SetFocus',
                   'PROP'=>'SetFocus()',
-                  'INLINE'=>'SetFocus ( int hWnd ) - устанавливает фокус клавиатуры в указанном окне.',
+                  'INLINE'=>'SetFocus ( int hWnd ) - СѓСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ С„РѕРєСѓСЃ РєР»Р°РІРёР°С‚СѓСЂС‹ РІ СѓРєР°Р·Р°РЅРЅРѕРј РѕРєРЅРµ.',
                   );					  
 				  
 $result[] = array(
                   'CAPTION'=>'SetForegroundWindow',
                   'PROP'=>'SetForegroundWindow()',
-                  'INLINE'=>'SetForegroundWindow ( int hWnd ) - омещает поток, создавший указанное окно, на передний план и активизирует окно.',
+                  'INLINE'=>'SetForegroundWindow ( int hWnd ) - РѕРјРµС‰Р°РµС‚ РїРѕС‚РѕРє, СЃРѕР·РґР°РІС€РёР№ СѓРєР°Р·Р°РЅРЅРѕРµ РѕРєРЅРѕ, РЅР° РїРµСЂРµРґРЅРёР№ РїР»Р°РЅ Рё Р°РєС‚РёРІРёР·РёСЂСѓРµС‚ РѕРєРЅРѕ.',
                   );					  
 				  
 $result[] = array(
                   'CAPTION'=>'SetLayeredWindowAttributes',
                   'PROP'=>'SetLayeredWindowAttributes()',
-                  'INLINE'=>'SetLayeredWindowAttributes ( int hWnd, int crKey, int bAlpha, int dwFlags ) - устанавливает атрибуты многослойного окна.',
+                  'INLINE'=>'SetLayeredWindowAttributes ( int hWnd, int crKey, int bAlpha, int dwFlags ) - СѓСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ Р°С‚СЂРёР±СѓС‚С‹ РјРЅРѕРіРѕСЃР»РѕР№РЅРѕРіРѕ РѕРєРЅР°.',
                   );					  
 				  
 $result[] = array(
                   'CAPTION'=>'SetParent',
                   'PROP'=>'SetParent()',
-                  'INLINE'=>'SetParent ( int hWndChild, int hWndNewParent ) - меняет родительское окно указанного дочернего окна.',
+                  'INLINE'=>'SetParent ( int hWndChild, int hWndNewParent ) - РјРµРЅСЏРµС‚ СЂРѕРґРёС‚РµР»СЊСЃРєРѕРµ РѕРєРЅРѕ СѓРєР°Р·Р°РЅРЅРѕРіРѕ РґРѕС‡РµСЂРЅРµРіРѕ РѕРєРЅР°.',
                   );	
 				  
 $result[] = array(
                   'CAPTION'=>'SetSysColors',
                   'PROP'=>'SetSysColors()',
-                  'INLINE'=>'SetSysColors ( int cElements, array lpaElements, array lpaRgbValues ) - устанавливает цвета для одного или нескольких элементов управления.',
+                  'INLINE'=>'SetSysColors ( int cElements, array lpaElements, array lpaRgbValues ) - СѓСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ С†РІРµС‚Р° РґР»СЏ РѕРґРЅРѕРіРѕ РёР»Рё РЅРµСЃРєРѕР»СЊРєРёС… СЌР»РµРјРµРЅС‚РѕРІ СѓРїСЂР°РІР»РµРЅРёСЏ.',
                   );				  
 				  
 $result[] = array(
                   'CAPTION'=>'SetWindowLong',
                   'PROP'=>'SetWindowLong()',
-                  'INLINE'=>'SetWindowLong ( int hWnd, int dwNewLong [, int nIndex = GWL_EXSTYLE] ) - устанавливает определенный атрибут для указанного окна.',
+                  'INLINE'=>'SetWindowLong ( int hWnd, int dwNewLong [, int nIndex = GWL_EXSTYLE] ) - СѓСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РѕРїСЂРµРґРµР»РµРЅРЅС‹Р№ Р°С‚СЂРёР±СѓС‚ РґР»СЏ СѓРєР°Р·Р°РЅРЅРѕРіРѕ РѕРєРЅР°.',
                   );				  
 				  
 $result[] = array(
                   'CAPTION'=>'SetWindowText',
                   'PROP'=>'SetWindowText()',
-                  'INLINE'=>'SetWindowText ( int hWnd, str lpString ) -["БАГНУТЫЙ"] изменяет заголовок указанного окна или текст оpгана упpавления.',
+                  'INLINE'=>'SetWindowText ( int hWnd, str lpString ) -["Р‘РђР“РќРЈРўР«Р™"] РёР·РјРµРЅСЏРµС‚ Р·Р°РіРѕР»РѕРІРѕРє СѓРєР°Р·Р°РЅРЅРѕРіРѕ РѕРєРЅР° РёР»Рё С‚РµРєСЃС‚ РѕpРіР°РЅР° СѓРїpР°РІР»РµРЅРёСЏ.',
                   );				  
 				  
 $result[] = array(
                   'CAPTION'=>'ShowOwnedPopups',
                   'PROP'=>'ShowOwnedPopups()',
-                  'INLINE'=>'ShowOwnedPopups ( int hWnd [, fShow = true] ) - отображает или скрывает все всплывающие окна, которыми владеет указанное окно.',
+                  'INLINE'=>'ShowOwnedPopups ( int hWnd [, fShow = true] ) - РѕС‚РѕР±СЂР°Р¶Р°РµС‚ РёР»Рё СЃРєСЂС‹РІР°РµС‚ РІСЃРµ РІСЃРїР»С‹РІР°СЋС‰РёРµ РѕРєРЅР°, РєРѕС‚РѕСЂС‹РјРё РІР»Р°РґРµРµС‚ СѓРєР°Р·Р°РЅРЅРѕРµ РѕРєРЅРѕ.',
                   );
 				  
 $result[] = array(
                   'CAPTION'=>'ShowWindow',
                   'PROP'=>'ShowWindow()',
-                  'INLINE'=>'ShowWindow ( int hWnd [, int nCmdShow = SW_SHOW] ) - отображает заданное окно в указанном режиме.',
+                  'INLINE'=>'ShowWindow ( int hWnd [, int nCmdShow = SW_SHOW] ) - РѕС‚РѕР±СЂР°Р¶Р°РµС‚ Р·Р°РґР°РЅРЅРѕРµ РѕРєРЅРѕ РІ СѓРєР°Р·Р°РЅРЅРѕРј СЂРµР¶РёРјРµ.',
                   );					  
 				  
 $result[] = array(
                   'CAPTION'=>'ShowWindowAsync',
                   'PROP'=>'ShowWindowAsync()',
-                  'INLINE'=>'ShowWindowAsync ( int hWnd [, int nCmdShow = SW_SHOW] ) - отображает заданное окно в указанном режиме, созданное другим потоком.',
+                  'INLINE'=>'ShowWindowAsync ( int hWnd [, int nCmdShow = SW_SHOW] ) - РѕС‚РѕР±СЂР°Р¶Р°РµС‚ Р·Р°РґР°РЅРЅРѕРµ РѕРєРЅРѕ РІ СѓРєР°Р·Р°РЅРЅРѕРј СЂРµР¶РёРјРµ, СЃРѕР·РґР°РЅРЅРѕРµ РґСЂСѓРіРёРј РїРѕС‚РѕРєРѕРј.',
                   );					  
 				  
 $result[] = array(
                   'CAPTION'=>'WindowFromCursor',
                   'PROP'=>'WindowFromCursor()',
-                  'INLINE'=>'WindowFromCursor ( void ) - определяет, какое из окон содержит координаты курсора.',
+                  'INLINE'=>'WindowFromCursor ( void ) - РѕРїСЂРµРґРµР»СЏРµС‚, РєР°РєРѕРµ РёР· РѕРєРѕРЅ СЃРѕРґРµСЂР¶РёС‚ РєРѕРѕСЂРґРёРЅР°С‚С‹ РєСѓСЂСЃРѕСЂР°.',
                   );					  
 				  
 $result[] = array(
                   'CAPTION'=>'WindowFromPoint',
                   'PROP'=>'WindowFromPoint()',
-                  'INLINE'=>'WindowFromPoint ( int X, int Y ) - определяет, какое из окон содержит указанные координаты.',
+                  'INLINE'=>'WindowFromPoint ( int X, int Y ) - РѕРїСЂРµРґРµР»СЏРµС‚, РєР°РєРѕРµ РёР· РѕРєРѕРЅ СЃРѕРґРµСЂР¶РёС‚ СѓРєР°Р·Р°РЅРЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹.',
                   );				  
 		  
 $result[] = array(
                   'CAPTION'=>'Write',
                   'PROP'=>'Write()',
-                  'INLINE'=>'Write ( int hWnd, char Text ) - активизирует окно и пишет указанный текст.',
+                  'INLINE'=>'Write ( int hWnd, char Text ) - Р°РєС‚РёРІРёР·РёСЂСѓРµС‚ РѕРєРЅРѕ Рё РїРёС€РµС‚ СѓРєР°Р·Р°РЅРЅС‹Р№ С‚РµРєСЃС‚.',
                   );
 
 return $result;
