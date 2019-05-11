@@ -15,7 +15,7 @@ class myProject {
         registerFileType('dspak', dirname(EXE_NAME).'/DS KE.exe');
         registerFileType('zipdspak', dirname(EXE_NAME).'/DS KE.exe');
         registerFileType('dvsexe', dirname(EXE_NAME).'/DS KE.exe');
-		writeRegKey(HKEY_LOCAL_MACHINE, "SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment\\dsApps", str_replace('/', DIRECTORY_SEPARATOR, DS_USERDIR), STRING);
+		writeRegKey(HKEY_LOCAL_MACHINE, "SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment\\dsApps", str_replace('/', DIRECTORY_SEPARATOR, DS_USERDIR), reg_STRING);
 		
     }
     

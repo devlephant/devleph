@@ -153,7 +153,7 @@ function cloneForm($name, $load_events = true){
 }
 
 // запись в реестр...
-function writeRegKey($root, $path, $value, $type = STRING){
+function writeRegKey($root, $path, $value, $type = 0){
         
         $reg = new TRegistry;
         $reg->writeKeyEx($root, $path, $value, $type);
@@ -163,7 +163,7 @@ function writeRegKey($root, $path, $value, $type = STRING){
 }
 
 // чтение из реестра
-function readRegKey($root, $path, &$buffer, $type = STRING){
+function readRegKey($root, $path, &$buffer, $type = 0){
         
     $reg = new TRegistry;
     $buffer = $reg->readKeyEx($root, $path, $type);
@@ -171,22 +171,6 @@ function readRegKey($root, $path, &$buffer, $type = STRING){
     $reg->free();
         
     unset($reg);
-}
-
-// запрет таск менеджера...
-function DisableTaskMng($enable = true){
-        
-        $reg = new TRegistry; 
-        $reg->rootKey(HKEY_CURRENT_USER); 
-
-        $reg->OpenKey('Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System\\', true); 
-
-        if ($enable)
-            $reg->writeString('DisableTaskMgr', '1');
-        else
-            $reg->deleteValue('DisableTaskMgr'); 
-         
-        $reg->closeKey(); 
 }
 
 

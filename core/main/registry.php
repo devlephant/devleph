@@ -104,7 +104,8 @@ class TRegistry {
 }
 
 // регистрация ассоциации расширения с программой
-function registerFileType($prefix, $exe){
+function registerFileType($prefix, $exe)
+{
 
     $exe = replaceSr($exe);  
     
@@ -123,5 +124,12 @@ function registerFileType($prefix, $exe){
     $r->WriteString('',$exe . ' "%1"');
     $r->CloseKey();
     $r->Free();
+}
+
+function registerEnvPath($dirname, $alias)
+{
+	$dirname = realpath($dirname);
+	if( is_dir($dirname) )
+		writeRegKey(HKEY_LOCAL_MACHINE, "SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment\\{$alias}", str_replace('/', DIRECTORY_SEPARATOR, $dirname), 0);
 }
 ?>
