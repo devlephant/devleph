@@ -61,6 +61,7 @@ $cp = c('fmComponents->list');
 
 class evfmMain {
     public static $visfix = [];
+	public static $pSizes = [];
     static function checkVer($file_info, $last_ver){
         
         global $dsg_cfg;
@@ -208,10 +209,20 @@ class evfmMain {
 	
     static function panelVisibility($self, $host, $value)
 	{
-		if($value) ev_fmMain_pDockLeft::setcrz(true);
-		if($value || gui_class($host)!=='TPanel') return;
-
-			$obj = c($host);
+		if($value)
+			ev_fmMain_pDockLeft::setcrz(true);
+		if(gui_class($host)!=='TPanel') return;
+		$sl = c($self);
+		$obj = c($host);
+		if( $value )
+		{
+			global $_sc;
+			list($obj->w, $obj->h, $sl->w, $sl->h) = isset( evfmMain::$pSizes[$self] )?  evfmMain::$pSizes[$self]: [220, 170, 220, 170];
+			$_sc->update();
+			return;
+		}
+			
+			self::$pSizes[$self] = [$obj->w, $obj->h, $sl->w, $sl->h];
 			foreach( $obj->get_dockList() as $v )
 			{
 				if( $v->visible && $v->self !== $self )
@@ -355,9 +366,6 @@ class ev_it_objectinspector {
         
         $GLOBALS['_sc']->updateBtns();
         c('fmMain->pInspector')->visible = !c('fmMain->pInspector')->visible;
-        ev_it_props::setWidth(c('fmMain->pDockLeft'));
-        ev_it_props::setWidth(c('fmMain->pDockRight'));
-        ev_it_props::setHeight(c('fmMain->pDockBottom'));
     }
 }
 
@@ -367,52 +375,14 @@ class ev_it_components {
         
         $GLOBALS['_sc']->updateBtns();
         c('fmMain->pComponents')->visible = !c('fmMain->pComponents')->visible;
-        ev_it_props::setWidth(c('fmMain->pDockLeft'));
-        ev_it_props::setWidth(c('fmMain->pDockRight'));
-        ev_it_props::setHeight(c('fmMain->pDockBottom'));
     }
 }
 
 
 class ev_it_props {
-    
-    static function setWidth($panel){
-        global $_sc;
-        $list = $panel->dockList;
-        $c = 0;
-        foreach ($list as $el)
-            if ($el->visible)
-                $c++;
-        
-        if ($c > 0)
-            $panel->w = 220;
-        else
-            $panel->w = 5;
-		$_sc->update();
-    }
-    
-    static function setHeight($panel){
-        global $_sc;
-        $list = $panel->dockList;
-        $c = 0;
-        foreach ($list as $el)
-            if ($el->visible)
-                $c++;
-        
-        if ($c > 0)
-            $panel->h = 170;
-        else
-            $panel->h = 5;
-		$_sc->update();
-    }
-    
     static function onClick($self){
-        
         $GLOBALS['_sc']->updateBtns();
         c('fmMain->pProps')->visible = !c('fmMain->pProps')->visible;
-        ev_it_props::setWidth(c('fmMain->pDockLeft'));
-        ev_it_props::setWidth(c('fmMain->pDockRight'));
-        ev_it_props::setHeight(c('fmMain->pDockBottom'));
     }
 }
 
@@ -420,12 +390,8 @@ class ev_it_props {
 class ev_it_debuginfo {
     
     static function onClick($self){
-        
         $GLOBALS['_sc']->updateBtns();
         c('fmMain->pDebugWindow')->visible = !c('fmMain->pDebugWindow')->visible;
-        ev_it_props::setWidth(c('fmMain->pDockLeft'));
-        ev_it_props::setWidth(c('fmMain->pDockRight'));
-        ev_it_props::setHeight(c('fmMain->pDockBottom'));
     }
 }
 
@@ -482,6 +448,7 @@ class ev_statusBar {
 }
 
 class ev_fmMain_pDockLeft {
+	private static $orients = [];
 	private static $crz = false;
 	static function setcrz($v)
 	{
@@ -493,6 +460,7 @@ class ev_fmMain_pDockLeft {
 		$source = c( dragobject_control($source) );
 		
         $continue = false;
+		if( $obj->dockClientCount > 0)
 		foreach( $obj->get_dockList() as $v )
 			{
 				if( $v->visible )
@@ -501,10 +469,19 @@ class ev_fmMain_pDockLeft {
 				}
 			}
 		self::$crz = true;	
-		if (($continue || $source->visible) && $obj->w < 30){
-            $obj->w = 220;
-            $source->w = 220;
-          }
+		$orient = ($obj->name == 'pDockLeft' || $obj->name == 'pDockRight')? 0: 1;
+		if ($continue || $source->visible)
+		{
+			if( isset(self::$orients[$source->self]) && (self::$orients[$source->self] <> $orient) ) {
+				list($w, $h) = $continue? [$source->w, $source->h]: [max($source->w, $obj->w), max($source->h, $obj->h)];
+				list($obj->h, $obj->w, $source->h, $source->w) = [$w, $h, $w, $h];
+			}elseif( $obj->w < 30){
+				$obj->w = 220;
+				$source->w = 220;
+				
+			}
+		}
+		self::$orients[$source->self] = $orient;
         self::$crz = false;
 		$GLOBALS['_sc']->update();
     }
@@ -588,7 +565,6 @@ class ev_fmMain_pDockRight {
 		ev_fmMain_pDockLeft::onCanResize($self, $nW, $nH, $can);
 	}
 }
-
 
 class ev_fmMain_pDockBottom {
 
@@ -952,7 +928,7 @@ class ev_fmMain_btn_rundebug extends fmain_ibtn {}
 
 class ev_fmMain_btn_make extends fmain_ibtn {}
 
-function fmain_reloadims()
+function fmMain_reloadims()
 {
 	//loading every skinnable icon in the main form */*2nd-party buttons and menu items displaying*/*
 	$theme = DOC_ROOT . 'design/theme/' . myOptions::get('prefs','studio_theme', 'light'); //#ADDOPT;
@@ -998,4 +974,4 @@ event_set(c("fmMain->pDockMain")->self, 'onScrollHorz', function($self, $scrollC
 	global $_sc;
 	$_sc->update();
 });
-fmain_reloadims();
+fmMain_reloadims();
