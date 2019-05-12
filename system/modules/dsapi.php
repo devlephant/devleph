@@ -5,7 +5,8 @@
 
 
 class DSApi {
-    
+    protected static $classCallbacks = [];
+	protected static $projectChangeCallFunc;
     static function __doStartBeforeFunc(){
         if( !isset($GLOBALS['___startFunctionsBefore']) ) return;
         foreach((array)$GLOBALS['___startFunctionsBefore'] as $func)
@@ -17,7 +18,29 @@ class DSApi {
         foreach((array)$GLOBALS['___startFunctions'] as $func)
             eval($func.';');
     }
-    
+    static function afterClassLoaded( $className )
+	{
+		if( isset( self::$classCallbacks[ $className ] ) )
+			call_user_func(self::$classCallbacks[ $className ], $className);
+	}
+	static function addClassLoadCallback( $className, callable $call )
+	{
+		self::$classCallbacks[ $className ] = $call;
+	}
+	static function setProjectChangeCallback( callable $call )
+	{
+		self::$projectChangeCallFunc = $call;
+	}
+	static function callProjectChangeFunc($projectName)
+	{
+		if( isset(self::$projectChangeCallFunc) )
+			call_user_func(self::$projectChangeCallFunc, $projectName);
+	}
+	static function remClassLoadCallback( $className )
+	{
+		if( isset( self::$classCallbacks[ $className ] ) )
+			unset( self::$classCallbacks[ $className ] );
+	}
     // регистрация функции, которая должна выполниться после загрузки всех форм
     static function reg_startFunc($func){
         

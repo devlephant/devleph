@@ -10,6 +10,7 @@ $componentProps   = [];
 $componentEvents  = [];
 $files = (defined('DS_DEBUG_MODE') && constant('DS_DEBUG_MODE'))? array_merge(findFiles(dirname(__FILE__) . '/components/','php',0,1), findFiles(dirname(__FILE__) . '/components/dev/','php',0,1)) :findFiles(dirname(__FILE__) . '/components/','php',0,1);
 $dir_n  = dirname(__FILE__);
+
 foreach ($files as $file){
     
     $base_n = basenameNoExt($file);
@@ -19,18 +20,12 @@ foreach ($files as $file){
     }
     
     $file_m = $dir_n.'/components/modules/'.$base_n;
-    
+    $loaded = false;
     if (file_exists($file_m.'.php')){    
         loader::inc($file_m.'.php');
+		dsAPI::afterClassLoaded( $base_n );
     }
     
-    if (file_exists($file_m.'.phpe')){
-        loader::inc($file_m.'.phpe');
-    }
-    
-    if (file_exists($file_m.'.phpe2')){
-        loader::inc($file_m.'.phpe2');
-    }
 }
 
 if (EMULATE_DVS_EXE) return;

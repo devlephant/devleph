@@ -235,19 +235,14 @@ class myEvents {
         if ( $doChangeEvent ){
             
             $eventList = c('fmPropsAndEvents->eventList');
-            //$events = TEvents::searchEvent($myEvents->selObj,$fmEdit);
             $event  = $eventList->events[$eventList->itemIndex];
             
             eventEngine::changeEvent($name, $event, $eventL['EVENT']);
-            
-            //TEvents::changeEventToObj($myProperties->selObj, $fmEdit, $event, $obj->event['EVENT']);
         } else {
             
             eventEngine::setEvent($name, $eventL['EVENT'], '');
-            //TEvents::addEventToObj($myProperties->selObj, $fmEdit, $obj->event);
         }
         
-        //_c($obj->owner)->close();
         $myEvents->genList();
         if ($GLOBALS['show_editor']){
             c('fmMain->eventList')->items->selected = t(strtolower($eventL['EVENT']));
