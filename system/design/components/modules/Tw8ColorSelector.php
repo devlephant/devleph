@@ -2,24 +2,17 @@
 
 Class Tw8ColorSelector Extends TScrollBox{
  
- Private static $init_self;
- Private $_toDelete;
+ private static $init_self;
  
  Public Function __initComponentInfo()
  {
-		$exit = false;
 		if( !empty( Tw8ColorSelector::$init_self ) )
-			if( in_array($this->self, Tw8ColorSelector::$init_self) ) $exit = true;
-		
-		if( $exit )
-		{
-			return;
-		} else {
-			Tw8ColorSelector::$init_self[] = $this->self;
-		}
+			if( in_array($this->self, Tw8ColorSelector::$init_self) ) return;
+
+		Tw8ColorSelector::$init_self[] = $this->self;
 		
       $thi = &$this;
-	 
+		$this->_toDelete = [];
       $this->w = 270;
       $this->h = 123;  
 	  $this->borderStyle = bsNone;
@@ -30,18 +23,23 @@ Class Tw8ColorSelector Extends TScrollBox{
 	  if( !$GLOBALS['APP_DESIGN_MODE'] )
 	  {
 		$M = new TTImer; $M->Enabled = False; $M->Repeat = True; 
+		$this->_toDelete[] = $M->self;
 		$M->Interval = ($this->dragAnim)? 30: 15;
 		$this->_timer_m = $M;
 		$S = new TTImer; $S->Enabled = False; $S->Repeat = True; $S->Interval = 1;
+		$this->_toDelete[] = $S->self;
 		$BA = new TTimer; $BA->Enabled = False; $BA->Repeat = True; $BA->Interval = 30;
+		$this->_toDelete[] = $BA->self;
 	  }
       $P = new TShape;
 	  $I = new TImage; 
-		
+		$this->_toDelete[] = $P->self;
+		$this->_toDelete[] = $I->self;
 		
         For($i=1;$i<7;$i++) // y = 0
                 {
                  $c[$i] = new TShape;
+				 $this->_toDelete[] = $c[$i]->self;
 				 $c[$i]->Parent = $this;
 				 $c[$i]->x = $x[1];  $c[$i]->w = 45;
 				 $c[$i]->y = 0;  $c[$i]->h = 45;
@@ -60,6 +58,7 @@ Class Tw8ColorSelector Extends TScrollBox{
         For($i=7;$i<13;$i++) // y = 45
                 {
                  $c[$i] = new TShape;
+				 $this->_toDelete[] = $c[$i]->self;
 				 $c[$i]->Parent = $this;
 				 $c[$i]->x = $x[2];  $c[$i]->w = 45;
 				 $c[$i]->y = 45;  $c[$i]->h = 45;
@@ -88,6 +87,7 @@ Class Tw8ColorSelector Extends TScrollBox{
         For($i=1;$i<19;$i++)
 				{
 				  $p[$i] = new TShape;
+				  $this->_toDelete[] = $p[$i]->self;
 				  $p[$i]->Parent = $this;
 				  $p[$i]->x = $x[3];  $p[$i]->w = 15;
 				  $p[$i]->y = 92; $p[$i]->h = 20;
@@ -169,7 +169,6 @@ if( !$GLOBALS['APP_DESIGN_MODE'] ) {
 				$thi->main =  $thi->__Index;
   	        };
 }
-$this->_toDelete = $GLOBALS['APP_DESIGN_MODE']? [$M->self, $S->self, $BA->self]: null;
  }
  
  private function UpdateDsgn ()

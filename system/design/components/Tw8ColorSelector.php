@@ -1,14 +1,11 @@
 <?
-
-$result = [];
-
-$result['GROUP']   = 'Lists';
-$result['CLASS']   = basenameNoExt(__FILE__);
-$result['CAPTION'] = t('TColor');
-$result['SORT']    = 56;
-$result['NAME']    = 'Color';
-
-$result['W'] = 25;
-$result['H'] = 20;
-
-return $result;
+return [
+'GROUP'=> 'Lists',
+'CLASS'=> basenameNoExt(__FILE__),
+'CAPTION'=> t('TColor'),
+'SORT'=> 56,
+'NAME'=> 'Color',
+'REPLACE' => 'TColor',
+'W'=> 25,
+'H'=> 20,
+];

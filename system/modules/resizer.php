@@ -76,9 +76,6 @@ class resize{
         if($remp==0) return false; 
         return $remp>0?ceil($remp):floor($remp); 
     } 
-} 
-if( !$GLOBALS['APP_DESIGN_MODE'] )
-{
-	setTimer(5, 'resize::tick();'); 
 }
+	setTimer(5, 'resize::tick();');
 ?>
