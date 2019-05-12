@@ -487,6 +487,7 @@ class myProject {
         }
         
         self::showIncorrect();
+		myInspect::genList(false);
 		
     }
     

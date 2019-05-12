@@ -9,7 +9,6 @@ class myInspect {
         
     }
 
-
     static function genList($obj){
         
         global $_FORMS, $formSelected;
@@ -18,7 +17,7 @@ class myInspect {
         $result  = array($_FORMS[$formSelected].':TForm');
         foreach ($forms[$_FORMS[$formSelected]] as $i=>$el){
             
-            if ($obj->name==$el['NAME']) $index = $i+1;
+            if (is_object($obj) && $obj->name==$el['NAME']) $index = $i+1;
             $result[] = $el['NAME'].': '.$el['CLASS'];
         }
         
