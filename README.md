@@ -1,6 +1,6 @@
 # Stats
-45% complete :heavy_check_mark:
-[❚❚❚❚⫴⫴⫴⫴⫴⫴]
+48% complete :heavy_check_mark:
+[❚❚❚❚❚⫴⫴⫴⫴⫴]
 
 <br>Working on  the:
 <br><a href="https://github.com/KashaketCompany/DevelStudio-3.0-beta/projects/1">:wrench:Fixes</a>
