@@ -302,6 +302,7 @@ class myEvents {
         $eventList->clear();
         
         $name = $myEvents->selObj instanceof TForm ? '--fmedit' : $myEvents->selObj->name;
+		c("fmMain->editorPopup")->AutoPopup = false;
         $eventList->text = eventEngine::listEventsEx($name);
         
         eventEngine::setForm();
@@ -313,6 +314,7 @@ class myEvents {
         global $doChangeEvent;
         if ( $doChangeEvent )
             $eventList->itemIndex = $eventList->items->count-1;
+		c("fmMain->editorPopup")->AutoPopup = true;
     }
     
     function _generate($object){
@@ -320,7 +322,7 @@ class myEvents {
         global $myEvents;
         $this->selObj = $object;
         if ($myEvents->last_self == $object->self) return;
-       
+		c("fmMain->editorPopup")->AutoPopup = false;
         $myEvents->clearForm();
         
         $class = rtti_class($object->self);
@@ -334,12 +336,6 @@ class myEvents {
             foreach ($componentEvents[$class] as $event){
                 $myEvents->classes[$class][] = $this->createButton($event, $edt_Events);
             }
-
-            
-           /* c('fmPropsAndEvents->it_editEvent',1)->onClick = 'myEvents::phpEditorShow';
-            c('fmPropsAndEvents->it_delEvent',1)->onClick = 'myEvents::deleteEvent';
-            c('fmPropsAndEvents->it_changeEvent',1)->onClick = 'myEvents::changeEvent';
-            c('fmPropsAndEvents->it_addEvent',1)->onClick = 'myEvents::clickAddEvent';*/
         } else {
             
             $myEvents->buttons =& $myEvents->classes[$class];
@@ -350,11 +346,10 @@ class myEvents {
             }
         }
         
-        //styleMenu::add($edt_Events);
         
         c('fmMain->tabEvents')->enabled = count($myEvents->classes[$class]) > 0;
         c('fmMain->btn_addEvent')->enabled = count($myEvents->classes[$class]) > 0;
-        
+        c("fmMain->editorPopup")->AutoPopup = true;
         $myEvents->genList();
         
     }

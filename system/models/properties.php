@@ -1235,7 +1235,9 @@ class myProperties {
             
         if (!isset($this->panels[$class])){
 			$theme = DOC_ROOT . 'design/theme/' . myOptions::get('prefs','studio_theme', 'light'); //#ADDOPT;
-            
+			
+            c("fmMain->editorPopup")->AutoPopup = false;
+			
             $panel = new TNextInspector( $fmMain );
             $panel->parent = c('fmPropsAndEvents->tabProps');
             $panel->align  = 'alClient';
@@ -1322,6 +1324,8 @@ class myProperties {
             if( $del )
 			 {	$gr->free(); }   
                 $this->panels[$class]['EL']  = $this->elements;
+				
+			c("fmMain->editorPopup")->AutoPopup = true;
         }
     }
     
