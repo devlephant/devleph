@@ -190,7 +190,6 @@ $m['TBevel_Caption'] = 'Bevel';
 $m['TTreeView_Caption'] = 'TreeView';
 $m['THTMLViewer_Caption'] = 'HTML Text';
 $m['Font Orientation'] = 'Font Slip';
-$m['ondblclick'] = 'On DoubleClick';
 
 $m['components'] = 'Components';
 $m['page'] = 'Page';
@@ -220,7 +219,7 @@ $m['send_to_front'] = 'Bring To Front';
 $m['modal_result'] = 'Dialog Result';
 
 $m['onclick'] = 'Click';
-$m['ondblclick'] = '2õ Click';
+$m['ondblclick'] = 'Double Click';
 $m['onmousedown'] = 'Mouse Down';
 $m['onmouseup'] = 'Mouse Up';
 $m['onmousemove'] = 'Mouse Move';

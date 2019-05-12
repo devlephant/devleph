@@ -1250,7 +1250,6 @@ class myProperties {
 			$panel->ExpandGlyph->loadFromFile("{$theme}/pp_collapsed.bmp");
 			$panel->CollapseGlyph->loadFromFile("{$theme}/pp_expanded.bmp");
 			$panel->ButtonsStyle = 1; //btCustom
-			//gui_propSet($panel->self, 'AppearanceOptions', '[]');
 			gui_propSet($panel->self, 'Color', clWindow);
 			gui_propSet($panel->self, 'CategoriesColor', clBtnFace);
             $gr = new TNxToolbarItem;
