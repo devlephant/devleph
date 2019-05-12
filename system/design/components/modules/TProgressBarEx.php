@@ -313,4 +313,9 @@ class TProgressBarEx extends TScrollBox{
 		str_replace( ['{$pos}', '{pos}', '{$position}', '{position}', '$pos', '%pos','$position','%position', '%s1', '%i1', '%d2'], $pos, $str)
 		);
 	}
+	public static function __clearInits()
+	{
+		self::$init_self = [];
+	}
 }
+dsAPI::addProjectChangeCallback(function($s){ TProgressBarEx::__clearInits(); });

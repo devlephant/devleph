@@ -612,5 +612,9 @@ $this->_toDelete = $GLOBALS['APP_DESIGN_MODE']? [$M->self, $S->self, $BA->self]:
 		
 		gui_destroy($this->self);
     }
- 
+	public static function __clearInits()
+	{
+		self::$init_self = [];
+	}
 }
+dsAPI::addProjectChangeCallback(function($s){ Tw8ColorSelector::__clearInits(); });

@@ -31,10 +31,27 @@ class DSApi {
 	{
 		self::$projectChangeCallFunc = $call;
 	}
+	static function addProjectChangeCallback( callable $call )
+	{
+		if( isset(self::$projectChangeCallFunc) )
+		{
+			if( is_array(self::$projectChangeCallFunc) )
+			{
+				self::$projectChangeCallFunc[] = $call;
+			} else
+				self::$projectChangeCallFunc = [self::$projectChangeCallFunc, $call];
+		}else	self::$projectChangeCallFunc = $call;
+	}
 	static function callProjectChangeFunc($projectName)
 	{
 		if( isset(self::$projectChangeCallFunc) )
-			call_user_func(self::$projectChangeCallFunc, $projectName);
+			if( is_array(self::$projectChangeCallFunc) )
+			{
+				foreach(self::$projectChangeCallFunc as $call)
+					call_user_func($call, $projectName);
+			}
+			else
+				call_user_func(self::$projectChangeCallFunc, $projectName);
 	}
 	static function remClassLoadCallback( $className )
 	{

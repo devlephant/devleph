@@ -120,6 +120,11 @@ class Tw8Toggle extends TShape {
 	{
 		gui_message('freed');
 	}
+	public static function __clearInits()
+	{
+		self::$init_self = [];
+	}
 }
 
 class ozSwitch extends Tw8Toggle {}
+dsAPI::addProjectChangeCallback(function($s){ Tw8Toggle::__clearInits(); });

@@ -96,4 +96,9 @@ class TChromiumEx extends TCefWindowParent {
 	if( gui_isset($this->self) )
 		gui_destroy($this->self);
 	}
+	public static function __clearInits()
+	{
+		self::$init_self = [];
+	}
 }
+dsAPI::addProjectChangeCallback(function($s){ TChromiumEx::__clearInits(); });
