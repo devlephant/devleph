@@ -680,7 +680,7 @@ function ___getEvent($self, $name){
     return $result;
 }
 
-
+DSApi::reg_eventParams('OnDblClick', ['self']);
 DSApi::reg_eventParams('onKeyUp',			['self','&key','shift']);
 DSApi::reg_eventParams('onKeyDown',			['self','&key','shift']);
 DSApi::reg_eventParams('onKeyPress',		['self','&key']);

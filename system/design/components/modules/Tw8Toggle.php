@@ -78,6 +78,16 @@ Class Tw8Toggle Extends TScrollBox {
 		}
 		
 	}
+	Private function getColors($switched)
+	{
+		//start color
+		return (new TColor(($switched? $this->enabledColor: $this->disabledColor)))->gradient(
+				//end color
+				(($switched? $this->disabledColor: $this->enabledColor)),
+				//gradient steps(levels)
+				5
+			);
+	}
 	Public Function set_switched($v)
 	{
 		$this->_switched = $v;
@@ -88,34 +98,30 @@ Class Tw8Toggle Extends TScrollBox {
 			alert("Для плавного переключения необходимо подключить класс Resizer.");	
 		}
 		$Thumb = c($this->_toDelete[1]);
-					if ($v){
+		$p = $v? $this->w/2: 0;
+		$c = $this->_colours[(int)$v];
 						if( $this->smoothness  )
 						{
-							resize::resize_object($Thumb, ["x" => $this->w/2]);
+							resize::resize_object($Thumb, 
+							$this->changeColorAtEnd? ["x"=> $p, "func"=>function($self)use($Thumb,$c){$Thumb->brush->color = $c;}]:["x" => $p]);
 						} else
-							$Thumb->x = $this->w/2;
-						
-						$Thumb->brush->Color = $this->enabledColor;
-					} else {
-						if( $this->smoothness  )
-						{
-							resize::resize_object($Thumb, ["x" => 0]);
-						} else
-							$Thumb->x = 0;
-						
-						$Thumb->brush->Color = $this->disabledColor;
-					}
+							$Thumb->x = $p;
+						if(!$this->changeColorAtEnd) $Thumb->brush->Color = $c;
 	}
 	Public Function set_enabledColor($v)
 	{
+		$this->_colours = [$this->_colours[0], $v];
 		if( $this->_switched )
 			c($this->_toDelete[1])->brush->color = $v;
 	}
 	Public Function set_disabledColor($v)
 	{
+		$this->_colours = [$v, $this->_colours[1]];
 		if( !$this->_switched )
 			c($this->_toDelete[1])->brush->color = $v;
 	}
+	Public Function get_enabledColor(){ return $this->_colours[1]; }
+	Public Function get_disabledColor(){ return $this->_colours[0]; }
 	Public Function get_switched()
 	{
 		return $this->_switched;
@@ -126,8 +132,7 @@ Class Tw8Toggle Extends TScrollBox {
 		
 		IF($init)
 		{
-			$this->enabledColor = 7457838;
-			$this->disabledColor = 3951847;
+			$this->_colours = [3951847, 7457838];
 			$this->brushColor = 16777215;
 			$this->penColor = 15329769;
 			$this->bevelInner = bvNone;
@@ -136,6 +141,7 @@ Class Tw8Toggle Extends TScrollBox {
 			$this->autosize = false;
 			$this->autoscroll = false;
 			$this->_switched = false;
+			$this->changeColorAtEnd = false;
 		}
 		
 		$this->__initComponentInfo();

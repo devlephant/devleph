@@ -25,7 +25,11 @@ $result[] = array(
                   'TYPE'=>'check',
                   'PROP'=>'smoothness',
                   );
-
+$result[] = array(
+				'CAPTION'=>t('Change Color At End'),
+				'TYPE'=>'check',
+				'PROP'=>'changeColorAtEnd',
+				);
 $result[] = array(
                   'CAPTION'=>t('Align'),
                   'TYPE'=>'combo',

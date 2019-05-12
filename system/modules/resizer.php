@@ -5,6 +5,7 @@ class resize{
     static $speed = 15; 
     static function resize_object($obj, $params=false) 
     {
+		
 		if(!$params) $params = [];
 		$pars = ['x', 'y', 'w', 'h', 'func', 'speed', 'time'];
 		$s = 7;
@@ -15,7 +16,8 @@ class resize{
 		if($params['time']!==false) $params['time'] += microtime(1);
 		$sides = [$params['x'], $params['y'], $params['w'], $params['h']];
         resize::$objects[$obj->self] = [$sides, $params['func'], $params['speed'], $params['time']]; 
-    } 
+    }
+	
     static function set_speed($i)
     { 
         resize::$speed = $i; 
@@ -50,9 +52,9 @@ class resize{
                     unset($objs[$self]);
 					for($i=0;$i<$s;++$i)
 					{
-						if($sides[$i]!==false) gui_propSet($self, $sides[$i], $sides[$i]);
+						if($sides[$i]!==false) gui_propSet($self, $sname[$i], $sides[$i]);
 					}
-                    if($func!==false && is_callable($func) ) $func($self); 
+                    if(is_callable($func) ) call_user_func($func, $self); 
                 } 
                 else 
                 {
