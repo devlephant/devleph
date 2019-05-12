@@ -394,7 +394,7 @@ class dsErrorClassUndefined
 	
 	public static final function  __callStatic($name, $args)
 	{
-		$class = get_class($this);
+		$class = get_called_class();
 		trigger_error("Unable to call static method \"{$name}\", because class \"{$class}\" Does Not Exist!" .
 		"\nInfo:\n\tMethod name: {$class}::{$name}\n\tParams:\n" . print_r($args,true) . "\n\tClass name:{$class}", E_USER_ERROR);
 		return NULL;
@@ -417,6 +417,7 @@ class dsErrorClassUndefined
 	
 	public final function __debuginfo()
 	{
+		$class = get_class($this);
 		return ["Error"=>"Class \"{$class}\" Does Not Exist!"];
 	}
 	
