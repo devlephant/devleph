@@ -128,8 +128,26 @@ function registerFileType($prefix, $exe)
 
 function registerEnvPath($dirname, $alias)
 {
-	$dirname = realpath($dirname);
+	$dirname = str_replace('/', DIRECTORY_SEPARATOR, realpath($dirname));
 	if( is_dir($dirname) )
-		writeRegKey(HKEY_LOCAL_MACHINE, "SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment\\{$alias}", str_replace('/', DIRECTORY_SEPARATOR, $dirname), 0);
+		writeRegKey(HKEY_LOCAL_MACHINE, "SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment\\{$alias}", $dirname, 0);
 }
+/*
+function registerSearchPath($dirname)
+{
+	$dirname = str_replace('/', DIRECTORY_SEPARATOR, realpath($dirname));
+	if( !is_dir($dirname) ) 
+		return false;
+	$paths = getSearchPaths();
+	if( in_array($dirname, $paths) )
+		return true;
+	$paths[] = $dirname;
+	writeregkey(HKEY_LOCAL_MACHINE, "SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment\\Path", implode(';', $paths), 0);
+	return true;
+}
+
+function getSearchPaths()
+{
+	return explode(';', readRegKey(HKEY_LOCAL_MACHINE, "SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment\\Path",0));
+}*/
 ?>

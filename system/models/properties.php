@@ -1234,7 +1234,7 @@ class myProperties {
         
             
         if (!isset($this->panels[$class])){
-			$theme = DOC_ROOT . 'images/btns/' . myOptions::get('prefs','studio_theme', 'light'); //#ADDOPT;
+			$theme = DOC_ROOT . 'design/theme/' . myOptions::get('prefs','studio_theme', 'light'); //#ADDOPT;
             
             $panel = new TNextInspector( $fmMain );
             $panel->parent = c('fmPropsAndEvents->tabProps');

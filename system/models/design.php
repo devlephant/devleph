@@ -813,7 +813,7 @@ class myDesign {
         $components = $_sc->targets_ex;
         $theme = myOptions::get('prefs','studio_theme', 'light');
         c('fmMain->itemLock')->checked = false;
-		c('fmMain->itemLock')->picture->loadFromFile( DOC_ROOT . "images/btns/{$theme}/mi_lock.bmp" );
+		c('fmMain->itemLock')->picture->loadFromFile( DOC_ROOT . "design/theme/{$theme}/mi_lock.bmp" );
 		c('fmMain->itemLock')->caption = t("Lock component");
         if (count($components)==0) return;
         
@@ -822,7 +822,7 @@ class myDesign {
 		if($selObj->tag==2012)
 		{
 			c('fmMain->itemLock',1)->checked = true;
-			c('fmMain->itemLock',1)->picture->loadFromFile( DOC_ROOT . "images/btns/{$theme}/mi_unlock.bmp" );
+			c('fmMain->itemLock',1)->picture->loadFromFile( DOC_ROOT . "design/theme/{$theme}/mi_unlock.bmp" );
 			c('fmMain->itemLock',1)->caption = t("Unlock component");
 		}
         c('fmMain->itemGroup',1)->caption = count(self::getGroup($selObj))>0 ?

@@ -873,21 +873,21 @@ class fmain_ibtn {
 	static function sevent($ic, $callback)
 	{
 		self::$onClick[c('fmMain->'.$ic)->self] = $callback;
-		$is = DOC_ROOT.'images/btns/' . myOptions::get('prefs','studio_theme', 'light') . '/' . $ic; //#ADDOPT;
+		$is = DOC_ROOT.'design/theme/' . myOptions::get('prefs','studio_theme', 'light') . '/' . $ic; //#ADDOPT;
 		for($i=1;$i<4;$i++)
 		{
 			if ( file_exists($is.'_'.$i.'.bmp') )
 			{
-				self::$images[c('fmMain->'.$ic)->self][] = array(file_get_contents( $is.'_'.$i.'.bmp' ), 'bmp'); 
+				self::$images[c('fmMain->'.$ic)->self][] = [file_get_contents( $is.'_'.$i.'.bmp' ), 'bmp']; 
 			} elseif( file_exists($is.'_'.$i.'.png') )
 			{
-				self::$images[c('fmMain->'.$ic)->self][] = array(file_get_contents( $is.'_'.$i.'.png' ), 'png'); 
+				self::$images[c('fmMain->'.$ic)->self][] = [file_get_contents( $is.'_'.$i.'.png' ), 'png']; 
 			} elseif( file_exists($is.'_'.$i.'.jpg') )
 			{
-				self::$images[c('fmMain->'.$ic)->self][] = array(file_get_contents( $is.'_'.$i.'.jpg' ), 'jpeg'); 
+				self::$images[c('fmMain->'.$ic)->self][] = [file_get_contents( $is.'_'.$i.'.jpg' ), 'jpeg']; 
 			} elseif( file_exists($is.'_'.$i.'.gif') )
 			{
-				self::$images[c('fmMain->'.$ic)->self][] = array(file_get_contents( $is.'_'.$i.'.gif' ), 'gif'); 
+				self::$images[c('fmMain->'.$ic)->self][] = [file_get_contents( $is.'_'.$i.'.gif' ), 'gif']; 
 			}else break;
 			
 		}
@@ -955,7 +955,7 @@ class ev_fmMain_btn_make extends fmain_ibtn {}
 function fmain_reloadims()
 {
 	//loading every skinnable icon in the main form */*2nd-party buttons and menu items displaying*/*
-	$theme = DOC_ROOT . 'images/btns/' . myOptions::get('prefs','studio_theme', 'light'); //#ADDOPT;
+	$theme = DOC_ROOT . 'design/theme/' . myOptions::get('prefs','studio_theme', 'light'); //#ADDOPT;
 	//iterating troughout icons-styleziable components
 	foreach( array("btn_addEvent", "itemAddevent", "btn_editEvent", "btn_changeEvent", "btn_delEvent",
 	/*Object Menu->>>*/	  "itemDel", "itemCopy", "itemCut", "itemGroup", "itemPaste", 
