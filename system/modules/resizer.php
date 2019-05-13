@@ -35,21 +35,21 @@ class resize{
 			return false;
 		}
 		if($time!==false) $time += microtime(1);
-        resize::$objects[$obj->self] = [$Props, $func, $speed, $time];
+        self::$objects[$obj->self] = [$Props, $func, $speed, $time];
 		return true;
     }
 	
     static function set_speed($i)
     { 
-        resize::$speed = $i; 
+        self::$speed = $i; 
     } 
     static function get_speed() 
     { 
-        return resize::$speed; 
+        return self::$speed; 
     } 
     static function tick() 
     { 
-        $objs = &resize::$objects; 
+        $objs = &self::$objects; 
         if(!empty($objs))
         { 
 			$m = microtime(1);
@@ -76,12 +76,12 @@ class resize{
 							self::$obj_tmp[$self][$i] = 0;
 						}
 						$sidetmp[$i] = self::$obj_tmp[$self][$i];
-						$remp[$i] = resize::eval_formule($sidetmp[$i], $cnt, $speed);
+						$remp[$i] = self::eval_formule($sidetmp[$i], $cnt, $speed);
 					}
 					else
 					{
 						$sidetmp[$i] = $OBJECT->{$Props[$i][0]};
-						$remp[$i] = resize::eval_formule($sidetmp[$i], $Props[$i][1], $speed);
+						$remp[$i] = self::eval_formule($sidetmp[$i], $Props[$i][1], $speed);
 					}
 				}
                 $check = array_unique($remp);
@@ -127,8 +127,8 @@ class resize{
     private static function eval_formule($x, $y, $speed=false) 
     { 
         if($x===false || $y===false) return false; 
-        if($speed===false) $speed = resize::$speed; 
-        $remp = ($y-$x)/100*resize::$speed; 
+        if($speed===false) $speed = self::$speed; 
+        $remp = ($y-$x)/100*self::$speed; 
         if($remp==0) return false; 
         return $remp>0?ceil($remp):floor($remp); 
     } 

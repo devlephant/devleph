@@ -3,37 +3,75 @@
 class myCompile
 {
 	static public $codes;
+	
 	static public function setStatus($type, $text, $color = clGray)
 	{
 		$list = c('fmMain->debugList');
 		
 		if (!$text) return NULL;
-		$list->text .= ($type=='')?'['.t('Info').'] ' . $text: $list->text .= '[' . t($type) . '] ' . $text;
+		if($type=='')$list->text .= '['.t('Info').'] ' . $text;	
+			else $list->text .= '[' . t($type) . '] ' . $text;
 		switch($type)
 		{
 			case 'Info':			
-				$color = 3552822;
+				$list->setitemfontcolor($list->items->count-1, 3552822);
 				break;
 			case 'Error':
-				$color = 8421631;
+				$list->setitemfontcolor($list->items->count-1, 8421631);
 				break;
 			case 'Success':
-				$color = 0x00FF8000;
+				$list->setitemfontcolor($list->items->count-1, 0x00FF8000);
 				break;
 			case 'Warning':
-				$color = 46312;
+				$list->setitemfontcolor($list->items->count-1, 46312);
 				break;
 			case 'Project':
-				$color = 7119482;
+				$list->setitemfontcolor($list->items->count-1, 7119482);
 				break;
 			case '':
-				$color = 3552822;
+				$list->setitemfontcolor($list->items->count-1, 3552822);
 				break;
 			default:
-				$color = $color;
+				$list->setitemfontcolor($list->items->count-1, $color);
 				break;
 		}
-		$list->setitemfontcolor($list->items->count-1, $color);
+		$list->itemIndex = $list->items->count-1;	
+	}
+	static public function addStatus($type, $text, $color = clGray)
+	{
+		$list = c('fmMain->debugList');
+		
+		if (!$text) return NULL;
+		
+		if($type=='')$list->text .= '['.t('Info').'] ' . $text;	
+			else $list->text .= '[' . t($type) . '] ' . $text;
+		switch($type)
+		{
+			case 'Info':			
+				$list->setitemfontcolor($list->items->count-1, 3552822);
+				break;
+			case 'Error':
+				$list->setitemfontcolor($list->items->count-1, 8421631);
+				break;
+			case 'Success':
+				$list->setitemfontcolor($list->items->count-1, 0x00FF8000);
+				break;
+			case 'Warning':
+				$list->setitemfontcolor($list->items->count-1, 46312);
+				break;
+			case 'Project':
+				$list->setitemfontcolor($list->items->count-1, 7119482);
+				break;
+			case 'Debug':
+				$list->setitemfontcolor($list->items->count-1, 13762770);
+				break;
+			case '':
+				$list->setitemfontcolor($list->items->count-1, 3552822);
+				break;
+			default:
+				$list->setitemfontcolor($list->items->count-1, $color);
+				break;
+		}
 		$list->itemIndex = $list->items->count-1;	
 	}
 	
@@ -93,13 +131,15 @@ class myCompile
 
 		exemod_addstr('$PHPSOULENGINE\\mods', implode(',', $modules));
 	}
+	
 	static public function checkisext(array $n)
-		{
-			foreach($n as $r)
-				if( substr($r, 0, 4) == 'php_' && (substr($r, -4)=='.dll'||substr($r, -3)=='.so'))
-					return $r;
-			return false;
-		}
+	{
+		foreach($n as $r)
+			if( substr($r, 0, 4) == 'php_' && (substr($r, -4)=='.dll'||substr($r, -3)=='.so'))
+				return $r;
+		return false;
+	}
+	
 	static public function generatePHP_Ini($moveext = true)
 	{
 		global $myProject,$projectFile,$exten_dir;
@@ -349,7 +389,7 @@ class myCompile
 		myUtils::saveForm();
 		myDesign::szRefresh();
 		$startTime = microtime(1);
-		myCompile::setStatus('', t('Starting Project') . '...');
+		self::setStatus('', t('Starting Project') . '...');
 
 		$php_dir = dirname(replaceSl(EXE_NAME)) . '/php/';
 		$p_dir = dirname($projectFile) . '/php/';
@@ -368,7 +408,7 @@ class myCompile
 				return self::_start(false);
 			}
 			if (file_exists($exeFile)) {
-				myCompile::setStatus('Error', t(
+				self::setStatus('Error', t(
 				(DS_DEBUG_MODE)?
 				'Project file is busy, let\'s try again':
 				'Project file is busy, try to stop his process') . '!');
@@ -394,12 +434,13 @@ class myCompile
 		
 		$vtime = round( microtime(1) - $startTime, 1 );
 		$vtime = $vtime>=60? round($vtime/60,1).t('min.'): $vtime.t('sec.');
-		myCompile::setStatus('Success', t('Start Finished for') . ' ' . $vtime );
+		self::setStatus('Success', t('Start Finished for') . ' ' . $vtime );
 		unset($_e, $vtime);
 		shell_execute(0, 'open', replaceSr($exeFile), ' -c ' . receiver_handle(), replaceSr(dirname($exeFile)), SW_SHOW);
 		myDesign::szRefresh();
 		dsErrorDebug::ErrStatus($_e);
 	}
+
 	static function checkphp($file)
 	{
 		if( file_exists($file) )
@@ -407,6 +448,7 @@ class myCompile
 			return true;
 		return false;
 	}
+
 	static public function copyPHPts($to)
 	{
 		global $projectFile;
@@ -455,7 +497,7 @@ class myCompile
 	{
 		$startTime = microtime(1);
 		global $myProject;
-		myCompile::setStatus('', t('Building Project') . '...');
+		self::setStatus('', t('Building Project') . '...');
 		$debug_enabled = $myProject->config['debug']['enabled'];
 		$myProject->config['debug']['enabled'] = false;
 		myUtils::saveForm();
@@ -476,7 +518,7 @@ class myCompile
 		x_copy(self::getExeModule(), $fileExe);
 		
 		if (dsErrorDebug::getLastMsg()) {
-			myCompile::setStatus('Warning', t('Selected directory is inaccessible') . '!');
+			self::setStatus('Warning', t('Selected directory is inaccessible') . '!');
 			$myProject->config['debug']['enabled'] = $debug_enabled;
 			return false;
 		}
@@ -492,7 +534,7 @@ class myCompile
 				$x++;
 				if($x>30)
 				{
-					myCompile::setStatus('Error', t(
+					self::setStatus('Error', t(
 					(DS_DEBUG_MODE)?
 					'Project file is busy, let\'s try again':
 					'Project file is busy, try to stop his process') . '!');
@@ -520,7 +562,7 @@ class myCompile
 				$x++;
 				if($x>30)
 				{
-					myCompile::setStatus('Error', t(
+					self::setStatus('Error', t(
 					(DS_DEBUG_MODE)?
 					'Project file is busy, let\'s try again':
 					'Project file is busy, try to stop his process') . '!');
@@ -530,7 +572,7 @@ class myCompile
 			}
 		}
 		else {
-			myCompile::setStatus('Error', t('Fatal error of project compiling') . '!');
+			self::setStatus('Error', t('Fatal error of project compiling') . '!');
 			x_copy(DOC_ROOT . '/blanks/soulEngine.pak', $dir . '/soulEngine.pak');
 		}
 
@@ -567,33 +609,12 @@ class myCompile
 		$res = null;
 		$vtime = round( microtime(1) - $startTime, 1 );
 		$vtime = $vtime>=60? round($vtime/60,1).t('min.'): $vtime.t('sec.');
-		myCompile::setStatus('Success', t('Building Completed') . '. ( '.$vtime.' )');
+		self::setStatus('Success', t('Building Completed') . '. ( '.$vtime.' )');
 
 		dsErrorDebug::ErrStatus($_e);
 		$myProject->config['debug']['enabled'] = $debug_enabled;
 		
 		return true;
-	}
-
-	public function generateEventsMD5($DATA)
-	{
-		foreach ($DATA as $form => $objs) {
-			if ($form[0] == '-') {
-				continue;
-			}
-
-			foreach ($objs as $name => $eventList) {
-				if (count($eventList)) {
-					foreach ($eventList as $event => $icode) {
-						if (trim($icode)) {
-						}
-						else {
-							unset(eventEngine::$DATA[strtolower($form)][strtolower($name)][strtolower($event)]);
-						}
-					}
-				}
-			}
-		}
 	}
 
 	public function generateEventsClasses($DATA)
@@ -636,6 +657,3 @@ class myCompile
 		return array('code' => $code, 'rDATA' => $rDATA, 'classes' => $classes);
 	}
 }
-
-return __LINE__;
-return NULL;
