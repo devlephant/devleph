@@ -344,8 +344,6 @@ class myBackup {
 	static function doInterval($thks=true){
 		
 		global $projectFile;
-		
-		if( myOptions::get('backup','active',true) == 1 ){
 		if ( !eregi('$([.\-\_a-zа-яА-Я0-9]+)', $projectFile) )
 			self::$dir = 'backup';
 		
@@ -364,7 +362,6 @@ class myBackup {
 		
 		if ( is_file( $check ) ){
 		    unlink( $check );
-		}
 		}
 	}
 	
