@@ -9,6 +9,7 @@
 <br>178Mb (zipped)
 <br>494Mb (on a disk)
 <br><a href="https://github.com/KashaketCompany/DevelStudio-3.0-beta/releases">Changelog</a>
+<br><a href="https://github.com/KashaketCompany/DevelStudio-Exts">Additional Extensions</a>
 ## ShortScript
 PHP 5.6.40 (5.3.x - 5.6.x Support)
 
