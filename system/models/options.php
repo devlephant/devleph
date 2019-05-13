@@ -298,9 +298,7 @@ class myOptions {
             
             
             myOptions::set('sc','showGrid', c('fmOptions->c_showgrid')->checked);
-			if( c('fmOptions->backup_active')->self ){
-				myOptions::set('backup','active', c('fmOptions->backup_active')->checked);
-			}
+			myOptions::set('backup','active', c('fmOptions->backup_active')->checked);
 			
 			$dir = c('fmOptions->backup_dir')->text;
 			if ( !eregi('$([.\-\_a-zа-яА-Я0-9]+)', $dir) )
@@ -351,6 +349,8 @@ class myBackup {
 	static function doInterval($thks=true){
 		
 		global $projectFile;
+		
+		if( myOptions::get('backup','active',true) == 1 ){
 		if ( !eregi('$([.\-\_a-zа-яА-Я0-9]+)', $projectFile) )
 			self::$dir = 'backup';
 		
@@ -369,6 +369,7 @@ class myBackup {
 		
 		if ( is_file( $check ) ){
 		    unlink( $check );
+		}
 		}
 	}
 	
