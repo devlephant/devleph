@@ -422,7 +422,7 @@ class myCompile
 		exemod_finish();
 		exemod_start($exeFile);
 		self::generateIncFile();
-		myModules::inc(false,false,false);
+		myModules::inc(false,true,true);
 		self::attachPHPEngine(false, false);
 		self::attachPHPSoulEngine(false);
 		self::attachForms(false);

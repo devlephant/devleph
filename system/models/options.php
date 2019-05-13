@@ -264,9 +264,6 @@ class myOptions {
                 return;
             }
             
-            
-            //dsErrorDebug::display();
-            
             message_beep(66);
             c('fmBuildCompleted->e_filename',1)->text = c('fmBuildProgram->path',1)->text;
             c('fmBuildCompleted',1)->showModal();
@@ -280,9 +277,7 @@ class myOptions {
         global $_sc;
         c('fmOptions->c_showgrid')->checked = (bool)myOptions::get('sc','showGrid',false);
         c('fmOptions->e_gridsize')->text    = c('fmOptions->up_gridsize')->position = myOptions::get('sc','gridSize',8);
-        if(c('fmOptions->backup_active')->self){
-			c('fmOptions->backup_active')->checked = (bool)myOptions::get('backup','active',true);
-		}
+		c('fmOptions->backup_active')->checked = (bool)myOptions::get('backup','active',true);
 		c('fmOptions->en_bc')->brushColor = myOptions::get('sc','BtnColor',clBlue);
 		c('fmOptions->dis_bc')->brushColor = myOptions::get('sc','BtnColorDisabled', clGray);
 		c('fmOptions->sel_color')->brushColor = myOptions::get('sc','SelectColor', clBlack);
@@ -298,9 +293,7 @@ class myOptions {
             
             
             myOptions::set('sc','showGrid', c('fmOptions->c_showgrid')->checked);
-			if( c('fmOptions->backup_active')->self ){
-				myOptions::set('backup','active', c('fmOptions->backup_active')->checked);
-			}
+			myOptions::set('backup','active', c('fmOptions->backup_active')->checked);
 			
 			$dir = c('fmOptions->backup_dir')->text;
 			if ( !eregi('$([.\-\_a-zа-яА-Я0-9]+)', $dir) )
@@ -386,7 +379,8 @@ class myBackup {
 		if(isset(self::$timer) && is_object(self::$timer))
 		{
 			if( !$active )
-				self::$timer = Timer::ClearTimer(self::$timer);
+				self::$timer = Timer::ClearTimer(self::$timer->self);
+			
 		} else if((bool)$active) self::$timer = _c(Timer::setInterval('myBackup::doInterval',  myOptions::get('backup','interval',2) * 60000));
 	}
 	
@@ -405,7 +399,6 @@ class myBackup {
 	
 	static function init()
 	{
-		if( c('fmOptions->backup_active')->self )
 			if((bool)c('fmOptions->backup_active')->checked)
 				if((bool)myOptions::get('backup','active',true))
 					if(!isset(self::$timer)||!is_object(self::$timer))

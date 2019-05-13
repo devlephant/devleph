@@ -263,7 +263,7 @@ class Timer {
 			self::clearTimer( $timer_self );
 	}
 	static function clearTimer($timer){
-		
+		if ( is_object($timer) ) $timer = $timer->self;
 		if ( gui_is($timer, 'TTimer') ){
 			self::setEnabled( $timer, false );
 			gui_destroy( $timer );
