@@ -223,7 +223,8 @@ class myUtils {
         //$fmEdit->borderStyle = bsNone;
         
         self::loadForCache($fmEdit);
-        foreach ($targets_ex as $el){
+        foreach ($targets_ex as $el)
+		{
             $_sc->addTarget($el);
         }
         
