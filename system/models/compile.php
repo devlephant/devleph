@@ -3,78 +3,37 @@
 class myCompile
 {
 	static public $codes;
-
-
-
 	static public function setStatus($type, $text, $color = clGray)
 	{
 		$list = c('fmMain->debugList');
 		
 		if (!$text) return NULL;
-		if($type=='')$list->text .= '['.t('Info').'] ' . $text;	
-			else $list->text .= '[' . t($type) . '] ' . $text;
+		$list->text .= ($type=='')?'['.t('Info').'] ' . $text: $list->text .= '[' . t($type) . '] ' . $text;
 		switch($type)
 		{
 			case 'Info':			
-				$list->setitemfontcolor($list->items->count-1, 3552822);
+				$color = 3552822;
 				break;
 			case 'Error':
-				$list->setitemfontcolor($list->items->count-1, 8421631);
+				$color = 8421631;
 				break;
 			case 'Success':
-				$list->setitemfontcolor($list->items->count-1, 0x00FF8000);
+				$color = 0x00FF8000;
 				break;
 			case 'Warning':
-				$list->setitemfontcolor($list->items->count-1, 46312);
+				$color = 46312;
 				break;
 			case 'Project':
-				$list->setitemfontcolor($list->items->count-1, 7119482);
+				$color = 7119482;
 				break;
 			case '':
-				$list->setitemfontcolor($list->items->count-1, 3552822);
+				$color = 3552822;
 				break;
 			default:
-				$list->setitemfontcolor($list->items->count-1, $color);
+				$color = $color;
 				break;
 		}
-		$list->itemIndex = $list->items->count-1;	
-	}
-
-	static public function addStatus($type, $text, $color = clGray)
-	{
-		$list = c('fmMain->debugList');
-		
-		if (!$text) return NULL;
-		
-		if($type=='')$list->text .= '['.t('Info').'] ' . $text;	
-			else $list->text .= '[' . t($type) . '] ' . $text;
-		switch($type)
-		{
-			case 'Info':			
-				$list->setitemfontcolor($list->items->count-1, 3552822);
-				break;
-			case 'Error':
-				$list->setitemfontcolor($list->items->count-1, 8421631);
-				break;
-			case 'Success':
-				$list->setitemfontcolor($list->items->count-1, 0x00FF8000);
-				break;
-			case 'Warning':
-				$list->setitemfontcolor($list->items->count-1, 46312);
-				break;
-			case 'Project':
-				$list->setitemfontcolor($list->items->count-1, 7119482);
-				break;
-			case 'Debug':
-				$list->setitemfontcolor($list->items->count-1, 13762770);
-				break;
-			case '':
-				$list->setitemfontcolor($list->items->count-1, 3552822);
-				break;
-			default:
-				$list->setitemfontcolor($list->items->count-1, $color);
-				break;
-		}
+		$list->setitemfontcolor($list->items->count-1, $color);
 		$list->itemIndex = $list->items->count-1;	
 	}
 	
@@ -139,7 +98,7 @@ class myCompile
 			foreach($n as $r)
 				if( substr($r, 0, 4) == 'php_' && (substr($r, -4)=='.dll'||substr($r, -3)=='.so'))
 					return $r;
-			return -1;
+			return false;
 		}
 	static public function generatePHP_Ini($moveext = true)
 	{

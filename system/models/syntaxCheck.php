@@ -45,7 +45,7 @@ class mySyntaxCheck {
                 
 				message_beep(MB_ICONERROR);    
 
-				myCompile::addStatus('Error', ': {'.$obj_name.', '.t($event).'}  '.$err['msg'].' '.t('on line').' '. ($err['line']));
+				myCompile::setStatus('Error', ': {'.$obj_name.', '.t($event).'}  '.$err['msg'].' '.t('on line').' '. ($err['line']));
 			}
             
         }
@@ -82,7 +82,7 @@ class mySyntaxCheck {
 
             message_beep(MB_ICONERROR);    
 
-			myCompile::addStatus('Error', ': {<--'.t('ScriptF').'-->, '.$event.'}  '.$err['msg'].' '.t('on line').' '. ($err['line']));
+			myCompile::setStatus('Error', ': {<--'.t('ScriptF').'-->, '.$event.'}  '.$err['msg'].' '.t('on line').' '. ($err['line']));
             }
 	}
     
