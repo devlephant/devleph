@@ -31,6 +31,11 @@ $result[] = array(
 				'PROP'=>'changeColorAtEnd',
 				);
 $result[] = array(
+				'CAPTION'=>t('Change Color Smoothly'),
+				'TYPE'=>'check',
+				'PROP'=>'changeColorSmoothly',
+				);
+$result[] = array(
                   'CAPTION'=>t('Align'),
                   'TYPE'=>'combo',
                   'PROP'=>'align',

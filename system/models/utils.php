@@ -160,7 +160,7 @@ class myUtils {
             $form = $GLOBALS['fmEdit'];
         
         
-        if ($_sc && !$no_clear_sc){
+        if (is_object($_sc) && !$no_clear_sc){
             $_sc->free();
 	    $_sc = false;
         }
@@ -211,7 +211,8 @@ class myUtils {
         
         $targets_ex = $_sc->targets_ex;
         
-        if ( $_sc ){
+        if ( is_object($_sc) )
+		{
             $_sc->clearTargets();
             $_sc->free();
             $_sc = false;

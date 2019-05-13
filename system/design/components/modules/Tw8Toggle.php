@@ -80,13 +80,16 @@ Class Tw8Toggle Extends TScrollBox {
 	}
 	Private function getColors($switched)
 	{
+		$res = [];
 		//start color
-		return (new TColor(($switched? $this->enabledColor: $this->disabledColor)))->gradient(
+		foreach( (new TColor(($switched? $this->disabledColor: $this->enabledColor)))->gradient(
 				//end color
-				(($switched? $this->disabledColor: $this->enabledColor)),
-				//gradient steps(levels)
-				5
-			);
+				(($switched? $this->enabledColor: $this->disabledColor)),
+				//gradient steps(levels) //better to start from higher integer
+				16
+			) as $col)
+			$res[] = $col->color;
+		return $res;
 	}
 	Public Function set_switched($v)
 	{
@@ -100,14 +103,20 @@ Class Tw8Toggle Extends TScrollBox {
 		$Thumb = c($this->_toDelete[1]);
 		$p = $v? $this->w/2: 0;
 		$c = $this->_colours[(int)$v];
-						if( $this->smoothness  )
+						if( $this->smoothness )
 						{
-							resize::resize_object($Thumb, 
-							$this->changeColorAtEnd?
-							["x"=> $p, "func"=>function($self)use($Thumb,$c){$Thumb->brush->color = $c;}]:["x" => $p]);
+							if( $this->changeColorSmoothly )
+							{
+								resize::perform($Thumb, false, false, false,
+												["x", $p], ["brushColor", $this->getColors($v)]);
+							} else {
+								resize::resize_object($Thumb, 
+								$this->changeColorAtEnd?
+								["x"=> $p, "func"=>function($self)use($Thumb,$c){$Thumb->brush->color = $c;}]:["x" => $p]);
+							}
 						} else
 							$Thumb->x = $p;
-						if(!$this->changeColorAtEnd) $Thumb->brush->Color = $c;
+						if(!$this->changeColorAtEnd && !$this->changeColorSmoothly) $Thumb->brush->Color = $c;
 	}
 	Public Function set_enabledColor($v)
 	{
@@ -141,8 +150,9 @@ Class Tw8Toggle Extends TScrollBox {
 			$this->borderStyle = bsNone;
 			$this->autosize = false;
 			$this->autoscroll = false;
-			$this->_switched = false;
 			$this->changeColorAtEnd = false;
+			$this->changeColorSmoothly = false;
+			$this->_switched = false;
 		}
 		
 		$this->__initComponentInfo();
