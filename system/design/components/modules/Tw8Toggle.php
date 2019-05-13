@@ -103,7 +103,8 @@ Class Tw8Toggle Extends TScrollBox {
 						if( $this->smoothness  )
 						{
 							resize::resize_object($Thumb, 
-							$this->changeColorAtEnd? ["x"=> $p, "func"=>function($self)use($Thumb,$c){$Thumb->brush->color = $c;}]:["x" => $p]);
+							$this->changeColorAtEnd?
+							["x"=> $p, "func"=>function($self)use($Thumb,$c){$Thumb->brush->color = $c;}]:["x" => $p]);
 						} else
 							$Thumb->x = $p;
 						if(!$this->changeColorAtEnd) $Thumb->brush->Color = $c;
