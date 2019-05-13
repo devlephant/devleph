@@ -872,7 +872,7 @@ class myDesign {
         $_sc->updateBtns();        
     }
     
-    static function keyCopy($self = 0, $cut = false, $unuseBuff = false){
+    static function keyCopy($self = 0, $cut = false){
         
         myVars::set(0, 'popupShow');
         if (!self::canDoIt()) return;
@@ -880,7 +880,11 @@ class myDesign {
         global $_sc, $fmEdit;
         
         $components = $_sc->targets_ex;
-        
+        if( empty($components) )
+		{
+			clipboard_settext('');
+			return;
+		}
         $unlinks = [];
         foreach ($components as $el){
             $childs = $el->childComponents();
@@ -892,7 +896,7 @@ class myDesign {
             if (in_array($el->self, $unlinks)) unset($components[$x]);
         
         $components = array_values($components);
-        myCopyer::toBufferList($components, $cut, $unuseBuff);
+        myCopyer::toBufferList($components, $cut);
     }
     
     static function keyPaste(){
@@ -918,7 +922,11 @@ class myDesign {
             $parentObj = $fmEdit;
         
         $objs = myCopyer::pasteFromBuffer($parentObj, $fmEdit);
-		if( !is_array($objs) ) return;
+		if( !is_array($objs) )
+		{
+			myVars::set(false, '__sizeAndMove');
+			return;
+		}
         $s    = current($objs);
         $s    = $s['cmp'];
         $iter = 0;
@@ -932,7 +940,7 @@ class myDesign {
             if ($iter<=1000)
 				$_sc->addTarget($el['cmp']);
             
-				if(is_array($el['childs']))
+				if(isSet($el['childs']) && is_array($el['childs']))
 					foreach ($el['childs'] as $x=>$child){
                     
 					if (method_exists($child,'__updateDesign')) $child->__updateDesign();
@@ -950,8 +958,6 @@ class myDesign {
         }
         
         myVars::set(false, '__sizeAndMove');
-        
-        return;
     }
     
     static function keyCut(){

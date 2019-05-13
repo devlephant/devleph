@@ -102,7 +102,7 @@ class myCopyer {
         return $buffer;
     }
     
-    function toBufferList($objects, $cut = false, $unuseBuff = false){
+    function toBufferList($objects, $cut = false){
         
         $buffer = [];
         $buffer['is_cut'] = $cut;
@@ -110,7 +110,6 @@ class myCopyer {
         foreach ($objects as $el){
             $buffer[] = self::toBuffer($el);
         }
-        if(!$unuseBuff)
         clipboard_settext(base64_encode(serialize($buffer)));
     }
     
@@ -122,7 +121,7 @@ class myCopyer {
         return $buffer;
     }
     
-    function changeNameInBuffer(&$buffer, $old_name, $name){
+    function changeNameInBuffer($buffer, $old_name, $name){
         
         
         foreach ($buffer as &$component){
@@ -139,22 +138,22 @@ class myCopyer {
                     $child['parent'] = $name;
             }
         }
-        
+        return $buffer;
     }
     
     function createComponent($class, $name, $parent, $form, $events, &$buffer){
         
         if (!class_exists($class)) return;
         
-        $cmp = new $class($form);
+        
         
         if ($form->findComponent($name)){
             $old_name = $name;
             
             $name = myDesign::getNoExistsName($class);
-            self::changeNameInBuffer($buffer, $old_name, $name);
+            $buffer = self::changeNameInBuffer($buffer, $old_name, $name);
         }
-        
+        $cmp = new $class($form);
         $cmp->name   = $name;
         $cmp->parent = $parent;
         $cmp->text   = '';
