@@ -352,7 +352,6 @@ class evfmMain {
 			
 			} break;
 			case mrCancel:{
-				MyCompile::setStatus('Warning', t('Exit canceled').date(' ( H:i )'));
 				$canClose = false;
 				
 			} break;
