@@ -2,7 +2,7 @@
 
 
 class myDesign {
-    
+    static $canselect = true;
     static function splitterLeftSize($self){
         
     }
@@ -186,6 +186,11 @@ class myDesign {
     static function inspectElement($obj, $gen = true){
         
         global $myProperties, $myEvents, $myInspect, $_sc, $selectedClass, $_componentPanel;
+		if(!self::$canselect)
+		{
+			self::$canselect = true;
+			return;
+		}
         if ($gen)
         $_sc->clearTargets();
         
@@ -302,7 +307,7 @@ class myDesign {
             }
                         
             $class = $c['CLASS'];
-
+			self::$canselect = false;
             $obj = new $class($fmEdit);
             if (($parent->self!==$fmEdit->self) && is_subclass_of($obj,  '__TNoVisual') ){
                 $x     += getAbsoluteX($parent->self, $fmEdit->self);
