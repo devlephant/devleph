@@ -374,7 +374,8 @@ class myProject {
         
         if (self::cfg('DV_VERSION')=='' || version_compare(self::cfg('DV_VERSION'), DV_VERSION, '<')){
 			$GLOBALS['IS_OLD_PROJECT'] = true;
-            alert(t("You're trying to load old-format project. This project will be converted!"));
+            //alert(t("You're trying to load old-format project. This project will be converted!"));
+            myCompile::addStatus('Info', ': '.t("You're load old-format project. This project converted!"));//fixbug
             
             global $_FORMS, $fmEdit;
             
