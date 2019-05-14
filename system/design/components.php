@@ -632,6 +632,8 @@ if (EMULATE_DVS_EXE) return;
 						myProject::addReplaceable($reps, $c['CLASS']);
 				} else
 					myProject::addReplaceable($c['REPLACE'], $c['CLASS']);
+				if( isset($c['REPLACE_RULE']) )
+					myProject::AddReplaceRule($c['CLASS'], $c['REPLACE_RULE']);
 			}
             $btn = $cp->addButton($c['GROUP']);
             

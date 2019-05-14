@@ -25,20 +25,23 @@ class TSB extends TLabel{
 		$this->__initComponentInfo();
 	    }
 		$obj = $this;$obj->i = 0;
-		$obj->ThreeColor = 0;
-		$obj->TwoColor = 3552822;
-		$obj->OneColor = $obj->Color = 9671571;
+		$obj->ColorThree = 0;
+		$obj->ColorTwo = 3552822;
+		$obj->ColorOne = $obj->Color = 9671571;
 
 		$obj->ThreeFColor = clBlue;
 		$obj->TwoFColor = clBlue;
 		$obj->OneFColor = $obj->font->color = clWhite;
 		
 		$obj->transparent = false;	
+		$obj->autoSize = false;
+		$obj->parentFont = false;
+		$obj->parentColor = false;
 		}
 	    
         
     }
-	function set_OneColor($v){
+	function set_ColorOne($v){
 		$this->Color = $v;
 	}
 	
@@ -71,7 +74,7 @@ class TSB extends TLabel{
 			
 		$obj = c($self);$obj->i = 0;
 		$obj->font->color = $obj->TwoFColor;
-        	$obj->Color = $obj->TwoColor;
+        	$obj->Color = $obj->ColorTwo;
 		if ( $obj->fMouseEnter ){
             call_user_func($obj->fMouseEnter, $self);
         }
@@ -81,7 +84,7 @@ class TSB extends TLabel{
     static function doMouseLeave($self){
 		$obj = c($self);$obj->i = 0;
 		$obj->font->color = $obj->OneFColor;
-        $obj->Color = $obj->OneColor;
+        $obj->Color = $obj->ColorOne;
 		if(c($self)->enabled)
 		if ( $obj->fMouseLeave ){
             call_user_func($obj->fMouseLeave, $self);
@@ -93,7 +96,7 @@ class TSB extends TLabel{
 		if(c($self)->enabled){
 		$obj = c($self);$obj->i = 0;
 		$obj->font->color = $obj->ThreeFColor;
-		$obj->Color = $obj->ThreeColor;
+		$obj->Color = $obj->ColorThree;
 		if ( $obj->fMouseDown ){
             call_user_func($obj->fMouseDown, $self);
         }
@@ -104,12 +107,22 @@ class TSB extends TLabel{
 		if(c($self)->enabled){
 		$obj = c($self);$obj->i = 0;
 		$obj->font->color = $obj->TwoFColor;
-        $obj->Color = $obj->TwoColor;
+        $obj->Color = $obj->ColorTwo;
 			if ( $obj->fMouseUp ){
 				call_user_func($obj->fMouseUp, $self);
 			}
 		}
     }
-
+	public function __import($class, TControl $object)
+	{
+		$this->layout	= $object->layout;
+		$this->alignment= $object->alignment;
+		$this->parentFont= false;
+		$this->font->assign( $object->font );
+		if($class==='tflatbutton'||$class==='tmultibutton')
+		{
+			$this->TwoFColor = $this->ThreeFColor = $this->font->color;
+		} 
+	}
 }
 ?>

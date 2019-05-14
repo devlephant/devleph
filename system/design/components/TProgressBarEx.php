@@ -6,7 +6,7 @@ return array(
 'CAPTION' => t('ProgressBarEx'),
 'SORT'    => 293,
 'NAME'    => 'progressEx',
-'WINCONTROL' => false,
+'REPLACE' => 'ProgressBarEx',
 'W' => 30,
 'H' => 3,
 );

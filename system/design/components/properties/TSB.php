@@ -41,14 +41,14 @@ $result[] = array(
 $result[] = array(
                   'CAPTION'=>t('Color'),
                   'TYPE'=>'color',
-                  'PROP'=>'OneColor'
+                  'PROP'=>'ColorOne'
                   );
 $result[] = array('CAPTION'=>t('TwoC_'),
                   'TYPE'=>'color',
-                  'PROP'=>'TwoColor');
+                  'PROP'=>'ColorTwo');
 $result[] = array('CAPTION'=>t('ThreeC_'),
                   'TYPE'=>'color',
-                  'PROP'=>'ThreeColor');				
+                  'PROP'=>'ColorThree');				
 $result[] = array(
                   'CAPTION'=>t('Auto Size'),
                   'TYPE'=>'check',

@@ -6,6 +6,7 @@ return array(
 'CAPTION' => t('TListbox_Caption'),
 'SORT'    => 83,
 'NAME'    => 'listBox',
+'REPLACE' => 'TFlatList',
 'W'       => 20,
 'H'       => 20,
 );

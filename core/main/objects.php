@@ -1129,7 +1129,12 @@ function val($str, $value = null){
 
 function __autoload($name)
 {
-	
+	global $__autoload;
+	if( is_callable($__autoload) ) call_user_func($__autoload, $name);
+}
+global $__autoload;
+$__autoload = function($name)
+{
 	if( $name == 'TSynSelectedColor' or substr($name, 0, 2) == 'ev' or  substr($name, 0, 7) == 'modifer' ) return;
 		if( gui_class_isset($name) )
 		{	
@@ -1140,5 +1145,5 @@ function __autoload($name)
 		} else {
 			eval("class $name extends dsErrorClassUndefined{};");
 		}
-}
+};
 ?>

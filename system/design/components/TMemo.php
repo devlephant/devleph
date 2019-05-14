@@ -6,6 +6,7 @@ return array(
 'CAPTION' => t('TMemo_Caption'),
 'SORT'    => 89,
 'NAME'    => 'memo',
+'REPLACE' => 'TMemoFlat',
 'W' => 20,
 'H' => 15,
 );

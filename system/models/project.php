@@ -5,8 +5,8 @@ class myProject {
     public $formsInfo;
     public $config;
     public $add_info;
-    private static $repclasses;
-	
+    private static $repclasses=[];
+	private static $reprules = [];
     static function registerFileType(){
 		
         registerFileType('dvs', dirname(EXE_NAME).'/DS KE.exe');
@@ -345,7 +345,7 @@ class myProject {
             
         return $result;
     }   
-	static function convertAs($obj, $class)
+	static function convertAs($obj, $class, $rule)
 	{
 		global $fmEdit;
         $obj_name = $obj->name;
@@ -359,27 +359,53 @@ class myProject {
         $result->name = $obj_name;
         $result->x = $obj->x;
         $result->y = $obj->y;
-        
-        
+		
         foreach ($props as $key=>$value)
             $result->$key = $value;
-   
+			
+		if( is_array($rule) )
+		{
+			if( isset($rule['props']) )
+				foreach( $rule['props'] as $k=>$v )
+					$result->$k = $obj->$v;
+			if( isset($rule['values']) )
+				foreach( $rule['values'] as $k=>$v)
+					$result->$k = $v;
+		}
+		
+		if( method_exists($result, '__import') )
+			$result->__import(strtolower(get_class($obj)), $obj);
         return $result;
 	}
-	static function addReplaceable($class, $replaceAs)
+	static function addReplaceable($class, $replaceAs, $rule=false)
 	{
 		self::$repclasses[ strtolower($class) ] = $replaceAs;
+	}
+	static function AddReplaceRule($class, $rule)
+	{
+		self::$reprules[ $class ] = $rule;
+	}
+	static function getRule($class, $realClass)
+	{
+		return isSet(self::$reprules[$class])?
+		(isSet(self::$reprules[$class][$realClass])?self::$reprules[$class][$realClass]:false)
+		: false;
 	}
     static function checkOldFormat(){
         
         if (self::cfg('DV_VERSION')=='' || version_compare(self::cfg('DV_VERSION'), DV_VERSION, '<')){
 			$GLOBALS['IS_OLD_PROJECT'] = true;
-            //alert(t("You're trying to load old-format project. This project will be converted!"));
-            myCompile::addStatus('Info', ': '.t("You're load old-format project. This project converted!"));//fixbug
+            alert(t("You're trying to load old-format project. This project will be converted!"));
             
-            global $_FORMS, $fmEdit;
-            
-            foreach ($_FORMS as $form){
+            global $_FORMS, $fmEdit, $__autoload;
+			$prev = $__autoload;
+            $__autoload = function($name)
+			{
+				eval("class $name extends TControl{}");
+			};
+			
+            foreach ($_FORMS as $form)
+			{
                 myUtils::loadForm($form);
                 $del_objs = [];
                 
@@ -388,11 +414,13 @@ class myProject {
 					$realClass = strtolower(rtti_class($el->self));
 					if ( isset(self::$repclasses[$realClass]) )
 					{
-						self::convertAs($el, self::$repclasses[$realClass]);
+						$new_class = self::$repclasses[$realClass];
+						self::convertAs($el, $new_class, self::getrule($new_class, $realClass));
 						$del_objs[] = $el;
 					}elseif (isset(self::$repclasses[get_class($el)]))
 					{
-						self::convertAs($el, self::$repclasses[get_class($el)]);
+						$new_class = get_class($el);
+						self::convertAs($el, $new_class, self::getrule($new_class, $realClass));
 						$del_objs[] = $el;
                     }elseif (is_subclass_of($el,  '__TNoVisual')){
                         
@@ -428,6 +456,7 @@ class myProject {
             
             eventEngine::dataToLower();
             myUtils::saveProject();
+			$__autoload = $prev;
             return true;
         }
         
@@ -478,15 +507,13 @@ class myProject {
         myVars::set($forms,'_FORMS');
         myVars::set(0, 'formSelected');
 
-        myUtils::loadForm($forms[0], true);
-		
-        self::genTabs();
-
         if (!self::checkOldFormat()){
             self::open($last_project, true, $dnt);
             return;
         }
-        
+        myUtils::loadForm($forms[0], true);
+		
+        self::genTabs();
         self::showIncorrect();
 		myInspect::genList(false);
 		dsAPI::callProjectChangeFunc($projectFile);

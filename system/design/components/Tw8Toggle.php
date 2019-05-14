@@ -5,6 +5,6 @@ return [
 'CAPTION'=>t('Toggle Button'),
 'SORT'=>5,
 'NAME'=>'ttb',
-'REPLACE'=>'ozSwitch',
+'REPLACE'=>['TSwitcher', 'ozSwitch'],
 'W'=>8,
 'H'=>4];

@@ -995,7 +995,6 @@ $m['Form %s already exists in the project'] = 'Форма "%s" уже сущес
 $m["Please, add module \"%s\" to the /core/php.ini in \"extensions\" section"] = 'Пропишите модуль "%s" в /core/php.ini в секцию "extensions"';
 $m['Are you sure to delete form "%s"?'] = 'Вы точно желаете удалить форму "%s"?';
 $m['You\'re trying to load old-format project. This project will be converted!'] = 'Вы пытаетесь загрузить проект старого формата. Данный проект будет конвертирован!';
-$m['You\'re load old-format project. This project converted!'] = 'Вы загрузили проект старого формата. Данный проект конвертирован!';
 $m['Project file is corrupt or empty!'] = 'Файл проекта был повреждён, или он пустой!';
 $m['Bold'] = 'Жирный';
 $m['Italic'] = 'Наклонный';
