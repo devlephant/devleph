@@ -381,7 +381,7 @@ class myBackup {
 			if( !$active )
 				self::$timer = Timer::ClearTimer(self::$timer->self);
 			
-		} else if((bool)$active) self::$timer = _c(Timer::setInterval('myBackup::doInterval',  myOptions::get('backup','interval',2) * 60000));
+		} else if((bool)$active) self::$timer = _c(Timer::setInterval('myBackup::doInterval',  (int)myOptions::get('backup','interval',2) * 60000));
 	}
 	
 	static function updateSettings(){
@@ -392,9 +392,9 @@ class myBackup {
 		else $cnt = 3;
         }else $cnt = 3;
 		self::setActive( (bool)myOptions::get('backup','active',true) );
-		self::setInterval( myOptions::get('backup','interval',2) );
+		self::setInterval((int)myOptions::get('backup','interval',2) );
 		self::$dir = myOptions::get('backup','dir','backup');
-		self::$count = myOptions::get('backup','count',$cnt);
+		self::$count = (int)myOptions::get('backup','count',$cnt);
 	}
 	
 	static function init()
@@ -403,11 +403,12 @@ class myBackup {
 				if((bool)myOptions::get('backup','active',true))
 					if(!isset(self::$timer)||!is_object(self::$timer))
 					{
-						self::$timer = _c(Timer::setInterval('myBackup::doInterval', 60000 * myOptions::get('backup','interval',2)));
+						self::$timer = _c(Timer::setInterval('myBackup::doInterval', 60000 * (int)myOptions::get('backup','interval',2)));
 					}
 					else 
 					{
-						self::$timer->interval = 60000 * myOptions::get('backup','interval',2);
+						Timer::ClearTimer(self::$timer->self);
+						self::$timer = _c(Timer::setInterval('myBackup::doInterval',  (int)myOptions::get('backup','interval',2) * 60000));
 					}
 	}
 }
