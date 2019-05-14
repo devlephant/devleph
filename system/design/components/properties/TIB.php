@@ -24,6 +24,11 @@ $result[] = array(
                   'PROP'=>'state',
                   );
 $result[] = array(
+                  'CAPTION'=>t('State Offset'),
+                  'TYPE'=>'number',
+                  'PROP'=>'offset',
+                  );
+$result[] = array(
                   'CAPTION'=>t('Auto State'),
                   'TYPE'=>'check',
                   'PROP'=>'autoState',

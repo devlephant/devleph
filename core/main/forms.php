@@ -105,18 +105,15 @@ class TForm extends TControl
 {
 	
 	protected $_constraints;
-	protected $icon;
-	function get_icon(){
-		
-		if (!isset($this->_icon)){
-			$this->borderStyle = bsSizeable;
-			$this->_icon = new TIcon(false);
-			$this->_icon->self = __rtti_link($this->self,'Icon');
-			$this->_icon->parent_object = $this->self;
-		}
+	private $_icon;
+	function get_icon()
+	{
+		if(!isset($this->_icon))
+		$this->_icon = new TIcon($this, false, gui_propGet($this->self, 'Icon'));
+		if( !$this->_icon->Modified )
+			$this->_icon->assign( $GLOBALS['APPLICATION']->icon );
 		return $this->_icon;
 	}
-	
 	function get_constraints(){
 		if (!isset($this->_constraints)){
 			$this->_constraints = new TSizeConstraints(nil, false);

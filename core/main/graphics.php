@@ -320,7 +320,7 @@ class TCanvas extends TControl{
 		$this->drawPicture($filename);
     }
 }
-
+class TBitmapCanvas extends TCanvas{}
 $_c->fsBold      = 'fsBold';
 $_c->fsItalic    = 'fsItalic';
 $_c->fsUnderline = 'fsUnderline';
@@ -400,9 +400,9 @@ class TGraphic extends TControl{
 	{
 		if( $v->self == $this->self ) return;
 		if ($v instanceof TPicture)
-			$this->assign($bitmap->getBitmap());
+			$this->assign($v->getBitmap());
 		else
-			tpersistent_assign($this->self, $bitmap->self);
+			tpersistent_assign($this->self, $v->self);
 	}
 	function get_Empty()
 	{
@@ -510,7 +510,7 @@ class TBitmap extends TGraphic{
 		return !bitmap_empty($this->self);
     }
 	
-	public function getCanvas(){
+	public function get_Canvas(){
 		
 		$tmp = new TCanvas(false);
 		$tmp->self = bitmap_canvas($this->self);
@@ -521,6 +521,59 @@ class TBitmap extends TGraphic{
 	public function setSizes($width, $height){
 		bitmap_size($this->self, $width, $height);
 	}
+}
+class TIcon extends TGraphic{
+
+    function __construct($owner=nil,$init=true,$self=nil){
+        if ($init && !$self){
+            $this->self = ticon_create();
+		} else {
+			if($self)	$this->self = $self;
+		}
+    }
+    
+    function loadAnyFile($filename){
+		$this->loadFromFile($filename);
+    }
+    
+	function saveToStr(&$str){
+		$str = $this->data;
+    }
+	
+	function loadFromStr($data, $format = 'bmp'){
+        $bitmap = new TBitmap(nil,false);
+        picture_loadstr($bitmap->self, $data, $format);
+		icon_assign($this->self, $bitmap->self);
+    }
+    
+    function assign(TGraphic $v){
+	
+		if ($v instanceof TBitmap){
+			icon_assign($this->self, $v->self);
+		} else {
+			tpersistent_assign($this->self, $v->self);
+		}
+    }
+    
+    function isEmpty(){
+	
+		return icon_empty($this->self);
+    }
+    
+
+    public function copyToClipboard(){
+
+            clipboard_assign( $this->self );
+    }
+	
+	public function pasteFromClipboard(){
+           icon_assign($this->self, clipboard_get());
+    }
+	
+	public function clear(){
+		$this->self = null;
+	}
+
 }
 
 class TSVGGraphic extends TGraphic{  }
@@ -549,7 +602,10 @@ class TPicture extends TControl{
 	}
 	function set_Graphic(TGraphic $v)
 	{
-		_c(picture_getgraphic($this->self))->Assign($v);
+		if( picture_getgraphic($this->self) )
+			_c(picture_getgraphic($this->self))->Assign($v);
+		else
+			gui_propset($this->self, 'graphic', $v->self);
 	}
     function loadAnyFile($filename){
 		$this->loadFromFile($filename);

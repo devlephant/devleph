@@ -8,6 +8,7 @@ class TIB extends TMImage{
     if($init){
      $this->center = true;
      $this->autoState = true;
+	 $this->offset = 0;`
     }
    }
    public function get_state(){
@@ -115,7 +116,7 @@ class TIB extends TMImage{
     $self = c($self);
     if($self->enabled){
      if($self->autoState){
-      $self->state = 2;
+      $self->state = $self->offset + 2;
      }
    	 $name = 'f'.substr(__FUNCTION__,2);		
      if($self->$name)
@@ -126,7 +127,7 @@ class TIB extends TMImage{
     $self = c($self);
     if($self->enabled){
      if($self->autoState){
-      $self->state = 1;
+      $self->state = $self->offset + 1;
      }
    	 $name = 'f'.substr(__FUNCTION__,2);		
      if($self->$name)
@@ -137,7 +138,7 @@ class TIB extends TMImage{
     $self = c($self);
     if($self->enabled){
      if($self->autoState){
-      $self->state = 1;
+      $self->state = $self->offset + 1;
      }
    	 $name = 'f'.substr(__FUNCTION__,2);		
      if($self->$name)
@@ -148,7 +149,7 @@ class TIB extends TMImage{
     $self = c($self);
     if($self->enabled){
      if($self->autoState){
-      $self->state = 0;
+      $self->state = $this->offset + 0;
      }
    	 $name = 'f'.substr(__FUNCTION__,2);		
      if($self->$name)
@@ -160,16 +161,9 @@ class TIB extends TMImage{
    }
    public function set_enabled($v){
 	   $arr = $this->images;
-	   if($v && $this->autoState) {
-		   $index = 0;
-	   }else if($this->autoState) {
-		   $index = 3;
+	   if($this->autoState) {
+		   $this->state = $v? $this->offset + 0: $this->offset + 3;
 	   }
-		if( $arr[$index] and $this->autoState  ){
-			$img = $arr[$index];
-			$this->picture->loadFromStr( $img[0], $img[1]);
-			$this->index = $index;
-		}
 		gui_propset($this->self, "enabled", $v);
    }
    public function __wakeup()

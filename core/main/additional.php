@@ -213,77 +213,7 @@ class THotKey extends TControl {
 	}
 }
 
-class TIcon extends TControl{
-    //public $parent_object = nil;
-    
-    function __construct($owner=nil,$init=true,$self=nil){
-        if ($init && !$self){
-            $this->self = ticon_create();
-		}else{
-			if($self)	$this->self = $self;
-			$this->self = ticon_create();
-		}
-		$this->parent_object = $owner;
-    }
-    
-    function loadFromFile($filename){
-		$filename = getFileName($filename);
-        icon_loadfile($this->self,replaceSr($filename));
-    }
-    
-    function saveToFile($filename){
-        icon_savefile($this->self,replaceSr($filename));
-    }
-    
-    function loadAnyFile($filename){
-		$this->loadFromFile($filename);
-    }
-    
-	function saveToStr(&$str){
-		$str = $this->data;
-    }
-	
-	function loadFromStr($data, $format = 'bmp'){
-        $bitmap = new TBitmap(nil,false);
-        picture_loadstr($bitmap->self, $data, $format);
-		icon_assign($this->self, $bitmap->self);
-    }
-    
-    function assign($bitmap){
-	
-		if ($bitmap instanceof TBitmap){
-			icon_assign($this->self, $bitmap->self);
-		} elseif ($bitmap instanceof TIcon){
-			tpersistent_assign($this->self, $bitmap->self);
-		}
-    }
-    
-    function isEmpty(){
-	
-		return icon_empty($this->self);
-    }
-    
-
-    public function copyToClipboard(){
-
-            clipboard_assign( $this->self );
-    }
-	
-	public function pasteFromClipboard(){
-           icon_assign($this->self, clipboard_get());
-    }
-	
-	public function clear(){
-		$this->self = null;
-		//$this->self = ticon_create();
-	}
-
-}
-
-
-class TMaskEdit extends TControl {
-	
-}
+class TMaskEdit extends TControl {}
 
 
 class TImage extends TControl {

@@ -424,7 +424,7 @@ class myProject {
 						$del_objs[] = $el;
                     }elseif (is_subclass_of($el,  '__TNoVisual')){
                         
-                        self::convertOldNoVisual($el);
+                        $obj = self::convertOldNoVisual($el);
                         $del_objs[] = $el;
                         
                     } elseif ($el instanceof TEvents){
