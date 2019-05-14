@@ -276,7 +276,7 @@ class myComplete {
     static function memoChange($self){
         
         global $showHint, $showComplete, $synComplete;
-        
+        //ТУТ БЫЛ БАГ
         $showComplete = $synComplete->form->visible && $showComplete;
         if (!$showComplete){
             $showComplete = true;
