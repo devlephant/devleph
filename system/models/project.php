@@ -408,19 +408,19 @@ class myProject {
 			{
                 myUtils::loadForm($form);
                 $del_objs = [];
-                
+                $obj = '';
                 $components = $fmEdit->componentList;
                 foreach($components as $el){
 					$realClass = strtolower(rtti_class($el->self));
 					if ( isset(self::$repclasses[$realClass]) )
 					{
 						$new_class = self::$repclasses[$realClass];
-						self::convertAs($el, $new_class, self::getrule($new_class, $realClass));
+						$obj = self::convertAs($el, $new_class, self::getrule($new_class, $realClass));
 						$del_objs[] = $el;
 					}elseif (isset(self::$repclasses[get_class($el)]))
 					{
 						$new_class = get_class($el);
-						self::convertAs($el, $new_class, self::getrule($new_class, $realClass));
+						$obj = self::convertAs($el, $new_class, self::getrule($new_class, $realClass));
 						$del_objs[] = $el;
                     }elseif (is_subclass_of($el,  '__TNoVisual')){
                         
@@ -442,7 +442,9 @@ class myProject {
                             }
                         }
                         $del_objs[] = $el;
-                    }
+                    } else $obj = $el;
+					if( method_exists($obj, '__wakeup') )
+						$obj->__wakeup();
                 }
                 
                  
