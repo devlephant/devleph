@@ -8,7 +8,7 @@ class TIB extends TMImage{
     if($init){
      $this->center = true;
      $this->autoState = true;
-	 $this->offset = 0;`
+	 $this->offset = 0;
     }
    }
    public function get_state(){
