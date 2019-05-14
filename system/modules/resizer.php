@@ -17,7 +17,6 @@ class resize{
 			if(!isset($params[$pars[$i]])) $params[$pars[$i]] = false;
 		}
 		if($params['time']!==false) $params['time'] += microtime(1);
-		$sides = [];
 		return self::Perform($obj, $params['func'], $params['speed'], $params['time'], 
 		['x', $params['x']], ['y', $params['y']], ['w', $params['w']], ['h', $params['h']]);
 	}

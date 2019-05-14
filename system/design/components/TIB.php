@@ -6,6 +6,7 @@ return array(
 'CAPTION' => t('ImageButton'),
 'SORT'    => 4,
 'NAME'    => 'ImageButton',
+'REPLACE'=>['TImageButton'],
 'W' => 15,
 'H' => 10,
 );
