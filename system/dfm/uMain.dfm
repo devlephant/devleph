@@ -205,6 +205,7 @@ object fmMain: TfmMain
     DockSite = True
     TabOrder = 3
     ExplicitLeft = 829
+	PopupMenu = _emptyPopup
   end
   object pDockLeft: TPanel
     Left = 0
@@ -216,6 +217,7 @@ object fmMain: TfmMain
     Color = clWhite
     DockSite = True
     TabOrder = 4
+	PopupMenu = _emptyPopup
   end
   object pComponents: TDSPanel
     Left = 577
@@ -682,6 +684,7 @@ object fmMain: TfmMain
       DockSite = True
       TabOrder = 0
       ExplicitWidth = 814
+	  PopupMenu = _emptyPopup
     end
   end
   object pDebugWindow: TDSPanel
@@ -1381,6 +1384,10 @@ object fmMain: TfmMain
     Left = 592
     Top = 48
   end
+  object _emptyPopup: TPopupMenu
+	Left = 0
+	Top = 0
+	end
   object editorPopup: TPopupMenu
     Left = 672
     Top = 88
