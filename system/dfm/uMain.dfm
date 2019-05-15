@@ -595,7 +595,7 @@ object fmMain: TfmMain
           'ZW5hYmxlZAURBnBhcmVudBcMVFBhZ2VDb250cm9sFAURCmNsYXNzX25hbWUOBhEF' +
           'cGFnZXMAEQgAKgBfZm9udAARBHNlbGYKCCyLABEIACoAcHJvcHMUABENcGFyZW50' +
           'Y29udHJvbBoGFAUOBw4GDggADgkADgoKCCyLAA4LFAARDGRvdWJsZWJ1ZmZlcgU='
-        Caption = '{Project Browser}'
+        Caption = '{Project Tree}'
 		TabVisible = true
         ExplicitLeft = 0
         ExplicitTop = 0
