@@ -131,6 +131,7 @@ if (!defined('IS_APPLICATION_START')){
         $myProperties->generateAllClasses();
 		
         include 'scripts/hotkeys.php';
+	include 'scripts/treebrowser.php';
     
         $GLOBALS['APPLICATION']->processMessages();
         

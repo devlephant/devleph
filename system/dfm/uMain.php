@@ -160,6 +160,7 @@ class evfmMain {
         myOptions::set('pDockRight','width', c('fmMain->pDockRight')->w);
         myOptions::set('pDockLeft','width', c('fmMain->pDockLeft')->w);
         myOptions::set('pDockBottom','height', c('fmMain->pDockBottom')->h);
+	myOptions::set('treebrowser','visible', c('fmMain->TTreeBwr')->TabVisible);
 
         myOptions::setFloat('pComponents', c('fmMain->pComponents'));
         myOptions::setFloat('pInspector', c('fmMain->pInspector'));
@@ -247,6 +248,7 @@ class evfmMain {
         c('fmMain->pDockRight')->w = myOptions::get('pDockRight','width',200);
         c('fmMain->pDockLeft')->w = myOptions::get('pDockLeft','width',220);
         c('fmMain->pDockBottom')->h = myOptions::get('pDockBottom','height',220);
+	c('fmMain->TTreeBwr')->TabVisible = (bool)myOptions::get('treebrowser','visible',1);
         
         c('fmMain->list')->selectedList = explode(',',myOptions::get('components','groups', 'main'));
         c('fmMain->list')->smallIcons   = myOptions::get('components','smallIcons',false);
@@ -303,6 +305,7 @@ class evfmMain {
             c('fmMain->it_objectinspector')->checked = c('fmMain->pInspector')->visible;
             c('fmMain->it_props')->checked = c('fmMain->pProps')->visible;
             c('fmMain->it_debuginfo')->checked = c('fmMain->pDebugWindow')->visible;
+		c('fmMain->it_treebrowser')->checked = c('fmMain->TTreeBwr')->TabVisible;
         }
         
             $obj  = new TComboBox( c('fmMain') );
@@ -331,6 +334,7 @@ class evfmMain {
             gui_propSet(gui_propGet(c("fmObjectInspector->list")->self, 'IconOptions'), 'AutoArrange', 1);
 			$list->BorderStyle = bsNone;
 			
+	    treeBwr_add();
     }
     
     static function onCloseQuery($self, &$canClose) {
@@ -393,6 +397,15 @@ class ev_it_debuginfo {
     static function onClick($self){
         $GLOBALS['_sc']->updateBtns();
         c('fmMain->pDebugWindow')->visible = !c('fmMain->pDebugWindow')->visible;
+    }
+}
+
+class ev_it_treebrowser {
+    
+    static function onClick($self){
+        $GLOBALS['_sc']->updateBtns();
+        c('fmMain->TTreeBwr')->TabVisible = !c('fmMain->TTreeBwr')->TabVisible;
+	c('fmMain->it_treebrowser')->checked = c('fmMain->TTreeBwr')->TabVisible;
     }
 }
 

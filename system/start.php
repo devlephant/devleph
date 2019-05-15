@@ -57,6 +57,7 @@
         
     
         loader::model('inspector');
+	loader::model('treebrowser');
         loader::model('project');
         //loader::model('options');
         loader::model('modules');
