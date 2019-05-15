@@ -130,7 +130,12 @@ class myUtils {
                 }
                 
                 if (method_exists($el,'__loadDesign'))
-                    $el->__loadDesign();                
+				{
+                    $el->__loadDesign();           
+				} elseif(method_exists($el, '__initComponentInfo'))
+				{
+					$el->__initComponentInfo();
+				}
                 
                 if (method_exists($el,'__updateDesign'))
                     $el->__updateDesign();

@@ -715,11 +715,10 @@ class ev_fmMain_shapeSize {
         return $curType;    
     }
     
-    static function onMouseDown($self, $button, $shift, $x, $y){
-        
+    static function onMouseDown($self, int $button, $shift, $x, $y){
+        if( $button == 1 ) return;
         global $shapeSize, $_preX, $_preY, $curType, $_scgridSize;
         c('fmMain->pDockMain',1)->doubleBuffer = true;
-        
         
         $obj = _c($self);
         $_preX = $obj->w - $x;

@@ -36,3 +36,5 @@ function treeBwr_add()
 	$tree->text = $text;
 	$tree->fullExpand();
 }
+
+dsApi::addProjectChangeCallback('treeBwr_add');
