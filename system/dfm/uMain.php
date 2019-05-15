@@ -243,7 +243,7 @@ class evfmMain {
 	${00} = array('psSolid', 'psDash', 'psDot', 'psDashDot', 'psDashDotDot', 'psClear', 'psInsideFrame', 'psUserStyle', 'psAlternate');
 	${01} = myOptions::get('sc','penStyle',1);
 		
-	c('fmOptions->shapeSize')->penStyle = ${00}[${01}];
+	c('fmMain->shapeSize')->penStyle = ${00}[${01}];
         
 		myOptions::getXYWH('rundebug', c('fmRunDebug'));
 		
