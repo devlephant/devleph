@@ -29,6 +29,12 @@ class ev_fmOptions_up_gridsize {
 	}
 }
 
+class ev_fmOptions_cb_penstyle {
+	static function onSelect($self){
+		c('fmMain->shapeSize')->penStyle = c('fmOptions->cb_penstyle')->itemIndex;
+	}
+}
+
 class ev_fmOptions_en_bc {
 	static function onMouseDown($self, $button, $shift, $x, $y){
 		global $_sc;
