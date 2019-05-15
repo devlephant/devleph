@@ -620,6 +620,7 @@ object fmMain: TfmMain
 			Indent = 19
 			TabOrder = 0
 	end
+	end
     end
   end
   object TPanel
