@@ -133,17 +133,14 @@ class TCoolTrayIcon extends TControl {
 	
 	public function get_picture(){
 		
-		if (!isset($this->_picture)){
+		if (!isset($this->_picture))
 			$this->_picture = new TIcon(false);
-			$this->_picture->self = __rtti_link($this->self,'Icon');
-			$this->_picture->parent_object = $this->self;
-		}
-		
+		$this->_picture->self = gui_propget($this->self,'Icon');
 		return $this->_picture;
 	}
 	
 	public function get_icon(){
-		return $this->picture;
+		return $this->get_picture();
 	}
 	
 	public function loadPicture($file){
@@ -191,9 +188,7 @@ class TCoolTrayIcon extends TControl {
 	}
 }
 
-class TTrackBar extends TControl {
-	
-}
+class TTrackBar extends TControl {}
 
 
 class THotKey extends TControl {
@@ -219,13 +214,15 @@ class TMaskEdit extends TControl {}
 class TImage extends TControl {
 	
 	protected $_picture;
-
-	public function getCanvas(){
+	protected $_canvas;
+	public function get_Canvas(){
 		
-		$tmp = new TCanvas(false);
-		$tmp->self = component_canvas($this->self);
+		if( !isset($this->_canvas) )
+		$this->_canvas = new TCanvas(false);
+	
+		$this->_canvas->self = component_canvas($this->self);
 		
-		return $tmp;
+		return $this->_canvas;
 	}
 	
 	public function loadPicture($file){
@@ -252,14 +249,9 @@ class TImage extends TControl {
 	}
 }
 
-class TMImage extends TImage {
-    
-    
-}
+class TMImage extends TImage {}
 
-class TDrawGrid extends TControl {
-	
-}
+class TDrawGrid extends TControl {}
 
 class TShape extends TControl {
 	
@@ -269,20 +261,18 @@ class TShape extends TControl {
 	
 	public function get_brush(){
 		
-		if (!$this->_brush){
+		if (!$this->_brush)
 			$this->_brush = new TBrush(false);
-			$this->_brush->self = __rtti_link($this->self,'Brush');
-		}
+		$this->_brush->self = gui_propGet($this->self,'Brush');
 		return $this->_brush;
 	}
 	
 	public function get_pen(){
 		
-		if (!$this->_pen){
-			
+		if (!isset($this->_pen))
 			$this->_pen   = new TPen(false);
-			$this->_pen->self   = __rtti_link($this->self,'Pen');
-		}
+		
+		$this->_pen->self   = gui_propGet($this->self,'Pen');
 		
 		return $this->_pen;
 	}
@@ -309,7 +299,7 @@ class TScrollBox extends TControl {
 	function get_constraints(){
 		if (!isset($this->_constraints)){
 			$this->_constraints = new TSizeConstraints(nil, false);
-			$this->_constraints->self = __rtti_link($this->self,'constraints');
+			$this->_constraints->self = gui_propGet($this->self,'constraints');
 		}
 		return $this->_constraints;
 	}
@@ -336,7 +326,7 @@ class TCheckListBox extends TControl {
 	function get_items(){
 		if (!isset($this->_items)){
 			$this->_items = new TStrings(false);
-			$this->_items->self = __rtti_link($this->self,'Items');
+			$this->_items->self = gui_propGet($this->self,'Items');
 			$this->_items->parent_object = $this->self;
 		}
 		return $this->_items;
@@ -443,9 +433,7 @@ class TTabControl extends TControl {
 	}
 	
 	function addPage($caption){
-		
-		$tabs = $this->tabs;
-		$tabs->add($caption);
+		$this->tabs->add($caption);
 	}
 	
 	
@@ -654,25 +642,15 @@ class TTabSheet extends TControl {
 }
 
 
-class TSizeConstraints extends TComponent {
+class TSizeConstraints extends TComponent {}
+#maxWidth
+#maxHeight
+#minWidth
+#minHeight
 	
-	
-	
-	#maxWidth
-	#maxHeight
-	#minWidth
-	#minHeight
-
-}
-
-class TPadding extends TControl {
-	
-	
-}
+class TPadding extends TControl {}
 
 class TListItems extends TControl {
-	
-	
 	
 	function delete($index){ listitems_command($this->self, __FUNCTION__, $index,0); }
 	function add(){ return _c(listitems_command($this->self, __FUNCTION__,0,0)); }
@@ -772,7 +750,6 @@ class TListItems extends TControl {
 class TListItem extends TControl {
 	
 	
-	
 	function delete(){ listitem_command($this->self, __FUNCTION__); }
 	function update(){ listitem_command($this->self, __FUNCTION__); }
 	function canceledit(){ listitem_command($this->self, __FUNCTION__); }
@@ -816,7 +793,7 @@ class TListView extends TControl {
 		
 		if (!$this->_items){
 			$this->_items = new TListItems($this,false);
-			$this->_items->self = __rtti_link($this->self,'items');
+			$this->_items->self = gui_propGet($this->self,'items');
 		}
 		return $this->_items;
 	}

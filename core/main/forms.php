@@ -118,7 +118,6 @@ class TForm extends TControl
 		if (!isset($this->_constraints)){
 			$this->_constraints = new TSizeConstraints(nil, false);
 			$this->_constraints->self = gui_propGet( $this->self, 'constraints' );
-			//__rtti_link($this->self,'constraints');
 		}
 		return $this->_constraints;
 	}

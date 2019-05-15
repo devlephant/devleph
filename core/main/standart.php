@@ -77,7 +77,7 @@ class TMemo extends TControl {
 	function get_items(){
 		if (!isset($this->_items)){
 			$this->_items = new TStrings(false);
-			$this->_items->self = __rtti_link($this->self,'Lines');
+			$this->_items->self = gui_propGet($this->self,'Lines');
 		}
 		return $this->_items;
 	}
@@ -234,7 +234,7 @@ class TListBox extends TControl {
 	function get_items(){
 		if (!isset($this->_items)){
 			$this->_items = new TStrings(false);
-			$this->_items->self = __rtti_link($this->self,'Items');
+			$this->_items->self = gui_propGet($this->self,'Items');
 			$this->_items->parent_object = $this->self;
 		}
 		return $this->_items;
@@ -320,7 +320,7 @@ class TComboBox extends TControl {
 	function get_items(){
 		if (!isset($this->_items)){
 			$this->_items = new TStrings(false);
-			$this->_items->self = __rtti_link($this->self,'Items');
+			$this->_items->self = gui_propGet($this->self,'Items');
 			$this->_items->parent_object = $this->self;
 		}
 		return $this->_items;
@@ -391,7 +391,7 @@ class TRadioGroup extends TControl {
 	function get_items(){
 		if (!isset($this->_items)){
 			$this->_items = new TStrings(false);
-			$this->_items->self = __rtti_link($this->self,'Items');
+			$this->_items->self = gui_propGet($this->self,'Items');
 			$this->_items->parent_object = $this->self;
 		}
 		return $this->_items;

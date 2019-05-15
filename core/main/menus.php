@@ -68,7 +68,7 @@ class TMenuItem extends TControl {
 	public function __construct($onwer=nil, $init=true, $self=nil){
 		parent::__construct($onwer,$init,$self);
 		$this->picture = new TBitmap(nil,false);
-		$this->picture->self = __rtti_link($this->self,'Bitmap');
+		$this->picture->self = gui_propGet($this->self,'Bitmap');
 		
 		$this->picture->parent_object = $this->self;
 	}

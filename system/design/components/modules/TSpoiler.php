@@ -30,7 +30,7 @@ class TSpoiler Extends TPanel{
 			$this->_btn->caption = '+';
 			$this->_btn->anchors = 'akLeft, akTop';
 			event_set($this->self->_btn, 'onMouseDown', 'TSpoiler::doSwitch');
-			$this->_btn->self =  __rtti_link($this->self,'btn');
+			$this->_btn->self =  gui_propGet($this->self,'btn');
 			
 		} return $this->_btn;
 	}
@@ -43,7 +43,7 @@ class TSpoiler Extends TPanel{
 			$this->_cap->w = $this->w - $bn->w;
 			$this->_cap->x = $bn->x = $this->_cap->w;
 			$this->_cap->anchors = 'akRight, akTop';
-			$this->_cap->self = __rtti_link($this->self,'cap');
+			$this->_cap->self = gui_propGet($this->self,'cap');
 		} return $this->_cap;
 	}
 	protected function open(){

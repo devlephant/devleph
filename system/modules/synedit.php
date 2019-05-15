@@ -130,10 +130,10 @@ class TSynCompletionProposal extends TControl {
     function __construct($onwer=nil,$init=true,$self=nil){
 		parent::__construct($onwer,$init,$self);
 		$this->itemList = new TStrings(false);
-		$this->itemList->self = __rtti_link($this->self,'itemList');
+		$this->itemList->self = gui_propGet($this->self,'itemList');
 			
 			$this->insertList = new TStrings(false);
-		$this->insertList->self = __rtti_link($this->self,'insertList');
+		$this->insertList->self = gui_propGet($this->self,'insertList');
 		
 		$this->__setAllPropEx();
     }
