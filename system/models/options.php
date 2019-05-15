@@ -276,12 +276,8 @@ class myOptions {
         
         global $_sc;
         c('fmOptions->c_showgrid')->checked = (bool)myOptions::get('sc','showGrid',false);
-        c('fmOptions->e_gridsize')->text    = c('fmOptions->up_gridsize')->position = myOptions::get('sc','gridSize',8);
-	    
-	${00} = array('psSolid', 'psDash', 'psDot', 'psDashDot', 'psDashDotDot', 'psClear', 'psInsideFrame', 'psUserStyle', 'psAlternate');
-	${01} = myOptions::get('sc','penStyle',1);
-	    
-		c('fmOptions->cb_penstyle')->inText = ${00}[${01}];
+        c('fmOptions->e_gridsize')->text    = c('fmOptions->up_gridsize')->position = myOptions::get('sc','gridSize',8);	    
+		c('fmOptions->cb_penstyle')->itemIndex = (int)myOptions::get('sc','penStyle',1);
 		c('fmOptions->backup_active')->checked = (bool)myOptions::get('backup','active',true);
 		c('fmOptions->en_bc')->brushColor = myOptions::get('sc','BtnColor',clBlue);
 		c('fmOptions->dis_bc')->brushColor = myOptions::get('sc','BtnColorDisabled', clGray);

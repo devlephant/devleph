@@ -124,19 +124,10 @@ object fmOptions: TfmOptions
       HelpType = htKeyword
       HelpKeyword = 'AAAAAhQCEQVDTEFTUxEJVFRhYlNoZWV0EQZQQVJBTVMUAREIYXZpc2libGUF'
       Caption = '{Size and move}'
-      object Label1: TLabel
-        Left = 16
-        Top = 40
-        Width = 51
-        Height = 13
-        HelpType = htKeyword
-        HelpKeyword = 'AAAAAhQCEQVDTEFTUxEGVExhYmVsEQZQQVJBTVMUAREBeBECMTY='
-        Caption = '{Grid Size}'
-      end
       object e_gridsize: TEdit
         Left = 16
         Top = 56
-        Width = 271
+        Width = 278
         Height = 21
         HelpType = htKeyword
         HelpKeyword = 
@@ -152,16 +143,15 @@ object fmOptions: TfmOptions
         MarginLeft = 0
         MarginRight = 0
       end
-      object label9: TLabel
-        Left = 312
-        Top = 24
-        Width = 56
-        Height = 15
-        HelpType = htKeyword
-        HelpKeyword = 'AAAAAhQCEQVDTEFTUxEGVExhYmVsEQZQQVJBTVMUAhEBeAgBSBEBeQYY'
-        Caption = '{Pen Style}'
-      end
-      object c_showgrid: TCheckBox
+	  object Label1: TLabel
+        Left = 16
+        Top = 40
+        Width = 288
+        Height = 13
+		AutoSize = False
+        Caption = '{Grid Size}'
+    end
+	object c_showgrid: TCheckBox
         Left = 16
         Top = 16
         Width = 321
@@ -173,6 +163,41 @@ object fmOptions: TfmOptions
         State = cbChecked
         TabOrder = 1
       end
+	object groupBox1: TGroupBox
+     Left = 312
+     Top = 17
+     Width = 152
+     Height = 168
+     Caption = '{Sizing Colors}'
+     ParentColor = False
+     TabOrder = 5
+      object label9: TLabel
+        Left = 8
+        Top = 24
+        Width = 136
+        Height = 16
+		AutoSize = False
+        Caption = '{Pen Style}'
+      end
+	  object cb_penstyle: TComboBox
+        Left = 8
+        Top = 39
+        Width = 136
+        Height = 23
+		Style = csOwnerDrawFixed
+		ItemIndex = 0
+        Items.Strings = (
+          'psSolid'
+          'psDash'
+          'psDot'
+          'psDashDot'
+          'psDashDotDot'
+          'psClear'
+          'psInsideFrame'
+          'psUserStyle'
+          'psAlternate')
+      end
+	end
       object clrs: TGroupBox
         Left = 16
         Top = 84
@@ -269,42 +294,13 @@ object fmOptions: TfmOptions
         end
       end
       object up_gridsize: TUpDown
-        Left = 287
-        Top = 57
+        Left = 294
+        Top = 55
         Width = 12
-        Height = 19
+        Height = 25
 		Thousands = False
 		Position = 8
-        HelpType = htKeyword
-        HelpKeyword = 
-          'AAAAAhQCEQVDTEFTUxEHVFVwRG93bhEGUEFSQU1TFAkRCGF2aXNpYmxlBREIYWVu' +
-          'YWJsZWQFEQF3EQIxNREBaBECMjIRBnBhcmVudBcJVFRhYlNoZWV0FAQRCmNsYXNz' +
-          'X25hbWUOChEIACoAX2ZvbnQAEQRzZWxmCggWEpARCAAqAHByb3BzFAARBHRleHQR' +
-          'CNHy8LPr6ugxEQp3aW5jb250cm9sBBEBeRECNTYRAXgRAzI4Nw=='
         TabOrder = 3
-      end
-      object cb_penstyle: TComboBox
-        Left = 312
-        Top = 40
-        Width = 136
-        Height = 23
-        HelpType = htKeyword
-        HelpKeyword = 
-          'AAAAAhQCEQVDTEFTUxEJVENvbWJvQm94EQZQQVJBTVMUBxEIYXZpc2libGUFEQhh' +
-          'ZW5hYmxlZAURAXcMQFoAAAAAAAARAWgMAAAAAAAAAAARC29ubW91c2Vkb3duERZt' +
-          'eURlc2lnbjo6b2JqTW91c2VEb3duEQF4CAFIEQF5Big='
-        ItemIndex = 1
-        Text = 'psDash'
-        Items.Strings = (
-          'psSolid'
-          'psDash'
-          'psDot'
-          'psDashDot'
-          'psDashDotDot'
-          'psClear'
-          'psInsideFrame'
-          'psUserStyle'
-          'psAlternate')
       end
     end
   end
