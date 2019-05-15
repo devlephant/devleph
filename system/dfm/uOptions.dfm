@@ -197,6 +197,38 @@ object fmOptions: TfmOptions
           'psUserStyle'
           'psAlternate')
       end
+	  object label10: TLabel
+        Left = 8
+        Top = 72
+        Width = 136
+        Height = 16
+		AutoSize = False
+        Caption = '{Inner Color}'
+      end
+	  object scol_inn: TShape
+		Left = 8
+		Top = 88
+		Width = 136
+		Height = 20
+		Pen.Width = 2
+		Brush.Color = 14215660
+	  end
+	  object label11: TLabel
+        Left = 8
+        Top = 120
+        Width = 136
+        Height = 16
+		AutoSize = False
+        Caption = '{Outer Color}'
+      end
+	  object scol_out: TShape
+		Left = 8
+		Top = 136
+		Width = 136
+		Height = 20
+		Pen.Width = 2
+		Brush.Color = 10070188
+	  end
 	end
       object clrs: TGroupBox
         Left = 16

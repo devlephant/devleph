@@ -36,55 +36,58 @@ class ev_fmOptions_cb_penstyle {
 }
 
 class ev_fmOptions_en_bc {
-	static function onMouseDown($self, $button, $shift, $x, $y){
-		global $_sc;
+	static function doDialog($self, $obj=false, $prop=false)
+	{
 		$dlg = new TDMSColorDialog();
 		$col1 = $dlg->color = c($self)->brushColor;
 		if( file_exists(realpath(SYSTEM_DIR.'/colors.in')) )
 		{
 			list($dlg->MainColors->text, $dlg->CustomColors->text) = unserialize(file_get_contents(realpath(SYSTEM_DIR.'/colors.in')));
 		}
-		if($dlg->execute()) {
-			$_sc->BtnColor = c($self)->brushColor = $dlg->color;
+		if($dlg->execute())
+		{
+			if( is_object($obj) ) $obj->$prop = $dlg->color;
+			c($self)->brushColor = $dlg->color;
 			c($self)->penColor = TColor::compare_contrast($col1, $dlg->color);
 			file_put_contents(SYSTEM_DIR.'/colors.in', serialize(array($dlg->MainColors->text, $dlg->CustomColors->text)));
 		}
 		$dlg->free();
+	}
+	static function onMouseDown($self, $button, $shift, $x, $y)
+	{
+		global $_sc;
+		self::doDialog($self, $_sc, 'BtnColor');
 	}
 }
 
 class ev_fmOptions_dis_bc {
 	static function onMouseDown($self, $button, $shift, $x, $y){
 		global $_sc;
-		$dlg = new TDMSColorDialog();
-		$col1 = $dlg->color = c($self)->brushColor;
-		if( file_exists(realpath(SYSTEM_DIR.'/colors.in')) )
-		{
-			list($dlg->MainColors->text, $dlg->CustomColors->text) = unserialize(file_get_contents(realpath(SYSTEM_DIR.'/colors.in')));
-		}
-		if($dlg->execute()) {
-			$_sc->BtnColorDisabled = c($self)->brushColor = $dlg->color;
-			c($self)->penColor = TColor::compare_contrast($col1, $dlg->color);
-			file_put_contents(SYSTEM_DIR.'/colors.in', serialize(array($dlg->MainColors->text, $dlg->CustomColors->text)));
-		}
-		$dlg->free();
+		ev_fmOptions_en_bc::doDialog($self, $_sc, 'BtnColorDisabled');
 	}
 }
 
 class ev_fmOptions_sel_color {
-	static function onMouseDown($self, $button, $shift, $x, $y){
-		
-		$dlg = new TDMSColorDialog();
-		$col1 = $dlg->color = c($self)->brushColor;
-		if( file_exists(realpath(SYSTEM_DIR.'/colors.in')) )
-		{
-			list($dlg->MainColors->text, $dlg->CustomColors->text) = unserialize(file_get_contents(realpath(SYSTEM_DIR.'/colors.in')));
-		}
-		if($dlg->execute()) {
-			c($self)->brushColor = $dlg->color;
-			c($self)->penColor = TColor::compare_contrast($col1, $dlg->color);
-			file_put_contents(SYSTEM_DIR.'/colors.in', serialize(array($dlg->MainColors->text, $dlg->CustomColors->text)));
-		}
-		$dlg->free();
+	static function onMouseDown($self, $button, $shift, $x, $y)
+	{
+		ev_fmOptions_en_bc::doDialog($self);
+	}
+}
+
+class ev_fmOptions_scol_inn
+ {
+	static function onMouseDown($self, $button, $shift, $x, $y)
+	{
+		ev_fmOptions_en_bc::doDialog($self, c("fmMain->shapeSize"), "brushColor");
+		c("fmMain->shapeSize")->repaint();
+	}
+}
+
+class ev_fmOptions_scol_out
+ {
+	static function onMouseDown($self, $button, $shift, $x, $y)
+	{
+		ev_fmOptions_en_bc::doDialog($self, c("fmMain->shapeSize"), "penColor");
+		c("fmMain->shapeSize")->repaint();
 	}
 }

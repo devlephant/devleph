@@ -177,8 +177,6 @@ class myUtils {
         $_sc->gridSize = myOptions::get('sc','gridSize',8);
 		$_sc->BtnColor = myOptions::get('sc','BtnColor',clBlue);
 		$_sc->BtnColorDisabled = myOptions::get('sc','BtnColorDisabled',clGray);
-   // $_sc->BtnColor = $GLOBALS['sizectrl_ena'];
-//	$_sc->BtnColorDisabled = $GLOBALS['sizectrl_dis'];
         
         $_sc->onSizeMouseDown = 'myDesign::selectComponent';
         $_sc->onEndSizeMove   = 'myDesign::endSizeMove';
