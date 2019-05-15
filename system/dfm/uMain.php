@@ -241,8 +241,8 @@ class evfmMain {
         c('fmPHPEditor->SynPHPSyn')->loadFromArray($ini->arr);
         c('fmPHPEditor->memo')->color = $ini->read('main','color',clWhite);
 		c('fmMain->shapeSize')->penStyle = myOptions::get('sc','SizerPenStyle',2);
-		c('fmMain->shapeSize')->brushColor = myOptions::get('sc','SizerPenStyle',12632256);
-        c('fmMain->shapeSize')->penColor = myOptions::get('sc','SizerPenStyle',clBlack);
+		c('fmMain->shapeSize')->brushColor = myOptions::get('sc','SizerInnerColor',12632256);
+        c('fmMain->shapeSize')->penColor = myOptions::get('sc','SizerOuterColor',clBlack);
 		myOptions::getXYWH('rundebug', c('fmRunDebug'));
 		
         c('fmMain->pDockRight')->w = myOptions::get('pDockRight','width',200);
