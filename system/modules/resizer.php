@@ -31,8 +31,7 @@ class resize{
 		{
 			if( count($Props[$i]) == 1 && is_array($Props[$i]) )
 				$Props[$i] = [array_keys($Props)[0], $Props[0]];
-			if( !is_string( $Props[$i][0] ) ) unset($Props[$i]);
-			if( !isset( $Props[$i][1]) ) unset($Props[$i]);	
+			if( !is_string( $Props[$i][0] ) || !isset( $Props[$i][1]) ) unset($Props[$i]);
 		}
 		
 		if($time!==false) $time += microtime(1);
