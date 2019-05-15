@@ -303,8 +303,6 @@ class myOptions {
 			$dir = c('fmOptions->backup_dir')->text;
 			if ( !eregi('$([.\-\_a-zа-яА-Я0-9]+)', $dir) )
 				$dir = 'backup';
-				
-			myOptions::set('sc','SizerPenStyle', c('fmOptions->cb_penstyle')->itemIndex);	
 		
 			myOptions::set('backup','dir', $dir);
 			myOptions::set('backup','interval', (int)c('fmOptions->backup_interval')->text);
@@ -318,6 +316,8 @@ class myOptions {
                 myOptions::set('sc','gridSize', (int)c('fmOptions->e_gridsize')->text);
 				$_sc->gridSize = myOptions::get('sc','gridSize',8);
             }
+			
+				myOptions::set('sc','SizerPenStyle', c('fmOptions->cb_penstyle')->itemIndex);	
 				myOptions::set('sc','BtnColor', c('fmOptions->en_bc')->brushColor);
 				myOptions::set('sc','BtnColorDisabled', c('fmOptions->dis_bc')->brushColor);
 				myOptions::set('sc','SelectColor', c('fmOptions->sel_color')->brushColor);

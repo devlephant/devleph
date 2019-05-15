@@ -240,14 +240,14 @@ class evfmMain {
 		
         c('fmPHPEditor->SynPHPSyn')->loadFromArray($ini->arr);
         c('fmPHPEditor->memo')->color = $ini->read('main','color',clWhite);
-		c('fmMain->shapeSize')->penStyle = myOptions::get('sc','SizerPenStyle',2);
+		c('fmMain->shapeSize')->penStyle = (int)myOptions::get('sc','SizerPenStyle',2);
 		c('fmMain->shapeSize')->brushColor = myOptions::get('sc','SizerInnerColor',12632256);
         c('fmMain->shapeSize')->penColor = myOptions::get('sc','SizerOuterColor',clBlack);
 		myOptions::getXYWH('rundebug', c('fmRunDebug'));
 		
-        c('fmMain->pDockRight')->w = myOptions::get('pDockRight','width',200);
-        c('fmMain->pDockLeft')->w = myOptions::get('pDockLeft','width',220);
-        c('fmMain->pDockBottom')->h = myOptions::get('pDockBottom','height',220);
+        c('fmMain->pDockRight')->w = (int)myOptions::get('pDockRight','width',200);
+        c('fmMain->pDockLeft')->w = (int)myOptions::get('pDockLeft','width',220);
+        c('fmMain->pDockBottom')->h = (int)myOptions::get('pDockBottom','height',220);
 	c('fmMain->TTreeBwr')->TabVisible = (bool)myOptions::get('treebrowser','visible',1);
         
         c('fmMain->list')->selectedList = explode(',',myOptions::get('components','groups', 'main'));
@@ -689,6 +689,8 @@ class ev_fmMain_c_tcursor{
 
 class ev_fmMain_shapeSize {
     private static $self_object;
+	private static $hbar;
+	private static $vbar;
 	private static $timer;
 	
     static function typeCursor($self, $x, $y){
@@ -715,7 +717,7 @@ class ev_fmMain_shapeSize {
     
     static function onMouseDown($self, $button, $shift, $x, $y){
         
-        global $shapeSize, $_preX, $_preY, $curType;
+        global $shapeSize, $_preX, $_preY, $curType, $_scgridSize;
         c('fmMain->pDockMain',1)->doubleBuffer = true;
         
         
@@ -723,17 +725,21 @@ class ev_fmMain_shapeSize {
         $_preX = $obj->w - $x;
         $_preY = $obj->h - $y;
         $shapeSize = true;
+		$_scgridSize = myOptions::get('sc','gridSize',8);
         
         $curType = self::typeCursor($self, $x, $y);
         $obj->cursor = $curType;
-		self::$self_object = $self;
+		
 		if(!isset(self::$timer))
 		{
+			self::$self_object = $obj;
+			self::$hbar = $obj->HorzScrollBar;
+			self::$vbar = $obj->VertScrollBar;
 			self::$timer 	   = new TTimerEx();
 			self::$timer->interval = 5;
 			self::$timer->workbackground = true;
 			self::$timer->repeat = true;
-			self::$timer->prioruty = tpTimeCritical;
+			self::$timer->prioruty = tpHigher;
 			self::$timer->onTimer = __CLASS__ . '::onTimer';
 		}
 		self::$timer->enabled = true;
@@ -741,31 +747,28 @@ class ev_fmMain_shapeSize {
     
     static function onTimer($self){
         
-        global $curType, $shapeSize, $_preY, $_preX, $fmEdit;
+        global $curType, $shapeSize, $_preY, $_preX, $fmEdit, $_scgridSize;
         
-        $obj = _c(self::$self_object);
+        $obj = self::$self_object;
 	/////// Просто ужаснейший костыль, наверное. но другого выхода не нашёл \\\\\\\
-		$x = cursor_offsetted_x($obj)  + $obj->parent->HorzScrollBar->position;
-		$y = cursor_offsetted_y($obj) - 20 + $obj->parent->VertScrollBar->position;
+		$x = cursor_offsetted_x($obj)  + self::$hbar->position;
+		$y = cursor_offsetted_y($obj) - 20 + self::$vbar->position;
 		//20, position - фикс бага с TScrollBox, т.к при перемещении формы он задаёт ей позицию как пожелает
 		
         if ($shapeSize)
 		{
 			$w   = $obj->w;
 			$h   = $obj->h;
-			
+			if ($fmEdit->autoSize) return;
 			$fW   = $fmEdit->w;
 			$fH   = $fmEdit->h;
 			$minW = $fmEdit->constraints->minWidth;
 			$minH = $fmEdit->constraints->minHeight;
 			$maxW = $fmEdit->constraints->maxWidth;
 			$maxH = $fmEdit->constraints->maxHeight;
-			$aSize= $fmEdit->autoSize;
-			$gridSize = myOptions::get('sc','gridSize',8);
         
             if ($fW<0 || $fH<0) return;
                 
-            if ($aSize) return;
             
             $obj->cursor = $curType;
             
@@ -778,20 +781,20 @@ class ev_fmMain_shapeSize {
             $new_w = $new_w - $new_w% $gridSize;
             
             if ($curType==crSizeWE || $curType==crSizeNWSE){
-                if ((($new_w-($gridSize * 2)-1 < $maxW) || $maxW==0) && (($new_w-($gridSize * 2)-1 > $minW) || $minW==0)){
-                    c('fmMain->shapeSize',1)->w = $new_w < 1 ? $gridSize * 2 : ($new_w - $gridSize * 2) + 17;
-                    $fmEdit->w = $new_w-$gridSize * 2;
+                if ((($new_w-($_scgridSize * 2)-1 < $maxW) || $maxW==0) && (($new_w-($_scgridSize * 2)-1 > $minW) || $minW==0)){
+                    c('fmMain->shapeSize',1)->w = $new_w < 1 ? $_scgridSize * 2 : ($new_w - $_scgridSize * 2) + 17;
+                    $fmEdit->w = $new_w-$_scgridSize * 2;
                 }
             }
             
             $new_h = $y+1 + $_preY;
-            $new_h = $new_h - ($new_h % $gridSize );
+            $new_h = $new_h - ($new_h % $_scgridSize );
             
             if ($curType==crSizeNS || $curType==crSizeNWSE){
                 
-                if ((($new_h-($gridSize * 2)-1 < $maxH) || $maxH==0) && (($new_h-($gridSize * 2)-1 > $minH) || $minH==0)){
-                    c('fmMain->shapeSize',1)->h = $new_h < 1 ? $gridSize * 2 : ($new_h - $gridSize * 2) + 17;
-                    $fmEdit->h = $new_h - $gridSize * 2;
+                if ((($new_h-($_scgridSize * 2)-1 < $maxH) || $maxH==0) && (($new_h-($_scgridSize * 2)-1 > $minH) || $minH==0)){
+                    c('fmMain->shapeSize',1)->h = $new_h < 1 ? $_scgridSize * 2 : ($new_h - $_scgridSize * 2) + 17;
+                    $fmEdit->h = $new_h - $_scgridSize * 2;
                 }
                
             }

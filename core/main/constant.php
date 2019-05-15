@@ -53,7 +53,6 @@ class TConstantList{
 		if( defined($nm) ){
 			if( isset($this->defines[$nm]) )
 				unset($this->defines[$nm]);
-			runkit_constant_remove($nm);
 		}
 	}
 	
@@ -61,7 +60,6 @@ class TConstantList{
 		if( defined($nm) ){
 			if( isset($this->defines[$nm]) )
 				unset($this->defines[$nm]);
-			runkit_constant_remove($nm);
 			
 			$this->defines[$nm] = $val;
 			define($nm,$val, false);
@@ -499,9 +497,7 @@ protected $name;
 					if( defined($this->name) )
 						if( isset($GLOBALS['_c']) ) {
 							$GLOBALS['_c']->delete($this->name);
-						} else {
-							runkit_constant_remove($this->name);
-						}		
+						}	
 									$this->name		= $value;
 						if( isset($GLOBALS['_c']) ) {
 							$GLOBALS['_c']->add($value, $this);

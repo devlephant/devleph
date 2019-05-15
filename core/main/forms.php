@@ -121,7 +121,12 @@ class TForm extends TControl
 		}
 		return $this->_constraints;
 	}
+	function Capture()
+	{
+		ReleaseCapture();
+		$this->perform(0x112, 0xF012, 0);
 
+	}
 	function Show($mode = SW_SHOW){
 		if( $mode == SW_SHOW )
 		{

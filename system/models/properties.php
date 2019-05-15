@@ -1169,8 +1169,6 @@ class myProperties {
                         $GLOBALS['dsg_cfg']->panelLeft->splitterW = $this->panels[$this->last_class]['PANEL']->splitterPosition;
                     }
                     else {
-					    //gui_propSet($this->panels[$class]['PANEL']->self, 'splitterPosition', $GLOBALS['dsg_cfg']->panelLeft->splitterW);
-                        
 						
 						if(is_object($GLOBALS['dsg_cfg']) && is_object($this))
 						if(isset($GLOBALS['dsg_cfg']) && isset($this->panels))
