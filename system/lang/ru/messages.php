@@ -694,6 +694,7 @@ $m['Local Variables']  = 'Локальные переменные';
 $m['Forms'] = 'Формы';
 $m['Scripts'] = 'Скрипты';
 $m['Exts'] = 'Расширения';
+$m['Project Tree'] = 'Древо проекта';
 $m['Object Properties'] = 'Свойства объектов';
 $m['Properties list'] = 'Список свойств';
 $m['Functions'] = 'Функции';
