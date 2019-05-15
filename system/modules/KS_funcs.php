@@ -22,12 +22,6 @@ function parent_get_prop_all($obj, $prop){
 	return $arr;
 }
 
-function extend($class, $extend_class){
-	if(class_exists($class)&&class_exists($extend_class)){
-		runkit_class_adopt($class, $extend_class);
-		return runkit_class_emancipate($class);
-	}else{ return False; }
-}
 function parent_set_prop_all($obj, $prop, $value, $bool=1, $res=false){
 	if( !$res )
 	{
@@ -107,7 +101,7 @@ function print_out($var, $to = null, $n = null){
 	switch( true ){
 		case is_file($to): file_put_contents($to, $v);
 		case is_resource($to): fwrite($to, $v);
-		case is_object($to): if( get_class($to) == 'Runkit_Sandbox' && !$n ){ $to->eval($v); }else{ $to->$n = $var; };
+		case is_object($to): $to->$n = $var;
 		case !$to: gui_message($v);
 	}
 }
@@ -162,12 +156,7 @@ function dvar($var){
 	return $data;
 }
 
-function reload_included() { 
-  $files = get_included_files(); 
-  foreach($files as $file){ 
-    if (runkit_lint_file($file)){ runkit_import($file); }else { return false; }
-  } 
-} 
+ 
 function eval2( $code, $quite ){
 	$aerr = dsErrorDebug::ErrStatus();
 	if($aerr and $quite){ dsErrorDebug::hide(); }; 
