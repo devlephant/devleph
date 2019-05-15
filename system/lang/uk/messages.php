@@ -605,6 +605,8 @@ $m['Show grid'] = 'Відображати сітку';
 $m['Grid Size'] = 'Розмір сітки';
 $m['Components'] = 'Компоненти';
 $m['Object inspector'] = "Інспектор об'єктів";
+$m['Exts'] = 'Розширення';
+$m['Project Tree'] = 'Дерево Проекту';
 $m['Fast replace'] = 'Швидка заміна';
 
 $m['Action Masters'] = 'Дії';
@@ -932,7 +934,7 @@ $m['Super Max'] = 'Надмаксимально';
 $m['upx_None'] = 'Не сжимати';
 $m['service'] = 'Сервіс';
 $m['Scripts of project'] = 'Скрипти проекта';
-
+$m['Scripts'] = 'Скрипти';
 $m['Small Icons'] = 'Маленькі іконки';
 $m['Icons + text'] = 'Іконки + текст';
 $m['Props and Events'] = 'Параметри і Події';
