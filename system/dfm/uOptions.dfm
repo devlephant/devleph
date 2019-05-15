@@ -70,7 +70,7 @@ object fmOptions: TfmOptions
       object backup_active: TCheckBox
         Left = 16
         Top = 16
-        Width = 158
+        Width = 262
         Height = 17
         Caption = '{Backup Projects}'
         Checked = True
