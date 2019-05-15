@@ -3,9 +3,6 @@
 
 class myDesign {
     static $canselect = true;
-    static function splitterLeftSize($self){
-        
-    }
     
     static function formName(){
         

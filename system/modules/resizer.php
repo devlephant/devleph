@@ -22,17 +22,19 @@ class resize{
 	}
     static function Perform($obj, $func=false, $speed=false, $time=false, ...$Props) 
     {
-		for($i=0;$i<count($Props);$i++)
-		{
-			if( !is_string( $Props[$i][0] ) ) unset($Props[$i]);
-			if( !isset( $Props[$i][1]) ) unset($Props[$i]);
-			
-		}
 		if( empty($Props) )
 		{
 			trigger_error(t("\"%s\" class error", __CLASS__) . ":" . t("cannot create sizing model without correct parameters!"));
 			return false;
 		}
+		for($i=0;$i<count($Props);$i++)
+		{
+			if( count($Props[$i]) == 1 && is_array($Props[$i]) )
+				$Props[$i] = [array_keys($Props)[0], $Props[0]];
+			if( !is_string( $Props[$i][0] ) ) unset($Props[$i]);
+			if( !isset( $Props[$i][1]) ) unset($Props[$i]);	
+		}
+		
 		if($time!==false) $time += microtime(1);
         self::$objects[$obj->self] = [$Props, $func, $speed, $time];
 		return true;
