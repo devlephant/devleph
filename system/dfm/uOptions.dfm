@@ -152,6 +152,15 @@ object fmOptions: TfmOptions
         MarginLeft = 0
         MarginRight = 0
       end
+      object label9: TLabel
+        Left = 312
+        Top = 24
+        Width = 56
+        Height = 15
+        HelpType = htKeyword
+        HelpKeyword = 'AAAAAhQCEQVDTEFTUxEGVExhYmVsEQZQQVJBTVMUAhEBeAgBSBEBeQYY'
+        Caption = '{Pen Style}'
+      end
       object c_showgrid: TCheckBox
         Left = 16
         Top = 16
@@ -273,6 +282,29 @@ object fmOptions: TfmOptions
           'X25hbWUOChEIACoAX2ZvbnQAEQRzZWxmCggWEpARCAAqAHByb3BzFAARBHRleHQR' +
           'CNHy8LPr6ugxEQp3aW5jb250cm9sBBEBeRECNTYRAXgRAzI4Nw=='
         TabOrder = 3
+      end
+      object cb_penstyle: TComboBox
+        Left = 312
+        Top = 40
+        Width = 136
+        Height = 23
+        HelpType = htKeyword
+        HelpKeyword = 
+          'AAAAAhQCEQVDTEFTUxEJVENvbWJvQm94EQZQQVJBTVMUBxEIYXZpc2libGUFEQhh' +
+          'ZW5hYmxlZAURAXcMQFoAAAAAAAARAWgMAAAAAAAAAAARC29ubW91c2Vkb3duERZt' +
+          'eURlc2lnbjo6b2JqTW91c2VEb3duEQF4CAFIEQF5Big='
+        ItemIndex = 1
+        Text = 'psDash'
+        Items.Strings = (
+          'psSolid'
+          'psDash'
+          'psDot'
+          'psDashDot'
+          'psDashDotDot'
+          'psClear'
+          'psInsideFrame'
+          'psUserStyle'
+          'psAlternate')
       end
     end
   end
