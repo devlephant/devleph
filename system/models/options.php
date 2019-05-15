@@ -277,6 +277,11 @@ class myOptions {
         global $_sc;
         c('fmOptions->c_showgrid')->checked = (bool)myOptions::get('sc','showGrid',false);
         c('fmOptions->e_gridsize')->text    = c('fmOptions->up_gridsize')->position = myOptions::get('sc','gridSize',8);
+	    
+	${00} = array('psSolid', 'psDash', 'psDot', 'psDashDot', 'psDashDotDot', 'psClear', 'psInsideFrame', 'psUserStyle', 'psAlternate');
+	${01} = myOptions::get('sc','penStyle',1);
+	    
+		c('fmOptions->cb_penstyle')->inText = ${00}[${01}];
 		c('fmOptions->backup_active')->checked = (bool)myOptions::get('backup','active',true);
 		c('fmOptions->en_bc')->brushColor = myOptions::get('sc','BtnColor',clBlue);
 		c('fmOptions->dis_bc')->brushColor = myOptions::get('sc','BtnColorDisabled', clGray);
@@ -299,6 +304,8 @@ class myOptions {
 			if ( !eregi('$([.\-\_a-zа-яА-Я0-9]+)', $dir) )
 				$dir = 'backup';
 				
+			myOptions::set('sc','penStyle', c('fmOptions->cb_penstyle')->itemIndex);	
+		
 			myOptions::set('backup','dir', $dir);
 			myOptions::set('backup','interval', (int)c('fmOptions->backup_interval')->text);
 			myOptions::set('backup','count', (int)c('fmOptions->backup_count')->text);
@@ -327,6 +334,7 @@ class myOptions {
 			$_sc->BtnColorDisabled = myOptions::get('sc','BtnColorDisabled',clGray);
 			$_sc->showGrid = (bool)myOptions::get('sc','showGrid',false);
 			$_sc->gridSize = myOptions::get('sc','gridSize',8);
+			c('fmMain->shapeSize')->penStyle = myOptions::get('sc','penStyle',1);
 			c('fmOptions->en_bc')->penColor = myOptions::get('sc','pEn',clBlack);
 			c('fmOptions->dis_bc')->penColor = myOptions::get('sc','pDis', clBlack);
 			c('fmOptions->sel_color')->penColor = myOptions::get('sc','pSel', 12615808);
