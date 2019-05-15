@@ -519,7 +519,7 @@ class myProject {
         self::showIncorrect();
 		myInspect::genList(false);
 		dsAPI::callProjectChangeFunc($projectFile);
-		
+	treeBwr_add();
     }
     
     
