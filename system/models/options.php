@@ -276,7 +276,8 @@ class myOptions {
         
         global $_sc;
         c('fmOptions->c_showgrid')->checked = (bool)myOptions::get('sc','showGrid',false);
-        c('fmOptions->e_gridsize')->text    = c('fmOptions->up_gridsize')->position = (int)myOptions::get('sc','gridSize',8);	    
+        c('fmOptions->e_gridsize')->text    = c('fmOptions->up_gridsize')->position = (int)myOptions::get('sc','gridSize',8);
+		c('fmOptions->e_fs')->text = c("fmOptions->up_fs")->position = (int)myOptions::get('sc', 'offset', 8);
 		c('fmOptions->cb_penstyle')->itemIndex = (int)myOptions::get('sc','SizerPenStyle',2);
 		c('fmOptions->backup_active')->checked = (bool)myOptions::get('backup','active',true);
 		c('fmOptions->en_bc')->brushColor = myOptions::get('sc','BtnColor',clBlue);
@@ -304,19 +305,11 @@ class myOptions {
 			if ( !eregi('$([.\-\_a-zа-яА-Я0-9]+)', $dir) )
 				$dir = 'backup';
 		
-			myOptions::set('backup','dir', $dir);
-			myOptions::set('backup','interval', (int)c('fmOptions->backup_interval')->text);
-			myOptions::set('backup','count', (int)c('fmOptions->backup_count')->text);
+				myOptions::set('backup','dir', $dir);
+				myOptions::set('backup','interval', (int)c('fmOptions->backup_interval')->text);
+				myOptions::set('backup','count', (int)c('fmOptions->backup_count')->text);
 			
-			myBackup::updateSettings();
-			
-            $_sc->showGrid = (bool)myOptions::get('sc','showGrid',true);
-            
-            if ((int)c('fmOptions->e_gridsize')->text > 0){
                 myOptions::set('sc','gridSize', (int)c('fmOptions->e_gridsize')->text);
-				$_sc->gridSize = myOptions::get('sc','gridSize',8);
-            }
-			
 				myOptions::set('sc','SizerPenStyle', c('fmOptions->cb_penstyle')->itemIndex);	
 				myOptions::set('sc','BtnColor', c('fmOptions->en_bc')->brushColor);
 				myOptions::set('sc','BtnColorDisabled', c('fmOptions->dis_bc')->brushColor);
@@ -328,17 +321,21 @@ class myOptions {
 				myOptions::set('sc','pSel', c('fmOptions->sel_color')->penColor);
 				myOptions::set('sc','pSin', c('fmOptions->scol_inn')->penColor);
 				myOptions::set('sc','pSout', c('fmOptions->scol_out')->penColor);
-
-				$_sc->BtnColor = myOptions::get('sc','BtnColor',clBlue);
-				$_sc->BtnColorDisabled = myOptions::get('sc','BtnColorDisabled',clGray);
-				//->penColor
-            c('fmEdit')->repaint();
-            
+				myOptions::set('sc', 'offset', (int)c('fmOptions->e_fs')->text);
+				$GLOBALS['sc_offset'] = (int)c('fmOptions->e_fs')->text;		
+				myBackup::updateSettings();				
         } else {
+			global $fmEdit;
 			$_sc->BtnColor = myOptions::get('sc','BtnColor',clBlue);
 			$_sc->BtnColorDisabled = myOptions::get('sc','BtnColorDisabled',clGray);
 			$_sc->showGrid = (bool)myOptions::get('sc','showGrid',false);
-			$_sc->gridSize = myOptions::get('sc','gridSize',8);
+			$_sc->gridSize = (int)myOptions::get('sc','gridSize',8);
+			$GLOBALS['sc_offset'] = (int)myOptions::get('sc', 'offset', 8);
+			$obj = c("fmMain->shapeSize");
+			$obj->w = $fmEdit->w + $GLOBALS['sc_offset'] * 2;
+			$obj->h = $fmEdit->h + $GLOBALS['sc_offset'] * 2;
+			$fmEdit->x = $obj->x + $GLOBALS['sc_offset'];
+			$fmEdit->y = $obj->y + $GLOBALS['sc_offset'];
 			c('fmMain->shapeSize')->penStyle = myOptions::get('sc','SizerPenStyle',2);
 			c('fmMain->shapeSize')->brushColor = myOptions::get('sc', 'SizerInnerColor', 12632256);
 			c('fmMain->shapeSize')->penColor = myOptions::get('sc', 'SizerOuterColor', clBlack);

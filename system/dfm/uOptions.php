@@ -10,11 +10,30 @@ class ev_fmOptions_c_showgrid {
 class ev_fmOptions_e_gridsize {
 	static function onChange($self){
 		global $_sc;
-		c('fmOptions->up_gridsize')->position = (int)c($self)->text;
+		$obj = _c($self);
+		if( (int)$obj->text < 1 ) $obj->text = 1;
+		if( (int)$obj->text > 50) $obj->text = 50;
+		c('fmOptions->up_gridsize')->position = $obj->text;
 		if( c('fmOptions->c_showgrid')->checked ) {
 			$_sc->gridSize = c('fmOptions->up_gridsize')->position;
 			c('fmEdit')->repaint();
 		}
+	}
+}
+
+class ev_fmOptions_e_fs {
+	static function onChange($self){
+		$obj = _c($self);
+		global $fmEdit;
+		if( (int)$obj->text < 2 ) $obj->text = 2;
+		if( (int)$obj->text > 14 )$obj->text = 14;
+		$fs = (int)$obj->text;
+		$obj = c("fmMain->shapeSize");
+		$obj->w = $fmEdit->w + $fs * 2;
+		$obj->h = $fmEdit->h + $fs * 2;
+		$fmEdit->x = $obj->x + $fs;
+		$fmEdit->y = $obj->y + $fs;
+		c('fmEdit')->repaint();
 	}
 }
 

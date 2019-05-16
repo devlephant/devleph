@@ -242,7 +242,7 @@ class evfmMain {
         c('fmPHPEditor->memo')->color = $ini->read('main','color',clWhite);
 		c('fmMain->shapeSize')->penStyle = (int)myOptions::get('sc','SizerPenStyle',2);
 		c('fmMain->shapeSize')->brushColor = myOptions::get('sc','SizerInnerColor',12632256);
-		$GLOBALS['sc_offset'] = (int)myOptions::get('sc', 'offset', 4);
+		$GLOBALS['sc_offset'] = (int)myOptions::get('sc', 'offset', 8);
         c('fmMain->shapeSize')->penColor = myOptions::get('sc','SizerOuterColor',clBlack);
 		myOptions::getXYWH('rundebug', c('fmRunDebug'));
 		

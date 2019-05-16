@@ -150,72 +150,109 @@ object fmOptions: TfmOptions
         TabOrder = 1
       end
 	object groupBox1: TGroupBox
-     Left = 312
-     Top = 17
-     Width = 152
-     Height = 167
-     Caption = '{Sizing Colors}'
-     ParentColor = False
-     TabOrder = 5
-      object label9: TLabel
-        Left = 8
-        Top = 24
-        Width = 136
-        Height = 16
-		AutoSize = False
-        Caption = '{Pen Style}'
+        Left = 312
+        Top = 1
+        Width = 152
+        Height = 183
+        Caption = '{Sizing Colors}'
+        Color = clBtnFace
+        ParentColor = False
+        TabOrder = 4
+        object label9: TLabel
+          Left = 8
+          Top = 17
+          Width = 136
+          Height = 16
+          AutoSize = False
+          Caption = '{Pen Style}'
+        end
+        object label11: TLabel
+          Left = 8
+          Top = 139
+          Width = 136
+          Height = 16
+          AutoSize = False
+          Caption = '{Outer Color}'
+        end
+        object scol_out: TShape
+          Left = 8
+          Top = 156
+          Width = 136
+          Height = 20
+          Brush.Color = 10070188
+          Pen.Width = 2
+        end
+        object scol_inn: TShape
+          Left = 8
+          Top = 116
+          Width = 136
+          Height = 20
+          Brush.Color = 14215660
+          Pen.Width = 2
+        end
+        object label10: TLabel
+          Left = 8
+          Top = 99
+          Width = 136
+          Height = 16
+          AutoSize = False
+          Caption = '{Inner Color}'
+        end
+        object label12: TLabel
+          Left = 8
+          Top = 59
+          Width = 80
+          Height = 16
+          AutoSize = False
+          Caption = '{Frame Offset}'
+        end
+        object cb_penstyle: TComboBox
+          Left = 8
+          Top = 33
+          Width = 136
+          Height = 22
+          Style = csOwnerDrawFixed
+          ItemIndex = 0
+          TabOrder = 0
+          Text = 'psSolid'
+          Items.Strings = (
+            'psSolid'
+            'psDash'
+            'psDot'
+            'psDashDot'
+            'psDashDotDot'
+            'psClear'
+            'psInsideFrame'
+            'psUserStyle'
+            'psAlternate')
+        end
+        object e_fs: TEdit
+          Left = 8
+          Top = 76
+          Width = 128
+          Height = 20
+          Alignment = taLeftJustify
+          TabOrder = 1
+          Text = '8'
+          TextHint = ''
+          ColorOnEnter = clNone
+          FontColorOnEnter = clNone
+          TabOnEnter = False
+          MarginLeft = 0
+          MarginRight = 0
+        end
+        object up_fs: TUpDown
+          Left = 133
+          Top = 75
+          Width = 12
+          Height = 22
+		  Min = 2
+		  Max = 14
+		  Associate = e_fs
+          TabOrder = 2
+          Thousands = False
+        end
       end
-	  object cb_penstyle: TComboBox
-        Left = 8
-        Top = 39
-        Width = 136
-        Height = 23
-		Style = csOwnerDrawFixed
-		ItemIndex = 0
-        Items.Strings = (
-          'psSolid'
-          'psDash'
-          'psDot'
-          'psDashDot'
-          'psDashDotDot'
-          'psClear'
-          'psInsideFrame'
-          'psUserStyle'
-          'psAlternate')
-      end
-	  object label10: TLabel
-        Left = 8
-        Top = 72
-        Width = 136
-        Height = 16
-		AutoSize = False
-        Caption = '{Inner Color}'
-      end
-	  object scol_inn: TShape
-		Left = 8
-		Top = 88
-		Width = 136
-		Height = 20
-		Pen.Width = 2
-		Brush.Color = 14215660
-	  end
-	  object label11: TLabel
-        Left = 8
-        Top = 120
-        Width = 136
-        Height = 16
-		AutoSize = False
-        Caption = '{Outer Color}'
-      end
-	  object scol_out: TShape
-		Left = 8
-		Top = 136
-		Width = 136
-		Height = 20
-		Pen.Width = 2
-		Brush.Color = 10070188
-	  end
-	end
       object clrs: TGroupBox
         Left = 16
         Top = 84
