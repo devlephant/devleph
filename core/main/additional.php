@@ -218,9 +218,7 @@ class TImage extends TControl {
 	public function get_Canvas(){
 		
 		if( !isset($this->_canvas) )
-		$this->_canvas = new TCanvas(false);
-	
-		$this->_canvas->self = component_canvas($this->self);
+		$this->_canvas = new TCanvas($this,false,component_canvas($this->self));
 		
 		return $this->_canvas;
 	}

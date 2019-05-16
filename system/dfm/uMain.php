@@ -125,7 +125,9 @@ class evfmMain {
         global $dsg_cfg, $_sc, $fmEdit, $fmComponents, $fmMain, $fmObjInspect;
         $_sc->clearTargets();
         myProperties::unFocusPanel(); // fix AV !!!
-        
+		$dsg_cfg->main->SizerInnerColor = (int)$_sc->MovePanelCanvas->brush->color;
+		$dsg_cfg->main->SizerOuterColor = (int)$_sc->MovePanelCanvas->pen->color;
+		$dsg_cfg->main->SizerPenStyle = myOptions::get('sc', 'SizerPenStyle');
         $dsg_cfg->main->gridSize = $_sc->gridSize;
         $dsg_cfg->main->BtnColor = (int)$_sc->BtnColor;
 		$dsg_cfg->main->BtnColorDisabled = (int)$_sc->BtnColorDisabled;

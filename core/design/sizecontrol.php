@@ -40,7 +40,6 @@ class TSizeCtrl extends TControl{
     
     public function set_enable($b){ sizectrl_enable($this->self, $b); }
     public function get_enable()  { return sizectrl_enable($this->self, null); }
-    
     public function set_popupMenu($menu){
         $men = is_numeric($menu)? $menu: (is_object($menu)? $menu->self: -222);
 		if($men === -222) return;

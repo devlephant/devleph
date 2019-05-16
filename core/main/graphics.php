@@ -183,19 +183,14 @@ function point($x,$y){
 ///                             TPen, TBrush                                ///
 ///	I do not really want to explain you thia things							///
 ///////////////////////////////////////////////////////////////////////////////
-class TPen extends TComponent{
-    
-    
+class TPen extends TComponent
+{
     public $self;
-    function __construct($onwer = nil,$init = true,$self = nil){}
 }
 
-class TBrush extends TComponent{
-    
-    
+class TBrush extends TComponent
+{   
     public $self;
-    
-    function __construct($onwer = nil,$init = true,$self = nil){}
 }
 
 
@@ -203,15 +198,6 @@ class TBrush extends TComponent{
 ///                             TCanvas                                     ///
 ///////////////////////////////////////////////////////////////////////////////
 class TCanvas extends TControl{
-        
-    
-    public $pen;
-    public $brush;
-    public $font;
-    
-    function __construct($init=true){
-	
-    }
     
     function lineTo($x, $y){
 	
@@ -511,11 +497,7 @@ class TBitmap extends TGraphic{
     }
 	
 	public function get_Canvas(){
-		
-		$tmp = new TCanvas(false);
-		$tmp->self = bitmap_canvas($this->self);
-		
-		return $tmp;
+		return new TCanvas($this,false,bitmap_canvas($this->self));;
 	}
 	
 	public function setSizes($width, $height){

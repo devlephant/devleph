@@ -54,7 +54,9 @@ if (!EMULATE_DVS_EXE){
 
     $_sc = new TSizeCtrl($fmEdit);
     $_sc->gridSize = $dsg_cfg->main->gridSize;
-
+	$_sc->MovePanelCanvas->brush->color = (int)$dsg_cfg->main->SizerInnerColor;
+	$_sc->MovePanelCanvas->pen->color = (int)$dsg_cfg->main->SizerOuterColor;
+	$_sc->MovePanelCanvas->pen->style = (int)$dsg_cfg->main->SizerPenStyle;
     $_sc->BtnColor = (int)$dsg_cfg->main->BtnColor;
 	$_sc->BtnColorDisabled = (int)$dsg_cfg->main->BtnColorDisabled;
 	

@@ -180,6 +180,9 @@ class myUtils {
         $_sc = new TSizeCtrl($form);
         $_sc->showGrid = (bool)myOptions::get('sc','showGrid',false);
         $_sc->gridSize = myOptions::get('sc','gridSize',8);
+		$_sc->MovePanelCanvas->brush->color = myOptions::get('sc', 'SizerInnerColor', 12632256);
+		$_sc->MovePanelCanvas->pen->color = myOptions::get('sc', 'SizerOuterColor', clBlack);
+		$_sc->MovePanelCanvas->pen->style = (int)myOptions::get('sc','SizerPenStyle',2);
 		$_sc->BtnColor = myOptions::get('sc','BtnColor',clBlue);
 		$_sc->BtnColorDisabled = myOptions::get('sc','BtnColorDisabled',clGray);
         

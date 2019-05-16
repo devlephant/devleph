@@ -314,8 +314,13 @@ class myOptions {
 				myOptions::set('sc','BtnColor', c('fmOptions->en_bc')->brushColor);
 				myOptions::set('sc','BtnColorDisabled', c('fmOptions->dis_bc')->brushColor);
 				myOptions::set('sc','SelectColor', c('fmOptions->sel_color')->brushColor);
-				myOptions::set('sc', 'SizerInnerColor', c('fmOptions->scol_inn')->brushColor);
-				myOptions::set('sc', 'SizerOuterColor', c('fmOptions->scol_out')->brushColor);
+				
+				$_sc->MovePanelCanvas->brush->color = c('fmOptions->scol_inn')->brushColor;
+				$_sc->MovePanelCanvas->pen->color = c('fmOptions->scol_out')->brushColor;
+				$_sc->MovePanelCanvas->pen->style = c('fmOptions->cb_penstyle')->itemIndex;
+				
+				myOptions::set('sc', 'SizerInnerColor', (int)c('fmOptions->scol_inn')->brushColor);
+				myOptions::set('sc', 'SizerOuterColor', (int)c('fmOptions->scol_out')->brushColor);
 				myOptions::set('sc','pEn',  c('fmOptions->en_bc')->penColor);
 				myOptions::set('sc','pDis', c('fmOptions->dis_bc')->penColor);
 				myOptions::set('sc','pSel', c('fmOptions->sel_color')->penColor);
