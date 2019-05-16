@@ -18,17 +18,6 @@ class ev_fmOptions_e_gridsize {
 	}
 }
 
-class ev_fmOptions_up_gridsize {
-	static function onClick($self){
-		global $_sc;
-		c('fmOptions->e_gridsize')->text = c($self)->position;
-		if( c('fmOptions->c_showgrid')->checked ) {
-			$_sc->gridSize = c($self)->position;
-			c('fmEdit')->repaint();
-		}
-	}
-}
-
 class ev_fmOptions_cb_penstyle {
 	static function onSelect($self){
 		c('fmMain->shapeSize')->penStyle = c('fmOptions->cb_penstyle')->itemIndex;

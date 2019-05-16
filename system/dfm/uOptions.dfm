@@ -330,6 +330,9 @@ object fmOptions: TfmOptions
         Top = 55
         Width = 12
         Height = 25
+		Min = 1
+		Max = 50
+		Associate = e_gridsize
 		Thousands = False
 		Position = 8
         TabOrder = 3

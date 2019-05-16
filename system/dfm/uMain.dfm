@@ -664,7 +664,7 @@ object fmMain: TfmMain
 	  VertScrollBar.Smooth = True
 	  VertScrollBar.Tracking = True
       object shapeSize: TShape
-        Left = 2
+        Left = 1
         Top = 1
         Width = 559
         Height = 360

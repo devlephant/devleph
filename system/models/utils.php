@@ -199,8 +199,8 @@ class myUtils {
             }
         }
         
-        c('fmMain->shapeSize')->w = $form->w + 17;
-        c('fmMain->shapeSize')->h = $form->h + 17;
+        c('fmMain->shapeSize')->w = $form->w + $GLOBALS['sc_offset']*2;
+        c('fmMain->shapeSize')->h = $form->h + $GLOBALS['sc_offset']*2;
          
          
         /*foreach ($targets_ex as $el){
@@ -332,10 +332,10 @@ class myUtils {
             $fmEdit->repaint();
             $fmEdit->show();
         }
-		if( $fmEdit->y !== (c("fmMain->shapeSize")->y + 9) ) 
+		if( $fmEdit->y !== (c("fmMain->shapeSize")->y + $GLOBALS['sc_offset']) ) 
 			{
-				$fmEdit->y = c("fmMain->shapeSize")->y + 9;
-				$fmEdit->x = c("fmMain->shapeSize")->x + 8;
+				$fmEdit->y = c("fmMain->shapeSize")->y + $GLOBALS['sc_offset'];
+				$fmEdit->x = c("fmMain->shapeSize")->x + $GLOBALS['sc_offset'];
             }
         myProject::loadFormInfo();
 

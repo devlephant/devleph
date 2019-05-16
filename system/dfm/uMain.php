@@ -242,6 +242,7 @@ class evfmMain {
         c('fmPHPEditor->memo')->color = $ini->read('main','color',clWhite);
 		c('fmMain->shapeSize')->penStyle = (int)myOptions::get('sc','SizerPenStyle',2);
 		c('fmMain->shapeSize')->brushColor = myOptions::get('sc','SizerInnerColor',12632256);
+		$GLOBALS['sc_offset'] = (int)myOptions::get('sc', 'offset', 8);
         c('fmMain->shapeSize')->penColor = myOptions::get('sc','SizerOuterColor',clBlack);
 		myOptions::getXYWH('rundebug', c('fmRunDebug'));
 		
@@ -771,17 +772,17 @@ class ev_fmMain_shapeSize {
             
             $obj->cursor = $curType;
             
-            if( $fmEdit->y !== (c("fmMain->shapeSize")->y + 9) ) 
+            if( $fmEdit->y !== (c("fmMain->shapeSize")->y + $GLOBALS['sc_offset']) ) 
 			{
-				$fmEdit->y = c("fmMain->shapeSize")->y + 9;
-				$fmEdit->x = c("fmMain->shapeSize")->x + 8;
+				$fmEdit->y = c("fmMain->shapeSize")->y + $GLOBALS['sc_offset'];
+				$fmEdit->x = c("fmMain->shapeSize")->x + $GLOBALS['sc_offset'];
             }
             $new_w = $x+1 + $_preX;
             $new_w = $new_w - $new_w% $gridSize;
             
             if ($curType==crSizeWE || $curType==crSizeNWSE){
                 if ((($new_w-($_scgridSize * 2)-1 < $maxW) || $maxW==0) && (($new_w-($_scgridSize * 2)-1 > $minW) || $minW==0)){
-                    c('fmMain->shapeSize',1)->w = $new_w < 1 ? $_scgridSize * 2 : ($new_w - $_scgridSize * 2) + 17;
+                    c('fmMain->shapeSize',1)->w = $new_w < 1 ? $_scgridSize * 2 : ($new_w - $_scgridSize * 2) + $GLOBALS['sc_offset']*2;
                     $fmEdit->w = $new_w-$_scgridSize * 2;
                 }
             }
@@ -792,7 +793,7 @@ class ev_fmMain_shapeSize {
             if ($curType==crSizeNS || $curType==crSizeNWSE){
                 
                 if ((($new_h-($_scgridSize * 2)-1 < $maxH) || $maxH==0) && (($new_h-($_scgridSize * 2)-1 > $minH) || $minH==0)){
-                    c('fmMain->shapeSize',1)->h = $new_h < 1 ? $_scgridSize * 2 : ($new_h - $_scgridSize * 2) + 17;
+                    c('fmMain->shapeSize',1)->h = $new_h < 1 ? $_scgridSize * 2 : ($new_h - $_scgridSize * 2) + $GLOBALS['sc_offset']*2;
                     $fmEdit->h = $new_h - $_scgridSize * 2;
                 }
                
