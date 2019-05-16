@@ -161,7 +161,7 @@ class TObject extends _Object {
     
     function free(){
 	
-		if (class_exists('animate'))
+		if (class_exists('animate',false))
 			animate::objectFree($this->self);
 		gui_destroy($this->self);
 		//obj_free($this->self);	
@@ -169,7 +169,7 @@ class TObject extends _Object {
 	
 	function safeFree(){
 		
-		if (class_exists('animate'))
+		if (class_exists('animate',false))
 			animate::objectFree($this->self);
 		gui_safeDestroy($this->self);
 	}
@@ -1135,7 +1135,7 @@ function __autoload($name)
 global $__autoload;
 $__autoload = function($name)
 {
-	if( $name == 'TSynSelectedColor' or substr($name, 0, 2) == 'ev' or  substr($name, 0, 7) == 'modifer' ) return;
+	if( $name == 'TSynSelectedColor' ) return;
 		if( gui_class_isset($name) )
 		{	
 			$parent = gui_class_parent($name);

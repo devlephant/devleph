@@ -89,7 +89,7 @@ class myCompile
 			foreach ($objs as $obj) {
 				$class = 'modifer_' . $obj['CLASS'];
 
-				if (class_exists($class)) {
+				if (class_exists($class,false)) {
 					if ($check) {
 						if (method_exists($class, 'listEvent')) {
 							$tmp = new $class();

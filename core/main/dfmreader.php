@@ -124,12 +124,12 @@ function loadFormEvents(TForm &$form){
                         $ev = $events[$j];
                         $class = 'ev' . $name . $o_name;
 			
-			if (!class_exists($class))
+			if (!class_exists($class,false))
 				$class = 'ev_' . $name . '_' . $o_name; 
-			if (!class_exists($class))
+			if (!class_exists($class,false))
 				$class = 'ev_' . $o_name;
 			
-                        if (!class_exists($class)) continue;
+                        if (!class_exists($class,false)) continue;
                         if (!method_exists($class,$ev)) continue;
 			
 			set_event($self, $ev, $class . '::' . $ev);

@@ -599,6 +599,7 @@ object fmMain: TfmMain
 			object TreeProject: TTreeView
 			Left = 0
 			Top = 0
+			BorderStyle = bsNone
 		    Align = alClient
 			AutoExpand = True
 			Indent = 19

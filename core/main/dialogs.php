@@ -100,7 +100,7 @@ class __TNoVisual extends TControl {
 		if( is_callable($this->onDestroy) )
 			$this->onDestroy();
 		
-		if (class_exists('animate'))
+		if (class_exists('animate',false))
 			animate::objectFree($this->self);
 		
 		gui_destroy($this->self);

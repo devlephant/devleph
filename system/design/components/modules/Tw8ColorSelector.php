@@ -606,7 +606,7 @@ if( !$GLOBALS['APP_DESIGN_MODE'] ) {
 			foreach($this->_toDelete as $chc)
 				gui_destroy($chc);
 				
-		if (class_exists('animate'))
+		if (class_exists('animate',false))
 			animate::objectFree($this->self);
 		
 		gui_destroy($this->self);
