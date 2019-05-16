@@ -38,7 +38,7 @@ object fmOptions: TfmOptions
         Top = 48
         Width = 94
         Height = 13
-        Caption = '{Backup Dir Name}'
+        Caption = '{Backup Directory Name}'
       end
       object Label3: TLabel
         Left = 16
@@ -46,13 +46,6 @@ object fmOptions: TfmOptions
         Width = 85
         Height = 13
         Caption = '{Backup Interval}'
-      end
-      object Label4: TLabel
-        Left = 199
-        Top = 126
-        Width = 25
-        Height = 13
-        Caption = '{min.}'
       end
       object Label5: TLabel
         Left = 248
@@ -88,7 +81,7 @@ object fmOptions: TfmOptions
       object backup_interval: TEdit
         Left = 16
         Top = 123
-        Width = 177
+        Width = 169
         Height = 21
         TabOrder = 2
         Text = '2'
@@ -99,11 +92,28 @@ object fmOptions: TfmOptions
         MarginLeft = 0
         MarginRight = 0
       end
+	  object up_bint: TUpDown
+		Left = 185
+		Top = 122
+		Width = 12
+		Height = 25
+		Min = 1
+		Associate = backup_interval
+	  end
+	  object Label4: TLabel
+        Left = 199
+        Top = 123
+        Width = 32
+        Height = 23
+		Autosize = False
+		Layout = tlBottom
+        Caption = '{min.}'
+      end
       object backup_count: TEdit
         Left = 248
         Top = 123
-        Width = 201
-        Height = 21
+        Width = 189
+        Height = 23
         TabOrder = 3
         Text = '3'
         Alignment = taLeftJustify
@@ -113,6 +123,14 @@ object fmOptions: TfmOptions
         MarginLeft = 0
         MarginRight = 0
       end
+	  object up_bcnt: TUpDown
+		Left = 437
+		Top = 122
+		Width = 12
+		Height = 25
+		Min = 1
+		Associate = backup_count
+	  end
     end
     object TabSheet1: TTabSheet
       Caption = '{Size and move}'
