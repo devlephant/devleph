@@ -693,7 +693,7 @@ class ev_fmMain_shapeSize {
 	private static $hbar;
 	private static $vbar;
 	private static $timer;
-	
+	private static $phbars;
     static function typeCursor($self, $x, $y){
         
         $obj = toObject($self);
@@ -701,15 +701,15 @@ class ev_fmMain_shapeSize {
         $h   = $obj->h;
         $curType = crDefault;
         
-        if ( $y>$h-20 ){
+        if ( $y>$h-$GLOBALS['sc_offset'] ){
             $curType = crSizeNS;
         }
         
-        if ( $x>$w-20 ){
+        if ( $x>$w-$GLOBALS['sc_offset'] ){
             $curType = crSizeWE;
         }
         
-        if ( $y>$h-20 && $x>$w-20){
+        if ( $y>$h-$GLOBALS['sc_offset'] && $x>$w-$GLOBALS['sc_offset']){
             $curType = crSizeNWSE;
         }
         
@@ -722,10 +722,9 @@ class ev_fmMain_shapeSize {
         c('fmMain->pDockMain',1)->doubleBuffer = true;
         
         $obj = _c($self);
-        $_preX = $obj->w - $x;
-        $_preY = $obj->h - $y;
+       
         $shapeSize = true;
-		$_scgridSize = myOptions::get('sc','gridSize',8);
+		$_scgridSize = $GLOBALS['_sc']->showGrid? myOptions::get('sc','gridSize',8): 1;
         
         $curType = self::typeCursor($self, $x, $y);
         $obj->cursor = $curType;
@@ -733,8 +732,6 @@ class ev_fmMain_shapeSize {
 		if(!isset(self::$timer))
 		{
 			self::$self_object = $obj;
-			self::$hbar = $obj->HorzScrollBar;
-			self::$vbar = $obj->VertScrollBar;
 			self::$timer 	   = new TTimerEx();
 			self::$timer->interval = 5;
 			self::$timer->workbackground = true;
@@ -742,67 +739,72 @@ class ev_fmMain_shapeSize {
 			self::$timer->prioruty = tpHigher;
 			self::$timer->onTimer = __CLASS__ . '::onTimer';
 		}
+		
+			self::$hbar = c("fmEdit->pDockMain")->HorzScrollBar;
+			self::$vbar = c("fmEdit->pDockMain")->VertScrollBar;
+		$_preX = cursor_offsetted_x($obj) + self::$hbar->position;
+		$_preY = cursor_offsetted_y($obj) -16 + self::$vbar->position;
+		self::$phbars = [self::$hbar->position, self::$vbar->position];
 		self::$timer->enabled = true;
     }
-    
+
     static function onTimer($self){
         
         global $curType, $shapeSize, $_preY, $_preX, $fmEdit, $_scgridSize;
         
         $obj = self::$self_object;
 	/////// Просто ужаснейший костыль, наверное. но другого выхода не нашёл \\\\\\\
-		$x = cursor_offsetted_x($obj)  + self::$hbar->position;
-		$y = cursor_offsetted_y($obj) - 20 + self::$vbar->position;
+		$x = cursor_offsetted_x($obj) + self::$phbars[0];
+		$y = cursor_offsetted_y($obj) -16 + self::$phbars[1];
 		//20, position - фикс бага с TScrollBox, т.к при перемещении формы он задаёт ей позицию как пожелает
-		
-        if ($shapeSize)
+		//dssMessages::framewiz(1, "x=>{$x}, y=>{$y}"); --новый вид лога
+		if ($shapeSize)
 		{
 			$w   = $obj->w;
 			$h   = $obj->h;
 			if ($fmEdit->autoSize) return;
-			$fW   = $fmEdit->w;
-			$fH   = $fmEdit->h;
 			$minW = $fmEdit->constraints->minWidth;
 			$minH = $fmEdit->constraints->minHeight;
 			$maxW = $fmEdit->constraints->maxWidth;
 			$maxH = $fmEdit->constraints->maxHeight;
-        
-            if ($fW<0 || $fH<0) return;
-                
-            
-            $obj->cursor = $curType;
-            
-            if( $fmEdit->y !== (c("fmMain->shapeSize")->y + $GLOBALS['sc_offset']) ) 
-			{
-				$fmEdit->y = c("fmMain->shapeSize")->y + $GLOBALS['sc_offset'];
-				$fmEdit->x = c("fmMain->shapeSize")->x + $GLOBALS['sc_offset'];
-            }
-            $new_w = $x+1 + $_preX;
-            $new_w = $new_w - $new_w% $gridSize;
+			$new_w = $x+1;
+            $new_w = $new_w - $new_w% $_scgridSize;
             
             if ($curType==crSizeWE || $curType==crSizeNWSE){
                 if ((($new_w-($_scgridSize * 2)-1 < $maxW) || $maxW==0) && (($new_w-($_scgridSize * 2)-1 > $minW) || $minW==0)){
                     c('fmMain->shapeSize',1)->w = $new_w < 1 ? $_scgridSize * 2 : ($new_w - $_scgridSize * 2) + $GLOBALS['sc_offset']*2;
-                    $fmEdit->w = $new_w-$_scgridSize * 2;
+                    $x = $new_w-$_scgridSize * 2;
                 }
             }
             
-            $new_h = $y+1 + $_preY;
+            $new_h = $y+1;
             $new_h = $new_h - ($new_h % $_scgridSize );
             
             if ($curType==crSizeNS || $curType==crSizeNWSE){
                 
                 if ((($new_h-($_scgridSize * 2)-1 < $maxH) || $maxH==0) && (($new_h-($_scgridSize * 2)-1 > $minH) || $minH==0)){
                     c('fmMain->shapeSize',1)->h = $new_h < 1 ? $_scgridSize * 2 : ($new_h - $_scgridSize * 2) + $GLOBALS['sc_offset']*2;
-                    $fmEdit->h = $new_h - $_scgridSize * 2;
+                    $y - $_scgridSize * 2;
                 }
                
             }
-            
-            global $propFormW, $propFormH;
-            $propFormW->value = $fmEdit->w;
-            $propFormH->value = $fmEdit->h;
-        } else {
+			if ($_preY <> $y||$_preX <> $x)
+			{
+				$_preY = $y;
+				$_preX = $x;
+				self::$phbars = [self::$hbar->position, self::$vbar->position];
+				
+				$obj->cursor = $curType;
+				
+				if ($curType==crSizeWE || $curType==crSizeNWSE)
+				$fmEdit->w = $x;
+				if ($curType==crSizeNS || $curType==crSizeNWSE)
+				$fmEdit->h = $y;
+				global $propFormW, $propFormH;
+				$propFormW->value = $fmEdit->w;
+				$propFormH->value = $fmEdit->h;
+			}
+		} else {
             
             $obj->cursor = self::typeCursor($obj, $x, $y);
         }
