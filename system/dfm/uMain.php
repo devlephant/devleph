@@ -242,7 +242,7 @@ class evfmMain {
         c('fmPHPEditor->memo')->color = $ini->read('main','color',clWhite);
 		c('fmMain->shapeSize')->penStyle = (int)myOptions::get('sc','SizerPenStyle',2);
 		c('fmMain->shapeSize')->brushColor = myOptions::get('sc','SizerInnerColor',12632256);
-		$GLOBALS['sc_offset'] = (int)myOptions::get('sc', 'offset', 8);
+		$GLOBALS['sc_offset'] = (int)myOptions::get('sc', 'offset', 4);
         c('fmMain->shapeSize')->penColor = myOptions::get('sc','SizerOuterColor',clBlack);
 		myOptions::getXYWH('rundebug', c('fmRunDebug'));
 		
@@ -742,8 +742,7 @@ class ev_fmMain_shapeSize {
 		
 			self::$hbar = c("fmEdit->pDockMain")->HorzScrollBar;
 			self::$vbar = c("fmEdit->pDockMain")->VertScrollBar;
-		$_preX = cursor_offsetted_x($obj) + self::$hbar->position;
-		$_preY = cursor_offsetted_y($obj) -16 + self::$vbar->position;
+		$_preX = false;
 		self::$phbars = [self::$hbar->position, self::$vbar->position];
 		self::$timer->enabled = true;
     }
@@ -754,9 +753,8 @@ class ev_fmMain_shapeSize {
         
         $obj = self::$self_object;
 	/////// Просто ужаснейший костыль, наверное. но другого выхода не нашёл \\\\\\\
-		$x = cursor_offsetted_x($obj) + self::$phbars[0];
-		$y = cursor_offsetted_y($obj) -16 + self::$phbars[1];
-		//20, position - фикс бага с TScrollBox, т.к при перемещении формы он задаёт ей позицию как пожелает
+		$x = cursor_offsetted_x($obj);
+		$y = cursor_offsetted_y($obj) -16;
 		//dssMessages::framewiz(1, "x=>{$x}, y=>{$y}"); --новый вид лога
 		if ($shapeSize)
 		{
@@ -767,39 +765,45 @@ class ev_fmMain_shapeSize {
 			$minH = $fmEdit->constraints->minHeight;
 			$maxW = $fmEdit->constraints->maxWidth;
 			$maxH = $fmEdit->constraints->maxHeight;
-			$new_w = $x+1;
-            $new_w = $new_w - $new_w% $_scgridSize;
+
+            $x = $x - ($x%$_scgridSize);
             
             if ($curType==crSizeWE || $curType==crSizeNWSE){
-                if ((($new_w-($_scgridSize * 2)-1 < $maxW) || $maxW==0) && (($new_w-($_scgridSize * 2)-1 > $minW) || $minW==0)){
-                    c('fmMain->shapeSize',1)->w = $new_w < 1 ? $_scgridSize * 2 : ($new_w - $_scgridSize * 2) + $GLOBALS['sc_offset']*2;
-                    $x = $new_w-$_scgridSize * 2;
+                if ((($x-($_scgridSize * 2)-1 < $maxW) || $maxW==0) && (($x-($_scgridSize * 2)-1 > $minW) || $minW==0)){
+                    $x = $x-$_scgridSize * 2;
                 }
             }
             
-            $new_h = $y+1;
-            $new_h = $new_h - ($new_h % $_scgridSize );
+            $y = $y - ($y%$_scgridSize);
             
             if ($curType==crSizeNS || $curType==crSizeNWSE){
                 
-                if ((($new_h-($_scgridSize * 2)-1 < $maxH) || $maxH==0) && (($new_h-($_scgridSize * 2)-1 > $minH) || $minH==0)){
-                    c('fmMain->shapeSize',1)->h = $new_h < 1 ? $_scgridSize * 2 : ($new_h - $_scgridSize * 2) + $GLOBALS['sc_offset']*2;
-                    $y - $_scgridSize * 2;
+                if ((($y-($_scgridSize * 2)-1 < $maxH) || $maxH==0) && (($y-($_scgridSize * 2)-1 > $minH) || $minH==0)){
+                    $y = $y - $_scgridSize * 2;
                 }
                
             }
-			if ($_preY <> $y||$_preX <> $x)
+			if($_preX==false)
+			{
+				$_preX = $x;
+				$_preY = $y;
+			}elseif(($_preY <> $y||$_preX <> $x) && $x>1 && $y>1)
 			{
 				$_preY = $y;
 				$_preX = $x;
-				self::$phbars = [self::$hbar->position, self::$vbar->position];
 				
 				$obj->cursor = $curType;
 				
 				if ($curType==crSizeWE || $curType==crSizeNWSE)
-				$fmEdit->w = $x;
+				{
+					c('fmMain->shapeSize',1)->w = $x + $GLOBALS['sc_offset']*2;
+					$fmEdit->w = $x;
+				}
 				if ($curType==crSizeNS || $curType==crSizeNWSE)
-				$fmEdit->h = $y;
+				{
+					 c('fmMain->shapeSize',1)->h = $y + $GLOBALS['sc_offset']*2;
+					$fmEdit->h = $y;
+				}
 				global $propFormW, $propFormH;
 				$propFormW->value = $fmEdit->w;
 				$propFormH->value = $fmEdit->h;
