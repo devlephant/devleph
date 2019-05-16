@@ -469,7 +469,7 @@
 			eval($code);
 		} else {
 			message_beep(66);
-			messageDlg('Ошибка синтаксиса!', mtError, MB_OK);
+			messageDlg(t("Syntax error")."!", mtError, MB_OK);
 		}
 		
 	};
@@ -537,7 +537,7 @@
 	$bt->flat = true;
 	$bt->hint = 'New';
 	$bt->onClick = function()use($memo){
-		if(messageDlg('Не сохраненный скрипт будет потерян! Создать новый скрипт?', mtCustom, MB_YESNO) == mrNo)
+		if(messageDlg(t("Unsaved code will be lost. Create a new script?"), mtCustom, MB_YESNO) == mrNo)
 			return;
 		$memo->text = '';};
 	if( is_file($file = __DIR__.'/img/new.png') )
@@ -558,11 +558,11 @@
 		$file = __DIR__.'/scripts/'.$fname.'.script';
 		if(is_file($file)){
 			message_beep(66);
-			if(messageDlg('Перезаписать скрипт "'.$fname.'"?', mtCustom, MB_YESNO) == mrNo)
+			if(messageDlg(t("Rewrite script \"%s\"?",$fname), mtCustom, MB_YESNO) == mrNo)
 				return;
 			file_put_contents($file, $memo->text);
 		}else
-			messageDlg('Скрипт не найден!', mtCustom, MB_OK);
+			messageDlg(t("Script not found!"), mtCustom, MB_OK);
 	};
 	if( is_file($file = __DIR__.'/img/save.png') )
 		$bt->loadPicture($file);
@@ -609,11 +609,11 @@
 		$file = __DIR__.'/scripts/'.$combo->intext.'.script';
 		if(is_file($file)){
 			message_beep(66);
-			if(messageDlg('Не сохраненный скрипт будет потерян! Загрузить выбранный скрипт?', mtCustom, MB_YESNO) == mrNo)
+			if(messageDlg(t("Unsaved code will be lost! Load the selected script?"), mtCustom, MB_YESNO) == mrNo)
 				return;
 			$memo->text = file_get_contents($file);
 		}else{
-			messageDlg('Скрипт не найден!', mtCustom, MB_OK);
+			messageDlg(t("Script not found!"), mtCustom, MB_OK);
 			$combo->setFocus();
 		}
 	};
@@ -634,7 +634,7 @@
 		$file = __DIR__.'/scripts/'.$combo->intext.'.script';
 		if(is_file($file)){
 			message_beep(66);
-			if(messageDlg('Вы действительно хотите удалить выбранный скрипт?', mtCustom, MB_YESNO) == mrNo)
+			if(messageDlg(t("Are you sure to delete the selected script?"), mtCustom, MB_YESNO) == mrNo)
 				return;
 			unlink($file);
 			dir_search(__DIR__.'/scripts/', $list, 'script', 0, 0);
@@ -642,7 +642,7 @@
 				$list[$k] = basenameNoExt($v);
 			$combo->text = $list;
 		}else{
-			messageDlg('Скрипт не найден!', mtCustom, MB_OK);
+			messageDlg(t("Script not found!"), mtCustom, MB_OK);
 			$combo->setFocus();
 		}
 	};
@@ -669,10 +669,10 @@
 				eval($code);
 			} else {
 				message_beep(66);
-				messageDlg('Ошибка синтаксиса!', mtError, MB_OK);
+				messageDlg(t("Syntax error")."!", mtError, MB_OK);
 			}
 		}else{
-			messageDlg('Скрипт не найден!', mtCustom, MB_OK);
+			messageDlg(t("Script not found!"), mtCustom, MB_OK);
 			$combo->setFocus();
 		}
 	};
@@ -690,13 +690,13 @@
 			$file = __DIR__.'/scripts/'.$fname;
 			if(is_file($file)) {
 				message_beep(66);
-				if(messageDlg('Скрипт с таким именем уже существует! Заменить?', mtCustom, MB_YESNO) == mrNo)
+				if(messageDlg(t("Script with that name is already exist. Replace?"), mtCustom, MB_YESNO) == mrNo)
 					return;
 			}
 			file_put_contents($file, $memo->text);
 			$dlgEval->hide();
 		}else{
-			messageDlg('Введите имя скрипта!', mtCustom, MB_OK);
+			messageDlg(t("Enter the script name first!"), mtCustom, MB_OK);
 			$dlgEval->findComponent('edit_script_name')->setFocus();
 		}
 	};
