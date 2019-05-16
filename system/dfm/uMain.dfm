@@ -459,8 +459,6 @@ object fmMain: TfmMain
       ParentFont = False
       TabOrder = 0
       object tabProps: TTabSheet
-        HelpType = htKeyword
-        HelpKeyword = 'AAAAAhQCEQVDTEFTUxEJVFRhYlNoZWV0EQZQQVJBTVMUAREIYXZpc2libGUF'
         Caption = '{properties}'
         object Panel1: TPanel
           Left = 0
@@ -498,8 +496,6 @@ object fmMain: TfmMain
         end
       end
       object tabEvents: TTabSheet
-        HelpType = htKeyword
-        HelpKeyword = 'AAAAAhQCEQVDTEFTUxEJVFRhYlNoZWV0EQZQQVJBTVMUAREIYXZpc2libGUF'
         Caption = '{events}'
         ImageIndex = 1
         DesignSize = (
@@ -591,12 +587,6 @@ object fmMain: TfmMain
         end
       end
       object TTreeBwr: TTabSheet
-        HelpType = htKeyword
-        HelpKeyword = 
-          'AAAAAhQCEQVDTEFTUxEJVFRhYlNoZWV0EQZQQVJBTVMUBREIYXZpc2libGUFEQhh' +
-          'ZW5hYmxlZAURBnBhcmVudBcMVFBhZ2VDb250cm9sFAURCmNsYXNzX25hbWUOBhEF' +
-          'cGFnZXMAEQgAKgBfZm9udAARBHNlbGYKCCyLABEIACoAcHJvcHMUABENcGFyZW50' +
-          'Y29udHJvbBoGFAUOBw4GDggADgkADgoKCCyLAA4LFAARDGRvdWJsZWJ1ZmZlcgU='
         Caption = '{Project Tree}'
 		TabVisible = true
         ExplicitLeft = 0
@@ -609,14 +599,6 @@ object fmMain: TfmMain
 			object TreeProject: TTreeView
 			Left = 0
 			Top = 0
-			HelpType = htKeyword
-			HelpKeyword = 
-				'AAAAAhQCEQVDTEFTUxEJVFRyZWVWaWV3EQZQQVJBTVMUBhEIYXZpc2libGUFEQhh' +
-				'ZW5hYmxlZAURAXcMQGIAAAAAAAARAWgMQGIAAAAAAAARBnBhcmVudBcFVEZvcm0U' +
-				'BhEKY2xhc3NfbmFtZQ4IEQ8AKgBfY29uc3RyYWludHMXEFRTaXplQ29uc3RyYWlu' +
-				'dHMUAw4JDgsRBHNlbGYKBqYosBEIACoAcHJvcHMUABEHACoAaWNvbgARCAAqAF9m' +
-				'b250AA4MCgJKoQAODRQCDgMFEQpwb3NpdGlvbmV4EQpwb0Rlc2lnbmVkEQR0ZXh0' +
-				'DQ=='
 		    Align = alClient
 			AutoExpand = True
 			Indent = 19
@@ -745,8 +727,6 @@ object fmMain: TfmMain
         end
       end
       object TabSheet2: TTabSheet
-        HelpType = htKeyword
-        HelpKeyword = 'AAAAAhQCEQVDTEFTUxEJVFRhYlNoZWV0EQZQQVJBTVMUAREIYXZpc2libGUF'
         Caption = '{Variables}'
         Enabled = False
         ImageIndex = 1

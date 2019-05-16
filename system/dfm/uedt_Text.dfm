@@ -38,15 +38,6 @@ object edt_Text: Tedt_Text
     Top = 124
     Width = 384
     Height = 5
-    HelpType = htKeyword
-    HelpKeyword = 
-      'AAAAAhQCEQVDTEFTUxEGVFNoYXBlEQZQQVJBTVMUDREIYXZpc2libGUFEQhhZW5h' +
-      'YmxlZAURAXcRAzM1MhEBaBEBNREGcGFyZW50FwVURm9ybRQGEQpjbGFzc19uYW1l' +
-      'DgoRDwAqAF9jb25zdHJhaW50cxcQVFNpemVDb25zdHJhaW50cxQDDgsODREEc2Vs' +
-      'ZgoIHro4EQgAKgBwcm9wcxQAEQcAKgBpY29uABEIACoAX2ZvbnQADg4KAgW5MA4P' +
-      'FAARBHRleHQRB9Sz4/Pw4DERCHBlbnN0eWxlBgARCHBlbndpZHRoEQEwEQpicnVz' +
-      'aGNvbG9yCgD39vURAXgOFhEBeREDMTI0EQdwZW5tb2RlBgQRCHBlbmNvbG9yCgD3' +
-      '9vU='
     Anchors = [akLeft, akRight, akBottom]
     Brush.Color = 16250613
     Pen.Color = 16250613
@@ -58,10 +49,6 @@ object edt_Text: Tedt_Text
     Top = 136
     Width = 83
     Height = 25
-    HelpType = htKeyword
-    HelpKeyword = 
-      'AAAAAhQCEQVDTEFTUxEHVEJpdEJ0bhEGUEFSQU1TFAERB3BpY3R1cmURDCjH7uHw' +
-      '4Obl7e3/KQ=='
     Anchors = [akRight, akBottom]
     Caption = '{ok}'
     Default = True
@@ -110,10 +97,6 @@ object edt_Text: Tedt_Text
     Top = 136
     Width = 91
     Height = 25
-    HelpType = htKeyword
-    HelpKeyword = 
-      'AAAAAhQCEQVDTEFTUxEHVEJpdEJ0bhEGUEFSQU1TFAERB3BpY3R1cmURDCjH7uHw' +
-      '4Obl7e3/KQ=='
     Anchors = [akRight, akBottom]
     Cancel = True
     Caption = '{cancel}'
@@ -188,13 +171,6 @@ object edt_Text: Tedt_Text
     Top = 136
     Width = 91
     Height = 25
-    HelpType = htKeyword
-    HelpKeyword = 
-      'AAAAAhQCEQVDTEFTUxEHVEJpdEJ0bhEGUEFSQU1TFAcRCGF2aXNpYmxlBREIYWVu' +
-      'YWJsZWQFEQZwYXJlbnQXBVRGb3JtFAYRCmNsYXNzX25hbWUOBhEPACoAX2NvbnN0' +
-      'cmFpbnRzFxBUU2l6ZUNvbnN0cmFpbnRzFAMOBw4JEQRzZWxmCggzGIgRCAAqAHBy' +
-      'b3BzFAARBwAqAGljb24AEQgAKgBfZm9udAAOCgoB8rkwDgsUABEEdGV4dA0RAXgG' +
-      'tBEBeQaIEQdwaWN0dXJlEQwox+7h8ODm5e3t/yk='
     Anchors = [akRight, akBottom]
     Caption = '{copy}'
     TabOrder = 3
@@ -245,13 +221,6 @@ object edt_Text: Tedt_Text
     Top = 136
     Width = 91
     Height = 25
-    HelpType = htKeyword
-    HelpKeyword = 
-      'AAAAAhQCEQVDTEFTUxEHVEJpdEJ0bhEGUEFSQU1TFAcRCGF2aXNpYmxlBREIYWVu' +
-      'YWJsZWQFEQZwYXJlbnQXBVRGb3JtFAYRCmNsYXNzX25hbWUOBhEPACoAX2NvbnN0' +
-      'cmFpbnRzFxBUU2l6ZUNvbnN0cmFpbnRzFAMOBw4JEQRzZWxmCggzGIgRCAAqAHBy' +
-      'b3BzFAARBwAqAGljb24AEQgAKgBfZm9udAAOCgoB8rkwDgsUABEEdGV4dA0RAXgG' +
-      'bBEBeQaQEQdwaWN0dXJlEQwox+7h8ODm5e3t/yk='
     Anchors = [akRight, akBottom]
     Caption = '{paste}'
     TabOrder = 4

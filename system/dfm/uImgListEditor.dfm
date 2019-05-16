@@ -1,11 +1,6 @@
 object fmImgListEditor: TfmImgListEditor
   Left = 10
   Top = 10
-  HelpType = htKeyword
-  HelpKeyword = 
-    'AAAAAhQCEQVDTEFTUxEFVEZvcm0RBlBBUkFNUxQHEQhhdmlzaWJsZQURCGFlbmFi' +
-    'bGVkBREBaAgBSREBdwYyEQF4BgoRAXkGChEKcG9zaXRpb25leBEKcG9EZXNpZ25l' +
-    'ZA=='
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   BorderWidth = 10

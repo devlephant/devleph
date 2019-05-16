@@ -33,14 +33,6 @@ object edt_ImageView: Tedt_ImageView
     Width = 296
     Height = 288
     Visible = False 
-    HelpType = htKeyword
-    HelpKeyword = 
-      'AAAAAhQCEQVDTEFTUxEGVEltYWdlEQZQQVJBTVMUCREIYXZpc2libGUFEQhhZW5h' +
-      'YmxlZAURAXcRAzI5NhEBaBEDMjg4EQZwYXJlbnQXBVRGb3JtFAYRCmNsYXNzX25h' +
-      'bWUOChEPACoAX2NvbnN0cmFpbnRzFxBUU2l6ZUNvbnN0cmFpbnRzFAMOCw4NEQRz' +
-      'ZWxmCgH/OtARCAAqAHByb3BzFAARBwAqAGljb24AEQgAKgBfZm9udAAODgoB9zaQ' +
-      'Dg8UAg4DBREKcG9zaXRpb25leBEKcG9EZXNpZ25lZBEEdGV4dBELx+7h8ODm5e3t' +
-      '/zERAXgRATgRAXkOFxEGbW9zYWljBA=='
     Picture.Data = {
       07544269746D617036E70300424D36E703000000000036000000280000002801
       000020010000010018000000000000E70300C40E0000C40E0000000000000000
@@ -8282,10 +8274,6 @@ object edt_ImageView: Tedt_ImageView
     Top = 270
     Width = 105
     Height = 27
-    HelpType = htKeyword
-    HelpKeyword = 
-      'AAAAAhQCEQVDTEFTUxEHVEJpdEJ0bhEGUEFSQU1TFAMRB3BpY3R1cmURDCjH7uHw' +
-      '4Obl7e3/KREBaBECMjcRAXkRAzI3MA=='
     Caption = '{ok}'
     ModalResult = 1
     TabOrder = 6
@@ -8331,10 +8319,6 @@ object edt_ImageView: Tedt_ImageView
     Top = 238
     Width = 105
     Height = 27
-    HelpType = htKeyword
-    HelpKeyword = 
-      'AAAAAhQCEQVDTEFTUxEHVEJpdEJ0bhEGUEFSQU1TFAIRB3BpY3R1cmURDCjH7uHw' +
-      '4Obl7e3/KREBeREDMjM4'
     Cancel = True
     Caption = '{cancel}'
     ModalResult = 2

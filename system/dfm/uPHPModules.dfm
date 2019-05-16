@@ -130,8 +130,6 @@ object fmPHPModules: TfmPHPModules
       Top = 321
       Width = 83
       Height = 24
-      HelpType = htKeyword
-      HelpKeyword = 'AAAAAhQCEQVDTEFTUxEHVEJpdEJ0bhEGUEFSQU1TFAIRAXkRAzMyMREBaBECMjQ='
       Caption = '{ok}'
       ModalResult = 1
       TabOrder = 1
@@ -141,8 +139,6 @@ object fmPHPModules: TfmPHPModules
       Top = 321
       Width = 83
       Height = 24
-      HelpType = htKeyword
-      HelpKeyword = 'AAAAAhQCEQVDTEFTUxEHVEJpdEJ0bhEGUEFSQU1TFAIRAXkRAzMyMREBaBECMjQ='
       Caption = '{cancel}'
       ModalResult = 2
       TabOrder = 2
