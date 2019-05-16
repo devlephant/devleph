@@ -103,8 +103,14 @@ class myUtils {
        
         $form->formStyle   = fsNormal;
         $form->borderStyle = bsNone;
-        $form->left = 10;
-        $form->top  = 10;
+		if(!isset($GLOBALS['sc_offset']))
+        $GLOBALS['sc_offset'] = (int)myOptions::get('sc', 'offset', 8);
+	
+		$obj = c("fmMain->shapeSize");
+		$obj->w = $form->w + $GLOBALS['sc_offset'] * 2;
+		$obj->h = $form->h + $GLOBALS['sc_offset'] * 2;
+		$form->left = $obj->left + $GLOBALS['sc_offset'];
+		$form->top = $obj->top + $GLOBALS['sc_offset'];
         
         
         $form->borderIcons = '';

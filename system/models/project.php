@@ -394,6 +394,7 @@ class myProject {
     static function checkOldFormat(){
         
         if (self::cfg('DV_VERSION')=='' || version_compare(self::cfg('DV_VERSION'), DV_VERSION, '<')){
+			$ds2 = (self::cfg('DV_VERSION')=='' || self::cfg('DV_VERSION')=='2.0.0.0');
 			$GLOBALS['IS_OLD_PROJECT'] = true;
             alert(t("You're trying to load old-format project. This project will be converted!"));
             
@@ -422,7 +423,7 @@ class myProject {
 						$new_class = get_class($el);
 						$obj = self::convertAs($el, $new_class, self::getrule($new_class, $realClass));
 						$del_objs[] = $el;
-                    }elseif (is_subclass_of($el,  '__TNoVisual')){
+                    }elseif (is_subclass_of($el,  '__TNoVisual') && $ds2){
                         
                         $obj = self::convertOldNoVisual($el);
                         $del_objs[] = $el;
