@@ -8,9 +8,9 @@ class TIB extends TMImage{
     if($init){
      $this->center = true;
      $this->autoState = true;
-	 $this->offset = 0;
     }
    }
+   
    public function get_state(){
     return $this->index;
    }
@@ -70,6 +70,7 @@ class TIB extends TMImage{
    function set_onClick($v)     { event_set($this->self, 'onClick', __CLASS__.'::doClick');           $this->fClick = $v;      }
    function set_onDblClick($v)  { event_set($this->self, 'onDblClick', __CLASS__.'::doDblClick');     $this->fDblClick = $v;   }
    function __initComponentInfo(){
+	  if($GLOBALS['APP_DESIGN_MODE']) return;
 	  $this->visible = $this->avisible;
 	  $this->enabled = $this->aenabled;
    	  
@@ -149,7 +150,7 @@ class TIB extends TMImage{
     $self = c($self);
     if($self->enabled){
      if($self->autoState){
-      $self->state = $this->offset + 0;
+      $self->state = $self->offset + 0;
      }
    	 $name = 'f'.substr(__FUNCTION__,2);		
      if($self->$name)
