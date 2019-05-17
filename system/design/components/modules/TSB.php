@@ -2,7 +2,7 @@
 class TSB extends TLabel{
 	
 	function __initComponentInfo(){
-        
+        if( $GLOBALS['APP_DESIGN_MODE'] ) return;
         $this->fMouseEnter  = event_get($this->self,'onMouseEnter');
         event_set($this->self, 'onMouseEnter', 'TSB::doMouseEnter');
 
