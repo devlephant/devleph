@@ -383,7 +383,7 @@ function rtti_set($obj, $prop, $val)
 
 function rtti_get($obj,$prop){
 	
-	if( gui_propExists($obj->self, $prop) ){
+	if( !gui_propExists($obj->self, $prop) ) return null;
 		$f = gui_propGet($obj->self, $prop);
    if( is_numeric( $f ) and gui_propType($obj->self, $prop) == tkClass ) { // Проверка типа свойства, если свойство является объектом, то, возвращаем как объект
    //Костыль ниже \/    \/
@@ -393,8 +393,8 @@ function rtti_get($obj,$prop){
 	   }
    } 	
 
-   return $f;
-	}
+	return $f;
+	
 }
 function rtti_exists($obj,$prop){
    return gui_propExists($obj->self, $prop);
@@ -770,12 +770,9 @@ class TControl extends TComponent {
 	    parent::__construct($onwer,$init);
 			
 		if ($self!==nil) $this->self = $self;
-		if ($init){
-			
+		if ($init)
+		{	
 		    $this->avisible = $this->visible;
-			//please, do not remove this at any way
-			/*if( !is_bool(gui_propGet($this->self, 'Enabled')) )
-				pre( gettype(gui_propGet($this->self, 'Enabled')) );*/
 		    $this->aenabled = $this->enabled;
 		}
 		
@@ -821,7 +818,7 @@ class TControl extends TComponent {
 	
 	function set_visible($v){
 	    $this->avisible = $v;
-	    $this->set_prop('visible',$v);
+		$this->set_prop('visible',$v);
 	}
 
         function get_owner(){
