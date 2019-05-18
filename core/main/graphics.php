@@ -348,10 +348,10 @@ class TControlCanvas extends TCanvas {
     
     
     
-    function __construct($cntrl = 0)
+    function __construct($owner=nil,$init=true,$self=nil)
 	{
-		parent::__construct(nil,true,nil);
-		$this->self = component_canvas( is_object($cntrl)?$cntrl->self:(int)$cntrl );
+		$self = is_object($self)?$self->self:(int)$self;
+		parent::__construct($owner,$init,((gui_is($self,'TCanvas') && gui_is($self, 'TControlCanvas'))? component_canvas($self): $self));
     }
     
     function get_control(){
