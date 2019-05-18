@@ -1,23 +1,18 @@
 <?php
 class ev_fmOptions_c_showgrid {
 	static function onClick($self){
-		global $_sc;
-		$_sc->showGrid = c($self)->checked;
-		c('fmEdit')->repaint();
+		$GLOBALS['_sc']->showGrid = c($self)->checked;
 	}
 }
 
 class ev_fmOptions_e_gridsize {
 	static function onChange($self){
-		global $_sc;
 		$obj = _c($self);
 		if( (int)$obj->text < 1 ) $obj->text = 1;
 		if( (int)$obj->text > 50) $obj->text = 50;
 		c('fmOptions->up_gridsize')->position = $obj->text;
-		if( c('fmOptions->c_showgrid')->checked ) {
-			$_sc->gridSize = c('fmOptions->up_gridsize')->position;
-			c('fmEdit')->repaint();
-		}
+		if( c('fmOptions->c_showgrid')->checked )
+			$GLOBALS['_sc']->gridSize = c('fmOptions->up_gridsize')->position;
 	}
 }
 
@@ -63,15 +58,13 @@ class ev_fmOptions_en_bc {
 	}
 	static function onMouseDown($self, $button, $shift, $x, $y)
 	{
-		global $_sc;
-		self::doDialog($self, $_sc, 'BtnColor');
+		self::doDialog($self, $GLOBALS['_sc'], 'BtnColor');
 	}
 }
 
 class ev_fmOptions_dis_bc {
 	static function onMouseDown($self, $button, $shift, $x, $y){
-		global $_sc;
-		ev_fmOptions_en_bc::doDialog($self, $_sc, 'BtnColorDisabled');
+		ev_fmOptions_en_bc::doDialog($self, $GLOBALS['_sc'], 'BtnColorDisabled');
 	}
 }
 
