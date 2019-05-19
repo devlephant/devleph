@@ -54,7 +54,7 @@ $result[] = array(
                   'CAPTION'=>t('ThumbButton Shape Type'),
                   'TYPE'=>'combo',
                   'PROP'=>'ThumbShape',
-                  'VALUES'=>array('stRectangle', 'stSquare', 'stRoundRect', 'stRoundSquare', 'stEllipse', 'stCircle'),
+                  'VALUES'=>array('stRectangle', 'stSquare', 'stRoundRect', 'stRoundSquare', 'stEllipse', 'stCircle', 'stRhombus', 'stDiamond'),
                   );				  
 $result[] = array(
                   'CAPTION'=>t('Thumb Pen Mode'),

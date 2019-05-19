@@ -52,7 +52,7 @@ $result[] = array(
                   'CAPTION'=>t('Shape'),
                   'TYPE'=>'combo',
                   'PROP'=>'shape',
-                  'VALUES'=>array('stRectangle', 'stSquare', 'stRoundRect', 'stRoundSquare', 'stEllipse', 'stCircle'),
+                  'VALUES'=>array('stRectangle', 'stSquare', 'stRoundRect', 'stRoundSquare', 'stEllipse', 'stCircle', 'stRhombus', 'stDiamond'),
                   );
 
 $result[] = array(
