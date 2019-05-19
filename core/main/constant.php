@@ -22,7 +22,7 @@ class myVars {
 class TConstantList{
 	
 	public $defines;
-	
+	public $defs;
 	function __set($nm,$val){
 	    if (!defined($nm)){
 			$this->defines[$nm] = $val;
@@ -40,15 +40,22 @@ class TConstantList{
 		}
 	}
 	
-	function setConstList($names,$beg = 1){
+	function setConstList($names,$beg = 1,$namesdef=false){
 		for($i=0;$i<count($names);$i++){
 		    if (! defined($names[$i]) ){
 			define($names[$i],$i+$beg, false);
 			$this->defines[$names[$i]] = $i+$beg;
 		    }
 		}
+		if( $namesdef )
+			$this->defs[$namesdef] = $names;
 	}
-	
+	function getSet($name)
+	{
+		if(isset($this->defs[$name]))
+			return $this->defs[$name];
+		return [];
+	}
 	function delete($nm){
 		if( defined($nm) ){
 			if( isset($this->defines[$nm]) )
