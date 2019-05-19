@@ -499,7 +499,7 @@ $m["php_script_editor"] = "Редактор PHP коду";
 $m["script"] = "Скрипт";
 $m["run"]    = "Запустити";
 $m["restart"]= "Перезапуск";
-$m["about"]  = "О програмі";
+$m["about"]  = "Про Програму";
 $m["Create new form"] = "Створити нову форму";
 $m["Form name"] = "Назва форми (Лише англ. літери та \"_\")"; 
 
@@ -688,12 +688,12 @@ $m["Make program"] = "Створити програму";
 
 $m["help_book"] = "Справка";
 $m["tip"] = "Підказка";
-$m["about_program"] = "О програмі";
+$m["about_program"] = "Про Програму";
 $m["site_program"] = "Сайт програми";
 $m["send_mail"] = "Надіслати лист";
 $m["Help book not found for this language"] = "Для вибраної мови справки немає.";
 
-$m["About program"] = "О програмі";
+$m["About program"] = "Про Програму";
 $m["gr_files"] = "Файли";
 $m["Compile and Run project"] = "Скомпілювати та запустити проект";
 $m["Stop project"] = "Зупинити проект";
