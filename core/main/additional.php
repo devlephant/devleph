@@ -57,13 +57,6 @@ $_c->msVisibleOnly = 2;
 $_c->msSiblingOnly = 3;
 
 $_c->setConstList(['gdNone','gdVertical','gdHorizontal','gdBoth'],'TGradientDirection');
-
-$_c->PAK_CREATE = 1;
-$_c->PAK_OPEN = 2;
-$_c->PAK_OPEN_CREATE = 3;
-$_c->PER_PACK = 0;
-$_c->PER_UNPACK = 1;
-
 $_c->setConstList(['fsBold', 'fsItalic', 'fsUnderline', 'fsStrikeOut'],'TFontStyle');
 $_c->setConstList(['bsLowered','bsRaised'],'TBevelStyle');
 $_c->setConstList(['tsNone', 'tsAuto', 'tsManual'],'TTickStyle');
