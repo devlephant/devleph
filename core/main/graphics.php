@@ -24,7 +24,7 @@ $_c->setConstList(['pmBlack', 'pmWhite', 'pmNop', 'pmNot', 'pmCopy', 'pmNotCopy'
 $_c->setConstList(['psSolid', 'psDash', 'psDot', 'psDashDot', 'psDashDotDot', 'psClear',
     'psInsideFrame', 'psUserStyle', 'psAlternate'],0);
 
-$_c->setConstList(['stRectangle', 'stSquare', 'stRoundRect', 'stRoundSquare', 'stEllipse', 'stCircle', 'stRhombus', 'stDiamond','stEquilateralTriangle', 'stIsosceleTriangle'],0);
+$_c->setConstList(['stRectangle', 'stSquare', 'stRoundRect', 'stRoundSquare', 'stEllipse', 'stCircle', 'stRhombus', 'stDiamond','stEquilateralTriangle', 'stIsosceleTriangle', /*...*/ 'stSunPie'],0);
 
 
   $_c->COLOR_SCROLLBAR = 0;
