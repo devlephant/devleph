@@ -9,7 +9,7 @@ $result[] = array(
                   'CAPTION'=>t('Align'),
                   'TYPE'=>'combo',
                   'PROP'=>'align',
-                  'VALUES'=>$GLOBALS['_c']->s('TAlign'),
+                  'VALUES'=>$_c->s('TAlign'),
   				  'ADD_GROUP'=>true
 				  );
 				  
@@ -124,7 +124,7 @@ $result[] = array(
                   'CAPTION'=>t('Icon Arrangament'),
                   'TYPE'=>'combo',
                   'PROP'=>'iar',
-				  'VALUES'=>$GLOBALS['_c']->s('TIconArrangement'),
+				  'VALUES'=>$_c->s('TIconArrangement'),
                   );
 $result[] = array(
                   'CAPTION'=>t('Text Wrap'),

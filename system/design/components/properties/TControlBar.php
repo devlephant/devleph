@@ -59,7 +59,7 @@ $result[] = array(
                   'CAPTION'=>t('Align'),
                   'TYPE'=>'combo',
                   'PROP'=>'align',
-                  'VALUES'=>$GLOBALS['_c']->s('TAlign'),
+                  'VALUES'=>$_c->s('TAlign'),
                    'ADD_GROUP'=>true
                   );	 
 $result[] = array(

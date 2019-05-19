@@ -56,10 +56,7 @@ $_c->msShiftSelect = 1;
 $_c->msVisibleOnly = 2;
 $_c->msSiblingOnly = 3;
 
-$_c->gdNone = 0;
-$_c->gdVertical = 1;
-$_c->gdHorizontal = 2;
-$_c->gdBoth = 3;
+$_c->setConstList(['gdNone','gdVertical','gdHorizontal','gdBoth'],'TGradientDirection');
 
 $_c->PAK_CREATE = 1;
 $_c->PAK_OPEN = 2;
@@ -67,20 +64,11 @@ $_c->PAK_OPEN_CREATE = 3;
 $_c->PER_PACK = 0;
 $_c->PER_UNPACK = 1;
 
-$_c->setConstList(['fsBold', 'fsItalic', 'fsUnderline', 'fsStrikeOut']);
-$_c->bsRaised = 0;
-$_c->bsLowered = 1;
-$_c->setConstList(['tsNone', 'tsAuto', 'tsManual']);
-$_c->rsLine = 0;
-$_c->rsNone = 1;
-$_c->rsPattern = 2;
-$_c->rsUpdate = 3;
-$_c->setConstList(['rsLine', 'rsNone', 'rsPattern', 'rsUpdate']);
-$_c->dmActiveForm = 0;
-$_c->dmDesktop = 1;
-$_c->dmMainForm = 2;
-$_c->dmPrimary = 3;
-$_c->setConstList( ['dmActiveForm', 'dmDesktop', 'dmMainForm', 'dmPrimary']);
+$_c->setConstList(['fsBold', 'fsItalic', 'fsUnderline', 'fsStrikeOut'],'TFontStyle');
+$_c->setConstList(['bsLowered','bsRaised'],'TBevelStyle');
+$_c->setConstList(['tsNone', 'tsAuto', 'tsManual'],'TTickStyle');
+$_c->setConstList(['rsLine', 'rsNone', 'rsPattern', 'rsUpdate'],'TResizeStyle');
+$_c->setConstList( ['dmActiveForm', 'dmDesktop', 'dmMainForm', 'dmPrimary'],'TDefaultMonitor');
 $_c->poNone = 0;
 $_c->poPrintToFit = 1;
 $_c->poProportional = 2;
