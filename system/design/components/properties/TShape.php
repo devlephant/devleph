@@ -8,7 +8,7 @@ $result[] = array(
                   'CAPTION'=>t('Align'),
                   'TYPE'=>'combo',
                   'PROP'=>'align',
-                  'VALUES'=>array('alNone', 'alTop', 'alBottom', 'alLeft', 'alRight', 'alClient', 'alCustom'),
+                  'VALUES'=>$GLOBALS['_c']->getSet('TAlign'),
                    'ADD_GROUP'=>true
                   );
 
@@ -22,7 +22,7 @@ $result[] = array(
                   'CAPTION'=>t('Brush Style'),
                   'TYPE'=>'combo',
                   'PROP'=>'brushStyle',
-                  'VALUES'=>array('bsSolid', 'bsClear', 'bsHorizontal', 'bsVertical','bsFDiagonal', 'bsBDiagonal', 'bsCross', 'bsDiagCross')
+                  'VALUES'=>$GLOBALS['_c']->getSet('TBrushStyle')
                   );
 $result[] = array(
                   'CAPTION'=>t('Pen Color'),
@@ -33,15 +33,13 @@ $result[] = array(
                   'CAPTION'=>t('Pen Mode'),
                   'TYPE'=>'combo',
                   'PROP'=>'penMode',
-                  'VALUES'=>array('pmBlack', 'pmWhite', 'pmNop', 'pmNot', 'pmCopy', 'pmNotCopy',
-                                    'pmMergePenNot', 'pmMaskPenNot', 'pmMergeNotPen', 'pmMaskNotPen', 'pmMerge',
-                                    'pmNotMerge', 'pmMask', 'pmNotMask', 'pmXor', 'pmNotXor')
+                  'VALUES'=>$GLOBALS['_c']->getSet('TPenMode'),
                   );
 $result[] = array(
                   'CAPTION'=>t('Pen Style'),
                   'TYPE'=>'combo',
                   'PROP'=>'penStyle',
-                  'VALUES'=>array('psSolid', 'psDash', 'psDot', 'psDashDot', 'psDashDotDot', 'psClear', 'psInsideFrame', 'psUserStyle', 'psAlternate'),
+                  'VALUES'=>$GLOBALS['_c']->getSet('TPenStyle'),
                   );
 $result[] = array(
                   'CAPTION'=>t('Pen Width'),

@@ -23,7 +23,7 @@ $result[] = array(
                   'CAPTION'=>t('Align'),
                   'TYPE'=>'combo',
                   'PROP'=>'align',
-                  'VALUES'=>array('alNone', 'alTop', 'alBottom', 'alLeft', 'alRight', 'alClient', 'alCustom'),
+                  'VALUES'=>$GLOBALS['_c']->getSet('TAlign'),
                    'ADD_GROUP'=>true
                   );
 $result[] = array(
@@ -48,7 +48,7 @@ $result[] = array(
                   'CAPTION'=>t('ThumbButton Brush Style'),
                   'TYPE'=>'combo',
                   'PROP'=>'ThumbShapeStyle',
-                  'VALUES'=>array('bsSolid', 'bsClear', 'bsHorizontal', 'bsVertical','bsFDiagonal', 'bsBDiagonal', 'bsCross', 'bsDiagCross')
+                  'VALUES'=>$GLOBALS['_c']->getSet('TBrushStyle')
                   );	
 $result[] = array(
                   'CAPTION'=>t('ThumbButton Shape Type'),
@@ -60,15 +60,13 @@ $result[] = array(
                   'CAPTION'=>t('Thumb Pen Mode'),
                   'TYPE'=>'combo',
                   'PROP'=>'ThumbPenMode',
-                  'VALUES'=>array('pmBlack', 'pmWhite', 'pmNop', 'pmNot', 'pmCopy', 'pmNotCopy',
-                                    'pmMergePenNot', 'pmMaskPenNot', 'pmMergeNotPen', 'pmMaskNotPen', 'pmMerge',
-                                    'pmNotMerge', 'pmMask', 'pmNotMask', 'pmXor', 'pmNotXor')
+                  'VALUES'=>$GLOBALS['_c']->getSet('TPenMode')
                   );
 $result[] = array(
                   'CAPTION'=>t('ThumbButton Pen Style'),
                   'TYPE'=>'combo',
                   'PROP'=>'ThumbPenStyle',
-                  'VALUES'=>array('psSolid', 'psDash', 'psDot', 'psDashDot', 'psDashDotDot', 'psClear', 'psInsideFrame', 'psUserStyle', 'psAlternate'),
+                  'VALUES'=>$GLOBALS['_c']->getSet('TPenStyle')
                   );
 $result[] = array(
                   'CAPTION'=>t('Pen Width'),

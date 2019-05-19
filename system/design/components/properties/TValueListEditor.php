@@ -218,7 +218,7 @@ $result[] = array(
                   'CAPTION'=>t('Align'),
                   'TYPE'=>'combo',
                   'PROP'=>'align',
-                  'VALUES'=>array('alNone', 'alTop', 'alBottom', 'alLeft', 'alRight', 'alClient', 'alCustom'),
+                  'VALUES'=>$GLOBALS['_c']->getSet('TAlign'),
                   );
 $result[] = array(
                   'CAPTION'=>t('Sizes and position'),

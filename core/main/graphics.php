@@ -8,21 +8,13 @@
 */
 global $_c;
 $_c->setConstList(['bsSolid', 'bsClear', 'bsHorizontal', 'bsVertical',
-    'bsFDiagonal', 'bsBDiagonal', 'bsCross', 'bsDiagCross'],0);
-
-/* TPenMode = (pmBlack, pmWhite, pmNop, pmNot, pmCopy, pmNotCopy,
-    pmMergePenNot, pmMaskPenNot, pmMergeNotPen, pmMaskNotPen, pmMerge,
-    pmNotMerge, pmMask, pmNotMask, pmXor, pmNotXor);
-*/
+    'bsFDiagonal', 'bsBDiagonal', 'bsCross', 'bsDiagCross'],0,'TBrushStyle');
+	
 $_c->setConstList(['pmBlack', 'pmWhite', 'pmNop', 'pmNot', 'pmCopy', 'pmNotCopy',
     'pmMergePenNot', 'pmMaskPenNot', 'pmMergeNotPen', 'pmMaskNotPen', 'pmMerge',
-    'pmNotMerge', 'pmMask', 'pmNotMask', 'pmXor', 'pmNotXor'],0);
-
-/* TPenStyle = (psSolid, psDash, psDot, psDashDot, psDashDotDot, psClear,
-    psInsideFrame);
-*/
+    'pmNotMerge', 'pmMask', 'pmNotMask', 'pmXor', 'pmNotXor'],0,'TPenMode');
 $_c->setConstList(['psSolid', 'psDash', 'psDot', 'psDashDot', 'psDashDotDot', 'psClear',
-    'psInsideFrame', 'psUserStyle', 'psAlternate'],0);
+    'psInsideFrame', 'psUserStyle', 'psAlternate'],0,'TPenStyle');
 
 $_c->setConstList(['stRectangle', 'stSquare', 'stRoundRect', 'stRoundSquare', 'stEllipse', 'stCircle', 'stRhombus', 'stDiamond','stEquilateralTriangle', 'stIsosceleTriangle', 'stRightTriangle', 'stScaleneTriangle', 'stSunPie'],0,'TShapeType');
 
