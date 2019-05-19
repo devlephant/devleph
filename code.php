@@ -1,5 +1,2 @@
-$f = new TForm();
-$g = new TBevel($f);
-$g->align = alClient;
-$g->parent = $f;
-$f->show();
+$f = function($arg, $arff, $array){pre(get_class($this));};
+pre( get_class_methods($f) );

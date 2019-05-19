@@ -26,15 +26,10 @@ $_c->lsLine = 2;
 $_c->lsCenter = 3;
 $_c->lsArrow = 4;
 $_c->lsArrowOut = 4;
-
-$_c->setConstList(['sbsNone', 'sbsSingle', 'sbsSunken'],'TStaticBorderStyle');
-
-$_c->setConstList(['iaLeft', 'iaTop'],'TIconArrangement');
 $_c->stBoth = 0;
 $_c->stData = 1;
 $_c->stNone = 2;
 $_c->stText = 3;
-
 //Popup Align
 $_c->paCenter = 0;
 $_c->paLeft = 1;
@@ -50,21 +45,18 @@ $_c->maNone = 4;
 //Popup TrackButton
 $_c->tbLeftButton = 0;
 $_c->tbRightButton = 1;
-
 $_c->msControlSelect = 0;
 $_c->msShiftSelect = 1;
 $_c->msVisibleOnly = 2;
 $_c->msSiblingOnly = 3;
-
+$_c->setConstList(['sbsNone', 'sbsSingle', 'sbsSunken'],'TStaticBorderStyle');
+$_c->setConstList(['iaLeft', 'iaTop'],'TIconArrangement');
 $_c->setConstList(['gdNone','gdVertical','gdHorizontal','gdBoth'],'TGradientDirection');
 $_c->setConstList(['fsBold', 'fsItalic', 'fsUnderline', 'fsStrikeOut'],'TFontStyle');
 $_c->setConstList(['bsLowered','bsRaised'],'TBevelStyle');
 $_c->setConstList(['tsNone', 'tsAuto', 'tsManual'],'TTickStyle');
 $_c->setConstList(['rsLine', 'rsNone', 'rsPattern', 'rsUpdate'],'TResizeStyle');
 $_c->setConstList( ['dmActiveForm', 'dmDesktop', 'dmMainForm', 'dmPrimary'],'TDefaultMonitor');
-$_c->poNone = 0;
-$_c->poPrintToFit = 1;
-$_c->poProportional = 2;
 $_c->setConstList( ['poNone', 'poPrintToFit', 'poProportional' ]);
 $_c->setConstList(['alNone', 'alTop', 'alBottom', 'alLeft', 'alRight', 'alClient', 'alCustom'],'TAlign');
 $_c->setConstList(['tsTabs', 'tsButtons', 'tsFlatButtons', 'tsNone', 'tsAuto', 'tsManual']);

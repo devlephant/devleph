@@ -362,19 +362,14 @@ function rtti_set($obj, $prop, $val)
 		
 		$obj = is_object($obj)?$obj->self:$obj;
 		if( !gui_propExists($obj, $prop) ) return;
-		if( gui_propType($obj, $prop) == tkEvent) return;
+		$rt = gui_propType($obj, $prop);
+		if( $rt == tkEvent) return;
 		if( is_callable($val) ){
-			if( gui_propType($obj, $prop) == 8) return;
+			if( $rt == 8) return;
 		}elseif( is_object($val) ) //Если в функцию передали объект
 		{
-			if( isset($val->self) ) //И, Если у объекта есть ->self
-								   //По-другому я хз как проверять объект взят из делфи или нет, может потом составлю реестр классов 
-								  //с помощью UnitClass, и уже там буду проверять...
-				if( is_numeric( $val->self ) and gui_propType($obj, $prop) == tkClass ) { //Если тип свойства - объект
-					gui_propSet($obj, $prop, $val->self); //Функция для задания свойства, по-хорошему, стоит объединить и поставить проверку, сейчас займусь
-					//$obj - объект, $prop - свойство, $val - SELF-объекта
-					return; 
-				}
+			if( isset($val->self) && is_numeric( $val->self )  )
+				$val = $val->self;
 		} elseif( is_array($val) )$val = '['. implode(',', $val) . ']';
 
     gui_propSet($obj, $prop, $val);

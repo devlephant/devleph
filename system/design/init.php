@@ -26,7 +26,7 @@ $cfg_array = array(
         'wS' => 'wsMaximized',
     ),
 
-    'fmPHPEditor' => array ('x'=>false,'y'=>0,'w'=>719,'h'=>563,'panelH'=>0,'wS'=>0),
+    'fmPHPEditor' => array ('x'=>false,'y'=>0,'w'=>719,'h'=>563,'panelH'=>0,'wS'=>'wsNormal'),
     
     'newProjectDialog' => array(
         'startup' => true,

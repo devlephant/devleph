@@ -32,15 +32,9 @@ class TConfig{
         }
     }
     
-    public function get($name, $default = null){
-        $result = $default;
-        
-        if (array_key_exists($name, $this->_data)) {
-            $result = $this->_data[$name];
-        }
-		if( $result == null )
-			$result = $this->_data[$name] = new self();
-        return $result;
+    public function get($name, $default = null)
+	{
+		return isset($this->_data)?$this->_data[$name]:$this->_data[$name] = new self() ;
     }
     
     public function __get($name){

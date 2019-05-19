@@ -517,7 +517,7 @@ protected $name;
 	}
 	
 	//In-class trait
-	private function __compare(int $cargs, array $args, &$ret, &$ret2, $func_name)
+	private function __compare($cargs, array $args, &$ret, &$ret2, $func_name)
 	{
 		if ( $cargs == 1 )																										 {
 					$ret2	= ($args[0] instanceof self::$classname)? $args[0]: self::__invoke($args[0]);
@@ -1096,7 +1096,7 @@ protected $name;
 				return isset($v->rgb);
 	}
 	
-	public function increase( int $percent )
+	public function increase( $percent )
 	{
 		if( !$this->check_val($v, 'Color increasement percent', 'int', 100) )	return false;
 		$this->rgb = [$this->rgb[0] + (($this->rgb[0]/100) * $percent),
@@ -1105,7 +1105,7 @@ protected $name;
 		return true;
 	}
 	
-	public function decrease( int $percent )
+	public function decrease( $percent )
 	{
 		if( !$this->check_val($v, 'Color decreasement percent', 'int', 100) )	return false;
 		$this->rgb = [$this->rgb[0] - (($this->rgb[0]/100) * $percent),

@@ -389,8 +389,10 @@ class TConfigIni extends TConfig {
         
         foreach ($arr as $k=>$v){
            if (is_array($v))
-           foreach ($v as $key=>$value)
+		   {
+			foreach ($v as $key=>$value)
                 $arr2[$k][$key] = $value;
+		   } else $arr2[$k] = $v;
         }
         
         $this->setArray($arr2);

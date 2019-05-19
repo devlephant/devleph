@@ -141,16 +141,13 @@ class evfmMain {
         $dsg_cfg->fmMain->w  = $fmMain->width;
         $dsg_cfg->fmMain->h  = $fmMain->height;
         $dsg_cfg->fmMain->wS = $fmMain->windowState;
-        
-        $dsg_cfg->lastVer    = DV_VERSION;
-        
         $dsg_cfg->fmPHPEditor->w = c('fmPHPEditor',1)->w;
         $dsg_cfg->fmPHPEditor->h = c('fmPHPEditor',1)->h;
         $dsg_cfg->fmPHPEditor->x = c('fmPHPEditor',1)->x;
         $dsg_cfg->fmPHPEditor->y = c('fmPHPEditor',1)->y;
-        $dsg_cfg->fmPHPEditor->wS= c('fmPHPEditor',1)->windowState;
+        $dsg_cfg->fmPHPEditor->s = c('fmPHPEditor',1)->windowState;
         $dsg_cfg->fmPHPEditor->panelH = c('fmPHPEditor->errPanel')->h;
-        
+        $dsg_cfg->lastVer    = DV_VERSION;
         $dsg_cfg->fmObjInspect->visible = (int)$fmObjInspect->visible;
         $dsg_cfg->newProjectDialog->startup = (int)c('fmNewProject->startup')->checked;
         $dsg_cfg->saveToFile(DS_USERDIR.'config.ini');
@@ -718,7 +715,7 @@ class ev_fmMain_shapeSize {
         return $curType;    
     }
     
-    static function onMouseDown($self, int $button, $shift, $x, $y){
+    static function onMouseDown($self, $button, $shift, $x, $y){
         if( $button == 1 ) return;
         global $shapeSize, $_preX, $_preY, $curType, $_scgridSize;
         c('fmMain->pDockMain',1)->doubleBuffer = true;
