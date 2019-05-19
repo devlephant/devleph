@@ -16,16 +16,16 @@
 global $_c;
 
 $_c->setConstList(['csDropDown', 'csSimple', 'csDropDownList', 'csOwnerDrawFixed',
-    'csOwnerDrawVariable'],0);
+    'csOwnerDrawVariable']);
 
-$_c->setConstList(['taLeftJustify', 'taRightJustify', 'taCenter'],0);
-$_c->setConstList(['tlTop', 'tlCenter', 'tlBottom'],0);
-$_c->setConstList(['ecNormal', 'ecUpperCase', 'ecLowerCase'],0);
-$_c->setConstList(['ssNone', 'ssHorizontal', 'ssVertical', 'ssBoth'],0);
-$_c->setConstList(['bvNone', 'bvLowered', 'bvRaised', 'bvSpace'],0);
+$_c->setConstList(['taLeftJustify', 'taRightJustify', 'taCenter']);
+$_c->setConstList(['tlTop', 'tlCenter', 'tlBottom']);
+$_c->setConstList(['ecNormal', 'ecUpperCase', 'ecLowerCase']);
+$_c->setConstList(['ssNone', 'ssHorizontal', 'ssVertical', 'ssBoth']);
+$_c->setConstList(['bvNone', 'bvLowered', 'bvRaised', 'bvSpace']);
 
-$_c->setConstList(['doNoOrient', 'doHorizontal', 'doVertical'],0);
-//$_c->setConstList(['mrNone','mrOk','mrCancel','mrAbort','mrRetry','mrIgnore','mrYes','mrNo','mrAll','mrNoToAll','mrYesToAll'],0);
+$_c->setConstList(['doNoOrient', 'doHorizontal', 'doVertical']);
+//$_c->setConstList(['mrNone','mrOk','mrCancel','mrAbort','mrRetry','mrIgnore','mrYes','mrNo','mrAll','mrNoToAll','mrYesToAll']);
 
 class TLabel extends TControl {
 	
@@ -352,7 +352,7 @@ class TComboBox extends TControl {
 	}
 }
 // TProgressBarOrientation
-$_c->setConstList(['pbHorizontal', 'pbVertical'],0);
+$_c->setConstList(['pbHorizontal', 'pbVertical']);
 
 class TProgressBar extends TControl {
 	

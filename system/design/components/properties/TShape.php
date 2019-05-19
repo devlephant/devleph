@@ -8,7 +8,7 @@ $result[] = array(
                   'CAPTION'=>t('Align'),
                   'TYPE'=>'combo',
                   'PROP'=>'align',
-                  'VALUES'=>$GLOBALS['_c']->getSet('TAlign'),
+                  'VALUES'=>$GLOBALS['_c']->s('TAlign'),
                    'ADD_GROUP'=>true
                   );
 
@@ -22,7 +22,7 @@ $result[] = array(
                   'CAPTION'=>t('Brush Style'),
                   'TYPE'=>'combo',
                   'PROP'=>'brushStyle',
-                  'VALUES'=>$GLOBALS['_c']->getSet('TBrushStyle')
+                  'VALUES'=>$GLOBALS['_c']->s('TBrushStyle')
                   );
 $result[] = array(
                   'CAPTION'=>t('Pen Color'),
@@ -33,13 +33,13 @@ $result[] = array(
                   'CAPTION'=>t('Pen Mode'),
                   'TYPE'=>'combo',
                   'PROP'=>'penMode',
-                  'VALUES'=>$GLOBALS['_c']->getSet('TPenMode'),
+                  'VALUES'=>$GLOBALS['_c']->s('TPenMode'),
                   );
 $result[] = array(
                   'CAPTION'=>t('Pen Style'),
                   'TYPE'=>'combo',
                   'PROP'=>'penStyle',
-                  'VALUES'=>$GLOBALS['_c']->getSet('TPenStyle'),
+                  'VALUES'=>$GLOBALS['_c']->s('TPenStyle'),
                   );
 $result[] = array(
                   'CAPTION'=>t('Pen Width'),
@@ -50,7 +50,7 @@ $result[] = array(
                   'CAPTION'=>t('Shape'),
                   'TYPE'=>'combo',
                   'PROP'=>'shape',
-                  'VALUES'=>$GLOBALS['_c']->getSet('TShapeType'),
+                  'VALUES'=>$GLOBALS['_c']->s('TShapeType'),
                   );
 
 $result[] = array(

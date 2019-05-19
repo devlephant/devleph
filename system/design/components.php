@@ -534,6 +534,7 @@ if (EMULATE_DVS_EXE) return;
 	}
 	function get_sorted_methods($class)
 	{
+		globals $_c;
 		$res = [];
 		if(!gui_class_isset($class)) return include( dirname(__FILE__)."/components/methods/$class.php");
 		$methods = gui_class_methodList($class);
@@ -565,7 +566,7 @@ if (EMULATE_DVS_EXE) return;
 		*/
 		
 	}
-	
+	globals $_c;
 	foreach (findFiles($dir_n . '/components/properties/','php')as $file){
 		$componentProps[basenameNoExt($file)] = include($dir_n . '/components/properties/' . $file);
 	}

@@ -14,7 +14,7 @@ $_c->setConstList([
 			'idOk','idCancel','idAbort','idRetry','idIgnore',
 			'idYes','idNo','idClose','idHelp','idTryAgain',
 			'idContinue'
-                        ]);
+                        ],false,1);
 
 $_c->mrNone     = 0;
 $_c->mrOk       = idOk;
@@ -84,22 +84,22 @@ $_c->mrYesToAll = mrNoToAll + 1;
 
   
 /* close type */
-$_c->setConstList(['caNone', 'caHide', 'caFree', 'caMinimize'],0);
+$_c->setConstList(['caNone', 'caHide', 'caFree', 'caMinimize']);
   
 /* window state */
-$_c->setConstList(['wsNormal','wsMinimized','wsMaximized'],0);
+$_c->setConstList(['wsNormal','wsMinimized','wsMaximized']);
 
 //TFormStyle = (fsNormal, fsMDIChild, fsMDIForm, fsStayOnTop);
-$_c->setConstList(['fsNormal', 'fsMDIChild', 'fsMDIForm', 'fsStayOnTop'],0);
+$_c->setConstList(['fsNormal', 'fsMDIChild', 'fsMDIForm', 'fsStayOnTop']);
 
 //TFormBorderStyle = (bsNone, bsSingle, bsSizeable, bsDialog, bsToolWindow, bsSizeToolWin);
-$_c->setConstList(['bsNone', 'bsSingle', 'bsSizeable', 'bsDialog', 'bsToolWindow', 'bsSizeToolWin'],0);
+$_c->setConstList(['bsNone', 'bsSingle', 'bsSizeable', 'bsDialog', 'bsToolWindow', 'bsSizeToolWin']);
 
 $_c->setConstList(['poDesigned', 'poDefault', 'poDefaultPosOnly', 'poDefaultSizeOnly', 'poScreenCenter',
-			'poDesktopCenter', 'poMainFormCenter', 'poOwnerFormCenter'],0);
+			'poDesktopCenter', 'poMainFormCenter', 'poOwnerFormCenter']);
 
-$_c->setConstList(['dmManual', 'dmAutomatic'], 0);
-$_c->setConstList(['dkDock', 'dkDrag'], 0);
+$_c->setConstList(['dmManual', 'dmAutomatic']);
+$_c->setConstList(['dkDock', 'dkDrag']);
 
 class TForm extends TControl
 {

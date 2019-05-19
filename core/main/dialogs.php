@@ -39,8 +39,8 @@ global $_c, $APPLICATION;
 	$_c->MB_HELP = 0x004000;
 
 //TMsgDlgType = (mtWarning, mtError, mtInformation, mtConfirmation, mtCustom);
-$_c->setConstList(['mtWarning', 'mtError', 'mtInformation', 'mtConfirmation', 'mtCustom'], 0);
-$_c->setConstList(['fdScreen', 'fdPrinter', 'fdBoth'], 0);
+$_c->setConstList(['mtWarning', 'mtError', 'mtInformation', 'mtConfirmation', 'mtCustom']);
+$_c->setConstList(['fdScreen', 'fdPrinter', 'fdBoth']);
 
 function messageBox($text,$caption,$flag = MB_OK){
 	

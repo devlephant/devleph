@@ -31,7 +31,7 @@
 global $_c;
 
 // TSCState = (scsReady, scsMoving, scsSizing);
-$_c->setConstList('scsReady', 'scsMoving', 'scsSizing', 0);
+$_c->setConstList('scsReady', 'scsMoving', 'scsSizing', 'TSCState');
 
 class TSizeCtrl extends TControl{
     

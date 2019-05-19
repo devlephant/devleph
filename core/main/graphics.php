@@ -8,15 +8,15 @@
 */
 global $_c;
 $_c->setConstList(['bsSolid', 'bsClear', 'bsHorizontal', 'bsVertical',
-    'bsFDiagonal', 'bsBDiagonal', 'bsCross', 'bsDiagCross'],0,'TBrushStyle');
+    'bsFDiagonal', 'bsBDiagonal', 'bsCross', 'bsDiagCross'], 'TBrushStyle');
 	
 $_c->setConstList(['pmBlack', 'pmWhite', 'pmNop', 'pmNot', 'pmCopy', 'pmNotCopy',
     'pmMergePenNot', 'pmMaskPenNot', 'pmMergeNotPen', 'pmMaskNotPen', 'pmMerge',
-    'pmNotMerge', 'pmMask', 'pmNotMask', 'pmXor', 'pmNotXor'],0,'TPenMode');
+    'pmNotMerge', 'pmMask', 'pmNotMask', 'pmXor', 'pmNotXor'],'TPenMode');
 $_c->setConstList(['psSolid', 'psDash', 'psDot', 'psDashDot', 'psDashDotDot', 'psClear',
-    'psInsideFrame', 'psUserStyle', 'psAlternate'],0,'TPenStyle');
+    'psInsideFrame', 'psUserStyle', 'psAlternate'],'TPenStyle');
 
-$_c->setConstList(['stRectangle', 'stSquare', 'stRoundRect', 'stRoundSquare', 'stEllipse', 'stCircle', 'stRhombus', 'stDiamond','stEquilateralTriangle', 'stIsosceleTriangle', 'stRightTriangle', 'stScaleneTriangle', 'stSunPie'],0,'TShapeType');
+$_c->setConstList(['stRectangle', 'stSquare', 'stRoundRect', 'stRoundSquare', 'stEllipse', 'stCircle', 'stRhombus', 'stDiamond','stEquilateralTriangle', 'stIsosceleTriangle', 'stRightTriangle', 'stScaleneTriangle', 'stSunPie'],'TShapeType');
 
 
   $_c->COLOR_SCROLLBAR = 0;

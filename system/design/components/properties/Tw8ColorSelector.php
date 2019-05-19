@@ -23,7 +23,7 @@ $result[] = array(
                   'CAPTION'=>t('Align'),
                   'TYPE'=>'combo',
                   'PROP'=>'align',
-                  'VALUES'=>$GLOBALS['_c']->getSet('TAlign'),
+                  'VALUES'=>$GLOBALS['_c']->s('TAlign'),
                    'ADD_GROUP'=>true
                   );
 $result[] = array(
@@ -48,25 +48,25 @@ $result[] = array(
                   'CAPTION'=>t('ThumbButton Brush Style'),
                   'TYPE'=>'combo',
                   'PROP'=>'ThumbShapeStyle',
-                  'VALUES'=>$GLOBALS['_c']->getSet('TBrushStyle')
+                  'VALUES'=>$GLOBALS['_c']->s('TBrushStyle')
                   );	
 $result[] = array(
                   'CAPTION'=>t('ThumbButton Shape Type'),
                   'TYPE'=>'combo',
                   'PROP'=>'ThumbShape',
-                  'VALUES'=>$GLOBALS['_c']->getSet('TShapeType'),
+                  'VALUES'=>$GLOBALS['_c']->s('TShapeType'),
                   );				  
 $result[] = array(
                   'CAPTION'=>t('Thumb Pen Mode'),
                   'TYPE'=>'combo',
                   'PROP'=>'ThumbPenMode',
-                  'VALUES'=>$GLOBALS['_c']->getSet('TPenMode')
+                  'VALUES'=>$GLOBALS['_c']->s('TPenMode')
                   );
 $result[] = array(
                   'CAPTION'=>t('ThumbButton Pen Style'),
                   'TYPE'=>'combo',
                   'PROP'=>'ThumbPenStyle',
-                  'VALUES'=>$GLOBALS['_c']->getSet('TPenStyle')
+                  'VALUES'=>$GLOBALS['_c']->s('TPenStyle')
                   );
 $result[] = array(
                   'CAPTION'=>t('Pen Width'),

@@ -16,7 +16,7 @@
 
 global $_c;
 $_c->setConstList(['tpIdle', 'tpLowest', 'tpLower', 'tpNormal', 'tpHigher', 'tpHighest',
-    'tpTimeCritical'],0);
+    'tpTimeCritical']);
 
 
 function safe($code, $func){

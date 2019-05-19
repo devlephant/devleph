@@ -11,7 +11,7 @@ $result[] = array('CAPTION'=>t('Transparent'),'TYPE'=>'check','PROP'=>'transpare
 $result[] = array('CAPTION'=>t('Word Wrap'),'TYPE'=>'check','PROP'=>'wordWrap');
 $result[] = array('CAPTION'=>t('Hint'),'TYPE'=>'text','PROP'=>'hint');
 
-$result[] = array('CAPTION'=>t('Align'),'TYPE'=>'combo','PROP'=>'align','VALUES'=>$GLOBALS['_c']->getSet('TAlign'),'ADD_GROUP'=>true);
+$result[] = array('CAPTION'=>t('Align'),'TYPE'=>'combo','PROP'=>'align','VALUES'=>$GLOBALS['_c']->s('TAlign'),'ADD_GROUP'=>true);
 
 $result[] = array('CAPTION'=>t('Cursor'),'TYPE'=>'combo','PROP'=>'cursor','VALUES'=>$GLOBALS['cursors_meta'],'ADD_GROUP'=>true);
 $result[] = array('CAPTION'=>t('Sizes and position'),'TYPE'=>'sizes','PROP'=>'','ADD_GROUP'=>true);

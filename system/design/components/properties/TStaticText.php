@@ -6,7 +6,7 @@ $result[] = array(
                   'CAPTION'=>t('Align'),
                   'TYPE'=>'combo',
                   'PROP'=>'align',
-                  'VALUES'=>$GLOBALS['_c']->getSet('TAlign'),
+                  'VALUES'=>$GLOBALS['_c']->s('TAlign'),
                    'ADD_GROUP'=>true
                   );
 
@@ -59,7 +59,7 @@ $result[] = array(
                   'CAPTION'=>t('Border Style'),
                   'TYPE'=>'combo',
                   'PROP'=>'borderStyle',
-				  'VALUES'=>array('sbsNone', 'sbsSingle', 'sbsSunken'),
+				  'VALUES'=>$GLOBALS['_c']->s('TStaticBorderStyle'),
                   );					  
 $result[] = array(
                   'CAPTION'=>t('Transparent'),

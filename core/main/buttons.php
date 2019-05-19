@@ -9,7 +9,7 @@
 
 global $_c;
 
-$_c->setConstList(['blGlyphLeft', 'blGlyphRight', 'blGlyphTop', 'blGlyphBottom'],0);
+$_c->setConstList(['blGlyphLeft', 'blGlyphRight', 'blGlyphTop', 'blGlyphBottom']);
 
 class TButton extends TControl {
 	

@@ -40,17 +40,17 @@ class TConstantList{
 		}
 	}
 	
-	function setConstList($names,$beg = 1,$namesdef=false){
+	function setConstList($names,$setName=false,$beg = 0){
 		for($i=0;$i<count($names);$i++){
 		    if (! defined($names[$i]) ){
 			define($names[$i],$i+$beg, false);
 			$this->defines[$names[$i]] = $i+$beg;
 		    }
 		}
-		if( $namesdef )
-			$this->defs[$namesdef] = $names;
+		if( $setName )
+			$this->defs[$setName] = $names;
 	}
-	function getSet($name)
+	function s($name)
 	{
 		if(isset($this->defs[$name]))
 			return $this->defs[$name];

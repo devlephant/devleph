@@ -27,9 +27,9 @@ $_c->lsCenter = 3;
 $_c->lsArrow = 4;
 $_c->lsArrowOut = 4;
 
-$_c->setConstList(['sbsNone', 'sbsSingle', 'sbsSunken'],0);
+$_c->setConstList(['sbsNone', 'sbsSingle', 'sbsSunken'],'TStaticBorderStyle');
 
-$_c->setConstList(['iaLeft', 'iaTop'],0);
+$_c->setConstList(['iaLeft', 'iaTop'],'TIconArrangement');
 $_c->stBoth = 0;
 $_c->stData = 1;
 $_c->stNone = 2;
@@ -67,49 +67,49 @@ $_c->PAK_OPEN_CREATE = 3;
 $_c->PER_PACK = 0;
 $_c->PER_UNPACK = 1;
 
-$_c->setConstList(['fsBold', 'fsItalic', 'fsUnderline', 'fsStrikeOut'],0);
+$_c->setConstList(['fsBold', 'fsItalic', 'fsUnderline', 'fsStrikeOut']);
 $_c->bsRaised = 0;
 $_c->bsLowered = 1;
-$_c->setConstList(['tsNone', 'tsAuto', 'tsManual'],0);
+$_c->setConstList(['tsNone', 'tsAuto', 'tsManual']);
 $_c->rsLine = 0;
 $_c->rsNone = 1;
 $_c->rsPattern = 2;
 $_c->rsUpdate = 3;
-$_c->setConstList(['rsLine', 'rsNone', 'rsPattern', 'rsUpdate'],0);
+$_c->setConstList(['rsLine', 'rsNone', 'rsPattern', 'rsUpdate']);
 $_c->dmActiveForm = 0;
 $_c->dmDesktop = 1;
 $_c->dmMainForm = 2;
 $_c->dmPrimary = 3;
-$_c->setConstList( ['dmActiveForm', 'dmDesktop', 'dmMainForm', 'dmPrimary'], 0);
+$_c->setConstList( ['dmActiveForm', 'dmDesktop', 'dmMainForm', 'dmPrimary']);
 $_c->poNone = 0;
 $_c->poPrintToFit = 1;
 $_c->poProportional = 2;
-$_c->setConstList( ['poNone', 'poPrintToFit', 'poProportional' ], 0);
-$_c->setConstList(['alNone', 'alTop', 'alBottom', 'alLeft', 'alRight', 'alClient', 'alCustom'],0,'TAlign');
-$_c->setConstList(['tsTabs', 'tsButtons', 'tsFlatButtons', 'tsNone', 'tsAuto', 'tsManual'],0);
-$_c->setConstList(['tpTop', 'tpBottom', 'tpLeft', 'tpRight'],0);
-$_c->setConstList(['ptBottom', 'ptLeft', 'ptNone', 'ptRight', 'ptTop'], 0);
-$_c->setConstList(['bkCustom', 'bkOK', 'bkCancel', 'bkHelp', 'bkYes', 'bkNo', 'bkClose', 'bkAbort', 'bkRetry', 'bkIgnore', 'bkAll'], 0);
-$_c->setConstList(['ssRegular', 'ssHotTrack', 'ssFlat'],0);
+$_c->setConstList( ['poNone', 'poPrintToFit', 'poProportional' ]);
+$_c->setConstList(['alNone', 'alTop', 'alBottom', 'alLeft', 'alRight', 'alClient', 'alCustom'],'TAlign');
+$_c->setConstList(['tsTabs', 'tsButtons', 'tsFlatButtons', 'tsNone', 'tsAuto', 'tsManual']);
+$_c->setConstList(['tpTop', 'tpBottom', 'tpLeft', 'tpRight']);
+$_c->setConstList(['ptBottom', 'ptLeft', 'ptNone', 'ptRight', 'ptTop']);
+$_c->setConstList(['bkCustom', 'bkOK', 'bkCancel', 'bkHelp', 'bkYes', 'bkNo', 'bkClose', 'bkAbort', 'bkRetry', 'bkIgnore', 'bkAll']);
+$_c->setConstList(['ssRegular', 'ssHotTrack', 'ssFlat']);
 $_c->setConstList(['lbStandard', 'lbOwnerDrawFixed', 'lbOwnerDrawVariable',
-    'lbVirtual', 'lbVirtualOwnerDraw'],0);
-$_c->setConstList(['cbUnchecked', 'cbChecked', 'cbGrayed'],0);
+    'lbVirtual', 'lbVirtualOwnerDraw']);
+$_c->setConstList(['cbUnchecked', 'cbChecked', 'cbGrayed']);
 
-$_c->setConstList(['trHorizontal', 'trVertical'], 0);
-$_c->setConstList(['tmBottomRight', 'tmTopLeft', 'tmBoth'], 0);
+$_c->setConstList(['trHorizontal', 'trVertical']);
+$_c->setConstList(['tmBottomRight', 'tmTopLeft', 'tmBoth']);
 
-$_c->setConstList(['sbHorizontal', 'sbVertical'], 0);
+$_c->setConstList(['sbHorizontal', 'sbVertical']);
 $_c->setConstList(['scLineUp', 'scLineDown', 'scPageUp', 'scPageDown', 'scPosition',
-    'scTrack', 'scTop', 'scBottom', 'scEndScroll'],0);
+    'scTrack', 'scTop', 'scBottom', 'scEndScroll']);
 
-$_c->setConstList(['dfShort','dfLong'], 0);
-$_c->setConstList(['dmComboBox','dmUpDown'], 0);
-$_c->setConstList(['dtkDate','dtkTime'], 0);
+$_c->setConstList(['dfShort','dfLong']);
+$_c->setConstList(['dmComboBox','dmUpDown']);
+$_c->setConstList(['dtkDate','dtkTime']);
 
 $_c->setConstList(['bsBox', 'bsFrame', 'bsTopLine', 'bsBottomLine', 'bsLeftLine',
-                                'bsRightLine', 'bsSpacer'],0);
-$_c->setConstList(['fpDefault','fpVariable', 'fpFixed'], 0);
-$_c->setConstList(['fqDefault', 'fqDraft', 'fqProof', 'fqNonAntialiased', 'fqAntialiased', 'fqClearType', 'fqClearTypeNatural'], 0);
+                                'bsRightLine', 'bsSpacer']);
+$_c->setConstList(['fpDefault','fpVariable', 'fpFixed']);
+$_c->setConstList(['fqDefault', 'fqDraft', 'fqProof', 'fqNonAntialiased', 'fqAntialiased', 'fqClearType', 'fqClearTypeNatural']);
 function _addfont(&$arr){
 	$arr[] = [
                   'CAPTION'=>t('font'),
