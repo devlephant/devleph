@@ -14,7 +14,7 @@ function treeBwr_add()
 	$dirs = findFiles($dir, "dfm");
 	foreach( $dirs as $dfm ){$Forms .= "	".$dfm._BR_;}
 	
-	$extdir = findFiles($dir."/ext/", "dll");
+        $extdir = $GLOBALS['myProject']->config['modules'];
 	foreach( $extdir as $ext ){$Exts .= "	".$ext._BR_;}
 	
 	if( $Forms != null )
