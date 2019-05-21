@@ -8,29 +8,26 @@ function treeBwr_add()
 	
 	$tree->text = "";
 	
-	$files = findFiles($dir."/scripts/", "php");
-	foreach( $files as $file ){$Scripts .= "	".$file._BR_;}
-	
 	$dirs = findFiles($dir, "dfm");
 	foreach( $dirs as $dfm ){$Forms .= "	".$dfm._BR_;}
 	
-        $extdir = $GLOBALS['myProject']->config['modules'];
-	foreach( $extdir as $ext ){$Exts .= "	".$ext._BR_;}
-	
-	if( $Forms != null )
+	if( $Forms !== null )
 		{
 			$text .= t("Forms")._BR_;
 			$text .= $Forms;
 		}
-	if( $Scripts != null )
+	$Scripts = findFiles($dir."/scripts/", "php");
+	if( !empty($Scripts) )
 		{
 			$text .= t("Scripts")._BR_;
-			$text .= $Scripts;
+			foreach($Scripts as $file)
+			$text .= "	".$file._BR_;
 		}	
-	if( $Exts != null )
+	if( !empty($GLOBALS['myProject']->config['modules']) )
 		{
 			$text .= t("Exts")._BR_;
-			$text .= $Exts;
+			foreach( $GLOBALS['myProject']->config['modules'] as $file )
+			$text.= "	".$file._BR_;
 		}
 	
 	$tree->text = $text;
