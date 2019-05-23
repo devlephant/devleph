@@ -14,9 +14,9 @@ $result[] = array(
                   'PROP'=>'btnColor',
                   );
 $result[] = array(
-                  'CAPTION'=>t('BtnColorDisabled'),
+                  'CAPTION'=>t('DisabledBtnColor'),
                   'TYPE'=>'color',
-                  'PROP'=>'btnColorDisabled',
+                  'PROP'=>'DisabledBtnColor',
                   );
 
 $result[] = array(

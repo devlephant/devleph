@@ -190,7 +190,7 @@ class myUtils {
 		$_sc->MovePanelCanvas->pen->color = myOptions::get('sc', 'SizerOuterColor', clBlack);
 		$_sc->MovePanelCanvas->pen->style = (int)myOptions::get('sc','SizerPenStyle',2);
 		$_sc->BtnColor = myOptions::get('sc','BtnColor',clBlue);
-		$_sc->BtnColorDisabled = myOptions::get('sc','BtnColorDisabled',clGray);
+		$_sc->DisabledBtnColor = myOptions::get('sc','DisabledBtnColor',clGray);
         
         $_sc->onSizeMouseDown = 'myDesign::selectComponent';
         $_sc->onEndSizeMove   = 'myDesign::endSizeMove';

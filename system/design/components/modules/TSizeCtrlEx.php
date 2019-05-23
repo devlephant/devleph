@@ -11,7 +11,7 @@ class TSizeCtrlEx extends __TNoVisual {
             $this->gridSize = 8;
             $this->showGrid = True;
 			$this->btnColor = clBlue;
-            $this->btnColorDisabled = clGray;
+            $this->DisabledBtnColor = clGray;
         }
     }
     
@@ -22,7 +22,7 @@ class TSizeCtrlEx extends __TNoVisual {
         $_sc = new TSizeCtrl($this->parent);
         $_sc->MoveOnly   = $this->MoveOnly;
         $_sc->BtnColor   = $this->BtnColor;
-        $_sc->BtnColorDisabled   = $this->BtnColorDisabled;
+        $_sc->DisabledBtnColor   = $this->DisabledBtnColor;
         $_sc->gridSize   = $this->gridSize;
         $_sc->MultiTargetResize   = $this->MultiTargetResize;
         $_sc->showGrid   = $this->showGrid;

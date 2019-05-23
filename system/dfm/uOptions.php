@@ -64,7 +64,7 @@ class ev_fmOptions_en_bc {
 
 class ev_fmOptions_dis_bc {
 	static function onMouseDown($self, $button, $shift, $x, $y){
-		ev_fmOptions_en_bc::doDialog($self, $GLOBALS['_sc'], 'BtnColorDisabled');
+		ev_fmOptions_en_bc::doDialog($self, $GLOBALS['_sc'], 'DisabledBtnColor');
 	}
 }
 

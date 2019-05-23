@@ -13,7 +13,7 @@ $cfg_array = array(
     'main' => array (
         'gridSize' => 8,
         'BtnColor' => clBlue,
-		'BtnColorDisabled' => clGray,
+		'DisabledBtnColor' => clGray,
         'showGrid' => false,
         'lastVer'  => '',
     ),
@@ -58,7 +58,7 @@ if (!EMULATE_DVS_EXE){
 	$_sc->MovePanelCanvas->pen->color = (int)$dsg_cfg->main->SizerOuterColor;
 	$_sc->MovePanelCanvas->pen->style = (int)$dsg_cfg->main->SizerPenStyle;
     $_sc->BtnColor = (int)$dsg_cfg->main->BtnColor;
-	$_sc->BtnColorDisabled = (int)$dsg_cfg->main->BtnColorDisabled;
+	$_sc->DisabledBtnColor = (int)$dsg_cfg->main->DisabledBtnColor;
 	
     $_sc->showGrid = (int)$dsg_cfg->main->showGrid;
     $_sc->enable   = true;

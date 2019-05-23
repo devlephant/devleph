@@ -281,7 +281,7 @@ class myOptions {
 		c('fmOptions->cb_penstyle')->itemIndex = (int)myOptions::get('sc','SizerPenStyle',2);
 		c('fmOptions->backup_active')->checked = (bool)myOptions::get('backup','active',true);
 		c('fmOptions->en_bc')->brushColor = myOptions::get('sc','BtnColor',clBlue);
-		c('fmOptions->dis_bc')->brushColor = myOptions::get('sc','BtnColorDisabled', clGray);
+		c('fmOptions->dis_bc')->brushColor = myOptions::get('sc','DisabledBtnColor', clGray);
 		c('fmOptions->sel_color')->brushColor = myOptions::get('sc','SelectColor', clBlack);
 		c('fmOptions->en_bc')->penColor = myOptions::get('sc','pEn',clBlack);
 		c('fmOptions->dis_bc')->penColor = myOptions::get('sc','pDis', clBlack);
@@ -312,7 +312,7 @@ class myOptions {
                 myOptions::set('sc','gridSize', (int)c('fmOptions->e_gridsize')->text);
 				myOptions::set('sc','SizerPenStyle', c('fmOptions->cb_penstyle')->itemIndex);	
 				myOptions::set('sc','BtnColor', c('fmOptions->en_bc')->brushColor);
-				myOptions::set('sc','BtnColorDisabled', c('fmOptions->dis_bc')->brushColor);
+				myOptions::set('sc','DisabledBtnColor', c('fmOptions->dis_bc')->brushColor);
 				myOptions::set('sc','SelectColor', c('fmOptions->sel_color')->brushColor);
 				
 				$_sc->MovePanelCanvas->brush->color = c('fmOptions->scol_inn')->brushColor;
@@ -332,7 +332,7 @@ class myOptions {
         } else {
 			global $fmEdit;
 			$_sc->BtnColor = myOptions::get('sc','BtnColor',clBlue);
-			$_sc->BtnColorDisabled = myOptions::get('sc','BtnColorDisabled',clGray);
+			$_sc->DisabledBtnColor = myOptions::get('sc','DisabledBtnColor',clGray);
 			$_sc->showGrid = (bool)myOptions::get('sc','showGrid',false);
 			$_sc->gridSize = (int)myOptions::get('sc','gridSize',8);
 			$GLOBALS['sc_offset'] = (int)myOptions::get('sc', 'offset', 8);

@@ -130,7 +130,7 @@ class evfmMain {
 		$dsg_cfg->main->SizerPenStyle = myOptions::get('sc', 'SizerPenStyle');
         $dsg_cfg->main->gridSize = $_sc->gridSize;
         $dsg_cfg->main->BtnColor = (int)$_sc->BtnColor;
-		$dsg_cfg->main->BtnColorDisabled = (int)$_sc->BtnColorDisabled;
+		$dsg_cfg->main->DisabledBtnColor = (int)$_sc->DisabledBtnColor;
         $dsg_cfg->main->showGrid = (int)$_sc->showGrid;
         $dsg_cfg->main->lastVer  = $fmMain->lastVer;
         
