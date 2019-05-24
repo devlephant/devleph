@@ -138,6 +138,7 @@ class myOptions {
 
             myProject::save();
             c("fmMain->statusBar")->caption = " ".replaceSr($projectFile);
+			treeBwr_add();
         }
     }
     

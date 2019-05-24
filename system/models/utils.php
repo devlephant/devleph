@@ -422,7 +422,8 @@ class myUtils {
         
         $_FORMS = array_values($_FORMS);
         self::loadForm($last_form);
-        
+		
+        treeBwr_add();
     }
     
     static function cloneForm($nam = false){
@@ -458,6 +459,7 @@ class myUtils {
         
         $myProject->formsInfo[$new_name] = $myProject->formsInfo[$name];
         
+		treeBwr_add();
     }
     
     static function formExists($nam){
@@ -515,7 +517,7 @@ class myUtils {
             $myProject->formsInfo[$new_name] = $myProject->formsInfo[$name];
             unset($myProject->formsInfo[$name]);
             
-        
+			treeBwr_add();
         }
     }
     
@@ -617,6 +619,7 @@ class myUtils {
             self::createForm($name); // создаем форму из бланка...
             self::loadForm($name); // загружаем форму в проект...
             
+			treeBwr_add();
         }
     }
     
