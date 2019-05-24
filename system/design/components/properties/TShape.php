@@ -52,7 +52,16 @@ $result[] = array(
                   'PROP'=>'shape',
                   'VALUES'=>$_c->s('TShapeType'),
                   );
-
+$result[] = array(
+                  'CAPTION'=>t('Sides Number'),
+                  'TYPE'=>'number',
+                  'PROP'=>'sides',
+                  );
+$result[] = array(
+                  'CAPTION'=>t('Angle'),
+                  'TYPE'=>'number',
+                  'PROP'=>'angle',
+                  );
 $result[] = array(
                   'CAPTION'=>t('Hint'),
                   'TYPE'=>'text',
