@@ -153,9 +153,10 @@ class myProperties {
 		
         $dlg = new TDMSColorDialog;
         $dlg->color = $myProperties->selObj->$prop;
-        if( file_exists(realpath(SYSTEM_DIR.'/colors.in')) )
+        $colors = myOptions::get('colors','in',null);
+		if( $colors!==null )
 		{
-			list($dlg->MainColors->text, $dlg->CustomColors->text) = unserialize(file_get_contents(realpath(SYSTEM_DIR.'/colors.in')));
+			list($dlg->MainColors->text, $dlg->CustomColors->text) = unserialize($colors);
 		}
         $x = cursor_real_x($dlg->form,10);
         $y = cursor_real_y($dlg->form,10);
@@ -173,7 +174,7 @@ class myProperties {
             
             self::setColorDsgn(_c($self), $color);
             $_sc->update();  // fix bug
-			file_put_contents(SYSTEM_DIR.'/colors.in', serialize(array($dlg->MainColors->text, $dlg->CustomColors->text)));
+			myOptions::set('colors', 'in', serialize(array($dlg->MainColors->text, $dlg->CustomColors->text)));
         }
 
 			

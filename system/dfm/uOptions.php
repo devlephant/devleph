@@ -43,16 +43,17 @@ class ev_fmOptions_en_bc {
 	{
 		$dlg = new TDMSColorDialog();
 		$col1 = $dlg->color = c($self)->brushColor;
-		if( file_exists(realpath(SYSTEM_DIR.'/colors.in')) )
+		$colors = myOptions::get('colors','in',null)
+		if( $colors!==null )
 		{
-			list($dlg->MainColors->text, $dlg->CustomColors->text) = unserialize(file_get_contents(realpath(SYSTEM_DIR.'/colors.in')));
+			list($dlg->MainColors->text, $dlg->CustomColors->text) = unserialize($colors);
 		}
 		if($dlg->execute())
 		{
 			if( is_object($obj) ) $obj->$prop = $dlg->color;
 			c($self)->brushColor = $dlg->color;
 			c($self)->penColor = TColor::compare_contrast($col1, $dlg->color);
-			file_put_contents(SYSTEM_DIR.'/colors.in', serialize(array($dlg->MainColors->text, $dlg->CustomColors->text)));
+			myOptions::set('colors','in', serialize(array($dlg->MainColors->text, $dlg->CustomColors->text)));
 		}
 		$dlg->free();
 	}
