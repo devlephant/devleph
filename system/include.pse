@@ -157,7 +157,7 @@ if (!defined('IS_APPLICATION_START')){
         global $_PARAMS, $fmMain;
 		
 		$__blaparam =  isset($_PARAMS[2])? $_PARAMS[2]: '';
-        if ($GLOBALS['dsg_cfg']->newProjectDialog->startup && !file_exists($__blaparam)) {
+        if (myOptions::get('newProjectDialog', 'startup', true) && !file_exists($__blaparam)) {
 			$GLOBALS['__newproject_close'] = true;
             myProject::newProjectDialog( true ); 
 		} else {
@@ -234,10 +234,15 @@ if (!defined('IS_APPLICATION_START')){
 			myInspect::genList($img);
 			$myProperties->last_class = rtii_class($img->self);
 		};
+			$kx = myOptions::get('fmMain', 'x', -8);
+			$ky = myOptions::get('fmMain', 'y', -8);
+			if($kx > -8 or $ky > -8)
+			$fmMain->position = poDesigned;
+			if( $kx > -8 )
+			$fmMain->left  = $kx;
+			if( $ky > -8 )
+			$fmMain->top	=  $ky;
 	    $fmMain->show();
-		global $dsg_cfg;
-			$fmMain->left  = $dsg_cfg->fmMain->x >= -120? $dsg_cfg->fmMain->x: -120;
-			$fmMain->top	= $dsg_cfg->fmMain->y >= -8? $dsg_cfg->fmMain->y: -8;
     }
     
     

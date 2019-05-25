@@ -1167,18 +1167,14 @@ class myProperties {
                     $this->generateClass($class, 0);      
                     if (isset($this->panels[$this->last_class]['PANEL'])){
                         $this->panels[$class]['PANEL']->splitterPosition = $this->panels[$this->last_class]['PANEL']->splitterPosition;
-                        $GLOBALS['dsg_cfg']->panelLeft->splitterW = $this->panels[$this->last_class]['PANEL']->splitterPosition;
+                        myOptions::set('panelLeft', 'splitterW', $this->panels[$this->last_class]['PANEL']->splitterPosition);
                     }
                     else {
 						
-						if(is_object($GLOBALS['dsg_cfg']) && is_object($this))
-						if(isset($GLOBALS['dsg_cfg']) && isset($this->panels))
-						if(isset($this->panels[$class]))
-							if(isset($this->panels[$class]['PANEL']))
-								if(is_object($this->panels[$class]['PANEL']))
-									if(isset($GLOBALS['dsg_cfg']->panelLeft))
-										if(is_object($GLOBALS['dsg_cfg']->panelLeft))
-									$this->panels[$class]['PANEL']->splitterPosition = $GLOBALS['dsg_cfg']->panelLeft->splitterW;
+						if(is_object($this) && isset($this->panels) && isset($this->panels[$class]) && isset($this->panels[$class]['PANEL']))
+							if(is_object($this->panels[$class]['PANEL']))
+								if(myOptions::get('panelLeft', 'splitterW', null)!==null)
+								$this->panels[$class]['PANEL']->splitterPosition = (int)myOptions::get('panelLeft', 'splitterW',0);
                     }
 					//pre( $this->panels[$class]['PANEL'] 
                 }
@@ -1188,7 +1184,7 @@ class myProperties {
                 
                 if (isset($this->panels[$this->last_class]['PANEL'])) {
                     $this->panels[$class]['PANEL']->splitterPosition = $this->panels[$this->last_class]['PANEL']->splitterPosition;
-                    $GLOBALS['dsg_cfg']->panelLeft->splitterW = $this->panels[$this->last_class]['PANEL']->splitterPosition;
+                    myOptions::set('panelLeft', 'splitterW', $this->panels[$this->last_class]['PANEL']->splitterPosition);
                 }
                 
 				if( isset($this->panels[$class]['PANEL']) ){

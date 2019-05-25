@@ -29,7 +29,7 @@ class myOptions {
         if( !is_object($obj) ) return;
         if ($def && myOptions::get($section,'x', null)===null){
             
-            if (!$def){
+            if (is_array($def)){
                 $obj->x = $def[0];
                 $obj->y = $def[1];
                 $obj->w = $def[2];

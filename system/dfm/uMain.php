@@ -63,13 +63,11 @@ class evfmMain {
     public static $visfix = [];
 	public static $pSizes = [];
     static function checkVer($file_info, $last_ver){
-        
-        global $dsg_cfg;
         if ($last_ver){
-            
-            if ($dsg_cfg->main->lastVer!==$last_ver && compareVer($last_ver, '3.0.4.0')===1){
+			$lver = myOptions::get('main', 'lastVer', DV_VERSION);
+            if ($lver !== $last_ver and version_compare($last_ver, DV_VERSION, '>')){
                 
-                $dsg_cfg->main->lastVer = $last_ver;
+                myOptions::set('main', 'lastVer', $last_ver);
                 
                 if (messageBox(t("Воу, ты устарел,\nуже доступна версия %s\nОбновить программу?",$last_ver), t('.: Мастер обновления :.'), MB_YESNO)==mrYes){
                     
@@ -122,35 +120,19 @@ class evfmMain {
     // сохранение настроек программы...
     static function saveMainConfig(){
         
-        global $dsg_cfg, $_sc, $fmEdit, $fmComponents, $fmMain, $fmObjInspect;
+        global $_sc, $fmEdit, $fmComponents, $fmMain, $fmObjInspect;
         $_sc->clearTargets();
         myProperties::unFocusPanel(); // fix AV !!!
-		$dsg_cfg->main->SizerInnerColor = (int)$_sc->MovePanelCanvas->brush->color;
-		$dsg_cfg->main->SizerOuterColor = (int)$_sc->MovePanelCanvas->pen->color;
-		$dsg_cfg->main->SizerPenStyle = myOptions::get('sc', 'SizerPenStyle');
-        $dsg_cfg->main->gridSize = $_sc->gridSize;
-        $dsg_cfg->main->BtnColor = (int)$_sc->BtnColor;
-		$dsg_cfg->main->DisabledBtnColor = (int)$_sc->DisabledBtnColor;
-        $dsg_cfg->main->showGrid = (int)$_sc->showGrid;
-        $dsg_cfg->main->lastVer  = $fmMain->lastVer;
         
         myProject::clearProject(); // for fix AV
         
-        $dsg_cfg->fmMain->x  = $fmMain->left;
-        $dsg_cfg->fmMain->y  = $fmMain->top;
-        $dsg_cfg->fmMain->w  = $fmMain->width;
-        $dsg_cfg->fmMain->h  = $fmMain->height;
-        $dsg_cfg->fmMain->wS = $fmMain->windowState;
-        $dsg_cfg->fmPHPEditor->w = c('fmPHPEditor',1)->w;
-        $dsg_cfg->fmPHPEditor->h = c('fmPHPEditor',1)->h;
-        $dsg_cfg->fmPHPEditor->x = c('fmPHPEditor',1)->x;
-        $dsg_cfg->fmPHPEditor->y = c('fmPHPEditor',1)->y;
-        $dsg_cfg->fmPHPEditor->s = c('fmPHPEditor',1)->windowState;
-        $dsg_cfg->fmPHPEditor->panelH = c('fmPHPEditor->errPanel')->h;
-        $dsg_cfg->lastVer    = DV_VERSION;
-        $dsg_cfg->fmObjInspect->visible = (int)$fmObjInspect->visible;
-        $dsg_cfg->newProjectDialog->startup = (int)c('fmNewProject->startup')->checked;
-        $dsg_cfg->saveToFile(DS_USERDIR.'config.ini');
+		myOptions::setXYWH('fmMain', $fmMain);
+		myOptions::set('fmMain', 's', $fmMain->windowState);
+        myOptions::setXYWH('fmPHPEditor', c('fmPHPEditor',1));
+		myOptions::set('fmPHPEditor', 's', c('fmPHPEditor',1)->windowState);
+        myOptions::set('fmPHPEditor', 'panelH', (int)c('fmPHPEditor->errPanel')->h);
+        myOptions::set('fmObjInspect', 'visible',(bool)$fmObjInspect->visible);
+		myOptions::set('newProjectDialog', 'startup', (bool)c('fmNewProject->startup')->checked);
         
         Docking::saveFile(c('fmMain->pDockBottom'),DS_USERDIR.'bottom.dock');
         Docking::saveFile(c('fmMain->pDockRight'),DS_USERDIR.'right.dock');
@@ -159,7 +141,7 @@ class evfmMain {
         myOptions::set('pDockRight','width', c('fmMain->pDockRight')->w);
         myOptions::set('pDockLeft','width', c('fmMain->pDockLeft')->w);
         myOptions::set('pDockBottom','height', c('fmMain->pDockBottom')->h);
-	myOptions::set('treebrowser','visible', c('fmMain->TTreeBwr')->TabVisible);
+		myOptions::set('treebrowser','visible', c('fmMain->TTreeBwr')->TabVisible);
 
         myOptions::setFloat('pComponents', c('fmMain->pComponents'));
         myOptions::setFloat('pInspector', c('fmMain->pInspector'));
