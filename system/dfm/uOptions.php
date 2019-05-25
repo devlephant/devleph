@@ -43,7 +43,7 @@ class ev_fmOptions_en_bc {
 	{
 		$dlg = new TDMSColorDialog();
 		$col1 = $dlg->color = c($self)->brushColor;
-		$colors = myOptions::get('colors','in',null)
+		$colors = myOptions::get('colors','in',null);
 		if( $colors!==null )
 		{
 			list($dlg->MainColors->text, $dlg->CustomColors->text) = unserialize($colors);
