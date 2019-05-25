@@ -156,7 +156,7 @@ class myProperties {
         $colors = myOptions::get('colors','in',null);
 		if( $colors!==null )
 		{
-			list($dlg->MainColors->text, $dlg->CustomColors->text) = unserialize($colors);
+			list($dlg->MainColors->text, $dlg->CustomColors->text) = unserialize(base64_decode($colors));
 		}
         $x = cursor_real_x($dlg->form,10);
         $y = cursor_real_y($dlg->form,10);
@@ -174,7 +174,7 @@ class myProperties {
             
             self::setColorDsgn(_c($self), $color);
             $_sc->update();  // fix bug
-			myOptions::set('colors', 'in', serialize(array($dlg->MainColors->text, $dlg->CustomColors->text)));
+			myOptions::set('colors', 'in', base64_encode(serialize(array($dlg->MainColors->text, $dlg->CustomColors->text))));
         }
 
 			
