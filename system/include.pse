@@ -172,8 +172,11 @@ if (!defined('IS_APPLICATION_START')){
 			
 			global $myProperties, $_sc, $myInspect;
 			$n = 1;
-			$gs = $_sc->gridSize;
-			$_sc->clearTargets();
+			if( is_object($_sc) )
+			{
+				$gs = $_sc->gridSize;
+				$_sc->clearTargets();
+			}
 			foreach($files as $file){
 				if( in_array( strtolower(fileExt($file)), array('bmp', 'gif', 'jpeg', 'jpg', 'wmf', 'emf', 'ico', 'png') ) ){
 				$size = @getimagesize($file);
@@ -183,17 +186,27 @@ if (!defined('IS_APPLICATION_START')){
 				if (!CApi::doEvent('onOpenProject',array('filename'=>$filename,'ext'=>$ext))) return;
 				switch ($ext){
 					case 'dvs':
-						myProject::openFromDVS($filename);
+						{
+							myProject::openFromDVS($filename);
+							return;
+						}
 						break;
 					case 'msppr':
-						myProject::open($filename);
-						break;
+						{
+							myProject::open($filename);
+							return;
+						}break;
 					case 'upr':
-						myProject::open($filename);
-						break;
+						{
+							myProject::open($filename);
+							return;
+						}break;
 					case 'dfm':
-						myProject::openAsDFM($filename);
-						break;
+						{
+							myProject::openAsDFM($filename);
+							myUtils::saveForm();
+							return;
+						}break;
 				}
 				if (!CApi::doEvent('onOpenProjectAfter',array('filename'=>$filename,'ext'=>$ext))) return;
 				}
@@ -213,6 +226,7 @@ if (!defined('IS_APPLICATION_START')){
 				}
 			}
 			$myInspect->selectObject($img);
+			
 			$panel = $myProperties->panels[$img->class_name]['PANEL'];
 			$panel->show();
 			$panel->toFront();
