@@ -546,146 +546,147 @@ class myProperties {
 			$this->selObj = $fmEdit;
         $elements = $this->params[$this->selObj->className];
         
-        foreach ($elements as $self=>$param){
+		if( !is_array($elements) )
+			foreach ($elements as $self=>$param){
             
-            if (!isset($param['TYPE'])) continue;
+				if (!isset($param['TYPE'])) continue;
             
-            $prop = is_array($param['PROP']) ? $param['PROP'][0] : $param['PROP'];
-            $value = $this->selObj->$prop;
+				$prop = is_array($param['PROP']) ? $param['PROP'][0] : $param['PROP'];
+				$value = $this->selObj->$prop;
             
-            $obj = _c($self);
+				$obj = _c($self);
             
              
-            if ($param['TYPE']=='combo'){
+				if ($param['TYPE']=='combo'){
                 
-                if (substr($param['PROP'],0,6)=='cursor'){
+					if (substr($param['PROP'],0,6)=='cursor'){
                     
-                    if (is_string($value))
-                        $index = array_search(constant($value), array_keys($GLOBALS['cursors_meta']));
-                    else
-                        $index = array_search($value, array_keys($GLOBALS['cursors_meta']));
-                    $value = $index;
-                }
-                    
-                if (ereg('^([0-9]+)$',$value)){
-                    $value = (int)$value;
-                    $i = -1;
-                    foreach ($param['VALUES'] as $key => $el){
+						if (is_string($value))
+							$index = array_search(constant($value), array_keys($GLOBALS['cursors_meta']));
+						else
+							$index = array_search($value, array_keys($GLOBALS['cursors_meta']));
+						$value = $index;
+					}
+						
+					if (ereg('^([0-9]+)$',$value)){
+						$value = (int)$value;
+						$i = -1;
+						foreach ($param['VALUES'] as $key => $el){
                         
-                        $i++;
-                        if ($key == $value) break;
-                    }
+							$i++;
+							if ($key == $value) break;
+						}
                     
-                    $obj->itemIndex = $i;
-                } else {
-					if(isset($param['NO_CONST'])){
-						if ($param['NO_CONST']){
-							$lines = explode(_BR_,$obj->text);
-							$k     = array_search($value, $lines);
+						$obj->itemIndex = $i;
+					} else {
+						if(isset($param['NO_CONST'])){
+							if ($param['NO_CONST']){
+								$lines = explode(_BR_,$obj->text);
+								$k     = array_search($value, $lines);
 							
-							$obj->itemIndex = $k;
+								$obj->itemIndex = $k;
+							} else {
+								$obj->itemIndex = $_c->$value;
+							}
 						} else {
 							$obj->itemIndex = $_c->$value;
 						}
-					} else {
-						$obj->itemIndex = $_c->$value;
 					}
-                }
-            } elseif ($param['TYPE']=='scombo'){
+				} elseif ($param['TYPE']=='scombo'){
                 
-                $obj->itemIndex = constant($value);
+					$obj->itemIndex = constant($value);
                 
-            } elseif ($param['TYPE']=='check') {
+				} elseif ($param['TYPE']=='check') {
                 
-                $obj->value = $value ? t('Yes') : t('No');
-                //$obj->itemIndex = $value ? 0 : 1;
+					$obj->value = $value ? t('Yes') : t('No');
+					//$obj->itemIndex = $value ? 0 : 1;
                
-            } elseif ($param['TYPE']=='image'){
+				} elseif ($param['TYPE']=='image'){
                 
-                $ovalue = $this->selObj->$prop;
+					$ovalue = $this->selObj->$prop;
                 
-                if ($ovalue)
-                if (!$ovalue->isEmpty())
-                    $obj->value = '(' . t('image') . ')';
-                else
-                    $obj->value = '(' . t('None') . ')';
+					if ($ovalue)
+					if (!$ovalue->isEmpty())
+						$obj->value = '(' . t('image') . ')';
+					else
+						$obj->value = '(' . t('None') . ')';
                     
                 
-            } elseif ($param['TYPE']=='font'){
+				} elseif ($param['TYPE']=='font'){
                 
-                self::setFontDsgn($obj, $this->selObj->$prop);
+					self::setFontDsgn($obj, $this->selObj->$prop);
                 
-            } elseif ($param['TYPE']=='stfont'){
+				} elseif ($param['TYPE']=='stfont'){
                 
-                self::setFontDsgn($obj, $this->selObj->$prop);
+					self::setFontDsgn($obj, $this->selObj->$prop);
                 
-            } elseif ($param['TYPE']=='color'){
+				} elseif ($param['TYPE']=='color'){
                 
-                self::setColorDsgn($obj, $this->selObj->$prop);
+					self::setColorDsgn($obj, $this->selObj->$prop);
                 
-            } elseif ($param['TYPE']=='form') {
+				} elseif ($param['TYPE']=='form') {
                 
-                $obj->value = '('.t('Properties').')';
+					$obj->value = '('.t('Properties').')';
                 
-            } elseif ($param['TYPE']=='sizes') {
+				} elseif ($param['TYPE']=='sizes') {
                 
-                $obj->value = '('.t('Sizes & Position').')';
+					$obj->value = '('.t('Sizes & Position').')';
                 
-            } elseif ($param['TYPE']=='hotkey') {
-                $obj->value = $this->selObj->$prop;
+				} elseif ($param['TYPE']=='hotkey') {
+					$obj->value = $this->selObj->$prop;
                 
-            } elseif ($param['TYPE']=='components'){
+				} elseif ($param['TYPE']=='components'){
                 
-                $obj->value = $this->selObj->$prop;
-                //$obj->inText = $this->selObj->$prop;
-                /*global $_FORMS, $formSelected;
-                $forms = myProject::getFormsObjects();
-                $items = [];
+					$obj->value = $this->selObj->$prop;
+					//$obj->inText = $this->selObj->$prop;
+					/*global $_FORMS, $formSelected;
+					$forms = myProject::getFormsObjects();
+					$items = [];
                 
-                if ($param['ONE_FORM']){
+					if ($param['ONE_FORM']){
                     
-                    foreach ($forms[$_FORMS[$formSelected]] as $x)
-                       $items[] = ($x['NAME']); 
-                } else {
+						foreach ($forms[$_FORMS[$formSelected]] as $x)
+							$items[] = ($x['NAME']); 
+					} else {
                     
-                    foreach ($forms as $form=>$objs){
-                        $items[] = ($form);
+						foreach ($forms as $form=>$objs){
+							$items[] = ($form);
                         foreach ($objs as $x)
                             $items[] = ($form.'->'.$x['NAME']);
-                    }
-                }
+						}
+					}
                 
-                $obj->text = $items;
-                $obj->value = $this->selObj->$prop;*/
+					$obj->text = $items;
+					$obj->value = $this->selObj->$prop;*/
                 
-            } elseif ($param['TYPE']=='files') {
+				} elseif ($param['TYPE']=='files') {
                 
-                $items = [];
+					$items = [];
                 
-                global $projectFile;
-                $files = findFiles(dirname($projectFile), $param['EXT'], $param['RECURSIVE'], true);
+					global $projectFile;
+					$files = findFiles(dirname($projectFile), $param['EXT'], $param['RECURSIVE'], true);
                 
-                foreach ($files as $file){
-                    $file = str_replace(array(dirname($projectFile),'//'),array('','//'), $file);
-                    if ($file[0]=='/')
-                        $file[0] = ' '; $file = ltrim($file);
+					foreach ($files as $file){
+						$file = str_replace(array(dirname($projectFile),'//'),array('','//'), $file);
+						if ($file[0]=='/')
+							$file[0] = ' '; $file = ltrim($file);
                     
-                    if (!in_array($file, $items))
-                        $items[] = $file;
-                }
+						if (!in_array($file, $items))
+							$items[] = $file;
+					}
                 
-                $obj->text  = $items;
-                $obj->value = $this->selObj->$prop;
-            } elseif ($param['TYPE']=='tib') {
-                self::setTibDsgn($obj, count($this->selObj->images));
-            } else {
-                //$obj->text = $this->selObj->$prop;
-                $obj->value = (string)$this->selObj->$prop;
-            }
+					$obj->text  = $items;
+					$obj->value = $this->selObj->$prop;
+				} elseif ($param['TYPE']=='tib') {
+					self::setTibDsgn($obj, count($this->selObj->images));
+				} else {
+					//$obj->text = $this->selObj->$prop;
+					$obj->value = (string)$this->selObj->$prop;
+				}
             
-        }
-        
-        $toSetProp = false;
+			}
+			
+			$toSetProp = false;
     }
     
     function setProps(){

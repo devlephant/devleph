@@ -168,6 +168,7 @@ $m["TPopupMenu_Caption"] = "Popup Menu";
 $m["TMainMenu_Caption"]  = "Main Menu";
 $m["TMenuItem_Caption"]  = "Menu Item";
 $m["TProgressBar_Caption"] = "Progress Bar";
+$m["TScrollProgress_Caption"] = "Scroll-Progress";
 $m["TStatusBar_Caption"] = "Statusbar";
 $m["TTrackBar_Caption"] = "Trackbar";
 $m["TScrollBox_Caption"] = "Scrolling Box";

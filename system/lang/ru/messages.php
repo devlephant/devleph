@@ -387,6 +387,7 @@ $m["TPopupMenu_Caption"] = "Контекстное Меню";
 $m["TMainMenu_Caption"]  = "Главное Меню";
 $m["TMenuItem_Caption"]  = "Пункт Меню";
 $m["TProgressBar_Caption"] = "Прогресс";
+$m["TScrollProgress_Caption"] = "Скролл-прогресс";
 $m["TStatusBar_Caption"] = "Статус-бар";
 $m["TTrackBar_Caption"] = "Ползунок";
 $m["TScrollBox_Caption"] = "Контейнер";
