@@ -546,7 +546,7 @@ class myProperties {
 			$this->selObj = $fmEdit;
         $elements = $this->params[$this->selObj->className];
         
-		if( !is_array($elements) )
+		if( is_array($elements) )
 			foreach ($elements as $self=>$param){
             
 				if (!isset($param['TYPE'])) continue;
