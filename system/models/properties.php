@@ -1153,7 +1153,7 @@ class myProperties {
             $self  = $self->self;
         } else
             $class = rtti_class($self);
-        
+         
 
         if (!is_object($this->selObj) || $this->last_class !== $class){
           
