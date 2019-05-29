@@ -1,12 +1,12 @@
 <?
 
-$result = array();
+$result = [];
 
 $result[] = array(
                   'CAPTION'=>t('Align'),
                   'TYPE'=>'combo',
                   'PROP'=>'align',
-                  'VALUES'=>array('alNone', 'alTop', 'alBottom', 'alLeft', 'alRight', 'alClient', 'alCustom'),
+                  'VALUES'=>$_c->s('TAlign'),
                    'ADD_GROUP'=>true
                   );
 
@@ -31,7 +31,7 @@ $result[] = array(
 $result[] = array(
                   'CAPTION'=>t('Orientation'),
                   'TYPE'=>'combo',
-                  'PROP'=>'Orientation',
+                  'PROP'=>'orientation',
                   'VALUES'=>array('pbHorizontal', 'pbVertical'),
                   );
 
@@ -45,6 +45,11 @@ $result[] = array(
                   'CAPTION'=>t('Smooth'),
                   'TYPE'=>'check',
                   'PROP'=>'smooth',
+                  );
+$result[] = array(
+                  'CAPTION'=>t('Border Width'),
+                  'TYPE'=>'number',
+                  'PROP'=>'borderwidth',
                   );
 
 $result[] = array(
@@ -84,8 +89,8 @@ $result[] = array(
                   'ADD_GROUP'=>true,
                   );
 
-$result[] = array('CAPTION'=>t('p_Left'), 'PROP'=>'x','TYPE'=>'number','ADD_GROUP'=>1,'UPDATE_DSGN'=>1);
-$result[] = array('CAPTION'=>t('p_Top'), 'PROP'=>'y','TYPE'=>'number','ADD_GROUP'=>1,'UPDATE_DSGN'=>1);
-$result[] = array('CAPTION'=>t('Width'), 'PROP'=>'w','TYPE'=>'number','ADD_GROUP'=>1,'UPDATE_DSGN'=>1);
-$result[] = array('CAPTION'=>t('Height'), 'PROP'=>'h','TYPE'=>'number','ADD_GROUP'=>1,'UPDATE_DSGN'=>1);
+$result[] = array('CAPTION'=>t('p_Left'), 'PROP'=>'x','TYPE'=>'number','ADD_GROUP'=>1);
+$result[] = array('CAPTION'=>t('p_Top'), 'PROP'=>'y','TYPE'=>'number','ADD_GROUP'=>1);
+$result[] = array('CAPTION'=>t('Width'), 'PROP'=>'w','TYPE'=>'number','ADD_GROUP'=>1);
+$result[] = array('CAPTION'=>t('Height'), 'PROP'=>'h','TYPE'=>'number','ADD_GROUP'=>1);
 return $result;
