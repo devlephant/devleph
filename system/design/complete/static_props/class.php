@@ -81,19 +81,20 @@ class complete_Static_Props {
             if (strtolower($class['NAME'])==$x_class){
                  
                 $props = $class['info']['properties'];
-                foreach($props as $prop){
+				if(is_array($props)){
+					foreach($props as $prop){
                     
-                    if ($prop['type'] == 'static'){
+						if ($prop['type'] == 'static'){
                         
-                        $inline = $prop['name'];
-                        if ($prop['name'][0]=='$')
-                            $inline = '[b][$g]'.$inline.'[/b]';
-                        else
-                            $inline = '[$r]'.$inline.'';
+							$inline = $prop['name'];
+							if ($prop['name'][0]=='$')
+								$inline = '[b][$g]'.$inline.'[/b]';
+							else
+								$inline = '[$r]'.$inline.'';
                             
-                        $result[] = ['PROP'=>$prop['name'],'INLINE'=>myComplete::fromBB($inline)];
+							$result[] = ['PROP'=>$prop['name'],'INLINE'=>myComplete::fromBB($inline)];
+						}
                     }
-                    
                 } 
                  
                 $methods = $class['info']['methods'];
