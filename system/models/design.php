@@ -191,7 +191,6 @@ class myDesign {
         if ($gen)
         $_sc->clearTargets();
         
-		if(!is_a($obj, "TForm"))
         $_sc->addTarget($obj);
         
         if ($gen){
