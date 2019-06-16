@@ -322,8 +322,9 @@ class myActions {
     }
     static function getInlineFixed($action)
 	{
-		$canvas = new TControlCanvas(c('fmPHPEditor.desc',1));
-		$canvas->font->assign(c('fmPHPEditor.desc',1)->font);
+		$canvas = new TControlCanvas(c('fmPHPEditor.desc'));
+		$x = c('fmPHPEditor.desc')->font;
+		$canvas->font->assign($x);
 		$pixel = ($canvas->textWidth('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890')/62);
 		$pixelDiff = ($pixel - ($pixel - (int)$pixel));
 		$pixel = $pixelDiff>=($pixel-0.5)? ($pixel - 0.5): (int)$pixel;
