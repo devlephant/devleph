@@ -1,5 +1,5 @@
 <?
-c("fmMain->TreeProject")->onDblClick = create_function('$self', 'global $projectFile;
+c("fmMain->TreeProject")->onDblClick = create_function('$self', 'global $projectFile, $_FORMS, $formSelected, $_sc;
 $self = c("fmMain->TreeProject");
 switch( fileExt($self->itemSelected) )
 {
@@ -16,6 +16,26 @@ switch( fileExt($self->itemSelected) )
 	//null
 	break;
 	
+}
+$test = stristr($self->itemSelected,"(");
+if(!empty($test))
+{
+	$test = str_ireplace("(", "", $test);
+	$test = str_ireplace(")", "", $test);
+	if(!is_object(c($test))) return;
+	foreach( myUtils::$forms as $name=>$form ){
+		if( $form->self == c($test)->owner ){
+			if( strtolower($_FORMS[$formSelected]) == $name )
+			{
+				$_sc->clearTargets();
+				$_sc->addTarget(c($test));
+			} else {
+				myUtils::loadForm($name);
+				$_sc->clearTargets();
+				$_sc->addTarget(c($test));
+			}
+		}
+	}
 }
 ');
 
