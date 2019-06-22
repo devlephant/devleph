@@ -47,7 +47,10 @@ if (!defined('IS_APPLICATION_START')){
 		
         $fmLogoin = TForm::loadFromFile('dfm\\uLogoin');
         c("fmLogoin->label9")->caption = "Devel Studio ". DV_YEAR ." v".DV_VERSION. " - ".DV_PREFIX;
+		$theme = DOC_ROOT . 'design/theme/' . myOptions::get('prefs','studio_theme', 'light'); //#ADDOPT;
+		c("fmLogoin->Image1")->loadFromFile("{$theme}/LogoIn.png");
         $fmLogoin->show();
+		
 		$GLOBALS['APPLICATION']->processMessages();
         $fmMain = TForm::loadFromFile('dfm\uMain',true);
         $GLOBALS['fmMain'] =& $fmMain;

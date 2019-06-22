@@ -4,6 +4,10 @@ global $SCREEN, $fmEdit, $fmComponents, $fmMain, $fmObjInspect;
 if (!EMULATE_DVS_EXE){  
         c('fmLogoin->label5')->caption = 'Initializing... 5%';
 		    c('fmLogoin->label5')->show();
+			$color = myOptions::get('prefs','studio_theme', 'light') == "light" ? 4376578 : clPurple;
+			c('fmLogoin->loadbar')->brushColor = $color;
+		c('fmLogoin->loadbar')->sw = c('fmLogoin->loadbar')->w; 
+		c('fmLogoin->loadbar')->w = c('fmLogoin->loadbar')->sw / 100 * (int)str_ireplace("%","",stristr(c('fmLogoin->label5')->caption, ' ') );
 $fmComponents->caption = t('components');
 
 $aw = getSystemMetrics(SM_CXFULLSCREEN);
@@ -17,6 +21,7 @@ require 'design/components.php';
 
 if (!EMULATE_DVS_EXE){  
     c('fmLogoin->label5')->caption = 'Initializing... 15%';
+	c('fmLogoin->loadbar')->w = c('fmLogoin->loadbar')->sw / 100 * (int)str_ireplace("%","",stristr(c('fmLogoin->label5')->caption, ' ') );
     require 'design/events.php';    
 
 
@@ -35,16 +40,19 @@ if (!EMULATE_DVS_EXE){
     $_sc->onStartSizeMove = 'myDesign::startSizeMove';
     $_sc->OnDuringSizeMove = 'myDesign::duringSizeMove';
 	c('fmLogoin->label5')->caption = 'Initializing... 35%';
+	c('fmLogoin->loadbar')->w = c('fmLogoin->loadbar')->sw / 100 * (int)str_ireplace("%","",stristr(c('fmLogoin->label5')->caption, ' ') );
     $myProperties = new myProperties;
 
     c('fmNewProject->startup')->checked = (bool)myOptions::get('newProjectDialog', 'startup', true);
 	myOptions::getXYWH('fmMain', $fmMain, ['x' => 0, 'y' => 0, 'w' => 800, 'h' => 800]); 
     $fmMain->windowState = (int)myOptions::get('fmMain', 's', 'wsMaximized');
 	c('fmLogoin->label5')->caption = 'Initializing... 65%';
+	c('fmLogoin->loadbar')->w = c('fmLogoin->loadbar')->sw / 100 * (int)str_ireplace("%","",stristr(c('fmLogoin->label5')->caption, ' ') );
 	c('fmPHPEditor',1)->position = poDesigned;
 	myOptions::getXYWH('fmPHPEditor', c('fmPHPEditor',1), ['x'=>0,'y'=>0,'w'=>719,'h'=>563]);
 	c('fmPHPEditor',1)->windowState = (int)myOptions::get('fmPHPEditor', 's', 'wsNormal');
     c('fmLogoin->label5')->caption = 'Initializing... 78%';
+	c('fmLogoin->loadbar')->w = c('fmLogoin->loadbar')->sw / 100 * (int)str_ireplace("%","",stristr(c('fmLogoin->label5')->caption, ' ') );
     $fmMain->caption = 'Devel Studio KE'. DV_YEAR;
     
     $fmMain->popupMenu = c('fmMain->editorPopup');
@@ -57,6 +65,7 @@ if (!EMULATE_DVS_EXE){
     $GLOBALS['myProperties'] =& $myProperties;
     $GLOBALS['myEvents'] = new myEvents;
    	c('fmLogoin->label5')->caption = 'Initializing... 80%';
+	c('fmLogoin->loadbar')->w = c('fmLogoin->loadbar')->sw / 100 * (int)str_ireplace("%","",stristr(c('fmLogoin->label5')->caption, ' ') );
     c('fmPropsAndEvents->btn_addEvent')->onClick = 'myEvents::clickAddEvent';
     myComplete::init();
 	

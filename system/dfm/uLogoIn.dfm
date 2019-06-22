@@ -1,11 +1,10 @@
 object fmLogoin: TfmLogoin
-  Left = 326
-  Top = 167
-  AutoSize = True
+  Left = 690
+  Top = 353
   BorderStyle = bsNone
   Caption = 'fmLogoin'
-  ClientHeight = 357
-  ClientWidth = 686
+  ClientHeight = 353
+  ClientWidth = 690
   Color = clWhite
   TransparentColor = False
   TransparentColorValue = clNone
@@ -22975,26 +22974,26 @@ object fmLogoin: TfmLogoin
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000}
     end
     object Label5: TLabel
-      Left = 552
-      Top = 325
-      Width = 134
-      Height = 18
+      Left = 589
+      Top = 321
+      Width = 79
+      Height = 13
       Caption = 'Loading 10%'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = 0
-      Font.Height = -13
+      Font.Height = -11
       Font.Name = 'Segoe UI'
-      Font.Size = 11
+      Font.Size = 8
       Font.Style = [fsBold]
       ParentFont = False
       Transparent = True
       Visible = False
     end
     object Label9: TLabel
-      Left = 629
-      Top = 281
-      Width = 47
-      Height = 16
+      Left = 6
+      Top = 321
+      Width = 175
+      Height = 15
       Alignment = taRightJustify
       Caption = '... beta 4'
       Font.Charset = DEFAULT_CHARSET
@@ -23020,6 +23019,14 @@ object fmLogoin: TfmLogoin
       Font.Style = []
       ParentFont = False
       Visible = False
+    end
+    object loadbar: TShape
+      Left = 0
+      Top = 341
+      Width = 691
+      Height = 13
+      Brush.Color = clWhite
+      Pen.Style = psClear
     end
   end
 end
