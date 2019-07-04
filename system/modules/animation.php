@@ -99,24 +99,8 @@ class animate {
         }
         
         // определим центр окна...
-        //$center_x = intval($f_w / 2) - $offset_x - intval($w/2);
-        //$center_y = intval($f_h / 2) - $offset_y - intval($h/2);
-        
-        $center_x = $offset_x + intval($w/2);
-        $center_y = $offset_y + $h;
-        
-        // определим позицию объекта по центру...
-        $center_ox = $x + intval($w / 2);
-        $center_oy = $y + intval($h / 2);
-        
-        // -top - движение камеры вверх
-        // +top - ... вниз
-        
-        // -left - движение камеры влево
-        // +left - ... вправо
-        
-        $move_x = $center_x - $center_ox;
-        $move_y = $center_y - $center_oy - intval($h / 2);
+        $move_x = intval($f_w / 2) - $x - intval($w/2);
+        $move_y = intval($f_h / 2) - $y - intval($h/2);
          
         
         form_scrollby($f, $move_x, $move_y);
@@ -199,9 +183,8 @@ class animate {
         if (!is_object($obj))
             $obj = toObject($obj);
         
-        if (!isset($GLOBALS['__VIEW'])){
-            Timer::setInterval('animate::toView', 10);
-        }
+        if (!isset($GLOBALS['__VIEW']))
+            setTimer(10, 'animate::toView()');
         
         if (!$obj){
             unset($GLOBALS['__VIEW']);
@@ -213,20 +196,15 @@ class animate {
     
     static function objectFree($self){
         
-		if(isset($GLOBALS['__VIEW']))
         if ($GLOBALS['__VIEW']['OBJECT'] == $self)
             unset($GLOBALS['__VIEW']);
-        if(isset($GLOBALS['__VSPEED'][$self]))
+        
         unset($GLOBALS['__VSPEED'][$self]);
-	
-		if(isset($GLOBALS['__HSPEED'][$self]))
         unset($GLOBALS['__HSPEED'][$self]);
         
-		if(isset($GLOBALS['__COLLISION'][$self]))
         unset($GLOBALS['__COLLISION'][$self]);
         
-		if(isset($GLOBALS['__COLLISION']))
-        if (is_array($GLOBALS['__COLLISION']))
+        if ($GLOBALS['__COLLISION'])
         foreach ($GLOBALS['__COLLISION'] as $s=>$arr){
             foreach ($arr as $toobj=>$event)
                 if ($toobj == $self)

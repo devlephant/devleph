@@ -345,6 +345,9 @@ object fmOptions: TfmOptions
         TabOrder = 3
       end
     end
+	object TabSheet3: TTabSheet
+      Caption = '{Themes}'
+	end
   end
   object BitBtn1: TBitBtn
     Left = 391
