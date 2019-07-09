@@ -347,6 +347,40 @@ object fmOptions: TfmOptions
     end
 	object TabSheet3: TTabSheet
       Caption = '{Themes}'
+	  object l_themes: TLabel
+        Left = 5
+        Top = 5
+        Width = 51
+        Height = 13
+        Alignment = taCenter
+        AutoSize = True
+        Caption = '{Themes:}'
+        Layout = tlCenter
+      end
+	  object lb_themes: TListBox
+        Left = 5
+        Top = 21
+        Width = 144
+        Height = 144
+        Style = lbOwnerDrawFixed
+		ItemHeight = 16
+		Items.Strings = (
+		  'Dark'
+		  'Light'
+	  	  'Mixed  ')
+        Alignment = taLeftJustify
+        BorderSelected = True
+        TwoColor = clNone
+        TwoFontColor = clNone
+        MarginLeft = 2
+      end
+	  object btn_select: TBitBtn
+        Left = 152
+        Top = 20
+        Width = 128
+        Height = 32
+        Caption = '{Select}'
+      end
 	end
   end
   object BitBtn1: TBitBtn

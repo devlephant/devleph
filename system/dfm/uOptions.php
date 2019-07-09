@@ -93,3 +93,19 @@ class ev_fmOptions_scol_out
 		c("fmMain->shapeSize")->repaint();
 	}
 }
+
+class ev_fmOptions_btn_select
+ {
+	static function onClick($self)
+	{
+		$text = explode(PHP_EOL, c("fmOptions->lb_themes")->text);
+		$id = c("fmOptions->lb_themes")->itemIndex;
+		
+		if( strtolower($text[$id]) == "mixed  " ){ pre("Sorry... This function not working. \n \nTo do...."); return;}
+		//Простите, но доделаю чуть поже. Просто лето, жара, сами понимаете.
+		if(!empty(strtolower($text[$id]))) {
+			myOptions::set('prefs','studio_theme', strtolower($text[$id]));
+			pre("Restart devel studio, please.");
+		}
+	}
+}
