@@ -16,7 +16,7 @@ object fmMain: TfmMain
   Position = poScreenCenter
   PixelsPerInch = 96
   TextHeight = 15
-  DoubleBuffered = True
+  DoubleBuffered = False
   object Splitter2: TSplitter
     Left = 5
     Top = 33
@@ -52,6 +52,7 @@ object fmMain: TfmMain
 	BevelOuter = bvNone
 	ParentColor = True
     ParentFont = False
+	DoubleBuffered = True
     TabOrder = 0
     ExplicitWidth = 836
     DesignSize = (
@@ -646,6 +647,8 @@ object fmMain: TfmMain
 	  HorzScrollBar.Tracking = True
 	  VertScrollBar.Smooth = True
 	  VertScrollBar.Tracking = True
+	  AutoSize = False
+	  DoubleBuffered = False
       object shapeSize: TShape
         Left = 1
         Top = 1
@@ -944,7 +947,7 @@ object fmMain: TfmMain
         end
       end
       object it_lastprojects: TMenuItem
-        Caption = '{last_projects}'
+        Caption = '{Recent}'
         object clearlist1: TMenuItem
           Caption = '{clear_list}'
         end

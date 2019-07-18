@@ -82,7 +82,6 @@ $m["save"] = "Save";
 $m["view"] = "View";
 $m["save_as"] = "Save as...";
 $m["save_as_exe"] = "Save as executable";
-$m["last_projects"] = "Reopen";
 $m["exit"] = "Exit";
 $m["upx_None"] = "None";
 $m["gr_3D"] = "Game Engines";
