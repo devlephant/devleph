@@ -44,15 +44,15 @@ if (!defined('IS_APPLICATION_START')){
 
     if (!EMULATE_DVS_EXE){
 		$APPLICATION->title = 'Devel Studio '.DV_YEAR;
-		
-        $fmLogoin = TForm::loadFromFile('dfm\\uLogoin');
+		$dfm_dir = "\\design\\forms\\";
+        $fmLogoin = TForm::loadFromFile("{$dfm_dir}uLogoin");
         c("fmLogoin->label9")->caption = "Devel Studio ". DV_YEAR ." v".DV_VERSION. " - ".DV_PREFIX;
 		$theme = DOC_ROOT . 'design/theme/' . myOptions::get('prefs','studio_theme', 'light'); //#ADDOPT;
 		c("fmLogoin->Image1")->loadFromFile("{$theme}/LogoIn.png");
         $fmLogoin->show();
 		
 		$GLOBALS['APPLICATION']->processMessages();
-        $fmMain = TForm::loadFromFile('dfm\uMain',true);
+        $fmMain = TForm::loadFromFile("{$dfm_dir}uMain",true);
         $GLOBALS['fmMain'] =& $fmMain;
         setMainForm($fmMain);
         $APPLICATION->mainFormOnTaskBar = true;
@@ -60,54 +60,52 @@ if (!defined('IS_APPLICATION_START')){
 
     $GLOBALS['APPLICATION']->processMessages();
     
-    $fmEdit = TForm::loadFromFile('dfm\\uEdit');
+    $fmEdit = TForm::loadFromFile("{$dfm_dir}uEdit");
 
     c_Alias('fmMain->listObjs','fmObjectInspector->list');
     c_Alias('fmMain','fmComponents');
     c_Alias('fmMain','fmObjectInspector');
     c_Alias('fmMain','fmPropsAndEvents');
 	global $fmComponents, $fmPropEvent;
-    $fmComponents = TForm::loadFromFile('dfm\\uComponents',true);
-    $fmPropEvent  = TForm::loadFromFile('dfm\\uPropsAndEvents', true);
-
-    }
-    
-    if (!EMULATE_DVS_EXE){ 
-        // Editor dialogs
-        TForm::loadFromFile('dfm\uedt_Text', true);
-		TForm::loadFromFile('dfm\uTIBEditor', true);
-        TForm::loadFromFile('dfm\uedt_EventTypes');
-        TForm::loadFromFile('dfm\uInputText');
-    
-        TForm::loadFromFile('dfm\uFindDialog',true);
-		TForm::loadFromFile('dfm\uRunDebug',true);
-        TForm::loadFromFile('dfm\uInspect',true);
+    $fmComponents = TForm::loadFromFile("{$dfm_dir}uComponents",true);
+    $fmPropEvent  = TForm::loadFromFile("{$dfm_dir}uPropsAndEvents", true);
 	
-        TForm::loadFromFile('dfm\uPHPEditor', true);
-        TForm::loadFromFile('dfm\uSynSettings', true);
-        TForm::loadFromFile('dfm\uFormList');
-        TForm::loadFromFile('dfm\uImageView');
-        TForm::loadFromFile('dfm\uNewProject',true);
-        TForm::loadFromFile('dfm\uMenuEditor',true);
+        // Editor dialogs
+        TForm::loadFromFile("{$dfm_dir}uedt_Text", true);
+		TForm::loadFromFile("{$dfm_dir}uTIBEditor", true);
+        TForm::loadFromFile("{$dfm_dir}uedt_EventTypes");
+        TForm::loadFromFile("{$dfm_dir}uInputText");
+    
+        TForm::loadFromFile("{$dfm_dir}uFindDialog",true);
+		TForm::loadFromFile("{$dfm_dir}uRunDebug",true);
+        TForm::loadFromFile("{$dfm_dir}uInspect",true);
+	
+        TForm::loadFromFile("{$dfm_dir}uPHPEditor", true);
+        TForm::loadFromFile("{$dfm_dir}uSynSettings", true);
+        TForm::loadFromFile("{$dfm_dir}uFormList");
+        TForm::loadFromFile("{$dfm_dir}uImageView");
+        TForm::loadFromFile("{$dfm_dir}uNewProject",true);
+        TForm::loadFromFile("{$dfm_dir}uMenuEditor",true);
 
         
-        TForm::loadFromFile('dfm\uFormProperties');
-        TForm::loadFromFile('dfm\uPHPModules');
-        TForm::loadFromFile('dfm\uBuildProgram'); 
+        TForm::loadFromFile("{$dfm_dir}uFormProperties");
+        TForm::loadFromFile("{$dfm_dir}uPHPModules");
+        TForm::loadFromFile("{$dfm_dir}uBuildProgram"); 
 		c("fmBuildProgram->im_icon")->loadFromFile(DOC_ROOT . 'blanks/project.ico');
-        TForm::loadFromFile('dfm\uBuildCompleted',true);
-        TForm::loadFromFile('dfm\uProjectOptions',true);
+        TForm::loadFromFile("{$dfm_dir}uBuildCompleted",true);
+        TForm::loadFromFile("{$dfm_dir}uProjectOptions",true);
          
-        TForm::loadFromFile('dfm\uOptions', true);
-        TForm::loadFromFile('dfm\uSizesPosition');
+        TForm::loadFromFile("{$dfm_dir}uOptions", true);
+        TForm::loadFromFile("{$dfm_dir}uSizesPosition");
         
-        TForm::loadFromFile('dfm\uEasySelectDialog', true);
+        TForm::loadFromFile("{$dfm_dir}uEasySelectDialog", true);
 
-        TForm::loadFromFile('dfm\uFindError', true);
-        TForm::loadFromFile('dfm\uAbout',true);
+        TForm::loadFromFile("{$dfm_dir}uFindError", true);
+        TForm::loadFromFile("{$dfm_dir}uAbout",true);
 		
 		global $fmObjInspect;
-		$fmObjInspect = TForm::loadFromFile('dfm\uObjectInspector', true);
+		$fmObjInspect = TForm::loadFromFile("{$dfm_dir}uObjectInspector", true);
+		unset($dfm_dir);
     }
     
     if (!EMULATE_DVS_EXE){
