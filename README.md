@@ -5,9 +5,9 @@
 <br>Working on  the:
 <br><a href="https://github.com/KashaketCompany/DevelStudio-3.0-beta/projects/1">:wrench:Fixes</a>
 # DevelStudio-3.0-beta
->Commit №471 Filesize:
-<br>92.3Mb (zipped)
-<br>250Mb (on a disk)
+>Commit №474 Filesize:
+<br>91Mb (zipped)
+<br>243Mb (on a disk)
 <br><a href="https://github.com/KashaketCompany/DevelStudio-3.0-beta/releases">Changelog</a>
 <br><a href="https://github.com/KashaketCompany/DevelStudio-Exts">Additional Extensions</a>
 <br><a href="https://vk.com/kashaket">Project Group(VK)</a>
