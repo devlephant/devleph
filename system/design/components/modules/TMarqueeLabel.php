@@ -43,8 +43,8 @@ class TMarqueeLabel extends TLabel {
         parent::__construct($onwer, $init, $self);
 
         if ($init){
-			$this->running_line = true;
-			$this->Left_running_line = true;
+			$this->active = true;
+			$this->leftDirection = true;
 			$this->IntervalTimer  = 100;
         }
     }
@@ -55,8 +55,8 @@ class TMarqueeLabel extends TLabel {
     }
 
 	public function running_line($self, $obj) {
-		if($obj->running_line) {
-			if($obj->Left_running_line) {
+		if($obj->active) {
+			if($obj->leftDirection) {
 				if($Text = $obj->caption) {
 					$Text .= $Text[0];
 					$obj->caption = substr($Text, 1);

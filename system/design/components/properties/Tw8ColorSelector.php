@@ -57,7 +57,7 @@ $result[] = array(
                   'VALUES'=>$_c->s('TShapeType'),
                   );				  
 $result[] = array(
-                  'CAPTION'=>t('Thumb Pen Mode'),
+                  'CAPTION'=>t('ThumbButton Pen Mode'),
                   'TYPE'=>'combo',
                   'PROP'=>'ThumbPenMode',
                   'VALUES'=>$_c->s('TPenMode')

@@ -245,7 +245,7 @@ class myCompile
 		global $exten_dir, $projectFile;
 		self::callModifers();
 		$md5s = [];
-		$dir = SYSTEM_DIR . '/modules/';
+		$dir = SYSTEM_DIR . '/blanks/include/';
 		$files = findFiles($dir, 'php', false, true);
 
 		if ($GLOBALS['DEBUG_MODE']) {

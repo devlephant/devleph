@@ -33,7 +33,7 @@
 		loader::model('compile');
 		loader::model('prover');
 	}
-    loader::modules('modules');
+    loader::modules('blanks/include');
 	if (!EMULATE_DVS_EXE){
 	loader::lib('(debug)studio-only');
     loader::lib('syntax');
@@ -57,7 +57,7 @@
         
     
         loader::model('inspector');
-	loader::model('treebrowser');
+		loader::model('treebrowser');
         loader::model('project');
         //loader::model('options');
         loader::model('modules');

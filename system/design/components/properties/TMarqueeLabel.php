@@ -22,8 +22,8 @@ $result[] = array('CAPTION'=>t('p_Top'), 'PROP'=>'y','TYPE'=>'number','ADD_GROUP
 $result[] = array('CAPTION'=>t('Width'), 'PROP'=>'w','TYPE'=>'number','ADD_GROUP'=>1);
 $result[] = array('CAPTION'=>t('Height'), 'PROP'=>'h','TYPE'=>'number','ADD_GROUP'=>1);
 
-$result[] = array('CAPTION'=>t('running _ line'),'TYPE'=>'check','PROP'=>'running_line','ADD_GROUP'=>true);
-$result[] = array('CAPTION'=>t('Left_running _ line'),'TYPE'=>'check','PROP'=>'Left_running_line','ADD_GROUP'=>true);
+$result[] = array('CAPTION'=>t('Active'),'TYPE'=>'check','PROP'=>'active','ADD_GROUP'=>true);
+$result[] = array('CAPTION'=>t('Left Direction'),'TYPE'=>'check','PROP'=>'leftDirection','ADD_GROUP'=>true);
 $result[] = array('CAPTION'=>t('Interval (ms)'), 'PROP'=>'IntervalTimer', 'TYPE'=>'number','ADD_GROUP'=>1);
 
 return $result;

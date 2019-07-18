@@ -62,7 +62,7 @@ class complete_Funcs {
 			foreach( $myProject->config['modules'] as $x  )
 				if( file_exists( DS_DIR.'/ext/'.basenameNoExt($x).'.inc' ) ) $files[] = DS_DIR.'/ext/'.basenameNoExt($x).'.inc';
 		
-        $files = array_merge($files, self::$sourceFiles, findFiles(DOC_ROOT.'/modules/',['php','inc'],false,true));
+        $files = array_merge($files, self::$sourceFiles, findFiles(DOC_ROOT.'/blanks/include/',['php','inc'],false,true));
         
         foreach($files as $file){
             

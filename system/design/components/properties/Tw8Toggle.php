@@ -3,13 +3,13 @@
 $result = [];
 
 $result[] = array(
-                  'CAPTION'=>t('Enabled color'),
+                  'CAPTION'=>t('Enabled Color'),
                   'TYPE'=>'color',
                   'PROP'=>'enabledColor',
                   );
 				  
 $result[] = array(
-                  'CAPTION'=>t('Disabled color'),
+                  'CAPTION'=>t('Disabled Color'),
                   'TYPE'=>'color',
                   'PROP'=>'disabledColor',
                   );
