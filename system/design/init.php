@@ -1,11 +1,12 @@
 <?
-global $SCREEN, $fmEdit, $fmComponents, $fmMain, $fmObjInspect;
+global $SCREEN, $fmEdit, $fmComponents, $fmMain, $fmObjInspect, $theme_ini;
 
 if (!EMULATE_DVS_EXE){  
         c('fmLogoin->label5')->caption = 'Initializing... 5%';
 		    c('fmLogoin->label5')->show();
-			$color = myOptions::get('prefs','studio_theme', 'light') == "light" ? 4376578 : clPurple;
-			c('fmLogoin->loadbar')->brushColor = $color;
+			$theme = DOC_ROOT . 'design/theme/' . myOptions::get('prefs','studio_theme', 'light');
+			$theme_ini = parse_ini_file("{$theme}/config.ini",true);
+			c('fmLogoin->loadbar')->brushColor = $theme_ini['fmLogoin']['loadbar'];
 		c('fmLogoin->loadbar')->sw = c('fmLogoin->loadbar')->w; 
 		c('fmLogoin->loadbar')->w = c('fmLogoin->loadbar')->sw / 100 * (int)str_ireplace("%","",stristr(c('fmLogoin->label5')->caption, ' ') );
 $fmComponents->caption = t('components');
