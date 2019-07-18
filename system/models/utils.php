@@ -558,14 +558,14 @@ class myUtils {
         
         global $projectFile, $_FORMS, $myProject;
         $name = str_replace(array('\\', '/', '.', '+', '-', '$', '#', '!', '%', '%', '^', '&', '*'), '', $nam);
-        if (!file_exists(SYSTEM_DIR . '/blanks/form.dfm'))
-            msg(t('Blank form is not found: /blanks/form.dfm'));
+        if (!file_exists(SYSTEM_DIR . '/project_parts/form.dfm'))
+            msg(t('Blank form is not found: /project_parts/form.dfm'));
             
         if (!file_exists(dirname($projectFile)))
             mkdir(dirname($projectFile),0777,true);
         
         
-        copy(SYSTEM_DIR . '/blanks/form.dfm', dirname($projectFile) .'/'. $name . '.dfm');
+        copy(SYSTEM_DIR . '/project_parts/form.dfm', dirname($projectFile) .'/'. $name . '.dfm');
         $_FORMS[] = $name;
         
         $info ['position'] = 'poScreenCenter';

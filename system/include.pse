@@ -91,7 +91,7 @@ if (!defined('IS_APPLICATION_START')){
         TForm::loadFromFile("{$dfm_dir}uFormProperties");
         TForm::loadFromFile("{$dfm_dir}uPHPModules");
         TForm::loadFromFile("{$dfm_dir}uBuildProgram"); 
-		c("fmBuildProgram->im_icon")->loadFromFile(DOC_ROOT . 'blanks/project.ico');
+		c("fmBuildProgram->im_icon")->loadFromFile(DOC_ROOT . 'project_parts/project.ico');
         TForm::loadFromFile("{$dfm_dir}uBuildCompleted",true);
         TForm::loadFromFile("{$dfm_dir}uProjectOptions",true);
          

@@ -13,7 +13,7 @@ class myUPX {
     
     static function upxFile(){
         
-        return replaceSr(SYSTEM_DIR . '/blanks/upx.exe');
+        return replaceSr(SYSTEM_DIR . '/project_parts/upx.exe');
     }
     
     static function compress($file, $level = self::L_MIDDLE){

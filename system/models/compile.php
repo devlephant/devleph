@@ -117,7 +117,7 @@ class myCompile
 	static public function generateIncFile()
 	{
 		global $projectFile, $exten_dir;
-		$inc = file_get_contents(SYSTEM_DIR . '/blanks/inc.php');
+		$inc = file_get_contents(SYSTEM_DIR . '/project_parts/inc.php');
 		exemod_addstr('$PHPSOULENGINE\\inc.php', $inc);
 
 		global $myProject;
@@ -245,7 +245,7 @@ class myCompile
 		global $exten_dir, $projectFile;
 		self::callModifers();
 		$md5s = [];
-		$dir = SYSTEM_DIR . '/blanks/include/';
+		$dir = SYSTEM_DIR . '/project_parts/include/';
 		$files = findFiles($dir, 'php', false, true);
 
 		if ($GLOBALS['DEBUG_MODE']) {
@@ -430,7 +430,7 @@ class myCompile
 		exemod_finish();
 		$fileIco = myVars::get('__iconFile');
 		
-		winRes::changeIcon($exeFile, (file_exists($fileIco)?$fileIco:SYSTEM_DIR . '/blanks/project.ico'));
+		winRes::changeIcon($exeFile, (file_exists($fileIco)?$fileIco:SYSTEM_DIR . '/project_parts/project.ico'));
 		
 		$vtime = round( microtime(1) - $startTime, 1 );
 		$vtime = $vtime>=60? round($vtime/60,1).t('min.'): $vtime.t('sec.');
@@ -525,7 +525,7 @@ class myCompile
 
 		
 		if (!file_exists($fileIco)) {
-			$fileIco = SYSTEM_DIR . '/blanks/project.ico';
+			$fileIco = SYSTEM_DIR . '/project_parts/project.ico';
 		}
 
 		if (file_exists($fileIco)) {
@@ -573,7 +573,7 @@ class myCompile
 		}
 		else {
 			self::setStatus('Error', t('Fatal error of project compiling') . '!');
-			x_copy(DOC_ROOT . '/blanks/soulEngine.pak', $dir . '/soulEngine.pak');
+			x_copy(DOC_ROOT . '/project_parts/soulEngine.pak', $dir . '/soulEngine.pak');
 		}
 
 		self::attachForms($attachData);

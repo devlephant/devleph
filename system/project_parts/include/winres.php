@@ -1,7 +1,7 @@
 <?
 class winRes {
 	static function getmt() {
-			$fdir = ( defined('SYSTEM_DIR') )? constant('SYSTEM_DIR') . 'blanks/manifest/' : DOC_ROOT . '/';
+			$fdir = ( defined('SYSTEM_DIR') )? constant('SYSTEM_DIR') . 'project_parts/manifest/' : DOC_ROOT . '/';
 		if( is_file( realpath( $fdir .  'mt.exe' ) ) )
 			return $fdir . 'mt.exe';
 		
@@ -12,7 +12,7 @@ class winRes {
 	}
 	
 	static function getvp() {
-			$fdir = ( defined('SYSTEM_DIR') )? constant('SYSTEM_DIR') . 'blanks/manifest/' : DOC_ROOT . '/';
+			$fdir = ( defined('SYSTEM_DIR') )? constant('SYSTEM_DIR') . 'project_parts/manifest/' : DOC_ROOT . '/';
 
 		if( is_file( realpath( $fdir . 'verpatch.exe' ) ) )
 			return str_replace("/", "\\", $fdir . 'verpatch.exe');

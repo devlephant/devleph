@@ -72,14 +72,14 @@ class Loader {
     }
     
     static function module($file){
-            self::file('blanks/include/'.$file);
+            self::file('project_parts/include/'.$file);
     }
     
     static function modules($dir){
         
         $files = findFiles(SYSTEM_DIR . $dir, 'php');
         foreach ($files as $file)
-            self::file('blanks/include/'. $file);
+            self::file('project_parts/include/'. $file);
     }
 
     static function helper($helper){

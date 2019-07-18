@@ -33,7 +33,7 @@
 		loader::model('compile');
 		loader::model('prover');
 	}
-    loader::modules('blanks/include');
+    loader::modules('project_parts/include');
 	if (!EMULATE_DVS_EXE){
 	loader::lib('(debug)studio-only');
     loader::lib('syntax');

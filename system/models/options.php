@@ -190,7 +190,7 @@ class myOptions {
         $ini->write('main','company', c('fmBuildProgram->e_companyname')->text);
         $ini->write('main','version', c('fmBuildProgram->e_version')->text);
         $ini->write('main','c_compress', c('fmBuildProgram->c_compress')->checked);
-        $fileIco = SYSTEM_DIR . '/blanks/project.ico';
+        $fileIco = SYSTEM_DIR . '/project_parts/project.ico';
         if (file_exists($GLOBALS['__iconFile'])){
             
             x_copy($GLOBALS['__iconFile'], dirname($projectFile).'/icon.ico');

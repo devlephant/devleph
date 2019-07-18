@@ -119,7 +119,7 @@ function include_lib($class,$name){
 	require ENGINE_DIR . $class . '/' . $name . '.php';
 }
 function inc_mdl($name){
-	$a = SYSTEM_DIR.'blanks/include/'.$name;
+	$a = SYSTEM_DIR.'project_parts/include/'.$name;
 	if( file_exists( $a.'.php' ) ){ require $a.'.php'; return 1; }else if( file_exists( $a.'.phb' ) ){ require $a.'.phb'; return 1; }
 	return 0;
 }
