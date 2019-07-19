@@ -230,7 +230,7 @@ class evfmMain {
         c('fmMain->pDockRight')->w = (int)myOptions::get('pDockRight','width',200);
         c('fmMain->pDockLeft')->w = (int)myOptions::get('pDockLeft','width',220);
         c('fmMain->pDockBottom')->h = (int)myOptions::get('pDockBottom','height',220);
-	c('fmMain->TTreeBwr')->TabVisible = (bool)myOptions::get('treebrowser','visible',1);
+		c('fmMain->TTreeBwr')->TabVisible = (bool)myOptions::get('treebrowser','visible',1);
         
         c('fmMain->list')->selectedList = explode(',',myOptions::get('components','groups', 'main'));
         c('fmMain->list')->smallIcons   = myOptions::get('components','smallIcons',false);
@@ -287,7 +287,7 @@ class evfmMain {
             c('fmMain->it_objectinspector')->checked = c('fmMain->pInspector')->visible;
             c('fmMain->it_props')->checked = c('fmMain->pProps')->visible;
             c('fmMain->it_debuginfo')->checked = c('fmMain->pDebugWindow')->visible;
-		c('fmMain->it_treebrowser')->checked = c('fmMain->TTreeBwr')->TabVisible;
+			c('fmMain->it_treebrowser')->checked = c('fmMain->TTreeBwr')->TabVisible;
         }
         
             $obj  = new TComboBox( c('fmMain') );
@@ -316,7 +316,6 @@ class evfmMain {
             gui_propSet(gui_propGet(c("fmObjectInspector->list")->self, 'IconOptions'), 'AutoArrange', 1);
 			$list->BorderStyle = bsNone;
 			
-	    treeBwr_add();
     }
     
     static function onCloseQuery($self, &$canClose) {

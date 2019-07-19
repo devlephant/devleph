@@ -38,5 +38,3 @@ if(!empty($test))
 	}
 }
 ');
-
-treeBwr_add();
