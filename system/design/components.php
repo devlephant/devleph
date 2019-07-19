@@ -408,8 +408,6 @@ if (EMULATE_DVS_EXE) return;
         require($dir_n . '/components/modifers/' . $file);
     }
 	
-    BlockData::sortList($_components, 'SORT');
-    
     foreach (findFiles($dir_n . '/editor_types/','php') as $file)
         require $dir_n . '/editor_types/' . $file;
 	
@@ -420,21 +418,37 @@ if (EMULATE_DVS_EXE) return;
 	$theme = DOC_ROOT . 'design/theme/' . myOptions::get('prefs','studio_theme', 'light'); //#ADDOPT;
 	$cp->ExpandGlyph->loadFromFile("{$theme}/pc_collapsed.bmp");
 	$cp->CollapseGlyph->loadFromFile("{$theme}/pc_expanded.bmp");
+	$customGroup = myOptions::get('prefs','cgroups',false);
+	if($customGroup)
+	{
+		$customGroups = json_decode(SYSTEM_DIR . '/desing/CG/' . $customGroup);
+		$od = $_components;
+		$_components = [];
+		$idx = 0;
+			foreach( $customGroups as $group)
+			{
+				foreach( $group[1] as $c1 )
+				{
+					$_components[$i] = $c1;
+					$_components[$i]['GROUP'] = $group[0];
+					$idx++;
+				}
+			}
+		unset($od,$idx);
+	} else 
+		BlockData::sortList($_components, 'SORT');
+	$_cComplist = $_components;
     global $_cComplist;
 	//#LOADER;
-	foreach( $_components as $ikey=>$info )
-	{
-		if( !class_exists($info['CLASS']) || is_subclass_of ($info['CLASS'], 'dsErrorClassUndefined') )
-		{
-			unset( $_components[$ikey] );
-		}
-	}
-	$_cComplist = $_components;
         $_winControls = [];
         $componentClasses = [];
         $groups = [];
-        foreach ($_components as $c){
-            
+        foreach ($_components as $ikey=>$c){
+            if( !class_exists($c['CLASS']) || is_subclass_of ($c['CLASS'], 'dsErrorClassUndefined') )
+			{
+				unset( $_components[$ikey] );
+				continue;
+			}
 			if(isset($c['MODULES']))
             foreach ((array)$c['MODULES'] as $mod){
                 
@@ -450,10 +464,6 @@ if (EMULATE_DVS_EXE) return;
             if ($c['USE_SKIN'])
                 myModules::$skinClasses[] = $c['CLASS'];
             
-            if (!in_array($c['GROUP'], $groups)){
-                $cp->addSection($c['GROUP'],t('gr_'.$c['GROUP']));
-                $groups[] = $c['GROUP'];
-            }
 			if(isset($c['REPLACE']))
 			{
 				if( is_array($c['REPLACE']) )
@@ -465,6 +475,11 @@ if (EMULATE_DVS_EXE) return;
 				if( isset($c['REPLACE_RULE']) )
 					myProject::AddReplaceRule($c['CLASS'], $c['REPLACE_RULE']);
 			}
+
+			if (!in_array($c['GROUP'], $groups)){
+                $cp->addSection($c['GROUP'],$customGroup?$c['GROUP']:t('gr_'.$c['GROUP']));
+                $groups[] = $c['GROUP'];
+            }
             $btn = $cp->addButton($c['GROUP']);
             
             $componentClasses[$btn->self] = $c;

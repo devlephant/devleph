@@ -63,13 +63,29 @@ $result[] = array(
                   'TYPE'=>'check',
                   'PROP'=>'transparent',
                   );
-				  
 $result[] = array(
                   'CAPTION'=>t('Increment Display'),
                   'TYPE'=>'check',
                   'PROP'=>'incrementDisplay',
                   );
-				  
+$result[] = array(
+                  'CAPTION'=>t('modal_result'),
+                  'TYPE'=>'combo',
+                  'PROP'=>'modalResult',
+                  'VALUES'=>array(
+                                  mrNone=>'mrNone',
+                                  mrOk=>'mrOk',
+                                  mrCancel=>'mrCancel',
+                                  mrAbort=>'mrAbort',
+                                  mrRetry=>'mrRetry',
+                                  mrIgnore=>'mrIgnore',
+                                  mrYes=>'mrYes',
+                                  mrNo=>'mrNo',
+                                  mrAll=>'mrAll',
+                                  mrNoToAll=>'mrNoToAll',
+                                  mrYesToAll=>'mrYesToAll'
+                                  ),
+                  );
 $result[] = array(
                   'CAPTION'=>t('Hint'),
                   'TYPE'=>'text',

@@ -66,6 +66,6 @@ class BlockData {
 		$GLOBALS['iblockclass_sortlist_sort'] = $sort;
 		$GLOBALS['iblockclass_sortlist_order'] = strtolower($order);
 		usort($items, 'iblockclass_sortlist_uasort');
-    }
+    }		
 }
 ?>

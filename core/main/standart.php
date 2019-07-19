@@ -350,6 +350,7 @@ class TComboBox extends TControl {
 	function get_inText(){
 		return $this->get_prop('text');
 	}
+
 }
 // TProgressBarOrientation
 $_c->setConstList(['pbHorizontal', 'pbVertical']);

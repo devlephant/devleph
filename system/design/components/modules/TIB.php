@@ -8,6 +8,8 @@ class TIB extends TMImage{
     if($init){
      $this->center = true;
      $this->autoState = true;
+	 $this->modalResult = 0;
+	 $this->images = [];
     }
    }
    
@@ -40,12 +42,22 @@ class TIB extends TMImage{
    public function add($file=false){
     if($file!==false){
      if( is_file($file) ){
-      $this->images[] = array( file_get_contents($file), strtoupper(fileExt($file)) );
+		$arr = $this->images;
+		$prevc = count($arr);
+		$arr[] = array( file_get_contents($file), strtoupper(fileExt($file)) );
+		$this->images = $arr;
+		if($this->autostate && $prevc==0)
+			$this->state = $this->state;
       return count($arr)-1;
      } elseif( is_array($file) )
 	 {
-      $this->images[] = $file;
-      return count($this->images)-1;
+		$arr = $this->images;
+		$prevc = count($arr);
+		$arr[] = $file;
+		$this->images = $arr;
+		if($this->autostate && $prevc==0)
+			$this->state = $this->state;
+      return count($arr)-1;
 	 }
     }
    }
@@ -56,6 +68,7 @@ class TIB extends TMImage{
       unset($arr[$index]);
      }
      $this->images = array_values($arr);
+	 return $index;
     }
    }
    public function clear(){
@@ -92,6 +105,13 @@ class TIB extends TMImage{
    static function doClick($self){
     $self = c($self);
     if($self->enabled){
+		$obj = $self;
+		while(!($obj instanceof TForm)&&is_object($obj))
+		{
+			$obj = $obj->parent;
+		}
+		if( is_object($obj) )
+		$obj->ModalResult = $self->ModalResult;
    	 $name = 'f'.substr(__FUNCTION__,2);		
      if($self->$name)
       call_user_func_array($self->$name, func_get_args());

@@ -963,11 +963,11 @@ class TControl extends TComponent {
 	}
 	
 	function toBack(){
-	    gui_toBack($this->self);
+	    $this->SendToBack();
 	}
 	
 	function toFront(){
-	    gui_toFront($this->self);
+	    $this->BringToFront();
 	}
 	
 	function set_doubleBuffer($v){

@@ -136,9 +136,9 @@ class TStrings extends TObject{
     }
     
     function getLine($index){
-        $lines = $this->lines;
-        if (isset($lines[$index]))
-            return $lines[$index];
+
+        if (isset($this->lines[$index]))
+            return $this->lines[$index];
         
         return false;
     }

@@ -27,8 +27,10 @@
 		 if( $tib->classname == 'TIB'){
 		  c('fmTIB->openDlg1')->multiSelect = false;
 		  if( c('fmTIB->openDlg1')->execute() ){
-		   $tib->add( c('fmTIB->openDlg1')->fileName );
+		   $index = $tib->add( c('fmTIB->openDlg1')->fileName );
 		   master_TIB::tib_update_list();
+		   c('fmTIB->listBox1')->itemIndex = $index;
+		   master_TIB::tib_update_img();
 		  }
 		  c('fmTIB')->toFront();
 		 }
@@ -42,9 +44,11 @@
 		  if( c('fmTIB->openDlg1')->execute() ){
 		   $files = c('fmTIB->openDlg1')->files;
 		   foreach($files as $f){
-		    $tib->add($f);
-		    master_TIB::tib_update_list();
+		    $index = $tib->add($f);
 		   }
+		   master_TIB::tib_update_list();
+		   c('fmTIB->listBox1')->itemIndex = $index;
+		   master_TIB::tib_update_img();
 		  }
 		   c('fmTIB')->toFront();
 		 }
@@ -196,6 +200,11 @@
 			c('fmTIB->listBox1')->items->clear();
 			c('fmTIB->image1')->picture->clear();
 			master_TIB::tib_update_list();
+			if( count($obj->images) >= $obj->state)
+			{
+				c('fmTIB->listBox1')->itemIndex = $obj->state;	
+				master_TIB::tib_update_img();
+			}
 			c('fmTIB')->showModal();
 			c('fmTIB')->tib = false;
 			return $fmTib_mres;
