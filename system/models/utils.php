@@ -84,22 +84,26 @@ class myUtils {
             $form = $fmEdit;
         
         $form->hide();
-        if( !file_exists($file) ) 
+        if( !file_exists($file) ) {
 			message(t('Form %s1 does not exist!', basenamenoext($file)));
-        $str = file_get_contents($file);
+			$form = new TForm(c('fmMain->pDockMain'));
+		} else {
+			$str = file_get_contents($file);
+			
+			$str = str_replace_once('Visible = True','Visible = False',$str);
+			$str = str_ireplace('fsMDIChild','fsNormal',$str);
+			$str = str_ireplace('fsStayOnTop','fsNormal',$str);
+			$str = str_ireplace('fsMDIForm','fsNormal',$str);
         
-        $str = str_replace_once('Visible = True','Visible = False',$str);
-        $str = str_ireplace('fsMDIChild','fsNormal',$str);
-        $str = str_ireplace('fsStayOnTop','fsNormal',$str);
-        $str = str_ireplace('fsMDIForm','fsNormal',$str);
+			$str = str_ireplace('bsDialog','bsNone', $str);
+			$str = str_ireplace('bsSizeable','bsNone',$str);
+			$str = str_ireplace('bsSingle','bsNone', $str);
+			$str = str_ireplace('bsToolWindow','bsNone',$str);
+			$str = str_ireplace('bsSizeToolWin','bsNone',$str);
+			dfm_read('',$form, $str);
+		}
         
-        $str = str_ireplace('bsDialog','bsNone', $str);
-        $str = str_ireplace('bsSizeable','bsNone',$str);
-        $str = str_ireplace('bsSingle','bsNone', $str);
-        $str = str_ireplace('bsToolWindow','bsNone',$str);
-        $str = str_ireplace('bsSizeToolWin','bsNone',$str);
-        		
-        dfm_read('',$form, $str);
+        
        
         $form->formStyle   = fsNormal;
         $form->borderStyle = bsNone;

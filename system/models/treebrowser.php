@@ -14,7 +14,8 @@ function treeBwr_add()
 		$Forms .= "	".$dfm._BR_;
 		$dfm = basenameNoExt($dfm);
 		$form = myUtils::$forms[strtolower($dfm)];
-		foreach( $form->componentList as $obj )
+		$comList = $form->componentList;
+		foreach( (array)$comList as $obj )
 		{
 			if(!is_a($obj,"TSizeCtrl"))
 			{
@@ -22,6 +23,7 @@ function treeBwr_add()
 			}
 		}
 	}
+	unset($dfm, $form, $comList);
 	
 	if( $Forms !== null )
 	{
@@ -36,15 +38,17 @@ function treeBwr_add()
 		foreach($Scripts as $file)
 			$text .= "	".$file._BR_;
 	}	
-	if( !empty($GLOBALS['myProject']->config['modules']) )
+	$Modules = $GLOBALS['myProject']->config['modules'];
+	if( !empty($Modules) )
 	{
 		$text .= t("Exts")._BR_;
-		foreach( $GLOBALS['myProject']->config['modules'] as $file )
+		foreach( $Modules as $file )
 			$text.= "	".$file._BR_;
 	}
 	
 	$tree->text = $text;
 	$tree->fullExpand();
+	unset($tree, $dir, $dirs, $Forms, $Scripts, $Modules);
 }
 
 dsApi::addProjectChangeCallback('treeBwr_add');
