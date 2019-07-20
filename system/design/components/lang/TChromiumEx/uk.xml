@@ -49,12 +49,12 @@
     
     <i>
         <n>On Get Download Handler</n>
-        <v>Загрузка файла</v>
+        <v>Завантаження файлу</v>
     </i>
     
     <i>
         <n>ongetdownloadhandler</n>
-        <v>Загрузка файла</v>
+        <v>Завантаження файлу</v>
     </i>
     
     <i>
@@ -69,32 +69,32 @@
     
     <i>
         <n>On Load Start</n>
-        <v>Початок загрузки</v>
+        <v>Початок завантаження</v>
     </i>
     
     <i>
         <n>onloadstart</n>
-        <v>Початок загрузки</v>
+        <v>Початок завантаження</v>
     </i>
     
     <i>
         <n>On Load End</n>
-        <v>Кінець загрузки</v>
+        <v>Кінець завантаження</v>
     </i>
     
     <i>
         <n>onloadend</n>
-        <v>Кінець загрузки</v>
+        <v>Кінець завантаження</v>
     </i>
     
     <i>
         <n>On Load Error</n>
-        <v>Ошибка загрузки</v>
+        <v>Помилка завантаження</v>
     </i>
     
     <i>
         <n>onloaderror</n>
-        <v>Ошибка загрузки</v>
+        <v>Помилка завантаження</v>
     </i>
     
     <i>
@@ -109,37 +109,37 @@
     
     <i>
         <n>On Address Change</n>
-        <v>Заміна адреса</v>
+        <v>Зміна адреси</v>
     </i>
     
     <i>
         <n>onaddresschange</n>
-        <v>Зміна адреса</v>
+        <v>Зміна адреси</v>
     </i>
     
     <i>
         <n>On Title Change</n>
-        <v>Зміна Заголовка</v>
+        <v>Зміна Заголовку</v>
     </i>
     
     <i>
         <n>ontitlechange</n>
-        <v>Зміна Заголовка</v>
+        <v>Зміна Заголовку</v>
     </i>
     
     <i>
         <n>On Chromium Lib Load</n>
-        <v>Загрузка Chromium бібліотеки</v>
+        <v>Завантаження Chromium бібліотеки</v>
     </i>
     
     <i>
         <n>onchromiumlibload</n>
-        <v>Загрузка Chromium бібліотеки</v>
+        <v>Завантаження Chromium бібліотеки</v>
     </i>
     
     <i>
         <n>On Tooltip</n>
-        <v>On Tooltip</v>
+        <v>Вспливаюча Підказка</v>
     </i>
     
     

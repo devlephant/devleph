@@ -71,14 +71,13 @@ $result[] = array(
                   'INFO'=>'%func%()',
                   'ICON'=>'onloaderror',
                   );
-/*
+
 $result[] = array(
                   'CAPTION'=>t('On Status Message'),
                   'EVENT'=>'onstatusmessage',
                   'INFO'=>'%func%()',
                   'ICON'=>'onstatusmessage',
                   );
-*/
 
 $result[] = array(
                   'CAPTION'=>t('On Address Change'),
@@ -93,11 +92,10 @@ $result[] = array(
                   'INFO'=>'%func%()',
                   'ICON'=>'ontitlechange',
                   );
-/*
 $result[] = array(
                   'CAPTION'=>t('On Tooltip'),
                   'EVENT'=>'ontooltip',
                   'INFO'=>'%func%()',
                   'ICON'=>'ontooltip',
-                  );*/
+                  );
 return $result;
