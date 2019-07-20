@@ -1079,8 +1079,8 @@ class TControl extends TComponent {
 	}
 	
 	function get_canvas(){
-	    
-	    return _c(component_canvas($this->self));
+	    $s = $this->self;
+	    return _c(component_canvas($s)==0?gui_propget($s,'Canvas'):component_canvas($s));
 	}
 	
 	function set_hint($hint){
