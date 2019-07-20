@@ -742,11 +742,8 @@ class myDesign {
         
         self::delObjFromGroups($obj);
         eventEngine::delEvent($obj->name);
-        
-        if (!($obj instanceof TTabSheet)){
             $_sc->unRegisterTarget($obj);
             $myInspect->delItem($obj);
-        }
         
         $childs = $obj->childComponents(false);
         foreach ($childs as $child)

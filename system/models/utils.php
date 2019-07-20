@@ -130,7 +130,7 @@ class myUtils {
             $class = rtti_class($el->self);
             $real_class = __rtti_class($el->self);
                     
-            if (!in_array($class,array('TEvents','TSizeCtrl','TTabSheet'))){
+            if (!in_array($class,array('TEvents','TSizeCtrl'))){
                 //$_sc->registerTarget($el);
                
                 if (is_subclass_of($el,  '__TNoVisual')){
@@ -206,7 +206,7 @@ class myUtils {
          
         $targets = $form->componentList;
         foreach ($targets as $el){
-            if (!$el->isClass(array('TEvents','TTabSheet','TSizeCtrl'))){
+            if (!$el->isClass(array('TEvents','TSizeCtrl'))){
                 
                 $_sc->registerTarget($el);
             }
