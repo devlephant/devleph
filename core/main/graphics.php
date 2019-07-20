@@ -190,16 +190,19 @@ class TBrush extends TComponent
 ///                             TCanvas                                     ///
 ///////////////////////////////////////////////////////////////////////////////
 class TCanvas extends TControl{
-    
-    function lineTo($x, $y){
-	
-	canvas_lineto($this->self,$x,$y);
-    }
-    
     function moveTo($x, $y){
-	
-	canvas_moveto($this->self,$x,$y);
+		canvas_moveto($this->self,$x,$y);
     }
+	
+    function lineTo($x, $y){
+		canvas_lineto($this->self,$x,$y);
+    }
+	
+    function line($x1, $y1, $x2, $y2)
+	{
+		$this->moveTo($x1,$y1);
+		$this->lineTo($x2, $y2);
+	}
     
     function textHeight($text){
 	
