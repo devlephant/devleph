@@ -105,16 +105,19 @@ class TIB extends TMImage{
    static function doClick($self){
     $self = c($self);
     if($self->enabled){
-		$obj = $self;
-		while(!($obj instanceof TForm)&&is_object($obj))
+		if($self->ModalResult <> 0)
 		{
-			$obj = $obj->parent;
+			$obj = $self;
+			while(!($obj instanceof TForm)&&is_object($obj))
+			{
+				$obj = $obj->parent;
+			}
+			if( is_object($obj) )
+			$obj->ModalResult = $self->ModalResult;
 		}
-		if( is_object($obj) )
-		$obj->ModalResult = $self->ModalResult;
-   	 $name = 'f'.substr(__FUNCTION__,2);		
-     if($self->$name)
-      call_user_func_array($self->$name, func_get_args());
+		 $name = 'f'.substr(__FUNCTION__,2);		
+		 if($self->$name)
+		  call_user_func_array($self->$name, func_get_args());
     }
    }
    static function doDblClick($self){
