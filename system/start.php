@@ -6,6 +6,7 @@
 		dsErrorDebug::ErrStatus(false); // отключение вывода ошибок
     }    
 	
+	
 	if (!EMULATE_DVS_EXE){
 		define('DS_USERDIR',winLocalPath(CSIDL_PERSONAL).'/DS KE/' );
 		$ini = new TIniFileEx(DS_USERDIR.'allconfig.ini');

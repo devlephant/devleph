@@ -255,7 +255,7 @@ if (!defined('IS_APPLICATION_START')){
 			}
 			$myInspect->selectObject($img);
 			
-			$panel = $myProperties->panels[$img->class_name]['PANEL'];
+			$panel = $myProperties->panels['TMImage']['PANEL'];
 			$panel->show();
 			$panel->toFront();
 			$myProperties->setProps();

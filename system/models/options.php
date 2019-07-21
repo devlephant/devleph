@@ -9,11 +9,10 @@ class myOptions {
     
     static function set($section, $name, $value){
         
-        if ( is_array($value) || is_object($value) ){
+        if ( is_object($value) )
+		{
             $value = base64_encode(serialize($value));
-        } elseif ( is_bool($value) )
-            $value = $value ? '1' : '0';
-            
+        }  
         $GLOBALS['ALL_CONFIG'][$section][$name] = $value;
     }
     

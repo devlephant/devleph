@@ -38,12 +38,12 @@ if (!EMULATE_DVS_EXE){
 
     c('fmNewProject->startup')->checked = (bool)myOptions::get('newProjectDialog', 'startup', true);
 	myOptions::getXYWH('fmMain', $fmMain, ['x' => 0, 'y' => 0, 'w' => 800, 'h' => 800]); 
-    $fmMain->windowState = (int)myOptions::get('fmMain', 's', 'wsMaximized');
+    $fmMain->windowState = myOptions::get('fmMain', 's', wsMaximized);
 	//c('fmLogoin->label5')->caption = 'Initializing... 65%';
 	//c('fmLogoin->loadbar')->w = c('fmLogoin->loadbar')->sw / 100 * (int)str_ireplace("%","",stristr(c('fmLogoin->label5')->caption, ' ') );
 	c('fmPHPEditor',1)->position = poDesigned;
 	myOptions::getXYWH('fmPHPEditor', c('fmPHPEditor',1), ['x'=>0,'y'=>0,'w'=>719,'h'=>563]);
-	c('fmPHPEditor',1)->windowState = (int)myOptions::get('fmPHPEditor', 's', 'wsNormal');
+	c('fmPHPEditor',1)->windowState = myOptions::get('fmPHPEditor', 's', wsNormal);
     //c('fmLogoin->label5')->caption = 'Initializing... 78%';
 	//c('fmLogoin->loadbar')->w = c('fmLogoin->loadbar')->sw / 100 * (int)str_ireplace("%","",stristr(c('fmLogoin->label5')->caption, ' ') );
     $fmMain->caption = 'Devel Studio KE'. DV_YEAR;
