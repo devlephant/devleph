@@ -704,7 +704,7 @@ class ev_fmMain_shapeSize {
         $obj = _c($self);
        
         $shapeSize = true;
-		$_scgridSize = $GLOBALS['_sc']->showGrid? myOptions::get('sc','gridSize',8): 1;
+		$_scgridSize = $GLOBALS['_sc']->AlignToGrid? myOptions::get('sc','gridSize',8): 1;
         
         $curType = self::typeCursor($self, $x, $y);
         $obj->cursor = $curType;
@@ -729,7 +729,7 @@ class ev_fmMain_shapeSize {
 
     static function onTimer($self){
         
-        global $curType, $shapeSize, $_preY, $_preX, $fmEdit, $_scgridSize;
+        global $curType, $shapeSize, $fmEdit, $_scgridSize;
         
         $obj = self::$self_object;
 	/////// Просто ужаснейший костыль, наверное. но другого выхода не нашёл \\\\\\\
@@ -762,32 +762,22 @@ class ev_fmMain_shapeSize {
                     $y = $y - $_scgridSize * 2;
                 }
                
-            }
-			if($_preX==false)
-			{
-				$_preX = $x;
-				$_preY = $y;
-			}elseif(($_preY <> $y||$_preX <> $x) && $x>1 && $y>1)
-			{
-				$_preY = $y;
-				$_preX = $x;
-				
+            }	
+				if($obj->cursor !== $curType)
 				$obj->cursor = $curType;
-				
 				if ($curType==crSizeWE || $curType==crSizeNWSE)
 				{
-					c('fmMain->shapeSize',1)->w = $x + $GLOBALS['sc_offset']*2;
 					$fmEdit->w = $x;
+					c('fmMain->shapeSize',1)->w = $fmEdit->w + $GLOBALS['sc_offset']*2;
 				}
 				if ($curType==crSizeNS || $curType==crSizeNWSE)
 				{
-					 c('fmMain->shapeSize',1)->h = $y + $GLOBALS['sc_offset']*2;
 					$fmEdit->h = $y;
+					c('fmMain->shapeSize',1)->h = $fmEdit->h + $GLOBALS['sc_offset']*2;
 				}
 				global $propFormW, $propFormH;
 				$propFormW->value = $fmEdit->w;
 				$propFormH->value = $fmEdit->h;
-			}
 		} else {
             
             $obj->cursor = self::typeCursor($obj, $x, $y);

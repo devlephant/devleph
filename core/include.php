@@ -184,11 +184,11 @@ include_lib('main','utils');
 include_lib('files','file');
 include_lib('files','ini');
 include_lib('files','ini_ex');
-
+include_lib('cc','TIB');
 include_lib('design','sizecontrol');
 include_lib('design','propcomponents');
 include_lib('design','dfmparser');
-include_lib('cc', 'TIB');
+
 
 include_lib('','inits');
 ?>

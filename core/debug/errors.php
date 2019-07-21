@@ -56,7 +56,6 @@ class dsErrorDebug
 	public static final function userErrorHandler($errno = false, $errstr = '', $errfile='', $errline=0, $errcontext=false, $eventInfo=false)
 	{
 		$rret = false;
-		if($errno == E_DEPRECATED) return;
 		if( file_exists('errors.log') && defined('DS_DEBUG_MODE') )
 			if( constant('DS_DEBUG_MODE') ){
 				file_put_contents('errors.log', print_r( [$errno, $errstr, $errfile, $errline], true)."\r\n", FILE_APPEND);

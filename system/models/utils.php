@@ -113,6 +113,7 @@ class myUtils {
 		$obj = c("fmMain->shapeSize");
 		$obj->w = $form->w + $GLOBALS['sc_offset'] * 2;
 		$obj->h = $form->h + $GLOBALS['sc_offset'] * 2;
+		$form->position = poDesigned;
 		$form->left = $obj->left + $GLOBALS['sc_offset'];
 		$form->top = $obj->top + $GLOBALS['sc_offset'];
         
