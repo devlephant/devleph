@@ -55,7 +55,7 @@ $_c->setConstList(['gdNone','gdVertical','gdHorizontal','gdBoth'],'TGradientDire
 $_c->setConstList(['fsBold', 'fsItalic', 'fsUnderline', 'fsStrikeOut'],'TFontStyle');
 $_c->setConstList(['bsLowered','bsRaised'],'TBevelStyle');
 $_c->setConstList(['tsNone', 'tsAuto', 'tsManual'],'TTickStyle');
-$_c->setConstList(['rsLine', 'rsNone', 'rsPattern', 'rsUpdate'],'TResizeStyle');
+$_c->setConstList(['rsNone', 'rsLine', 'rsUpdate', 'rsPattern'],'TResizeStyle');
 $_c->setConstList( ['dmActiveForm', 'dmDesktop', 'dmMainForm', 'dmPrimary'],'TDefaultMonitor');
 $_c->setConstList( ['poNone', 'poPrintToFit', 'poProportional' ]);
 $_c->setConstList(['alNone', 'alTop', 'alBottom', 'alLeft', 'alRight', 'alClient', 'alCustom'],'TAlign');
