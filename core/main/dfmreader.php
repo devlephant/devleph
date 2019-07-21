@@ -79,8 +79,11 @@ function dfm_write($dfm_file_name, TForm $form)
 
 // ---------------------------- // -------------------------------------------//
 
-function createForm($file){
-        return _c(dfm_read($file));
+function createForm($file)
+{
+	$form = new TForm( $GLOBALS['APPLICATION'] );
+	gui_readStr($form->self, file_get_contents($file));
+    return $form;
 }
 
 function saveFormAsDfm($file,$form){
@@ -89,8 +92,8 @@ function saveFormAsDfm($file,$form){
         dfm_write($file,$form);
 }
 
-function createFormWithEvents($name,$init = false){
-	global $progDir;
+function createFormWithEvents($name,$init = false)
+{
 	$res = createForm(replaceSr(DOC_ROOT . "/" . $name . '.dfm'));
 	
         if (file_exists(DOC_ROOT . '/' . $name.'.php')){
@@ -103,50 +106,33 @@ function createFormWithEvents($name,$init = false){
 }
 
 // динамическа¤ загрузка событий дл¤ формы...
-function loadFormEvents(TForm &$form){
-        
-	
-        $name = $form->name;
-	$objs_l = $form->componentLinks;
-        
-        $events = ['onClick','onClose','onCloseQuery','onDblClick','onKeyUp','onKeyPress','onKeyDown',
-                        'onMouseDown','onMouseUp','onMouseMove','onMouseEnter','onMouseLeave','onCanResize',
-                        'onChange','onChanging','onShow','onPaint','onResize','onHide','onActivate','onDeactivate',
-                        'onDestroy','onSelect','onTimer','onScroll', 'onMouseCursor','onDockDrop','onDockOver',
-			'onUndock','onStartDock','onEndDock',
-                        'OnDuringSizeMove','OnStartSizeMove','OnEndSizeMove','OnPopup'];
+function loadFormEvents(TForm &$form)
+{
+	$name = $form->name;
+	$objs_l = array_merge([$form->self],$form->componentLinks);
+	$events = ['onClick','onClose','onCloseQuery','onDblClick','onKeyUp','onKeyPress','onKeyDown',
+	'onMouseDown','onMouseUp','onMouseMove','onMouseEnter','onMouseLeave','onCanResize',
+	'onChange','onChanging','onShow','onPaint','onResize','onHide','onActivate','onDeactivate',
+	'onDestroy','onSelect','onTimer','onScroll', 'onMouseCursor','onDockDrop','onDockOver',
+	'onUndock','onStartDock','onEndDock','OnDuringSizeMove','OnStartSizeMove','OnEndSizeMove','OnPopup'];
         
         for ($i=0;$i<count($objs_l);$i++){
 		$self = $objs_l[$i];
 		$o_name = component_name($self);
-		
-                for ($j=0;$j<count($events);$j++){
-                        $ev = $events[$j];
-                        $class = 'ev' . $name . $o_name;
-			
-			if (!class_exists($class,false))
-				$class = 'ev_' . $name . '_' . $o_name; 
-			if (!class_exists($class,false))
-				$class = 'ev_' . $o_name;
-			
-                        if (!class_exists($class,false)) continue;
-                        if (!method_exists($class,$ev)) continue;
-			
-			set_event($self, $ev, $class . '::' . $ev);
-                }
-        }
-	
-	for ($j=0;$j<count($events);$j++){
-                        $ev = $events[$j];
-                        
-			$class = 'ev' . $name;
-			if (!class_exists($class))
-				$class = 'ev_' . $name;
-                        
-                        if (!class_exists($class)) continue;
-			if (!method_exists($class,$ev)) continue;
-                        
-                        $form->$ev = $class . '::' . $ev;
+            for ($j=0;$j<count($events);$j++)
+			{
+				$ev = $events[$j];
+				$class = 'ev' . $name . $o_name;
+				
+				if (!class_exists($class,false))
+					$class = 'ev_' . $name . '_' . $o_name; 
+				if (!class_exists($class,false))
+					$class = 'ev_' . $o_name;
+				if (!class_exists($class,false)) continue;
+				if (!method_exists($class,$ev)) continue;
+				
+				set_event($self, $ev, $class . '::' . $ev);
+            }
         }
 }
 

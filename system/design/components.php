@@ -443,7 +443,9 @@ if (EMULATE_DVS_EXE) return;
         $_winControls = [];
         $componentClasses = [];
         $groups = [];
+		$ccount = count($_components);
         foreach ($_components as $ikey=>$c){
+			fmLogoIn::Progress2(30,$ccount);
             if( !class_exists($c['CLASS']) || is_subclass_of ($c['CLASS'], 'dsErrorClassUndefined') )
 			{
 				unset( $_components[$ikey] );
@@ -505,3 +507,4 @@ if (EMULATE_DVS_EXE) return;
         
         $_winControls[] = 'TTabSheet';
         myVars::set2($_winControls,'_winControls');
+		fmLogoin::progress(1, "Components Loaded");

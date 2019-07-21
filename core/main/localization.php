@@ -158,17 +158,11 @@ class Localization {
     }
     
     static function localApplication(){
-	global $SCREEN;
-	
-	$forms = $SCREEN->forms;
-	
+	$forms = $GLOBALS["SCREEN"]->forms;
 	
 	foreach ($forms as $form){
-	    
 	    self::localForm($form);
 	}
-	
-	unset($forms);
     }
     
     static function detectLocale($str){

@@ -49,10 +49,15 @@ if (!defined('IS_APPLICATION_START')){
         c("fmLogoin->label9")->caption = "Devel Studio ". DV_YEAR ." v".DV_VERSION. " - ".DV_PREFIX;
 		$theme = DOC_ROOT . 'design/theme/' . myOptions::get('prefs','studio_theme', 'light'); //#ADDOPT;
 		c("fmLogoin->Image1")->loadFromFile("{$theme}/LogoIn.png");
+		global $theme_ini;
+		$theme_ini = parse_ini_file("{$theme}/config.ini",true);
+		c('fmLogoin->loadbar')->brushColor = $theme_ini['fmLogoin']['loadbar'];
+		fmLogoin::Progress(1);
         $fmLogoin->show();
 		
 		$GLOBALS['APPLICATION']->processMessages();
         $fmMain = TForm::loadFromFile("{$dfm_dir}uMain",true);
+		fmLogoin::Progress2(15,28);
         $GLOBALS['fmMain'] =& $fmMain;
         setMainForm($fmMain);
         $APPLICATION->mainFormOnTaskBar = true;
@@ -61,50 +66,72 @@ if (!defined('IS_APPLICATION_START')){
     $GLOBALS['APPLICATION']->processMessages();
     
     $fmEdit = TForm::loadFromFile("{$dfm_dir}uEdit");
-
+	fmLogoin::Progress2(15,28);
     c_Alias('fmMain->listObjs','fmObjectInspector->list');
     c_Alias('fmMain','fmComponents');
     c_Alias('fmMain','fmObjectInspector');
     c_Alias('fmMain','fmPropsAndEvents');
 	global $fmComponents, $fmPropEvent;
     $fmComponents = TForm::loadFromFile("{$dfm_dir}uComponents",true);
+	fmLogoin::Progress2(15,28);
     $fmPropEvent  = TForm::loadFromFile("{$dfm_dir}uPropsAndEvents", true);
-	
+	fmLogoin::Progress2(15,28,"uPropsAndEvents.dfm");
         // Editor dialogs
         TForm::loadFromFile("{$dfm_dir}uedt_Text", true);
+		fmLogoin::Progress2(15,28);
 		TForm::loadFromFile("{$dfm_dir}uTIBEditor", true);
+		fmLogoin::Progress2(15,28);
         TForm::loadFromFile("{$dfm_dir}uedt_EventTypes");
+		fmLogoin::Progress2(15,28);
         TForm::loadFromFile("{$dfm_dir}uInputText");
+		fmLogoin::Progress2(15,28);
     
         TForm::loadFromFile("{$dfm_dir}uFindDialog",true);
+		fmLogoin::Progress2(15,28);
 		TForm::loadFromFile("{$dfm_dir}uRunDebug",true);
+		fmLogoin::Progress2(15,28);
         TForm::loadFromFile("{$dfm_dir}uInspect",true);
-	
+		fmLogoin::Progress2(15,28);
         TForm::loadFromFile("{$dfm_dir}uPHPEditor", true);
+		fmLogoin::Progress2(15,28);
         TForm::loadFromFile("{$dfm_dir}uSynSettings", true);
+		fmLogoin::Progress2(15,28);
         TForm::loadFromFile("{$dfm_dir}uFormList");
+		fmLogoin::Progress2(15,28);
         TForm::loadFromFile("{$dfm_dir}uImageView");
+		fmLogoin::Progress2(15,28);
         TForm::loadFromFile("{$dfm_dir}uNewProject",true);
+		fmLogoin::Progress2(15,28);
         TForm::loadFromFile("{$dfm_dir}uMenuEditor",true);
-
+		fmLogoin::Progress2(15,28);
         
         TForm::loadFromFile("{$dfm_dir}uFormProperties");
+		fmLogoin::Progress2(15,28);
         TForm::loadFromFile("{$dfm_dir}uPHPModules");
+		fmLogoin::Progress2(15,28);
         TForm::loadFromFile("{$dfm_dir}uBuildProgram"); 
+		fmLogoin::Progress2(15,28);
 		c("fmBuildProgram->im_icon")->loadFromFile(DOC_ROOT . 'project_parts/project.ico');
         TForm::loadFromFile("{$dfm_dir}uBuildCompleted",true);
+		fmLogoin::Progress2(15,28);
         TForm::loadFromFile("{$dfm_dir}uProjectOptions",true);
+		fmLogoin::Progress2(15,28);
          
         TForm::loadFromFile("{$dfm_dir}uOptions", true);
+		fmLogoin::Progress2(15,28);
         TForm::loadFromFile("{$dfm_dir}uSizesPosition");
+		fmLogoin::Progress2(15,28);
         
         TForm::loadFromFile("{$dfm_dir}uEasySelectDialog", true);
-
+		fmLogoin::Progress2(15,28);
         TForm::loadFromFile("{$dfm_dir}uFindError", true);
+		fmLogoin::Progress2(15,28);
         TForm::loadFromFile("{$dfm_dir}uAbout",true);
+		fmLogoin::Progress2(15,28);
 		
 		global $fmObjInspect;
 		$fmObjInspect = TForm::loadFromFile("{$dfm_dir}uObjectInspector", true);
+		fmLogoin::Progress2(15,28,"Forms Loaded");
 		unset($dfm_dir);
     }
     
@@ -132,8 +159,8 @@ if (!defined('IS_APPLICATION_START')){
         $myProperties->generateAllClasses();
 		
         include 'scripts/hotkeys.php';
-	include 'scripts/treebrowser.php';
-    
+		include 'scripts/treebrowser.php';
+		fmLogoin::Progress(1,"Hotkeys Loaded");
         $GLOBALS['APPLICATION']->processMessages();
         
         loader::model('actions');
