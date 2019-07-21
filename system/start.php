@@ -1,4 +1,4 @@
-<?    
+<?
      if( DS_DEBUG_MODE ){
 		pre($argv);
 		$tt = microtime(1);
