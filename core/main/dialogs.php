@@ -166,7 +166,7 @@ class __TNoVisual extends TControl {
 	
 	if ($name){
 	    
-	    if (!eregi('^[a-z]{1}[a-z0-9\_]*$',$name)) return;
+	    if (!preg_match('/^[a-z]{1}[a-z0-9\_]*$/i',$name)) return;
 	    
 	    myDesign::changeName(_c(_c($self)->obj), $name);
 	    global $myProperties;
