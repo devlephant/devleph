@@ -221,13 +221,13 @@ class myUtils {
         } */
     }
     
-    static function saveFormDFM($file){
+    static function saveFormDFM($file,$newname=false){
         
         global $fmEdit, $_sc;
         
         $targets_ex = $_sc->targets_ex;
         
-        if ( is_object($_sc) )
+        if ( $newname && is_object($_sc) )
 		{
             $_sc->clearTargets();
             $_sc->free();
@@ -235,17 +235,7 @@ class myUtils {
         }
         
         //$fmEdit->borderStyle = myProject::getPropForm('borderStyle','bsSizeable');
-        dfm_write($file, $fmEdit);
-        //$fmEdit->borderStyle = bsNone;
-        
-        self::loadForCache($fmEdit);
-        foreach ($targets_ex as $el)
-		{
-            $_sc->addTarget($el);
-        }
-        
-        $str = file_get_contents($file);
-        $str = str_replace_once('Visible = True','Visible = False',$str);
+        $str = str_replace_once('Visible = True','Visible = False',gui_writeStr($fmEdit->self));
         $str = str_replace_once('BorderStyle = bsNone',
                                 'BorderStyle = '.myProject::getPropForm('borderStyle', 'bsSizeable'),
                                 $str);
@@ -259,7 +249,13 @@ class myUtils {
 		{
 			$str = self::delProp($str, 'PopupMenu');
         }
-		file_put_contents($file, $str);
+		file_put_contents(replaceSr($file), $str);
+		if(!$newname) return;
+        self::loadForCache($fmEdit);
+        foreach ($targets_ex as $el)
+		{
+            $_sc->addTarget($el);
+        }
     }
     
     static function loadForm($nam){
@@ -380,7 +376,7 @@ class myUtils {
         $file = dirname($projectFile) .'/'. $name . '.dfm';
         
         myProject::saveFormInfo();
-        self::saveFormDFM($file);
+        self::saveFormDFM($file,$nam!==false);
         //eventEngine::updateIndexes();
         
     }

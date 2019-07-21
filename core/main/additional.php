@@ -60,7 +60,7 @@ $_c->setConstList( ['dmActiveForm', 'dmDesktop', 'dmMainForm', 'dmPrimary'],'TDe
 $_c->setConstList( ['poNone', 'poPrintToFit', 'poProportional' ]);
 $_c->setConstList(['alNone', 'alTop', 'alBottom', 'alLeft', 'alRight', 'alClient', 'alCustom'],'TAlign');
 $_c->setConstList(['tsTabs', 'tsButtons', 'tsFlatButtons', 'tsNone', 'tsAuto', 'tsManual']);
-$_c->setConstList(['tpTop', 'tpBottom', 'tpLeft', 'tpRight']);
+$_c->setConstList(['tpTop', 'tpBottom', 'tpLeft', 'tpRight'],'TTabPosition');
 $_c->setConstList(['ptBottom', 'ptLeft', 'ptNone', 'ptRight', 'ptTop']);
 $_c->setConstList(['bkCustom', 'bkOK', 'bkCancel', 'bkHelp', 'bkYes', 'bkNo', 'bkClose', 'bkAbort', 'bkRetry', 'bkIgnore', 'bkAll']);
 $_c->setConstList(['ssRegular', 'ssHotTrack', 'ssFlat']);

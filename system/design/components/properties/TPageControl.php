@@ -21,7 +21,7 @@ $result[] = array(
                   'CAPTION'=>t('Tab Position'),
                   'TYPE'=>'combo',
                   'PROP'=>'TabPosition',
-                  'VALUES'=>array('tpTop', 'tpBottom'),
+                  'VALUES'=>$_c->s('TTabPosition'),
                    'ADD_GROUP'=>true
                   );
 
