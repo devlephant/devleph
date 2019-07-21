@@ -63,18 +63,7 @@ function dfm_read($dfm_file_name, $aform = false, $str = false, $form_name = fal
 // сохранение формы в dfm файл
 function dfm_write($dfm_file_name, TForm $form)
 {
-	
-   $dfm_file_name = replaceSr($dfm_file_name);
-
-   $components = $form->components;
-   if($components)
-   foreach ($components as $el)
-	if (method_exists($el, '__getAddSource')){
-		$el->__getAddSource();
-		//$help = unserialize(base64_decode($el->getHelpKeyword()));
-	}
-   
-   file_put_contents($dfm_file_name, gui_writeStr($form->self) );
+   file_put_contents(replaceSr($dfm_file_name), gui_writeStr($form->self) );
 }
 
 // ---------------------------- // -------------------------------------------//
