@@ -1030,7 +1030,7 @@ class myDesign {
         
         global $fmEdit, $myInspect;
         
-        if (!eregi('^[a-z]{1}[a-z0-9\_]*$',$s))
+        if (!preg_match('/^[a-z]{1}[a-z0-9\_]*$/i',$s))
                 return $s = (_c($item)->caption);
         
         $obj = $myInspect->getObj(_c($item));

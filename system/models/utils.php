@@ -493,7 +493,7 @@ class myUtils {
           
         $new_name = inputText(t('Rename this form'),t('New form name'), $name);
         if ($new_name)
-        if (eregi('^([a-z]{1})([a-z0-9\_]+)$',$new_name)){
+        if (preg_match('/^([a-z]{1})([a-z0-9\_]+)$/i',$new_name)){
             
             global $_FORMS, $formSelected;
             foreach ($_FORMS as $el){
@@ -609,7 +609,7 @@ class myUtils {
         $name = inputText(t('Create new form'),t('Form name'), $name);
         
         if ($name)
-        if (eregi('([a-z0-9\_]+)',$name)){
+        if (preg_match('/([a-z0-9\_]+)/i',$name)){
             
             foreach ($_FORMS as $el){
                 if (strtolower($el)==strtolower($name)){

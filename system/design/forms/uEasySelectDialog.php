@@ -19,7 +19,7 @@ class evfmEasySelectDialog {
         
         $txt = c('line')->text;
         c('c_kav')->checked = ($txt[0]=='"' && $txt[strlen($txt)-1]=='"');
-        if ( eregi('^c\((.*)\)$', trim($txt)) ){
+        if ( preg_match('/^c\((.*)\)$/i', trim($txt)) ){
             
             c('fmEasySelectDialog->pages')->pageIndex    = 1;
             $obj_str = str_ireplace('c("','', $txt);
@@ -40,7 +40,7 @@ class evfmEasySelectDialog {
                     c('objs_list')->setFocus();
                 }
                 
-        } elseif ( eregi('^c\((.*)\)\-\>([a-z0-9\_\-\>]+)$', trim($txt)) ){
+        } elseif ( preg_match('/^c\((.*)\)\-\>([a-z0-9\_\-\>]+)$/i', trim($txt)) ){
             
             c('fmEasySelectDialog->pages')->pageIndex    = 2;
             preg_match_all('#^c\(\"(.*)\"\)\-\>([a-z0-9\_\-\>]+)$#i', $txt, $arx);

@@ -182,7 +182,7 @@ class myInspect {
 	
 	if ($name){
 	    
-	    if (!eregi('^[a-z]{1}[a-z0-9\_]*$',$name)) return;
+	    if (!preg_match('/^[a-z]{1}[a-z0-9\_]*$/i',$name)) return;
 	    
             myDesign::changeName($obj, $name);
         }

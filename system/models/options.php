@@ -303,7 +303,7 @@ class myOptions {
 			myOptions::set('backup','active', c('fmOptions->backup_active')->checked);
 			
 			$dir = c('fmOptions->backup_dir')->text;
-			if ( !eregi('$([.\-\_a-zа-яА-Я0-9]+)', $dir) )
+			if ( !preg_match('/$([.\-\_a-zа-яА-Я0-9]+)/i', $dir) )
 				$dir = 'backup';
 		
 				myOptions::set('backup','dir', $dir);
@@ -362,7 +362,7 @@ class myBackup {
 	static function doInterval($thks=true){
 		
 		global $projectFile;
-		if ( !eregi('$([.\-\_a-zа-яА-Я0-9]+)', $projectFile) )
+		if ( !preg_match('/$([.\-\_a-zа-яА-Я0-9]+)/i', $projectFile) )
 			self::$dir = 'backup';
 		
 		$dir = dirname($projectFile) .'/'. self::$dir . '/';

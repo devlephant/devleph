@@ -49,7 +49,7 @@ class myCopyer {
         
         if ($object->name){
             $lines = explode(_BR_, $str);
-            $lines[0] = eregi_replace('object ([\_a-z0-9]+)\: ','object '.$object->name.': ',$lines[0]);
+            $lines[0] = preg_replace('/object\w([\_a-z0-9]+)\:/i ','object '.$object->name.': ',$lines[0]);
             $str = implode(_BR_,$lines);
         }
         
@@ -270,7 +270,7 @@ class myCopyer {
         $code = trim($code);
         $lines = explode("\n", $code);
         
-        return ereg('^function ([a-z0-9A-Z\_]+)',$lines[0]);
+        return preg_match('/^function\w([a-z0-9A-Z\_]+)/i',$lines[0]);
     }
     
     function getFunction($code){

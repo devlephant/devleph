@@ -195,10 +195,10 @@ class animate {
     }
     
     static function objectFree($self){
-        
+        if(isset($GLOBALS['__VIEW']))
         if ($GLOBALS['__VIEW']['OBJECT'] == $self)
             unset($GLOBALS['__VIEW']);
-        
+        if(!isset($GLOBALS['__COLLISION']))return;
         unset($GLOBALS['__VSPEED'][$self]);
         unset($GLOBALS['__HSPEED'][$self]);
         

@@ -139,7 +139,7 @@ class group {
         $forms  = $SCREEN->formList();
         $result = [];
         foreach ($forms as $el)
-            if (eregi($str, $el->name))
+            if (preg_match("/{$str}/i", $el->name))
                 $result[] = $el;
                 
         return $result;
@@ -163,7 +163,7 @@ class group {
                 foreach ($links as $link){
                     
                     $name = component_name($link);
-                    if (eregi($lines[1],$name))
+                    if (preg_match("/".$lines[1]."/i",$name))
                         $this->addObject($link);
                 }
             }
@@ -174,7 +174,7 @@ class group {
            
             foreach ($links as $link){
                 $name = component_name($link);
-                if (eregi($str,$name)){
+                if (preg_match("/{$str}/i",$name)){
                     $this->addObject($link);
                 }
             }

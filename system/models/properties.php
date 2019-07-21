@@ -372,7 +372,7 @@ class myProperties {
             //myHistory::add($obj, $prop);
             
 		
-	    if (!eregi('^[a-z]{1}[a-z0-9\_]*$',$value)){
+	    if (!preg_match('/^[a-z]{1}[a-z0-9\_]*$/i',$value)){
                 c($link)->value = $value;
                 return;
             }
@@ -568,7 +568,7 @@ class myProperties {
 						$value = $index;
 					}
 						
-					if (ereg('^([0-9]+)$',$value)){
+					if (preg_match('/^([0-9]+)$/',$value)){
 						$value = (int)$value;
 						$i = -1;
 						foreach ($param['VALUES'] as $key => $el){

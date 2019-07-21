@@ -25,7 +25,7 @@ class myActions {
                 continue;
             }
             
-            if (!eregi('([a-z0-9\_]+)',$action)){
+            if (!preg_match('/([a-z0-9\_]+)/i',$action)){
                 msg(t('Inccorect code "%s" for action!', $action));
                 continue;
             }
@@ -207,7 +207,7 @@ class myActions {
             
 			if(isset($action['EREG']))
             if ($action['EREG']){
-                if (eregi($action['EREG'],$x_line))
+                if (preg_match("/".$action['EREG']."/i",$x_line))
                     return $action;
             }
         }
@@ -517,9 +517,9 @@ class action_Simple {
             
             $x = trim($value);
             if (
-                eregi('^c\(', $x)             ||
-                eregi('^\$([a-z0-9\_]+)', $x) ||
-                eregi('^0x([ABCDF0-9]+)', $x) ||
+                preg_match('/^c\(/i', $x)             ||
+                preg_match('/^\$([a-z0-9\_]+)/i', $x) ||
+                preg_match('/^0x([ABCDF0-9]+)/i', $x) ||
                 strtolower($value) == 'true'  ||
                 strtolower($value) == 'false'
             ) {
@@ -528,7 +528,7 @@ class action_Simple {
                 $value = '"' . $value . '"';
         } elseif ($el->use_quote) {
             
-            if ( !eregi('^([a-z0-9\_]*)$', trim($value)) ){
+            if ( !preg_match('/^([a-z0-9\_]*)$/i', trim($value)) ){
                 if ($value[0]!=='"')
                     $value = '"' . $value . '"';
             }

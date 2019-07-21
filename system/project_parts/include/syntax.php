@@ -405,7 +405,7 @@ class PHPSyntax {
        
         foreach ((array)$arr[1] as $var){
             
-            if (!eregi('^([a-z\_]{1})([a-z0-9\_]*)$', $var)){
+            if (!preg_match('/^([a-z\_]{1})([a-z0-9\_]*)$/i', $var)){
                 
                 $line = $this->getLine($org_code, '$'.$var);
                 $this->addError(E_ERROR, self::E_STR_VARNAME, $line, '$'.$var);
@@ -434,7 +434,7 @@ class PHPSyntax {
        
         foreach ((array)$arr[3] as $i=>$expr){
             
-            if (eregi('([a-z0-9\*\+\/\-\%\$\@\) ]+)=([ a-z0-9\*\+\/\-\%\$\@\!\(]+)', $expr)){
+            if (preg_match('/([a-z0-9\*\+\/\-\%\$\@\) ]+)=([ a-z0-9\*\+\/\-\%\$\@\!\(]+)/i', $expr)){
                 $line = $this->getLine($code, $expr);
                 if ($line)
                     $this->addError(E_WARNING, self::E_STR_IF_EQUALL, $line, '= >>> == ?');

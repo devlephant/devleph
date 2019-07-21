@@ -106,10 +106,10 @@ function createFormWithEvents($name,$init = false)
 }
 
 // динамическа¤ загрузка событий дл¤ формы...
-function loadFormEvents(TForm &$form)
+function loadFormEvents(TForm $form)
 {
 	$name = $form->name;
-	$objs_l = array_merge([$form->self],$form->componentLinks);
+	$objs_l = $form->componentLinks;
 	$events = ['onClick','onClose','onCloseQuery','onDblClick','onKeyUp','onKeyPress','onKeyDown',
 	'onMouseDown','onMouseUp','onMouseMove','onMouseEnter','onMouseLeave','onCanResize',
 	'onChange','onChanging','onShow','onPaint','onResize','onHide','onActivate','onDeactivate',
@@ -133,6 +133,19 @@ function loadFormEvents(TForm &$form)
 				
 				set_event($self, $ev, $class . '::' . $ev);
             }
+        }
+	
+	for ($j=0;$j<count($events);$j++){
+                        $ev = $events[$j];
+                        
+			$class = 'ev' . $name;
+			if (!class_exists($class))
+				$class = 'ev_' . $name;
+                        
+                        if (!class_exists($class)) continue;
+			if (!method_exists($class,$ev)) continue;
+                        
+                        $form->$ev = $class . '::' . $ev;
         }
 }
 

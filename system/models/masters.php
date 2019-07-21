@@ -18,7 +18,7 @@ class myMasters {
     
     static function createMaster($code){
         
-        if (!eregi('([a-z0-9\_]+)',$code)) return false;
+        if (!preg_match('/([a-z0-9\_]+)/i',$code)) return false;
         
         $dir = SYSTEM_DIR . self::UTIL_DIR . $code;
         

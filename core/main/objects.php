@@ -363,10 +363,8 @@ function rtti_set($obj, $prop, $val)
 		$obj = is_object($obj)?$obj->self:$obj;
 		if( !gui_propExists($obj, $prop) ) return;
 		$rt = gui_propType($obj, $prop);
-		if( $rt == tkEvent) return;
-		if( is_callable($val) ){
-			if( $rt == 8) return;
-		}elseif( is_object($val) ) //Если в функцию передали объект
+		if( $rt == 8) return;
+		if( is_object($val) ) //Если в функцию передали объект
 		{
 			if( isset($val->self) && is_numeric( $val->self )  )
 				$val = $val->self;
@@ -501,8 +499,8 @@ class TComponent extends TObject {
 	function __getPropEx($nm){
 	    
 	    $result = uni_unserialize(control_helpkeyword($this->self, null));
-			
-		return $result['PARAMS'][strtolower($nm)];
+		$nm = strtolower($nm);	
+		return isset($result['PARAMS'][$nm])?$result['PARAMS'][$nm]:null;
 	}
 	
 	static function __getPropExArray($self){

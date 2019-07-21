@@ -111,7 +111,7 @@ class Localization {
 	    if ( strpos($caption, _BR_) ){
 		$tmp = explode(_BR_, $caption);
 		foreach ($tmp as $q=>$x){
-		    if (ereg('^{(.+)}$', $x)){
+		    if (preg_match('/^{(.+)}$/', $x)){
 			$x[0] = ' '; $x[strlen($x)-1] = ' ';
 			$tmp[$q] = self::getMsg(trim($x));
 		    }
@@ -122,7 +122,7 @@ class Localization {
 		control_text($s_obj, $caption);
 		tstrings_item_index($s_obj, $ind);
 		
-	    } elseif ($caption && ereg('^{(.+)}$', $caption)){
+	    } elseif ($caption && preg_match('/^{(.+)}$/', $caption)){
 		$caption[0] = ' '; $caption[strlen($caption)-1] = ' ';
 		
 		control_text($s_obj, self::getMsg(trim($caption)));;
@@ -130,7 +130,7 @@ class Localization {
 	    
 	    $hint = gui_propGet($s_obj, 'hint');
 	    
-	    if ($hint && ereg('^{(.+)}$', $hint)){
+	    if ($hint && preg_match('/^{(.+)}$/', $hint)){
 		$hint[0] = ' '; $hint[strlen($hint)-1] = ' ';
 		gui_PropSet($s_obj, 'hint', self::getMsg(trim($hint)));
 	    }
@@ -141,14 +141,14 @@ class Localization {
 	    
 	    $caption = gui_propGet($s_obj, 'caption');
 	    
-	    if ($caption && ereg('^{(.+)}$', $caption)){
+	    if ($caption && preg_match('/^{(.+)}$/', $caption)){
 		$caption[0] = ' '; $caption[strlen($caption)-1] = ' ';
 		gui_PropSet($s_obj, 'caption', self::getMsg(trim($caption)));
 	    }
 	    
 	    $hint = gui_propGet($s_obj, 'hint');
 	    
-	    if ($hint && ereg('^{(.+)}$', $hint)){
+	    if ($hint && preg_match('/^{(.+)}$/', $hint)){
 		$hint[0] = ' '; $hint[strlen($hint)-1] = ' ';
 		gui_PropSet($s_obj, 'hint', self::getMsg(trim($hint)));
 	    }
