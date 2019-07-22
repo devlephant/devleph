@@ -769,7 +769,7 @@
 		            break;
 		        }*/
 		}elseif(trim(chr($self->key)) > '' and trim($chr3) != '' or trim($str) != '' and $x > 0){
-			if(!preg_match('/c\s*\(\s*[\'\"]+([->]*\w*)*'.$chr3.'/i', $str)){
+			if(!preg_match('/c\s*\(\s*[\'\"]+([->]*\w*)*'.preg_quote($chr3).'/i', preg_quote($str))){
 		    	if($synState)
 		    		eval_syn_setState($cmp);
 			    $cmp->active();

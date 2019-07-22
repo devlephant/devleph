@@ -252,7 +252,32 @@ class myUtils {
         }
 		file_put_contents(replaceSr($file), $str);
 		if($newname)
-        self::loadForCache($fmEdit);
+		{
+			self::loadForCache($fmEdit);
+		} else {
+		    $_sc = new TSizeCtrl($fmEdit);
+			$_sc->showGrid = (bool)myOptions::get('sc','showGrid',false);
+			$_sc->gridSize = myOptions::get('sc','gridSize',8);
+			$_sc->MovePanelCanvas->brush->color = myOptions::get('sc', 'SizerInnerColor', 12632256);
+			$_sc->MovePanelCanvas->pen->color = myOptions::get('sc', 'SizerOuterColor', clBlack);
+			$_sc->MovePanelCanvas->pen->style = (int)myOptions::get('sc','SizerPenStyle',2);
+			$_sc->BtnColor = myOptions::get('sc','BtnColor',clBlue);
+			$_sc->DisabledBtnColor = myOptions::get('sc','DisabledBtnColor',clGray);
+			
+			$_sc->onSizeMouseDown = 'myDesign::selectComponent';
+			$_sc->onEndSizeMove   = 'myDesign::endSizeMove';
+			$_sc->onStartSizeMove = 'myDesign::startSizeMove';
+			
+			$_sc->popupMenu= c('fmMain->editorPopup');
+            
+			$_sc->enable   = true;
+			foreach ($fmEdit->componentList $el){
+				if (!$el->isClass(array('TEvents','TSizeCtrl'))){
+					
+					$_sc->registerTarget($el);
+				}
+			}
+		}
         foreach ($targets_ex as $el)
 		{
             $_sc->addTarget($el);
