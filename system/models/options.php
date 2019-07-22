@@ -293,7 +293,6 @@ class myOptions {
 		c('fmOptions->backup_dir')->text = (string)myOptions::get('backup','dir','backup');
 		c('fmOptions->backup_count')->text = c('fmOptions->up_bcnt')->position = (int)myOptions::get('backup','count',3);
 		c('fmOptions->backup_interval')->text = c('fmOptions->up_bint')->position = (int)myOptions::get('backup','interval',2);
-		
         
         if (c('fmOptions')->showModal() == mrOk){
             

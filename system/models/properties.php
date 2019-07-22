@@ -1230,7 +1230,7 @@ class myProperties {
         
             
         if (!isset($this->panels[$class])){
-			$theme = DOC_ROOT . 'design/theme/' . myOptions::get('prefs','studio_theme', 'light'); //#ADDOPT;
+			$theme = dsThemeDesign::$dir; //#ADDOPT;
 			
             c("fmMain->editorPopup")->AutoPopup = false;
 			

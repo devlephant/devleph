@@ -6,7 +6,7 @@ $allImages = [];
 $is_exists = [];
 $c         = 0;
 $root1	   = SYSTEM_DIR . '/design/theme/';
-$root2	   = SYSTEM_DIR . '/design/theme/' . myOptions::get('prefs','studio_theme', 'light') . '/';
+$root2	   = dsThemeDesign::$dir . '/';
 
 $files = array_merge( findFiles($root2.'24/',['bmp','png','gif']),
 findFiles($root1 . '24/',['bmp','png','gif']) );

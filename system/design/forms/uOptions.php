@@ -98,14 +98,13 @@ class ev_fmOptions_btn_select
  {
 	static function onClick($self)
 	{
-		$text = explode(PHP_EOL, c("fmOptions->lb_themes")->text);
-		$id = c("fmOptions->lb_themes")->itemIndex;
+		//Andrewz: php 5.6 же, можно теперь и так делать)
+		$id = strtolower(explode(PHP_EOL, c("fmOptions->lb_themes")->text)[c("fmOptions->lb_themes")->itemIndex]);
 		
-		if( strtolower($text[$id]) == "mixed  " ){ pre("Sorry... This function not working. \n \nTo do...."); return;}
-		//Простите, но доделаю чуть поже. Просто лето, жара, сами понимаете.
-		if(!empty(strtolower($text[$id]))) {
-			myOptions::set('prefs','studio_theme', strtolower($text[$id]));
-			pre("Restart devel studio, please.");
+		if( $id == "mixed  " ){ pre("Sorry... This function is not working. \n \nTo do...."); return;}
+		//Gignorie: Простите, но доделаю чуть поже. Просто лето, жара, сами понимаете.
+		if(strlen($id)>0){
+			dsThemeDesign::Change($id);
 		}
 	}
 }

@@ -835,41 +835,59 @@ class ev_fmMain_itinvertce {
 class fmain_ibtn {
 	static $onClick;
 	static $images;
+	static $last;
+	static $list;
 	static function s($callback)
 	{
+		
 		self::sevent(substr(get_called_class(),10), $callback);
 	}
-	static function sevent($ic, $callback)
+	static function reloadDsgn($theme)
 	{
-		self::$onClick[c('fmMain->'.$ic)->self] = $callback;
-		$is = DOC_ROOT.'design/theme/' . myOptions::get('prefs','studio_theme', 'light') . '/' . $ic; //#ADDOPT;
+		foreach (self::$list as $ic=>$zero)
+		{
+			$s = c('fmMain->'.$ic);
+			self::$images[$s->self] = [];
+			self::setDsgn($s,$ic,"{$theme}/{$ic}");
+			unset($s);
+		}
+	}
+	static function setDsgn(&$s, $ic, $is)
+	{
 		for($i=1;$i<4;$i++)
 		{
 			if ( file_exists($is.'_'.$i.'.bmp') )
 			{
-				self::$images[c('fmMain->'.$ic)->self][] = [file_get_contents( $is.'_'.$i.'.bmp' ), 'bmp']; 
+				self::$images[$s->self][] = [file_get_contents( $is.'_'.$i.'.bmp' ), 'bmp']; 
 			} elseif( file_exists($is.'_'.$i.'.png') )
 			{
-				self::$images[c('fmMain->'.$ic)->self][] = [file_get_contents( $is.'_'.$i.'.png' ), 'png']; 
+				self::$images[$s->self][] = [file_get_contents( $is.'_'.$i.'.png' ), 'png']; 
 			} elseif( file_exists($is.'_'.$i.'.jpg') )
 			{
-				self::$images[c('fmMain->'.$ic)->self][] = [file_get_contents( $is.'_'.$i.'.jpg' ), 'jpeg']; 
+				self::$images[$s->self][] = [file_get_contents( $is.'_'.$i.'.jpg' ), 'jpeg']; 
 			} elseif( file_exists($is.'_'.$i.'.gif') )
 			{
-				self::$images[c('fmMain->'.$ic)->self][] = [file_get_contents( $is.'_'.$i.'.gif' ), 'gif']; 
+				self::$images[$s->self][] = [file_get_contents( $is.'_'.$i.'.gif' ), 'gif']; 
 			}else break;
 			
 		}
-		self::state( 'fmMain->'.$ic );
+		self::state( $s->self );
+	}
+	static function sevent($ic, $callback)
+	{
+		$s = c('fmMain->'.$ic);
+		self::$onClick[$s->self] = $callback;
+		self::$list[$ic] = 0;
+		self::setDsgn($s,$ic,dsThemeDesign::$dir . '/' . $ic);
 	}
 	static function state($s, $index=0)
 	{
-		$arr = self::$images[c($s)->self];
+		$arr = self::$images[$s];
 		if( isset($arr[$index]) )
 		{
 			$img = $arr[$index];
-			c($s)->picture->loadFromStr( $img[0], $img[1]);
-			c($s)->index = $index;
+			_c($s)->picture->loadFromStr( $img[0], $img[1] );
+			_c($s)->index = $index;
 		}
 	}
 	static function onMouseEnter($self)
@@ -921,11 +939,12 @@ class ev_fmMain_btn_rundebug extends fmain_ibtn {}
 
 class ev_fmMain_btn_make extends fmain_ibtn {}
 
-function fmMain_reloadims()
+$fmMain_reloadims =
+function($theme)
 {
 	//loading every skinnable icon in the main form */*2nd-party buttons and menu items displaying*/*
-	$theme = DOC_ROOT . 'design/theme/' . myOptions::get('prefs','studio_theme', 'light'); //#ADDOPT;
-	//iterating troughout icons-styleziable components
+	//
+	//iterating troughout icons-stylezeable components
 	foreach( array("btn_addEvent", "itemAddevent", "btn_editEvent", "btn_changeEvent", "btn_delEvent",
 	/*Object Menu->>>*/	  "itemDel", "itemCopy", "itemCut", "itemGroup", "itemPaste", 
 	"itFile"	/*->>>*/, "it_new", "it_open", "it_save", "it_saveas",
@@ -955,16 +974,16 @@ function fmMain_reloadims()
 	c("fmMain->itemSendtofront")->picture->loadFromFile(	"{$theme}/mi_bringtofront.bmp" );
 	c("fmMain->itemSendtoback")->picture->loadFromFile(		"{$theme}/mi_sendtoback.bmp" );
 	
-}
+};
 
 event_set(c("fmMain->pDockMain")->self, 'OnScrollVert', function($self, $scrollCode, &$scrollPos)
 {
-	global $_sc;
-	$_sc->update();
+	$GLOBALS['_sc']->update();
 });
 event_set(c("fmMain->pDockMain")->self, 'onScrollHorz', function($self, $scrollCode, &$scrollPos)
 {
-	global $_sc;
-	$_sc->update();
+	$GLOBALS['_sc']->update();
 });
-fmMain_reloadims();
+$fmMain_reloadims(dsThemeDesign::$dir);//#ADDOPT;
+
+dsThemeDesign::RegisterRFunc('fmain_ibtn::reloadDsgn',$fmMain_reloadims);

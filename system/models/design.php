@@ -810,7 +810,7 @@ class myDesign {
 		self::showPopup();
         $popupShow = true;
         $components = $_sc->targets_ex;
-        $theme = myOptions::get('prefs','studio_theme', 'light');
+        $theme = dsThemeDesign::$dir;
         c('fmMain->itemLock')->checked = false;
 		c('fmMain->itemLock')->picture->loadFromFile( DOC_ROOT . "design/theme/{$theme}/mi_lock.bmp" );
 		c('fmMain->itemLock')->caption = t("Lock component");

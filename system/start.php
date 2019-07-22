@@ -60,6 +60,7 @@
         loader::model('inspector');
 		loader::model('treebrowser');
         loader::model('project');
+		loader::model('themes');
         //loader::model('options');
         loader::model('modules');
         loader::model('novisual');

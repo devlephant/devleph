@@ -381,10 +381,10 @@ if (EMULATE_DVS_EXE) return;
 		return $res;
 	}
 	//gui_get_all_unitsclasses() as $classname
-	foreach( get_declared_classes() as $classname )
+	/*foreach( get_declared_classes() as $classname )
 	{
 		if( !gui_class_isset($classname) ) continue;
-		/*$p = get_sorted_props($classname);
+		$p = get_sorted_props($classname);
 		$e = get_sorted_events($classname);
 		$p = get_sorted_props($classname);
 		if( !empty($p) )
@@ -392,9 +392,9 @@ if (EMULATE_DVS_EXE) return;
 		
 		if( !empty($e) )
 			$componentEvents[$classname]	= $e;
-		*/
 		
-	}
+		
+	}*/
 	global $_c;
 	foreach (findFiles($dir_n . '/components/properties/','php')as $file){
 		$componentProps[basenameNoExt($file)] = include($dir_n . '/components/properties/' . $file);
@@ -415,7 +415,7 @@ if (EMULATE_DVS_EXE) return;
 	/*AZ: Вырезал этот код ещё давно, т.к хлам по сути, можно не создавать в этом месте, а из dfm грузить*/
     global $fmComponents;
     $cp = c('fmComponents->list');
-	$theme = DOC_ROOT . 'design/theme/' . myOptions::get('prefs','studio_theme', 'light'); //#ADDOPT;
+	$theme = dsThemeDesign::$dir; //#ADDOPT;
 	$cp->ExpandGlyph->loadFromFile("{$theme}/pc_collapsed.bmp");
 	$cp->CollapseGlyph->loadFromFile("{$theme}/pc_expanded.bmp");
 	$customGroup = myOptions::get('prefs','cgroups',false);

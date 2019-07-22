@@ -46,12 +46,10 @@ if (!defined('IS_APPLICATION_START')){
 		$APPLICATION->title = 'Devel Studio '.DV_YEAR;
 		$dfm_dir = "\\design\\forms\\";
         $fmLogoin = TForm::loadFromFile("{$dfm_dir}uLogoin");
+		dsThemeDesign::Load();
         c("fmLogoin->label9")->caption = "Devel Studio ". DV_YEAR ." v".DV_VERSION. " - ".DV_PREFIX;
-		$theme = DOC_ROOT . 'design/theme/' . myOptions::get('prefs','studio_theme', 'light'); //#ADDOPT;
-		c("fmLogoin->Image1")->loadFromFile("{$theme}/LogoIn.png");
-		global $theme_ini;
-		$theme_ini = parse_ini_file("{$theme}/config.ini",true);
-		c('fmLogoin->loadbar')->brushColor = $theme_ini['fmLogoin']['loadbar'];
+		c("fmLogoin->Image1")->loadFromFile(dsThemeDesign::$dir."/LogoIn.png");
+		c('fmLogoin->loadbar')->brushColor = dsThemeDesign::$ini['fmLogoin']['loadbar'];
 		fmLogoin::Progress(1);
         $fmLogoin->show();
 		
