@@ -415,11 +415,18 @@ if (EMULATE_DVS_EXE) return;
 	/*AZ: Вырезал этот код ещё давно, т.к хлам по сути, можно не создавать в этом месте, а из dfm грузить*/
     global $fmComponents;
     $cp = c('fmComponents->list');
-	$theme = dsThemeDesign::$dir; //#ADDOPT;
-	$cp->ExpandGlyph->loadFromFile("{$theme}/pc_collapsed.bmp");
-	$cp->CollapseGlyph->loadFromFile("{$theme}/pc_expanded.bmp");
-	c('fmMain->NXGlyphos')->addFromFile("{$theme}/pp_collapsed.bmp");
-	c('fmMain->NXGlyphos')->addFromFile("{$theme}/pp_expanded.bmp");
+	$rfc = function($theme)
+	{
+		$cp = c('fmComponents->list');
+		$pp = c('fmMain->NXGlyphos');
+		$cp->ExpandGlyph->loadFromFile("{$theme}/pc_collapsed.bmp");
+		$cp->CollapseGlyph->loadFromFile("{$theme}/pc_expanded.bmp");
+		$pp->clear();
+		$pp->addFromFile("{$theme}/pp_collapsed.bmp");
+		$pp->addFromFile("{$theme}/pp_expanded.bmp");
+	};
+	$rfc(dsThemeDesign::$dir);
+	dsThemeDesign::RegisterRFunc($rfc);
 	$customGroup = myOptions::get('prefs','cgroups',false);
 	if($customGroup)
 	{
