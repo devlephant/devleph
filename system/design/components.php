@@ -418,6 +418,8 @@ if (EMULATE_DVS_EXE) return;
 	$theme = dsThemeDesign::$dir; //#ADDOPT;
 	$cp->ExpandGlyph->loadFromFile("{$theme}/pc_collapsed.bmp");
 	$cp->CollapseGlyph->loadFromFile("{$theme}/pc_expanded.bmp");
+	c('fmMain->NXGlyphos')->addFromFile("{$theme}/pp_collapsed.bmp");
+	c('fmMain->NXGlyphos')->addFromFile("{$theme}/pp_expanded.bmp");
 	$customGroup = myOptions::get('prefs','cgroups',false);
 	if($customGroup)
 	{

@@ -1497,6 +1497,14 @@ object fmMain: TfmMain
       Caption = '-'
     end
   end
+  object NXGlyphos: TImageList
+    BkColor = clWhite
+    DrawingStyle = dsTransparent
+    Height = 10
+    Width = 10
+    Left = 552
+    Top = 48
+  end
   object MainImages24: TImageList
     BkColor = clWhite
     DrawingStyle = dsTransparent

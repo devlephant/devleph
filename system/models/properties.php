@@ -1243,8 +1243,7 @@ class myProperties {
             $panel->HighlightTextColor = 0xC1FFFF;
             $panel->onVSEdit = 'myProperties::VSEdit';
             $panel->onVSToolBarClick = 'myProperties::VSBarClick';
-			$panel->ExpandGlyph->loadFromFile("{$theme}/pp_collapsed.bmp");
-			$panel->CollapseGlyph->loadFromFile("{$theme}/pp_expanded.bmp");
+			$panel->Glyphs = c("fmMain->NXGlyphos");
 			$panel->ButtonsStyle = 1; //btCustom
 			gui_propSet($panel->self, 'Color', clWindow);
 			gui_propSet($panel->self, 'CategoriesColor', clBtnFace);
