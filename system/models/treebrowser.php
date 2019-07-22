@@ -7,7 +7,8 @@ function treeBwr_add()
 	$tree = c('fmMain->TreeProject');
 	
 	$tree->text = "";
-	
+	$Forms = "";
+	$text = "";
 	$dirs = findFiles($dir, "dfm");
 	foreach( (array)$dirs as $dfm )
 	{
@@ -24,7 +25,7 @@ function treeBwr_add()
 	}
 	unset($form, $comList);
 	
-	if( $Forms !== null )
+	if( $Forms !== "" )
 	{
 		$text .= t("Forms")._BR_;
 		$text .= $Forms;

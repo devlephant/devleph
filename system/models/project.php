@@ -73,11 +73,8 @@ class myProject {
         $classes = [];
 		if($myProject->formsInfo)
         foreach ($myProject->formsInfo as $form=>$data){
-            
-            $objs = $data['objects'];
-			if( is_array($objs) )
-            foreach($objs as $o){
-                
+			if( isset($data['objects']) )
+            foreach($data['objects'] as $o){
                 if ( !class_exists($o['CLASS']) ){
                     $classes[] = $o['CLASS'];
                 }

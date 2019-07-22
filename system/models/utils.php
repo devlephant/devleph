@@ -228,7 +228,7 @@ class myUtils {
         
         $targets_ex = $_sc->targets_ex;
         
-        if ( $newname && is_object($_sc) )
+        if ( is_object($_sc) )
 		{
             $_sc->clearTargets();
             $_sc->free();
@@ -251,7 +251,7 @@ class myUtils {
 			$str = self::delProp($str, 'PopupMenu');
         }
 		file_put_contents(replaceSr($file), $str);
-		if(!$newname) return;
+		if($newname)
         self::loadForCache($fmEdit);
         foreach ($targets_ex as $el)
 		{
