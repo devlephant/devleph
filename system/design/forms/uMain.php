@@ -882,13 +882,11 @@ class fmain_ibtn {
 	}
 	static function state($s, $index=0)
 	{
-		$arr = self::$images[$s];
-		if( isset($arr[$index]) )
+		if( isset(self::$images[$s][$index]) )
 		{
-			$img = $arr[$index];
-			_c($s)->picture->loadFromStr( $img[0], $img[1] );
-			_c($s)->index = $index;
-		}
+			_c($s)->picture->loadFromStr( ...self::$images[$s][$index] );
+		} else 
+			_c($s)->picture->Clear();
 	}
 	static function onMouseEnter($self)
 	{

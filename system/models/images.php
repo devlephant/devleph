@@ -10,8 +10,8 @@ class myImages {
     }
     
     static function get32($name){
-        $root1 = SYSTEM_DIR . '/design/theme/32/';
-		$root2 = dsThemeDesign::$dir . '/32/';
+        $root1 = SYSTEM_DIR . '/design/32bit/';
+		$root2 = dsThemeDesign::$dir . '/32bit/';
 		
 		if (file_exists( $root2 .$name.'.png'))
             return  $root2 .$name.'.png';
@@ -31,8 +31,8 @@ class myImages {
     }
     
     static function get24($name){
-        $root1 = SYSTEM_DIR . '/design/theme/24/';
-		$root2 = dsThemeDesign::$dir . '/24/';
+        $root1 = SYSTEM_DIR . '/design/24bit/';
+		$root2 = dsThemeDesign::$dir . '/24bit/';
 		
 		if (file_exists( $root2 .$name.'.png'))
             return $root2 .$name.'.png';

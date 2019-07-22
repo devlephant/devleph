@@ -136,7 +136,9 @@ function findDirs($dir){
 	unset($files[0], $files[1]); // remove С.Т and С..Т from array
     
     $result = [];
-    foreach ($files as $file){
+    if(!empty($files))
+	foreach ($files as $file)
+	{
         
         if (is_dir($dir .'/'. $file)){
             

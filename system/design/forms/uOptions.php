@@ -98,13 +98,12 @@ class ev_fmOptions_btn_select
  {
 	static function onClick($self)
 	{
-		//Andrewz: php 5.6 же, можно теперь и так делать)
-		$id = strtolower(explode(PHP_EOL, c("fmOptions->lb_themes")->text)[c("fmOptions->lb_themes")->itemIndex]);
+		if(c("fmOptions->lb_themes")->itemIndex < 0) return;
+		//Andrewz: php 5.6 же, можно теперь и так делать
+		$id = explode(PHP_EOL, c("fmOptions->lb_themes")->text)[c("fmOptions->lb_themes")->itemIndex];
 		
-		if( $id == "mixed  " ){ pre("Sorry... This function is not working. \n \nTo do...."); return;}
+		if( $id == "mixed" ){ pre("Sorry... This function is not working. \n \nTo do...."); return;}
 		//Gignorie: Простите, но доделаю чуть поже. Просто лето, жара, сами понимаете.
-		if(strlen($id)>0){
 			dsThemeDesign::Change($id);
-		}
 	}
 }

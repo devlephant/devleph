@@ -364,12 +364,8 @@ object fmOptions: TfmOptions
         Height = 144
         Style = lbOwnerDrawFixed
 		ItemHeight = 16
-		Items.Strings = (
-		  'Dark'
-		  'Light'
-	  	  'Mixed  ')
         Alignment = taLeftJustify
-        BorderSelected = True
+        BorderSelected = False
         TwoColor = clNone
         TwoFontColor = clNone
         MarginLeft = 2

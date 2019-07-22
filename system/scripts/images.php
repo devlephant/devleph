@@ -5,11 +5,11 @@ global $_IMAGES16, $_IMAGES24, $_IMAGES32, $allImages;
 $allImages = [];
 $is_exists = [];
 $c         = 0;
-$root1	   = SYSTEM_DIR . '/design/theme/';
+$root1	   = SYSTEM_DIR . '/design/';
 $root2	   = dsThemeDesign::$dir . '/';
 
-$files = array_merge( findFiles($root2.'24/',['bmp','png','gif']),
-findFiles($root1 . '24/',['bmp','png','gif']) );
+$files = array_merge( findFiles($root2.'24bit/',['bmp','png','gif']),
+findFiles($root1 . '24bit/',['bmp','png','gif']) );
 
 foreach ($files as $i=>$file){
     
@@ -17,19 +17,19 @@ foreach ($files as $i=>$file){
         $c++;
         continue;
     }
-    if (file_exists($root2 . '24/' . $file))
+    if (file_exists($root2 . '24bit/' . $file))
 	{
-		$_IMAGES24->addFromFile($root2 . '24/' . $file);
-    } elseif(file_exists($root1 . '24/' . $file)) {
-		$_IMAGES24->addFromFile($root1 . '24/' . $file);
-	} else $_IMAGES24->addFromFile($root1 . '24/empty.bmp');
+		$_IMAGES24->addFromFile($root2 . '24bit/' . $file);
+    } elseif(file_exists($root1 . '24bit/' . $file)) {
+		$_IMAGES24->addFromFile($root1 . '24bit/' . $file);
+	} else $_IMAGES24->addFromFile($root1 . '24bit/empty.bmp');
     
-    if (file_exists($root2 . '32/' . $file)) {
-        $_IMAGES32->addFromFile($root2 . '32/' . $file);
-	} elseif (file_exists($root1 . '32/' . $file))
+    if (file_exists($root2 . '32bit/' . $file)) {
+        $_IMAGES32->addFromFile($root2 . '32bit/' . $file);
+	} elseif (file_exists($root1 . '32bit/' . $file))
 	{
-		$_IMAGES32->addFromFile($root1 . '32/' . $file);
-    } else    $_IMAGES32->addFromFile($root1 . '32/empty.bmp');
+		$_IMAGES32->addFromFile($root1 . '32bit/' . $file);
+    } else    $_IMAGES32->addFromFile($root1 . '32bit/empty.bmp');
         
     
     $is_exists[] = basenameNoExt($file);

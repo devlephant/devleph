@@ -59,9 +59,8 @@ class CApi extends DSApi {
         
         if (is_dir($dir.'/images/'))
 		{
-            $result['images'] = dir_copy($dir.'/images/', DOC_ROOT.'/design/theme/');
-        } elseif (is_dir($dir.'/theme/'))
-			$result['images'] = dir_copy($dir.'/theme/', DOC_ROOT.'/design/theme/');
+            $result['images'] = dir_copy($dir.'/images/', DOC_ROOT.'/design/');
+        }
         if (is_dir($dir.'/prog/')){
             $result['prog'] = dir_copy($dir.'/prog/', DOC_ROOT.'/../');
         }
@@ -96,7 +95,7 @@ class CApi extends DSApi {
             
         if ($files['images'])
         foreach ($files['images'] as $file)
-            file_delete(DOC_ROOT.'/design/theme/'.$file);
+            file_delete(DOC_ROOT.'/design/'.$file);
             
         if ($files['utils'])
         foreach ($files['utils'] as $file)
