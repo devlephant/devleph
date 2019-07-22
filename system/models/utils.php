@@ -271,7 +271,7 @@ class myUtils {
 			$_sc->popupMenu= c('fmMain->editorPopup');
             
 			$_sc->enable   = true;
-			foreach ($fmEdit->componentList $el){
+			foreach ($fmEdit->componentList as $el){
 				if (!$el->isClass(array('TEvents','TSizeCtrl'))){
 					
 					$_sc->registerTarget($el);
