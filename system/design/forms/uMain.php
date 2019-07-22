@@ -849,7 +849,6 @@ class fmain_ibtn {
 			$s = c('fmMain->'.$ic);
 			self::$images[$s->self] = [];
 			self::setDsgn($s,$ic,"{$theme}/{$ic}");
-			unset($s);
 		}
 	}
 	static function setDsgn(&$s, $ic, $is)

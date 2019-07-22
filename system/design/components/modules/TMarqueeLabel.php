@@ -30,11 +30,9 @@ class TMarqueeLabel extends TLabel {
 		else
 			event_set($TTimerNew, 'OnTimer', function($self) use ($func, $param){
 				call_user_func_array($func, array_merge([$self], $param));
-				unset($func, $param);
 			});
 
 		gui_propSet($TTimerNew, 'enabled', $Enabled);
-		unset($func, $interval, $Enabled, $p, $param);
 		return $TTimerNew;
 	}
 
@@ -67,7 +65,6 @@ class TMarqueeLabel extends TLabel {
 					$obj->caption = substr($Text, 0, -1);
 				}
 			}
-			unset($Text);
 		}
 	}
 }

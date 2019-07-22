@@ -12,8 +12,7 @@ function treeBwr_add()
 	foreach( (array)$dirs as $dfm )
 	{
 		$Forms .= '	' . $dfm . PHP_EOL;
-		$dfm_ne = basenameNoExt($dfm);
-		$form = (object)myUtils::$forms[strtolower($dfm_ne)];
+		$form = (object)myUtils::$forms[strtolower(basenameNoExt($dfm))];
 		$comList = $form->componentList;
 		foreach( (array)$comList as $obj )
 		{
@@ -23,7 +22,7 @@ function treeBwr_add()
 			}
 		}
 	}
-	unset($dfm_ne, $form, $comList);
+	unset($form, $comList);
 	
 	if( $Forms !== null )
 	{

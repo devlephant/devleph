@@ -850,7 +850,6 @@ class TTreeView extends TControl {
 				$Level = $ToLevel;
 			} elseif($ToLevel == 0) break;
 		}
-		unset($Base);
 		return array_reverse($Result);
 	}
 

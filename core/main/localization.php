@@ -153,8 +153,6 @@ class Localization {
 		gui_PropSet($s_obj, 'hint', self::getMsg(trim($hint)));
 	    }
 	
-	
-	unset($objs);	
     }
     
     static function localApplication(){

@@ -47,7 +47,8 @@ while($i < $__countFbba) {
 $base32 .= self::$map[base_convert(str_pad($fiveBitBinaryArray[$i], 5,'0'), 2, 10)];
 ++$i;
 }
-unset($__countInput, $__countFbba);
+//PHP сам очищает память при выходе из функций
+//Следует очищать только в циклах, когда переменные - временные, или же когда код идёт вне функций
 if($padding && ($x = strlen($binaryString) % 40) !== 0) {
 if($x == 8) $base32 .= str_repeat(self::$map[32], 6);
 else if($x == 16) $base32 .= str_repeat(self::$map[32], 4);

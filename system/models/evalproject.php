@@ -36,11 +36,7 @@ class evalProject {
         
         $_e = dsErrorDebug::ErrStatus(false);
         $x = unserialize(base64_decode(gzuncompress($result)));    
-        if (!$x)
-            $result = unserialize(base64_decode($result));
-        else
-            $result = $x;
-            
+		$result = $x?$x:unserialize(base64_decode($result));
         unset($x);
         dsErrorDebug::ErrStatus($_e);
         

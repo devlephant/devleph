@@ -93,7 +93,7 @@ class myCompile
 					if ($check) {
 						if (method_exists($class, 'listEvent')) {
 							$tmp = new $class();
-							$listEvent = $tmp->listEvent();
+							$listEvent = $tmp->listEvent();//ёмаё... Дим-с про статические функции не знал?...ы
 
 							foreach (eventEngine::$DATA[strtolower($form)][strtolower($obj['NAME'])] as $event => $code) {
 								if (!in_array($event, $listEvent)) {
@@ -435,7 +435,6 @@ class myCompile
 		$vtime = round( microtime(1) - $startTime, 1 );
 		$vtime = $vtime>=60? round($vtime/60,1).t('min.'): $vtime.t('sec.');
 		self::setStatus('Success', t('Start Finished for') . ' ' . $vtime );
-		unset($_e, $vtime);
 		shell_execute(0, 'open', replaceSr($exeFile), ' -c ' . receiver_handle(), replaceSr(dirname($exeFile)), SW_SHOW);
 		myDesign::szRefresh();
 		dsErrorDebug::ErrStatus($_e);

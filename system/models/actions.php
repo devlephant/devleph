@@ -309,7 +309,7 @@ class myActions {
         if (!$line)
             $line = action_Simple::getLine();
         
-        $tmp = new $class;
+        $tmp = new $class; //что за... Это вообще здесь зачем? Дим-с странный...
         $params_str = $tmp->getLineParams($line,$action);
         unset($tmp);
         

@@ -668,7 +668,6 @@ class PHPSyntax {
            
         }
         
-        unset($syn);
         return $result;
     }
     

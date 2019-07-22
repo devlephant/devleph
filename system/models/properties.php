@@ -206,7 +206,6 @@ class myProperties {
 			if( isset($ib->state) )
 				$ib->state = $prev2;
 		}
-		unset($prev);
 		self::setTibDsgn(c($self), count($ib->$prop) );
 		$_sc->update();  // fix bug
 		self::updateProps();	// fix bug
