@@ -2,7 +2,7 @@
 class dsThemeDesign
 {
 	private static $rfuncs;
-	private static $rpfunc;
+	static $rpfunc;
 	public	static $ini;
 	public	static $dir;
 	
@@ -23,10 +23,12 @@ class dsThemeDesign
 		self::$ini = parse_ini_file("{$theme_dir}/config.ini",true);
 		myOptions::set('prefs','studio_theme', $theme);
 		$count = count(self::$rfuncs);
+		
 		foreach( self::$rfuncs as $ReloadFunc )
 		{
 			call_user_func($ReloadFunc, $theme_dir);
-				self::$rpfunc($count);
+			$func = self::$rpfunc; //Andrewz: удивительно, но это решение... No comments...
+				$func($count);
 		}
 	}
 	public function Load()
