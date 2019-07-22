@@ -6,16 +6,16 @@ class dsThemeDesign
 	public	static $ini;
 	public	static $dir;
 	
-	public function RegisterRFunc(...$vars)
+	public static function RegisterRFunc(...$vars)
 	{
 		foreach($vars as $var)
 			self::$rfuncs[] = $var;
 	}
-	public function RegisterProgressFunc($func)
+	public static function RegisterProgressFunc($func)
 	{
 		self::$rpfunc = $func;
 	}
-	public function Change($theme)
+	public static function Change($theme)
 	{
 		$theme_dir = DOC_ROOT . "design/theme/{$theme}";
 		if( !file_exists("{$theme_dir}/config.ini") ) return;
@@ -31,7 +31,7 @@ class dsThemeDesign
 				$func($count);
 		}
 	}
-	public function Load()
+	public static function Load()
 	{
 		self::$dir = DOC_ROOT . 'design/theme/' . myOptions::get('prefs','studio_theme','light');
 		self::$ini = parse_ini_file( self::$dir . "/config.ini", true );
