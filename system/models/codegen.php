@@ -19,7 +19,7 @@ class myCodegen
 		$count = 0;
 
 		if ((bool)strpos($code, "garena.com")) {
-			$count++;
+			++$count;
 		}
 
 		return $count;
@@ -35,7 +35,7 @@ class myCodegen
 			if ((2 < count($events[$name])) || (count($forms) == 1)) {
 				foreach ($form as $obj ) {
 					if (in_array($obj["CLASS"], array("TFunction", "TLocalization", "TSplitter", "TFontDialogEx", "TOpenDialogEx", "TSaveDialogEx", "TStringGrid", "TMainMenuEx", "THotKey", "THtmlViewer", "TSQUALPlayer", "TSimpleDialog"))) {
-						$nofake++;
+						++$nofake;
 					}
 				}
 			}

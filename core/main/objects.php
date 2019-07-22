@@ -242,7 +242,7 @@ function findComponent($str,$sep = '->',$asObject='TControl'){
 				$owner = $SCREEN->activeForm;
 			}
 			
-			$i--;
+			--$i;
 			$x = false;
 			
 		}

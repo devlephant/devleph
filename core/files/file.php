@@ -241,14 +241,14 @@ function x_move($from, $to){
         if ($x>30){
             break;
         }
-        $x++;
+        ++$x;
     }
     
     $x = 0;
     while (!unlink($from)){
         if ($x>30)
             break;
-        $x++;
+        ++$x;
     }
 }
 ?>

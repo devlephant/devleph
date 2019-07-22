@@ -334,7 +334,7 @@ $T->OnTimer = Function($self) use($Pos,$Ch1,$Ch2,$Del,$Lab)
 $Add->OnClick = Function($self) use( $Form , $Info , $Del , $Pos)
 {
 Global $__cv,$__nv;
-$__cv++;
+++$__cv;
 
 $move = new TTimer;
 $shap = new TShape;
@@ -383,7 +383,7 @@ $numb->x = $shap->x - 18;
 $numb->y = $shap->y - 2;
 
 $time->OnTimer = Function($self) use ($shap,$prog){
-  $prog->position++;
+  ++$prog->position;
 
  if($prog->position == 1)
  {
@@ -486,7 +486,7 @@ $shap->OnMouseUp = Function($self) use ($move,$labe,$numb,$time,$prog,$shap,$Inf
          $numb->free();
 
           Global $__cv,$__nv;
-          $__cv--;
+          --$__cv;
           unset( $__nv[c($self)->name] );
           Del( c($self) );
       }

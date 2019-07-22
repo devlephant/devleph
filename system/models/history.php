@@ -39,7 +39,7 @@ class myHistory {
         }
         
         $HISTORY_ARRAY[$_FORMS[$formSelected]][] = $arr;
-        $GLOBALS['historyIndex']++;
+        ++$GLOBALS['historyIndex'];
     }
     
     static function addXY($objects){
@@ -102,7 +102,7 @@ class myHistory {
         return false;
         global $historyIndex;
         self::save($historyIndex);
-        $historyIndex++;
+        ++$historyIndex;
     }
     
     static function undo(){

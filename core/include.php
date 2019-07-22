@@ -63,7 +63,7 @@ function obsafe_print_r($var, $return = false, $html = false, $level = 0) {
 		$spaces = str_repeat($spaces, 4);
 		$tlevel = str_repeat($spaces, $level);
 		$tabs = $spaces;
-		for ($i = 1; $i <= $level; $i++) {
+		for ($i = 1; $i <= $level; ++$i) {
 			$tabs .= $spaces;
 		}
 		if (is_array($var)) {
@@ -74,9 +74,9 @@ function obsafe_print_r($var, $return = false, $html = false, $level = 0) {
 		$output = $title . $newline;
 		foreach($var as $key => $value) {
 			if (is_array($value) || is_object($value)) {
-				$level++;
+				++$level;
 				$value = obsafe_print_r($value, true, $html, $level);
-				$level--;
+				--$level;
 			} else $value = obsafe_print_r($value, true, $html, 0);
 			$output .= $tabs . "[" . $key . "] => " . $value . $newline;
 		}

@@ -573,7 +573,7 @@ class myProperties {
 						$i = -1;
 						foreach ($param['VALUES'] as $key => $el){
                         
-							$i++;
+							++$i;
 							if ($key == $value) break;
 						}
                     
@@ -1336,7 +1336,7 @@ class myProperties {
         global $componentClasses;
         $i = 0;
         foreach ((array)$componentClasses as $c){
-            $i++;
+            ++$i;
             if ($i>=1) break;
             $this->generateClass($c['CLASS']);
         }

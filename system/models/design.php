@@ -216,7 +216,7 @@ class myDesign {
         foreach ($components as $el){
             
             if ($el->isClass($class))
-                $result++;
+                ++$result;
         }
         
         return $result;
@@ -235,7 +235,7 @@ class myDesign {
         
         while (is_object($fmEdit->findComponent($to))){
             
-            $i++;
+            ++$i;
             $to = vsprintf($classInfo['NAME'].'%s', $i);
         }
         
@@ -678,7 +678,7 @@ class myDesign {
                 if (!$el->name || in_array(rtti_class($el->self),array('TEvents','TSizeCtrl'))) continue;
                 
                 if (self::inArea($el->self, $ax, $ay, $w, $h)){
-                    $i++;
+                    ++$i;
                     $_sc->addTarget($el);
                     if ($i==1){
                 
@@ -930,7 +930,7 @@ class myDesign {
         $s    = $s['cmp'];
         $iter = 0;
         foreach ($objs as $el){
-            $iter++;
+            ++$iter;
             if (method_exists($el['cmp'],'__updateDesign')) $el['cmp']->__updateDesign();
             if (method_exists($el['cmp'],'__pasteDesign')) $el['cmp']->__pasteDesign();
             

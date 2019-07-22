@@ -493,7 +493,7 @@ class idna_convert
             if ((0x2F < $test && $test < 0x40) || (0x40 < $test && $test < 0x5B)
                     || (0x60 < $test && $test <= 0x7B) || (0x2D == $test)) {
                 $encoded .= chr($decoded[$i]);
-                $codecount++;
+                ++$codecount;
             }
         }
         if ($codecount == $deco_len) return $encoded; // All codepoints were basic ones
@@ -521,7 +521,7 @@ class idna_convert
             // Scan input again and encode all characters whose code point is $cur_code
             for ($i = 0; $i < $deco_len; $i++) {
                 if ($decoded[$i] < $cur_code) {
-                    $delta++;
+                    ++$delta;
                 } elseif ($decoded[$i] == $cur_code) {
                     for ($q = $delta, $k = $this->_base; 1; $k += $this->_base) {
                         $t = ($k <= $bias) ? $this->_tmin :
@@ -532,13 +532,13 @@ class idna_convert
                     }
                     $encoded .= $this->_encode_digit($q);
                     $bias = $this->_adapt($delta, $codecount+1, $is_first);
-                    $codecount++;
+                    ++$codecount;
                     $delta = 0;
                     $is_first = false;
                 }
             }
-            $delta++;
-            $cur_code++;
+            ++$delta;
+            ++$cur_code;
         }
         return $encoded;
     }
@@ -657,8 +657,8 @@ class idna_convert
                         unset($output[$out_len]);
                     }
                     // Rewind the for loop by one, since there can be more possible compositions
-                    $i--;
-                    $out_len--;
+                    --$i;
+                    --$out_len;
                     $last_class = ($i == $last_starter) ? 0 : $this->_get_combining_class($output[$i-1]);
                     continue;
                 }
@@ -951,7 +951,7 @@ class idna_convert
         for ($i = 0, $out_len = -1; $i < $inp_len; ++$i) {
             // Increment output position every 4 input bytes
             if (!($i % 4)) {
-                $out_len++;
+                ++$out_len;
                 $output[$out_len] = 0;
             }
             $output[$out_len] += ord($input{$i}) << (8 * (3 - ($i % 4) ) );

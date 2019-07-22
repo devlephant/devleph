@@ -277,7 +277,7 @@ class ev_fmPHPEditor_f_text {
                 return;
             }
             
-            $GLOBALS['__findIndex']++;
+            ++$GLOBALS['__findIndex'];
             
             c('memo')->selStart = $start;
             c('memo')->selEnd   = $start + $length;

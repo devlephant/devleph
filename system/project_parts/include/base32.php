@@ -35,16 +35,19 @@ public static function encode($input, $padding = true) {
 if(empty($input)) return "";
 $input = str_split($input);
 $binaryString = "";
-for($i = 0; $i < count($input); $i++) {
+$__countInput = count($input); // <------ Это для того что-бы функция при проверке в цикле, не активировалась каждый раз.
+for($i = 0; $i < $__countInput; ++$i) {
 $binaryString .= str_pad(base_convert(ord($input[$i]), 10, 2), 8, '0', STR_PAD_LEFT);
 }
 $fiveBitBinaryArray = str_split($binaryString, 5);
 $base32 = "";
 $i=0;
-while($i < count($fiveBitBinaryArray)) { 
+$__countFbba = count($fiveBitBinaryArray);
+while($i < $__countFbba) { 
 $base32 .= self::$map[base_convert(str_pad($fiveBitBinaryArray[$i], 5,'0'), 2, 10)];
-$i++;
+++$i;
 }
+unset($__countInput, $__countFbba);
 if($padding && ($x = strlen($binaryString) % 40) !== 0) {
 if($x == 8) $base32 .= str_repeat(self::$map[32], 6);
 else if($x == 16) $base32 .= str_repeat(self::$map[32], 4);

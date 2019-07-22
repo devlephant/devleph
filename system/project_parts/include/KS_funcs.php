@@ -252,7 +252,7 @@ function create_gradient($obj, TCanvas $canv, $col1 = clWhite, $col2 = clLtGray,
 		$canv->moveTo( $ly, 0, $cl );
 		$canv->lineTo( $ly, $cm, $cl );
 		}
-	$ly++;
+	++$ly;
 	}
 	$canv->lock();
 }

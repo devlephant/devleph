@@ -166,7 +166,7 @@ class TStringGrid extends TControl {
         foreach ($arr as $colName => $rows){
             
             $this->rows($x, $rows);
-            $x++;
+            ++$x;
         }
     }
     

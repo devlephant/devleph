@@ -164,7 +164,7 @@ class DS_Loader
 		$i = -1;
 
 		foreach ($formsData as $form => $data) {
-			$i++;
+			++$i;
 			$form = strtolower($form);
 			if ($i && $__config['formsInfo'][$form]['noload']) {
 				continue;

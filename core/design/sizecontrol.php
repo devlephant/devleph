@@ -62,7 +62,7 @@ class TSizeCtrl extends TControl{
             if ($obj->self == $target->self)
                 return $result;
             
-            $result++;
+            ++$result;
         }
         return -1;
     }

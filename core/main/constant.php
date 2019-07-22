@@ -540,7 +540,7 @@ protected $name;
 				{
 					$i = 0;
 					while( $this->$func_name($args[$i])->rgb == $this->rgb and $i < count($args)-1 ) {
-						$i++;
+						++$i;
 					}
 					
 					$ret2 = $this->$func_name($args[$i]);
@@ -1021,7 +1021,7 @@ protected $name;
 	
 	public function gradient ($c, $Step)
 	{
-		$Step--;
+		--$Step;
 		$color = call_user_func_array([self::$classname, "__invoke"], array_slice(func_get_args(), 0, func_num_args()-1));
 		$GradientColors = [];
 		

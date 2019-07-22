@@ -17,7 +17,7 @@ class fmLogoin
 		{
 			self::$queue[$MaxSteps][0] = 1;
 			self::$queue[$MaxSteps][1] = self::$p;
-		}else self::$queue[$MaxSteps][0]++;
+		}else ++self::$queue[$MaxSteps][0];
 		$Step = self::$queue[$MaxSteps][0];
 		$v = (self::$p + floor(($max/$MaxSteps) * $Step))-1;
 		c("fmLogoin->loadbar")->w = (691 / 100) * $v;

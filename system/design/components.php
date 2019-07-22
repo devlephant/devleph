@@ -440,7 +440,7 @@ if (EMULATE_DVS_EXE) return;
 				{
 					$_components[$i] = $c1;
 					$_components[$i]['GROUP'] = $group[0];
-					$idx++;
+					++$idx;
 				}
 			}
 		unset($od,$idx);

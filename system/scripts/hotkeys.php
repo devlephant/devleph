@@ -34,23 +34,21 @@ function setEditorHotKeys(){
 }
 
 function initEditorHotKeys(){
-    
-    global $fmEdit, $fmMain, $popupShow;
-    if (!$fmEdit) return;
-   
-    $x = cursor_pos_x();
-    $y = cursor_pos_y();
-    $arr['x'] = clientToScreenX($fmEdit->handle);
-    $arr['y'] = clientToScreenY($fmEdit->handle);
+	
+	global $fmEdit, $fmMain, $popupShow;
+	if (!$fmEdit) return;
+	
+	$x = cursor_pos_x();
+	$y = cursor_pos_y();
     $arr = clientToScreen($fmEdit->handle);
-    $inform = Geometry::pointInRegion($x, $y, ['x'=>$arr['x'], 'y'=>$arr['y'],
-                                          'w'=>$fmEdit->w, 'h'=>$fmEdit->h]);
-    
-
-    if (!$inform && $popupShow)
-        $inform = true;    
-    if ($inform)
-        setEditorHotKeys();
-    else
-        clearEditorHotKeys();
+	$arr['w'] = $fmEdit->w;
+	$arr['h'] = $fmEdit->h;
+    $inform = Geometry::pointInRegion($x, $y, $arr);
+	
+	if (!$inform && $popupShow)
+		$inform = true;    
+	if ($inform)
+		setEditorHotKeys();
+	else
+		clearEditorHotKeys();
 }

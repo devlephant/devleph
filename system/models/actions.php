@@ -52,7 +52,7 @@ class myActions {
                 $item['ICON'] = myImages::get24($action);
             
             $item['ICON_ID'] = $id_icon;
-            $id_icon++;
+            ++$id_icon;
             
             
             // загружаем текст...
@@ -414,9 +414,9 @@ class action_Simple {
             }
             
             if (!$is_str && $str[$i] == '(')
-                $skoba++;
+                ++$skoba;
             elseif (!$is_str && $str[$i] == ')')
-                $skoba--;
+                --$skoba;
             
             if (!$is_str && ($skoba!==0 && $str[$i]==','))
                 $dd_q[] = $i;

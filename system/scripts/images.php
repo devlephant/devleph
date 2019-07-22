@@ -14,7 +14,7 @@ findFiles($root1 . '24bit/',['bmp','png','gif']) );
 foreach ($files as $i=>$file){
     
     if ( in_array(basenameNoExt($file), $is_exists) ){
-        $c++;
+        ++$c;
         continue;
     }
     if (file_exists($root2 . '24bit/' . $file))

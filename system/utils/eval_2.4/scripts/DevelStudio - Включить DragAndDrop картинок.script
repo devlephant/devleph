@@ -34,7 +34,7 @@ if(!$fmMain->drop){
 				$img = new TMImage($fmEdit);
 				$img->parent = $fmEdit;
 				$img->loadFromFile($file);
-				do{$name = 'image'.$n++;}while($fmEdit->findComponent($name));
+				do{$name = 'image'.++$n;}while($fmEdit->findComponent($name));
 				$img->name = $name;
 				$img->x = $d;
 				$img->y = $d;

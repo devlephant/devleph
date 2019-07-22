@@ -268,7 +268,7 @@ if( !$GLOBALS['APP_DESIGN_MODE'] ) {
 				if( $obj instanceof TShape )
 					$obj->PenColor = $obj->BrushColor = $this->colors['M'][$value - $minv][$this->_iter+5];
 				
-				$this->_iter++;
+				++$this->_iter;
 				}
 			}
 		 }break;
@@ -370,7 +370,7 @@ if( !$GLOBALS['APP_DESIGN_MODE'] ) {
 		} else {
 			$this->__prevb = $this->__Index;
 		}
-		$this->__baricount++;
+		++$this->__baricount;
 	} else {
 		$this->_trackselector->BrushColor = $this->colors['bar'][$this->__Index-1];
 		$this->__baricount = 0;

@@ -37,7 +37,7 @@ class AOP_CodeParser
 
             // Correcting CLOSETAG
             if (is_array($this->tokens[$this->length]) && token_name($this->tokens[$this->length][0]) !== "T_CLOSE_TAG") {
-                $this->length++; // Increase one (same as $l = count($tok);)
+                ++$this->length; // Increase one (same as $l = count($tok);)
             }
         }
 
@@ -196,7 +196,7 @@ class AOP_CodeParser
     function increment()
     {
         do {
-            $this->index++;
+            ++$this->index;
 
             // PHP 4 Parser error prevention
             if (array_key_exists($this->index, $this->tokens)) {
@@ -211,7 +211,7 @@ class AOP_CodeParser
     function decrement()
     {
         do {
-            $this->index--;
+            --$this->index;
 
             // PHP 4 Parser error prevention
             if (array_key_exists($this->index, $this->tokens)) {
@@ -373,7 +373,7 @@ class PHPSyntax {
             
             $s = $code[$i];
             
-            if ($s=="\n") $this->line++;
+            if ($s=="\n") ++$this->line;
             
             if ($this->isString($s, $this->line)) continue;
             $result .= $s;
@@ -384,12 +384,12 @@ class PHPSyntax {
                 $type = strpos($this->skoba[$k], $s);
                 
                 if ($type) // закрывающий...
-                    $this->skoba_index[$k]--;
+                    --$this->skoba_index[$k];
                 else {
                     if ($this->skoba_index[$k]==0)
                         $this->skoba_lines[$k] = $this->line;
                         
-                    $this->skoba_index[$k]++;
+                    ++$this->skoba_index[$k];
                 }
             }
         }
@@ -658,10 +658,10 @@ class PHPSyntax {
                 
             } else {
                 
-                if ($token == '{') $index_skoba++;
-                if ($token == '}') $index_skoba--;
-                if ($token == '(') $index_skoba2++;
-                if ($token == ')') $index_skoba2--;
+                if ($token == '{') ++$index_skoba;
+                if ($token == '}') --$index_skoba;
+                if ($token == '(') ++$index_skoba2;
+                if ($token == ')') --$index_skoba2;
                 
                 if ($index_skoba==0) $n_class = false;
             }

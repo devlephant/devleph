@@ -98,12 +98,15 @@ class ev_fmOptions_btn_select
  {
 	static function onClick($self)
 	{
+		$themes_list = c("fmOptions->lb_themes");
 		if(c("fmOptions->lb_themes")->itemIndex < 0) return;
-		//Andrewz: php 5.6 же, можно теперь и так делать
-		$id = explode(PHP_EOL, c("fmOptions->lb_themes")->text)[c("fmOptions->lb_themes")->itemIndex];
+		//Gignorie: Это - ds, тут и без php 5.6 обойтись почти можно XD <--- Andrewz'у
+		$id = $themes_list->items->lines[$themes_list->itemIndex];
 		
 		if( $id == "mixed" ){ pre("Sorry... This function is not working. \n \nTo do...."); return;}
 		//Gignorie: Простите, но доделаю чуть поже. Просто лето, жара, сами понимаете.
 			dsThemeDesign::Change($id);
+			message_beep(66);
+		unset($themes_list, $id);
 	}
 }

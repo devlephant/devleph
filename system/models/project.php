@@ -834,7 +834,7 @@ class myProject {
 	//(winLocalPath(CSIDL_PERSONAL)).'\\DevelStudio';
         
         $i = 1;
-        while (is_dir($dir.'\Project'.$i)) $i++;
+        while (is_dir($dir.'\Project'.$i)) ++$i;
         
             /****** event *****/
             if (!CApi::doEvent('onProjectDialog',array('dir'=>$dir,'index'=>$i))) return;

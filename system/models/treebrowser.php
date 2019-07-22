@@ -9,11 +9,11 @@ function treeBwr_add()
 	$tree->text = "";
 	
 	$dirs = findFiles($dir, "dfm");
-	foreach( $dirs as $dfm )
+	foreach( (array)$dirs as $dfm )
 	{
-		$Forms .= "	".$dfm._BR_;
-		$dfm = basenameNoExt($dfm);
-		$form = myUtils::$forms[strtolower($dfm)];
+		$Forms .= '	' . $dfm . PHP_EOL;
+		$dfm_ne = basenameNoExt($dfm);
+		$form = (object)myUtils::$forms[strtolower($dfm_ne)];
 		$comList = $form->componentList;
 		foreach( (array)$comList as $obj )
 		{
@@ -23,7 +23,7 @@ function treeBwr_add()
 			}
 		}
 	}
-	unset($dfm, $form, $comList);
+	unset($dfm_ne, $form, $comList);
 	
 	if( $Forms !== null )
 	{
@@ -35,14 +35,14 @@ function treeBwr_add()
 	if( !empty($Scripts) )
 	{
 		$text .= t("Scripts")._BR_;
-		foreach($Scripts as $file)
+		foreach((array)$Scripts as $file)
 			$text .= "	".$file._BR_;
 	}	
 	$Modules = $GLOBALS['myProject']->config['modules'];
 	if( !empty($Modules) )
 	{
 		$text .= t("Exts")._BR_;
-		foreach( $Modules as $file )
+		foreach( (array)$Modules as $file )
 			$text.= "	".$file._BR_;
 	}
 	

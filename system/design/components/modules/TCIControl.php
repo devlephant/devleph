@@ -174,7 +174,7 @@ class TCiControl implements ITIBImage
 					} 
 					else
 					{
-						$iter++;
+						++$iter;
 						gui_propset($timer, 'interval', $obj->getInterval($iter));
 					}
 				});

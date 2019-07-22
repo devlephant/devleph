@@ -371,7 +371,7 @@ class myBackup {
 			
 		$file = basenameNoExt($projectFile) . date('(h.i d.m.Y)');
 		$from = 0;
-		while ( is_file( $dir . $file . $from . '.dvs' ) ) $from++; 
+		while ( is_file( $dir . $file . $from . '.dvs' ) ) ++$from; 
 		
 		$src = $dir . $file . $from . '.dvs';
 		if(myProject::saveAsDVS($src,$thks) ) myCompile::setStatus('Backup', t('Backup created').date(' ( H:i:s )'));

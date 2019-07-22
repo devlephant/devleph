@@ -84,24 +84,22 @@ class myUtils {
             $form = $fmEdit;
         
         $form->hide();
-        if( !file_exists($file) ) {
+        if( !file_exists($file) )
 			message(t('Form %s1 does not exist!', basenamenoext($file)));
-			$form = new TForm(c('fmMain->pDockMain'));
-		} else {
-			$str = file_get_contents($file);
 			
-			$str = str_replace_once('Visible = True','Visible = False',$str);
-			$str = str_ireplace('fsMDIChild','fsNormal',$str);
-			$str = str_ireplace('fsStayOnTop','fsNormal',$str);
-			$str = str_ireplace('fsMDIForm','fsNormal',$str);
+		$str = file_get_contents($file);
+			
+		$str = str_replace_once('Visible = True','Visible = False',$str);
+		$str = str_ireplace('fsMDIChild','fsNormal',$str);
+		$str = str_ireplace('fsStayOnTop','fsNormal',$str);
+		$str = str_ireplace('fsMDIForm','fsNormal',$str);
         
-			$str = str_ireplace('bsDialog','bsNone', $str);
-			$str = str_ireplace('bsSizeable','bsNone',$str);
-			$str = str_ireplace('bsSingle','bsNone', $str);
-			$str = str_ireplace('bsToolWindow','bsNone',$str);
-			$str = str_ireplace('bsSizeToolWin','bsNone',$str);
-			dfm_read('',$form, $str);
-		}
+		$str = str_ireplace('bsDialog','bsNone', $str);
+		$str = str_ireplace('bsSizeable','bsNone',$str);
+		$str = str_ireplace('bsSingle','bsNone', $str);
+		$str = str_ireplace('bsToolWindow','bsNone',$str);
+		$str = str_ireplace('bsSizeToolWin','bsNone',$str);
+		dfm_read('',$form, $str);
         
         
        
@@ -423,6 +421,7 @@ class myUtils {
         
         $_FORMS = array_values($_FORMS);
         self::loadForm($last_form);
+		myProject::save();
 		
         treeBwr_add();
     }
@@ -442,7 +441,7 @@ class myUtils {
             
         $new_name = $name;
         $i = 1; 
-        while (in_array($new_name.$i, $_FORMS)) $i++;
+        while (in_array($new_name.$i, $_FORMS)) ++$i;
         $new_name = $new_name.'_'.$i;    
             
             
@@ -599,7 +598,7 @@ class myUtils {
 				$int = 1;
 				$intpos = 4;
 			}
-				while( in_array($fname.$int, $_FORMS) ) $int++;
+				while( in_array($fname.$int, $_FORMS) ) ++$int;
 					$name = strins($fname, $intpos, $int);
 			
 		
@@ -670,9 +669,9 @@ class myUtils {
         foreach ($components as $el){
             
             if (!$el->name) continue;
-            $i++;
+            ++$i;
         }
-        
+        unset($components);
         return $i;
     }
 }

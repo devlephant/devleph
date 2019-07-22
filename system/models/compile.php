@@ -531,7 +531,7 @@ class myCompile
 		if (file_exists($fileIco)) {
 			$x=0;
 			while (!is_writable($fileExe)) {
-				$x++;
+				++$x;
 				if($x>30)
 				{
 					self::setStatus('Error', t(
@@ -559,7 +559,7 @@ class myCompile
 			
 			$x=0;
 			while (!is_writable($fileExe)) {
-				$x++;
+				++$x;
 				if($x>30)
 				{
 					self::setStatus('Error', t(

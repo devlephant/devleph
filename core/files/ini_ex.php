@@ -217,7 +217,7 @@ class TIniFileExObject implements Countable, Iterator {
     function next()
 	{
         next($this->____data);
-        $this->____idx++;
+        ++$this->____idx;
     }
 
     function valid()

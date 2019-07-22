@@ -147,7 +147,7 @@ class swappanel{
 					$i_SWAP = -1;
 					}
 
-					$i_SWAP++;
+					++$i_SWAP;
 
 				},15);
 
@@ -172,7 +172,7 @@ class swappanel{
 					$i_SWAP = -1;
 					}
 
-					$i_SWAP++;
+					++$i_SWAP;
 
 				},15);
 
