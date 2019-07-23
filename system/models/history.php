@@ -1,23 +1,16 @@
 <?
-
-
 class myHistory {
-    
-    
-    static function add($objects, $prop){
+	static function add($objects, $prop)
+	{
         
         if (!count($objects)) return;
         
-        global $HISTORY_ARRAY, $_FORMS, $formSelected, $__toRedo, $__toUndo;
-        
-        if ($__toRedo){
-            unset($HISTORY_ARRAY[$_FORMS[$formSelected]]);
-            $HISTORY_ARRAY[$_FORMS[$formSelected]] = [];
-            $GLOBALS['historyIndex'] = 0;
-            $__toRedo = false;
-            $__toUndo = false;
-        }
-        
+        global $HISTORY_ARRAY, $_FORMS, $formSelected, $__isUndo;
+		if( $__isUndo )
+		{
+			$HISTORY_ARRAY[$_FORMS[$formSelected]] = array_slice($HISTORY_ARRAY[$_FORMS[$formSelected]], 0, $GLOBALS['historyIndex']);
+			$__isUndo = false;
+		}
         $arr = [];
         foreach ($objects as $el){
             
@@ -42,23 +35,20 @@ class myHistory {
         ++$GLOBALS['historyIndex'];
     }
     
-    static function addXY($objects){
-        
-        self::add($objects, array('x','y'));
+    static function addXY($objects)
+	{
+        self::add($objects, ['x','y']);
     }
     
-    static function addWH($objects){
-        
-        self::add($objects, array('w','h','x','y'));
+    static function addWH($objects)
+	{
+        self::add($objects, ['w','h','x','y']);
     }
     
-    static function open($arr){
-        
-        /*if ( c('fmMain->tmpEdit')->visible )
-            c('fmMain->tmpEdit')->setFocus();*/
-        
-        foreach ((array)$arr as $el){
-            
+    static function open($arr)
+	{        
+        foreach ((array)$arr as $el)
+		{    
             $obj  = _c($el['self']);
             $prop = $el['prop'];
             
@@ -74,56 +64,40 @@ class myHistory {
         $myProperties->setProps();
     }
     
-    
-    static function dir(){
-        
-        $dir = replaceSl( getenv('TEMP') . '\\DS\\History\\' . md5($projectFile) . '\\' );
-        return $dir;
-    }
-    
-    static function init(){
-        
-        global $projectFile;
-        
+    static function init()
+	{    
+        global $projectFile;   
         $GLOBALS['HISTORY_ARRAY'] = [];
-            
         myVars::set(0, 'historyIndex');
     }
     
-    static function load($index){
-        
+    static function load($index)
+	{    
         global $HISTORY_ARRAY,  $_FORMS, $formSelected;
-      
         self::open($HISTORY_ARRAY[$_FORMS[$formSelected]][$index]);
     }
     
-    static function go(){
-        
-        return false;
-        global $historyIndex;
-        self::save($historyIndex);
-        ++$historyIndex;
+    static function go()
+	{    
+		return false;
     }
-    
+	
     static function undo(){
-        global $_sc;
+        global $_sc, $__isUndo;
         $index = myVars::get('historyIndex');
         if ($index == 0) return false;
-        
-        myVars::set(true,'__toRedo');
+        $__isUndo = true;
         self::load($index-1);
 		$_sc->update();
         myVars::set($index-1, 'historyIndex');
     }
     
     static function redo(){
-        global $_sc;
-        global $HISTORY_ARRAY,  $_FORMS, $formSelected;
+        global $_sc, $HISTORY_ARRAY,  $_FORMS, $formSelected;
         
         $index = myVars::get('historyIndex');
         if ($index == count($HISTORY_ARRAY[$_FORMS[$formSelected]]) - 1) return false;
         
-        myVars::set(true,'__toRedo');
         self::load($index+1);
 		$_sc->update();
         myVars::set($index+1, 'historyIndex');

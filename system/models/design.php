@@ -499,6 +499,11 @@ class myDesign
         global $_sc;
        
         $targets = $_sc->targets_ex;
+		if ($state == 1){
+            myHistory::addXY($targets); 
+        } elseif ($state == 2){
+            myHistory::addWH($targets);
+        }
         foreach ($targets as $el){
             if (method_exists($el,'__updateDesign'))
                 $el->__updateDesign();
