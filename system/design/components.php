@@ -449,7 +449,6 @@ if (EMULATE_DVS_EXE) return;
 	$_cComplist = $_components;
     global $_cComplist;
 	//#LOADER;
-        $_winControls = [];
         $componentClasses = [];
         $groups = [];
 		$ccount = count($_components);
@@ -500,9 +499,6 @@ if (EMULATE_DVS_EXE) return;
             $btn->imageIndex = myImages::getImgID($c['CLASS']);
             if ($btn->imageIndex == -1)
                 $btn->imageIndex = myImages::getImgID('component');
-                
-            if (isset($c['WINCONTROL']) && $c['WINCONTROL'])
-                $_winControls[] = $c['CLASS'];
             //$btn->picture->loadFromFile(myImages::get24($c['CLASS']));
         }
         
@@ -513,7 +509,4 @@ if (EMULATE_DVS_EXE) return;
         myVars::set2($cp,'_componentPanel');
         myVars::set2($componentProps,'componentProps');
         myVars::set2($componentEvents,'componentEvents');
-        
-        $_winControls[] = 'TTabSheet';
-        myVars::set2($_winControls,'_winControls');
 		fmLogoin::progress(1, "Components Loaded");

@@ -7,7 +7,6 @@ return array(
 'SORT'    => 293,
 'NAME'    => 'scrollProgress',
 'REPLACE' => 'TScrollProgressBar',
-'WINCONTROL' => false,
 'PROPS' => array('skin' => 0),
 'W' => 30,
 'H' => 3,

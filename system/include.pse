@@ -73,7 +73,7 @@ if (!defined('IS_APPLICATION_START')){
     $fmComponents = TForm::loadFromFile("{$dfm_dir}uComponents",true);
 	fmLogoin::Progress2(15,28);
     $fmPropEvent  = TForm::loadFromFile("{$dfm_dir}uPropsAndEvents", true);
-	fmLogoin::Progress2(15,28,"uPropsAndEvents.dfm");
+	fmLogoin::Progress2(15,28);
         // Editor dialogs
         TForm::loadFromFile("{$dfm_dir}uedt_Text", true);
 		fmLogoin::Progress2(15,28);
@@ -158,7 +158,7 @@ if (!defined('IS_APPLICATION_START')){
 		
         include 'scripts/hotkeys.php';
 		include 'scripts/treebrowser.php';
-		fmLogoin::Progress(1,"Hotkeys Loaded");
+		fmLogoin::Progress(2,"Hotkeys Loaded");
         $GLOBALS['APPLICATION']->processMessages();
         
         loader::model('actions');

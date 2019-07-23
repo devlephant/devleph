@@ -155,7 +155,8 @@ class myDesign {
     static function selectClass($panel, $btn){
         
         global $componentClasses;
-		if(!$GLOBALS['is_search']) {
+		if(!ev_fmMain_c_search::$is_search)
+		{
 			myOptions::set('components','groups', implode(',',c('fmMain->list')->selectedList));
 		} else {
 			if( (bool) (int)myOptions::get('search','grselcomp', "0") ) //#ADDOPT
@@ -249,11 +250,9 @@ class myDesign {
         return vsprintf($classInfo['NAME'].'%s', $i);
     }
     
-    static function isWinControl($obj){
-        
-        global $fmEdit, $_sc, $_componentPanel, $_winControls;
-        
-        return in_array(rtti_class($obj->self),$_winControls);
+    static function isWinControl($obj)
+	{
+        return gui_is($obj->self, 'TWinControl');//немного оптимизации
     }
     
     static function lastComponent(){
@@ -278,7 +277,7 @@ class myDesign {
     
     static function createComponent($x = 20, $y = 20, $parent = nil, $w = false, $h = false){
         
-        global $fmEdit, $_sc, $_componentPanel, $_winControls, $selectedClass;
+        global $fmEdit, $_sc, $_componentPanel, $selectedClass;
         
         
         $c = myVars::get('selectedClass');
@@ -291,6 +290,7 @@ class myDesign {
 				c("fmComponents->c_search")->text = '';
 				//myOptions::set("components","groups", implode(",",c("fmMain->list")->selectedList));
 			}
+			if (isset($c['IS_ONE']))
             if ($c['IS_ONE'] && self::countComponentsByClass($c['CLASS'])>0){
                 msg(t('This object class %s must be one on form',$c['CLASS']));
                 
@@ -313,7 +313,7 @@ class myDesign {
             } else {
             
                 $parent = (is_object($parent) &&
-                            in_array(rtti_class($parent->self),$_winControls)) ? $parent : $fmEdit;
+                            gui_is($parent->self, 'TWinControl')) ? $parent : $fmEdit;
                 
                 if ($parent instanceof TPageControl){
                     
@@ -371,10 +371,7 @@ class myDesign {
                 $obj->text = '';
             else
                 $obj->text = vsprintf($c['CAPTION'].'%s', $id);
-            
-            
-            $obj->winControl = $c['WINCONTROL'];
-            
+           
             if ($class == 'TPageControl'){
                 
                 $obj->addPage(t('page%s',1));//->onMouseDown = 'myDesign::objMouseDown';

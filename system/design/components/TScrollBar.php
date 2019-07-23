@@ -6,7 +6,6 @@ return array(
 'CAPTION' => t('TScrollBar_Caption'),
 'SORT'    => 460,
 'NAME'    => 'scrollBar',
-'WINCONTROL' => false,
 'W' => 25,
 'H' => 2,
 );

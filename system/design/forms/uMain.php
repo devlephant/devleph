@@ -642,20 +642,25 @@ class ev_fmMain_pDockMain {
 
 class ev_fmMain_c_type {
     
-    static function onChange($self){
-        
-        c('fmMain->list')->smallIcons = ( c($self)->itemIndex == 1 );
+    static function onChange($self)
+	{
+        c('fmMain->list')->smallIcons = ( _c($self)->itemIndex == 1 );
     }
 }
-class ev_fmMain_c_search{
+class ev_fmMain_c_search
+{
+	public static $is_search = false;
     static function onChange($self){
-		if(!$GLOBALS["is_search"]){ myOptions::set("components","groups", implode(",",c("fmMain->list")->selectedList));
-		resetCompList(); }
+		if(!$self::$is_search)
+		{
+			myOptions::set("components","groups", implode(",",c("fmMain->list")->selectedList));
+			resetCompList();
+		}
 		if(trim(c($self)->text)){
-			$GLOBALS['is_search'] =  true;
+			self::$is_search =  true;
 			searchCompList(c($self)->text);
 		}else{
-			$GLOBALS['is_search'] = false;
+			self::$is_search = false;
 			resetCompList();
 		}
     }
