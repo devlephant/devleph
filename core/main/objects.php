@@ -209,9 +209,7 @@ function setEvent($form,$name,$event,$func){
     //set_event($obj->self,$event,$func);
 }
 function findComponent($str,$sep = '->',$asObject='TControl'){
-    global $SCREEN, $COMPONENT_COOL_CACHE;
-    //переменная COMPONENT_COOL_CACHE использовалась для хранения php-объектов (обёрток), я их вырезал, сейчас она не нужна
-	//внимание: так делать НЕ НАДО, для хранения объектов лучше используйте статический класс (синглтон)
+    global $SCREEN;
     $str = str_replace('.', $sep, $str);
     $names = explode($sep,$str);
     $owner = $GLOBALS['APPLICATION'];//первый объект у нас - TApplication, по нему ищем уже дочерние объекты
