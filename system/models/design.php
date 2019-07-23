@@ -574,7 +574,7 @@ class myDesign {
     
     static function mouseMove($self, $shift, $x, $y){
         
-        global $_designSel, $fmEdit, $_startAY, $_startAX, $isMouseDown;
+        global $_designSel, $fmEdit, $_startAY, $_startAX, $_startX, $_startY, $isMouseDown;
         
             //$ax = $_designSel->x;
             //$ay = $_designSel->y;
