@@ -290,6 +290,7 @@ $Ret->onClick = Function($self) use($Form)
   $Caret = $__nv;
   $Form->free();
 };
+/////////////////////////////////* Main FX Core */////////////////////////////////
 
 Function Del($s)
 {

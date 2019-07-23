@@ -27,9 +27,12 @@ $_c->setConstList(['bvNone', 'bvLowered', 'bvRaised', 'bvSpace']);
 $_c->setConstList(['doNoOrient', 'doHorizontal', 'doVertical']);
 //$_c->setConstList(['mrNone','mrOk','mrCancel','mrAbort','mrRetry','mrIgnore','mrYes','mrNo','mrAll','mrNoToAll','mrYesToAll']);
 
-class TLabel extends TControl {}
-class TEdit extends TControl
-{
+class TLabel extends TControl {
+	
+}
+
+
+class TEdit extends TControl {
 	
 	
 	function set_passwordChar($v){
@@ -61,9 +64,13 @@ class TEdit extends TControl
 	public function clearSelection(){ $this->clearSelected(); }
 	
 }
-class TLabeledEdit extends TEdit {}
-class TMemo extends TControl
-{	
+
+class TLabeledEdit extends TEdit {
+	
+}
+
+
+class TMemo extends TControl {	
 	
 	protected $_items;
 	
@@ -118,10 +125,15 @@ class TMemo extends TControl
 	public function cutToClipboard(){ edit_cuttoclipboard($this->self); }
 	public function pasteFromClipboard(){ edit_pastefromclipboard($this->self); }
 	public function clearSelected(){ edit_clearselection($this->self); }
-	public function clearSelection(){ $this->clearSelected(); }	
+	public function clearSelection(){ $this->clearSelected(); }
+	
+	
 }
-class TRichEdit extends TMemo
-{
+
+class TRichEdit extends TMemo {
+	
+	
+	
 	public function loadFromFile($file){
 		$file = getFileName($file);
 		
@@ -170,15 +182,22 @@ class TRichEdit extends TMemo
 	public function get_strikeout(){ return $this->param('strikeout'); }
 	
 	public function set_underline($v){ $this->param('underline',(bool)$v); }
-	public function get_underline(){ return $this->param('underline'); }	
+	public function get_underline(){ return $this->param('underline'); }
+	
 }
-class TCheckBox extends TControl 
-{		
+
+class TCheckBox extends TControl {
+	
+	
 	public function set_checked($v){
 		$this->set_prop('checked', (bool)$v);
 	}
 }
-class TListBox extends TControl	
+
+class TRadioButton extends TControl {}
+
+class TListBox extends TControl {
+	
 	protected $_items;
 	
         function setItemColor($index, $color)
@@ -354,9 +373,9 @@ class TGroupBox extends TControl {
 		$this->parentColor = false;
 	}
 }
-class TRadioButton extends TControl {}
-class TRadioGroup extends TControl
-{	
+
+class TRadioGroup extends TControl {
+	
 	protected $_items;
 	
 	function __construct($onwer=nil,$init=true,$self=nil){
