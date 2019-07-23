@@ -10,7 +10,8 @@ function str_replace_once($search, $replace, $subject) {
         return $subject;
 }
 
-class myUtils {
+class myUtils
+{
  
     static $forms; // [$name]
     static $handle;
@@ -76,6 +77,80 @@ class myUtils {
         return implode(_BR_, $arr);        
     }
     
+	static function formPropArr(&$arr, $prop, $def = false){
+        foreach ($arr as $i=>$line){
+            
+            if (substr(trim($line),0,6)=='object' && $i>0)
+                return $def;
+            
+            $info = explode(' = ',$line);
+            if (trim($info[0])==$prop){
+                
+                return trim($info[1]);
+            }
+        }
+        
+        return $def;
+    }
+    
+    static function delPropArr(&$arr, $prop){
+        $index = false;
+        foreach ($arr as $i=>$line)
+		{    
+            $info = explode(' = ',$line);
+            if (trim($info[0])==$prop){
+                $index = $i;
+                break;
+            }
+            
+            if (substr(trim($line),0,6)=='object' && $i>0)
+                break;
+        }
+        
+        if ($index)
+            unset($arr[$index]);
+    }
+    
+    static function replacePropArr(&$arr, $prop, $value){
+        $arr   = explode(_BR_, $str);
+        $index = false;
+        foreach ($arr as $i=>$line)
+		{
+            
+            $info = explode(' = ',$line);
+            if (trim($info[0])==$prop){
+                $index = $i;
+                break;
+            }
+            
+            if (substr(trim($line),0,6)=='object' && $i>0)
+                break;
+        }
+        
+        if ($index)
+            $arr[$index] = $value;
+    }
+   
+	static function delObjectArr(&$arr, $object)
+	{
+		$object = "object {$object}";
+        $len = strlen($object);
+		$skip = false;
+        foreach ($arr as $i=>$line)
+		{
+            if (substr(trim($line),0,$len)==$object && $i>0)
+			{
+                $skip = true;
+			}
+			if( $skip)
+			{
+				unset($arr[$i]);
+				if(trim($line)=='end' ) 
+					$skip = false;
+			}
+        }
+	}
+	
     static function loadFormDFM($file, $form = false){
         
         global $fmEdit, $_sc, $myProperties, $APPLICATION, $projectFile;
@@ -225,11 +300,10 @@ class myUtils {
     static function saveFormDFM($file,$newname=false){
         
         global $fmEdit, $_sc;
-        
-        $targets_ex = $_sc->targets_ex;
-        
-        if ( is_object($_sc) )
+               
+        if ( $newname && is_object($_sc) )
 		{
+			$targets_ex = $_sc->targets_ex;
             $_sc->clearTargets();
             $_sc->free();
             $_sc = false;
@@ -237,47 +311,24 @@ class myUtils {
         
         //$fmEdit->borderStyle = myProject::getPropForm('borderStyle','bsSizeable');
         $str = str_replace_once('Visible = True','Visible = False',gui_writeStr($fmEdit->self));
-        $str = str_replace_once('BorderStyle = bsNone',
+        $str = explode(_BR_, str_replace_once('BorderStyle = bsNone',
                                 'BorderStyle = '.myProject::getPropForm('borderStyle', 'bsSizeable'),
-                                $str);
+                                $str));
         
-        if (self::formProp($file,'Width',null)!==null){
-            
-            $str = self::replaceProp($str,'Width',' ClientWidth = '. $fmEdit->Width );
-            $str = self::replaceProp($str,'Height',' ClientHeight = '. $fmEdit->clientHeight );
-        }
-		if( self::formProp(explode(_BR_, $str),'PopupMenu',false) == 'fmMain.editorPopup' )
+        if (self::formPropArr($str,'Width',null)!==null)
 		{
-			$str = self::delProp($str, 'PopupMenu');
+            self::replacePropArr($str,'Width',' ClientWidth = '. $fmEdit->Width );
+            self::replacePropArr($str,'Height',' ClientHeight = '. $fmEdit->clientHeight );
         }
+		if( self::formPropArr($str,'PopupMenu',false) == 'fmMain.editorPopup' )
+		{
+			self::delPropArr($str, 'PopupMenu');
+        }
+		self::delObjectArr($str, 'TSizeCtrl');
+		$str = implode(_BR_,$str);
 		file_put_contents(replaceSr($file), $str);
-		if($newname)
-		{
-			self::loadForCache($fmEdit);
-		} else {
-		    $_sc = new TSizeCtrl($fmEdit);
-			$_sc->showGrid = (bool)myOptions::get('sc','showGrid',false);
-			$_sc->gridSize = myOptions::get('sc','gridSize',8);
-			$_sc->MovePanelCanvas->brush->color = myOptions::get('sc', 'SizerInnerColor', 12632256);
-			$_sc->MovePanelCanvas->pen->color = myOptions::get('sc', 'SizerOuterColor', clBlack);
-			$_sc->MovePanelCanvas->pen->style = (int)myOptions::get('sc','SizerPenStyle',2);
-			$_sc->BtnColor = myOptions::get('sc','BtnColor',clBlue);
-			$_sc->DisabledBtnColor = myOptions::get('sc','DisabledBtnColor',clGray);
-			
-			$_sc->onSizeMouseDown = 'myDesign::selectComponent';
-			$_sc->onEndSizeMove   = 'myDesign::endSizeMove';
-			$_sc->onStartSizeMove = 'myDesign::startSizeMove';
-			
-			$_sc->popupMenu= c('fmMain->editorPopup');
-            
-			$_sc->enable   = true;
-			foreach ($fmEdit->componentList as $el){
-				if (!$el->isClass(array('TEvents','TSizeCtrl'))){
-					
-					$_sc->registerTarget($el);
-				}
-			}
-		}
+		if(!$newname) return;
+		self::loadForCache($fmEdit);
         foreach ($targets_ex as $el)
 		{
             $_sc->addTarget($el);
