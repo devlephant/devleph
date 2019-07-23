@@ -5,6 +5,7 @@ class myProject {
     public $formsInfo;
     public $config;
     public $add_info;
+	private static $demosLoaded = false;
     private static $repclasses=[];
 	private static $reprules = [];
     static function registerFileType(){
@@ -301,12 +302,9 @@ class myProject {
                 $objLast->addItem($it);
         }
 		
+		if ( self::$demosLoaded ) return;
 		
-		global $demoLoad;
-		
-		if ( $demoLoad ) return;
-		
-		$demoLoad = true;
+		self::$demosLoaded = true;
 		$objLast = c('fmMain->it_demoprojects');
 		
 		$demos = findFiles( dirname(EXE_NAME) . '/demos/', 'dvs' );

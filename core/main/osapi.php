@@ -30,51 +30,53 @@ global $_c;
   $_c->EWX_POWEROFF    = 8;
   $_c->EWX_FORCEIFHUNG = 0x10;
 
-
-  $_c->CSIDL_DESKTOP                       = 0x0000;
-  $_c->CSIDL_INTERNET                      = 0x0001;
-  $_c->CSIDL_PROGRAMS                      = 0x0002;
-  $_c->CSIDL_CONTROLS                      = 0x0003;
-  $_c->CSIDL_PRINTERS                      = 0x0004;
-  $_c->CSIDL_PERSONAL                      = 0x0005;
-  $_c->CSIDL_FAVORITES                     = 0x0006;
-  $_c->CSIDL_STARTUP                       = 0x0007;
-  $_c->CSIDL_RECENT                        = 0x0008;
-  $_c->CSIDL_SENDTO                        = 0x0009;
-  $_c->CSIDL_BITBUCKET                     = 0x000a;
-  $_c->CSIDL_STARTMENU                     = 0x000b;
-  $_c->CSIDL_DESKTOPDIRECTORY              = 0x0010;
-  $_c->CSIDL_DRIVES                        = 0x0011;
-  $_c->CSIDL_NETWORK                       = 0x0012;
-  $_c->CSIDL_NETHOOD                       = 0x0013;
-  $_c->CSIDL_FONTS                         = 0x0014;
-  $_c->CSIDL_TEMPLATES                     = 0x0015;
-  $_c->CSIDL_COMMON_STARTMENU              = 0x0016;
-  $_c->CSIDL_COMMON_PROGRAMS               = 0x0017;
-  $_c->CSIDL_COMMON_STARTUP                = 0x0018;
-  $_c->CSIDL_COMMON_DESKTOPDIRECTORY       = 0x0019;
-  $_c->CSIDL_APPDATA                       = 0x001a;
-  $_c->CSIDL_PRINTHOOD                     = 0x001b;
-  $_c->CSIDL_ALTSTARTUP                = 0x001d;         // DBCS
-  $_c->CSIDL_COMMON_ALTSTARTUP         = 0x001e;         // DBCS
-  $_c->CSIDL_COMMON_FAVORITES          = 0x001f;
-  $_c->CSIDL_INTERNET_CACHE            = 0x0020;
-  $_c->CSIDL_COOKIES                   = 0x0021;
-  $_c->CSIDL_HISTORY                   = 0x0022;
-  
-  $_c->CSIDL_WINDOWS                   = 0x0024;
-  $_c->CSIDL_ADMINTOOLS = 0x30;
-  $_c->CSIDL_CDBURN_AREA = 0x3b;
-  $_c->CSIDL_COMMON_ADMINTOOLS = 0x2f;
-  $_c->CSIDL_COMMON_APPDATA = 0x23;
-  $_c->CSIDL_COMMON_DOCUMENTS = 0x2e;
-  $_c->CSIDL_COMMON_TEMPLATES = 0x2d;
-  $_c->CSIDL_COMPUTERSNEARME = 0x3d;
-  $_c->CSIDL_CONNECTIONS = 0x31;
-  $_c->CSIDL_MYDOCUMENTS = 0x0c;
-  $_c->CSIDL_PROGRAM_FILES = 0x26;
-  $_c->CSIDL_PROGRAM_FILESX86 = 0x2a;
-
+$_c->setConstList
+(
+["CSIDL_DESKTOP",
+"CSIDL_INTERNET",
+"CSIDL_PROGRAMS",
+"CSIDL_CONTROLS",
+"CSIDL_PRINTERS",
+"CSIDL_PERSONAL",
+"CSIDL_FAVORITES",
+"CSIDL_STARTUP",
+"CSIDL_RECENT",
+"CSIDL_SENDTO",
+"CSIDL_BITBUCKET",
+"CSIDL_STARTMENU",
+"CSIDL_DESKTOPDIRECTORY",
+"CSIDL_DRIVES",
+"CSIDL_NETWORK",
+"CSIDL_NETHOOD",
+"CSIDL_FONTS",
+"CSIDL_TEMPLATES",
+"CSIDL_COMMON_STARTMENU",
+"CSIDL_COMMON_PROGRAMS",
+"CSIDL_COMMON_STARTUP",
+"CSIDL_COMMON_DESKTOPDIRECTORY",
+"CSIDL_APPDATA",
+"CSIDL_PRINTHOOD",
+"CSIDL_ALTSTARTUP",
+"CSIDL_COMMON_ALTSTARTUP",
+"CSIDL_COMMON_FAVORITES",
+"CSIDL_INTERNET_CACHE",
+"CSIDL_COOKIES",
+"CSIDL_HISTORY",
+"CSIDL_WINDOWS",
+"CSIDL_ADMINTOOLS",
+"CSIDL_CDBURN_AREA",
+"CSIDL_COMMON_ADMINTOOLS",
+"CSIDL_COMMON_APPDATA",
+"CSIDL_COMMON_DOCUMENTS",
+"CSIDL_COMMON_TEMPLATES",
+"CSIDL_COMPUTERSNEARME",
+"CSIDL_CONNECTIONS",
+"CSIDL_MYDOCUMENTS",
+"CSIDL_PROGRAM_FILES",
+"CSIDL_PROGRAM_FILESX86",
+],
+'SystemDirs'
+);
  //{ GetSystemMetrics() codes }
    $_c->SM_CXSCREEN = 0;
    $_c->SM_CYSCREEN = 1;
@@ -213,13 +215,9 @@ function selectDirectory($caption, $root, &$buff){
     return $res <> null;
 }
 
-$GLOBALS['Fonts']  = winLocalPath(CSIDL_FONTS);
-$GLOBALS['Desktop']= winLocalPath(CSIDL_DESKTOP);
-$GLOBALS['StartUp']= winLocalPath(CSIDL_STARTMENU);
-
 define('EXE_NAME',replaceSl(param_str(0)),false);
 define('TEMP_DIR',replaceSl(getenv('TEMP')), false);
-define('DESKTOP_DIR', replaceSl($GLOBALS['Desktop']));
+define('DESKTOP_DIR', replaceSl(winLocalPath(CSIDL_DESKTOP)));
 
 for ($i=0;$i<=param_count();$i++)
 {

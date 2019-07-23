@@ -131,11 +131,12 @@ $progDir = str_replace('\\\\','\\',$progDir);
 $prs2 = basename(param_str(2));
 
 $prs2_ext = strtolower(substr($prs2, strrpos($prs2,'.')+1, strlen($prs2)-strrpos($prs2,'.')-1));
-
+unset($prs2);
 if ($prs2_ext=='dvsexe' || $prs2_ext=='mspprexe' || $prs2_ext=='uprex'){
 	define('DOC_ROOT2', str_replace('//','/',replaceSl($progDir)));
 	$progDir = replaceSr(dirname( param_str(2) )).'\\';
 } 
+unset($prs2_ext);
 define('DS_DIR', str_replace('/system/', '', str_replace('\\','/',replaceSl($progDir) ) ) );
 define('DOC_ROOT',str_replace('//','/',replaceSl($progDir)));
 define('MODULE_DIR',replaceSl($moduleDir));

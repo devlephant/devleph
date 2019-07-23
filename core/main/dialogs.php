@@ -10,7 +10,7 @@
 				TReplaceDialog, TSaveDialog
   
 */
-global $_c, $APPLICATION;
+global $_c;
 
 	/* MessageBox flags */
 	$_c->MB_OK = 0x000000;

@@ -28,8 +28,6 @@ class myComplete {
         
         global $myComplete, $synComplete, $synHint, $phpMemo, $completeList,
                 $showHint, $showComplete;
-                	//c('fmLogoin->label5')->caption = 'Initializing... 83%';
-					//c('fmLogoin->loadbar')->w = c('fmLogoin->loadbar')->sw / 100 * (int)str_ireplace("%","",stristr(c('fmLogoin->label5')->caption, ' ') );
         $synComplete = c('fmPHPEditor->synComplete');
         $synHint     = c('fmPHPEditor->synHint');
         $phpMemo     = c('fmPHPEditor->memo');
@@ -42,8 +40,6 @@ class myComplete {
         c('fmPHPEditor->hide_err_list')->onClick = 'myComplete::hideErrors';
         
         $myComplete = new myComplete;
-        	//c('fmLogoin->label5')->caption = 'Initializing... 87%';
-			//c('fmLogoin->loadbar')->w = c('fmLogoin->loadbar')->sw / 100 * (int)str_ireplace("%","",stristr(c('fmLogoin->label5')->caption, ' ') );
         $dir = DOC_ROOT . '/design/complete/';
         $completes = findDirs($dir);
         foreach ($completes as $code){

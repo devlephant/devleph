@@ -443,7 +443,7 @@ class EditorSynt
             $file = SYSTEM_DIR.'/design/highlight/'.$name.'.ini';
 		
 		$ini = new TIniFileEx($file);
-		$GLOBALS['__syn_ini_o__'] = $ini;
+		ev_fmPHPEditor_options::$ini = $ini;
 		c('fmPHPEditor->SynPHPSyn')->loadFromArray($ini->arr);
         c('fmPHPEditor->memo')->font->name = $ini->read('main','font','Courier New');
 	c('fmPHPEditor->memo')->font->size = $ini->read('main','fontsize',10);
@@ -547,9 +547,10 @@ class EditorSynt
 EditorSynt::MainStart();		
 
 class ev_fmPHPEditor_options {
+	public static $ini;
     static function onClick(){
 		
-        $ini = $GLOBALS['__syn_ini_o__'];
+        $ini = self::$ini;
         c('fmPHPEditor->SynPHPSyn')->saveToArray($arr);
         $color = c('fmPHPEditor->memo')->color;
         if (c('fmEditorSettings')->showModal()!==mrOk){
