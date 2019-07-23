@@ -807,15 +807,16 @@ class myDesign
 		c('fmMain->itemLock')->caption = t("Lock component");
         if (count($components)==0) return;
         
-        $selObj = $myProperties->selObj;
-        
-		if($selObj->tag==2012)
+		$r = false;
+        foreach($components as $el)
+			if($el->tag==2012) $r = true;
+		if($r)
 		{
 			c('fmMain->itemLock',1)->checked = true;
 			c('fmMain->itemLock',1)->picture->loadFromFile("{$theme}/mi_unlock.bmp" );
 			c('fmMain->itemLock',1)->caption = t("Unlock component");
 		}
-        c('fmMain->itemGroup',1)->caption = count(self::getGroup($selObj))>0 ?
+        c('fmMain->itemGroup',1)->caption = count(self::getGroup($myProperties->selObj))>0 ?
                                             t('Ungroup') : t('Group');
     }
     
@@ -853,9 +854,10 @@ class myDesign
         
         if (count($components)==0) return;
         
-        $selObj = current($components);
-        
-        $new_tag = $selObj->tag==2012 ? 0 : 2012;
+		$new_tag = 2012;
+        foreach($components as $el)
+			if($el->tag==2012) $new_tag = 0;
+			
         foreach ($components as $el)
             $el->tag = $new_tag;
         
