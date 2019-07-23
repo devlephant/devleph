@@ -1,7 +1,6 @@
 <?
-
-
-class myDesign {
+class myDesign
+{
     static $canselect = true;
     
     static function formName(){
@@ -268,11 +267,6 @@ class myDesign {
         }
     
         return $result;
-    }
-    
-    static function registerComponent($obj){
-        
-        
     }
     
     static function createComponent($x = 20, $y = 20, $parent = nil, $w = false, $h = false){
@@ -1049,9 +1043,6 @@ class myDesign {
         myDesign::formProps();
     }
     
-    static function lockEditForm($self,$w,$h,$can){
-        
-    }
     
     static function resizeEditForm($self){
         
@@ -1071,17 +1062,10 @@ class myDesign {
         c('fmMain->it_props')->checked = c('fmMain->pProps')->visible;
         c('fmMain->it_debuginfo')->checked = c('fmMain->pDebugWindow')->visible;
     }
-    
-    
-    static function inspect($self){
-        
-        $form = c('fmInspect');
-        $form->show();
-    }
 	
 	static function detectNS($self)
 	{
-			return !( 
+		return !( 
 		(gui_propexists($self, "Width")	 || gui_propexists($self, "Height"))
 		&& (gui_propexists($self, "Top") || gui_propexists($self, "Left"))
 		);

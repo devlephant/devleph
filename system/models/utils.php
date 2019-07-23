@@ -259,7 +259,6 @@ class myUtils
         $form->onMouseDown = 'myDesign::mouseDown';
         $form->onMouseMove = 'myDesign::mouseMove';
         $form->onMouseUp   = 'myDesign::mouseUp';
-        $form->onCanResize = 'myDesign::lockEditForm';
         $form->onResize    = 'myDesign::resizeEditForm';
         
         

@@ -213,7 +213,7 @@ class myEvents {
             }
         }
         
-        $edt_Events->popup($x, $y);        
+        $edt_Events->popup($x, $y);
         foreach ($buttons as $btn)
             $btn->visible = true;
     }
@@ -247,7 +247,7 @@ class myEvents {
         if ($GLOBALS['show_editor']){
             c('fmMain->eventList')->items->selected = t(strtolower($eventL['EVENT']));
             self::editorShow();
-        }
+        } else c('fmMain->eventList')->items->selected = t(strtolower($eventL['EVENT']));
         $GLOBALS['show_editor'] = false;
     }
     
@@ -329,6 +329,7 @@ class myEvents {
             
             if (isset($componentEvents[$class]))
             foreach ($componentEvents[$class] as $event){
+				//долбанный секрет "как это работает" - здесь!!!
                 $myEvents->classes[$class][] = $this->createButton($event, $edt_Events);
             }
         } else {
@@ -365,7 +366,6 @@ class myEvents {
         $buttons = $myEvents->classes[rtti_class($myEvents->selObj->self)];
         
         $eventList = c('fmPropsAndEvents->eventList');
-        $event  = $eventList->events[$eventList->itemIndex];
         if ($eventList->events[0]){
 			foreach ($buttons as $btn)
                 $btn->visible = !in_array(strtolower($myEvents->getEvent($btn)['EVENT']), $eventList->events);       
@@ -379,12 +379,10 @@ class myEvents {
             $btn->visible = true;
     }
     
-    public static function clickAddEvent($self, $show_editor = false){
-        
+    public static function clickAddEvent($self, $show_editor = false)
+	{    
         $GLOBALS['show_editor'] = $show_editor;
-        
-        global $myEvents;
-        $myEvents->addEvent();
+        $GLOBALS['myEvents']->addEvent();
     }
     
 }
