@@ -194,41 +194,30 @@ class TCheckBox extends TControl {
 	}
 }
 
-class TRadioButton extends TControl {
-	
-}
+class TRadioButton extends TControl {}
 
 class TListBox extends TControl {
 	
 	protected $_items;
 	
-        function getFont($index){
-              $font = gui_listGetFont($this->self, $index);
-              if ( $font )
-                    return new TRealFont( $font );
-              else
-                    return null;
+        function setItemColor($index, $color)
+		{
+			$this->SetColor($index, $color);
         }
 
-        function clearFont($index){
-              gui_listClearFont( $this->self, $index );
-        }
-
-        function setItemColor($index, $color){
-              gui_listSetColor( $this->self, $index, $color );
-        }
-
-		function setItemFontColor($index, $color){
-           $f = $this->getFont($index);
-		   $f->color = $color;
+		function setItemFontColor($index, $color)
+		{
+		   $this->getFont($index)->color = $color;
         }
 		
-        function clearItemColor($index){
-              $this->setItemColor($index, clNone);
+        function clearItemColor($index)
+		{
+			$this->setItemColor($index, clNone);
         }
 
-        function getItemColor($index){
-              return gui_listGetColor( $this->self, $index );
+        function getItemColor($index)
+		{	
+			$this->GetColor( $index );
         }
 
 	function get_items(){
@@ -240,32 +229,38 @@ class TListBox extends TControl {
 		return $this->_items;
 	}
 	
-	function get_itemIndex(){
+	function get_itemIndex()
+	{
 		return $this->items->itemIndex;
 	}
 	
-	function set_itemIndex($v){
+	function set_itemIndex($v)
+	{
 		$this->items->itemIndex = $v;
 	}
 	
-	function set_inText($v){
+	function set_inText($v)
+	{
 		$this->items->setLine($this->itemIndex, $v);
 	}
 	
-	function get_inText(){
+	function get_inText()
+	{
 		return $this->items->getLine($this->itemIndex);
 	}
 	
-	function set_text($v){
+	function set_text($v)
+	{
 		$this->items->text = $v;
 	}
 	
-	function clear(){
-		
+	function clear()
+	{	
 		$this->text = '';
 	}
 	
-	function get_text(){
+	function get_text()
+	{
 		return $this->items->text;
 	}
 	

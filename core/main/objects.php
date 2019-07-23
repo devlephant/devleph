@@ -6,7 +6,7 @@
   2019 ver 4
   
   Classes:
-  _Object, TObject, TComponent, TFont, TRealFont, TControl
+  _Object, TObject, TComponent, TFont, TControl
   
 */
 define('nil',-1);
@@ -696,60 +696,16 @@ class TFont extends TControl {
 	    return $result;
 	}
 	
-	function assign($font){
-        if ( $font instanceof TRealFont || $font instanceof TFont )
-		{
-            $this->name = $font->name;
-            $this->size = $font->size;
-            $this->color = $font->color;
-            $this->charset = $font->charset;
-            $this->style = $font->style;
-        }
+	function assign(TFont $v)
+	{
+		$this->name = $v->name;
+		$this->size = $v->size;
+		$this->color = $v->color;
+		$this->charset = $v->charset;
+		$this->style = $v->style;
 	}
 }
 
-class TRealFont extends TFont {
-
-	public $self;
-
-    function __construct($self){
-        $this->self = $self;
-    }
-
-	function prop($prop){
-	    return gui_propGet($this->self, $prop);
-	}
-
-    function propSet($prop, $value){
-		
-        if (is_array($value)) $value = implode(',', $value);
-
-        return rtti_set($this, $prop, $value);
-    }
-
-
-	function get_style(){
-
-	    $result = $this->prop('style');
-	    $result = explode(',',$result);
-	    foreach ($result as $x=>$e)
-		    $result[$x] = trim($e);
-
-	    return $result;
-	}
-
-	function assign($font){
-		if ( $font instanceof TRealFont || $font instanceof TFont )
-		{
-			$this->name = $font->name;
-			$this->size = $font->size;
-			$this->color = $font->color;
-			$this->charset = $font->charset;
-			$this->style = $font->style;
-			$this->orientation = $font->orientation;
-		}
-	}
-}
 /* TControl is visual component */
 class TControl extends TComponent {
 	
