@@ -502,7 +502,7 @@ class myDesign {
     
     static function endSizeMove($self, $state){
         
-        global $_sc, $myProperties;
+        global $_sc;
        
         $targets = $_sc->targets_ex;
         foreach ($targets as $el){
@@ -511,7 +511,7 @@ class myDesign {
         }
         
         myInspect::selectObject(_c(myVars::get('targetSelected')));
-        $myProperties->updateProps();
+        myProperties::updateProps();
         $_sc->update();
         
             

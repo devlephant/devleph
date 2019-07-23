@@ -531,12 +531,10 @@ class myProperties {
         $obj->value = toHTMLColor($color);
     }
     
-    function updateProps(){
-        
-        global $myProperties;
-        $myProperties->_setProps(true);
+    static function updateProps()
+	{
+        $GLOBALS['myProperties']->_setProps(true);
     }
-    
     function _setProps($update = false){
         
         global $_c, $toSetProp, $fmEdit;

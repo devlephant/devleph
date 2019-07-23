@@ -382,7 +382,7 @@ class TGraphic extends TControl
 	{
 		if( $v->self == $this->self ) return;
 		if ($v instanceof TPicture)
-			$this->assign($v->Bitmap);
+			$this->assign($v->getBitmap());
 		else
 			tpersistent_assign($this->self, $v->self);
 	}
@@ -525,12 +525,14 @@ class TIcon extends TGraphic{
     }
     
     function assign($v){
-	
+		if($v->self == $this->self) return;
+		
 		if ($v instanceof TBitmap)
 		{
 			icon_assign($this->self, $v->self);
 		} else {
-			parent::assign($v);
+				tpersistent_assign($this->self, 
+				($v instanceof TPicture)?$v->getBitmap()->self:$v->self);
 		}
     }
     
