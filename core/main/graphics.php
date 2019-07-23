@@ -557,11 +557,11 @@ class TIcon extends TGraphic{
 
 }
 
-class TSVGGraphic extends TGraphic{  }
-class TPNGImage extends TGraphic{  }
-class TGIFImage extends TGraphic{  }
-class TJPEGImage extends TGraphic{  }
-
+class TSVGGraphic	extends TGraphic{}
+class TPNGImage		extends TGraphic{}
+class TGIFImage 	extends TGraphic{}
+class TJPEGImage 	extends TGraphic{}
+class TWICImage 	extends TGraphic{}
 class TPicture extends TControl{
     
     
