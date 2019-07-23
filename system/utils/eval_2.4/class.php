@@ -446,9 +446,18 @@
 	$page = c("fmMain->PageControl1")->addPage(t("Eval_Caption"));
 	gui_stringToComponent($page->self, $str);
 	$page->name = "TabSheet3";
-	//gui_propSet(c("fmPHPEditor->synComplete")->self, 'Editors', '[fmPHPEditor.memo, fmMain.PageControl1.TabSheet3.evalMemo]');
+	
 	$panel = $page->findComponent('evalPanel');
 	$memo = $page->findComponent('evalMemo');
+	event_set
+	(
+		$page->findComponent('evalSynCompletionProposal')->self,
+		'OnHide',
+		function($self) use ($memo)
+		{
+			$memo->SetFocus();
+		}
+	);
 	$combo = new TComboBox($page);
 	
 	if( is_file($file = __DIR__.'/eval.tmp') )
