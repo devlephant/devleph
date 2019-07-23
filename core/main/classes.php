@@ -29,6 +29,8 @@ global $_c;
 
 ///////////////////////////////////////////////////////////////////////////////
 ///                             TStrings                                    ///
+///		A base class for multi-line text storage classes					///
+///					(can be useful for drawing								///
 ///////////////////////////////////////////////////////////////////////////////
 class TStrings extends TObject{
     

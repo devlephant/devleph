@@ -575,15 +575,10 @@ class myDesign {
     static function mouseMove($self, $shift, $x, $y){
         
         global $_designSel, $fmEdit, $_startAY, $_startAX, $_startX, $_startY, $isMouseDown;
-        
-            //$ax = $_designSel->x;
-            //$ay = $_designSel->y;
                     if ($isMouseDown && abs($_startX-$x)>10 && abs($_startY-$y)>10){
                 
                 if (!$_designSel){
-                    //$fmEdit->doubleBuffer = true;
                     $_designSel = new TForm;
-					//gui_propSet($_designSel->self, 'StyleElements', '[]');
                     $_designSel->visible = 0;
                     $_designSel->AlphaBlend = true;
                     $_designSel->Color = myOptions::get('sc', 'SelectColor', clBlack);//#ADDOPT; , all ready
@@ -645,7 +640,6 @@ class myDesign {
         }
         
         if ($_designSel){
-            //$A =& $_designSel;
             $_designSel->hide();
             
             $ax = myVars::get('_startX');
