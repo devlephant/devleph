@@ -375,13 +375,14 @@ function canvas($ctrl = false){
     
     return new TControlCanvas($ctrl);
 }
-class TGraphic extends TControl{
+class TGraphic extends TControl
+{
 	
-	function Assign(TGraphic $v)
+	function Assign($v)
 	{
 		if( $v->self == $this->self ) return;
 		if ($v instanceof TPicture)
-			$this->assign($v->getBitmap());
+			$this->assign($v->Bitmap);
 		else
 			tpersistent_assign($this->self, $v->self);
 	}
@@ -523,12 +524,13 @@ class TIcon extends TGraphic{
 		icon_assign($this->self, $bitmap->self);
     }
     
-    function assign(TGraphic $v){
+    function assign($v){
 	
-		if ($v instanceof TBitmap){
+		if ($v instanceof TBitmap)
+		{
 			icon_assign($this->self, $v->self);
 		} else {
-			tpersistent_assign($this->self, $v->self);
+			parent::assign($v);
 		}
     }
     

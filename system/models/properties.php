@@ -14,7 +14,7 @@ class myProperties {
     
     public $last_class;
     
-    function VSFormClick($self){
+    public static function VSFormClick($self){
         
         global $myProperties, $_sc, $fmEdit;
         
@@ -31,7 +31,7 @@ class myProperties {
         
     }
     
-    function VSImageClick($self){
+    public static function VSImageClick($self){
         
         global $myProperties, $_sc, $fmEdit;
         
@@ -69,7 +69,7 @@ class myProperties {
 		self::updateProps();
 	}
     
-    function VSComponentsClick($self){
+    public static function VSComponentsClick($self){
         
         global $myProperties, $_sc, $fmEdit;
         
@@ -97,7 +97,7 @@ class myProperties {
         self::updateProps();
     }
     
-    function VSSizesClick($self){
+    public static function VSSizesClick($self){
         
         global $myProperties, $_sc, $fmEdit;
         
@@ -116,7 +116,7 @@ class myProperties {
 		self::updateProps();
     }
     
-    function VSFontClick($self){
+    public static function VSFontClick($self){
        
         global $myProperties, $_sc, $fmEdit;
         
@@ -144,7 +144,7 @@ class myProperties {
 		self::updateProps();
     }
     
-    function VSColorClick($self){
+    public static function VSColorClick($self){
        
         global $myProperties, $_sc, $fmEdit;
         
@@ -181,7 +181,7 @@ class myProperties {
         $dlg->free();
 		self::updateProps();
     }
-    function VSTIBClick($self)
+    public static function VSTIBClick($self)
 	{
 		global $myProperties, $_sc, $fmEdit;
         $prop  = 'images';
@@ -230,7 +230,7 @@ class myProperties {
 		}
 		$obj->value = "[ " . $cnt . " ]";
 	}
-    function VSMenuClick($self){
+    public static function VSMenuClick($self){
         
         global $myProperties, $toSetProp, $_sc;
         if ($toSetProp) return;
@@ -261,7 +261,7 @@ class myProperties {
 		self::updateProps();
     }
     
-    function VSButtonClick($self){
+    public static function VSButtonClick($self){
         
         global $myProperties, $toSetProp, $_sc;
         if ($toSetProp) return;
@@ -294,7 +294,7 @@ class myProperties {
 		self::updateProps();
     }
     
-    function VSEdit($self, $link, $value, $CAN){
+    public static function VSEdit($self, $link, $value, $CAN){
         
         global $myProperties, $_sc, $fmEdit, $toSetProp;
         if ($toSetProp) return;
@@ -396,7 +396,7 @@ class myProperties {
 		self::updateProps();
     }
     
-    static function VSBarClick($self, $prop, $index){
+    public static function VSBarClick($self, $prop, $index){
         
         global $myProperties, $_sc, $fmEdit, $toSetProp;
         if ($toSetProp) return;
