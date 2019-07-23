@@ -37,7 +37,7 @@ class myProperties {
         
         $param = $myProperties->elements[ $self ];
         $prop  = $param['PROP'];
-        
+		
         $dlg = new TImageDialog;
         $dlg->value = $myProperties->selObj->$prop;
         

@@ -277,12 +277,15 @@ class TImageDialog extends TPanel {
     }
     
     function set_value($v){
-		
-        c('edt_ImageView->image')->picture->assign($v);
-		if( is_object(c('edt_ImageView->image')->picture->graphic) )
+		if( $v instanceof TBitmap )
 		{
-			c('edt_ImageView->background')->visible = (c('edt_ImageView->image')->picture->graphic->SupportsPartialTransparency || c('edt_ImageView->image')->picture->graphic->Transparent);
-		} else c('edt_ImageView->background')->visible  = false;
+			c('edt_ImageView->image')->picture->graphic = $v;
+			c('edt_ImageView->image')->picture->graphic->ReleasePalette();
+		}	
+		else 
+			c('edt_ImageView->image')->picture->assign( $v );
+		
+		c('edt_ImageView->background')->visible = (c('edt_ImageView->image')->picture->graphic->SupportsPartialTransparency || c('edt_ImageView->image')->picture->graphic->Transparent);
 	}
     
 }
