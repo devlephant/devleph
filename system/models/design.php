@@ -398,6 +398,8 @@ class myDesign
             $_sc->addTarget($obj);
             myInspect::selectObject($obj);
             
+			treeBwr_add();
+			
             self::showPopup();
             
             myVars::set($obj->self, 'targetSelected');
@@ -746,6 +748,7 @@ class myDesign
             self::deleteObject($child);
         
         $obj->free();
+		treeBwr_add();
     }
     
     static function keyDelete(){
@@ -792,6 +795,9 @@ class myDesign
             return true;
         
         if ( c('fmPropsAndEvents->tabEvents',1)->focused )
+            return true;
+		
+		if ( c('fmPropsAndEvents->TTreeBwr',1)->focused )
             return true;
         
         
