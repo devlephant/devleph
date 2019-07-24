@@ -161,7 +161,6 @@ class myUtils
         $form->hide();
         if( !file_exists($file) ) {
 			message(t('Form %s1 does not exist!', basenamenoext($file)));
-			//$form = new TForm(c('fmMain->pDockMain')); Anderwz, зачем ты этот мусор вернул? Я уже убрал причину появления фонтомных форм, это понадобится только если кто-то в *.msppr напишет форму и не добавит сам файл с формой.
 		} else {
 			$str = file_get_contents($file);
 			
