@@ -1188,7 +1188,9 @@ class myProperties {
 				if( isset($this->panels[$class]['PANEL']) ){
 					$panel = $this->panels[$class]['PANEL'];
 
-					$panel->show();
+					/* Gignorie: Убрал потому что при работе с другими вкладками приходться минимум
+					по 5 раз переключатся на нужную вкладку(например для работы с древом проекта). */	
+					//$panel->show();
 					$panel->toFront();
 				}
             }
