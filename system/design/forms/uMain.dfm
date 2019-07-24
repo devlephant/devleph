@@ -486,13 +486,12 @@ object fmMain: TfmMain
             Width = 194
             Height = 22
             Color = clWhite
-            Style = csDropDown
+            Style = csOwnerDrawFixed
             Anchors = [akLeft, akTop, akRight]
             DropDownCount = 20
             ItemHeight = 16
             TabOrder = 0
 			TabStop = False
-            AutoComplete = True
           end
         end
       end

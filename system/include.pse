@@ -192,75 +192,74 @@ if (!defined('IS_APPLICATION_START')){
 			$GLOBALS['__newproject_close'] = false;
 		}
 		global $fmMain, $_sc, $myInspect;
-	$fmEdit = c('fmEdit');
-	
 		$fmMain->drop = new TDropFilesTarget($fmMain);
-		$fmMain->drop->enabled = 1;
-		$fmMain->drop->OnDropFiles = function($self, $files, $x, $y)use($fmEdit){
-			
-			global $myProperties, $_sc, $myInspect;
+		$fmMain->drop->enabled = true;
+		$fmMain->drop->OnDropFiles =
+		function($self, $files, $x, $y)
+		{
+			global $fmEdit, $myProperties, $_sc, $myEvents;
 			$n = 1;
-			if( is_object($_sc) )
+			$d = 0;
+			if(!isset($exts2))
 			{
-				$gs = $_sc->gridSize;
-				$_sc->clearTargets();
+				static $exts =  ['bmp', 'svg', 'gif', 'jpeg', 'jpg', 'wmf', 'emf', 'ico', 'png'];
+				static $exts2 = ['dvs', 'msppr', 'dfm', 'upr'];
 			}
-			foreach($files as $file){
-				if( in_array( strtolower(fileExt($file)), array('bmp', 'gif', 'jpeg', 'jpg', 'wmf', 'emf', 'ico', 'png') ) ){
-				$size = @getimagesize($file);
-				}elseif( in_array(strtolower(fileExt($file)), array('dvs', 'msppr', 'dfm', 'upr')) ){
-				$filename = replaceSl($file);
-				$ext = fileExt($filename);
+			$gs = $_sc->gridSize;
+			$_sc->clearTargets();
+			foreach($files as $file)
+			{
+				$filename = replaceSl( Localization::toEncoding( $file ) );
+				$ext = strtolower(fileExt($filename));
+				if( in_array($ext, $exts) ){
+				$img = new TMImage($fmEdit);
+				$img->parent = $fmEdit;
+				$img->picture->loadFromFile($filename);
+				do{$name = "image".$n++;}while($fmEdit->findComponent($name));
+				$img->name = $name;
+				$img->x = $d;
+				$img->y = $d;
+				$img->autosize = true;
+				$img->autosize = false;
+				$img->w = round($img->w/$gs)*$gs;
+				$img->h = round($img->h/$gs)*$gs;
+				$_sc->registerTarget($img);
+				$_sc->addTarget($img);
+				if($d==0)
+				{
+					$myProperties->generate($img->self,c('fmPropsAndEvents->tabProps',1));
+					$myEvents->generate($img);
+				}
+				$d += $_sc->gridSize;
+				}else if( in_array($ext, $exts2) ) {
 				if (!CApi::doEvent('onOpenProject',array('filename'=>$filename,'ext'=>$ext))) return;
-				switch ($ext){
-					case 'dvs':
-						{
-							myProject::openFromDVS($filename);
-							return;
-						}
-						break;
-					case 'msppr':
-						{
-							myProject::open($filename);
-							return;
-						}break;
-					case 'upr':
-						{
-							myProject::open($filename);
-							return;
-						}break;
-					case 'dfm':
-						{
-							myProject::openAsDFM($filename);
-							myUtils::saveForm();
-							return;
-						}break;
-				}
-				if (!CApi::doEvent('onOpenProjectAfter',array('filename'=>$filename,'ext'=>$ext))) return;
-				}
-				if($size){
-					$img = new TMImage($fmEdit);
-					$img->parent = $fmEdit;
-					$img->loadFromFile($file);
-					do{$name = 'image'.++$n;}while($fmEdit->findComponent($name));
-					$img->name = $name;
-					$img->x = $d;
-					$img->y = $d;
-					$img->w = round($img->w/$gs)*$gs;
-					$img->h = round($img->h/$gs)*$gs;
-					$_sc->addTarget($img);
-					$myInspect->addItem($img);
-					$d += $_sc->gridSize;
+					switch ($ext){
+						case 'dvs':
+							{
+								myProject::openFromDVS($filename);
+								return;
+							}
+							break;
+						case 'msppr':
+							{
+								myProject::open($filename);
+								return;
+							}break;
+						case 'upr':
+							{
+								myProject::open($filename);
+								return;
+							}break;
+						case 'dfm':
+							{
+								myProject::openAsDFM($filename);
+								myUtils::saveForm();
+								return;
+							}break;
+					}
 				}
 			}
-			$myInspect->selectObject($img);
-			
-			$panel = $myProperties->panels['TMImage']['PANEL'];
-			$panel->show();
-			$panel->toFront();
-			$myProperties->setProps();
-			myInspect::genList($img);
-			$myProperties->last_class = rtii_class($img->self);
+
 		};
 			$kx = myOptions::get('fmMain', 'x', -8);
 			$ky = myOptions::get('fmMain', 'y', -8);

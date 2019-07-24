@@ -1185,13 +1185,9 @@ class myProperties {
                     myOptions::set('panelLeft', 'splitterW', $this->panels[$this->last_class]['PANEL']->splitterPosition);
                 }
                 
-				if( isset($this->panels[$class]['PANEL']) ){
-					$panel = $this->panels[$class]['PANEL'];
-
-					/* Gignorie: Убрал потому что при работе с другими вкладками приходться минимум
-					по 5 раз переключатся на нужную вкладку(например для работы с древом проекта). */	
-					//$panel->show();
-					$panel->toFront();
+				if( isset($this->panels[$class]) )
+				{
+					$this->panels[$class]['PANEL']->toFront();
 				}
             }
             

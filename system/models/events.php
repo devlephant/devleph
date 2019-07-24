@@ -171,8 +171,8 @@ class myEvents {
     function deleteEvent(){
         global $myEvents;
         $eventList = c('fmPropsAndEvents->eventList');
-        
-        if ($eventList->itemIndex>-1){
+        $itemIndex = $eventList->itemIndex;
+        if ($itemIndex>-1){
             
             global $fmEdit;
             
@@ -184,6 +184,8 @@ class myEvents {
             
             //$events->clearEvent($event);
             $myEvents->genList();
+			if( c('fmPropsAndEvents->eventList')->Items->Count > 0 && $itemIndex > 0 )
+				c('fmPropsAndEvents->eventList')->ItemIndex = $itemIndex-1;
         }
     }
     
