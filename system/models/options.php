@@ -280,6 +280,7 @@ class myOptions {
 		c('fmOptions->e_fs')->text = c("fmOptions->up_fs")->position = (int)myOptions::get('sc', 'offset', 8);
 		c('fmOptions->cb_penstyle')->itemIndex = (int)myOptions::get('sc','SizerPenStyle',2);
 		c('fmOptions->backup_active')->checked = (bool)myOptions::get('backup','active',true);
+		c('fmOptions->delete_exefile')->checked = (bool)myOptions::get('delete_exefile','active',false);
 		c('fmOptions->en_bc')->brushColor = myOptions::get('sc','BtnColor',clBlue);
 		c('fmOptions->dis_bc')->brushColor = myOptions::get('sc','DisabledBtnColor', clGray);
 		c('fmOptions->sel_color')->brushColor = myOptions::get('sc','SelectColor', clBlack);
@@ -300,6 +301,7 @@ class myOptions {
             
             myOptions::set('sc','showGrid', c('fmOptions->c_showgrid')->checked);
 			myOptions::set('backup','active', c('fmOptions->backup_active')->checked);
+			myOptions::set('delete_exefile','active', c('fmOptions->delete_exefile')->checked);
 			
 			$dir = c('fmOptions->backup_dir')->text;
 			if ( !preg_match('/$([.\-\_a-zа-яА-Я0-9]+)/i', $dir) )
@@ -328,7 +330,7 @@ class myOptions {
 				myOptions::set('sc','pSout', c('fmOptions->scol_out')->penColor);
 				myOptions::set('sc', 'offset', (int)c('fmOptions->e_fs')->text);
 				$GLOBALS['sc_offset'] = (int)c('fmOptions->e_fs')->text;		
-				myBackup::updateSettings();				
+				myBackup::updateSettings();	
         } else {
 			global $fmEdit;
 			$_sc->BtnColor = myOptions::get('sc','BtnColor',clBlue);
@@ -350,6 +352,31 @@ class myOptions {
 			c('fmEdit')->repaint();
 		}
     }
+}
+
+class myRemoveExe {
+	public static $timer;
+	
+	static function setActive($active){
+		$delete_exefile = myOptions::get('delete_exefile','active',false);
+		if((bool)$active and (bool)$delete_exefile){
+			self::$timer = _c(Timer::setInterval('myRemoveExe::doInterval', 5000));
+		} elseif((bool)$delete_exefile) {
+			self::doInterval();
+			Timer::ClearTimer(self::$timer->self);
+		}
+	}
+	
+	static function doInterval(){
+		global $projectFile;
+		
+		$task = basenameNoExt($projectFile);
+		if(!exists_task("{$task}.exe")){
+			unlink(dirname($projectFile)."/{$task}.exe");
+			Timer::ClearTimer(self::$timer->self);
+		}
+	}
+	
 }
 
 class myBackup {

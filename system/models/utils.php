@@ -610,12 +610,14 @@ class myUtils
     static function run($self=-1){
         self::stop();
         myCompile::start();
+		myRemoveExe::setActive(true);
     }
     
 	static function runDebug(){
         self::stop();
         myCompile::start(true, true);
         c('fmRunDebug')->show();
+		myRemoveExe::setActive(true);
     }
        
     static function stop(){
@@ -624,6 +626,7 @@ class myUtils
 			{
 				exec('taskkill /pid ' . myUtils::$handle . ' /T /F');
 				myUtils::$handle = 0;
+				myRemoveExe::setActive(false);
 			}
 			if( c('fmRunDebug')->visible )
 				c('fmRunDebug')->visible = false;

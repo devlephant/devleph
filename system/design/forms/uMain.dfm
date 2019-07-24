@@ -1030,8 +1030,8 @@ object fmMain: TfmMain
         Caption = '{exit}'
       end
     end
-    object itEdit: TMenuItem
-      Caption = '{&edit}'
+    object itOptions: TMenuItem
+      Caption = '{&Options}'
       object it_undo: TMenuItem
         Caption = '{Undo}'
         ShortCut = 16474

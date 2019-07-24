@@ -950,7 +950,7 @@ function($theme)
 	foreach( array("btn_addEvent", "itemAddevent", "btn_editEvent", "btn_changeEvent", "btn_delEvent",
 	/*Object Menu->>>*/	  "itemDel", "itemCopy", "itemCut", "itemGroup", "itemPaste", 
 	"itFile"	/*->>>*/, "it_new", "it_open", "it_save", "it_saveas",
-	"itEdit"	/*->>>*/, "it_undo", "it_redo", "it_preference",
+	"itOptions"	/*->>>*/, "it_undo", "it_redo", "it_preference",
 	"itService"	/*->>>*/, "it_components", "it_objectinspector", "it_props", "it_debuginfo",
 	"itProject"	/*->>>*/, "it_run", "it_stopprogram", "it_buildproject", "it_projectmodules", "it_projectoptions",
 	"it_Utils"	/*->>>*/, /*@Services@ items*/

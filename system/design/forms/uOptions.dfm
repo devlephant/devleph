@@ -35,21 +35,21 @@ object fmOptions: TfmOptions
       ImageIndex = 1
       object Label2: TLabel
         Left = 16
-        Top = 48
+        Top = 64
         Width = 94
         Height = 13
         Caption = '{Backup Directory Name}'
       end
       object Label3: TLabel
         Left = 16
-        Top = 104
+        Top = 120
         Width = 85
         Height = 13
         Caption = '{Backup Interval}'
       end
       object Label5: TLabel
         Left = 248
-        Top = 104
+        Top = 120
         Width = 79
         Height = 13
         Caption = '{Backup Count}'
@@ -64,9 +64,18 @@ object fmOptions: TfmOptions
         State = cbChecked
         TabOrder = 0
       end
+      object delete_exefile: TCheckBox
+        Left = 16
+        Top = 40
+        Width = 241
+        Height = 17
+        Caption = '{Remove temporary exe after testing}'
+        Checked = False
+        State = cbUnchecked
+      end
       object backup_dir: TEdit
         Left = 16
-        Top = 67
+        Top = 83
         Width = 433
         Height = 21
         TabOrder = 1
@@ -80,7 +89,7 @@ object fmOptions: TfmOptions
       end
       object backup_interval: TEdit
         Left = 16
-        Top = 123
+        Top = 139
         Width = 169
         Height = 21
         TabOrder = 2
@@ -94,7 +103,7 @@ object fmOptions: TfmOptions
       end
 	  object up_bint: TUpDown
 		Left = 185
-		Top = 122
+		Top = 139
 		Width = 12
 		Height = 25
 		Min = 1
@@ -102,7 +111,7 @@ object fmOptions: TfmOptions
 	  end
 	  object Label4: TLabel
         Left = 199
-        Top = 123
+        Top = 139
         Width = 32
         Height = 23
 		Autosize = False
@@ -111,7 +120,7 @@ object fmOptions: TfmOptions
       end
       object backup_count: TEdit
         Left = 248
-        Top = 123
+        Top = 139
         Width = 189
         Height = 23
         TabOrder = 3
@@ -125,7 +134,7 @@ object fmOptions: TfmOptions
       end
 	  object up_bcnt: TUpDown
 		Left = 437
-		Top = 122
+		Top = 139
 		Width = 12
 		Height = 25
 		Min = 1
