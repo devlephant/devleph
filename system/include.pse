@@ -202,6 +202,7 @@ if (!defined('IS_APPLICATION_START')){
 			$n = 1;
 			$d = 0;
 			$prev = false;
+			$focus = count($files)==1;
 			if(!isset($exts2))
 			{
 				static $exts =  ['bmp', 'gif', 'jpeg', 'jpg', 'jpe', 'jif', 'jfif', 'tif', 'tiff', 'svg', 'wmf', 'emf', 'ico', 'icon', 'png'];
@@ -255,7 +256,7 @@ if (!defined('IS_APPLICATION_START')){
 							}break;
 						case 'dfm':
 							{
-								myUtils::addFromFile($filename);
+								myUtils::addFromFile($filename, $focus);
 							}break;
 					}
 				} else 
