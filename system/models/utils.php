@@ -333,6 +333,25 @@ class myUtils
         }
     }
     
+	static function addFromFile($file,$s=false)
+	{
+		global $projectFile, $_FORMS;
+		if( fileExt($file) !== 'dfm' ) return;
+		$basename = basenameNoExt($file);
+		$name 	  = basename($file);
+		$dock = c("fmMain->tabForms");
+		$x = array_search($basename, $_FORMS, false);
+		x_copy($file, dirname($projectFile) . '/' . $name);
+		if($x==false)
+		{
+			$_FORMS[] = $basename;
+			$x = $dock->addPage($name);
+		}
+		if($s)
+			$dock->TabIndex = $x;
+		myDesign::tabFormClick(0, 0, false, 0, 0);
+	}
+	
     static function loadForm($nam){
         
         global $fmMain, $_sc, $projectFile, $myInspect, $fmEdit, $formSelected, $_FORMS, $myProperties, $myEvents;

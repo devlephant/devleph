@@ -211,6 +211,7 @@ if (!defined('IS_APPLICATION_START')){
 			$_sc->clearTargets();
 			foreach($files as $file)
 			{
+				if( trim($file) == "" ) continue;
 				$filename = replaceSl( $file );
 				$ext = strtolower(fileExt($filename));
 				if( in_array($ext, $exts) ){
@@ -254,9 +255,7 @@ if (!defined('IS_APPLICATION_START')){
 							}break;
 						case 'dfm':
 							{
-								myProject::openAsDFM($filename);
-								myUtils::saveForm();
-								return;
+								myUtils::addFromFile($filename);
 							}break;
 					}
 				} else 
@@ -282,33 +281,14 @@ if (!defined('IS_APPLICATION_START')){
 		$dock->drop->enabled = true;
 		$dock->drop->OnDropFiles = 
 		function($self, $files, $x, $y)
-		{
-			global $_FORMS, $projectFile;
-			$dock = c("fmMain->tabForms");
+		{	
 			if( count($files) == 1)
 			{
-				if( fileExt($files[0]) !== 'dfm' ) return;
-				$basename = basenameNoExt($files[0]);
-				$x = array_search($basename, $_FORMS, false);
-				x_copy($files[0], dirname($projectFile) . '/' . basename($files[0]));
-				if($x==false)
-				{
-					$_FORMS[] = $basename;
-					$dock->TabIndex = $dock->addPage(basename($files[0]));
-				} else $dock->TabIndex = $dock->tabs->get_count();
-				myDesign::tabFormClick($self, 1, false, $x, $y);
-			} else 
+				myUtils::addFromFile($files[0],true);
+			} else
 				foreach($files as $file)
 				{
-					if( fileExt($file) !== 'dfm') continue;
-					$basename = basenameNoExt($file);
-					$x = array_search($basename, $_FORMS, false);
-					x_copy($file, dirname($projectFile) . '/' . basename($file));
-					if($x==false)
-					{
-						$_FORMS[] = $basename;
-						$dock->addPage(basename($file));
-					}
+					myUtils::addFromFile($file);
 				}
 		};
 			$kx = myOptions::get('fmMain', 'x', -8);
