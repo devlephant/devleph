@@ -394,7 +394,6 @@ $m["TData_caption"] = "Дата";
 $m["TMarqueeLabel_Caption"] = "Бегущая Надпись";
 $m["TNextInspector"] = "Инспектор Свойств";
 $m["TMyPopup_Caption"] = "Моё Контекстное Меню";
-$m["TDropFiles_Caption"] = "Перенос Файлов";
 $m["TSock"] = "Сокет";
 $m["TChromium_Caption"] = "Chromium Браузер";
 $m["VKAPI"] = "VK API";

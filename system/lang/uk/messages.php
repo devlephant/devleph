@@ -285,7 +285,6 @@ $m["TData_caption"] = "Дата";
 $m["TMarqueeLabel_Caption"] = "Крокуючий Напис";
 $m["TNextInspector"] = "Інспектор Властивостей";
 $m["TMyPopup_Caption"] = "Мій Попап";
-$m["TDropFiles_Caption"] = "Перенос Файлів";
 $m["TSock"] = "Сокет";
 $m["TChromium_Caption"] = "Chromium Браузер";
 $m["VKAPI"] = "VK API";
