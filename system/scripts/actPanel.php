@@ -27,7 +27,8 @@ c('fmMain->hd_leftform')->onClick = 'myUtils::leftForm';
 c('fmMain->fp_right')->onClick  = 'myUtils::rightForm';
 c('fmMain->hd_rightform')->onClick = 'myUtils::rightForm';
 
-c('fmMain->it_new')->onClick = 'myProject::newProjectDialog';
+c('fmMain->it_new_form')->onClick = 'myUtils::newForm';
+c('fmMain->it_new_project')->onClick = 'myProject::newProjectDialog';
 c('fmMain->it_open')->onClick= 'myProject::openFromFileDialog';
 c('fmMain->it_save')->onClick= function(){
 	myUtils::saveForm();

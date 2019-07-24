@@ -856,8 +856,14 @@ object fmMain: TfmMain
           FCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCFCF7F7F7DADADAB1B1B1F1F1
           F1FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFC0C0C0BFBFBFBFBFBFBFBFBFBFBFBFBF
           BFBFBFBFBFC0C0C0BBBBBBE7E7E7FFFFFFFFFFFFFFFFFFFFFFFF}
-        Caption = '{new}'
+        Caption = '{Create...}'
         ShortCut = 16462
+		object it_new_form: TMenuItem
+		  Caption = '{Form.}'
+		end
+		object it_new_project: TMenuItem
+		  Caption = '{Project}'
+		end
       end
       object it_open: TMenuItem
         Bitmap.Data = {
