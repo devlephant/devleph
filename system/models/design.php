@@ -1014,16 +1014,9 @@ class myDesign
     
     static function tabFormClick($self, $button, $shift, $x, $y)
 	{
-        
         global $_FORMS, $formSelected, $historyIndex;
-        
-       // $index_ex = c('fmMain->tabForms')->indexOfTabXY($x, $y);
-       // c('fmMain->tabForms')->tabIndex = $index_ex;
-        
-        $index = c('fmMain->tabForms')->tabIndex;
-        
+        $index = c('fmMain->tabForms')->tabIndex;   
         if ($index == $formSelected) return false;
-        
         myUtils::saveForm();
         $formSelected = $index;
         myUtils::loadForm($_FORMS[$index]);
