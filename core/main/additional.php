@@ -402,14 +402,21 @@ class TTabControl extends TControl {
 		return $this->_tabs;
 	}
 	
-	function addPage($caption){
+	function addPage($caption)
+	{
 		$this->tabs->add($caption);
+		return $this->tabs->get_count();
 	}
 	
 	
-	function indexOfTabXY($x, $y){
-		
-		return tabcontrol_indexofxy($this->self, $x, $y);
+	function indexOfTabXY($x, $y)
+	{
+		return $this->IndexOfTabAt($x, $y);
+	}
+	
+	function TabfromXY($x, $y)
+	{
+		return $this->tabs->getLine( $this->IndexOfTabAt($x, $y) );
 	}
 	
 	function set_text($v){

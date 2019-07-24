@@ -192,24 +192,26 @@ if (!defined('IS_APPLICATION_START')){
 			$GLOBALS['__newproject_close'] = false;
 		}
 		global $fmMain, $_sc, $myInspect;
-		$fmMain->drop = new TDropFilesTarget($fmMain);
-		$fmMain->drop->enabled = true;
-		$fmMain->drop->OnDropFiles =
+		$dock = с("fmMain->pDockMain");
+		$dock->drop = new TDropFilesTarget($dock);
+		$dock->drop->enabled = true;
+		$dock->drop->OnDropFiles =
 		function($self, $files, $x, $y)
 		{
-			global $fmEdit, $myProperties, $_sc, $myEvents;
+			global $fmMain, $fmEdit, $myProperties, $myProject, $projectFile, $_sc, $myEvents;
 			$n = 1;
 			$d = 0;
+			$prev = false;
 			if(!isset($exts2))
 			{
-				static $exts =  ['bmp', 'svg', 'gif', 'jpeg', 'jpg', 'wmf', 'emf', 'ico', 'png'];
+				static $exts =  ['bmp', 'gif', 'jpeg', 'jpg', 'jpe', 'jif', 'jfif', 'tif', 'tiff', 'svg', 'wmf', 'emf', 'ico', 'icon', 'png'];
 				static $exts2 = ['dvs', 'msppr', 'dfm', 'upr'];
 			}
 			$gs = $_sc->gridSize;
 			$_sc->clearTargets();
 			foreach($files as $file)
 			{
-				$filename = replaceSl( Localization::toEncoding( $file ) );
+				$filename = replaceSl( $file );
 				$ext = strtolower(fileExt($filename));
 				if( in_array($ext, $exts) ){
 				$img = new TMImage($fmEdit);
@@ -231,7 +233,7 @@ if (!defined('IS_APPLICATION_START')){
 					$myEvents->generate($img);
 				}
 				$d += $_sc->gridSize;
-				}else if( in_array($ext, $exts2) ) {
+				}elseif( in_array($ext, $exts2) ) {
 				if (!CApi::doEvent('onOpenProject',array('filename'=>$filename,'ext'=>$ext))) return;
 					switch ($ext){
 						case 'dvs':
@@ -257,9 +259,57 @@ if (!defined('IS_APPLICATION_START')){
 								return;
 							}break;
 					}
+				} else 
+				{
+					$fmMain->toFront();
+					if($ext == 'php')
+					{
+						x_copy($filename, dirname($projectFile) . '/scripts/' . basename($filename));
+					} else {
+						if(!$prev)
+							if(confirm(t("Add unsupported file(s) to the resources?")))
+								$prev = true;
+						if($prev)
+							x_copy($filename, dirname($projectFile) . '/'. $myProject->config['data_dir'] . '/' . basename($filename));
+					}						
 				}
 			}
 
+		};
+		$dock = c("fmMain->tabForms");
+		$dock->drop = new TDropFilesTarget($dock);
+		$dock->drop->parent = $dock;
+		$dock->drop->enabled = true;
+		$dock->drop->OnDropFiles = 
+		function($self, $files, $x, $y)
+		{
+			global $_FORMS, $projectFile;
+			$dock = c("fmMain->tabForms");
+			if( count($files) == 1)
+			{
+				if( fileExt($files[0]) !== 'dfm' ) return;
+				$basename = basenameNoExt($files[0]);
+				$x = array_search($basename, $_FORMS, false);
+				x_copy($files[0], dirname($projectFile) . '/' . basename($files[0]));
+				if($x==false)
+				{
+					$_FORMS[] = $basename;
+					$dock->TabIndex = $dock->addPage(basename($files[0]));
+				} else $dock->TabIndex = $dock->tabs->get_count();
+				myDesign::tabFormClick($self, 1, false, $x, $y);
+			} else 
+				foreach($files as $file)
+				{
+					if( fileExt($file) !== 'dfm') continue;
+					$basename = basenameNoExt($file);
+					$x = array_search($basename, $_FORMS, false);
+					x_copy($file, dirname($projectFile) . '/' . basename($file));
+					if($x==false)
+					{
+						$_FORMS[] = $basename;
+						$dock->addPage(basename($file));
+					}
+				}
 		};
 			$kx = myOptions::get('fmMain', 'x', -8);
 			$ky = myOptions::get('fmMain', 'y', -8);
@@ -269,7 +319,7 @@ if (!defined('IS_APPLICATION_START')){
 			$fmMain->left  = $kx;
 			if( $ky > -8 )
 			$fmMain->top	=  $ky;
-		unset($kx,$ky);
+		unset($dock, $kx,$ky);
 	    $fmMain->show();
     }
     

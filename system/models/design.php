@@ -1012,12 +1012,13 @@ class myDesign
         
     }
     
-    static function tabFormClick($self, $button, $shift, $x, $y){
+    static function tabFormClick($self, $button, $shift, $x, $y)
+	{
         
         global $_FORMS, $formSelected, $historyIndex;
         
-        $index_ex = c('fmMain->tabForms')->indexOfTabXY($x, $y);
-        c('fmMain->tabForms')->tabIndex = $index_ex;
+       // $index_ex = c('fmMain->tabForms')->indexOfTabXY($x, $y);
+       // c('fmMain->tabForms')->tabIndex = $index_ex;
         
         $index = c('fmMain->tabForms')->tabIndex;
         
