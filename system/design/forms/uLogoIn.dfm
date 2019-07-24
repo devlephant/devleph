@@ -7,7 +7,6 @@ object fmLogoin: TfmLogoin
   ClientWidth = 690
   Color = clWhite
   TransparentColor = False
-  TransparentColorValue = clNone
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11

@@ -3,8 +3,6 @@ object fmNewProject: TfmNewProject
   Top = 256
   Anchors = [akRight, akBottom]
   BorderStyle = bsDialog
-  FormStyle = fsStayOnTop
-  PopupMode = pmExplicit
   Caption = '{New Project}'
   ClientHeight = 355
   ClientWidth = 502
