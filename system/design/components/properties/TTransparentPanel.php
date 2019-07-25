@@ -11,14 +11,6 @@ $result[] = array(
                   );
 
 _addfont($result);
-
-
-$result[] = array(
-                  'CAPTION'=>t('Alignment').' 2',
-                  'TYPE'=>'combo',
-                  'PROP'=>'alignment',
-                  'VALUES'=>array('taLeftJustify', 'taRightJustify', 'taCenter'),
-                  );
 				  
 $result[] = array(
                   'CAPTION'=>t('Auto Size'),
@@ -29,7 +21,12 @@ $result[] = array(
                   'CAPTION'=>t('Locked'),
                   'TYPE'=>'check',
                   'PROP'=>'Locked',
-                  );	
+                  );
+$result[] = array(
+                  'CAPTION'=>t('Focused'),
+                  'TYPE'=>'check',
+                  'PROP'=>'Focused',
+                  );
 $result[] = array(
                   'CAPTION'=>t('Dock Site'),
                   'TYPE'=>'check',

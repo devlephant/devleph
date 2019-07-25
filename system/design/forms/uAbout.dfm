@@ -43,10 +43,6 @@ object fmAbout: TfmAbout
     Caption = '{desns_sc}'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    
-    Font.Name = 'Segoe UI'
-    Font.Style = []
-    ParentFont = False
   end
   object link2: TLabel
     Left = 432
@@ -57,10 +53,6 @@ object fmAbout: TfmAbout
     Caption = 'Andrew Ivanov'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
-    
-    Font.Name = 'Segoe UI'
-    Font.Style = []
-    ParentFont = False
   end
   object label2: TLabel
     Left = 224
@@ -70,10 +62,6 @@ object fmAbout: TfmAbout
     Caption = '{devs_p}'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    
-    Font.Name = 'Segoe UI'
-    Font.Style = []
-    ParentFont = False
   end
   object link3: TLabel
     Left = 314
@@ -84,10 +72,6 @@ object fmAbout: TfmAbout
     Caption = 'Andrew Zenin'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
-    
-    Font.Name = 'Segoe UI'
-    Font.Style = []
-    ParentFont = False
   end
   object link4: TLabel
     Left = 432
@@ -98,10 +82,6 @@ object fmAbout: TfmAbout
     Caption = 'Artem Ukolov'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
-    
-    Font.Name = 'Segoe UI'
-    Font.Style = []
-    ParentFont = False
   end
   object shape1: TShape
     Left = 0
@@ -119,10 +99,6 @@ object fmAbout: TfmAbout
     Caption = '{tesrs_p}'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    
-    Font.Name = 'Segoe UI'
-    Font.Style = []
-    ParentFont = False
   end
   object link5: TLabel
     Left = 314
@@ -133,10 +109,6 @@ object fmAbout: TfmAbout
     Caption = 'Manofjoe'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
-    
-    Font.Name = 'Segoe UI'
-    Font.Style = []
-    ParentFont = False
   end
   object link8: TLabel
     Left = 171
@@ -149,10 +121,6 @@ object fmAbout: TfmAbout
     Caption = 'Kashaket'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlue
-    
-    Font.Name = 'Segoe UI'
-    Font.Style = []
-    ParentFont = False
     Transparent = True
     Layout = tlCenter
   end
@@ -166,10 +134,6 @@ object fmAbout: TfmAbout
     Caption = 'Alex MMII'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlue
-    
-    Font.Name = 'Segoe UI'
-    Font.Style = []
-    ParentFont = False
     Transparent = True
     Layout = tlCenter
   end
@@ -182,10 +146,6 @@ object fmAbout: TfmAbout
     Caption = 'Alexander Kobozev'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
-    
-    Font.Name = 'Segoe UI'
-    Font.Style = []
-    ParentFont = False
   end
   object link1: TLabel
     Left = 314
@@ -196,10 +156,6 @@ object fmAbout: TfmAbout
     Caption = 'Andrew Zenin'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
-    
-    Font.Name = 'Segoe UI'
-    Font.Style = []
-    ParentFont = False
     Transparent = True
   end
   object label3: TLabel
@@ -212,12 +168,6 @@ object fmAbout: TfmAbout
     Caption = #1056#1072#1079#1088#1072#1073#1086#1090#1095#1080#1082#1080
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlue
-    
-    Font.Name = 'Segoe UI'
-    Font.Pitch = fpFixed
-    Font.Style = []
-    ParentFont = False
-    Transparent = False
     Layout = tlCenter
   end
 end

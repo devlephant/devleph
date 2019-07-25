@@ -17,7 +17,18 @@ $_c->setConstList(['psSolid', 'psDash', 'psDot', 'psDashDot', 'psDashDotDot', 'p
     'psInsideFrame', 'psUserStyle', 'psAlternate'],'TPenStyle');
 
 $_c->setConstList(array_keys(gui_get_recordinfo('TShape', 'Shape')),'TShapeType');
-
+$_c->setConstList(
+				["thrError", "thrTransparent", "thrNowhere",
+				"thrClient","thrCaption", "thrSystemMenu",
+				"thrSizingHandle", "thrMenu", "thrHorzScroll",
+				"thrVertScroll", "thrMinReduceBtn", "thrMaxZoomBtn",
+				"thrLeftOrSizeFirst", "thrRight", "thrTop",
+				"thrTopLeft", "thrTopRight", "thrBottom",
+				"thrBottomLeft", "thrBottomRightOrSizeLast", "thrBorder",
+				"thrObject", "thrClose", "thrHelp"],
+				 "THitResult",
+				-2
+				);
 
   $_c->COLOR_SCROLLBAR = 0;
   $_c->COLOR_BACKGROUND = 1;

@@ -423,39 +423,5 @@ class TPanel extends TControl {
 	}
 }
 class TDSPanel extends TPanel {}
-class TTransparentPanel extends TControl {
-	
-	protected $_constraints;
-	
-	public function __construct($onwer=nil, $init=true, $self=nil){
-		parent::__construct($onwer,$init,$self);
-		if( $init )
-		{
-			$this->parentcolor = $this->parentBackground = True;
-			$this->Ctl3D = $this->DoubleBuffered = False;
-		}
-	}
-	
-	
-	function get_constraints(){
-		if (!isset($this->_constraints)){
-			$this->_constraints = new TSizeConstraints(nil, false);
-			$this->_constraints->self = gui_propGet($this->self,'constraints');
-		}
-		return $this->_constraints;
-	}
-	
-	public function set_parent($v)
-	{
-		if (is_object($v))
-		{
-			gui_propSet($this->Self, 'Parent', $v->self);
-			if( $v->tag !== 2012)
-			gui_form_fixdwm($v->handle);
-	    } elseif (is_numeric($v)) {
-			gui_propSet($this->Self, 'Parent', $v);
-			gui_form_fixdwm(gui_propGet($v, 'Handle'));
-		}
-	}
-}
+class TTransparentPanel extends TControl{}
 ?>

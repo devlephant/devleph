@@ -477,7 +477,23 @@ class __exEvents {
     static function OnClick($self){ self::callCode($self, __FUNCTION__); }
     static function OnChange($self){ self::callCode($self, __FUNCTION__); }
     static function OnCreate($self){ self::callCode($self, __FUNCTION__); }
-    
+    static function OnDestroy($self){ self::callCode($self, __FUNCTION__); }
+	static function OnBrushSet($self,$brush,&$continue)
+	{
+		self::callCode($self, new TBrush(nil,false,$brush), $continue, __FUNCTION__);
+	}
+	static function OnFontSet($self,$font,&$continue)
+	{
+		self::callCode($self, new TFont(nil,false,$font), $continue, __FUNCTION__);
+	}
+	static function OnPenSet($self,$pen,&$continue)
+	{
+		self::callCode($self, new TPen(nil,false,$pen), $continue, __FUNCTION__);
+	}
+	static function OnHitTest($self,&$HitResult)
+	{
+		self::callCode($self, $HitResult, __FUNCTION__);
+	}
     static function OnDblClick($self){ self::callCode($self, __FUNCTION__); }
     static function OnClose($self){ self::callCode($self, __FUNCTION__); }
     static function OnPaint($self){ self::callCode($self, __FUNCTION__); }
@@ -718,4 +734,10 @@ DSApi::reg_eventParams('OnTooltip',['text', '&continue']);
 DSApi::reg_eventParams('OnContentsSizeChange',['width', 'height']);
 
 DSApi::reg_eventParams('onDropFiles',['self','files', 'x', 'y']);
+
+DSApi::reg_eventParams('onBrushSet', ['self','brush','&continue']);
+DSApi::reg_eventParams('onFontSet', ['self','font','&continue']);
+DSApi::reg_eventParams('onPenSet', ['self','pen','&continue']);
+
+DSApi::reg_eventParams('onHitTest', ['self', '&HitResult']);
 ?>

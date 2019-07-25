@@ -55,15 +55,9 @@ $result[] = array(
                   'ICON'=>'onmouseleave',
                   );
 $result[] = array(
-                  'CAPTION'=>t('On Drop Files'),
-                  'EVENT'=>'onDropFiles',
-                  'INFO'=>'%func%($self,$files)',
-                  'ICON'=>'ondropfiles',
-                  );
-$result[] = array(
-                  'CAPTION'=>t('On Change'),
-                  'EVENT'=>'onChange',
-                  'INFO'=>'%func%($self,$files)',
-                  'ICON'=>'onChange',
+                  'CAPTION'=>t('On Transparency Check'),
+                  'EVENT'=>'onHitTest',
+                  'INFO'=>'%func%($self, THitResult &$hitResult)',
+                  'ICON'=>'onhittest',
                   );
 return $result;
