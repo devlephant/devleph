@@ -173,7 +173,6 @@ if (!defined('IS_APPLICATION_START')){
 		$fmLogoin->free();
         unset($fmLogoin);
         evfmMain::loadMainConfig();
-		
 		c('fmMain->panelPropEvent')->onChange = 'myProperties::fixSplitterMoved';
 		$fmMain->onResize = 'myProperties::fixSplitterMoved';
 		myProperties::fixSplitterMoved(0);

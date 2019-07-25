@@ -469,7 +469,8 @@ $m["On Scroll"] = "Промотка";
 $m["On Create"] = "Створення";
 $m["On Select"] = "Вибір";
 $m["On Start Change"] = "Початок Внесення змін";
-
+$m["On Transparency Test"] = "Перевірка Прозорості";
+$m["onhittest"] = "Перевірка Прозорості";
 $m["onclick"] = "Клік";
 $m["ondblclick"] = "2х Клік";
 $m["onmousedown"] = "Натискання Мишки";

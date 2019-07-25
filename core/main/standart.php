@@ -423,5 +423,16 @@ class TPanel extends TControl {
 	}
 }
 class TDSPanel extends TPanel {}
-class TTransparentPanel extends TControl{}
+class TTransparentPanel extends TControl
+{
+Public Function __initComponentInfo()
+ {
+	 if(!$GLOBALS['APP_DESIGN_MODE'])
+	 event_set($this->self, 'onHitTest', __CLASS__ . '::_StandartHitTest');
+ }
+Public Static Function _StandartHitTest($self, &$result)
+ {
+	 $result = -1;
+ }
+}
 ?>

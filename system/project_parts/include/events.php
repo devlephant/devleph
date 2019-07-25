@@ -340,6 +340,41 @@ class __exEvents {
         eval( self::getEvent($_self,$_eventName) );
         self::freeEventInfo();
     }
+	
+	static function callCodeHitTest($_self, &$HitResult, $_eventName)
+	{
+        $self   = c($_self);
+        self::setEventInfo($_self, $_eventName);
+        eval( enc_getValue('__incCode') );
+        eval( self::getEvent($_self,$_eventName) );
+        self::freeEventInfo();
+    }
+	
+	static function callCodeBrushSet($_self, $brush, &$continue, $_eventName)
+	{
+        $self   = c($_self);
+        self::setEventInfo($_self, $_eventName);
+        eval( enc_getValue('__incCode') );
+        eval( self::getEvent($_self,$_eventName) );
+        self::freeEventInfo();
+    }
+	static function callCodeFontSet($_self, $font, &$continue, $_eventName)
+	{
+        $self   = c($_self);
+        self::setEventInfo($_self, $_eventName);
+        eval( enc_getValue('__incCode') );
+        eval( self::getEvent($_self,$_eventName) );
+        self::freeEventInfo();
+    }
+	
+	static function callCodePenSet($_self, $pen, &$continue, $_eventName)
+	{
+        $self   = c($_self);
+        self::setEventInfo($_self, $_eventName);
+        eval( enc_getValue('__incCode') );
+        eval( self::getEvent($_self,$_eventName) );
+        self::freeEventInfo();
+    }
     
     static function callCodeKey($_self, &$key, $shift, $_eventName){
         
@@ -480,20 +515,23 @@ class __exEvents {
     static function OnDestroy($self){ self::callCode($self, __FUNCTION__); }
 	static function OnBrushSet($self,$brush,&$continue)
 	{
-		self::callCode($self, new TBrush(nil,false,$brush), $continue, __FUNCTION__);
+		self::callCodeBrushSet($self, new TBrush(nil,false,$brush), $continue, __FUNCTION__);
 	}
 	static function OnFontSet($self,$font,&$continue)
 	{
-		self::callCode($self, new TFont(nil,false,$font), $continue, __FUNCTION__);
+		self::callCodeFontSet($self, new TFont(nil,false,$font), $continue, __FUNCTION__);
 	}
 	static function OnPenSet($self,$pen,&$continue)
 	{
-		self::callCode($self, new TPen(nil,false,$pen), $continue, __FUNCTION__);
+		self::callCodePenSet($self, new TPen(nil,false,$pen), $continue, __FUNCTION__);
 	}
 	static function OnHitTest($self,&$HitResult)
 	{
-		self::callCode($self, $HitResult, __FUNCTION__);
+		self::callCodeHitTest($self, $HitResult, __FUNCTION__);
 	}
+	static function OnBrushChage($self){ self::callCode($self, __FUNCTION__); }
+	static function OnFontChage($self){ self::callCode($self, __FUNCTION__); }
+	static function OnPenChage($self){ self::callCode($self, __FUNCTION__); }
     static function OnDblClick($self){ self::callCode($self, __FUNCTION__); }
     static function OnClose($self){ self::callCode($self, __FUNCTION__); }
     static function OnPaint($self){ self::callCode($self, __FUNCTION__); }
@@ -735,9 +773,14 @@ DSApi::reg_eventParams('OnContentsSizeChange',['width', 'height']);
 
 DSApi::reg_eventParams('onDropFiles',['self','files', 'x', 'y']);
 
+DSApi::reg_eventParams('onDestroy', ['self']);
+DSApi::reg_eventParams('onCreate', ['self']);
 DSApi::reg_eventParams('onBrushSet', ['self','brush','&continue']);
 DSApi::reg_eventParams('onFontSet', ['self','font','&continue']);
 DSApi::reg_eventParams('onPenSet', ['self','pen','&continue']);
+DSApi::reg_eventParams('onBrushChage', ['self']);
+DSApi::reg_eventParams('onFontChage', ['self']);
+DSApi::reg_eventParams('onPenChage', ['self']);
 
 DSApi::reg_eventParams('onHitTest', ['self', '&HitResult']);
 ?>

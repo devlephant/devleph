@@ -20,10 +20,9 @@ class myProject {
 		
     }
     
-    static function openLsProject(  $vv = false ){
-        
-        global $_PARAMS;
-        global $projectFile;
+    static function openLsProject(  $vv = false )
+	{    
+        global $_PARAMS, $projectFile;
         
         setTimeout( 10000, 'myProject::registerFileType()' );
         
@@ -44,11 +43,11 @@ class myProject {
                     
                 self::open( $projectFile, true, true );
             }
-            
+            //if($vv && count($_PARAMS) > 2 )
         } elseif ( is_file($projectFile) ){
-            self::open( $projectFile, true, true );
-			
-        }
+			//if($vv && count($_PARAMS) > 2 )
+            self::open( $projectFile, true, true );	
+        }	
     }
     
     static function setStatus($text, $progress){
