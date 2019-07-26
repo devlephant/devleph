@@ -52,19 +52,13 @@ object fmLogoin: TfmLogoin
       Height = 353
 	end
     object Label9: TLabel
-      Left = 6
+      Left = 5
       Top = 321
       Width = 175
       Height = 15
-      Alignment = taRightJustify
-      Caption = '... beta 4'
+      Alignment = taLeftJustify
       Font.Charset = DEFAULT_CHARSET
       Font.Color = 0
-      Font.Height = -11
-      Font.Name = 'Segoe UI'
-	  Font.Size = 9
-      Font.Style = []
-      ParentFont = False
       Transparent = True
       Visible = True
     end
