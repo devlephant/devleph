@@ -1,7 +1,11 @@
 # Stats
 50% complete :heavy_check_mark:
 [❚❚❚❚❚⫴⫴⫴⫴⫴]
-Dmitriy Zaycev(Dim-S), Andrew Zenin(cashacat, Andrewz, Leau), Dmitriy Chikatilov(gignorie), Alexander Kobozev([s]Alex, SAl), Vyascheslav Novikov(Manofjoe), Andrew Ivanov(Tawero) and Rostislav Romanov(em_soft)
+
+Autors:<br>
+Dmitriy Zaycev(Dim-S), Andrew Zenin(cashacat, Andrewz, Leau), Dmitriy Chikatilov(gignorie), 
+<br>Alexander Kobozev([s]Alex, SAL), Vyascheslav Novikov(Manofjoe), Andrew Ivanov(Tawero)
+<br> and Rostislav Romanov(em_soft)
 
 <br>Working on  the:
 <br><a href="https://github.com/KashaketCompany/Dev-S/projects/1">:wrench:Fixes</a>
