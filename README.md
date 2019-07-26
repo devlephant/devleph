@@ -3,7 +3,7 @@
 [❚❚❚❚❚⫴⫴⫴⫴⫴]
 
 Autors:<br>
-Dmitriy Zaycev(Dim-S), Andrew Zenin(cashacat, Andrewz, Leau), Dmitriy Chikatilov(gignorie), 
+Dmitriy Zaycev(Dim-S), Andrew Zenin(cashacat, Andrewz, Leau), Dmitriy Alderti(gignorie), 
 <br>Alexander Kobozev([s]Alex, SAL), Vyascheslav Novikov(Manofjoe), Andrew Ivanov(Tawero)
 <br> and Rostislav Romanov(em_soft)
 
