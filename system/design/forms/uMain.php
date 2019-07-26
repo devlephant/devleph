@@ -322,7 +322,7 @@ class evfmMain {
         if (!defined('IS_APPLICATION_START')) return false;
 		application_restore();
 		c("fmMain")->toFront();
-        switch(messageBox(t('ds_on_exit'),t('Closing Development Studio'),MB_YESNOCANCEL)){
+        switch(messageBox(t('ds_on_exit'),t('Closing Dev-S'),MB_YESNOCANCEL)){
             case mrYes:{
 				
 				myUtils::stop();

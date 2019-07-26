@@ -1,7 +1,7 @@
 <?
 /*
   
-  Development Studio Delphi Form reader & writer
+  Dev-S Delphi Form reader & writer
   
   2017 ver 1.0.1
  

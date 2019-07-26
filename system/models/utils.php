@@ -235,7 +235,7 @@ class myUtils
            }
         }
        
-        c('fmMain')->caption = 'Development Studio '.DV_YEAR.' ['.basenameNoExt($projectFile).']';
+        c('fmMain')->caption = 'Dev-S '.DV_YEAR.' ['.basenameNoExt($projectFile).']';
         c('fmMain->statusBar')->caption = " ".replaceSr($projectFile);
        
         form_parent($form->self, c('fmMain->pDockMain')->self);

@@ -39,7 +39,7 @@ if (!EMULATE_DVS_EXE){
 	c('fmPHPEditor',1)->position = poDesigned;
 	myOptions::getXYWH('fmPHPEditor', c('fmPHPEditor',1), ['x'=>0,'y'=>0,'w'=>719,'h'=>563]);
 	c('fmPHPEditor',1)->windowState = myOptions::get('fmPHPEditor', 's', wsNormal);
-    $fmMain->caption = 'Development Studio'. DV_YEAR;
+    $fmMain->caption = 'Dev-S'. DV_YEAR;
     
     $fmMain->popupMenu = c('fmMain->editorPopup');
     $fmEdit->popupMenu = c('fmMain->editorPopup');

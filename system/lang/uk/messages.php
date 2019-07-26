@@ -50,7 +50,7 @@ $m["img_cnt_234"]= "Зображення";
 $m["img_cnt_5_0"]= "Зображень";
 $m["build_notify_ua"] = "				Увага
 	
-  Програми, створені на Development Studio, потребують встановлення засобів MSVC++
+  Програми, створені на Dev-S, потребують встановлення засобів MSVC++
 	
   https://www.microsoft.com/en-us/download/details.aspx?id=30679";
 $m["PrintScale"] = "Маштаб Друку";
@@ -751,7 +751,7 @@ $m["New project"] = "Новий проект";
 $m["Add new form"] = "Додати нову форму";
 $m["Remove selected form"] = "Видалити виділену форму";
 $m["Search files"] = "Пошук файлів";
-$m["Closing Development Studio"] = "Закриття Development Studio";
+$m["Closing Dev-S"] = "Закриття Dev-S";
 
 $m["new_form"] = "Нова Форма";
 $m["to_clone"] = "Клонувати";

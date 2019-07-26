@@ -43,7 +43,7 @@ if (!defined('IS_APPLICATION_START')){
 
 
     if (!EMULATE_DVS_EXE){
-		$APPLICATION->title = 'Development Studio '.DV_YEAR;
+		$APPLICATION->title = 'Dev-S '.DV_YEAR;
 		$dfm_dir = "\\design\\forms\\";
         $fmLogoin = TForm::loadFromFile("{$dfm_dir}uLogoin");
 		dsThemeDesign::Load();

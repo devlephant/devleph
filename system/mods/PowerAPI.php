@@ -2,7 +2,7 @@
 
 	/*
 	
-		PowerAPI class by Devel Snake for Development Studio
+		PowerAPI class by Devel Snake for Dev-S
 	
 	*/
 

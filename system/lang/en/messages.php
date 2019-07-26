@@ -24,7 +24,7 @@ $m["img_cnt_234"]= "Images";
 $m["img_cnt_5_0"]= "Images";
 $m["build_notify_ua"] = "				Warning
 
-  Programs, compiled on Development Studio, required a MSVC++ package to be installed
+  Programs, compiled on Dev-S, required a MSVC++ package to be installed
 	
   https://www.microsoft.com/en-us/download/details.aspx?id=30679";
 $m["desns_sc"] = "Designers:";

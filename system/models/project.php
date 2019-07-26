@@ -554,7 +554,7 @@ class myProject {
         
     }
     
-    // сохранить проект в формате .DVS - Development Studio Format
+    // сохранить проект в формате .DVS - Dev-S Format
     static function saveAsDVS($file,$chks=true){
         
         $file = replaceSl($file);
@@ -726,7 +726,7 @@ class myProject {
     static function projectDialogBtn(){
         
         $dlg = new TSaveDialog;
-        $dlg->filter = 'Development Studio Project (*.msppr)|*.msppr';
+        $dlg->filter = 'Dev-S Project (*.msppr)|*.msppr';
         
         if ($dlg->execute()){
             
@@ -888,7 +888,7 @@ class myProject {
     static function saveAsDVSDialog(){
         
         $dlg = new TSaveDialog;
-        $dlg->filter = 'Development Studio Visual Project (*.dvs)|*.dvs|DFM Form (*.dfm)|*.dfm';
+        $dlg->filter = 'Dev-S Visual Project (*.dvs)|*.dvs|DFM Form (*.dfm)|*.dfm';
         
         if ($dlg->execute()){
         
@@ -939,7 +939,7 @@ class myProject {
         
         $dlg = new TOpenDialog;
         $dlg->filter =
-        'Development Studio Files (*.dvs, *.msppr, *.dfm)|*.dvs;*.msppr;*.dfm|Development Studio Visual Project (*.dvs)|*.dvs|Development Studio Project (*.msppr)|*.msppr' .
+        'Dev-S Files (*.dvs, *.msppr, *.dfm)|*.dvs;*.msppr;*.dfm|Dev-S Visual Project (*.dvs)|*.dvs|Dev-S Project (*.msppr)|*.msppr' .
         '|Delphi Form (*.dfm)|*.dfm';
         
         if ($dlg->execute()){

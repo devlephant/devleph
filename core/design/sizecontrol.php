@@ -1,7 +1,7 @@
 <?
 /*
   
-  Development Studio Run-Time Design Library
+  Dev-S Run-Time Design Library
   
   2009.04 ver 0.2
   
