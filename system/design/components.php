@@ -50,7 +50,7 @@ if (EMULATE_DVS_EXE) return;
 	{
 		global $_c;
 		$res = [];
-		$alt = dirname(__FILE__)."/components/methods/$class.php");
+		$alt = dirname(__FILE__)."/components/methods/$class.php";
 		if(!gui_class_isset($class) && is_file($alt)) return include( $alt );
 		$methods = gui_class_methodList($class);
 		if( is_file($alt) ) include( $alt );
