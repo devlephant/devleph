@@ -2,8 +2,6 @@
 
 $result = [];
 
-
-
 $result[] = array(
                   'CAPTION'=>t('execute'),
                   'PROP'=>'execute()',

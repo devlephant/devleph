@@ -46,6 +46,27 @@ if (EMULATE_DVS_EXE) return;
     foreach (findFiles($dir_n . '/editor_types/','php') as $file)
         require $dir_n . '/editor_types/' . $file;
 	
+	function get_sorted_methods($class)
+	{
+		global $_c;
+		$res = [];
+		$alt = dirname(__FILE__)."/components/methods/$class.php");
+		if(!gui_class_isset($class) && is_file($alt)) return include( $alt );
+		$methods = gui_class_methodList($class);
+		if( is_file($alt) ) include( $alt );
+		if( empty($methods) ) return $res;
+		foreach( $methods as $method_name=>$parameters )
+		{
+			//if( empty($parameters) ) continue;
+			$res[] = [
+					  'CAPTION'=> t($method_name),
+					  'PROP'=> strtolower(substr($method_name, 0, 1)) . substr($method_name, 1),
+					  'INLINE'=> convertReturnType($class, $method_name, gui_methodrtype($class, $method_name)). $method_name . ' ' . str_replace(array('Boolean'), array('Bool'),  $parameters),
+					  ];
+		}
+		return $res;
+	}
+	
     ////// создаем панель компонентов ///////// 
 	/*AZ: Вырезал этот код ещё давно, т.к хлам по сути, можно не создавать в этом месте, а из dfm грузить*/
     global $fmComponents;
