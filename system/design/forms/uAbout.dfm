@@ -52,7 +52,7 @@ object fmAbout: TfmAbout
     Cursor = crHandPoint
     Caption = 'Andrew Ivanov'
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
+    Font.Color = 0
   end
   object label2: TLabel
     Left = 224
@@ -71,7 +71,7 @@ object fmAbout: TfmAbout
     Cursor = crHandPoint
     Caption = 'Andrew Zenin'
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
+    Font.Color = 0
   end
   object link4: TLabel
     Left = 432
@@ -81,7 +81,7 @@ object fmAbout: TfmAbout
     Cursor = crHandPoint
     Caption = 'Artem Ukolov'
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
+    Font.Color = 0
   end
   object shape1: TShape
     Left = 0
@@ -108,7 +108,7 @@ object fmAbout: TfmAbout
     Cursor = crHandPoint
     Caption = 'Manofjoe'
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
+    Font.Color = 0
   end
   object link8: TLabel
     Left = 171
@@ -145,7 +145,7 @@ object fmAbout: TfmAbout
     Cursor = crHandPoint
     Caption = 'Alexander Kobozev'
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
+    Font.Color = 0
   end
   object link1: TLabel
     Left = 314
@@ -155,7 +155,7 @@ object fmAbout: TfmAbout
     Cursor = crHandPoint
     Caption = 'Andrew Zenin'
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
+    Font.Color = 0
     Transparent = True
   end
   object label3: TLabel

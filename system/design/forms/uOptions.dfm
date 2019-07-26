@@ -326,7 +326,7 @@ object fmOptions: TfmOptions
           Top = 33
           Width = 96
           Height = 60
-          Brush.Color = clBlack
+          Brush.Color = 0
           Pen.Color = 12615808
           Pen.Width = 2
         end

@@ -46,7 +46,7 @@ object fmMain: TfmMain
     Align = alTop
     Color = clWhite
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
+    Font.Color = 0
     Font.Name = 'Segoe UI'
     Font.Style = []
 	BevelOuter = bvNone
@@ -168,7 +168,7 @@ object fmMain: TfmMain
       Cursor = crHandPoint
       Anchors = [akLeft, akTop, akRight]
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
+      Font.Color = 0
       Font.Name = 'Segoe UI'
       Font.Style = []
       ParentFont = False
@@ -189,7 +189,7 @@ object fmMain: TfmMain
     ParentFont = False
     TabOrder = 2
     Alignment = taLeftJustify
-    ColorOnEnter = clBlack
+    ColorOnEnter = 0
     FontColorOnEnter = clNone
     TabOnEnter = False
     MarginLeft = 0
