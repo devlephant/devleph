@@ -425,14 +425,32 @@ class TPanel extends TControl {
 class TDSPanel extends TPanel {}
 class TTransparentPanel extends TControl
 {
+Public function __construct($owner=nil,$init=true,$self=nil)
+ {
+	 parent::__construct($owner,$init,$self);
+	 if($init) $this->__initComponentInfo();
+ }
 Public Function __initComponentInfo()
  {
 	 if(!$GLOBALS['APP_DESIGN_MODE'])
-	 event_set($this->self, 'onHitTest', __CLASS__ . '::_StandartHitTest');
+	 {
+		event_set($this->self, 'onHitTest', __CLASS__ . '::_StandartHitTest');
+	 } else 
+	 {
+		event_set($this->self, 'onPaint', __CLASS__ . '::_StandartPaint');
+	 }
  }
 Public Static Function _StandartHitTest($self, &$result)
  {
 	 $result = -1;
+ }
+Public Static Function _StandartPaint($self)
+ {
+	 $self	 = _c($self);
+	 $self->Canvas->Brush->Style = bsClear;
+	 $self->Canvas->Pen->Style = 2;
+	 $self->Canvas->Pen->Color = clBlack;
+	 $self->Canvas->Rectangle(0,0,$self->Width,$self->Height);
  }
 }
 ?>
