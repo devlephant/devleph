@@ -1,10 +1,10 @@
 # Stats
-50% complete :heavy_check_mark:
-[❚❚❚❚❚⫴⫴⫴⫴⫴]
+60% complete :heavy_check_mark:
+[❚❚❚❚❚❚⫴⫴⫴⫴]
 
 Autors:<br>
 Dmitriy Zaycev(Dim-S), Andrew Zenin(cashacat, Andrewz, Leau), Dmitriy Alderti(gignorie), 
-<br>Alexander Kobozev([s]Alex, SAL), Vyascheslav Novikov(Manofjoe), Andrew Ivanov(Tawero)
+<br>Alexander Kobozev([s]Alex, SAL), Vyascheslav Novikov(manofjoe), Andrew Ivanov(tawero, suic1de)
 <br> and Rostislav Romanov(em_soft)
 
 <br>Working on  the:
