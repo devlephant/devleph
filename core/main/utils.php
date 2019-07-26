@@ -3,7 +3,7 @@
 
 /*
  
-    DevelStudio Utils Functions
+    Development Studio Utils Functions
     11.2017 ver 1.1
     
 */

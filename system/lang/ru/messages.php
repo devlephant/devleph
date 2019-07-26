@@ -73,7 +73,7 @@ $m["img_cnt_234"]= "Изображения";
 $m["img_cnt_5_0"]= "Изображений";
 $m["build_notify_ua"] = "				Внимание
 	
-  Программы, созданные на DevelStudio, требуют установки средств MSVC++
+  Программы, созданные на Development Studio, требуют установки средств MSVC++
 	
   https://www.microsoft.com/en-us/download/details.aspx?id=30679";
 $m["Wi-Fi Function"] = "Функция Wi-Fi";
@@ -642,7 +642,7 @@ $m["File \"%s\" already exists! You want to replace this file?"] = "Файл \"%
 $m["Project"] = "Проект";
 $m["New Project"] = "Новый проект";
 $m["Delete all files and folders in this path"] = "Удалить все файлы и папки по выбраному пути";
-$m["Show on Studio startup"] = "Показывать при старте Devel Studio";
+$m["Show on Studio startup"] = "Показывать при старте";
 $m["Path to file project *.msppr"] = "Путь к файлу проекта *.msppr";
 $m["Project file must have a \".msppr\" extension"] = "Файл проекта должен иметь расширение \".msppr\"";
 
@@ -821,7 +821,7 @@ $m["New project"] = "Новый проект";
 $m["Add new form"] = "Добавить новую форму";
 $m["Remove selected form"] = "Удалить выделенную форму";
 $m["Search files"] = "Поиск файлов";
-$m["Closing Devel Studio"] = "Закрытие Devel Studio";
+$m["Closing Development Studio"] = "Закрытие Development Studio";
 
 $m["Volume"] = "Громкость";
 $m["Panorama"] = "Панорама";

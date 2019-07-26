@@ -43,11 +43,11 @@ if (!defined('IS_APPLICATION_START')){
 
 
     if (!EMULATE_DVS_EXE){
-		$APPLICATION->title = 'Devel Studio '.DV_YEAR;
+		$APPLICATION->title = 'Development Studio '.DV_YEAR;
 		$dfm_dir = "\\design\\forms\\";
         $fmLogoin = TForm::loadFromFile("{$dfm_dir}uLogoin");
 		dsThemeDesign::Load();
-        c("fmLogoin->label9")->caption = "Devel Studio ". DV_YEAR ." v".DV_VERSION. " - ".DV_PREFIX;
+        c("fmLogoin->label9")->caption = "Version: " . DV_VERSION . " - " . DV_PREFIX;
 		c("fmLogoin->Image1")->loadFromFile(dsThemeDesign::$dir."/LogoIn.png");
 		c('fmLogoin->loadbar')->brushColor = dsThemeDesign::$ini['fmLogoin']['loadbar'];
 		fmLogoin::Progress(1);

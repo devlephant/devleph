@@ -206,7 +206,7 @@ class evalProject {
     
     static function openAsExe($project){
         
-        $fileExe = dirname(EXE_NAME).'/DS KE.exe';
+        $fileExe = dirname(EXE_NAME).'/Launcher.exe';
         
         if (file_exists($fileExe)){
             if (fileExt($project)!=='dvsexe')

@@ -50,7 +50,7 @@ $m["img_cnt_234"]= "Зображення";
 $m["img_cnt_5_0"]= "Зображень";
 $m["build_notify_ua"] = "				Увага
 	
-  Програми, створені на DevelStudio, потребують встановлення засобів MSVC++
+  Програми, створені на Development Studio, потребують встановлення засобів MSVC++
 	
   https://www.microsoft.com/en-us/download/details.aspx?id=30679";
 $m["PrintScale"] = "Маштаб Друку";
@@ -535,7 +535,7 @@ $m["File \"%s\" already exists! You want to replace this file?"] = "Файл \"%
 $m["Project"] = "Проект";
 $m["New Project"] = "Новий Проект";
 $m["Delete all files and folders in this path"] = "Видалити всі файли і папки за обраним шляхом";
-$m["Show on Studio startup"] = "Показувати при старті Devel Studio";
+$m["Show on Studio startup"] = "Показувати при старті";
 $m["Path to file project *.msppr"] = "Путь до файлу проекту *.msppr";
 $m["Project file must have a \".msppr\" extension"] = "Файл проекту повинен мати розширення \".msppr\"";
 $m["Inner Color"] = "Внутрішній Колір";
@@ -751,7 +751,7 @@ $m["New project"] = "Новий проект";
 $m["Add new form"] = "Додати нову форму";
 $m["Remove selected form"] = "Видалити виділену форму";
 $m["Search files"] = "Пошук файлів";
-$m["Closing Devel Studio"] = "Закриття Devel Studio";
+$m["Closing Development Studio"] = "Закриття Development Studio";
 
 $m["new_form"] = "Нова Форма";
 $m["to_clone"] = "Клонувати";

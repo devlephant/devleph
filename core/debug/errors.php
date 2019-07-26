@@ -2,7 +2,7 @@
 
 /*
  
-	DevelStudio Error Hooker
+	Development Studio Error Hooker
     
     2019.02 ver 1.4
     Main Class:

@@ -1,6 +1,6 @@
 <?
 /*
-    DevelStudio ConfigIni library
+    Development Studio ConfigIni library
     
     2009.04 v0.1
     

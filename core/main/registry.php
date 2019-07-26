@@ -3,7 +3,7 @@
 
 /*
  
-    DevelStudio WindowsRegistry
+    Development Studio WindowsRegistry
     
     2009.10 ver 1.0   
     

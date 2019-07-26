@@ -126,7 +126,7 @@ class TDownload extends __TNoVisual {
 	
 	
 	if (!trim($path)){
-	    $path = TEMP_DIR.'/devels/';
+	    $path = DOC_ROOT . '/download/';
 	}
         
         $url = trim($url);	

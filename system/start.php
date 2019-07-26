@@ -8,7 +8,7 @@
 	
 	
 	if (!EMULATE_DVS_EXE){
-		define('DS_USERDIR',winLocalPath(CSIDL_PERSONAL).'/DS KE/' );
+		define('DS_USERDIR',winLocalPath(CSIDL_PERSONAL).'/Dev-S/' );
 		$ini = new TIniFileEx(DS_USERDIR.'allconfig.ini');
 		$GLOBALS['ALL_CONFIG'] = $ini->arr;
 		define('DV_YEAR',		2019, 	 false );

@@ -8,14 +8,15 @@ class myProject {
 	private static $demosLoaded = false;
     private static $repclasses=[];
 	private static $reprules = [];
-    static function registerFileType(){
-		
-        registerFileType('dvs', dirname(EXE_NAME).'/DS KE.exe');
-        //registerFileType('upr', dirname(EXE_NAME).'/DS KE.exe');
-		registerFileType('msppr', dirname(EXE_NAME).'/DS KE.exe');
-        registerFileType('dspak', dirname(EXE_NAME).'/DS KE.exe');
-        registerFileType('zipdspak', dirname(EXE_NAME).'/DS KE.exe');
-        registerFileType('dvsexe', dirname(EXE_NAME).'/DS KE.exe');
+    static function registerFileType()
+	{
+		$file  = dirname(EXE_NAME).'/Launcher.exe';
+        registerFileType('dvs', $file);
+        //registerFileType('upr', $file);
+		registerFileType('msppr', $file);
+        registerFileType('dspak', $file);
+        registerFileType('zipdspak', $file);
+        registerFileType('dvsexe', $file);
 		writeRegKey(HKEY_LOCAL_MACHINE, "SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment\\dsApps", str_replace('/', DIRECTORY_SEPARATOR, DS_USERDIR), 0);
 		
     }
@@ -553,7 +554,7 @@ class myProject {
         
     }
     
-    // сохранить проект в формате .DVS - Devel Studio Format
+    // сохранить проект в формате .DVS - Development Studio Format
     static function saveAsDVS($file,$chks=true){
         
         $file = replaceSl($file);
@@ -725,7 +726,7 @@ class myProject {
     static function projectDialogBtn(){
         
         $dlg = new TSaveDialog;
-        $dlg->filter = 'DevelStudio Project (*.msppr)|*.msppr';
+        $dlg->filter = 'Development Studio Project (*.msppr)|*.msppr';
         
         if ($dlg->execute()){
             
@@ -825,7 +826,7 @@ class myProject {
         global $projectFile, $_FORMS, $myProject;
         if( !is_bool($setmainform) ) $setmainform = false;
         $dir = replaceSr(DS_USERDIR);
-	//(winLocalPath(CSIDL_PERSONAL)).'\\DevelStudio';
+	//(winLocalPath(CSIDL_PERSONAL)).'\\Dev-S';
         
         $i = 1;
         while (is_dir($dir.'\Project'.$i)) ++$i;
@@ -887,7 +888,7 @@ class myProject {
     static function saveAsDVSDialog(){
         
         $dlg = new TSaveDialog;
-        $dlg->filter = 'Devel Visual Project (*.dvs)|*.dvs|DFM Form (*.dfm)|*.dfm';
+        $dlg->filter = 'Development Studio Visual Project (*.dvs)|*.dvs|DFM Form (*.dfm)|*.dfm';
         
         if ($dlg->execute()){
         
@@ -938,7 +939,7 @@ class myProject {
         
         $dlg = new TOpenDialog;
         $dlg->filter =
-        'Devel Studio Files (*.dvs, *.msppr, *.dfm)|*.dvs;*.msppr;*.dfm|Devel Visual Project (*.dvs)|*.dvs|DevelStudio Project (*.msppr)|*.msppr' .
+        'Development Studio Files (*.dvs, *.msppr, *.dfm)|*.dvs;*.msppr;*.dfm|Development Studio Visual Project (*.dvs)|*.dvs|Development Studio Project (*.msppr)|*.msppr' .
         '|Delphi Form (*.dfm)|*.dfm';
         
         if ($dlg->execute()){

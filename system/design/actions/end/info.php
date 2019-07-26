@@ -1,7 +1,7 @@
 <?
 
 /*
-    DevelStudio actions
+    Development Studio Actions
 
     Dim-S Software (c) 2009
                                      Has created Haker
