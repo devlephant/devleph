@@ -1,6 +1,6 @@
-global $projectFile, $_PARAMS;
+global $projectFile;
 dir_create(dirname($projectFile).'/dvsexe/');
 $dvsexe = dirname($projectFile).'/dvsexe/'.basenameNoExt($projectFile).'.dvsexe';
 myProject::saveAsDVS($dvsexe);
-shell_execute(0,'open', $_PARAMS[0], '"'.$_PARAMS[1].'" "'.$dvsexe.'"','',SW_SHOW);
+shell_execute(0,'open', param_str(0), '"'.param_str(1).'" "'.$dvsexe.'"','',SW_SHOW);
 unset($dvsexe);
