@@ -1,1 +1,1 @@
-"DS Ke.exe" -debug
+"Launcher.exe" -debug
