@@ -58,7 +58,7 @@ object fmMain: TfmMain
     DesignSize = (
       726
       38)
-	object BevelLineBottom: TBevel
+	object BevelLineTop: TBevel
       Left = 0
       Top = 27
       Width = 718
@@ -614,6 +614,7 @@ object fmMain: TfmMain
     Width = 706
     Height = 715
     Align = alClient
+	BevelOuter = bvNone
     TabOrder = 8
     ExplicitWidth = 816
     object Splitter3: TSplitter
@@ -671,6 +672,14 @@ object fmMain: TfmMain
       ExplicitWidth = 814
 	  PopupMenu = _emptyPopup
     end
+  end
+  object BevelLineBottom: TBevel
+      Left = 0
+      Top = 710
+      Width = 718
+      Height = 2
+	  Align = alBottom
+      Shape = bsTopLine
   end
   object pDebugWindow: TDSPanel
     Left = 37
