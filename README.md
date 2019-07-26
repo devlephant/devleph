@@ -3,13 +3,13 @@
 [❚❚❚❚❚⫴⫴⫴⫴⫴]
 
 <br>Working on  the:
-<br><a href="https://github.com/KashaketCompany/DevelStudio-3.0-beta/projects/1">:wrench:Fixes</a>
-# DevelStudio-3.0-beta
+<br><a href="https://github.com/KashaketCompany/Dev-S/projects/1">:wrench:Fixes</a>
+# Dev-S
 >Commit №540 Filesize:
 <br>90Mb (zipped)
 <br>242Mb (on a disk)
-<br><a href="https://github.com/KashaketCompany/DevelStudio-3.0-beta/releases">Changelog</a>
-<br><a href="https://github.com/KashaketCompany/DevelStudio-Exts">Additional Extensions</a>
+<br><a href="https://github.com/KashaketCompany/Dev-S/releases">Changelog</a>
+<br><a href="https://github.com/KashaketCompany/Dev-S-Exts">Additional Extensions</a>
 <br><a href="https://vk.com/kashaket">Project Group(VK)</a>
 ## ShortScript
 PHP 5.6.40 (5.3.x - 5.6.x Support)
