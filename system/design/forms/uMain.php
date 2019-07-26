@@ -651,12 +651,12 @@ class ev_fmMain_c_search
 {
 	public static $is_search = false;
     static function onChange($self){
-		if(!$self::$is_search)
+		if(!self::$is_search)
 		{
 			myOptions::set("components","groups", implode(",",c("fmMain->list")->selectedList));
 			resetCompList();
 		}
-		if(trim(c($self)->text)){
+		if(trim(_c($self)->text)){
 			self::$is_search =  true;
 			searchCompList(c($self)->text);
 		}else{
