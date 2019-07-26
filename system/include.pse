@@ -5,9 +5,8 @@
 
 if (!defined('IS_APPLICATION_START')){
 	
-	$param = param_str(2);
-	if( isset($param) ){
-		if (fileExt($param)=='dvsexe') {
+	if( isset($_PARAMS[2]) ){
+		if (fileExt($_PARAMS[2])=='dvsexe') {
 			$GLOBALS['APPLICATION']->DefaultFont->name = 'Segoe UI';
 			define_ex('EMULATE_DVS_EXE', true);    
 		} else {
@@ -183,10 +182,9 @@ if (!defined('IS_APPLICATION_START')){
     
     if (!EMULATE_DVS_EXE){  
      
-        global $fmMain;
+        global $_PARAMS, $fmMain;
 		
-		$param = param_str(2);
-        if (myOptions::get('newProjectDialog', 'startup', true) && !file_exists(isset($param)? $param: '')) {
+        if (myOptions::get('newProjectDialog', 'startup', true) && !file_exists(isset($_PARAMS[2])? $_PARAMS[2]: '')) {
 			$GLOBALS['__newproject_close'] = true;
             myProject::newProjectDialog( true ); 
 		} else {
@@ -313,8 +311,8 @@ if (!defined('IS_APPLICATION_START')){
         ini_set('include_path', DOC_ROOT);
         chdir(DOC_ROOT);
         
-		$param = param_str(2);
-        $util = evalProject::open( str_ireplace('.dvsexe','.dvs', $param) );
+		
+        $util = evalProject::open( str_ireplace('.dvsexe','.dvs', $_PARAMS[2]) );
 		
         setMainForm(current($util->forms));
         current($util->forms)->show();
