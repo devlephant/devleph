@@ -40,8 +40,7 @@ function checkExt($file, $ext){
 // возвращает название файла без расширения
 function basenameNoExt($file){
     $file = basename($file);
-    $ext = fileExt($file);
-    return str_ireplace('.' . $ext, '', $file);
+    return str_ireplace('.' . fileExt($file), '', $file);
 }
 
 

@@ -32,14 +32,15 @@ class myProject {
         $fileName = isset($param)? replaceSl($param): '';
         
         if (file_exists($fileName)){
-
-            if (fileExt($fileName)=='dvs'){
+			
+			$ext = fileExt($fileName);
+            if ($ext=='dvs'){
                 if (!self::openFromDVS($fileName)){
                     self::open( $projectFile, true, true );
                 }
-            } elseif (fileExt($fileName)=='upr' or fileExt($fileName)=='msppr')
+            } elseif ($ext=='upr' or $ext=='msppr')
                 self::open($fileName, true, false);
-            elseif(fileExt($fileName)=='dspak' || fileExt($fileName)=='zipdspak') {
+            elseif($ext=='dspak' || $ext=='zipdspak') {
                 
                 if (class_exists('master_Packages'))
                     master_Packages::installPak($fileName);

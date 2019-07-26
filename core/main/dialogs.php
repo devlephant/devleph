@@ -44,12 +44,12 @@ $_c->setConstList(['fdScreen', 'fdPrinter', 'fdBoth']);
 
 function messageBox($text,$caption,$flag = MB_OK){
 	
-	return syncEx('application_messagebox', [$text, $caption, $flag]);
+	return application_messagebox($text, $caption, $flag);
 }
 
 function messageDlg($text, $type = mtInformation, $flag = MB_OK){
 	
-	return syncEx('message_dlg', [$text, $type, $flag]);
+	return message_dlg($text, $type, $flag);
 }
 
 function message($text, $mode = mtCustom){
