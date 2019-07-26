@@ -650,20 +650,39 @@ class ev_fmMain_c_type {
 class ev_fmMain_c_search
 {
 	public static $is_search = false;
-    static function onChange($self){
-		if(!self::$is_search)
-		{
-			myOptions::set("components","groups", implode(",",c("fmMain->list")->selectedList));
-			resetCompList();
-		}
-		if(trim(_c($self)->text)){
-			self::$is_search =  true;
-			searchCompList(c($self)->text);
-		}else{
-			self::$is_search = false;
-			resetCompList();
-		}
+	public static $changing;
+	private static $timerSelf = false;
+	private static $self;
+    static function onChange($self)
+	{
+		self::$changing = true;
+		self::$self = $self;
+		if( self::$timerSelf==false )
+			self::$timerSelf = Timer::SetInterval(__CLASS__ . '::doInterval', 250);
     }
+	static function doInterval($s=false)
+	{
+		if(self::$self == false) return;
+		if( self::$changing )
+		{
+			self::$changing = false;
+		} else {
+			if(!self::$is_search)
+			{
+				myOptions::set("components","groups", implode(",",c("fmMain->list")->selectedList));
+				resetCompList();
+			}
+			$text = _c(self::$self)->text;
+			if(trim($text)){
+				self::$is_search =  true;
+				searchCompList($text);
+			}else{
+				self::$is_search = false;
+				resetCompList();
+			}
+			self::$self = false;
+		}
+	}
 }
 class ev_fmMain_c_tcursor{
 	static function onClick($self){
