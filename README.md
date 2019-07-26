@@ -1,6 +1,7 @@
 # Stats
 50% complete :heavy_check_mark:
 [❚❚❚❚❚⫴⫴⫴⫴⫴]
+Dmitriy Zaycev(Dim-S), Andrew Zenin(cashacat, Andrewz, Leau), Dmitriy Chikatilov(gignorie), Alexander Kobozev([s]Alex, SAl), Vyascheslav Novikov(Manofjoe), Andrew Ivanov(Tawero) and Rostislav Romanov(em_soft)
 
 <br>Working on  the:
 <br><a href="https://github.com/KashaketCompany/Dev-S/projects/1">:wrench:Fixes</a>
@@ -23,8 +24,6 @@ Unicode partially support (will be full as soon as possible)
 
 Compatible SoulEngine Version Can Be Found -> <a href="https://github.com/KashaketCompany/soulengine">HERE</a>
 
-Autors: DS Community<br>Testing: Vyascheslav Novikov (Manofjoe), Alexander Kobozev ([s]Alex)
-
 Added debug launch via bat-cmd, if you don't like to use this way, just create link (*.lnk) with parameter -debug.
 <br>Note: This feature was added firstly in Dev-S 3.0.2 Beta
 
@@ -38,8 +37,6 @@ For the full debug, you can create file 'errors.log' near Launcher.exe, all erro
 <br>Просто скачайте, распакуйте это, и запустите Launcher.exe для использования :)
 
 Совместимая версия SoulEngine может быть найдена -> <a href="https://github.com/KashaketCompany/soulengine">Здесь</a>
-
-Авторы: Сообщество Dev-S <BR>Тестировщики: Вячеслав Новиков (Manofjoe), Александр Кобозев ([s]Alex)
 
 Добавлен запуск в режиме отладки через bat (командную строку), если вам не нравится так запускать студию, просто создайте файл ссылки (*.lnk) на DS CU с параметром -debug
 <br>Заметьте: эта особенность впервые была добавлена в Dev-S 3.0.2 Beta
