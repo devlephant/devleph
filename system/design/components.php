@@ -46,6 +46,58 @@ if (EMULATE_DVS_EXE) return;
     foreach (findFiles($dir_n . '/editor_types/','php') as $file)
         require $dir_n . '/editor_types/' . $file;
 	
+	function convertReturnType($class, $method, $type)
+	{
+		$res = '';
+		switch($type)
+		{
+			case -1:
+			{	$res = 'void'; 	}
+			break;
+			case tkUnknown: 
+			{	$res = 'void';	}
+			break;
+			case tkInteger:
+			case tkInt64:
+			{	$res='Integer';	}
+			break;
+			case tkChar:
+			case tkWChar:
+			case tkString:
+			case tkLString:
+			case tkWString:
+			case tkUstring:
+			{	$res='String';	}
+			break;
+			case tkFloat:
+			{	$res = 'Float';	}
+			break;
+			case tkPointer:
+			{	$res = 'Pointer';	}
+			break;
+			case tkClass:
+			{	$res = gui_methodrtype($class, $method, true); }
+			break;
+			DEFAULT:
+			{	return 'void ';	}
+			break;
+		}
+					//required further information
+			/*
+			  tkClass
+			  tkClassRef
+			  
+			  tkSet
+			  tkEnumeration:
+			  tkMethod
+			  tkArray
+			  tkRecord
+			  tkInterface
+			  
+			  tkProcedure
+			*/
+		return $res . ' ';
+	}
 	function get_sorted_methods($class)
 	{
 		global $_c;
