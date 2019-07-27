@@ -278,38 +278,6 @@ $_c->fsItalic    = 'fsItalic';
 $_c->fsUnderline = 'fsUnderline';
 $_c->fsStrikeOut = 'fsStrikeOut';
 
-class TCanvasFont extends TFont {
-    
-    
-    function prop($prop){
-	
-	return rtti_get($this, $prop);
-    }
-	
-	function set_name($name){rtti_set($this,'name',$name);}
-	function set_size($size){rtti_set($this,'size',$size);}
-	function set_color($color){rtti_set($this,'color',$color);}
-	function set_charset($charset){rtti_set($this,'charset',$charset);}
-	function set_style($style){
-	    
-	    if (is_array($style)) $style = implode(',', $style);
-	    rtti_set($this,'style',$style);
-	}
-	
-	function get_name(){	return $this->prop('name'); }
-	function get_color(){	return $this->prop('color'); }
-	function get_size(){	return $this->prop('size'); }
-	function get_charset(){	return $this->prop('charset'); }
-	function get_style(){
-	    
-	    $result = $this->prop('style');
-	    $result = explode(',',$result);
-	    foreach ($result as $x=>$e)
-		$result[$x] = trim($e);
-	    return $result;
-	}
-}
-
 class TControlCanvas extends TCanvas 
 {
     function __construct($owner=nil,$init=true,$self=nil)
