@@ -263,7 +263,7 @@ $Lab->x = $Del->x + 14;
 $Lab->y = 3;
 $Lab->w = 40;
 $Lab->h = 28;
-$Lab->Caption = "Delete\r\n Point";
+$Lab->Caption = "Delete"._BR_." Point";
 
 
 $Pos = new TLabel;

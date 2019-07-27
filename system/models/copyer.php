@@ -268,7 +268,7 @@ class myCopyer {
     function isPHPFunction($code){
         if( is_array($code) ) return false;
         $code = trim($code);
-        $lines = explode("\n", $code);
+        $lines = explode(_BR_, $code);
         
         return preg_match('/^function\w([a-z0-9A-Z\_]+)/i',$lines[0]);
     }
@@ -276,7 +276,7 @@ class myCopyer {
     function getFunction($code){
         
         $code = trim($code);
-        $lines = explode("\n", $code);
+        $lines = explode(_BR_, $code);
         $line_0 = ltrim( str_replace('function ','',$lines[0]) );
         
         $result['name']   = rtrim(substr($line_0, 0, strpos($line_0,'(')));

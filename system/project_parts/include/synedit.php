@@ -144,9 +144,12 @@ class TSynCompletionProposal extends TControl {
     }
     
     public function get_visible(){
-	return (syncomplete_visible($this->self));
+		return $this->Form->Visible;
     }
-    
+    public function set_visible($v)
+	{
+		$this->Form->Visible = $v;
+	}
     public function get_insert(){
         return $this->insertList->get_text();
     }

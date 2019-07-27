@@ -306,31 +306,7 @@ class __exEvents {
     }
     
     static function getEvent($self, $name){
-        
-        
-        if ((defined('EMULATE_DVS_EXE') && EMULATE_DVS_EXE===true) || defined('APP_DESIGN_MODE')){
             return $GLOBALS['__exEvents'][$self]['events'][strtolower($name)];
-        }
-        else {
-            return ___getEvent($self, strtolower($name));
-        }
-    }
-    
-    static function callFileName($_self, $_eventName){
-            
-        $_file = $GLOBALS['__exEvents'][$_self]['obj_name'].'.'.$_eventName;
-        $_file = str_replace('->','.',$_file);
-        $_file = dirname(replaceSl(EXE_NAME)) . '/debug/' . $_file . '.php';
-        
-        if (!is_dir(dirname($_file)))
-            mkdir(dirname($_file), 0777, true);
-        
-        if (!file_exists($_file) ||
-            (md5('<?php ' . self::getEvent($_self,$_eventName))!==md5_file($_file))){
-            file_put_contents($_file, ('<?php '.self::getEvent($_self,$_eventName)."\n"));
-        }        
-        
-        return $_file;
     }
     
     static function callCode($_self, $_eventName){
@@ -503,7 +479,7 @@ class __exEvents {
     
     static function OnActivate($self){ self::callCode($self, __FUNCTION__); }
     static function OnDeactivate($self){ self::callCode($self, __FUNCTION__); }
-    static function OnChromiumLibLoad($self){ self::callCode($self, __FUNCTION__); }
+    static function onChromiumLibLoad($self){ self::callCode($self, __FUNCTION__); }
     
     static function OnStartTrack($self){ self::callCode($self, __FUNCTION__); }
     static function OnEndTrack($self){ self::callCode($self, __FUNCTION__); }

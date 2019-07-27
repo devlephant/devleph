@@ -87,21 +87,21 @@ class myCodegen
 
 	public function doMethod($event, $class, $code)
 	{
-		$result = "static function " . $event . "(" . DSApi::getEventParams($event, $class) . "){\r\n        eval(enc_getValue(\"__incCode\"));";
-		$result .= "\n";
+		$result = "static function " . $event . "(" . DSApi::getEventParams($event, $class) . "){"._BR_."        eval(enc_getValue(\"__incCode\"));";
+		$result .= _BR_;
 		$result .= $code;
-		$result .= "\n";
-		$result .= "}\n";
+		$result .= _BR_;
+		$result .= "}"._BR_;
 		return $result;
 	}
 
 	public function doClass($name, $form_name)
 	{
 		if (!$name) {
-			return "class ___ev_" . $form_name . "{\n";
+			return "class ___ev_" . $form_name . "{" . _BR_;
 		}
 		else {
-			return "class ___ev_" . $form_name . "_" . $name . "{\n";
+			return "class ___ev_" . $form_name . "_" . $name . "{" ._BR_;
 		}
 	}
 
@@ -114,8 +114,8 @@ class myCodegen
 				$result .= self::doMethod($event, $class, $code);
 			}
 
-			$result .= "\n";
-			$result .= "}\n";
+			$result .= _BR_;
+			$result .= "}"._BR_;
 		}
 
 		return $result;

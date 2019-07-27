@@ -158,11 +158,11 @@ class myCompile
 					if(isset($GLOBALS['MODULES_INFO'][$mod]) && ($a = self::checkisext($GLOBALS['MODULES_INFO'][$mod])) && $a)
 					{
 						$str .=  ((isset($GLOBALS['MODULES_INFO'][$a]) && in_array(' Z', $GLOBALS['MODULES_INFO'][$a]))?
-								'zend_extension':'extension=') . $a . "\n";
+								'zend_extension':'extension=') . $a . _BR_;
 						$already[] = $a;
 					}
 					$str .= ((isset($GLOBALS['MODULES_INFO'][$mod]) && in_array(' Z', $GLOBALS['MODULES_INFO'][$mod]))?
-							'zend_extension':'extension=') . $mod . "\n";
+							'zend_extension':'extension=') . $mod . _BR_;
 				}
 			}
 			

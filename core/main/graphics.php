@@ -246,6 +246,23 @@ class TCanvas extends TControl
 		return ceil($this->Font->Orientation / 10);
 	}
 	
+	function TextOutRope($text,$steps,$Right=False)
+	{
+		$n = $this->Brush->Style;
+		$this->Brush->Style = 1;
+		$textW = $this->TextWidth($text);
+		$textH = $this->TextHeight($text);
+		$Margin = $textW + (ceil($textH/10)*floor($textW/10)-1);
+		$steps=is_array($steps)?count($steps):(int)$steps;
+		for($iter=1;$iter-1<$steps;$iter++)
+		foreach([150,15] as $int)
+		{	
+			$this->TextOutAngle($iter*$Margin*2,$iter*$Margin*2, $int, $text);
+			$this->TextOutAngle($iter*$Margin*2 - $Margin,$iter*$Margin*2 - $Margin,-$int,$text);
+		}
+		$this->Brush->Style = $n;
+	}
+	
     function writeBitmap(TBitmap $bitmap){
 	
 		canvas_writeBitmap($this->self, $bitmap->self);

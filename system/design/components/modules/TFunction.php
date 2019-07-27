@@ -73,9 +73,9 @@ class TFunction extends __TNoVisual {
 		$code.= $eventList['onexecute'];
 	    else
 		$code.= $eventList;
-	    $code .= "\n";
+	    $code .= _BR_;
 		
-	    $code .= "\n".';__exEvents::freeEventInfo();';
+	    $code .= _BR_.';__exEvents::freeEventInfo();';
 	    $code.= _BR_.'}';
 	    
 	    
@@ -113,12 +113,12 @@ class TFunction extends __TNoVisual {
 	    else	
 		$code .= '$self = (int)USER_FUNCTION_SELF_'.strtolower($name).';';
 	    
-	    $code.= ' __exEvents::setEventInfo($self, "onexecute");' . "\r\n";
+	    $code.= ' __exEvents::setEventInfo($self, "onexecute");' . _BR_;
 	    if (is_array($eventList))
 		$code.= $eventList['onexecute'];
 	    else
 		$code.= $eventList;
-	    $code .= "\n".'
+	    $code .= _BR_.'
 		__exEvents::freeEventInfo();
 	    }';
 	    

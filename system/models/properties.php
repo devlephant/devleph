@@ -712,9 +712,9 @@ class myProperties {
         $edt->buttonWidth = 19;
 
 		if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
-			$edt->hint = $param['CAPTION']."\r\n[->{$param['REAL_PROP']}]";
+			$edt->hint = $param['CAPTION']._BR_."[->{$param['REAL_PROP']}]";
 		else
-			$edt->hint = $param['CAPTION']."\r\n[->{$param['PROP']}]";
+			$edt->hint = $param['CAPTION']._BR_."[->{$param['PROP']}]";
         $edt->showHint = true;
         $edt->onButtonClick = 'myProperties::VSButtonClick';
         
@@ -739,9 +739,9 @@ class myProperties {
         $edt->ButtonCaption = '...';
         $edt->buttonWidth = 19;
         if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
-			$edt->hint = $param['CAPTION']."\r\n[->{$param['REAL_PROP']}]";
+			$edt->hint = $param['CAPTION']._BR_."[->{$param['REAL_PROP']}]";
 		else
-			$edt->hint = $param['CAPTION']."\r\n[->{$param['PROP']}]";
+			$edt->hint = $param['CAPTION']._BR_."[->{$param['PROP']}]";
         $edt->showHint = true;
         //$edt->readOnly = true;
         $edt->onButtonClick = 'myProperties::VSMenuClick';
@@ -767,9 +767,9 @@ class myProperties {
         $edt->ButtonCaption = '...';
         $edt->buttonWidth = 19;
         if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
-			$edt->hint = $param['CAPTION']."\r\n[->{$param['REAL_PROP']}]";
+			$edt->hint = $param['CAPTION']._BR_."[->{$param['REAL_PROP']}]";
 		else
-			$edt->hint = $param['CAPTION']."\r\n[->{$param['PROP']}]";
+			$edt->hint = $param['CAPTION']._BR_."[->{$param['PROP']}]";
         $edt->showHint = true;
         $edt->value  = '('.t('Properties').')';
         
@@ -795,9 +795,9 @@ class myProperties {
         $edt->ButtonCaption = '...';
         $edt->buttonWidth = 19;
         if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
-			$edt->hint = $param['CAPTION']."\r\n[->{$param['REAL_PROP']}]";
+			$edt->hint = $param['CAPTION']._BR_."[->{$param['REAL_PROP']}]";
 		else
-			$edt->hint = $param['CAPTION']."\r\n[->{$param['PROP']}]";
+			$edt->hint = $param['CAPTION']._BR_."[->{$param['PROP']}]";
         $edt->showHint = true;
         
         $edt->onButtonClick = 'myProperties::VSColorClick';
@@ -821,9 +821,9 @@ class myProperties {
         $edt->ButtonCaption = '...';
         $edt->buttonWidth = 19;
         if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
-			$edt->hint = $param['CAPTION']."\r\n[->{$param['REAL_PROP']}]";
+			$edt->hint = $param['CAPTION']._BR_."[->{$param['REAL_PROP']}]";
 		else
-			$edt->hint = $param['CAPTION']."\r\n[->{$param['PROP']}]";
+			$edt->hint = $param['CAPTION']._BR_."[->{$param['PROP']}]";
         $edt->showHint = true;
         
         $edt->onButtonClick = 'myProperties::VSTIBClick';
@@ -844,9 +844,9 @@ class myProperties {
 			$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
 		}
         if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
-			$edt->hint = $param['CAPTION']."\r\n[->{$param['REAL_PROP']}]";
+			$edt->hint = $param['CAPTION']._BR_."[->{$param['REAL_PROP']}]";
 		else
-			$edt->hint = $param['CAPTION']."\r\n[->{$param['PROP']}]";
+			$edt->hint = $param['CAPTION']._BR_."[->{$param['PROP']}]";
         $edt->showHint    = true;
         $edt->buttonWidth = 19;
         $edt->value       = '('. t('Font options') .')';
@@ -872,9 +872,9 @@ class myProperties {
 		}
         
         if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
-			$edt->hint = $param['CAPTION']."\r\n[->{$param['REAL_PROP']}]";
+			$edt->hint = $param['CAPTION']._BR_."[->{$param['REAL_PROP']}]";
 		else
-			$edt->hint = $param['CAPTION']."\r\n[->{$param['PROP']}]";
+			$edt->hint = $param['CAPTION']._BR_."[->{$param['PROP']}]";
         $edt->showHint    = true;
         $edt->buttonWidth = 19;
         $edt->value       = '('. t('Font options') .')';
@@ -908,9 +908,9 @@ class myProperties {
         }
         
         if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
-			$edt->hint = $param['CAPTION']."\r\n[->{$param['REAL_PROP']}]";
+			$edt->hint = $param['CAPTION']._BR_."[->{$param['REAL_PROP']}]";
 		else
-			$edt->hint = $param['CAPTION']."\r\n[->{$param['PROP']}]";
+			$edt->hint = $param['CAPTION']._BR_."[->{$param['PROP']}]";
         $edt->showHint = true;
         
         $this->params[$class][$edt->self] =& $param;
@@ -934,9 +934,9 @@ class myProperties {
         $edt->ButtonCaption = '...';
         $edt->buttonWidth = 19;
         if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
-			$edt->hint = $param['CAPTION']."\r\n[->{$param['REAL_PROP']}]";
+			$edt->hint = $param['CAPTION']._BR_."[->{$param['REAL_PROP']}]";
 		else
-			$edt->hint = $param['CAPTION']."\r\n[->{$param['PROP']}]";
+			$edt->hint = $param['CAPTION']._BR_."[->{$param['PROP']}]";
         $edt->showHint = true;
         $edt->onButtonClick = 'myProperties::VSButtonClick';
         
@@ -961,9 +961,9 @@ class myProperties {
         $edt->ButtonCaption = '...';
         $edt->buttonWidth = 19;
         if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
-			$edt->hint = $param['CAPTION']."\r\n[->{$param['REAL_PROP']}]";
+			$edt->hint = $param['CAPTION']._BR_."[->{$param['REAL_PROP']}]";
 		else
-			$edt->hint = $param['CAPTION']."\r\n[->{$param['PROP']}]";
+			$edt->hint = $param['CAPTION']._BR_."[->{$param['PROP']}]";
         $edt->showHint = true;
         $edt->value       = '('. t('None') .')';
         
@@ -992,9 +992,9 @@ class myProperties {
             $edt->text = $param['VALUES'];
         
         if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
-			$edt->hint = $param['CAPTION']."\r\n[->{$param['REAL_PROP']}]";
+			$edt->hint = $param['CAPTION']._BR_."[->{$param['REAL_PROP']}]";
 		else
-			$edt->hint = $param['CAPTION']."\r\n[->{$param['PROP']}]";
+			$edt->hint = $param['CAPTION']._BR_."[->{$param['PROP']}]";
         $edt->showHint = true;
 		
         //_c($tmp)->onButtonClick = 'myProperties::VSButtonClick';
@@ -1033,9 +1033,9 @@ class myProperties {
 			$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
 		}
         if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
-			$edt->hint = $param['CAPTION']."\r\n[->{$param['REAL_PROP']}]";
+			$edt->hint = $param['CAPTION']._BR_."[->{$param['REAL_PROP']}]";
 		else
-			$edt->hint = $param['CAPTION']."\r\n[->{$param['PROP']}]";
+			$edt->hint = $param['CAPTION']._BR_."[->{$param['PROP']}]";
         $edt->showHint    = true;
         $edt->buttonWidth = 19;
         $edt->ButtonCaption = '...';
@@ -1061,9 +1061,9 @@ class myProperties {
 			$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
 		}
         if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
-			$edt->hint = $param['CAPTION']."\r\n[->{$param['REAL_PROP']}]";
+			$edt->hint = $param['CAPTION']._BR_."[->{$param['REAL_PROP']}]";
 		else
-			$edt->hint = $param['CAPTION']."\r\n[->{$param['PROP']}]";
+			$edt->hint = $param['CAPTION']._BR_."[->{$param['PROP']}]";
         $edt->showHint = true;
 
         $this->params[$class][$edt->self] =& $param;
@@ -1089,9 +1089,9 @@ class myProperties {
         $edt->TrueText = t('Yes');
         $edt->FalseText = t('No');
         if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
-			$edt->hint = $param['CAPTION']."\r\n[->{$param['REAL_PROP']}]";
+			$edt->hint = $param['CAPTION']._BR_."[->{$param['REAL_PROP']}]";
 		else
-			$edt->hint = $param['CAPTION']."\r\n[->{$param['PROP']}]";
+			$edt->hint = $param['CAPTION']._BR_."[->{$param['PROP']}]";
         $edt->showHint = true;
         
         //_c($tmp)->onButtonClick = 'myProperties::VSButtonClick';
@@ -1114,9 +1114,9 @@ class myProperties {
 		}
         
        if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
-			$edt->hint = $param['CAPTION']."\r\n[->{$param['REAL_PROP']}]";
+			$edt->hint = $param['CAPTION']._BR_."[->{$param['REAL_PROP']}]";
 		else
-			$edt->hint = $param['CAPTION']."\r\n[->{$param['PROP']}]";;
+			$edt->hint = $param['CAPTION']._BR_."[->{$param['PROP']}]";;
         
         $edt->showHint    = true;
         $edt->buttonWidth = 19;

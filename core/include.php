@@ -1,6 +1,6 @@
 <?
 
-function _empty(){}
+function _empty(...$v){return null;}
 function replaceSl($s){return str_replace("\\","/",$s);}
 function replaceSr($s){return str_replace("/","\\",$s);}
 
@@ -59,7 +59,7 @@ function obsafe_print_r($var, $return = false, $html = false, $level = 0) {
 		$output = $var?'1':'0';
 	}elseif( is_array($var) or is_object($var) ) {
 		$spaces = $html ? "&nbsp;" : " ";
-		$newline = $html ? "<br />" : "\n";
+		$newline = $html ? "<br />" : _BR_;
 		$spaces = str_repeat($spaces, 4);
 		$tlevel = str_repeat($spaces, $level);
 		$tabs = $spaces;
@@ -67,9 +67,9 @@ function obsafe_print_r($var, $return = false, $html = false, $level = 0) {
 			$tabs .= $spaces;
 		}
 		if (is_array($var)) {
-			$title = "Array\r\n{$tlevel}(";
+			$title = "Array" . _BR_ . "{$tlevel}(";
 		} elseif (is_object($var)) {
-			$title = get_class($var)." Object\r\n{$tlevel}(";
+			$title = get_class($var)." Object" . _BR_ . "{$tlevel}(";
 		}
 		$output = $title . $newline;
 		foreach($var as $key => $value) {

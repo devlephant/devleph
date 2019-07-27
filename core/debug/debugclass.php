@@ -37,19 +37,19 @@ class DebugClass {
 class ThreadDebugClass extends DebugClass {
 	
 	public function __set($name, $value){
-		throw new DebugClassException(t('Change the GUI in the thread forbidden - SET "%s"->"%s" = "%s".'."\r\n".'.:: Please, use \'c()\' function ::.', $this->nameParam, $name, $value), E_USER_ERROR);
+		throw new DebugClassException(t('Change the GUI in the thread forbidden - SET "%s"->"%s" = "%s".'._BR_.'.:: Please, use \'c()\' function ::.', $this->nameParam, $name, $value), E_USER_ERROR);
 	}
 	
 	public function __get($name){
-		throw new DebugClassException(t('Access GUI in the thread forbidden - GET "%s"->"%s"'."\r\n".'.:: Please, use \'c()\' function ::.', $this->nameParam, $name), E_USER_ERROR);
+		throw new DebugClassException(t('Access GUI in the thread forbidden - GET "%s"->"%s"'._BR_.'.:: Please, use \'c()\' function ::.', $this->nameParam, $name), E_USER_ERROR);
 	}
 	
 	public function __call($name, $args){
-		throw new DebugClassException(t('Access the GUI in the thread forbidden - CALL "%s"->"%s()"'."\r\n".'.:: Please, use \'c()\' function ::.', $this->nameParam, $name), E_USER_ERROR);
+		throw new DebugClassException(t('Access the GUI in the thread forbidden - CALL "%s"->"%s()"'._BR_.'.:: Please, use \'c()\' function ::.', $this->nameParam, $name), E_USER_ERROR);
 	}
 	
 	public function __toString(){
-		throw new DebugClassException(t('Access the GUI in the thread forbidden -  CONVERT (string) "%s"'."\r\n".'.:: Please, use \'c()\' function ::.', $this->nameParam), E_USER_ERROR);
+		throw new DebugClassException(t('Access the GUI in the thread forbidden -  CONVERT (string) "%s"'._BR_.'.:: Please, use \'c()\' function ::.', $this->nameParam), E_USER_ERROR);
 	}
 	public function valid(){
 		return false;

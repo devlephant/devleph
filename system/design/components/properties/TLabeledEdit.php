@@ -38,8 +38,7 @@ $result[] = array(
                   );
 _addfont($result);
 
-foreach( explode("\n", gui_class_propList('TLabeledEdit', 18)) as $prop ) {
-$prop = str_replace(array("\r", "\n"), '', trim($prop));
+foreach( explode(_BR_, gui_class_propList('TLabeledEdit', 18)) as $prop ) {
 if(trim($prop) and $prop!=='Name' and $prop!=='HelpKeyword')
 $result[] = array(
                   'CAPTION'=>t($prop.'_caption'),

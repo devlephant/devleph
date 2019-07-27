@@ -31,7 +31,7 @@ class myComplete {
         $synComplete = c('fmPHPEditor->synComplete');
         $synHint     = c('fmPHPEditor->synHint');
         $phpMemo     = c('fmPHPEditor->memo');
-        $phpMemo->onKeyDown = 'myComplete::memoKeyUp';
+        $phpMemo->onKeyUp = 'myComplete::memoKeyUp';
         $phpMemo->onKeyPress= 'myComplete::memoKeyPress';
         
         $synComplete->onClose='myComplete::synClose';
@@ -63,7 +63,6 @@ class myComplete {
         BlockData::sortList($completeList, 'SORT');
         
 		fmLogoin::Progress(43,"Code Editor Loaded");
-        Timer::setInterval('myComplete::checkInline', 100);
     }
     
     static function saveCode(){
@@ -166,7 +165,8 @@ class myComplete {
 		return false;
 	}
     static function memoKeyPress($self, &$key){
-
+		global $phpMemo, $synComplete, $synHint;
+		$synComplete->active(false);
 		$chars = array(
 		'(' => ')',
 		'{' => '}',
@@ -200,7 +200,7 @@ class myComplete {
 			}
 		}
 		}
-        global $phpMemo, $synComplete, $synHint;
+        
 		$phpMemo->onChange = 'myComplete::memoChange';
         unset($GLOBALS['__find']);
         unset($GLOBALS['__findIndex']);
@@ -224,7 +224,7 @@ class myComplete {
         $lineText = $phpMemo->lineText;
         $result = self::findComplete();    
             
-        if (is_array($result)){
+        if (is_array($result)&&!empty($result)){
 			if ($result['TYPE']=='HINT'){
                 if (!$showHint){
                 
@@ -279,6 +279,10 @@ class myComplete {
         if (!$showComplete){
             $showComplete = true;
             setTimeout(1, 'myComplete::_memoChange(); global $showComplete; $showComplete = false;');
+        }elseif ($synComplete->get_empty())
+		{
+			$synComplete->active(false);
+			$synComplete->visible = false;
         }
     }
     
@@ -369,19 +373,6 @@ class myComplete {
                              );
         
         return $text;
-    }
-    
-    static function checkInline(){
-        
-        if( !c('fmPHPEditor') ) return;
-        if (!c('fmPHPEditor')->visible) return;
-        
-        $synComplete = c('fmPHPEditor->synComplete',1);
-        
-        //global $showComplete, $synComplete;
-        if ($synComplete->get_empty()){
-                $synComplete->active(false);
-        }
     }
     
     static function checkSyntax() {

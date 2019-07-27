@@ -6,7 +6,7 @@ class TLinkLabel extends TLabel {
     
     
     static function fontToArr(TFont $font){
-        
+		
         $arr['size'] = $font->size;
         $arr['color']= $font->color;
         $arr['style']= $font->style;
@@ -17,13 +17,9 @@ class TLinkLabel extends TLabel {
     
     static function arrToFont(TFont $font, $arr){
         
-        $font->size = $arr['size'];
-        $font->color= $arr['color'];
-        $font->style= $arr['style'];
-        $font->name = $arr['name'];
+        list($font->size, $font->color, $font->style, $font->name) = $arr;
     }
     function set_onMouseEnter($v){
-	
 	event_set($this->self, 'onMouseEnter', 'TLinkLabel::doMouseEnter');
 	$this->fMouseEnter = $v;
     }

@@ -361,8 +361,8 @@ class Mail
         // если альтернативного текста нет, то эта часть письма будет состоять лишь из одной части
         if (!strlen($alternative_text))
         {
-            $body = "Content-Type: ".$text_html."; charset=".$this->charset."\r\n";
-            $body.="Content-Transfer-Encoding: ".$this->ctencoding."\r\n\r\n";
+            $body = "Content-Type: ".$text_html."; charset=".$this->charset._BR_;
+            $body.="Content-Transfer-Encoding: ".$this->ctencoding._BR_._BR_;
             $body.=$text;
         }
         // а если есть альтернаивный текст и это html
@@ -370,17 +370,17 @@ class Mail
         elseif (strlen($alternative_text) and $text_html == 'text/html')
         {
             // начинаем с заголовка в котором указываем что будет несколько частей письма, отображать нужно лишно одно, которое понимает почтовик
-            $body = "Content-Type: multipart/alternative; boundary=ALT-".$this->boundary."\r\n\r\n";
+            $body = "Content-Type: multipart/alternative; boundary=ALT-".$this->boundary._BR_._BR_;
 
-            $body.="--ALT-".$this->boundary."\r\n"; // теперь добавляем разделитель
-            $body.="Content-Type: text/plain; charset=".$this->charset."\r\n"; // заголовок что сейчас будет текстовая версия
-            $body.="Content-Transfer-Encoding: ".$this->ctencoding."\r\n\r\n"; // кодирование 
-            $body.=$alternative_text."\r\n"; // и теперь сам текст
+            $body.="--ALT-".$this->boundary._BR_; // теперь добавляем разделитель
+            $body.="Content-Type: text/plain; charset=".$this->charset._BR_; // заголовок что сейчас будет текстовая версия
+            $body.="Content-Transfer-Encoding: ".$this->ctencoding._BR_._BR_; // кодирование 
+            $body.=$alternative_text._BR_; // и теперь сам текст
 
-            $body.="--ALT-".$this->boundary."\r\n"; // Теперь снова разделитель и пойдет html версия письма
-            $body.="Content-Type: text/html; charset=".$this->charset."\r\n"; // заголовок для html версии
-            $body.="Content-Transfer-Encoding: ".$this->ctencoding."\r\n\r\n"; // кодирование
-            $body.=$text."\r\n"; // текст
+            $body.="--ALT-".$this->boundary._BR_; // Теперь снова разделитель и пойдет html версия письма
+            $body.="Content-Type: text/html; charset=".$this->charset._BR_; // заголовок для html версии
+            $body.="Content-Transfer-Encoding: ".$this->ctencoding._BR_._BR_; // кодирование
+            $body.=$text._BR_; // текст
 
             $body.="--ALT-".$this->boundary."--"; // И теперь закрывающий разделитель, показывает, что все части закончились
         }
@@ -444,19 +444,19 @@ class Mail
 
         // начинаем формировать очередную часть письма
         // создаем заголовок для этой части, указываем mime файла и имя
-        $body = "Content-Type: ".$filetype."; name=\"$charset_name\"\r\n";
+        $body = "Content-Type: ".$filetype."; name=\"$charset_name\""._BR_;
 
-        $body.="Content-Transfer-Encoding: base64\r\n";
+        $body.="Content-Transfer-Encoding: base64"._BR_;
 
         if ($disposition == 'attachment') // если файл является просто прицепленным
         {
 
-            $body.="Content-Disposition: attachment; filename=\"$charset_name\"\r\n"; // добавляем заголовок, что файл прикреплен к письму
+            $body.="Content-Disposition: attachment; filename=\"$charset_name\""._BR_; // добавляем заголовок, что файл прикреплен к письму
         }
 
-        $body.="Content-ID: <".$basename.">\r\n"; // id файла, чтобы к нему можно было обратиться из html
+        $body.="Content-ID: <".$basename.">"._BR_; // id файла, чтобы к нему можно было обратиться из html
 
-        $body.="\r\n";
+        $body.=_BR_;
 
         // читаем файл
         $body.=chunk_split(base64_encode(file_get_contents($filename)));
@@ -511,9 +511,9 @@ class Mail
 
             if (count($this->SubBody[$resource_body]['body']) > 1)
             {
-                $body = implode("\r\n--REL-".$this->boundary."\r\n", $this->SubBody[$resource_body]['body']);
-                $body = "Content-Type: multipart/related; boundary=REL-".$this->boundary."\r\n\r\n"
-                        .'--REL-'.$this->boundary."\r\n".$body.'--REL-'.$this->boundary."--";
+                $body = implode(_BR_."--REL-".$this->boundary._BR_, $this->SubBody[$resource_body]['body']);
+                $body = "Content-Type: multipart/related; boundary=REL-".$this->boundary._BR_._BR_
+                        .'--REL-'.$this->boundary._BR_.$body.'--REL-'.$this->boundary."--";
             }
             // а если в основной части письма лишь одна часть
             else
@@ -525,17 +525,17 @@ class Mail
             // тогда объеденим эти части с признаком mixed и сформированное тело сообщения $body будет одной из частей
             if (isset($this->SubBody[$resource_body]['mixed']) AND count($this->SubBody[$resource_body]['mixed']))
             {
-                $bodymix = implode('--MIX-'.$this->boundary."\r\n", $this->SubBody[$resource_body]['mixed']);
-                $body = $body."\r\n--MIX-".$this->boundary."\r\n".$bodymix;
-                $body = "Content-Type: multipart/mixed; boundary=MIX-".$this->boundary."\r\n\r\n"
-                        .'--MIX-'.$this->boundary."\r\n".$body.'--MIX-'.$this->boundary."--";
+                $bodymix = implode('--MIX-'.$this->boundary._BR_, $this->SubBody[$resource_body]['mixed']);
+                $body = $body._BR_."--MIX-".$this->boundary._BR_.$bodymix;
+                $body = "Content-Type: multipart/mixed; boundary=MIX-".$this->boundary._BR_._BR_
+                        .'--MIX-'.$this->boundary._BR_.$body.'--MIX-'.$this->boundary."--";
             }
             unset($this->SubBody[$resource_body]); // удалим массив, он может быть очень уж большим
             // сейчас нужно выдернуть основной заголовок из письма, так как на стадии формирования это сделать не так просто
-            $temp_mass = explode("\r\n\r\n", $body); // разбиваем тело по переносам строк.
+            $temp_mass = explode(_BR_._BR_, $body); // разбиваем тело по переносам строк.
             $this->body_header[$resource_body] = $temp_mass[0]; // первый элемент и будет основной заголовок, его добавим в самый конец заголовков
             unset($temp_mass[0]); // теперь удаляем этот этот элемент из массива
-            $this->body[$resource_body] = implode("\r\n\r\n", $temp_mass); // и формируем тело письма обратно но уже без основного заголовка и сразу добавляем его в основную переменную
+            $this->body[$resource_body] = implode(_BR_._BR_, $temp_mass); // и формируем тело письма обратно но уже без основного заголовка и сразу добавляем его в основную переменную
             unset($temp_mass); // и удаляем временный массив
             unset($body); // и удалим сразу тело, так как много памяти занимает, а дальше еще заголовки воротить
         }
@@ -549,7 +549,7 @@ class Mail
         {
 
             if (strlen($this->names_email[$resource]['To'][$value]))
-                $temp_mass[] = "=?".$this->charset."?B?".base64_encode(strtr($this->names_email[$resource]['To'][$value], "\r\n", "  "))."?= <".$value.">";
+                $temp_mass[] = "=?".$this->charset."?B?".base64_encode(strtr($this->names_email[$resource]['To'][$value], _BR_, "  "))."?= <".$value.">";
             else
                 $temp_mass[] = $value;
         }
@@ -591,8 +591,8 @@ class Mail
             // разбиваем (FROM - от кого) на юзера и домен. домен понадобится в заголовке
             $user_domen = explode('@', $this->headers['From']);
 
-            $this->ready_headers[$resource] .= "Date: ".date("r")."\r\n";
-            $this->ready_headers[$resource] .= "Message-ID: <".rand().".".$resource.date("YmjHis")."@".$user_domen[1].">\r\n"; // в id письма добавим на всякий случай еще и рессурс, так как формирование писем с разными ресурсам в одну секунду может сформировать одинаковые id писем
+            $this->ready_headers[$resource] .= "Date: ".date("r")._BR_;
+            $this->ready_headers[$resource] .= "Message-ID: <".rand().".".$resource.date("YmjHis")."@".$user_domen[1].">"._BR_; // в id письма добавим на всякий случай еще и ресурс, так как формирование писем с разными ресурсам в одну секунду может сформировать одинаковые id писем
             // так как массив с заголовками создан на разный уровнях (например TO во втором уровне вложенности, внутри ресурса, а FROM в первом уровне, так как FROM незвисит от ресурса он всегда один)
             // поэтому создаем временный массив заголовоков с одним уровнем, для упрощенного перебора
             // сначала перебираем заголовки для ресурса
@@ -613,11 +613,11 @@ class Mail
             while (list( $hdr, $value ) = each($new_mass_head))
             {
                 if ($hdr == "From" and strlen($this->names_email['from']))
-                    $this->ready_headers[$resource] .= $hdr.": =?".$this->charset."?B?".base64_encode(strtr($this->names_email['from'], "\r\n", "  "))."?= <".$value.">\r\n";
+                    $this->ready_headers[$resource] .= $hdr.": =?".$this->charset."?B?".base64_encode(strtr($this->names_email['from'], _BR_, "  "))."?= <".$value.">"._BR_;
                 elseif ($hdr == "Reply-To" and strlen($this->names_email['Reply-To']))                                          
-                    $this->ready_headers[$resource] .= $hdr.": =?".$this->charset."?B?".base64_encode(strtr($this->names_email['Reply-To'], "\r\n", "  "))."?= <".$value.">\r\n";
+                    $this->ready_headers[$resource] .= $hdr.": =?".$this->charset."?B?".base64_encode(strtr($this->names_email['Reply-To'], _BR_, "  "))."?= <".$value.">"._BR_;
                 elseif ($hdr != "BCC")
-                    $this->ready_headers[$resource] .= $hdr.": ".$value."\r\n"; // пропускаем заголовок для отправки скрытой копии
+                    $this->ready_headers[$resource] .= $hdr.": ".$value._BR_; // пропускаем заголовок для отправки скрытой копии
             }
         }
         // создание заголовоков, если отправка идет через mail()
@@ -638,15 +638,15 @@ class Mail
             while (list( $hdr, $value ) = each($new_mass_head))
             {
                 if ($hdr == "From" and strlen($this->names_email['from']))                                        
-                    $this->ready_headers[$resource] .= $hdr.": =?".$this->charset."?B?".base64_encode(strtr($this->names_email['from'], "\r\n", "  "))."?= <".$value.">\r\n";
+                    $this->ready_headers[$resource] .= $hdr.": =?".$this->charset."?B?".base64_encode(strtr($this->names_email['from'], _BR_, "  "))."?= <".$value.">"._BR_;
                 elseif ($hdr == "Reply-To" and strlen($this->names_email['Reply-To']))
-                    $this->ready_headers[$resource] .= $hdr.": =?".$this->charset."?B?".base64_encode(strtr($this->names_email['Reply-To'], "\r\n", "  "))."?= <".$value.">\r\n";
+                    $this->ready_headers[$resource] .= $hdr.": =?".$this->charset."?B?".base64_encode(strtr($this->names_email['Reply-To'], _BR_, "  "))."?= <".$value.">"._BR_;
                 elseif ($hdr != "Subject" and $hdr != "To")
-                    $this->ready_headers[$resource] .= "$hdr: $value\r\n"; // пропускаем заголовки кому и тему... они вставятся сами
+                    $this->ready_headers[$resource] .= "$hdr: $value"._BR_; // пропускаем заголовки кому и тему... они вставятся сами
             }
         }
         // и в завершении добавим заголовки от письма, выдернутые ранее. Это общий заголовок для тела
-        $this->ready_headers[$resource].=$this->body_header[$resource_body]."\r\n";
+        $this->ready_headers[$resource].=$this->body_header[$resource_body]._BR_;
     }
 
     /**
@@ -682,7 +682,7 @@ class Mail
     {
         if (!strlen($resource))
             $resource = 'webi';
-        $this->headers[$resource]['Subject'] = "=?".$this->charset."?B?".base64_encode(strtr($subject, "\r\n", "  "))."?=";
+        $this->headers[$resource]['Subject'] = "=?".$this->charset."?B?".base64_encode(strtr($subject, _BR_, "  "))."?=";
     }
 
     /**
@@ -1086,10 +1086,10 @@ class Mail
                 elseif ($this->status_mail['status'])
                 {
 
-                    $this->add_log('TO: '.$strTo."\n");
-                    $this->add_log("Subject: ".$this->headers[$key]['Subject']."\n");
-                    $this->add_log($this->ready_headers[$key]."\n\n");
-                    $this->add_log($this->body[$body_resource]."\n\n\n");
+                    $this->add_log('TO: '.$strTo._BR_);
+                    $this->add_log("Subject: ".$this->headers[$key]['Subject']._BR_);
+                    $this->add_log($this->ready_headers[$key]._BR_);
+                    $this->add_log($this->body[$body_resource]._BR_);
 
 
                     $this->status_mail['status'] = true;
@@ -1137,54 +1137,54 @@ class Mail
             $smtp_conn = fsockopen($this->smtp['serv'], $this->smtp['port'], $errno, $errstr, $this->smtp['timeout']);
             if (!$smtp_conn)
             {
-                $this->add_log("соединение с сервером не прошло\n\n");
+                $this->add_log("соединение с сервером не прошло"._BR_._BR_);
                 fclose($smtp_conn);
                 $this->status_mail['status'] = false;
                 $this->status_mail['message'] = "ошибка: соединение с сервером не прошло";
                 return false;
             }
 
-            $data = $this->get_data($smtp_conn)."\n";
+            $data = $this->get_data($smtp_conn)._BR_;
             $this->add_log($data);
 
-            fputs($smtp_conn, "EHLO ".$user_domen[0]."\r\n");
-            $this->add_log("Я: EHLO ".$user_domen[0]."\n");
-            $data = $this->get_data($smtp_conn)."\n";
+            fputs($smtp_conn, "EHLO ".$user_domen[0]._BR_);
+            $this->add_log("Я: EHLO ".$user_domen[0]._BR_);
+            $data = $this->get_data($smtp_conn)._BR_;
             $this->add_log($data);
             $code = substr($data, 0, 3); // получаем код ответа
 
             if ($code != 250)
             {
-                $this->add_log("ошибка приветсвия EHLO \n");
+                $this->add_log("ошибка приветсвия EHLO "._BR_);
                 fclose($smtp_conn);
                 $this->status_mail['status'] = false;
                 $this->status_mail['message'] = "ошибка приветсвия EHLO";
                 return false;
             }
 
-            fputs($smtp_conn, "AUTH LOGIN\r\n");
-            $this->add_log("Я: AUTH LOGIN\n");
-            $data = $this->get_data($smtp_conn)."\n";
+            fputs($smtp_conn, "AUTH LOGIN"._BR_);
+            $this->add_log("Я: AUTH LOGIN"._BR_);
+            $data = $this->get_data($smtp_conn)._BR_;
             $this->add_log($data);
             $code = substr($data, 0, 3);
 
             if ($code != 334)
             {
-                $this->add_log("сервер не разрешил начать авторизацию \n");
+                $this->add_log("сервер не разрешил начать авторизацию "._BR_);
                 fclose($smtp_conn);
                 $this->status_mail['status'] = false;
                 $this->status_mail['message'] = "сервер не разрешил начать авторизацию";
                 return false;
             }
 
-            fputs($smtp_conn, base64_encode($this->smtp['login'])."\r\n");
-            $this->add_log("Я: ".base64_encode($this->smtp['login'])."\n");
-            $data = $this->get_data($smtp_conn)."\n";
+            fputs($smtp_conn, base64_encode($this->smtp['login'])._BR_);
+            $this->add_log("Я: ".base64_encode($this->smtp['login'])._BR_);
+            $data = $this->get_data($smtp_conn)._BR_;
             $this->add_log($data);
             $code = substr($data, 0, 3);
             if ($code != 334)
             {
-                $this->add_log("ошибка доступа к такому юзеру\n");
+                $this->add_log("ошибка доступа к такому юзеру"._BR_);
                 fclose($smtp_conn);
                 $this->status_mail['status'] = false;
                 $this->status_mail['message'] = "ошибка доступа к такому юзеру через SMTP";
@@ -1192,15 +1192,15 @@ class Mail
             }
 
 
-            fputs($smtp_conn, base64_encode($this->smtp['pass'])."\r\n");
-            //$this->add_log("Я: ". base64_encode($this->smtp_pass)."\n"); // тут пароль закодирован будет виден в логах
-            $this->add_log("Я: parol_skryt\n"); // а так пароль скрыт в логах
-            $data = $this->get_data($smtp_conn)."\n";
+            fputs($smtp_conn, base64_encode($this->smtp['pass'])._BR_);
+            //$this->add_log("Я: ". base64_encode($this->smtp_pass)._BR_); // тут пароль закодирован будет виден в логах
+            $this->add_log("Я: parol_skryt"._BR_); // а так пароль скрыт в логах
+            $data = $this->get_data($smtp_conn)._BR_;
             $this->add_log($data);
             $code = substr($data, 0, 3);
             if ($code != 235)
             {
-                $this->add_log("не правильный пароль\n");
+                $this->add_log("не правильный пароль"._BR_);
                 fclose($smtp_conn);
                 $this->status_mail['status'] = false;
                 $this->status_mail['message'] = "не правильный пароль для SMTP";
@@ -1227,15 +1227,15 @@ class Mail
                     $body_resource = 'webi';
 
                 // начинаем отправку очередного письма
-                fputs($smtp_conn, "MAIL FROM:<".$this->headers['From']."> SIZE=".strlen($this->ready_headers[$key_res]."\r\n".$this->body[$body_resource])."\r\n");
-                $this->add_log("Я: MAIL FROM:<".$this->headers['From']."> SIZE=".strlen($this->ready_headers[$key_res]."\r\n".$this->body[$body_resource])."\n");
-                $data = $this->get_data($smtp_conn)."\n";
+                fputs($smtp_conn, "MAIL FROM:<".$this->headers['From']."> SIZE=".strlen($this->ready_headers[$key_res]._BR_.$this->body[$body_resource])._BR_);
+                $this->add_log("Я: MAIL FROM:<".$this->headers['From']."> SIZE=".strlen($this->ready_headers[$key_res]._BR_.$this->body[$body_resource])._BR_);
+                $data = $this->get_data($smtp_conn)._BR_;
                 $this->add_log($data);
 
                 $code = substr($data, 0, 3);
                 if ($code != 250)
                 {
-                    $this->add_log("сервер отказал в команде MAIL FROM\n");
+                    $this->add_log("сервер отказал в команде MAIL FROM"._BR_);
                     fclose($smtp_conn);
                     $this->status_mail['status'] = false;
                     $this->status_mail['message'] = "сервер отказал в команде MAIL FROM через SMTP";
@@ -1246,14 +1246,14 @@ class Mail
 
                 foreach ($this->smtpsendto[$key_res] as $keywebi => $valuewebi)
                 {
-                    fputs($smtp_conn, "RCPT TO:<".$valuewebi.">\r\n");
-                    $this->add_log("Я: RCPT TO:<".$valuewebi.">\n");
-                    $data = $this->get_data($smtp_conn)."\n";
+                    fputs($smtp_conn, "RCPT TO:<".$valuewebi.">"._BR_);
+                    $this->add_log("Я: RCPT TO:<".$valuewebi.">"._BR_);
+                    $data = $this->get_data($smtp_conn)._BR_;
                     $this->add_log($data);
                     $code = substr($data, 0, 3);
                     if ($code != 250 AND $code != 251)
                     {
-                        $this->add_log("Сервер не принял команду RCPT TO\n");
+                        $this->add_log("Сервер не принял команду RCPT TO"._BR_);
                         fclose($smtp_conn);
                         $this->status_mail['status'] = false;
                         $this->status_mail['message'] = "Сервер не принял команду RCPT через SMTP";
@@ -1261,45 +1261,45 @@ class Mail
                     }
                 }
 
-                fputs($smtp_conn, "DATA\r\n");
-                $this->add_log("Я: DATA\n");
-                $data = $this->get_data($smtp_conn)."\n";
+                fputs($smtp_conn, "DATA"._BR_);
+                $this->add_log("Я: DATA"._BR_);
+                $data = $this->get_data($smtp_conn)._BR_;
                 $this->add_log($data);
 
                 $code = substr($data, 0, 3);
                 if ($code != 354)
                 {
-                    $this->add_log("сервер не принял DATA\n");
+                    $this->add_log("сервер не принял DATA"._BR_);
                     fclose($smtp_conn);
                     $this->status_mail['status'] = false;
                     $this->status_mail['message'] = "сервер не принял команду DATA черз SMTP";
                     return false;
                 }
 
-                fputs($smtp_conn, $this->ready_headers[$key_res]."\r\n".$this->body[$body_resource]."\r\n.\r\n");
-                $this->add_log("Я: ".$this->ready_headers[$key_res]."\r\n".$this->body[$body_resource]."\r\n.\r\n");
-                $data = $this->get_data($smtp_conn)."\n";
+                fputs($smtp_conn, $this->ready_headers[$key_res]._BR_.$this->body[$body_resource]._BR_."."._BR_);
+                $this->add_log("Я: ".$this->ready_headers[$key_res]._BR_.$this->body[$body_resource]._BR_."."._BR_);
+                $data = $this->get_data($smtp_conn)._BR_;
                 $this->add_log($data);
 
                 $code = substr($data, 0, 3);
                 if ($code != 250)
                 {
-                    $this->add_log("ошибка отправки письма\n");
+                    $this->add_log("ошибка отправки письма"._BR_);
                     fclose($smtp_conn);
                     $this->status_mail['status'] = false;
                     $this->status_mail['message'] = "ошибка отправки письма через SMTP";
                     return false;
                 }
 
-                fputs($smtp_conn, "RSET\r\n"); // тепер делаем сброс того, что было введено серверу, чтобы можно было отправить еще письмо в следующем шаге цикла 
-                $this->add_log("Я: RSET\n");
-                $data = $this->get_data($smtp_conn)."\n";
+                fputs($smtp_conn, "RSET"._BR_); // тепер делаем сброс того, что было введено серверу, чтобы можно было отправить еще письмо в следующем шаге цикла 
+                $this->add_log("Я: RSET"._BR_);
+                $data = $this->get_data($smtp_conn)._BR_;
                 $this->add_log($data);
 
                 $code = substr($data, 0, 3);
                 if ($code != 250)
                 {
-                    $this->add_log("ошибка отправки письма\n");
+                    $this->add_log("ошибка отправки письма"._BR_);
                     fclose($smtp_conn);
                     $this->status_mail['status'] = false;
                     $this->status_mail['message'] = "Сервер не принял команду RSET";
@@ -1319,9 +1319,9 @@ class Mail
                 }
             }
             // после обработки всех ресурсов посылаем выход
-            fputs($smtp_conn, "QUIT\r\n");
-            $this->add_log("QUIT\r\n");
-            $data = $this->get_data($smtp_conn)."\n";
+            fputs($smtp_conn, "QUIT"._BR_);
+            $this->add_log("QUIT"._BR_);
+            $data = $this->get_data($smtp_conn)._BR_;
             $this->add_log($data);
             fclose($smtp_conn);
 

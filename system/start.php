@@ -82,3 +82,4 @@
         loader::model('propcomponents_ex');
         loader::model('dsapi');
     }
+	

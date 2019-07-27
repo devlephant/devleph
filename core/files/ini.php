@@ -204,7 +204,7 @@ class __ini {
         $value                = '';
         
     // replace microsoft-style-newlines
-        $str_content = str_replace ( "\r\n", "\n", $str_content );
+        $str_content = str_replace ( ["\r\n", "\r\r", "\n\n", "\n\r"], "\n", $str_content );
         
     // remove comments... 
         $str_content = preg_replace ( $comments, '', $str_content );

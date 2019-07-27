@@ -251,7 +251,5 @@ class TChromium extends TControl {
 	}
 }
 
-class TWebBrowser extends TChromium {
-
-}
+class TWebBrowser extends TChromium {}
 ?>

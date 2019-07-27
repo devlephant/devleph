@@ -373,7 +373,7 @@ class PHPSyntax {
             
             $s = $code[$i];
             
-            if ($s=="\n") ++$this->line;
+            if ($s=="\n"||$s=="\r") ++$this->line;
             
             if ($this->isString($s, $this->line)) continue;
             $result .= $s;

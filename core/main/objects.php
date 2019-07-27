@@ -104,11 +104,12 @@ class _Object {
     
     function __set($nm, $val) {
         
-	$s = 'set_'.$nm;
-	$s2 = 'setx_'.$nm;
+	$s = "set_{$nm}";
+	$s2 = "setx_{$nm}";
 	    if (property_exists($this,$nm)){
 		$this->$nm = $val;
-	    } elseif (method_exists($this,$s2)) {
+	    } elseif (method_exists($this,$s2))
+		{
 		$this->props[$nm] = $val;
 	    }
 	
@@ -117,7 +118,7 @@ class _Object {
 	    if (method_exists($this,$s2))
 	      $this->$s2($val);
 	  
-		if(!method_exists($this,$s2) && !method_exists($this,$s2) && !property_exists($this,$nm))
+		if(!method_exists($this,$s) && !method_exists($this,$s2) && !property_exists($this,$nm))
 			if( rtti_exists($this, $nm) )
 				rtti_set($this, $nm, $val);
      }
@@ -568,8 +569,8 @@ class TComponent extends TObject {
 		
 		$nm = strtolower($nm);
 		$class = rtti_DClass($this);
-		if (!method_exists($this,'set_'.$nm))
-		if ($class!=='TWebBrowser' && $class!=='TScreenEx' && $class!=='TPen' && $class!=='TImageList'){
+		
+		if (!method_exists($this,'set_'.$nm)&&($class!=='TWebBrowser' && $class!=='TScreenEx' && $class!=='TPen' && $class!=='TImageList')){
 		    
 		    if ($nm=='visible'){
 				return control_visible($this->self, $val);
@@ -584,14 +585,16 @@ class TComponent extends TObject {
 		    }
 		}
 				  
-		if (strtolower(substr($nm,0,2)) == 'on'){
-		    //if ( !method_exists($this, 'set_'.$nm) ){
-		    $result = set_event($this->self,$nm,$val);
-		    if ( method_exists($this, 'set_'.$nm) ){
-				$method = 'set_'.$nm;
-				$this->$method($val);
-		    }
-		    if ($result) return;
+		if (strtolower(substr($nm,0,2)) == 'on')
+		{
+			if(gui_propExists($this->self, $nm))
+			{
+				$result = set_event($this->self,$nm,$val);
+			} else $result = is_object($val);
+		    if ( method_exists($this, "set_{$nm}") )
+				$this->{"set_{$nm}"}($val);
+		    
+		    if($result) return;
 		}
 		
 		if (!$this->exists_prop($nm)){
@@ -975,13 +978,15 @@ class TControl extends TComponent {
 	    return control_perform($this->self, $msg, $hparam, $lparam);
 	}
 	
-	function invalidate(){
+	function invalidate()
+	{
 	    control_invalidate($this->self);
 	}
 	
 	function manualDock($obj, $align = 0){
-	    
-	    return control_manualDock($this->self, $obj->self, $align);
+		pre('2');
+	    return rtti_call($this, 'ManualDock', [$obj,null,$align]);
+	    //return control_manualDock($this->self, $obj->self, $align);
 	}
 	
 	function manualFloat($left, $top, $right, $bottom){

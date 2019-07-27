@@ -58,7 +58,7 @@ class dsErrorDebug
 		$rret = false;
 		if( file_exists('errors.log') && defined('DS_DEBUG_MODE') )
 			if( constant('DS_DEBUG_MODE') ){
-				file_put_contents('errors.log', print_r( [$errno, $errstr, $errfile, $errline], true)."\r\n", FILE_APPEND);
+				file_put_contents('errors.log', print_r( [$errno, $errstr, $errfile, $errline], true)._BR_, FILE_APPEND);
 				$rret = true;
 			}
 		
@@ -329,23 +329,23 @@ class dsErrorClassUndefined
 	public final function __construct(...$args)
 	{
 		$class = get_class($this);
-		trigger_error("Unable to create Class \"{$class}, because class Does Not Exist". 
-		"\"\nInfo:\n\tParams:\n" . print_r($args) . "\n\tClass name:{$class}\nClass Does Not Exist!", E_USER_ERROR);
+		trigger_error("Unable to create Class \"{$class}\", because class Does Not Exist" 
+		._BR_."Info:". _BR_ ."\tParams:" . _BR_ . print_r($args) . _BR_ . "\tClass name:{$class}" . _BR_ . "Class Does Not Exist!", E_USER_ERROR);
 	}
 	
 	public final function __destruct()
 	{
 		$class = get_class($this);
-		trigger_error("Cannot destruct instance of \"{$class}\", because class Does Not Exist". 
-		"\"\nInfo:\n\tClass name:{$class}\nClass Does Not Exist!", E_USER_ERROR);
+		trigger_error("Cannot destruct instance of \"{$class}\", because class Does Not Exist"
+		._BR_. "Info:" . _BR_ . "\tClass name:{$class}" . _BR_ . "Class Does Not Exist!", E_USER_ERROR);
 	}
 	
 	public final function __get($name)
 	{
 		$class = get_class($this);
 		trigger_error(
-		"Unable to get property \"{$name}\", because class \"{$class}\" Does Not Exist!" .
-		"\nInfo:n\tProperty: {$class}::{$name}\n\tClass name:{$class}", E_USER_ERROR);
+		"Unable to get property \"{$name}\", because class \"{$class}\" Does Not Exist!"
+		._BR_. "Info:" . _BR_ . "\tProperty: {$class}::{$name}" ._BR_. "\tClass name:{$class}", E_USER_ERROR);
 		return NULL;
 	}
 	
@@ -353,8 +353,8 @@ class dsErrorClassUndefined
 	{
 		$class = get_class($this);
 		trigger_error(
-		"Property does not exist because of non-existant class \"{$class}\"".
-		"\nInfo:n\tProperty: {$class}::{$name}\n\tClass name:{$class}", E_USER_ERROR);
+		"Property does not exist because of non-existant class \"{$class}\""
+		._BR_. "Info:" . _BR_ . "\tProperty: {$class}::{$name}" . _BR_ . "\tClass name:{$class}", E_USER_ERROR);
 		return FALSE;
 	}
 	
@@ -362,55 +362,55 @@ class dsErrorClassUndefined
 	{
 		$class = get_class($this);
 		trigger_error(
-		"Cannot unset property \"{$name}\", because class \"{$class}\" Does Not Exist!".
-		"\nInfo:n\tProperty: {$class}::{$name}\n\tClass name:{$class}", E_USER_ERROR);
+		"Cannot unset property \"{$name}\", because class \"{$class}\" Does Not Exist!"
+		._BR_. "Info:"._BR_."\tProperty: {$class}::{$name}"._BR_."\tClass name:{$class}", E_USER_ERROR);
 	}
 	
 	public final function __set($name, $value)
 	{
 		$class = get_class($this);
 		trigger_error(
-		"Unable to set property \"{$name}\", because class \"{$class}\" Does Not Exist!" .
-		"\nInfo:\n\tProperty:{$class}::{$name}\n\tValue:\n".print_r($value,true)."\nClass name:{$class}", E_USER_ERROR);
+		"Unable to set property \"{$name}\", because class \"{$class}\" Does Not Exist!"
+		._BR_. "Info:" . _BR_ . "\tProperty:{$class}::{$name}" . _BR_ . "\tValue:"._BR_.print_r($value,true)._BR_."Class name:{$class}", E_USER_ERROR);
 		return FALSE;
 	}
 	
 	public final function __invoke(...$args)
 	{
 		$class = get_class($this);
-		trigger_error("Cannot invoke Class \"{$class}, because class Does Not Exist". 
-		"\"\nInfo:\n\tParams:\n" . print_r($args) . "\n\tClass name:{$class}\nClass Does Not Exist!", E_USER_ERROR);
+		trigger_error("Cannot invoke Class \"{$class}, because class Does Not Exist"
+		._BR_."Info:"._BR_."\tParams:"._BR_. print_r($args) . _BR_."\tClass name:{$class}"._BR_."Class Does Not Exist!", E_USER_ERROR);
 		return NULL;
 	}
 	
 	public final function __call($name, $args)
 	{
 		$class = get_class($this);
-		trigger_error("Unable to call dynamic method \"{$name}\", because class \"{$class}\" Does Not Exist!" .
-		"\nInfo:\n\tMethod name: {$class}::{$name}\n\tParams:\n" . print_r($args,true) . "\n\tClass name:{$class}", E_USER_ERROR);
+		trigger_error("Unable to call dynamic method \"{$name}\", because class \"{$class}\" Does Not Exist!"
+		._BR_."Info:"._BR_."\tMethod name: {$class}::{$name}"._BR_."\tParams:"._BR_. print_r($args,true) . _BR_ ."\tClass name:{$class}", E_USER_ERROR);
 		return NULL;
 	}
 	
 	public static final function  __callStatic($name, $args)
 	{
 		$class = get_called_class();
-		trigger_error("Unable to call static method \"{$name}\", because class \"{$class}\" Does Not Exist!" .
-		"\nInfo:\n\tMethod name: {$class}::{$name}\n\tParams:\n" . print_r($args,true) . "\n\tClass name:{$class}", E_USER_ERROR);
+		trigger_error("Unable to call static method \"{$name}\", because class \"{$class}\" Does Not Exist!"
+		._BR_."Info:"._BR_."\tMethod name: {$class}::{$name}"._BR_."\tParams:"._BR_. print_r($args,true) ._BR_."\tClass name:{$class}", E_USER_ERROR);
 		return NULL;
 	}
 	
 	public static final function __set_state($a)
 	{
 		$class = get_class($this);
-		trigger_error("Cannot import instace of \"{$class}\", because class Does Not Exist". 
-		"\"\nInfo:\n\tClass name:{$class}\n\tInput:\n".print_r($a,true)."\nClass Does Not Exist!", E_USER_ERROR); 
+		trigger_error("Cannot import instace of \"{$class}\", because class Does Not Exist"
+		._BR_."Info:"._BR_."\tClass name:{$class}"._BR_."\tInput:"._BR_.print_r($a,true)._BR_."Class Does Not Exist!", E_USER_ERROR); 
 	}
 	
 	public final function __toString()
 	{
 		$class = get_class($this);
-		trigger_error("Cannot convert instance of \"{$class}\" to string, because class Does Not Exist". 
-		"\"\nInfo:\n\tClass name:{$class}\nClass Does Not Exist!", E_USER_ERROR);
+		trigger_error("Cannot convert instance of \"{$class}\" to string, because class Does Not Exist"
+		._BR_."Info:"._BR_."\tClass name:{$class}"._BR_."Class Does Not Exist!", E_USER_ERROR);
 		return "Class \"{$class}\" Does Not Exist!";
 	}
 	
@@ -423,16 +423,16 @@ class dsErrorClassUndefined
 	public final function __sleep()
 	{
 		$class = get_class($this);
-		trigger_error("Cannot serialize instance of \"{$class}\", because class Does Not Exist". 
-		"\"\nInfo:\n\tClass name:{$class}\nClass Does Not Exist!", E_USER_ERROR);
+		trigger_error("Cannot serialize instance of \"{$class}\", because class Does Not Exist" 
+		._BR_."Info:"._BR_."\tClass name:{$class}"._BR_."Class Does Not Exist!", E_USER_ERROR);
 		return [];
 	}
 	
 	public final function __wakeup()
 	{
 		$class = get_class($this);
-		trigger_error("Cannot unserialize instance of \"{$class}\", because class Does Not Exist". 
-		"\"\nInfo:\n\tClass name:{$class}\nClass Does Not Exist!", E_USER_ERROR);
+		trigger_error("Cannot unserialize instance of \"{$class}\", because class Does Not Exist" 
+		._BR_."Info:"._BR_."\tClass name:{$class}"._BR_."Class Does Not Exist!", E_USER_ERROR);
 	}
 }
 dsErrorDebug::init();
