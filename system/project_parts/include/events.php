@@ -783,4 +783,5 @@ DSApi::reg_eventParams('onFontChage', ['self']);
 DSApi::reg_eventParams('onPenChage', ['self']);
 
 DSApi::reg_eventParams('onHitTest', ['self', '&HitResult']);
+DSApi::reg_eventParams('onChromiumLibLoad', ['self']);
 ?>

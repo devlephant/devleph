@@ -56,8 +56,7 @@ function rtti_call($obj,$prop,$values=false){
 					if( gui_isset($val->self) ) { //если объект у нас VCL (точный анализ!)
 						$values[$key] = $val->self; //Заменяем позицию в массиве, жёсткий костыль...
 					} else{
-						trigger_error('Cannot use custom objects in RTTI VCL methods', E_USER_ERROR);//посылаем пользователя в яму
-						return;
+						$values[$key] = null;
 					}
 			}
 			
@@ -1030,9 +1029,9 @@ class TControl extends TComponent {
 	    return $result;
 	}
 	
-	function get_canvas(){
-	    $s = $this->self;
-	    return _c(component_canvas($s)==0?gui_propget($s,'Canvas'):component_canvas($s));
+	function get_canvas()
+	{
+	    return _c(gui_propget($this->self,'Canvas'));
 	}
 	
 	function set_hint($hint){

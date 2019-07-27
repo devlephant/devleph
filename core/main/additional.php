@@ -186,13 +186,9 @@ class TMaskEdit extends TControl {}
 class TImage extends TControl {
 	
 	protected $_picture;
-	protected $_canvas;
-	public function get_Canvas(){
-		
-		if( !isset($this->_canvas) )
-		$this->_canvas = new TCanvas($this,false,component_canvas($this->self));
-		
-		return $this->_canvas;
+	public function get_Canvas()
+	{
+		return _c(gui_propget($this->self,'Canvas'));
 	}
 	
 	public function loadPicture($file){

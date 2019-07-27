@@ -200,65 +200,19 @@ class TBrush extends TComponent
 ///////////////////////////////////////////////////////////////////////////////
 ///                             TCanvas                                     ///
 ///////////////////////////////////////////////////////////////////////////////
-class TCanvas extends TControl{
-    function moveTo($x, $y){
-		canvas_moveto($this->self,$x,$y);
-    }
-	
-    function lineTo($x, $y){
-		canvas_lineto($this->self,$x,$y);
-    }
-	
-    function line($x1, $y1, $x2, $y2)
+class TCanvas extends TControl
+{
+	function line($x1, $y1, $x2, $y2)
 	{
 		$this->moveTo($x1,$y1);
 		$this->lineTo($x2, $y2);
 	}
-    
-    function textHeight($text){
-	
-	return canvas_textHeight($this->self, $text);
-    }
-    
-    function textWidth($text){
-	
-	return canvas_textWidth($this->self, $text);
-    }
-    
-    function refresh(){
-	
-	canvas_refresh($this->self);
-    }
-    
-    function pixel($x, $y, $color = null){
-	
-	if ($color === null)
-	    return canvas_pixel($this->self, (int)$x, (int)$y, null);
-	else
-	    canvas_pixel($this->self, (int)$x, (int)$y, $color);
-    }
-    
-    function textOut($x, $y, $text){
-	
-	canvas_textout($this->self, $x, $y, $text);
-    }
-    
-    function rectangle($x1, $y1, $x2, $y2){
-	
-	canvas_rectangle($this->self, $x1, $y1, $x2, $y2);
-    }
-    	
-    function ellipse($x1, $y1, $x2, $y2){
-	
-		canvas_ellipse($this->self, $x1, $y1, $x2, $y2);
-    }
-    
-    function lock(){
-		canvas_lock($this->self);
-    }
-    
-    function unlock(){
-		canvas_unlock($this->self);
+    function pixel($x, $y, $color = null)
+	{
+		if ($color === null)
+			return canvas_pixel($this->self, (int)$x, (int)$y, null);
+		else
+			canvas_pixel($this->self, (int)$x, (int)$y, $color);
     }
     
     function drawBitmap(TBitmap $bmp, $x = 0, $y = 0){
@@ -274,10 +228,6 @@ class TCanvas extends TControl{
 		$b->free();
     }
     
-    function clear(){
-		canvas_clear($this->self);
-    }
-    
     // вывод текста под углом
     function textOutAngle($x, $y, $angle, $text){
 		$n = canvas_angle($this->self,null);
@@ -285,8 +235,17 @@ class TCanvas extends TControl{
 		$this->textOut($x, $y, $text);
 		canvas_angle($this->self,$n);
     }
+   
+    function set_angle($v)
+	{
+		canvas_angle($this->self, $v);
+	}   
     
-    
+	function get_angle()
+	{
+		return canvas_angle($this->self,null);
+	}
+	
     function writeBitmap(TBitmap $bitmap){
 	
 		canvas_writeBitmap($this->self, $bitmap->self);
@@ -313,6 +272,7 @@ class TCanvas extends TControl{
     }
 }
 class TBitmapCanvas extends TCanvas{}
+class TMetafileCanvas extends TCanvas{}
 $_c->fsBold      = 'fsBold';
 $_c->fsItalic    = 'fsItalic';
 $_c->fsUnderline = 'fsUnderline';
@@ -350,32 +310,14 @@ class TCanvasFont extends TFont {
 	}
 }
 
-class TControlCanvas extends TCanvas {
-    
-    
-    
+class TControlCanvas extends TCanvas 
+{
     function __construct($owner=nil,$init=true,$self=nil)
 	{
-		$self = is_object($self)?$self->self:(int)$self;
-		parent::__construct($owner,$init,((gui_is($self,'TCanvas') && gui_is($self, 'TControlCanvas'))? component_canvas($self): $self));
+		parent::__construct($owner,$init,is_object($self)?$self->self:(int)$self);
+		if(is_object($owner))
+			$this->Control = $owner;
     }
-    
-    function get_control(){
-		return _c(canvas_control($this->self, null));
-    }
-    
-    function set_control($v){
-	
-		
-		if (method_exists($v,'getCanvas')){
-			$this->self = $v->getCanvas()->self;
-		} else {
-			canvas_control($this->self, $v->self);
-		}
-    }
-    function set_angle($v){
-		canvas_angle($this->self, $v);
-	}
     function free(){
         if ($this->self)
             obj_free($this->self);

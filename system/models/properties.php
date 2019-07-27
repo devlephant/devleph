@@ -515,13 +515,10 @@ class myProperties {
         
     }
     
-    static function setFontDsgn($obj, $font){
-        
-        $obj->valueFont('name',$font->name);
-        $obj->valueFont('color',$font->color);
-        $obj->valueFont('style',$font->style);
-        $obj->valueFont('charset',$font->charset);
-             
+    static function setFontDsgn($obj, $font)
+	{    
+		foreach(['name', 'color', 'style', 'charset'] as $p)
+		$obj->ValueFont->$p = $font->$p;
         $obj->value = $font->name. ','. $font->size .','. toHTMLColor($font->color);
     }
     

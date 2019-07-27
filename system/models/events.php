@@ -73,12 +73,17 @@ class myEvents {
             complete_Props::$forms = false;
             
             $event  = $eventList->events[$eventList->itemIndex];
-            
-            $php_memo = c('fmPHPEditor->memo');
+            //СЮДА ДОБАВИТЬ КОД НА СЛУЧАЙ ЕСЛИ СЕЙЧАС ОТКРЫТА ВКЛАДКА НЕ С ФОРМОЙ (НУ ИЛИ ЧТО-ТО ТАКОЕ)
+			$tabForms = c("fmMain->tabForms");
+			$php_memo = c('fmPHPEditor->memo');
             $last_text = c('fmPHPEditor')->text;
+			if(fileExt($tabForms->tabs->strings[ $tabForms->tabIndex ]) !== 'dfm')
+			{
+				$PHPEditor->borderStyle = bsSizeable;
+            }
+			//НЦ
             
             if (!$only_show){
-                
                 eventEngine::setForm();
                 $name = $myEvents->selObj instanceof TForm ? '--fmedit' : $myEvents->selObj->name;
                 
@@ -90,7 +95,8 @@ class myEvents {
                 if ($caretY)
                     $php_memo->caretY   = $caretY;
                 
-                if ($selLine){       
+                if ($selLine)
+				{       
                     $lines = $php_memo->items->lines;
                     $len = 0;
                     foreach ($lines as $i=>$line){
@@ -109,11 +115,10 @@ class myEvents {
                     $php_memo->selEnd   = $selEnd;
                 }
                 
-                if ($err){
-                    
+                if ($err)
+				{    
                     c('fmFindErrors->l_obj', 1)->text = $err['name'];
                     c('fmFindErrors->l_event', 1)->text = t('Event - "%s"', t(strtolower($err['event'])));
-					//pre( $php_memo->items->getLine((int)$err['line']-1) );
                     c('fmFindErrors->memofind', 1)->text = $php_memo->items->getLine((int)$err['line']-1);
                     c('fmFindErrors->err_msg', 1)->text = t($err['msg']);
                     c('fmFindErrors->l_line', 1)->text = t('Line %s', $err['line']);
@@ -143,14 +148,11 @@ class myEvents {
                 }
             }
             
-            //c('fmPHPEditor->l_eventinfo')->text = CApi::getStringEventInfo($event, $myEvents->selObj->className);
-            //$PHPEditor->formStyle = fsNormal;
             $PHPEditor->toFront();
             
             c('fmPHPEditor->tlCancel')->enabled = true;
             c('fmPHPEditor')->event = $event;
             
-            //myComplete::updateComponentList();
             if ($PHPEditor->showModal() == mrOk){
                 myComplete::saveCode();
                 $name = $myEvents->selObj instanceof TForm ? '--fmedit' : $myEvents->selObj->name;
@@ -158,16 +160,35 @@ class myEvents {
                 myHistory::go();
             }
             
-            //c('fmPHPEditor')->text = $last_text;
-            
             global $showComplete, $showHint;
             $showHint = $showComplete = false;
-            //lockWindowUpdate(0);
-        } else {
-            
-        }
+        } 
     }
-    
+    static function ShowEditorInTab($Caret, $tabIndex)
+	{
+		$PHPEditor = c("fmPHPEditor");
+		$php_memo = c("fmPHPEditor->memo");
+		
+		if($Caret)
+			list($php_memo->CaretX, $php_memo->CaretY, $php_memo->TopLine, $selectedLine) = $Caret;
+		if ($selectedLine)
+		{       
+			$lines = $php_memo->items->lines;
+			$len = 0;
+			foreach ($lines as $i=>$line){
+				
+				if ($selectedLine==$i+1){
+					
+					$selStart = $len;
+					$selEnd   = $len + strlen($line);
+					break;
+				}
+				$len += strlen($line) + strlen(_BR_);
+			}
+			$php_memo->selStart = $selStart;
+			$php_memo->selEnd   = $selEnd;
+		}
+	}
     function deleteEvent(){
         global $myEvents;
         $eventList = c('fmPropsAndEvents->eventList');
