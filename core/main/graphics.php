@@ -230,20 +230,20 @@ class TCanvas extends TControl
     
     // вывод текста под углом
     function textOutAngle($x, $y, $angle, $text){
-		$n = canvas_angle($this->self,null);
-		canvas_angle($this->self,$angle);
+		$n = $this->TextAngle;
+		$this->TextAngle = $angle;
 		$this->textOut($x, $y, $text);
-		canvas_angle($this->self,$n);
+		$this->TextAngle = $n;
     }
    
-    function set_angle($v)
+    function set_TextAngle($v)
 	{
-		canvas_angle($this->self, $v);
+		$this->Font->Orientation = ceil($v) * 10;
 	}   
     
-	function get_angle()
+	function get_TextAngle()
 	{
-		return canvas_angle($this->self,null);
+		return ceil($this->Font->Orientation / 10);
 	}
 	
     function writeBitmap(TBitmap $bitmap){
