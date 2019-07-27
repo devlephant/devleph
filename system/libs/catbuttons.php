@@ -51,7 +51,7 @@ class TCategoryButtons extends TControl {
         $groups = $this->groups;
         foreach ($groups as $name=>$self)
 		{    
-			_c($self)->collapsed = in_array($name, $arr);
+			_c($self)->collapsed = !in_array($name, $arr);
         }
     }
     

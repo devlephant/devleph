@@ -9,20 +9,6 @@
   _Object, TObject, TComponent, TFont, TControl
   
 */
-define('nil',-1);
-
-define('OS_WIN',1);
-define('OS_UNIX',2);
-define('OS_MACOS',3);
-define('__SYSTEM__',OS_WIN);
-
-    switch(__SYSTEM__){
-		case OS_WIN:	define('_BR_',chr(13).chr(10)); break;
-		case OS_UNIX:	define('_BR_',chr(13)); break;
-		case OS_MACOS:	define('_BR_',chr(10)); break;
-		default:		define('_BR_',chr(13).chr(13));
-    }
-    
 global $_c;
 //Константы, отвечающие какой тип свойства передан/взят
 $_c->tkUnknown		= 0;
