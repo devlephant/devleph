@@ -259,7 +259,8 @@ object fmMain: TfmMain
       Categories = <>
       RegularButtonColor = clWhite
       SelectedButtonColor = cl3DLight
-      HotButtonColor = 8454143
+      HotButtonColor = clMenuHighlight
+	  Style = True
       Color = clWhite
       ShowHint = True
       TabOrder = 0

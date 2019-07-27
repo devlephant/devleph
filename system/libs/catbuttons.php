@@ -140,8 +140,5 @@ class TButtonCategory extends TControl {
     }
 }
 
-class TButtonItem extends TControl {
-    
-    
-}
+class TButtonItem extends TControl {}
 ?>

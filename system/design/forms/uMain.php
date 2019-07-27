@@ -120,7 +120,7 @@ class evfmMain {
     // сохранение настроек программы...
     static function saveMainConfig(){
         
-        global $_sc, $fmEdit, $fmComponents, $fmMain, $fmObjInspect;
+        global $_sc, $fmEdit, $fmMain, $fmObjInspect;
         $_sc->clearTargets();
         myProperties::unFocusPanel(); // fix AV !!!
         

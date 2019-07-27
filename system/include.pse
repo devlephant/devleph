@@ -51,6 +51,7 @@ if (!defined('IS_APPLICATION_START')){
 		c("fmLogoin->Image1")->loadFromFile(dsThemeDesign::$dir."/LogoIn.png");
 		c('fmLogoin->loadbar')->brushColor = dsThemeDesign::$ini['fmLogoin']['loadbar'];
 		fmLogoin::Progress(1);
+		fmLogoin::Progress2(15,28);
         $fmLogoin->show();
 		
 		$GLOBALS['APPLICATION']->processMessages();
@@ -69,11 +70,7 @@ if (!defined('IS_APPLICATION_START')){
     c_Alias('fmMain','fmComponents');
     c_Alias('fmMain','fmObjectInspector');
     c_Alias('fmMain','fmPropsAndEvents');
-	global $fmComponents, $fmPropEvent;
-    $fmComponents = TForm::loadFromFile("{$dfm_dir}uComponents",true);
-	fmLogoin::Progress2(15,28);
-    $fmPropEvent  = TForm::loadFromFile("{$dfm_dir}uPropsAndEvents", true);
-	fmLogoin::Progress2(15,28);
+		fmLogoin::Progress2(15,28);
         // Editor dialogs
         TForm::loadFromFile("{$dfm_dir}uedt_Text", true);
 		fmLogoin::Progress2(15,28);

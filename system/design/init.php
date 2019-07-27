@@ -1,9 +1,8 @@
 <?
-global $SCREEN, $fmEdit, $fmComponents, $fmMain, $fmObjInspect;
+global $SCREEN, $fmEdit, $fmMain;
 
-if (!EMULATE_DVS_EXE){  
-$fmComponents->caption = t('components');
-
+if (!EMULATE_DVS_EXE)
+{  
 $aw = getSystemMetrics(SM_CXFULLSCREEN);
 $ah = getSystemMetrics(SM_CYFULLSCREEN);
     require 'design/dialogs.php';

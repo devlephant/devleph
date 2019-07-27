@@ -121,7 +121,6 @@ if (EMULATE_DVS_EXE) return;
 	
     ////// создаем панель компонентов ///////// 
 	/*AZ: Вырезал этот код ещё давно, т.к хлам по сути, можно не создавать в этом месте, а из dfm грузить*/
-    global $fmComponents;
     $cp = c('fmComponents->list');
 	$rfc = function($theme)
 	{
