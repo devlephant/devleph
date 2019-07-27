@@ -984,9 +984,7 @@ class TControl extends TComponent {
 	}
 	
 	function manualDock($obj, $align = 0){
-		pre('2');
-	    return rtti_call($this, 'ManualDock', [$obj,null,$align]);
-	    //return control_manualDock($this->self, $obj->self, $align);
+		return control_manualDock($this->self, $obj->self, $align);
 	}
 	
 	function manualFloat($left, $top, $right, $bottom){
