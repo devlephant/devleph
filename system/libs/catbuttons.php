@@ -1,30 +1,8 @@
 <?
 
-class TCategoryButtons extends TControl {
-    
-    
-    private $_categories = 0;
-    #groups
-    
-    public function get_categories(){
-        if (!$this->_categories)
-            $this->_categories = _c(categorybtns_categories($this->self));
-        
-        return $this->_categories;
-    }
-    
-    public function set_images($il){
-        
-        categorybtns_images($this->self, $il->self);
-    }
-    
-    // TButtonItem
-    public function get_selectedItem(){
-        return _c(categorybtns_selected($this->self));
-    }
-    
-    public function addSection($group,$caption,$color=clWhite){
-        
+class TCategoryButtons extends TControl {        
+    public function addSection($group,$caption,$color=clWhite)
+	{    
         $sec = $this->categories->add();
         $sec->caption = $caption;
         $sec->color   = $color;
@@ -36,8 +14,8 @@ class TCategoryButtons extends TControl {
     }
     
     // TButtonItem
-    public function addButton($group){
-        
+    public function addButton($group)
+	{    
         $groups = $this->groups;
         $sec = _c($groups[$group]);
 		$arr = $this->items;
@@ -46,8 +24,8 @@ class TCategoryButtons extends TControl {
 		$this->items = $arr;
         return $btn;
     }
-    public function set_selected($group){
-        
+    public function set_selected($group)
+	{    
         $groups = $this->groups;
         $sec = _c($groups[$group]);
         
@@ -57,8 +35,8 @@ class TCategoryButtons extends TControl {
         $sec->collapsed = false;
     }
     
-    public function get_selected(){
-        
+    public function get_selected()
+	{    
         $groups = $this->groups;
         
         foreach ($groups as $tmp=>$self)
@@ -71,14 +49,9 @@ class TCategoryButtons extends TControl {
     public function set_selectedList($arr){
         
         $groups = $this->groups;
-        //$sec = _c($groups[$group]);
-        
-        foreach ($groups as $name=>$self){
-            
-            if (in_array($name, $arr))
-                _c($self)->collapsed = false;
-            else
-                _c($self)->collapsed = true;
+        foreach ($groups as $name=>$self)
+		{    
+			_c($self)->collapsed = in_array($name, $arr);
         }
     }
     
@@ -107,38 +80,20 @@ class TCategoryButtons extends TControl {
         return stripos($this->buttonOptions,'boShowCaptions')===false;
     }
     
-    public function unSelect(){
-        
-        categorybtns_unselect($this->self);
-    }
-
-}
-
-class TButtonCategories extends TControl {
-    
-    
-    
-    // return TButtonCategory
-    public function add(){
-        return _c(btncatigories_add($this->self));
-    }
-    
-    // return TButtonCategory
-    public function insert($index){
-        
-        return _c(btncatigories_insert($this->self, $index));
+    public function unSelect()
+	{
+		gui_propSet($this->self, 'SelectedItem', nil);   
     }
 }
-
-class TButtonCategory extends TControl {
-    
-    
-	
+class TButtonCategories extends TControl{}
+class TButtonCategory extends TControl
+{	
     #collapsed
-    public function addButton(){
-		return _c(btncatigories_addbutton($this->self));
+    public function addButton()
+	{
+		return $this->items->add();
     }
 }
-
+class TButtonCollection extends TControl{}
 class TButtonItem extends TControl {}
 ?>
