@@ -23,13 +23,11 @@ class myProject {
     
     static function openLsProject(  $vv = false )
 	{    
-        global $projectFile;
+        global $_PARAMS, $projectFile;
         
         setTimeout( 10000, 'myProject::registerFileType()' );
         
-		// Зачем массив? Есть же функция! И переменая что-бы не вызывать её 2-а раза.
-		$param = param_str(2);
-        $fileName = isset($param)? replaceSl($param): '';
+        $fileName = isset($_PARAMS[2])? replaceSl($_PARAMS[2]): '';
         
         if (file_exists($fileName)){
 			
