@@ -1,6 +1,8 @@
 <?
 
-class TCategoryButtons extends TControl {        
+class TCategoryButtons extends TControl {
+	public $__isImages;
+	
     public function addSection($group,$caption,$color=clWhite)
 	{    
         $sec = $this->categories->add();
@@ -79,10 +81,27 @@ class TCategoryButtons extends TControl {
         
         return stripos($this->buttonOptions,'boShowCaptions')===false;
     }
+	
+	// С отключением иконок пока проблемы, потом исправлю...
+    public function set_IsIcons((bool)$v){
+		if($v and is_object($this->__isImages)){
+			gui_propSet($this->self, 'Images', $this->__isImages);
+			unset($this->__isImages);
+		} else {
+			$this->__isImages = $this->Images;
+			pre($this->__isImages);
+			pre($this->images);
+			gui_propSet($this->self, 'Images', null);
+		}
+    }
+    
+    public function get_IsIcons(){	
+        return !empty($this->__isImages);
+    }
     
     public function unSelect()
 	{
-		gui_propSet($this->self, 'SelectedItem', nil);   
+		gui_propSet($this->self, 'SelectedItem', null);   
     }
 }
 class TButtonCategories extends TControl{}
