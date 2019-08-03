@@ -111,7 +111,6 @@ object fmImgListEditor: TfmImgListEditor
       Width = 143
       Height = 24
       Hint = #1044#1086#1073#1072#1074#1080#1090#1100' '#1082#1072#1088#1090#1080#1085#1082#1091
-      HelpType = htKeyword
       Align = alTop
       Caption = #1044#1086#1073#1072#1074#1080#1090#1100' '#1082#1072#1088#1090#1080#1085#1082#1091
       Flat = True

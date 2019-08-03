@@ -85,7 +85,7 @@ class DS_Loader
 				eval($s);
 			}
 		}
-		unset($modules,$s,$e);
+		unset($modules,$s);
 	}
 
 	public function LoadOptions()

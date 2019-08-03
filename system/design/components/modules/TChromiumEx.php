@@ -3,72 +3,6 @@ class TCefWindowParent extends TControl{}
 class TChromiumEx extends TCefWindowParent {
     private static $init_self;
     public $__events = [];
-
-	function set_onchromiumlibload($v)
-	{
-		pre($v);
-		$this->__events["onchromiumlibload"] = $v;
-	}
-	function set_onbeforebrowse($v)
-	{
-		pre($v);
-		$this->__events["onbeforebrowse"] = $v;
-	}
-	function set_onbeforepopup($v)
-	{
-		pre(['EventSet',$v]);
-		$this->__events["onbeforepopup"] = $v;
-	}
-	function set_onbeforemenu($v)
-	{
-		pre(['EventSet',$v]);
-		$this->__events["onbeforemenu"] = $v;
-	}
-	function set_onauthcredentials($v)
-	{
-		pre(['EventSet',$v]);
-		$this->__events["onauthcredentials"] = $v;
-	}
-	function set_ongetdownloadhandler($v)
-	{
-		pre(['EventSet',$v]);
-		$this->__events["ongetdownloadhandler"] = $v;
-	}
-	function set_onconsolemessage($v)
-	{
-		pre(['EventSet',$v]);
-		$this->__events["onconsolemessage"] = $v;
-	}
-	function set_onloadstart($v)
-	{
-		pre(['EventSet',$v]);
-		$this->__events["onloadstart"] = $v;
-	}
-	function set_onloadend($v)
-	{
-		pre(['EventSet',$v]);
-		$this->__events["onloadend"] = $v;
-	}
-	function set_onloaderror($v)
-	{
-		$this->__events["onloaderror"] = $v;
-	}
-	function set_onstatusmessage($v)
-	{
-		$this->__events["onstatusmessage"] = $v;
-	}
-	function set_onaddresschange($v)
-	{
-		$this->__events["onaddresschange"] = $v;
-	}
-	function set_ontitlechange($v)
-	{
-		$this->__events["ontitlechange"] = $v;
-	}
-	function set_ontooltip($v)
-	{
-		$this->__events["ontooltip"] = $v;
-	}
 	
 	public function get_enabled(){return true;}
 	public function set_enabled($v){return true;}
@@ -149,14 +83,7 @@ class TChromiumEx extends TCefWindowParent {
 	public static function clrtimer($self, $newSelf, $timer)
 	{
 		
-		if( isset($self->__events['onchromiumlibload']) )
-		{
-			call_user_func_array($self->__events['onchromiumlibload'], $newSelf);
-			unset($self->__events['onchromiumlibload']);
-		}
-		if(!empty($self->__events))
-			foreach($self->__events as $eventName=>$event)
-				event_set($newSelf, $eventName, $event);
+		EventEngine::updateIndex($md);
 		setTimeout(1, "gui_safedestroy( $timer )");
 	}
 	public function free()

@@ -405,7 +405,10 @@ function set_event($self, $event, $value){
 			foreach( array_slice($value, 1) as $Add )
 				event_add($self, $event, $Add);
 				return $r;
-	    } else event_set($self, $event, $value);
+	    } else 
+		{
+			event_set($self, $event, $value);
+		}
 }
 
 function uni_serialize($str){
@@ -554,31 +557,17 @@ class TComponent extends TObject {
 	function __set($nm,$val){
 		
 		$nm = strtolower($nm);
+		$s  = "set_{$nm}";
 		$class = rtti_DClass($this);
-		
-		if (!method_exists($this,'set_'.$nm)&&($class!=='TWebBrowser' && $class!=='TScreenEx' && $class!=='TPen' && $class!=='TImageList')){
-		    
-		    if ($nm=='visible'){
-				return control_visible($this->self, $val);
-		    } elseif ($nm=='left'){
-				return control_x($this->self, $val);
-		    } elseif ($nm=='top'){
-				return control_y($this->self, $val);
-		    } elseif ($nm=='width'){
-				return control_w($this->self, $val);
-		    } elseif ($nm=='height'){
-				return control_h($this->self, $val);
-		    }
-		}
-				  
+		$mext = method_exists($this,$s);
 		if (strtolower(substr($nm,0,2)) == 'on')
 		{
 			if(gui_propExists($this->self, $nm))
 			{
 				$result = set_event($this->self,$nm,$val);
 			} else $result = is_object($val);
-		    if ( method_exists($this, "set_{$nm}") )
-				$this->{"set_{$nm}"}($val);
+		    if ( $mext )
+				$this->$s($val);
 		    
 		    if($result) return;
 		}
@@ -588,8 +577,7 @@ class TComponent extends TObject {
 			$this->__addPropEx($nm,$val);
 			parent::__set($nm,$val);
 		} else {
-		    $s = 'set_'.$nm;
-		    if (method_exists($this,'set_'.$nm))
+		    if ($mext)
 				$this->$s($val);
 		    else
 				$this->set_prop($nm,$val);
@@ -599,23 +587,15 @@ class TComponent extends TObject {
 	function __get($nm){
             
 	    $nm = strtolower($nm);
-	    $res = parent::__get($nm);
+	    
 	    $class = rtti_DClass($this);
-		if (!method_exists($this,'get_'.$nm))
-		if ($class!=='TScreenEx' && $class!=='TPen' && $class!=='TImageList'){
-		    
-		    if ($nm == 'visible'){
-				return control_visible($this->self, null);
-		    } elseif ($nm=='left'){
-				return control_x($this->self, null);
-		    } elseif ($nm=='top'){
-				return control_y($this->self, null);
-		    } elseif ($nm=='width'){
-				return control_w($this->self, null);
-		    } elseif ($nm=='height'){
-				return control_h($this->self, null);
-		    }
-		}
+		$s = "get_{$nm}";
+		if( method_exists($this,$s) )
+			return $this->$s();
+		else 
+			$res = parent::__get($nm);
+		
+
 			    
 	    if (is_int($res) && ($res == -908067676)){ //Вот этот инопланетный код ошибки, непоймёшь откуда взятый, даже нет для него константы у Dim-s, просто число
 		    

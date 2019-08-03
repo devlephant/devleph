@@ -82,7 +82,7 @@ $result[] = array(
 $result[] = array(
                   'CAPTION'=>t('On Address Change'),
                   'EVENT'=>'onaddresschange',
-                  'INFO'=>'%func%()',
+                  'INFO'=>'%func%($self, $url)',
                   'ICON'=>'onaddresschange',
                   );
 

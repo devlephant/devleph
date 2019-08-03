@@ -1,11 +1,6 @@
 object fmTIB: TForm
   Left = 10
   Top = 10
-  HelpType = htKeyword
-  HelpKeyword = 
-    'AAAAAhQCEQVDTEFTUxEFVEZvcm0RBlBBUkFNUxQHEQhhdmlzaWJsZQURCGFlbmFi' +
-    'bGVkBREBaAgBSREBdwYyEQF4BgoRAXkGChEKcG9zaXRpb25leBEKcG9EZXNpZ25l' +
-    'ZA=='
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   BorderWidth = 10
@@ -115,7 +110,6 @@ object fmTIB: TForm
       Width = 143
       Height = 24
       Hint ='{tib_add}'
-      HelpType = htKeyword
       Align = alTop
       Caption = '{tib_add}'
       Flat = True

@@ -14,8 +14,8 @@ function langSwitcher($lang){
 
 $langs = findFiles(DOC_ROOT.'/lang/','lng',false,true);
 
-    foreach ($langs as $lang){
-        
+    foreach ($langs as $lang)
+	{    
         $info = parse_ini_file($lang);
         $info['lang'] = basenameNoExt($lang);
         $infos[basenameNoExt($lang)] = $info;

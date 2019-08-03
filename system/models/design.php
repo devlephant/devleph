@@ -525,7 +525,7 @@ class myDesign
         
         if (is_subclass_of($obj,  '__TNoVisual')) return;
         myInspect::selectObject($obj,
-                                $dx + control_x($targetSelected,null), $dy + control_y($targetSelected,null));
+                                $dx + gui_propGet($targetSelected,'Left'), $dy + gui_propGet($targetSelected,'Top'));
 				
     }
 
@@ -707,8 +707,8 @@ class myDesign
         //$self = $CTRL->self;
         $tmp['x'] = getAbsoluteX($self, $GLOBALS['fmEdit']->self);
         $tmp['y'] = getAbsoluteY($self, $GLOBALS['fmEdit']->self);
-        $tmp['w'] = control_w($self, null);
-        $tmp['h'] = control_h($self, null);
+        $tmp['w'] = gui_propGet($self,'Width');
+        $tmp['h'] = gui_propGet($self,'Height');
         return Geometry::collision2D($tmp, array('x'=>$x,'y'=>$y,'w'=>$w,'h'=>$h));
     }
    
