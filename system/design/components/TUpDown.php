@@ -6,7 +6,5 @@ return array(
 'CAPTION' => t('TUpDown_Caption'),
 'SORT'    => 46064,
 'NAME'    => 'upDown',
-'W' => 5,
-'H' => 25,
-'PROPS' => array('Thousands' => False),
+'PROPS' => ['W'=>17,'H'=>20,'Thousands' => False],
 );
