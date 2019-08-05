@@ -318,10 +318,6 @@ class myDesign
             
             $id = self::getNoExistsNameIndex($obj);
             $obj->name = vsprintf($c['NAME'].'%s', $id);            
-            
-            foreach ((array)$c['PROPS'] as $prop=>$value){
-                $obj->$prop = $value;
-            }
          
             $x = round($x / $_sc->gridSize) * $_sc->gridSize;
             $y = round($y / $_sc->gridSize) * $_sc->gridSize;
@@ -361,6 +357,9 @@ class myDesign
             /////////////////
             
             $obj->parent = $parent;
+			foreach ((array)$c['PROPS'] as $prop=>$value){
+                $obj->$prop = $value;
+            }
             if (is_subclass_of($obj,  '__TNoVisual'))
                 $obj->text = '';
             else
