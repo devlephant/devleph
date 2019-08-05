@@ -631,7 +631,7 @@ class ev_fmMain_pDockMain {
         global $_sc, $fmEdit;
 
         myDesign::formProps();
-        form_parent($fmEdit->self, c('fmMain->pDockMain')->self);
+        $fmEdit->parent = c('fmMain->pDockMain');
         $_sc->clearTargets();
     }
     

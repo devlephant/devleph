@@ -146,17 +146,6 @@ class TForm extends TControl
 		gui_formShowModal( $this->self );
 		return $this->modalResult;
 	}
-        	    
-	function set_modalResult($mr){
-		
-		form_modalresult($this->self,$mr);
-	}
-	
-	function get_modalResult(){
-		
-		return form_modalresult($this->self,null);
-	}
-	
 	function scrollBy($x, $y){
 		
 		form_scrollby($this->self, $x, $y);
