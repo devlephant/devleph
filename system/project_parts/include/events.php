@@ -265,36 +265,34 @@ class __exEvents {
         
         return $GLOBALS['__exEvents'][$self]['obj_name'];
     }
-	//--До выполнения события
+    
     static function setEventInfo($self, $event){
-        global $__eventInfo;//для потоков... нужно что-то аналогичное - т.е не стат класс, и не суперглобалку
-		//а что-то, что в отдельном потоке php на автомате обнуляется и там оно "своё"
+        
+        global $__eventInfo;
+    
         $__eventInfo['obj_name'] = $GLOBALS['__exEvents'][$self]['obj_name'];
         $__eventInfo['name']     = $event;
         $__eventInfo['self']     = $self;
         
         $GLOBALS['__ownerComponent_last'][] = $GLOBALS['__ownerComponent'];
-        ///\ эта штука используется для отладки /\
-		
+        
         if (gui_is($self, 'TForm'))
             $GLOBALS['__ownerComponent'] = $self;
         else
             $GLOBALS['__ownerComponent'] = gui_owner($self);
-        ///\ эта штука используется для функции c() /\
-		
+        
         ob_start('__exEvents::echo_handler', PHP_OUTPUT_HANDLER_CONT);
-		///\ эта штука задаёт метод вывода /\.
-	}
+    }
     
-	//----Выполнение события//вызов польз.ыобработчика(функции)
-	
-	//--После выполнения события
     static function freeEventInfo(){
+        
         ob_end_flush();
+
+        
         $GLOBALS['__ownerComponent'] = $GLOBALS['__ownerComponent_last'][count($GLOBALS['__ownerComponent_last'])-1];
         unset($GLOBALS['__ownerComponent_last'][count($GLOBALS['__ownerComponent_last'])-1]);
         $GLOBALS['__ownerComponent_last'] = array_values($GLOBALS['__ownerComponent_last']);
-        //тут я и сам не очень разберу что за массив. в любом случае это дело нужно убрать и переделать
+        
         unset($GLOBALS['__eventInfo']);
     }
     
@@ -314,7 +312,7 @@ class __exEvents {
     static function callCode($_self, $_eventName){
         $self   = c($_self);
         self::setEventInfo($_self, $_eventName);
-        eval( enc_getValue('__incCode') ); //заменим на суперглобальные. ну а что?
+        eval( enc_getValue('__incCode') );
         eval( self::getEvent($_self,$_eventName) );
         self::freeEventInfo();
     }
