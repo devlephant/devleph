@@ -157,7 +157,7 @@ class complete_Props {
             if (strtolower($class['NAME'])==$x_class){
                 
                 $props = $class['info']['properties'];
-                foreach((array)$props as $prop){
+                foreach($props as $prop){
                     
                     if ($prop['type'] == 'public'){
                         
@@ -169,7 +169,7 @@ class complete_Props {
                 
                 $methods = $class['info']['methods'];
                 
-                foreach((array)$methods as $method){
+                foreach($methods as $method){
                     
                     $prefix = strtolower(substr($method['name'],0,4));
                     $prop = str_ireplace($prefix,'',$method['name']);
