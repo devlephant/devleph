@@ -259,6 +259,7 @@ $m["Button Font Color"] = "Цвет Шрифта Кнопок";
 $m["Highlight Text Color"] = "Цвет Подсвечиваемого Текста";
 $m["Row Height"] = "Высота Колонок";
 $m["Enable Visual Styles"] = "Включить Визуальные Стили";
+$m["Use Visual Style"] = "Использовать Визуальный Стиль";
 $m["Col Moving"] = "Передвижение Колонок";
 $m["Check Boxes"] = "Флажки";
 $m["Flat Scroll Bars"] = "Плоские Прокрутчики";
