@@ -24,7 +24,7 @@ function treeBwr_add()
 			if(!is_a($obj,"TSizeCtrl"))
 			{
 				$imglist->addFromFile(DOC_ROOT . '/design/24bit/' . get_class($obj) . '.bmp');
-				$Forms .= "		".$obj->name."({$obj->self})"._BR_;
+				$Forms .= "		".$obj->name."(".get_class($obj).")"._BR_;
 			}
 		}
 	}
