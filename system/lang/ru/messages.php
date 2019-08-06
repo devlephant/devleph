@@ -2,8 +2,8 @@
 $m["Script not found!"] = "Скрипт не найден!";
 $m["Syntax error"] = "Ошибка синтаксиса";
 $m["Rewrite script \"%s\"?"] = "Перезаписать скрипт \"%s\"?";
-$m["Unsaved code will be lost. Create a new script?"] = "Не сохраненный код будет утерян! Создать новый скрипт?";
-$m["Unsaved code will be lost! Load the selected script?"] = "Не сохраненный код будет утерян! Загрузить выбранный скрипт?";
+$m["Unsaved code will be lost. Create a new script?"] = "Несохраненный код будет утерян! Создать новый скрипт?";
+$m["Unsaved code will be lost! Load the selected script?"] = "Несохраненный код будет утерян! Загрузить выбранный скрипт?";
 $m["Are you sure to delete the selected script?"] = "Вы действительно хотите удалить выбранный скрипт?";
 $m["All unsaved changes in the code will be lost. Do you want to save the code before closing?"] = "Все не сохраненные изменения в коде будут утеряны. Вы хотите сохранить код до закрытия?";
 $m["Script with that name is already exist. Replace?"] = "Скрипт с таким именем уже существует! Заменить?";
@@ -73,7 +73,7 @@ $m["img_cnt_234"]= "Изображения";
 $m["img_cnt_5_0"]= "Изображений";
 $m["build_notify_ua"] = "				Внимание
 	
-  Программы, созданные на Dev-S, требуют установки средств MSVC++
+  Программы, созданные на Dev-S, требуют установки средств MSVC++ 2011
 	
   https://www.microsoft.com/en-us/download/details.aspx?id=30679";
 $m["Wi-Fi Function"] = "Функция Wi-Fi";
