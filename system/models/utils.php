@@ -167,6 +167,7 @@ class myUtils
 				if( !$inf || ( checkObjToDel($arr, $object, $inf) == $idx) )
 				{
 					$skip = true;
+					$idx--;
 				}
 			}
 			if( $skip)
