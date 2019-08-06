@@ -992,7 +992,7 @@ $m["Name of global var"] = "Имя глобальной переменной";
 $m["Buffer size (bytes)"] = "Размер буффера (байты)";
 
 $m["Http url"] = "Http адрес";
-$m["Send method"] = "Метод отправки (post или get)";
+$m["Send method"] = "Метод отправки (POST или GET)";
 $m["Encoding"] = "Закодирование";
 $m["Redirect"] = "Перенаправление";
 $m["Time out (sec)"] = "Время ожидания (сек)";
@@ -1033,7 +1033,7 @@ $m["Science"] = "Наука";
 $m["Result"] = "Результат";
 
 $m["Set value of object"] = "Задавать значение объекта";
-$m["Get value from object"] = "Брать значение объекта";
+$m["Get value from object"] = "Принимать значение объекта";
 $m["Font color"] = "Цвет шрифта";
 
 $m["Program type"] = "Тип программы";
@@ -1068,7 +1068,7 @@ $m["Editor settings"] = "Настройки редактора";
 $m["Background:"] = "Задний фон:";
 $m["Font color:"] = "Цвет шрифта:";
 $m["Symbol"] = "Символ";
-$m["Identifier"] = "Индетификатор";
+$m["Identifier"] = "Индентификатор";
 $m["String"] = "Строка";
 $m["Number"] = "Число";
 $m["Space"] = "Пробел";
@@ -1106,7 +1106,7 @@ $m["Backup Count"] = "Количество резервных копий";
 $m["Backup Directory Name"] = "Имя папки для резервных копий";
 $m["min"] = "мин.";
 $m["Backup Projects"] = "Резервирование проектов";
-$m["Remove temporary exe after testing"] = "Удалять exe-проекта после тестирования";
+$m["Remove executable after testing"] = "Удалять исполняемый файл после тестирования";
 $m["demo_projects"] = "Демо проекты";
 $m["projects"] = "Проекты";
 $m["On Vertical Scroll"] = "Вертикальная Прокрутка";

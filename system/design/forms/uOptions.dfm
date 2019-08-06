@@ -69,7 +69,7 @@ object fmOptions: TfmOptions
         Top = 40
         Width = 241
         Height = 17
-        Caption = '{Remove temporary exe after testing}'
+        Caption = '{Remove executable after testing}'
         Checked = False
         State = cbUnchecked
       end
