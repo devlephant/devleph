@@ -165,8 +165,8 @@ object fmBuildProgram: TfmBuildProgram
           '{upx_None}'
           '{Fast}'
           '{Normal}'
-          '{Maximum}'
-          '{Super Max}')
+          '{Strong}'
+          '{Maximal}')
       end
       object e_companyname: TEdit
         Left = 16
