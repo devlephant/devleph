@@ -508,7 +508,7 @@ object fmMain: TfmMain
           Height = 8
 		  Brush.Color = clBtnFace
 		  Pen.Style = psClear
-		  Anchors = [akTop, akLeft, akRight, akBottom]
+		  Anchors = [akTop, akLeft, akRight]
 		end
         object btn_addEvent: TSpeedButton
           Left = 6
