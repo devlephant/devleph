@@ -927,6 +927,13 @@ class TTreeView extends TControl {
 		tree_fullCollapse($this->self);
 	}
 	
+	public function addItem($name, $tab){
+		if($tab>0)
+			for($i=1;$i<=$tab;$i++){
+				$tabs .= '	';
+			}
+		$this->text .= $tabs.$name._BR_;
+	}
 	
 	
 }

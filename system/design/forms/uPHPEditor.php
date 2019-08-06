@@ -518,7 +518,7 @@ class EditorSynt
 		{
 			$it = new TMenuItem;
 			$it->parent = c("fmPHPEditor");
-			$it->name = str_replace(array(' ', '-', '#', '@', '!', '$', '.', '+', '=', '(', ')'), '_', $s);
+			$it->name = str_replace([' ', '-', '#', '@', '!', '$', '.', '+', '=', '(', ')'], '_', $s);
 			$it->caption = $s;
 			$it->onClick = function($self)use($s){
 				$self = c($self);

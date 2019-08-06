@@ -6,19 +6,24 @@ function treeBwr_add()
 	$dir = dirname($projectFile);
 	$tree = c('fmMain->TreeProject');
 	
+	$imglist = new TImageList;
 	$tree->text = "";
 	$Forms = "";
 	$text = "";
+	gui_propSet($tree->self, 'Images', null);
 	$dirs = findFiles($dir, "dfm");
+	//$imglist->addFromFile(DOC_ROOT . '/design/24bit/formlist.bmp');
 	foreach( (array)$dirs as $dfm )
 	{
 		$Forms .= '	' . $dfm . PHP_EOL;
+		//$imglist->addFromFile(DOC_ROOT . '/design/24bit/form.bmp');
 		$form = (object)myUtils::$forms[strtolower(basenameNoExt($dfm))];
 		$comList = $form->componentList;
 		foreach( (array)$comList as $obj )
 		{
 			if(!is_a($obj,"TSizeCtrl"))
 			{
+				$imglist->addFromFile(DOC_ROOT . '/design/24bit/' . get_class($obj) . '.bmp');
 				$Forms .= "		".$obj->name."({$obj->self})"._BR_;
 			}
 		}
@@ -47,8 +52,9 @@ function treeBwr_add()
 	}
 	
 	$tree->text = $text;
+	$tree->Images = $imglist;
 	$tree->fullExpand();
-	unset($tree, $dir, $dirs, $Forms, $Scripts, $Modules);
+	unset($tree, $dir, $dirs, $Forms, $Scripts, $Modules, $imglist);
 }
 
 dsApi::addProjectChangeCallback('treeBwr_add');
