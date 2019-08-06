@@ -997,10 +997,10 @@ $m["Encoding"] = "Закодирование";
 $m["Redirect"] = "Перенаправление";
 $m["Time out (sec)"] = "Время ожидания (сек)";
 $m["Proxy"] = "Прокси";
-$m["Lock component"] = "Блокировать компонент";
+$m["Lock component"] = "Заблокировать компонент";
 $m["Unlock component"] = "Разблокировать компонент";
 $m["Unselect category"] = "Снять выбор";
-$m["Next"] = "Следущий";
+$m["Next"] = "Следующий";
 $m["Previous"] = "Предыдущий";
 $m["Sensitive"] = "Учитывать регистр";
 $m["Find:"] = "Найти:";
@@ -1016,20 +1016,17 @@ $m["master_update"] = "Обновить программу";
 
 $m["Group"] = "Группировать";
 $m["Ungroup"]  = "Разгруппировать";
-$m["php_help"] = "Обучение PHP";
+$m["php_help"] = "Помощь по PHP";
 
 $m["Show Buttons"] = "Показывать кнопки";
 $m["Show Lines"] = "Показывать линии";
 $m["Show Root"]  = "Показывать оглавление";
 $m["Hot Track"]  = "Подсвечивать";
-$m["Auto Expand"] = "Авто раскрытие";
+$m["Auto Expand"] = "Авто-Раскрытие";
 
 $m["Change type of selected event"] = "Поменять тип выделенного события";
 $m["Change event type"] = "Поменять тип события";
 $m["Delete event"] =  "Удалить событие";
-
-$m["gr_science"] = "Наука";
-$m["Science"] = "Наука";
 $m["Result"] = "Результат";
 
 $m["Set value of object"] = "Задавать значение объекта";
@@ -1056,16 +1053,16 @@ $m["Compile with BCompiler"] = "Компилировать с BCompiler\'ом";
 $m["Build"] = "Собрать";
 $m["Save settings"] = "Сохранить настройки";
 $m["Form %s already exists in the project"] = "Форма \"%s\" уже существует в проекте";
-$m["Please, add module \'%s\' to the /core/php.ini in \'extensions\' section"] = "Пропишите модуль \"%s\" в /core/php.ini в секцию \"extensions\"";
+$m["Please, add module \'%s\' to the /core/php.ini in \'extensions\' section"] = "Пожалуйста, пропишите модуль \"%s\" в /core/php.ini в секцию \"extensions\"";
 $m["Are you sure to delete form \"%s\"?"] = "Вы точно желаете удалить форму \"%s\"?";
 $m["You\'re trying to load old-format project. This project will be converted!"] = "Вы пытаетесь загрузить проект старого формата. Данный проект будет конвертирован!";
-$m["Project file is corrupt or empty!"] = "Файл проекта был повреждён, или он пустой!";
+$m["Project file is corrupt or empty!"] = "Файл проекта был повреждён, или же он пустой!";
 $m["Bold"] = "Жирный";
-$m["Italic"] = "Наклонный";
-$m["Underline"] = "Подчеркнутый";
-$m["Attribute"] = "Атрибуты";
+$m["Italic"] = "Наклонённый";
+$m["Underline"] = "Подчёркнутый";
+$m["Attribute"] = "Аттрибуты";
 $m["Editor settings"] = "Настройки редактора";
-$m["Background:"] = "Задний фон:";
+$m["Background:"] = "Фон:";
 $m["Font color:"] = "Цвет шрифта:";
 $m["Symbol"] = "Символ";
 $m["Identifier"] = "Индентификатор";
@@ -1081,7 +1078,7 @@ $m["Type of Ballontip"] = "Тип подсказки";
 $m["Timeout of Ballontip"] = "Время задержки подсказки";
 $m["Information"] = "Информация";
 $m["Last Icon"]   = "Последняя иконка";
-$m["Tray Icon"]   = "Трэй иконка";
+$m["Tray Icon"]   = "Иконка области уведомлений";
 $m["Variables:"]  = "Переменные:";
 $m["Value of selected var:"] = "Значение выделенной переменной:";
 $m["Var dump style"] = "Var dump стиль";
@@ -1112,7 +1109,6 @@ $m["projects"] = "Проекты";
 $m["On Vertical Scroll"] = "Вертикальная Прокрутка";
 $m["On Horizontal Scroll"] =  "Горизонтальная Прокрутка";
 $m["Synchronization"] = "Синхронизация";
-
 
 $m["Color On Enter"] = "Цвет Ввода";
 $m["Font Color On Enter"] = "Цвет шрифта ввода";
