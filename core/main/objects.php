@@ -431,30 +431,62 @@ function uni_unserialize($str){
 
 /* TComponent class ala Delphi */
 class TComponent extends TObject {
-	
 	#public hekpKeyword // здесь храняться все нестандартные свойства
-	
 	function valid(){
 	    return true;
 	}
-	
-	function getHelpKeyword(){
+	function componentById($id,$type = 'TComponent'){
+            return _c(component_by_id($this->self,$id), $type);
+        }
+        
+    function componentCount(){
+		return component_count($this->self);
+	}
+	function get_componentIndex(){
+	    return component_index($this->self);
+	} 
+    function get_componentList(){
+        $res = [];
+        $count = $this->componentCount();
 	    
-	    return control_helpkeyword($this->self, null);
+        for ($i=0;$i<$count;$i++){
+            $res[] = $this->componentById($i);
+        }
+            
+            return $res;
+    }
+	function __prepareHK()
+	{
+		if(count($this->get_ComponentList())<=0)
+		{
+			component_create('TControl', $this->self);
+		}
+		return $this->get_ComponentList()[0]->self;
+	}
+	function getHelpKeyword()
+	{
+		if( gui_is($this->self, 'TControl') )
+			return control_helpkeyword($this->self, null);
+		else
+			return control_helpkeyword($this->__prepareHK(), null);
 	}
 	
 	function setHelpKeyword($v){
-	    control_helpkeyword($this->self, $v);
+		if( gui_is($this->self, 'TControl') )
+			control_helpkeyword($this->self, $v);
+		else
+			control_helpkeyword($this->__prepareHK(), $v);
 	}
-	
 	// доп инфа для нестандартных свойств
 	function __addPropEx($nm, $val){
 
 	    $class = get_class($this);		    
-	    $result = uni_unserialize($this->getHelpKeyword());
+	    if($class == 'TComponent' && gui_is($this->self, 'TControl')) $class = 'TControl';
+		
+		$result = uni_unserialize($this->getHelpKeyword());
 	    
 	    $nm = strtolower($nm);
-	    
+	    if($nm=='helpkeyword') return;
 	    if ($val===NULL){
 		if ( $result ) unset($result['PARAMS'][$nm]);
 	    }  else
@@ -473,6 +505,7 @@ class TComponent extends TObject {
 	
 	function __setClass(){
 	    $class = get_class($this);	
+		if($class == 'TComponent' && gui_is($this->self, 'TControl')) $class = 'TControl';
 	    $result = uni_unserialize($this->getHelpKeyword());
 	    $this->helpKeyword = uni_serialize(
 				[
@@ -484,8 +517,8 @@ class TComponent extends TObject {
 	
 	// достаем свойство...
 	function __getPropEx($nm){
-	    
-	    $result = uni_unserialize(control_helpkeyword($this->self, null));
+	    if($nm=='helpkeyword') return $this->getHelpKeyword();
+	    $result = uni_unserialize($this->getHelpKeyword());
 		$nm = strtolower($nm);	
 		return isset($result['PARAMS'][$nm])?$result['PARAMS'][$nm]:null;
 	}
@@ -592,7 +625,7 @@ class TComponent extends TObject {
 		$s = "get_{$nm}";
 		if( method_exists($this,$s) )
 			return $this->$s();
-		else 
+		else
 			$res = parent::__get($nm);
 		
 
@@ -739,14 +772,6 @@ class TControl extends TComponent {
         function get_owner(){
             return get_owner($this);
         }
-        
-        function componentById($id,$type = 'TComponent'){
-            return _c(component_by_id($this->self,$id), $type);
-        }
-        
-        function componentCount(){
-            return component_count($this->self);
-        }
 	
 	function controlById($id){
 	    return _c(control_by_id($this->self, $id));
@@ -756,25 +781,12 @@ class TControl extends TComponent {
 	    return control_count($this->self);
 	}
 	
-	function get_componentIndex(){
-	    return component_index($this->self);
-	}
+	
 	
 	function get_controlIndex(){
 	    return control_index($this->self);
 	}
-        
-    function get_componentList(){
-        $res = [];
-        $count = $this->componentCount();
-	    
-        for ($i=0;$i<$count;$i++){
-            $res[] = $this->componentById($i);
-        }
-            
-            return $res;
-    }
-	
+    
     function get_controlList(){
         $res = [];
         $count = $this->controlCount();
