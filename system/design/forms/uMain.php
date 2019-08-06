@@ -831,7 +831,7 @@ class ev_itemCAll {
 
         foreach( $fmEdit->componentList as $c )
 		{
-			if( $c->self !== $_sc->self )
+			if( $c->self !== $_sc->self && gui_is($c->self, 'TControl') )
 				$_sc->addTarget($c);
 		}
 	}
@@ -841,16 +841,13 @@ class ev_fmMain_itinvertce {
 	static function onClick()
 	{
 		global $fmEdit, $_sc;
-		$targets = count($_sc->targets_ex) ? $_sc->targets_ex : array($fmEdit);
+		$targets = count($_sc->targets_ex) ? $_sc->targets_ex : [$fmEdit];
+		$_sc->ClearTargets();
 		foreach( $fmEdit->componentList as $c )
 		{
 			if( $c->self !== $_sc->self )
-				if( in_array($c, $targets) )
-				{
-					$_sc->unRegisterTarget($c);
-				} else { 
+				if( !in_array($c, $targets) )
 					$_sc->addTarget($c);
-				}
 		}
 	}
 }

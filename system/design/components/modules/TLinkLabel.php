@@ -55,7 +55,7 @@ class TLinkLabel extends TLabel {
 	    if ( !$GLOBALS['APP_DESIGN_MODE'] ){ // fix
 		$this->__initComponentInfo();
 	    }
-	    
+			$this->StyleElements = '';
             $this->fontColor  = clBlue;
             $this->hoverColor = clRed;
             $this->hoverStyle = 'fsUnderline';

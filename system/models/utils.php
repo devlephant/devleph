@@ -130,17 +130,44 @@ class myUtils
         if ($index)
             $arr[$index] = $value;
     }
-   
-	static function delObjectArr(&$arr, $object)
+	static	function checkObjToDel(&$arr, $o, $inf)
+	{
+		$len = strlen($o);
+		$idx = -1;
+		$skip = false;
+        foreach ($arr as $i=>$line)
+		{
+            if (substr(trim($line),0,$len)==$o && $i>0)
+			{
+				if(!$skip)
+				$idx++;
+                $skip = true;
+			}
+			if( $skip)
+			{
+				if(strtolower(str_replace(['	', ' '], '', $line))==$inf)
+					return $idx;
+				if(trim($line)=='end' ) 
+					$skip = false;
+			}
+        }
+	}
+	static function delObjectArr(&$arr, $object, $inf=false)
 	{
 		$object = "object {$object}";
         $len = strlen($object);
 		$skip = false;
+		$idx = -1;
         foreach ($arr as $i=>$line)
 		{
             if (substr(trim($line),0,$len)==$object && $i>0)
 			{
-                $skip = true;
+				if(!$skip)
+				$idx++;
+				if( !$inf || ( checkObjToDel($arr, $object, $inf) == $idx) )
+				{
+					$skip = true;
+				}
 			}
 			if( $skip)
 			{
@@ -252,6 +279,7 @@ class myUtils
         
         if (is_object($_sc) && !$no_clear_sc){
             $_sc->free();
+			myDesign::clearNoVis();
 	    $_sc = false;
         }
         
@@ -280,9 +308,22 @@ class myUtils
          
         $targets = $form->componentList;
         foreach ($targets as $el){
-            if (!$el->isClass(array('TEvents','TSizeCtrl'))){
-                
-                $_sc->registerTarget($el);
+			if (!$el->isClass(array('TEvents','TSizeCtrl')))
+			{
+				if ( !gui_is($el->self, 'TControl') )
+				{
+					$alias = new __TNoVisual($form,true,nil,get_class($el));
+					$alias->parent = $form;
+					$alias->Assoc = $el;
+					$alias->tag = -3;
+					if($el->x > 0)
+					{
+						$alias->x = $el->x;
+						$alias->y = $el->y;
+					} else list($alias->x,$alias->y) = [0,0];
+					MyDesign::plusnoVisAlias($el->self, $alias->self);
+					$_sc->registerTarget($alias);
+				} else $_sc->registerTarget($el);
             }
         }
         
@@ -304,6 +345,7 @@ class myUtils
 			$targets_ex = $_sc->targets_ex;
             $_sc->clearTargets();
             $_sc->free();
+			myDesign::clearNoVis();
             $_sc = false;
         }
         
@@ -323,6 +365,7 @@ class myUtils
 			self::delPropArr($str, 'PopupMenu');
         }
 		self::delObjectArr($str, 'TSizeCtrl');
+		self::delObjectArr($str, '__TNoVisual', 'tag=-3');
 		$str = implode(_BR_,$str);
 		file_put_contents(replaceSr($file), $str);
 		if(!$newname) return;

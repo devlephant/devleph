@@ -106,15 +106,15 @@ class __TNoVisual extends TControl {
 		gui_destroy($this->self);
 	}
     
-    public function __construct($onwer=nil,$init=true,$self=nil){
+    public function __construct($onwer=nil,$init=true,$self=nil,$fc=false){
         
 		parent::__construct($onwer, $init, $self);
-		
 	    if ($init){
 
 			$this->showHint = true;
 			$this->hint = $this->name;
-
+			if($fc)
+				$this->FakeClass = $fc;
 			$this->aevisiable = false;
 			$this->file = '';
 
@@ -137,15 +137,18 @@ class __TNoVisual extends TControl {
 	$obj->panel = '';
 	$obj->label = '';
     }
-    
+    function getClass()
+	{
+		return class_exists($this->fakeclass,false)?$this->fakeclass:get_class($this);
+	}
     public function __loadDesign(){	
-	$this->setImage(myImages::get24(get_class($this)));
+	$this->setImage(myImages::get24($this->getClass()));
 	$this->onDblClick = '__TNoVisual::panelDblClick';
     }
     
     public function __pasteDesign(){	
 	
-	$this->setImage(myImages::get24(get_class($this)));
+	$this->setImage(myImages::get24($this->getClass()));
 	$this->onDblClick = '__TNoVisual::panelDblClick';
     }
         

@@ -56,7 +56,6 @@ class myInspect {
             $item->imageIndex = myImages::getImgID('component');
         
         $item->caption    = $obj->name;
-        
         $myInspect->objects[$obj->self] = $item;
     }
     
@@ -155,8 +154,7 @@ class myInspect {
         foreach ($objs as $i=>$name){
             if ($i==0)
                 myDesign::inspectElement($fmEdit->findComponent($name));
-                
-            $_sc->addTarget($fmEdit->findComponent($name));
+            $_sc->addTarget(_c(MyDesign::noVisAliasRt($fmEdit->findComponent($name)->self)));
         }
         
         if (count($objs)==0)
@@ -200,6 +198,7 @@ class myInspect {
         if (!$obj){
             return;
         }
+		$obj = myDesign::noVisAlias($obj->self);
         if ($dx)
             $text = $obj->name . ' [x:' . $dx . ' y:'.$dy . ']';
         else

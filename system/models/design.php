@@ -2,7 +2,7 @@
 class myDesign
 {
     static $canselect = true;
-    
+    static $alias;
     static function formName(){
         
         global $_FORMS, $formSelected;
@@ -190,15 +190,14 @@ class myDesign
 		}
         if ($gen)
         $_sc->clearTargets();
-        
-        $_sc->addTarget($obj);
+        $_sc->addTarget(_c(self::noVisAliasRt($obj->self)));
         
         if ($gen){
         if ($selectedClass){
             $_componentPanel->unSelect();
 			$selectedClass = false;
         }               
-			
+			$obj = _c(self::noVisAlias($obj->self));
             $myProperties->generate($obj->self,c('fmMain->tabProps',1));
             $myEvents->_generate($obj);
             
@@ -300,6 +299,7 @@ class myDesign
             $class = $c['CLASS'];
 			self::$canselect = false;
             $obj = new $class($fmEdit);
+			
             if (($parent->self!==$fmEdit->self) && is_subclass_of($obj,  '__TNoVisual') ){
                 $x     += getAbsoluteX($parent->self, $fmEdit->self);
                 $y     += getAbsoluteY($parent->self, $fmEdit->self);
@@ -347,16 +347,16 @@ class myDesign
                 $h = $c['H'] * 7;
                 $h+= $h % $_sc->gridSize;
             }
-
-            if (is_subclass_of($obj,  '__TNoVisual')){
-                
-            } else {
+			
+            $obj->parent = $parent;
+			
+            if (!is_subclass_of($obj,  '__TNoVisual'))
+			{
                 $obj->w = round($w / $_sc->gridSize) * $_sc->gridSize;
                 $obj->h = round($h / $_sc->gridSize) * $_sc->gridSize;
             }
             /////////////////
             
-            $obj->parent = $parent;
 			foreach ((array)$c['PROPS'] as $prop=>$value){
                 $obj->$prop = $value;
             }
@@ -390,11 +390,21 @@ class myDesign
             
             
             global $myProperties, $myEvents, $myInspect;
-            $myProperties->generate($obj->self,c('fmPropsAndEvents->tabProps',1));
+            if ( !gui_is($obj->self, 'TControl') )
+			{
+				$Cobj = new __TNoVisual($fmEdit,true,nil,get_class($obj));
+				$Cobj->tag = -3; //to delete
+				$Cobj->parent = $obj->owner;
+				$Cobj->x = $obj->x;
+				$Cobj->y = $obj->y;
+				$Cobj->Assoc = $obj;
+				self::plusnoVisAlias($obj->self,$Cobj->self);
+			} else $Cobj = $obj;
+			$myProperties->generate($obj->self,c('fmPropsAndEvents->tabProps',1));
             $myEvents->generate($obj);
-            $myInspect->addItem($obj);
+            $myInspect->addItem($obj,$Cobj->self);
             
-            $_sc->addTarget($obj);
+            $_sc->addTarget($Cobj);
             myInspect::selectObject($obj);
             
 			treeBwr_add();
@@ -413,6 +423,26 @@ class myDesign
         return false;
     }
     
+	static function plusnoVisAlias($a,$nvs)
+	{
+		if($nvs==$a)return;
+		self::$alias[$nvs] = $a;
+	}
+	
+	static function noVisAlias($a)
+	{
+		if( isset(self::$alias[$a]) )
+			return self::$alias[$a];
+		return $a;
+	}
+	
+	static function noVisAliasRt($a)
+	{
+		if( array_search($a,self::$alias)!==false )
+			return array_search($a,self::$alias);
+		return $a;
+	}
+	
     static function selectComponent($self, $target, $x, $y){
         
         global $_sc, $selectedClass, $myProperties, $fmEdit, $APPLICATION;
@@ -440,7 +470,7 @@ class myDesign
         
         
         global $_componentPanel, $_sc, $selectedClass, $myProperties, $fmEdit, $APPLICATION;
-        
+        $target = self::noVisAlias($target);
         $obj = _c($target);
            
         myInspect::selectObject($obj);
@@ -458,7 +488,7 @@ class myDesign
                 $selectedClass = false;
             } else {
                     
-                $_sc->addTarget($obj, false);
+                $_sc->addTarget(_c(self::noVisAliasRt($target)), false);
                 global $myProperties, $myEvents;
                 
                 $myProperties->generate($target,c('fmPropsAndEvents->tabProps',1));
@@ -678,7 +708,7 @@ class myDesign
                     ++$i;
                     $_sc->addTarget($el);
                     if ($i==1){
-                
+						$el = _c(self::noVisAlias($el->self));
                         $myEvents->generate($el);
                         $myProperties->generate($el->self, c('fmPropsAndEvents->tabProps',1));
                     }
@@ -736,7 +766,8 @@ class myDesign
         if (link_null($obj->self)) return;
         
         global $fmEdit, $_sc, $myInspect;
-        
+        if( self::noVisAlias($obj->self) !== $obj->self)
+			self::deleteObject(_c(self::noVisAlias($obj->self)));
         self::delObjFromGroups($obj);
         eventEngine::delEvent($obj->name);
             $_sc->unRegisterTarget($obj);
@@ -766,7 +797,7 @@ class myDesign
         }
         
         
-        $obj = self::lastComponent();
+        $obj = _c(self::noVisAlias(self::lastComponent()->self));
         
         global $myProperties, $myEvents, $myInspect;
         
@@ -774,7 +805,7 @@ class myDesign
         $myEvents->generate($obj);
         
         if ($obj->self !== $fmEdit->self)
-        $_sc->addTarget($obj);
+        $_sc->addTarget(_c(self::noVisAliasRt($obj->self)));
         
         myInspect::generate($fmEdit);
     }
@@ -889,6 +920,7 @@ class myDesign
 		}
         $unlinks = [];
         foreach ($components as $el){
+			$el = _c(self::noVisAlias($el->self));
             $childs = $el->childComponents();
             foreach ($childs as $child)
                 $unlinks[] = $child->self;
@@ -900,7 +932,17 @@ class myDesign
         $components = array_values($components);
         myCopyer::toBufferList($components, $cut);
     }
-    
+	static function ClearNoVis()
+	{
+		if( is_array(self::$alias) && !empty(self::$alias))
+		{
+			foreach( array_keys(self::$alias) as $alias )
+			{
+				_c($alias)->free();
+			}
+			self::$alias = [];
+		}
+	}
     static function keyPaste(){
         
         myVars::set(0, 'popupShow');
@@ -936,11 +978,19 @@ class myDesign
             ++$iter;
             if (method_exists($el['cmp'],'__updateDesign')) $el['cmp']->__updateDesign();
             if (method_exists($el['cmp'],'__pasteDesign')) $el['cmp']->__pasteDesign();
-            
-            
+				if ( !gui_is($el['cmp']->self, 'TControl') )
+				{
+					$alias = new __TNoVisual($el['cmp']->owner,true,nil,get_class($el['cmp']));
+					$alias->parent = $el['cmp']->owner;
+					$alias->Assoc = $el['cmp'];
+					$alias->tag = -3;
+					$alias->x = $el['cmp']->x;
+					$alias->y = $el['cmp']->y;
+					self::plusnoVisAlias($el['cmp']->self, $alias->self);
+				} else $alias = $el['cmp'];
                 $myInspect->addItem($el['cmp']);
             if ($iter<=1000)
-				$_sc->addTarget($el['cmp']);
+				$_sc->addTarget($alias);
             
 				if(isSet($el['childs']) && is_array($el['childs']))
 					foreach ($el['childs'] as $x=>$child){
@@ -981,7 +1031,8 @@ class myDesign
         
         lockWindowUpdate(c('fmPropsAndEvents->tabProps',1)->handle);
         
-        $el = $targetSelected>0?c($targetSelected):$fmEdit;
+        $el = $targetSelected>0?$targetSelected:$fmEdit->self;
+		$el = _c(self::noVisAlias($el));
         $myEvents->generate($el);
         $myProperties->generate($el->self, c('fmPropsAndEvents->tabProps',1));
         lockWindowUpdate(0);

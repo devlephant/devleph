@@ -47,8 +47,9 @@ class myProperties {
             $bitmap = $dlg->value;
             $targets = count($_sc->targets_ex) ? $_sc->targets_ex : array($fmEdit);
             $m = 'set_' . $prop;
-            foreach ($targets as $el){
-                if ($el->link_self) $el = _c($el->link_self);
+            foreach ($targets as $el)
+			{
+				$el = _c(myDesign::noVisAlias($el->self));
                 $el->$prop->assign($bitmap);
 					if( method_exists($el, $m) )
 					$el->$m($bitmap);
@@ -86,6 +87,7 @@ class myProperties {
             
             foreach ($targets as $el)
 			{
+				$el = _c(myDesign::noVisAlias($el->self));
 				$el->$prop = $value;
 			}
 			if(isset($param['UPDATE']))
@@ -132,7 +134,7 @@ class myProperties {
             $targets = count($_sc->targets_ex) ? $_sc->targets_ex : array($fmEdit);
 
             foreach ($targets as $link=>$el){
-                if ($el->link_self) $el = _c($el->link_self);
+				$el = _c(myDesign::noVisAlias($el->self));
                 $el->$prop->assign($font);
             }
             
@@ -153,6 +155,7 @@ class myProperties {
 		
         $dlg = new TDMSColorDialog;
         $dlg->color = $myProperties->selObj->$prop;
+		
         $colors = myOptions::get('colors','in',null);
 		if( $colors!==null )
 		{
@@ -168,7 +171,7 @@ class myProperties {
             myHistory::add($targets, $prop);
             
             foreach ($targets as $link=>$el){
-                if ($el->link_self) $el = _c($el->link_self);
+				$el = _c(myDesign::noVisAlias($el->self));
                 $el->$prop = $color;
             }
             
@@ -186,7 +189,7 @@ class myProperties {
 		global $myProperties, $_sc, $fmEdit;
         $prop  = 'images';
 		$targets = count($_sc->targets_ex) ? $_sc->targets_ex : array($fmEdit);
-		$ib = current($targets);
+		$ib = _c(myDesign::noVisAlias(current($targets)->self));;
 		if($ib == $fmEdit) return;
 		$prev = $ib->$prop;
 		$prev2 = isset($ib->state)? $ib->state: null;
@@ -195,7 +198,7 @@ class myProperties {
             myHistory::add($targets, $prop);
             if( count($targets) > 1 )
 				foreach ($targets as $link=>$el){
-					if ($el->link_self) $el = _c($el->link_self);
+					$el = _c(myDesign::noVisAlias($el->self));
 					if( isset($el->$prop) )
 						$el->$prop = $ib->$prop;
 					if( isset($el->state) )
@@ -250,7 +253,7 @@ class myProperties {
             myHistory::add($targets, $prop);
             
                 foreach ($targets as $self=>$el){
-                    if ($el->link_self) $el = _c($el->link_self);
+                    $el = _c(myDesign::noVisAlias($el->self));
                     $el->$prop = $value;
                 }
                 
@@ -283,7 +286,7 @@ class myProperties {
             myHistory::add($targets, $prop);
             
                 foreach ($targets as $self=>$el){
-                    if ($el->link_self) $el = _c($el->link_self);
+                    $el = _c(myDesign::noVisAlias($el->self));
                     $el->$prop = $value;
                 }
             
@@ -384,7 +387,7 @@ class myProperties {
             myHistory::add($targets, $prop);
 			
             foreach ($targets as $self=>$el){
-                
+                $el = _c(myDesign::noVisAlias($el->self));
                 $el->$prop = $value;
             }
             
@@ -412,7 +415,7 @@ class myProperties {
         myHistory::add($targets, $prop);
         
         foreach ($targets as $self=>$el){
-            if ($el->link_self) $el = _c($el->link_self);
+           $el = _c(myDesign::noVisAlias($el->self));
             $el->$prop = $value;
         }
         $_sc->update();  // fix bug
@@ -1205,10 +1208,6 @@ class myProperties {
             if ($to_update){
                 $this->setProps();
                 myInspect::genList($this->selObj);
-            }
-            
-            if ($this->selObj->link_name){
-                $this->selObj = _c($this->selObj->link_self);
             }
             
         }

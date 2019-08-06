@@ -228,7 +228,8 @@ class myCopyer {
                 $cmp->x += $_sc->gridSize;
                 $cmp->y += $_sc->gridSize;
             }
-            
+			
+            if( isset($components['childs']) && is_array($components['childs']) )
             foreach ($component['childs'] as $y=>$child){
                     
                     if (!$child['name']) continue;
