@@ -395,20 +395,29 @@ function obj_create($class,$owner){
 }
 
 function set_event($self, $event, $value){
+	if(!gui_propExists($self, $event)) return False;
+	$params = implode(',',gui_get_event_param_names(gui_class($self),$event));
 	    if( is_array($value) )
 		{
 			if( is_callable($value[0]) )
+			{
 				$r = event_set($self, $event, $value[0]);
-			else
+			}elseif(is_string($value[0])){
+				$r = event_set($self, $event, create_function($params, $value[0]));
+			}else
 				return FALSE;
 			
 			foreach( array_slice($value, 1) as $Add )
+			if(is_callable($Add))
+			{
 				event_add($self, $event, $Add);
-				return $r;
+			}elseif(is_String($Add))
+				event_add($self, $event, create_function($params, $Add));
 	    } else 
 		{
-			event_set($self, $event, $value);
+			$r = event_set($self, $event, (is_callable($value)?$value:(is_string($value)?create_function($params, $value):$value)));
 		}
+		return $r;
 }
 
 function uni_serialize($str){
