@@ -446,19 +446,46 @@ class TComponent extends TObject {
 	function valid(){
 	    return true;
 	}
-	
+	function componentById($id,$type = 'TComponent'){
+		return _c(component_by_id($this->self,gui_is($this->self,'TControl')?$id:$id+1), $type);
+	}
+        
+	function get_componentCount(){
+		$r = component_count($this->self);
+		return gui_is($this->self,'TControl')?$r:$r-1;
+	}
+	function ComponentCount()
+	{
+		return $this->get_ComponentCount();
+	}
+	function get_componentIndex(){
+		$r = component_index($this->self);
+	    return (is_object($this->owner) && !gui_is($this->owner->self,'TControl'))?$r-1:$r;
+	}   
+    function get_componentList(){
+        $res = [];
+        $count = component_count($this->self);
+	    $f = gui_is($this->self, 'TControl')?0:1;
+        for ($i=$f;$i<$count;$i++){
+            $res[] = $this->componentById($i);
+        }
+            
+            return $res;
+    }
 	function getHelpKeyword(){
-	    
-	    return control_helpkeyword($this->self, null);
+	    if(gui_is($this->self, 'TControl'))
+			return control_helpkeyword($this->self, null);
+		return control_helpkeyword(component_by_id($this->self,0),null);
 	}
 	
 	function setHelpKeyword($v){
-	    control_helpkeyword($this->self, $v);
+		if(gui_is($this->self, 'TControl'))
+			control_helpkeyword($this->self, $v);
+		control_helpkeyword(component_by_id($this->self,0),$v);
 	}
 	
 	// доп инфа для нестандартных свойств
 	function __addPropEx($nm, $val){
-
 	    $class = get_class($this);		    
 	    $result = uni_unserialize($this->getHelpKeyword());
 	    
@@ -494,14 +521,14 @@ class TComponent extends TObject {
 	// достаем свойство...
 	function __getPropEx($nm){
 	    
-	    $result = uni_unserialize(control_helpkeyword($this->self, null));
+	    $result = uni_unserialize($this->getHelpKeyword());
 		$nm = strtolower($nm);	
 		return isset($result['PARAMS'][$nm])?$result['PARAMS'][$nm]:null;
 	}
 	
 	static function __getPropExArray($self){
 	    
-	    $result = uni_unserialize(control_helpkeyword($self, null));	    
+	    $result = uni_unserialize($this->getHelpKeyword());	    
 	    return $result['PARAMS'];
 	}
 	
@@ -528,8 +555,11 @@ class TComponent extends TObject {
 	}
 	function __construct($onwer = nil,$init = true,$self = nil)
 	{
-	    if ($init){
+	    if ($init)
+		{
 			$this->self = obj_create(rtti_DClass($this), $onwer);
+			if(!gui_is($this->self, 'TControl'))
+				component_create('TControl', $this->self);
 	    }
 	    
         if ($self !== nil)
@@ -749,13 +779,7 @@ class TControl extends TComponent {
             return get_owner($this);
         }
         
-        function componentById($id,$type = 'TComponent'){
-            return _c(component_by_id($this->self,$id), $type);
-        }
         
-        function componentCount(){
-            return component_count($this->self);
-        }
 	
 	function controlById($id){
 	    return _c(control_by_id($this->self, $id));
@@ -765,24 +789,9 @@ class TControl extends TComponent {
 	    return control_count($this->self);
 	}
 	
-	function get_componentIndex(){
-	    return component_index($this->self);
-	}
-	
 	function get_controlIndex(){
 	    return control_index($this->self);
 	}
-        
-    function get_componentList(){
-        $res = [];
-        $count = $this->componentCount();
-	    
-        for ($i=0;$i<$count;$i++){
-            $res[] = $this->componentById($i);
-        }
-            
-            return $res;
-    }
 	
     function get_controlList(){
         $res = [];
