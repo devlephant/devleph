@@ -50,7 +50,7 @@ $m["img_cnt_234"]= "Зображення";
 $m["img_cnt_5_0"]= "Зображень";
 $m["build_notify_ua"] = "				Увага
 	
-  Програми, створені на Dev-S, потребують встановлення засобів MSVC++
+  Програми, створені на Dev-S, потребують встановлення засобів MSVC++ 2011
 	
   https://www.microsoft.com/en-us/download/details.aspx?id=30679";
 $m["PrintScale"] = "Маштаб Друку";
