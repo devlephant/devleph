@@ -7,6 +7,8 @@ Dmitriy Zaycev(Dim-S), Vladislav Shinkaruk(lonadels), Andrew Zenin(cashacat, And
 <br>Alexander Kobozev([s]Alex, SAL), Vyascheslav Novikov(manofjoe), Andrew Ivanov(tawero, suic1de)
 <br> and Rostislav Romanov(em_soft)
 
+This product includes PHP software, freely available from http://www.php.net/software/
+
 <br>Working on  the:
 <br><a href="https://github.com/KashaketCompany/Dev-S/projects/1">:wrench:Fixes</a>
 # Dev-S
