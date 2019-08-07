@@ -454,15 +454,19 @@ class TComponent extends TObject {
 		$r = component_count($this->self);
 		return gui_is($this->self,'TControl')?$r:$r-1;
 	}
-
+	function ComponentCount()
+	{
+		return $this->get_ComponentCount();
+	}
 	function get_componentIndex(){
 		$r = component_index($this->self);
 	    return (is_object($this->owner) && !gui_is($this->owner->self,'TControl'))?$r-1:$r;
 	}   
     function get_componentList(){
         $res = [];
-        $count = $this->get_ComponentCount();
-        for ($i=0;$i<$count;$i++){
+        $count = component_count($this->self);
+	    $f = gui_is($this->self, 'TControl')?0:1;
+        for ($i=$f;$i<$count;$i++){
             $res[] = $this->componentById($i);
         }
             
