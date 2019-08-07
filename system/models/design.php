@@ -702,7 +702,7 @@ class myDesign
             $components = $fmEdit->componentList;
             foreach ($components as $el){
                 
-                if (!$el->name || in_array(rtti_class($el->self),array('TEvents','TSizeCtrl'))) continue;
+                if (!$el->name || rtti_class($el->self) == 'TEvents' || $el->self == $GLOBALS['_sc']->self) continue;
                 
                 if (self::inArea($el->self, $ax, $ay, $w, $h)){
                     ++$i;

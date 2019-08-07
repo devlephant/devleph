@@ -233,7 +233,7 @@ class myUtils
             $class = rtti_class($el->self);
             $real_class = __rtti_class($el->self);
                     
-            if (!in_array($class,array('TEvents','TSizeCtrl'))){
+            if ($class !== 'TSizeCtrl' && $el->self !== $GLOBALS['_sc']->self){
                 //$_sc->registerTarget($el);
                
                 if (is_subclass_of($el,  '__TNoVisual')){
@@ -309,7 +309,7 @@ class myUtils
          
         $targets = $form->componentList;
         foreach ($targets as $el){
-			if (!$el->isClass(array('TEvents','TSizeCtrl')))
+			if (get_class($el)!=='TEvents'&&$el->self !== $GLOBALS['_sc']->self)
 			{
 				if ( !gui_is($el->self, 'TControl') )
 				{
@@ -365,7 +365,7 @@ class myUtils
 		{
 			self::delPropArr($str, 'PopupMenu');
         }
-		self::delObjectArr($str, 'TSizeCtrl');
+		self::delObjectArr($str, 'TSizeCtrl', 'enabled=true');//Тк мы определяем, что сайз-контрол - искуемый и включенный, наш, что мы использовали в редакторе...
 		self::delObjectArr($str, '__TNoVisual', 'tag=-3');
 		$str = implode(_BR_,$str);
 		file_put_contents(replaceSr($file), $str);
