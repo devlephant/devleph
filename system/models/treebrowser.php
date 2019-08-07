@@ -21,7 +21,7 @@ function treeBwr_add()
 		$comList = $form->componentList;
 		foreach( (array)$comList as $obj )
 		{
-			if(!is_a($obj,"TSizeCtrl"))
+			if($obj->self	!==	$GLOBALS['_sc']->self&&$obj->name !== '')
 			{
 				$imglist->addFromFile(DOC_ROOT . '/design/24bit/' . get_class($obj) . '.bmp');
 				$Forms .= "		".$obj->name."(".get_class($obj).")"._BR_;
