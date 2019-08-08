@@ -8,6 +8,7 @@ class master_scriptsMaster {
         $project = evalProject::open(dirname(__FILE__).'/scriptsMaster.dvs');
         $project->showModal();
     }
+	
 }
 $file = file_exists(dsThemeDesign::$dir . '/icon_scriptsMaster.bmp')? dsThemeDesign::$dir . '/icon_scriptsMaster.bmp': dirname(__FILE__).'/icon.bmp'; //#ADDOPT;
 // добавляем пункт меню

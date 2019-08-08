@@ -6,27 +6,31 @@ function treeBwr_add()
 	$dir = dirname($projectFile);
 	$tree = c('fmMain->TreeProject');
 	
-	$imglist = new TImageList;
+	$tree->items->BeginUpdate();
 	$tree->text = "";
 	$Forms = "";
 	$text = "";
-	gui_propSet($tree->self, 'Images', null);
 	$dirs = findFiles($dir, "dfm");
-	//$imglist->addFromFile(DOC_ROOT . '/design/24bit/formlist.bmp');
+	$imgindex[] = myImages::getImgID('forms');
+	$cindex = 0;
 	foreach( (array)$dirs as $dfm )
 	{
 		$Forms .= '	' . $dfm . PHP_EOL;
-		//$imglist->addFromFile(DOC_ROOT . '/design/24bit/form.bmp');
+		$imgindex[] = myImages::getImgID('form');
+		++$cindex;
 		$form = (object)myUtils::$forms[strtolower(basenameNoExt($dfm))];
 		$comList = $form->componentList;
 		foreach( (array)$comList as $obj )
 		{
 			if($obj->self	!==	$GLOBALS['_sc']->self&&$obj->name !== '')
 			{
-				$imglist->addFromFile(DOC_ROOT . '/design/24bit/' . get_class($obj) . '.bmp');
-				$Forms .= "		".$obj->name."(".get_class($obj).")"._BR_;
+				$imgindex[] = myImages::getImgID(get_class($obj));
+				++$cindex;
+				$arr_self[$cindex] = $obj->self;
+				$Forms .= "		".$obj->name._BR_;
 			}
 		}
+		$tree->__arrObjSelf = $arr_self;
 	}
 	unset($form, $comList);
 	
@@ -37,24 +41,36 @@ function treeBwr_add()
 	}
 		
 	$Scripts = findFiles($dir."/scripts/", "php");
-	if( !empty($Scripts) )
+	if( !empty((array)$Scripts) )
 	{
 		$text .= t("Scripts")._BR_;
-		foreach((array)$Scripts as $file)
+		$imgindex[] = myImages::getImgID('scripts');
+		foreach($Scripts as $file){
 			$text .= "	".$file._BR_;
+			$imgindex[] = myImages::getImgID('script');
+		}
 	}	
 	$Modules = $GLOBALS['myProject']->config['modules'];
-	if( !empty($Modules) )
+	if( !empty((array)$Modules) )
 	{
 		$text .= t("Exts")._BR_;
-		foreach( (array)$Modules as $file )
+		$imgindex[] = myImages::getImgID('exts');
+		foreach($Modules as $file ){
 			$text.= "	".$file._BR_;
+			$imgindex[] = myImages::getImgID('ext');
+		}
 	}
 	
 	$tree->text = $text;
-	$tree->Images = $imglist;
+	$no_multi_call = $tree->items->item;
+	foreach($no_multi_call as $i=>$item){
+		$item->imageIndex = $imgindex[$i];
+		$item->SelectedIndex = $imgindex[$i];
+	}
+	$tree->Images = c('MainImages24');
 	$tree->fullExpand();
-	unset($tree, $dir, $dirs, $Forms, $Scripts, $Modules, $imglist);
+	$tree->items->EndUpdate();
+	unset($tree, $dir, $dirs, $Forms, $Scripts, $Modules, $imglist, $no_multi_call);
 }
 
 dsApi::addProjectChangeCallback('treeBwr_add');

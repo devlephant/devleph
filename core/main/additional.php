@@ -938,7 +938,21 @@ class TTreeView extends TControl {
 	
 }
 
-
+class TTreeNodes extends TControl {
+	
+	//Ну что мне поделать? Костыляю как могу (^v^)
+	public function get_item(){
+		/*if($v !== null ){
+			return $this->GetNodeFromIndex($v);
+		} else {*/
+			for($i=0;$i<$this->count; $i++){
+				$arr[$i] = $this->GetNodeFromIndex($i);
+			}
+			return $arr;
+		//}
+	}
+	
+}
 
 class TTreeNode extends TControl {
 	

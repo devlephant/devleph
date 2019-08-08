@@ -1,5 +1,5 @@
 <?
-c("fmMain->TreeProject")->onDblClick = create_function('$self', 'global $projectFile, $_FORMS, $formSelected, $_sc;
+c("fmMain->TreeProject")->onDblClick = create_function('$self', 'global $projectFile;
 $self = c("fmMain->TreeProject");
 switch( fileExt($self->itemSelected) )
 {
@@ -17,24 +17,26 @@ switch( fileExt($self->itemSelected) )
 	break;
 	
 }
-$test = stristr($self->itemSelected,"(");
-if(!empty($test))
+');
+
+c("fmMain->TreeProject")->onClick = create_function('$self','global $_FORMS, $formSelected, $_sc;
+$self = c("fmMain->TreeProject");
+$arr_self = $self->__arrObjSelf;
+$obj_self = $arr_self[$self->absIndex];
+if(!empty($obj_self))
 {
-	$test = str_ireplace("(", "", $test);
-	$test = str_ireplace(")", "", $test);
-	if(!is_object(c($test))) return;
+	if(!is_object(c($obj_self))) return;
 	foreach( myUtils::$forms as $name=>$form ){
-		if( $form->self == c($test)->owner ){
+		if( $form->self == c($obj_self)->owner ){
 			if( strtolower($_FORMS[$formSelected]) == $name )
 			{
 				$_sc->clearTargets();
-				$_sc->addTarget(c($test));
+				$_sc->addTarget(c($obj_self));
 			} else {
 				myUtils::loadForm($name);
 				$_sc->clearTargets();
-				$_sc->addTarget(c($test));
+				$_sc->addTarget(c($obj_self));
 			}
 		}
 	}
-}
-');
+}');
