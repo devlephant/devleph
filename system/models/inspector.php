@@ -14,7 +14,7 @@ class myInspect {
         global $_FORMS, $formSelected;
         $forms = myProject::getFormsObjects();
         $index = -1;
-        $result  = array($_FORMS[$formSelected].':TForm');
+        $result  = [$_FORMS[$formSelected].':TForm'];
         foreach ($forms[$_FORMS[$formSelected]] as $i=>$el){
             
             if (is_object($obj) && $obj->name==$el['NAME']) $index = $i+1;

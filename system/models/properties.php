@@ -552,8 +552,7 @@ class myProperties {
 				$value = $this->selObj->$prop;
             
 				$obj = _c($self);
-            
-             
+				
 				if ($param['TYPE']=='combo'){
                 
 					if (substr($param['PROP'],0,6)=='cursor'){
@@ -664,7 +663,7 @@ class myProperties {
 					$files = findFiles(dirname($projectFile), $param['EXT'], $param['RECURSIVE'], true);
                 
 					foreach ($files as $file){
-						$file = str_replace(array(dirname($projectFile),'//'),array('','//'), $file);
+						$file = str_replace([dirname($projectFile),'//'],['','//'], $file);
 						if ($file[0]=='/')
 							$file[0] = ' '; $file = ltrim($file);
                     
@@ -1249,7 +1248,7 @@ class myProperties {
                 
             if ($class!=='TForm'){
                 $componentProps[$class] =
-                array_merge(array(array('CAPTION'=>t('Name'),'TYPE'=>'Name','PROP'=>'name','ADD_GROUP'=>true)),
+                array_merge([['CAPTION'=>t('Name'),'TYPE'=>'Name','PROP'=>'name','ADD_GROUP'=>true]],
                             (array)$componentProps[$class]);
                 $componentProps[$class] = array_values($componentProps[$class]);
             }
@@ -1258,6 +1257,7 @@ class myProperties {
                     
                 $create_addgr = false;
 				$del = true;
+			$panel->BeginUpdate();
 			foreach ($componentProps[$class] as &$prop){
                     
                 if (!isset($prop['TYPE'])) continue;
@@ -1283,15 +1283,15 @@ class myProperties {
                         $this->{'createX'.$prop['TYPE']}($prop, $class);
 
                         if ($prop['TYPE']=='font'){
-                            $xprop = array('CAPTION'=>t('Font Color'), 'TYPE'=>'color', 'PROP'=>'fontColor', 'REAL_PROP'=>'font->color');
+                            $xprop = ['CAPTION'=>t('Font Color'), 'TYPE'=>'color', 'PROP'=>'fontColor', 'REAL_PROP'=>'font->color'];
                             $this->{'createX'.$xprop['TYPE']}($xprop, $class);
 						}	
 						 if ($prop['TYPE']=='font' or (strtolower($prop['CAPTION'])==strtolower(t('Font Color')) and $prop['TYPE']=='color')){
-							$xr = array('CAPTION'=>t('Font Size'), 'TYPE'=>'number', 'PROP'=>'fontsize', 'REAL_PROP'=>'font->size');
-							$xt = array('CAPTION'=>t('Font Height'), 'TYPE'=>'number', 'PROP'=>'fontheight');
-							$xo = array('CAPTION'=>t('Font Pitch'), 'TYPE'=>'combo', 'PROP'=>'fontpitch', 'REAL_PROP'=>'font->pitch', 'VALUES'=>array('fpDefault','fpVariable', 'fpFixed'));
-							$xq = array('CAPTION'=>t('Font Quality'), 'TYPE'=>'combo', 'PROP'=>'fontquality', 'REAL_PROP'=>'font->quality', 'VALUES'=>array('fqDefault', 'fqDraft', 'fqProof', 'fqNonAntialiased', 'fqAntialiased', 'fqClearType', 'fqClearTypeNatural'));
-							$xla = array('CAPTION'=>t('Font Orientation'), 'TYPE'=>'number', 'PROP'=>'fontori', 'REAL_PROP'=>'font->orientation');
+							$xr = ['CAPTION'=>t('Font Size'), 'TYPE'=>'number', 'PROP'=>'fontsize', 'REAL_PROP'=>'font->size'];
+							$xt = ['CAPTION'=>t('Font Height'), 'TYPE'=>'number', 'PROP'=>'fontheight'];
+							$xo = ['CAPTION'=>t('Font Pitch'), 'TYPE'=>'combo', 'PROP'=>'fontpitch', 'REAL_PROP'=>'font->pitch', 'VALUES'=>['fpDefault','fpVariable', 'fpFixed']];
+							$xq = ['CAPTION'=>t('Font Quality'), 'TYPE'=>'combo', 'PROP'=>'fontquality', 'REAL_PROP'=>'font->quality', 'VALUES'=>['fqDefault', 'fqDraft', 'fqProof', 'fqNonAntialiased', 'fqAntialiased', 'fqClearType', 'fqClearTypeNatural']];
+							$xla = ['CAPTION'=>t('Font Orientation'), 'TYPE'=>'number', 'PROP'=>'fontori', 'REAL_PROP'=>'font->orientation'];
 							
                             $this->{'createX'.$xr['TYPE']}($xr, $class);
 							
@@ -1311,6 +1311,7 @@ class myProperties {
                 $this->panels[$class]['EL']  = $this->elements;
 				
 			c("fmMain->editorPopup")->AutoPopup = true;
+			$panel->EndUpdate();
         }
     }
     
