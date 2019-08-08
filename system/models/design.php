@@ -180,15 +180,15 @@ class myDesign
         }
     }
     
-    static function inspectElement($obj, $gen = true){
+    static function inspectElement($obj, $gen = true, $clear = true){
         
-        global $myProperties, $myEvents, $myInspect, $_sc, $selectedClass, $_componentPanel;
+        global $myProperties, $myEvents, $_sc, $selectedClass, $_componentPanel;
 		if(!self::$canselect)
 		{
 			self::$canselect = true;
 			return;
 		}
-        if ($gen)
+        if ($gen && $clear)
         $_sc->clearTargets();
         $_sc->addTarget(_c(self::noVisAliasRt($obj->self)));
         
@@ -438,8 +438,9 @@ class myDesign
 	
 	static function noVisAliasRt($a)
 	{
-		if( array_search($a,self::$alias)!==false )
-			return array_search($a,self::$alias);
+		$arr = array_flip((array)self::$alias);
+		if( $arr[$a]!==null )
+			return $arr[$a];
 		return $a;
 	}
 	

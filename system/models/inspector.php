@@ -153,8 +153,8 @@ class myInspect {
         $_sc->clearTargets();
         foreach ($objs as $i=>$name){
             if ($i==0)
-                myDesign::inspectElement($fmEdit->findComponent($name));
-            $_sc->addTarget(_c(MyDesign::noVisAliasRt($fmEdit->findComponent($name)->self)));
+                myDesign::inspectElement($fmEdit->findComponent($name), true, false);
+            //$_sc->addTarget(_c(MyDesign::noVisAliasRt($fmEdit->findComponent($name)->self)));
         }
         
         if (count($objs)==0)
