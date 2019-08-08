@@ -1,15 +1,15 @@
 <?
 /*
-  
+
   PHP4Delphi Graphics Library
-  
+
   2018 ver 3.1
-  
+
 */
 global $_c;
 $_c->setConstList(['bsSolid', 'bsClear', 'bsHorizontal', 'bsVertical',
     'bsFDiagonal', 'bsBDiagonal', 'bsCross', 'bsDiagCross'], 'TBrushStyle');
-	
+
 $_c->setConstList(['pmBlack', 'pmWhite', 'pmNop', 'pmNot', 'pmCopy', 'pmNotCopy',
     'pmMergePenNot', 'pmMaskPenNot', 'pmMergeNotPen', 'pmMaskNotPen', 'pmMerge',
     'pmNotMerge', 'pmMask', 'pmNotMask', 'pmXor', 'pmNotXor'],'TPenMode');
@@ -72,8 +72,8 @@ $_c->setConstList(
   $_c->COLOR_3DHIGHLIGHT = COLOR_BTNHIGHLIGHT;
   $_c->COLOR_3DHILIGHT = COLOR_BTNHIGHLIGHT;
   $_c->COLOR_BTNHILIGHT = COLOR_BTNHIGHLIGHT;
-  
-    
+
+
   $_c->clSystemColor = 0xFF000000;
 
   $_c->clScrollBar = clSystemColor | COLOR_SCROLLBAR;
@@ -135,7 +135,7 @@ $_c->setConstList(
 
   $_c->clNone = 0x1FFFFFFF;
   $_c->clDefault = 0x20000000;
-  
+
 
 ///////////////////////////////////////////////////////////////////////////////
 ///                             TPoint                                      ///
@@ -143,10 +143,10 @@ $_c->setConstList(
 //	Used for Windows API (WinAPI for short) only							///
 ///////////////////////////////////////////////////////////////////////////////
 class TPoint{
-    
+
     public $x;
     public $y;
-    
+
     function __construct($x,$y){
         $this->x = (integer)$x;
         $this->y = (integer)$y;
@@ -159,12 +159,12 @@ class TPoint{
 ///	Used both by WinAPI and VCL framework									///
 ///////////////////////////////////////////////////////////////////////////////
 class TRect{
-    
+
     public $left;
     public $top;
     public $right;
     public $bottom;
-    
+
     function __construct($left,$top,$right,$bottom){
         $this->left   = (integer)$left;
         $this->top    = (integer)$top;
@@ -192,7 +192,7 @@ class TPen extends TComponent
 }
 
 class TBrush extends TComponent
-{   
+{
     public $self;
 }
 
@@ -214,20 +214,20 @@ class TCanvas extends TControl
 		else
 			canvas_pixel($this->self, (int)$x, (int)$y, $color);
     }
-    
+
     function drawBitmap(TBitmap $bmp, $x = 0, $y = 0){
-	
+
 	canvas_drawBitmap($this->self, $bmp->self, $x, $y);
     }
-    
+
     function drawPicture($fileName, $x = 0, $y = 0){
-	
+
 		$b = new TBitmap;
 		$b->loadAnyFile($fileName);
 		$this->drawBitmap($b, $x, $y);
 		$b->free();
     }
-    
+
     // вывод текста под углом
     function textOutAngle($x, $y, $angle, $text){
 		$n = $this->TextAngle;
@@ -235,55 +235,61 @@ class TCanvas extends TControl
 		$this->textOut($x, $y, $text);
 		$this->TextAngle = $n;
     }
-   
+
     function set_TextAngle($v)
 	{
 		$this->Font->Orientation = ceil($v) * 10;
-	}   
-    
+	}
+
 	function get_TextAngle()
 	{
 		return ceil($this->Font->Orientation / 10);
 	}
-	
-	function TextOutRope($text,$steps,$Right=False)
+
+	function TextOutRope($x1,$y1,$x2,$y2,$text)
 	{
 		$n = $this->Brush->Style;
 		$this->Brush->Style = 1;
 		$textW = $this->TextWidth($text);
 		$textH = $this->TextHeight($text);
 		$Margin = $textW + (ceil($textH/10)*floor($textW/10)-1);
-		$steps=is_array($steps)?count($steps):(int)$steps;
+		$p1 = max($x1,$y1);
+		$p2 = $x2*$y2;
+		//делим площадь компонента + 2 отступа, на площадь 1 участка текста + отступ
+		//т.к нам не нужен отступ в конце и в начале
+		$steps= ($p2+($Margin*$Margin*2))/($textW*$textH+$Margin*$Margin);
+		//при симметрии угол равен 45, т.е 4.5
+		$angle = $angle*2 + 6; //разбежность в две стороны с коэф. отклонения 3
 		for($iter=1;$iter-1<$steps;$iter++)
-		foreach([150,15] as $int)
-		{	
-			$this->TextOutAngle($iter*$Margin*2,$iter*$Margin*2, $int, $text);
-			$this->TextOutAngle($iter*$Margin*2 - $Margin,$iter*$Margin*2 - $Margin,-$int,$text);
+		foreach([$p1=>$angle*10,$p1+3=>$angle] as $ier=>$int)
+		{
+			$this->TextOutAngle($ier+$iter*$Margin*2,$ier+$iter*$Margin*2, $int, $text);
+			$this->TextOutAngle($ier+$iter*$Margin*2 - $Margin,$ier+$iter*$Margin*2 - $Margin,-$int,$text);
 		}
 		$this->Brush->Style = $n;
 	}
-	
+
     function writeBitmap(TBitmap $bitmap){
-	
+
 		canvas_writeBitmap($this->self, $bitmap->self);
     }
-    
+
     function savePicture($filename){
-	
+
 		$b = new TBitmap;
 		$this->writeBitmap($b);
 		$b->saveToFile($filename);
 		$b->free();
     }
-    
+
     function saveFile($filename){
 		$this->savePicture($filename);
     }
-    
+
     function loadPicture($filename){
 		$this->drawPicture(getFileName($filename));
     }
-    
+
     function loadFile($filename){
 		$this->drawPicture($filename);
     }
@@ -295,7 +301,7 @@ $_c->fsItalic    = 'fsItalic';
 $_c->fsUnderline = 'fsUnderline';
 $_c->fsStrikeOut = 'fsStrikeOut';
 
-class TControlCanvas extends TCanvas 
+class TControlCanvas extends TCanvas
 {
     function __construct($owner=nil,$init=true,$self=nil)
 	{
@@ -310,12 +316,12 @@ class TControlCanvas extends TCanvas
 }
 
 function canvas($ctrl = false){
-    
+
     return new TControlCanvas($ctrl);
 }
 class TGraphic extends TControl
 {
-	
+
 	function Assign($v)
 	{
 		if( $v->self == $this->self ) return;
@@ -358,62 +364,62 @@ class TGraphic extends TControl
 	}
 }
 class TBitmap extends TGraphic{
-    
-    
+
+
     public $parent_object = nil;
-    
+
     public function __construct($owner=nil, $init=true, $self=nil){
         if($self!==nil){
 			$this->self = $self;
-		
+
 		}elseif ($init)
             $this->self = tbitmap_create();
 		if($owner!==nil)
 			$this->owner = $owner;
     }
-    
+
     public function loadFromFile($filename){
-	
+
 		$filename = replaceSr(getFileName($filename));
-		
+
 		if (fileExt($filename)=='bmp'){
 			bitmap_loadfile($this->self,$filename);
 		} else {
-		   
+
 			convert_file_to_bmp($filename, $this->self);
 		}
     }
-    
+
     public function saveToFile($filename){
 		$filename = replaceSr($filename);
         bitmap_savefile($this->self,replaceSr($filename));
     }
-    
+
     // загрузка любых форматов....
     public function loadAnyFile($filename){
-		
+
 		$filename = replaceSr(getFileName($filename));
 		convert_file_to_bmp($filename, $this->self);
     }
-    
+
     public function loadFileWithBorder($filename, $border = 1){
-        
+
         $filename = replaceSr(getFileName($filename));
-		convert_file_to_bmp_border($filename, $this->self, $border);    
+		convert_file_to_bmp_border($filename, $this->self, $border);
     }
-    
+
     public function loadFromStream($stream){
 		picture_loadstream($this->self, $stream->self);
     }
-    
+
     public function saveToStream($stream){
 		picture_loadstream($this->self, $stream->self);
     }
-    
+
 	public function loadFromStr($str){
 		bitmap_loadstr($this->self, $str);
 	}
-	
+
 	public function saveToStr(&$str){
 		$str = bitmap_savestr($this->self);
 	}
@@ -421,19 +427,19 @@ class TBitmap extends TGraphic{
     public function copyToClipboard(){
         clipboard_assign( $this->self );
     }
-    
+
     public function clear(){
 		$this->assign(null);
     }
-    
+
     public function isEmpty(){
 		return !bitmap_empty($this->self);
     }
-	
+
 	public function get_Canvas(){
 		return new TCanvas($this,false,bitmap_canvas($this->self));;
 	}
-	
+
 	public function setSizes($width, $height){
 		bitmap_size($this->self, $width, $height);
 	}
@@ -447,48 +453,48 @@ class TIcon extends TGraphic{
 			if($self)	$this->self = $self;
 		}
     }
-    
+
     function loadAnyFile($filename){
 		$this->loadFromFile($filename);
     }
-    
+
 	function saveToStr(&$str){
 		$str = $this->data;
     }
-	
+
 	function loadFromStr($data, $format = 'bmp'){
         $bitmap = new TBitmap(nil,false);
         picture_loadstr($bitmap->self, $data, $format);
 		icon_assign($this->self, $bitmap->self);
     }
-    
+
     function assign($v){
 		if($v->self == $this->self) return;
-		
+
 		if ($v instanceof TBitmap)
 		{
 			icon_assign($this->self, $v->self);
 		} else {
-				tpersistent_assign($this->self, 
+				tpersistent_assign($this->self,
 				($v instanceof TPicture)?$v->getBitmap()->self:$v->self);
 		}
     }
-    
+
     function isEmpty(){
-	
+
 		return icon_empty($this->self);
     }
-    
+
 
     public function copyToClipboard(){
 
             clipboard_assign( $this->self );
     }
-	
+
 	public function pasteFromClipboard(){
            icon_assign($this->self, clipboard_get());
     }
-	
+
 	public function clear(){
 		$this->self = null;
 	}
@@ -501,17 +507,17 @@ class TGIFImage 	extends TGraphic{}
 class TJPEGImage 	extends TGraphic{}
 class TWICImage 	extends TGraphic{}
 class TPicture extends TControl{
-    
-    
+
+
     public $parent_object = nil;
-    
+
     function __construct($init=true, $owner=nil, $self=nil){
         if ($init)
 			if( $self && $self !== nil )
 				$this->self = $self;
 			else
 				$this->self = tpicture_create();
-			
+
 			if($owner && $owner !== nil)
 				$this->owner = $owner;
 	}
@@ -529,67 +535,67 @@ class TPicture extends TControl{
     function loadAnyFile($filename){
 		$this->loadFromFile($filename);
     }
-    
+
     function loadFromFile($filename){
 		//$filename = replaceSr($filename);
 	$this->clear();
 		//$this->getBitmap()->loadAnyFile($filename);
         picture_loadfile($this->self, replaceSr(getFileName($filename)));
     }
-    
+
     function loadFromStream($stream){
 	picture_loadstream($this->self, $stream->self);
     }
-	
+
     function loadFromStr($data, $format = 'bmp'){
-            
+
         picture_loadstr($this->self, $data, $format);
     }
-    
+
     function saveToStream($stream){
-	
+
 	picture_loadstream($this->self, $stream->self);
     }
-    
+
     function loadFromUrl($url, $ext = false){
-	
+
 	// получаем данные файла
 	$text = file_get_contents($url);
 	// сохраняем их в файл
 	if (!$ext) $ext = fileExt($url);
-	
+
 	$file = replaceSl( winLocalPath(CSIDL_TEMPLATES) ) . '/' . md5($url) .'.'. $ext;
 	file_put_contents($file,$text);
-	
+
 	$this->loadAnyFile($file);
 	unlink($file);
     }
-    
+
     function saveToFile($filename){
 	$filename = replaceSr($filename);
         picture_savefile($this->self,replaceSr($filename));
     }
-    
+
     function getBitmap(){
-	
+
 		$self = picture_bitmap($this->self);
 		$result = new TBitmap(nil, false);
 		$result->self = $self;
 		return $result;
     }
-    
+
     function assign($pic){
-	
-	if ($pic instanceof TBitmap) 
+
+	if ($pic instanceof TBitmap)
 	    tpersistent_assign(picture_bitmap($this->self), $pic->self);
 	else
 	    tpersistent_assign($this->self,$pic->self);
     }
-    
+
     function clear(){
 	picture_clear($this->self);
     }
-    
+
     function isEmpty(){
 	return !picture_empty($this->self);
     }
@@ -607,23 +613,23 @@ class TPicture extends TControl{
 
 
 function createImage($filename, $type = 'TBitmap')
-{		
+{
 		switch( strtolower(str_replace('.', '', $type) ) ) {
 			case 'png': $type = 'TPNGImage'; break;
-			case 'tif': 
+			case 'tif':
 			case 'tiff':
 			case 'icon':
 			case 'ico':
 			case 'emf':
 				case 'bmp': $type = 'TBitmap'; break;
-			case 'jpg': 
-			case 'jfif': 
-			case 'jif': 
+			case 'jpg':
+			case 'jfif':
+			case 'jif':
 				case 'jpeg': $type = 'TJPEGImage'; break;
 			case 'gif': $type = 'TGIFImage'; break;
 			case 'svg': $type = 'TSVGImage'; break;
 		}
-		
+
 		if( !class_exists($type) ) return false;
         $result = new $type;
         $result->loadAnyFile($filename);

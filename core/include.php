@@ -98,29 +98,21 @@ function obsafe_print_r($var, $return = false, $html = false, $level = 0) {
     if ($return) return $output;
       else echo $output;
 }
-function pre($obj){
-	if ( sync(__FUNCTION__, func_get_args()) ) return;
+function pre(...$obj){
+	if ( sync(__FUNCTION__, $obj) ) return;
 	
-	foreach( func_get_args() as $s ) {
-		if( is_string($s) )
-		{
-			if( !strlen($s) ) return;
-		}elseif( is_object($s) &&  method_exists($s, '__toString()') ){
-			$s = (string) $s;
-		}
-		gui_message( print_r($s, true) );
+	foreach( $obj as $s ) {
+		gui_message( print_r((is_object($s) &&  method_exists($s, '__toString()'))?$s->__toString():$s, true) );
 	}
 }
 
-function pre2($obj){
-	if ( sync(__FUNCTION__, func_get_args()) ) return;
+function pre2(...$obj){
+	if ( sync(__FUNCTION__, $obj) ) return;
 	
-	foreach( func_get_args() as $s ) {
-		if( is_object($s) &&  method_exists($s, '__toString()') )
-			$s = (string) $s;
-		
+	foreach( $obj as $s )
+	{
 		ob_start();
-		var_dump($s);
+		var_dump((is_object($s) &&  method_exists($s, '__toString()'))?$s->__toString():$s);
 		$s = ob_get_contents();
 		ob_end_clean();
 		gui_message($s);
