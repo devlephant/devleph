@@ -14,8 +14,8 @@
 				TMImage, TMaskEdit, TPadding, TPageControl, TPen,
 				TPicture, TScrollBox, TShape, TSplitter, TStaticText,
 				TStatusBar, TTabControl, TTabSet, TTabSheet,
-				TTrackBar, TTreeNode, TTreeView,
-				TSizeConstraints, __TNoVisual
+				TTrackBar,TTreeNodes, TTreeNode, TTreeView,
+				TSizeConstraints, __TNoVisual, TStyleTabs, TStylePages
   
 */
 
@@ -960,6 +960,204 @@ class TTreeNode extends TControl {
 	
 	public function get_absIndex(){
 		return tree_absIndex($this->self);
+	}
+}
+
+//Аналог компонента TPageControl, и TTabControl, в flat(плоском) стиле.
+class TStyleTabs extends TTransparentPanel {
+	public $class_name = __CLASS__;
+	
+	function __initComponentInfo(){
+		
+	}
+	
+    function __construct($onwer=nil,$init=true,$self=nil){
+	parent::__construct($onwer,$init,$self);
+    	
+        if ($init){
+		//Создаёт компонент управления страницами(scrollbox'ами)
+		$pages = new TStylePages;
+		$pages->parent = $this;
+		
+		//Опридиляет его в свойство
+		$this->__controlpages = $pages;
+		}
+	}
+	
+	//Возвращает индекс активной страницы
+	function get_pageIndex(){
+		return $this->__controlpages->pageIndex;
+	}
+	
+	//Устанавливает по индексу активную страницу
+	function set_pageIndex($v){
+		$this->__controlpages->pageIndex = $v;
+		//Делает не активными все табы которые не имеют активного индекса
+		$this->tabActive($v);
+	}
+	
+	//Возвращает список страниц из контроллера страниц
+	function get_pagesList(){
+		return $this->__controlpages->pagesList;
+	}
+	
+	//Устанавливает список страниц в контроллер страниц
+	function set_pagesList($v){
+		$this->__controlpages->pagesList = $v;
+		$array = explode(PHP_EOL, $v);
+		if(is_array($this->tab)){
+			foreach($this->tab as $tab){
+				$tab->free();
+			}
+			unset($this->tab);
+		}
+		$index = $this->__controlpages->pageIndex;
+		foreach($array as $i=>$tabName){
+			$spage = $this->__controlpages->GetPage($i);
+			//Создаёт таб - кнопку для переключения активных страниц
+			$tab = new TSB($this);
+			$tab->parent = $this;
+			$tab->caption = $tabName;
+			$tab->index = $i;
+			$tab->fMouseEnter = null;
+			$tab->ParentFont = true;
+			event_set($tab->self, 'onMouseEnter', 'TSB::fMouseEnter');
+			event_set($tab->self, 'onMouseDown', 'TSB::fMouseDown');
+			event_set($tab->self, 'onMouseUp', 'TSB::fMouseUp');
+			$apage = $this; 
+			$tab->onClick = function()use($apage, $i){
+				$apage->pageIndex = $i;
+				$apage->tabActive($i);
+			};
+			if($i>0){
+				$this->__controlpages;
+				$oldtab = c($this->__controlpages->GetPage($i-1)->__ctab);
+				$tab->x = $oldtab->x + $oldtab->w;
+			} else {
+				$tab->x = 0;
+			}
+			$tab->layout = tlCenter;
+			$tab->alignment = taCenter;
+			$tab->y = 0;
+			$tab->h = !empty((int)$this->tabHeight)?$this->tabHeight:20;
+			$tab->w = $this->font->size * strlen($tabName);
+			//Устанавливает self в свойство, для лёгкой работы со старыми табами
+			$spage->__ctab = $tab->self;
+			$tabs[$i] = $tab;
+		}
+		$this->tab = $tabs;//Загружает все новые табы в свойство
+		$this->tabActive($index);
+	}
+	
+	//Устанавливает активную страницу по имени его таба
+	function set_ActivePage($v){
+		$arr = array_flip(explode(PHP_EOL, $this->pagesList));
+		$this->pageIndex = $arr[$v];
+	}
+	
+	//Возвращает имя таба активной страницы
+	function get_ActivePage(){
+		$arr = explode(PHP_EOL, $this->pagesList);
+		return $arr[$this->pageIndex];
+	}
+	
+	//Выделяет(Меняет цвет) таб(а) по индексу
+	function tabActive($v){
+		if(is_array($this->tab)){
+			foreach($this->tab as $tab){
+				$tab->ColorTwo = $tab->ColorOne = $this->ColorInactive;//Устанавливает цвет неактивного таба
+				$tab->OneFColor = $this->FColorInactive;//Устанавливает цвет шрифта неактивного таба
+			}
+			$this->tab[$v]->ColorOne = $this->tab[$v]->ColorTwo = $this->tab[$v]->ColorThree = $this->ColorActive;//Устанавливает цвет активного таба
+			$this->tab[$v]->OneFColor = $this->tab[$v]->TwoFColor = $this->tab[$v]->ThreeFColor = $this->FColorActive;//Устанавливает цвет шрифта активного таба
+		}
+	}
+	
+}
+
+//Компонент управления страницами(scrollbox'ами)
+class TStylePages extends TControl {
+	
+	//Возвращает объект/страницу(scrollbox) но индексу
+	function GetPage($index){
+		return c($this->pages[$index]);
+	}
+	
+	//Добавляет страницу(scrollbox) с указаным именем таба
+	function AddPage($name){
+		$parent = $this->parent;
+		$page = new TScrollBox($parent);
+		$page->parent = $parent;
+		$page->color = $parent->tabColor;
+		$page->x = 0;
+		$page->y = !empty((int)$parent->tabHeight)?$parent->tabHeight:20;
+		$page->w = $parent->w;
+		$page->h = $parent->h - $page->y;
+		$page->pageName = $name;
+		$page->bevelInner = bvNone;
+		$page->bevelOuter = bvNone;
+		$page->bavelKind = bkNone;
+		$page->borderStyle = bsNone;
+		$page->ParentBackground = false;
+		$page->index = $this->count;
+		$pages = $this->pages;
+		$pages[] = $page->self;
+		$this->pages = $pages;
+	}
+	
+	//Удаляет страницу(scrollbox) по индексу
+	function RemovePage($index){
+		$this->GetPage($index)->free();
+		unset($this->pages[$index]);
+	}
+	
+	//Возвращает индекс активной страницы
+	function get_pageIndex(){
+		if($this->count>0)
+			return $this->__pageIndex;
+		return false;
+	}
+	
+	//Устанавливает страницу в активное положение
+	function set_pageIndex($index){
+		if(is_array($this->pages)){
+			foreach($this->pages as $page){
+				c($page)->visible = false;
+			}
+			$page = $this->GetPage($index);
+			$page->visible = true;
+			$this->parent->doubleBuffered = true;
+		}
+		$this->__pageIndex = $index;
+	}
+	
+	//Возвращает текущий список
+	function get_pagesList(){
+		$count = $this->count;
+		for($i=0;$i<$count;$i++){
+			$text .= $this->GetPage($i)->pageName . _BR_;
+		}
+		return $text;
+	}
+	
+	//Удаляет старый список с scrollbox'ами и заменяет его новым из текста
+	function set_pagesList($text){
+		$arr = explode(PHP_EOL, $text);
+		if(is_array($this->pages)){
+			foreach($this->pages as $self){
+				c($self)->free();
+			}
+			$this->pages = [];
+		}
+		foreach($arr as $name){
+			if($name!==null)
+				$this->AddPage($name);
+		}
+	}
+	
+	//Выводит число всех scrollbox'ов
+	function get_count(){
+		return count($this->pages);
 	}
 }
 
