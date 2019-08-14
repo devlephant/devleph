@@ -133,10 +133,11 @@ class myInspect {
         
         self::clearAll();
         
-        foreach ((array)$arr as $el){
-            
-            self::addItemEx($el);
-        }
+		if(is_array($arr))
+			foreach ($arr as $el){
+				
+				self::addItemEx($el);
+			}
         
         $inspectList = $last;
     }
@@ -149,17 +150,23 @@ class myInspect {
         
         global $_sc, $fmEdit;
         $objs = _c($self)->items->selectedCaption;
-        
+        $count = count($objs);
+		$name = $count>=1?$objs[$count-1]:$objs[0];
+		
         $_sc->clearTargets();
-        foreach ($objs as $i=>$name){
-            if ($i==0)
-                myDesign::inspectElement($fmEdit->findComponent($name), true, false);
-            //$_sc->addTarget(_c(MyDesign::noVisAliasRt($fmEdit->findComponent($name)->self)));
+		
+		//Зачем много раз в цикле проверять индекс на число 0? 
+		//Если можно проветь один раз. 
+		if( $count > 0 ){
+			myDesign::inspectElement($fmEdit->findComponent($objs[0]), true, false);
+			for($i=1; $i<$count; ++$i){
+				$_sc->addTarget(_c(MyDesign::noVisAliasRt($fmEdit->findComponent($objs[$i])->self)));
+			}
         }
         
-        if (count($objs)==0)
+        if ($count==0){
             myDesign::formProps();
-        
+		}
         if ($name)
             myInspect::selectObject($fmEdit->findComponent($name));
         else

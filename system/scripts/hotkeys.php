@@ -40,15 +40,18 @@ function initEditorHotKeys(){
 	
 	$x = cursor_pos_x();
 	$y = cursor_pos_y();
+	//Ахтуууууууууууунг!!!!!! clientToScreen и screenToClient не работают!
+	//Нужен специалист по delphi части, что-бы починить. Без clientToScreen не работают даже горячии клавиши.
     $arr = clientToScreen($fmEdit->handle);
-	$arr['w'] = $fmEdit->w;
-	$arr['h'] = $fmEdit->h;
+	$arr = ['x'=>$fmEdit->x,'y'=>$fmEdit->y];
+	$arr['w'] = $fmEdit->clientWidth;
+	$arr['h'] = $fmEdit->clientHeight;
     $inform = Geometry::pointInRegion($x, $y, $arr);
 	
 	if (!$inform && $popupShow)
 		$inform = true;    
-	if ($inform)
+	if ($inform){
 		setEditorHotKeys();
-	else
+	}else
 		clearEditorHotKeys();
 }

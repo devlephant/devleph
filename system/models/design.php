@@ -833,10 +833,6 @@ class myDesign
         
         if ( c('fmPropsAndEvents->tabEvents',1)->focused )
             return true;
-		
-		if ( c('fmPropsAndEvents->TTreeBwr',1)->focused )
-            return true;
-        
         
         return false;
     }
@@ -953,7 +949,7 @@ class myDesign
     static function keyPaste(){
         
         myVars::set(0, 'popupShow');
-        //if (!self::canDoIt()) return;
+        if (!self::canDoIt()) return;
         
         myVars::set(true, '__sizeAndMove');
         
@@ -1022,7 +1018,7 @@ class myDesign
     static function keyCut(){
         
         myVars::set(0, 'popupShow');
-        //if (!self::canDoIt()) return;
+        if (!self::canDoIt()) return;
         
         global $_sc,$fmEdit;
         

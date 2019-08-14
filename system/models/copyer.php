@@ -49,10 +49,9 @@ class myCopyer {
         
         if ($object->name){
             $lines = explode(_BR_, $str);
-            $lines[0] = preg_replace('/object\w([\_a-z0-9]+)\:/i ','object '.$object->name.': ',$lines[0]);
+            $lines[0] = preg_replace('#object ([\_a-z0-9]+)\: #i','object '.$object->name.': ',$lines[0]);
             $str = implode(_BR_,$lines);
         }
-        
         gui_stringToComponent($object->self, $str);
     }
     
@@ -76,7 +75,7 @@ class myCopyer {
             $result[] = array('name'=>$el->name,
                               'index'=>$index,
                               'pageIndex'=>$el->pageIndex,
-                              'class'=>$el->className,
+                              'class'=>get_class($el),
                               'parent'=>$parent,
                               'component'=>self::toString($el));
             $events[$el->name] = self::getComponentEvent($el);
@@ -97,7 +96,7 @@ class myCopyer {
         $buffer['pageIndex'] = $object->pageIndex;
         $buffer['childs_events'] = [];
         $buffer['childs']    = self::getComponentInfo($object, $buffer['childs_events']);        
-        $buffer['info']      = array('name'=>$object->name, 'class'=>$object->className);
+        $buffer['info']      = array('name'=>$object->name, 'class'=>get_class($object));
         
         return $buffer;
     }
