@@ -62,8 +62,7 @@ function treeBwr_add()
 	}
 	
 	$tree->text = $text;
-	$no_multi_call = $tree->items->item;
-	foreach($no_multi_call as $i=>$item){
+	foreach($tree->items as $i=>$item){
 		$item->imageIndex = $imgindex[$i];
 		$item->SelectedIndex = $imgindex[$i];
 	}

@@ -102,7 +102,7 @@ function pre(...$obj){
 	if ( sync(__FUNCTION__, $obj) ) return;
 	
 	foreach( $obj as $s ) {
-		gui_message( print_r((is_object($s) &&  method_exists($s, '__toString()'))?$s->__toString():$s, true) );
+		gui_message( print_r((is_object($s) &&  method_exists($s, '__toString'))?$s->__toString():$s, true) );
 	}
 }
 
@@ -112,7 +112,7 @@ function pre2(...$obj){
 	foreach( $obj as $s )
 	{
 		ob_start();
-		var_dump((is_object($s) &&  method_exists($s, '__toString()'))?$s->__toString():$s);
+		var_dump((is_object($s) &&  method_exists($s, '__toString'))?$s->__toString():$s);
 		$s = ob_get_contents();
 		ob_end_clean();
 		gui_message($s);

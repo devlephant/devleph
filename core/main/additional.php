@@ -938,27 +938,83 @@ class TTreeView extends TControl {
 	
 }
 
-class TTreeNodes extends TControl {
+class TTreeNodes extends TControl implements ArrayAccess, Iterator, Countable
+{//у меня идея лучше
+	private $__p = 0;
 	
-	//Ну что мне поделать? Костыляю как могу (^v^)
-	public function get_item(){
-		/*if($v !== null ){
-			return $this->GetNodeFromIndex($v);
-		} else {*/
-			for($i=0;$i<$this->count; $i++){
-				$arr[$i] = $this->GetNodeFromIndex($i);
+	public function rewind()
+	{
+        $this->__p = 0;
+    }
+
+    public function current()
+	{
+        return $this->GetNodeFromIndex($this->__p);
+    }
+
+    public function key()
+	{
+        return $this->__p;
+    }
+
+    public function next()
+	{
+        ++$this->__p;
+    }
+
+    public function valid()
+	{
+        return $this->__p < $this->count;
+    }
+	
+	public function offsetSet($offset, $value)
+	{
+		if(!is_numeric($offset)) return;
+		if( $offset > $this->count )
+		{
+			$sib = $this->GetNodeFromIndex($this->count-1);
+			if( is_object($value) )
+			{
+				return $this->InsertNode($value, $sib, $value->Text, new Pointer(nil));
+			} else {
+				return $this->Add($sib,(string)$value);
 			}
-			return $arr;
-		//}
+		}
+		
+		$sib = $this->GetNodeFromIndex($offset);
+		$r = is_object($value)?$this->InsertNode($sib,$value,$value->text, new Pointer(nil)):$this->Insert($sib,(string)$value);
+	   $this->Delete($sib);
+	   $sib->free();
+	   return $r;
+    }
+
+    public function offsetExists($offset)
+	{
+        return $offset < $this->count;
+    }
+
+    public function offsetUnset($offset)
+	{
+		if(is_numeric($offset)&&$offset<$this->count)
+        $this->Delete($offset);
+    }
+
+    public function offsetGet($offset)
+	{
+        return (is_numeric($offset)&&($offset < $this->count))? $this->GetNodeFromIndex($offset): null;
+    }
+	
+	public function count()
+	{
+		return $this->count;
 	}
 	
 }
 
-class TTreeNode extends TControl {
-	
-	
-	
-	public function get_absIndex(){
+class TTreeNode extends TControl 
+{	
+	public function get_absIndex()
+	{
 		return tree_absIndex($this->self);
 	}
 }

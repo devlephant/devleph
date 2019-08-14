@@ -27,9 +27,17 @@ $_c->setConstList(['bvNone', 'bvLowered', 'bvRaised', 'bvSpace']);
 $_c->setConstList(['doNoOrient', 'doHorizontal', 'doVertical']);
 //$_c->setConstList(['mrNone','mrOk','mrCancel','mrAbort','mrRetry','mrIgnore','mrYes','mrNo','mrAll','mrNoToAll','mrYesToAll']);
 
-class TLabel extends TControl {
-	
+class TGraphControl extends TControl 
+{
+	public function __construct($owner=nil,$init=true,$self=nil)
+	{
+		parent::__construct($owner,$init,$self);
+		if( method_exists(get_class($this), 'Paint') )
+			event_set($this->self, 'OnPaint', get_class($this).'::Paint');
+	}
 }
+
+class TLabel extends TControl {	}
 
 
 class TEdit extends TControl {
@@ -360,9 +368,7 @@ class TProgressBar extends TControl {
 	}
 }
 
-class TScrollBar extends TControl {
-	
-}
+class TScrollBar extends TControl {	}
 
 class TGroupBox extends TControl {
 	
