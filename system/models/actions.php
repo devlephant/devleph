@@ -322,18 +322,18 @@ class myActions {
     }
     static function getInlineFixed($action)
 	{
-		/*$canvas = new TControlCanvas(c('fmPHPEditor->desc'));
-		//gui_propSet($canvas->self, c('fmPHPEditor->desc')->font);
+		if(strlen($action)==0) return '';
+		$line = self::getInline($action, false);
+		if(strlen($line)==0) return '';
+		$canvas = new TControlCanvas(c('fmPHPEditor->desc'));
 		$pixel = ($canvas->textWidth('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890')/62);
 		$pixelDiff = ($pixel - ($pixel - (int)$pixel));
 		$pixel = $pixelDiff>=($pixel-0.5)? ($pixel - 0.5): (int)$pixel;
 
 		$maxLen = (int)(c('fmPHPEditor->tlCancel',1)->left - 8 ) / $pixel;
 		$canvas->free();
-		$line = self::getInline($action, false);
 		$line = (strlen($line)>$maxLen)? substr($line, 0, $maxLen - 3) . '...': $line;
-		return $line;*/
-		return self::getInline($action, false);
+		return $line;
 	}
 }
 
