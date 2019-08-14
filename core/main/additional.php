@@ -970,7 +970,7 @@ class TTreeNodes extends TControl implements ArrayAccess, Iterator, Countable
 	public function offsetSet($offset, $value)
 	{
 		if(!is_numeric($offset)) return;
-		if( $offset > $this->count )
+		if( $offset >= $this->count )
 		{
 			$sib = $this->GetNodeFromIndex($this->count-1);
 			if( is_object($value) )
@@ -979,13 +979,14 @@ class TTreeNodes extends TControl implements ArrayAccess, Iterator, Countable
 			} else {
 				return $this->Add($sib,(string)$value);
 			}
-		}
+		} else {
 		
-		$sib = $this->GetNodeFromIndex($offset);
-		$r = is_object($value)?$this->InsertNode($sib,$value,$value->text, new Pointer(nil)):$this->Insert($sib,(string)$value);
-	   $this->Delete($sib);
-	   $sib->free();
-	   return $r;
+			$sib = $this->GetNodeFromIndex($offset);
+			$r = is_object($value)?$this->InsertNode($sib,$value,$value->text, new Pointer(nil)):$this->Insert($sib,(string)$value);
+		   if(gui_isset($sib->self))
+			$sib->Free();
+		   return $r;
+		}
     }
 
     public function offsetExists($offset)
