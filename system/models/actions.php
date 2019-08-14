@@ -331,8 +331,7 @@ class myActions {
 		$pixel = $pixelDiff>=($pixel-0.5)? ($pixel - 0.5): (int)$pixel;
 
 		$maxLen = (int)(c('fmPHPEditor->tlCancel',1)->left - 8 ) / $pixel;
-		$line = (strlen($line)>$maxLen)? substr($line, 0, $maxLen - 3) . '...': $line;
-		return $line;
+		return (strlen($line)>$maxLen)? substr($line, 0, $maxLen - 3) . '...': $line;
 	}
 }
 
