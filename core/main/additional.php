@@ -975,17 +975,16 @@ class TTreeNodes extends TControl implements ArrayAccess, Iterator, Countable
 			$sib = $this->GetNodeFromIndex($this->count-1);
 			if( is_object($value) )
 			{
-				return $this->InsertNode($value, $sib, $value->Text, new Pointer(nil));
+				$this->InsertNode($value, $sib, $value->Text, new Pointer(nil));
 			} else {
-				return $this->Add($sib,(string)$value);
+				$this->Add($sib,(string)$value);
 			}
 		} else {
 		
 			$sib = $this->GetNodeFromIndex($offset);
-			$r = is_object($value)?$this->InsertNode($sib,$value,$value->text, new Pointer(nil)):$this->Insert($sib,(string)$value);
+			is_object($value)?$this->InsertNode($sib,$value,$value->text, new Pointer(nil)):$this->Insert($sib,(string)$value);
 		   if(gui_isset($sib->self))
 			$sib->Free();
-		   return $r;
 		}
     }
 
