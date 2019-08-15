@@ -61,9 +61,73 @@ function menuItem($caption, $styled = false, $name = '', $onClick = '', $sc = fa
 	return $result;
 }
 
-class TMenuItem extends TControl {
+class TMenuItem extends TControl implements ArrayAccess, Iterator, Countable
+{
 	
 	public $picture;
+	private $__p = 0;
+	
+	public function rewind()
+	{
+        $this->__p = 0;
+    }
+
+    public function current()
+	{
+        return $this->GetItem($this->__p);
+    }
+
+    public function key()
+	{
+        return $this->__p;
+    }
+
+    public function next()
+	{
+        ++$this->__p;
+    }
+
+    public function valid()
+	{
+        return $this->__p < $this->count;
+    }
+	
+	public function offsetSet($offset, $value)
+	{
+		if(!is_numeric($offset)) return;
+		if( !is_object($value) )	{ $_v = new TMenuItem(); $_v->Caption = (string)$value; $value = $_v; }
+		if( $offset >= $this->count )
+		{
+			$this->Insert($offset, $value);
+		} else {
+		
+			$sib = $this->GetItem($offset);
+			$this->Insert($offset, $value);
+		   if(gui_isset($sib->self))
+			$sib->Free();
+		}
+    }
+
+    public function offsetExists($offset)
+	{
+        return $offset < $this->count;
+    }
+
+    public function offsetUnset($offset)
+	{
+		if(is_numeric($offset)&&$offset<$this->count)
+        $this->GetItem($offset)->free();
+    }
+
+    public function offsetGet($offset)
+	{
+        return (is_numeric($offset)&&($offset < $this->count))? $this->GetItem($offset): null;
+    }
+	
+	public function count()
+	{
+		return $this->count;
+	}
 	
 	public function __construct($onwer=nil, $init=true, $self=nil){
 		parent::__construct($onwer,$init,$self);
@@ -126,10 +190,7 @@ class TMenuItem extends TControl {
 	{
 		menuitem_remitem($this->self, $item->self);
 	}
-	public function getItem( $index )
-	{
-		return _c(menuitem_getitem($this->self, $index));
-	}
+
 	public function get_count(){
 		return menuitem_itemcount($this->self);
 	}

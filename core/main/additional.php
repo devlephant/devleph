@@ -623,7 +623,66 @@ class TSizeConstraints extends TComponent {}
 	
 class TPadding extends TControl {}
 
-class TListItems extends TControl {
+class TListItems extends TControl implements ArrayAccess, Iterator, Countable
+{
+	private $__p = 0;
+	
+	public function rewind()
+	{
+        $this->__p = 0;
+    }
+
+    public function current()
+	{
+        return $this->GetItem($this->__p);
+    }
+
+    public function key()
+	{
+        return $this->__p;
+    }
+
+    public function next()
+	{
+        ++$this->__p;
+    }
+
+    public function valid()
+	{
+        return $this->__p < $this->count;
+    }
+	
+	public function offsetSet($offset, $value)
+	{
+		if(!is_numeric($offset)) return;
+		if( !is_object($value) )	{ $_v = new TListItem(); $_v->Caption = (string)$value; $value = $_v; }
+		if( $offset >= $this->count )
+		{
+			$this->AddItem($value, $offset);
+		} else {
+		
+			$sib = $this->GetItem($offset);
+			$this->SetItem($offset, $value);
+		   if(gui_isset($sib->self))
+			$sib->Free();
+		}
+    }
+
+    public function offsetExists($offset)
+	{
+        return $offset < $this->count;
+    }
+
+    public function offsetUnset($offset)
+	{
+		if(is_numeric($offset)&&$offset<$this->count)
+        $this->GetItem($offset)->free();
+    }
+
+    public function offsetGet($offset)
+	{
+        return (is_numeric($offset)&&($offset < $this->count))? $this->GetItem($offset): null;
+    }
 	
 	function delete($index){ listitems_command($this->self, __FUNCTION__, $index,0); }
 	function add(){ return _c(listitems_command($this->self, __FUNCTION__,0,0)); }
@@ -970,22 +1029,22 @@ class TTreeNodes extends TControl implements ArrayAccess, Iterator, Countable
 	public function offsetSet($offset, $value)
 	{
 		if(!is_numeric($offset)) return;
-		if( $offset > $this->count )
+		if( $offset >= $this->count )
 		{
 			$sib = $this->GetNodeFromIndex($this->count-1);
 			if( is_object($value) )
 			{
-				return $this->InsertNode($value, $sib, $value->Text, new Pointer(nil));
+				$this->InsertNode($value, $sib, $value->Text, new Pointer(nil));
 			} else {
-				return $this->Add($sib,(string)$value);
+				$this->Add($sib,(string)$value);
 			}
-		}
+		} else {
 		
-		$sib = $this->GetNodeFromIndex($offset);
-		$r = is_object($value)?$this->InsertNode($sib,$value,$value->text, new Pointer(nil)):$this->Insert($sib,(string)$value);
-	   $this->Delete($sib);
-	   $sib->free();
-	   return $r;
+			$sib = $this->GetNodeFromIndex($offset);
+			is_object($value)?$this->InsertNode($sib,$value,$value->text, new Pointer(nil)):$this->Insert($sib,(string)$value);
+		   if(gui_isset($sib->self))
+			$sib->Free();
+		}
     }
 
     public function offsetExists($offset)
@@ -996,7 +1055,7 @@ class TTreeNodes extends TControl implements ArrayAccess, Iterator, Countable
     public function offsetUnset($offset)
 	{
 		if(is_numeric($offset)&&$offset<$this->count)
-        $this->Delete($offset);
+        $this->GetNodeFromIndex($offset)->free();
     }
 
     public function offsetGet($offset)
@@ -1132,11 +1191,12 @@ class TStyleTabs extends TTransparentPanel {
 }
 
 //Компонент управления страницами(scrollbox'ами)
-class TStylePages extends TControl {
+class TStylePages extends TControl
+{
 	
 	//Возвращает объект/страницу(scrollbox) но индексу
 	function GetPage($index){
-		return c($this->pages[$index]);
+		return _c($this->pages[$index]);
 	}
 	
 	//Добавляет страницу(scrollbox) с указаным именем таба

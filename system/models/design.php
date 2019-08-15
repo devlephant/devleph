@@ -439,9 +439,7 @@ class myDesign
 	static function noVisAliasRt($a)
 	{
 		$arr = array_flip((array)self::$alias);
-		if( $arr[$a]!==null )
-			return $arr[$a];
-		return $a;
+			return isSet($arr[$a])? $arr[$a]: $a;
 	}
 	
     static function selectComponent($self, $target, $x, $y){
