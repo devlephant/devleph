@@ -207,6 +207,8 @@ class myEvents {
             $myEvents->genList();
 			if( c('fmPropsAndEvents->eventList')->Items->Count > 0 && $itemIndex > 0 )
 				c('fmPropsAndEvents->eventList')->ItemIndex = $itemIndex-1;
+			
+			treeBwr_add();
         }
     }
     
@@ -239,6 +241,8 @@ class myEvents {
         $edt_Events->popup($x, $y);
         foreach ($buttons as $btn)
             $btn->visible = true;
+			
+		treeBwr_add();
     }
     
     function formKeyDown($self, $key, $shift){
@@ -400,6 +404,8 @@ class myEvents {
 		c('edt_EventTypes->popupMenu')->popup($x, $y);
 		foreach ($buttons as $btn)
             $btn->visible = true;
+		
+		treeBwr_add();
     }
     
     public static function clickAddEvent($self, $show_editor = false)

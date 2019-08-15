@@ -494,7 +494,7 @@ class myUtils
 		
 		$myProperties->setProps();
 		
-        
+        treeBwr_add();
         $fmMain->repaint();
         $fmMain->invalidate();
     }

@@ -1076,6 +1076,16 @@ class TTreeNode extends TControl
 	{
 		return tree_absIndex($this->self);
 	}
+	
+	public function get_Expanded()
+	{
+		return gui_propGet($this->self, "Expanded");
+	}
+	
+	public function set_Expanded($v)
+	{
+		tree_expand($this->self, $v);
+	}
 }
 
 //Аналог компонента TPageControl, и TTabControl, в flat(плоском) стиле.
