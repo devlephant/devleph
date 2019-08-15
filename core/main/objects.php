@@ -822,7 +822,7 @@ class TControl extends TComponent {
 	    return $res;
 	}
 	function get_handle(){
-	    return gui_getHandle($this->self);
+	    return gui_propGet($this->self, 'Handle');
 	}
 	function set_handle($v){
 		gui_propset($this->self, 'Handle', $v);
