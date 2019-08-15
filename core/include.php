@@ -162,6 +162,9 @@ include_lib('','config');
 include_lib('main','objects');
 include_lib('main','classes');
 include_lib('main','messages');
+
+include_lib('FireLion', 'Geometry');
+
 include_lib('main','graphics');
 include_lib('main','dfmreader');
 include_lib('main','forms');
