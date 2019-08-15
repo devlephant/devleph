@@ -15,13 +15,14 @@ function treeBwr_add()
 	"onmouseup"=>"mouseup"];
 	$dirs = findFiles($dir, "dfm");
 	$imgindex[] = myImages::getImgID('forms');
+	$expand[0] = true;
 	$cindex = 0;
 	foreach( (array)$dirs as $dfm )
 	{
 		$Forms .= '	' . $dfm . PHP_EOL;
 		$imgindex[] = myImages::getImgID('form');
-		$expand[] = true;
 		++$cindex;
+		$expand[$cindex] = true;
 		$form = (object)myUtils::$forms[strtolower(basenameNoExt($dfm))];
 		$comList = $form->componentList;
 		foreach( (array)$comList as $obj )
@@ -51,8 +52,8 @@ function treeBwr_add()
 	$events_icon = eventEngine::listEvents($name);
 	if(!empty($events[0])){
 		$imgindex[] = myImages::getImgID( "enter" );
-		$expand[] = true;
 		++$cindex;
+		$expand[$cindex] = true;
 		$Forms .= "	".t("Form Events")._BR_;
 		foreach($events as $i=>$event){
 			$icon = strtolower($events_icon[$i]);
@@ -78,10 +79,12 @@ function treeBwr_add()
 	{
 		$text .= t("Scripts")._BR_;
 		$imgindex[] = myImages::getImgID('scripts');
-		$expand[] = true;
+		++$cindex;
+		$expand[$cindex] = true;
 		foreach($Scripts as $file){
 			$text .= "	".$file._BR_;
 			$imgindex[] = myImages::getImgID('script');
+			++$cindex;
 		}
 	}	
 	$Modules = $GLOBALS['myProject']->config['modules'];
@@ -89,10 +92,12 @@ function treeBwr_add()
 	{
 		$text .= t("Exts")._BR_;
 		$imgindex[] = myImages::getImgID('exts');
-		$expand[] = true;
+		++$cindex;
+		$expand[$cindex] = true;
 		foreach($Modules as $file ){
 			$text.= "	".$file._BR_;
 			$imgindex[] = myImages::getImgID('ext');
+			++$cindex;
 		}
 	}
 	
