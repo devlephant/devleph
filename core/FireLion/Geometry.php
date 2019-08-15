@@ -627,11 +627,11 @@ class TLine
 	public function IntersectsWithPt(TPoint $p)
 	//https://stackoverflow.com/a/36365358
 	{
-		$l = Atan2($this->Start->y - $this->End->y, $this->Start->x - $this->End->x);
-		$aTanTest = Atan2($this->Start->y - $p->y, $this->Start->x - $p->x);
+		$l = Atan2($this->Start->_y - $this->End->_y, $this->Start->_x - $this->End->_x);
+		$aTanTest = Atan2($this->Start->_y - $p->_y, $this->Start->_x - $p->_x);
 		if ($l == $aTanTest) {
-			$l = Atan2($this->End->y - $this->Start->y, $this->End->x - $this->Start->x);
-			$aTanTest = Atan2($this->End->y - $p->y, $this->End->x - $p->x);
+			$l = Atan2($this->End->_y - $this->Start->_y, $this->End->_x - $this->Start->_x);
+			$aTanTest = Atan2($this->End->_y - $p->_y, $this->End->_x - $p->_x);
 		}
 		
 		return $l == $aTanTest;
@@ -648,12 +648,12 @@ class TLine
 	public function AngleBetween(TLine $ln)
 	{
 		return
-		Atan2($this->End->y - $this->Start->y, $this->End->x - $this->Start->x)
-		- Atan2($ln->End->y - $ln->Start->y,$ln->End->x - $ln->Start->x);
+		Atan2($this->End->_y - $this->Start->_y, $this->End->_x - $this->Start->_x)
+		- Atan2($ln->End->_y - $ln->Start->_y,$ln->End->_x - $ln->Start->_x);
 	}
 	public function GetCenterPoint()
 	{
-		return new TPoint(($this->Start->x + $this->End->x)/2, ($this->Start->y + $this->End->y)/2);
+		return new TPoint(($this->Start->_x + $this->End->_x)/2, ($this->Start->_y + $this->End->_y)/2);
 	}
 	public function Intersect($Ln)
 	{
@@ -661,20 +661,20 @@ class TLine
 			foreach($Ln->Points as $Point)
 				$this->Intersect($Point);
 		}elseif($Ln instanceof TRect){
-			if($Ln->Left < $this->Start->x) $this->Start->x = $Ln->Left;
-			if($Ln->Top < $this->Start->y) $this->Start->y = $Ln->Top;
-			if($Ln->Right > $this->End->x) $this->End->x = $Ln->Right;
-			if($Ln->Bottom > $this->End->y) $this->End->y = $Ln->Bottom;
+			if($Ln->Left < $this->Start->_x) $this->Start->_x = $Ln->Left;
+			if($Ln->Top < $this->Start->_y) $this->Start->_y = $Ln->Top;
+			if($Ln->Right > $this->End->_x) $this->End->_x = $Ln->Right;
+			if($Ln->Bottom > $this->End->_y) $this->End->_y = $Ln->Bottom;
 		}elseif($Ln instanceof SELF){
-			if($Ln->Start->x < $this->Start->x) $this->Start->x = $Ln->Start->x;
-			if($Ln->Start->y < $this->Start->y) $this->Start->y = $Ln->Start->y;
-			if($Ln->End->x > $this->End->x) $this->End->x = $Ln->End->x;
-			if($Ln->End->y > $this->End->y) $this->End->y = $Ln->End->y;
+			if($Ln->Start->_x < $this->Start->_x) $this->Start->_x = $Ln->Start->_x;
+			if($Ln->Start->_y < $this->Start->_y) $this->Start->_y = $Ln->Start->_y;
+			if($Ln->End->_x > $this->End->_x) $this->End->_x = $Ln->End->_x;
+			if($Ln->End->_y > $this->End->_y) $this->End->_y = $Ln->End->_y;
 		}elseif($Ln instanceof TPoint){
-			if($Ln->x < $this->Start->x) $this->Start->x = $Ln->x;
-			if($Ln->y < $this->Start->y) $this->Start->y = $Ln->y;
-			if($Ln->x > $this->End->x) $this->End->x = $Ln->x;
-			if($Ln->y > $this->End->y) $this->End->y = $Ln->y;
+			if($Ln->_x < $this->Start->_x) $this->Start->_x = $Ln->_x;
+			if($Ln->_y < $this->Start->_y) $this->Start->_y = $Ln->_y;
+			if($Ln->_x > $this->End->_x) $this->End->_x = $Ln->_x;
+			if($Ln->_y > $this->End->_y) $this->End->_y = $Ln->_y;
 		}
 	}
 	public function Extersect($Ln)
@@ -683,20 +683,20 @@ class TLine
 			foreach($Ln->Points as $Point)
 				$this->Intersect($Point);
 		}elseif($Ln instanceof TRect){
-			if($Ln->Left > $this->Start->x) $this->Start->x = $Ln->Left;
-			if($Ln->Top > $this->Start->y) $this->Start->y = $Ln->Top;
-			if($Ln->Right < $this->End->x) $this->End->x = $Ln->Right;
-			if($Ln->Bottom < $this->End->y) $this->End->y = $Ln->Bottom;
+			if($Ln->Left > $this->Start->_x) $this->Start->_x = $Ln->Left;
+			if($Ln->Top > $this->Start->_y) $this->Start->_y = $Ln->Top;
+			if($Ln->Right < $this->End->_x) $this->End->_x = $Ln->Right;
+			if($Ln->Bottom < $this->End->_y) $this->End->_y = $Ln->Bottom;
 		}elseif($Ln instanceof SELF){
-			if($Ln->Start->x > $this->Start->x) $this->Start->x = $Ln->Start->x;
-			if($Ln->Start->y > $this->Start->y) $this->Start->y = $Ln->Start->y;
-			if($Ln->End->x < $this->End->x) $this->End->x = $Ln->End->x;
-			if($Ln->End->y < $this->End->y) $this->End->y = $Ln->End->y;
+			if($Ln->Start->_x > $this->Start->_x) $this->Start->_x = $Ln->Start->_x;
+			if($Ln->Start->_y > $this->Start->_y) $this->Start->_y = $Ln->Start->_y;
+			if($Ln->End->_x < $this->End->_x) $this->End->_x = $Ln->End->_x;
+			if($Ln->End->_y < $this->End->_y) $this->End->_y = $Ln->End->_y;
 		}elseif($Ln instanceof TPoint){
-			if($Ln->x > $this->Start->x) $this->Start->x = $Ln->x;
-			if($Ln->y > $this->Start->y) $this->Start->y = $Ln->y;
-			if($Ln->x < $this->End->x) $this->End->x = $Ln->x;
-			if($Ln->y < $this->End->y) $this->End->y = $Ln->y;
+			if($Ln->_x > $this->Start->_x) $this->Start->_x = $Ln->_x;
+			if($Ln->_y > $this->Start->_y) $this->Start->_y = $Ln->_y;
+			if($Ln->_x < $this->End->_x) $this->End->_x = $Ln->_x;
+			if($Ln->_y < $this->End->_y) $this->End->_y = $Ln->_y;
 		}
 	}
 	public function Angle()
@@ -710,8 +710,9 @@ class TLine
 	}
 	public function GetPolygon()
 	{
-		$poly = new TPolygon($this->Start,$this->End);
+		$poly = new TPolygon([$this->Start,$this->End]);
 		$poly->open = true;
+		return $poly;
 	}
 	public function GetPoints()
 	{
@@ -779,8 +780,8 @@ class TRect implements ArrayAccess
 					$this->Assign($p[0]);
 				} elseif($p[0] instanceof TPoint)
 				{
-					$this->_Left = $p[0]->x;
-					$this->_Top 	= $p[0]->y;
+					$this->_Left = $p[0]->_x;
+					$this->_Top 	= $p[0]->_y;
 					$this->_Right = 0;
 					$this->_Bottom = 0;
 				}					
@@ -789,20 +790,20 @@ class TRect implements ArrayAccess
 			{
 				if(($p[0] instanceof TPoint) && ($p[1] instanceof TPoint))
 				{
-					$this->_Left = $p[0]->x;
-					$this->_Top 	= $p[0]->y;
-					$this->_Right = $p[1]->x;
-					$this->_Bottom = $p[1]->y;
+					$this->_Left = $p[0]->_x;
+					$this->_Top 	= $p[0]->_y;
+					$this->_Right = $p[1]->_x;
+					$this->_Bottom = $p[1]->_y;
 				} elseif($p[0] instanceof TPoint) {
-					$this->_Left = $p[0]->x;
-					$this->_Top 	= $p[0]->y;
+					$this->_Left = $p[0]->_x;
+					$this->_Top 	= $p[0]->_y;
 					$this->_Right = $p[1];
 					$this->_Bottom = 0;
 				} elseif ($p[1] instanceof TPoint) {
 					$this->_Left = $p[0];
 					$this->_Top 	= 0;
-					$this->_Right = $p[1]->x;
-					$this->_Bottom = $p[1]->y;
+					$this->_Right = $p[1]->_x;
+					$this->_Bottom = $p[1]->_y;
 				} else {
 					$this->_Left = $p[0];
 					$this->_Top 	= $p[1];
@@ -814,23 +815,23 @@ class TRect implements ArrayAccess
 			{
 				if(( $p[0] instanceof TPoint ) && ( $p[1] instanceof TPoint ))
 				{
-					$this->_Left		= $p[0]->x;
-					$this->_Top		= $p[0]->y;
-					$this->_Right	= $p[1]->x;
-					$this->_Bottom	= $p[1]->x;
+					$this->_Left		= $p[0]->_x;
+					$this->_Top		= $p[0]->_y;
+					$this->_Right	= $p[1]->_x;
+					$this->_Bottom	= $p[1]->_x;
 					if($p[2])
 						$this->Normalize();
 				} elseif($p[0] instanceof TPoint)
 				{
-					$this->_Left = $p[0]->x;
-					$this->_Top = $p[0]->y;
+					$this->_Left = $p[0]->_x;
+					$this->_Top = $p[0]->_y;
 					$this->_Right = $p[1];
 					$this->_Bottom = $p[2];
 				} elseif($p[2] instanceof TPoint) {
 					$this->_Left = $p[0];
 					$this->_Top = $p[1];
-					$this->_Right = $p[2]->x;
-					$this->_Bottom = $p[2]->y;
+					$this->_Right = $p[2]->_x;
+					$this->_Bottom = $p[2]->_y;
 				}
 				else {
 					$this->_Left = $p[0];
@@ -906,10 +907,10 @@ class TRect implements ArrayAccess
 			$this->_Bottom+= $r->_Bottom;
 		}elseif( $r instanceof TPoint )
 		{
-			$this->_Left += $r->x;
-			$this->_Top += $r->y;
-			$this->_Right+= $r->x;
-			$this->_Bottom+=$r->y;
+			$this->_Left += $r->_x;
+			$this->_Top += $r->_y;
+			$this->_Right+= $r->_x;
+			$this->_Bottom+=$r->_y;
 		} else 
 		{
 			$this->_Left += $r;
@@ -928,10 +929,10 @@ class TRect implements ArrayAccess
 			$this->_Bottom*= $r->_Bottom;
 		}elseif( $r instanceof TPoint )
 		{
-			$this->_Left *= $r->x;
-			$this->_Top  *= $r->y;
-			$this->_Right*= $r->x;
-			$this->_Bottom*=$r->y;
+			$this->_Left *= $r->_x;
+			$this->_Top  *= $r->_y;
+			$this->_Right*= $r->_x;
+			$this->_Bottom*=$r->_y;
 		} else 
 		{
 			$this->_Left *= $r;
@@ -950,10 +951,10 @@ class TRect implements ArrayAccess
 			$this->_Bottom/= $r->_Bottom;
 		}elseif( $r instanceof TPoint )
 		{
-			$this->_Left /= $r->x;
-			$this->_Top  /= $r->y;
-			$this->_Right/= $r->x;
-			$this->_Bottom/=$r->y;
+			$this->_Left /= $r->_x;
+			$this->_Top  /= $r->_y;
+			$this->_Right/= $r->_x;
+			$this->_Bottom/=$r->_y;
 		} else 
 		{
 			$this->_Left /= $r;
@@ -972,10 +973,10 @@ class TRect implements ArrayAccess
 			$this->_Bottom-= $r->_Bottom;
 		}elseif( $r instanceof TPoint )
 		{
-			$this->_Left -= $r->x;
-			$this->_Top  -= $r->y;
-			$this->_Right-= $r->x;
-			$this->_Bottom-=$r->y;
+			$this->_Left -= $r->_x;
+			$this->_Top  -= $r->_y;
+			$this->_Right-= $r->_x;
+			$this->_Bottom-=$r->_y;
 		} else 
 		{
 			$this->_Left -= $r;
@@ -1002,10 +1003,10 @@ class TRect implements ArrayAccess
 					if($el->_Bottom > $this->_Bottom) $this->_Bottom = $el->_Bottom;
 				} elseif($el instanceof TPoint)
 				{
-					if($el->x < $this->_Left) $this->_Left = $el->x;
-					if($el->y < $this->_Top) $this->_Top = $el->y;
-					if($el->x > $this->_Right) $this->_Right = $el->x;
-					if($el->y > $this->_Bottom) $this->_Bottom = $el->y;
+					if($el->_x < $this->_Left) $this->_Left = $el->_x;
+					if($el->_y < $this->_Top) $this->_Top = $el->_y;
+					if($el->_x > $this->_Right) $this->_Right = $el->_x;
+					if($el->_y > $this->_Bottom) $this->_Bottom = $el->_y;
 				} elseif($el instanceof TPolygon)
 					$this->Union($el->Points);
 			}
@@ -1069,10 +1070,10 @@ class TRect implements ArrayAccess
 	{
 		return
 			!(
-				($this->BottomRight->x < $R->TopLeft->x)||
-				($this->BottomRight->y < $R->TopLeft->y)||
-				($R->BottomRight->x < $this->TopLeft->x) ||
-				($R->BottomRight->y < $this->TopLeft->y)
+				($this->BottomRight->_x < $R->TopLeft->_x)||
+				($this->BottomRight->_y < $R->TopLeft->_y)||
+				($R->BottomRight->_x < $this->TopLeft->_x) ||
+				($R->BottomRight->_y < $this->TopLeft->_y)
 			);
 	}
 	public function IntersectsWith(TRect $R)
@@ -1088,7 +1089,7 @@ class TRect implements ArrayAccess
 			$Center = $Center->CenterPoint();
 		} elseif(!($Center instanceof TPoint))
 			$Center = $this->CenterPointOriginal;
-		return rad2deg(atan2((double)$this->_Left - $Center->y,(double)$this->_Top - $Center->x));
+		return rad2deg(atan2((double)$this->_Left - $Center->_y,(double)$this->_Top - $Center->_x));
 	}
 	
 	public function Rotate($Center, $Angle)
@@ -1104,31 +1105,31 @@ class TRect implements ArrayAccess
      // Perform rotation
      $this->_Left =
            ROUND(
-                 $Center->x + ($this->_Left - $Center->x)* COS($Angle)
-                         - ($this->_Top - $Center->y)* SIN($Angle) );
+                 $Center->_x + ($this->_Left - $Center->_x)* COS($Angle)
+                         - ($this->_Top - $Center->_y)* SIN($Angle) );
 
      $this->_Top =
            ROUND(
-                 $Center->y + ($this->_Left - $Center->x)* SIN($Angle)
-                         + ($this->_Top - $Center->y)* COS($Angle) );
+                 $Center->_y + ($this->_Left - $Center->_x)* SIN($Angle)
+                         + ($this->_Top - $Center->_y)* COS($Angle) );
 	
 	$this->_Right =
            ROUND(
-                 $Center->x + ($this->_Right - $Center->x)* COS($Angle)
-                         - ($this->_Bottom - $Center->y)* SIN($Angle) );
+                 $Center->_x + ($this->_Right - $Center->_x)* COS($Angle)
+                         - ($this->_Bottom - $Center->_y)* SIN($Angle) );
 
      $this->_Right =
            ROUND(
-                 $Center->y + ($this->_Right - $Center->x)* SIN($Angle)
-                         + ($this->_Bottom - $Center->y)* COS($Angle) );
+                 $Center->_y + ($this->_Right - $Center->_x)* SIN($Angle)
+                         + ($this->_Bottom - $Center->_y)* COS($Angle) );
 	}
 	public function Distance($R,$DST_TYPE=0)
 	{
 		if ($R instanceof SELF)
 		//Notice: distance for self-instanced objects is calculated by Rectangle center.
 		{
-			$x = $R->CenterPoint()->x;
-			$y = $R->CenterPoint()->y;
+			$x = $R->CenterPoint()->_x;
+			$y = $R->CenterPoint()->_y;
 		} elseif ($R instanceof TPoint)
 		{
 			$x = $R->x;
@@ -1145,8 +1146,8 @@ class TRect implements ArrayAccess
 			} break;
 			case 0:
 			{
-				$dx = $this->CenterPoint()->x;
-				$dy = $this->CenterPoint()->y;
+				$dx = $this->CenterPoint()->_x;
+				$dy = $this->CenterPoint()->_y;
 			} break;
 			case 1:
 			{
@@ -1162,8 +1163,8 @@ class TRect implements ArrayAccess
 		if ($R instanceof SELF)
 		//Notice: distance for self-instanced objects is calculated by Rectangle center.
 		{
-			$x = $R->CenterPoint()->x;
-			$y = $R->CenterPoint()->y;
+			$x = $R->CenterPoint()->_x;
+			$y = $R->CenterPoint()->_y;
 		} elseif ($R instanceof TPoint)
 		{
 			$x = $R->x;
@@ -1180,8 +1181,8 @@ class TRect implements ArrayAccess
 			} break;
 			case 0:
 			{
-				$dx = $this->CenterPoint()->x;
-				$dy = $this->CenterPoint()->y;
+				$dx = $this->CenterPoint()->_x;
+				$dy = $this->CenterPoint()->_y;
 			} break;
 			case 1:
 			{
@@ -1225,10 +1226,10 @@ class TRect implements ArrayAccess
 			$Result->_Bottom	-= $R->_Bottom;
 		}elseif($R instanceof TPoint)
 		{
-			$Result->_Left	-= $R->x;
-			$Result->_Top		-= $R->y;
-			$Result->_Right	-= $R->x;
-			$Result->_Bottom	-= $R->y;
+			$Result->_Left	-= $R->_x;
+			$Result->_Top		-= $R->_y;
+			$Result->_Right	-= $R->_x;
+			$Result->_Bottom	-= $R->_y;
 		} else {
 			$Result->_Left	-= (double)$R;
 			$Result->_Top		-= (double)$R;
@@ -1630,12 +1631,12 @@ class TRectF Extends TRect
 		if ($R instanceof SELF)
 		//Notice: distance for self-instanced objects is calculated by Rectangle center.
 		{
-			$x = $R->CenterPoint()->x;
-			$y = $R->CenterPoint()->y;
+			$x = $R->CenterPoint()->_x;
+			$y = $R->CenterPoint()->_y;
 		} elseif ($R instanceof TPoint)
 		{
-			$x = $R->x;
-			$y = $R->y;
+			$x = $R->_x;
+			$y = $R->_y;
 		} else {
 			$x = $y = (double)$R;
 		}
@@ -1648,8 +1649,8 @@ class TRectF Extends TRect
 			} break;
 			case 0:
 			{
-				$dx = $this->CenterPoint()->x;
-				$dy = $this->CenterPoint()->y;
+				$dx = $this->CenterPoint()->_x;
+				$dy = $this->CenterPoint()->_y;
 			} break;
 			case 1:
 			{
@@ -1766,9 +1767,11 @@ class TPolygon
 		$cnt = count($this->Points);
 		for($i=0;$i<$cnt;$i++)
 		{
-			$res->x += $this->Points[$i]->x;
-			$res->y += $this->Points[$i]->y;
+			$res->_x += $this->Points[$i]->_x;
+			$res->_y += $this->Points[$i]->_y;
 		}
+		$res->_x /= $cnt;
+		$res->_y /= $cnt;
 		return $res;
 	}
 	
@@ -1793,6 +1796,26 @@ class TPolygon
 	{
 	}
 	
+	public function GetRect()
+	{
+		if( empty($this->Points) ) return new TRect(0,0,0,0);
+				$max = clone $this->Points[0];
+				$min = clone $this->Points[0];
+				foreach($this->Points as $point)//here we go...
+				{
+					if($point->_x > $max->_x)
+						$max->_x = $point->_x;
+					if($point->_y > $max->_y)
+						$max->_y = $point->_y;
+					if($point->_y < $min->_y)
+						$min->_y = $point->_y;
+					if($point->_x < $min->_x)
+						$min->_x = $point->_x;
+				}
+				$max->Subtract($min);//here we arrive
+		return new TRect($min,$max);
+	}
+	
 	public function __set($nm,$v)
 	{
 		switch(strtolower($nm))
@@ -1803,10 +1826,10 @@ class TPolygon
 				$max = clone $this->Points[0];
 				foreach($this->Points as $id=>$point)//here we go...
 				{
-					if($point->x > $max->x||$point->y > $max->y)
+					if($point->_x > $max->_x||$point->_y > $max->_y)
 					{
-						$max->x = $point->x;
-						$max->y = $point->y;
+						$max->_x = $point->_x;
+						$max->_y = $point->_y;
 						$idx = $id;
 					}
 				}
@@ -1819,10 +1842,10 @@ class TPolygon
 				$min = clone $this->Points[0];
 				foreach($this->Points as $id=>$point)//here we go...
 				{
-					if($point->x < $min->x||$point->y < $min->y)
+					if($point->_x < $min->_x||$point->_y < $min->_y)
 					{
-						$min->y = $point->y;
-						$min->x = $point->x;
+						$min->_y = $point->_y;
+						$min->_x = $point->_x;
 						$idx = $id;
 					}
 				}
@@ -1843,24 +1866,7 @@ class TPolygon
 		{
 			
 			case 'rect':
-			{
-				if( empty($this->Points) ) return new TRect(0,0,0,0);
-				$max = clone $this->Points[0];
-				$min = clone $this->Points[0];
-				foreach($this->Points as $point)//here we go...
-				{
-					if($point->x > $max->x)
-						$max->x = $point->x;
-					if($point->y > $max->y)
-						$max->y = $point->y;
-					if($point->y < $min->y)
-						$min->y = $point->y;
-					if($point->x < $min->x)
-						$min->x = $point->x;
-				}
-				$max->Subtract($min);//here we arrive
-				return new TRect($min,$max);
-			} break;
+			return $this->GetRect();
 			
 			case 'highpoint':
 			{
@@ -1868,10 +1874,10 @@ class TPolygon
 				$max = clone $this->Points[0];
 				foreach($this->Points as $point)//here we go...
 				{
-					if($point->x > $max->x||$point->y > $max->y)
+					if($point->_x > $max->_x||$point->_y > $max->_y)
 					{
-						$max->x = $point->x;
-						$max->y = $point->y;
+						$max->_x = $point->_x;
+						$max->_y = $point->_y;
 					}
 				}
 				return $max;
@@ -1883,10 +1889,10 @@ class TPolygon
 				$min = clone $this->Points[0];
 				foreach($this->Points as $point)//here we go...
 				{
-					if($point->x < $min->x||$point->y < $min->y)
+					if($point->_x < $min->_x||$point->_y < $min->_y)
 					{
-						$min->y = $point->y;
-						$min->x = $point->x;
+						$min->_y = $point->_y;
+						$min->_x = $point->_x;
 					}
 				}
 				return $min;
