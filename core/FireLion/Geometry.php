@@ -1744,18 +1744,20 @@ class TPolygon
 		$this->Points = $arr;
 	}
 	
-	public function Open()
+	public function Open($f=true)
 	{
-		if(!$this->Open && $this->Points[ count($this->Points)-1 ] !== $this->Points[0])
+		if(count($this->Points)>0)
+		if($f && !$this->Open && $this->Points[ count($this->Points)-1 ] !== $this->Points[0])
 		{
 			$this->Points[] = $this->Points[0];
 		}
 		$this->Open = true;
 	}
 	
-	public function Close()
+	public function Close($f=true)
 	{
-		if($this->Open && $this->Points[ count($this->Points)-1 ] == $this->Points[0])
+		if(count($this->Points)>0)
+		if($f && $this->Open && $this->Points[ count($this->Points)-1 ] == $this->Points[0])
 			unset($this->Points[ count($this->Points)-1 ]);
 		$this->Open = false;
 	}
@@ -1773,6 +1775,40 @@ class TPolygon
 		$res->_x /= $cnt;
 		$res->_y /= $cnt;
 		return $res;
+	}
+	
+	public function Interpolate($data)
+	{
+		if(is_array($data))
+		{
+			foreach($data as $P)
+				if($P instanceof TPoint)
+				{
+					$this->Points[] = $P;
+				} elseif ( $data instanceof TCircle || $data instanceof TRect || $data instanceof TTriangle || $data instanceof TLine )
+				{
+					$this->Points[] = $data->GetPoints();
+				} else //Case Array or Nothing
+					$this->Interpolate($P);
+		} elseif ( $data instanceof TCircle || $data instanceof TRect || $data instanceof TTriangle || $data instanceof TLine )
+		{
+			$this->Interpolate( $data->GetPoints() );
+		} elseif ( $data instanceof TPoint )
+			$this->Points[] = $data;
+	}
+	
+	public function AngleCount()
+	{
+		$count = count($this->Points);
+		if ($count>0)
+			return ($this->Points[ count($this->Points)-1 ] == $this->Points[0])? $count-1: $count;
+		else
+			return 0;
+	}
+	
+	public function GetPolygon()
+	{
+		return clone $this;
 	}
 	
 	public function PtInside(TPoint $pt)
