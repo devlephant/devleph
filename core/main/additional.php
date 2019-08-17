@@ -879,12 +879,11 @@ class TDateTimePicker extends TControl {
 	function set_TrailingTextColor($v){ gui_propset($this->calColors, 'TrailingTextColor', $v); }
 }
 
-class TTreeView extends TControl {
-	
-	
-	
+class TTreeView extends TControl
+{
 
-	private function PrintArrayToString(array $Add, $i = 0) {
+	private function PrintArrayToString(array $Add, $i = 0)
+	{
 		$NewText = '';
 		$ni = $i;
 		foreach($Add as $KeyName => $KeyValue) {
@@ -898,7 +897,8 @@ class TTreeView extends TControl {
 		return $NewText;
 	}  
 	
-	public function get_AllItemSelected() {
+	public function get_AllItemSelected()
+	{
 		$Result= [];
 		$Base  = explode(PHP_EOL, tree_gettext($this->self));
 		$Level = null;
@@ -916,31 +916,32 @@ class TTreeView extends TControl {
 	}
 
 	
-	public function loadFromStr($str){
-		
+	public function loadFromStr($str)
+	{
 		tree_loadstr($this->self,$str);
 	}
 	
-	public function get_text(){
-		
+	public function get_text()
+	{
 		return tree_gettext($this->self);
 	}
 	
-	public function set_text($v){
+	public function set_text($v)
+	{
 		if(is_array($v)) {
 			tree_loadstr($this->self, $this->PrintArrayToString($v));
 		} else
 			$this->loadFromStr($v);
 	}
 	
-	public function get_itemSelected(){
-		
+	public function get_itemSelected()
+	{
 		$arr = explode(_BR_,$this->text);
 		return trim($arr[ $this->absIndex ]);
 	}
 	
-	public function set_itemSelected($v){
-		
+	public function set_itemSelected($v)
+	{
 		$this->absIndex = -1;
 		$v   = strtolower($v);
 		$arr = explode(_BR_,$this->text);
@@ -952,8 +953,8 @@ class TTreeView extends TControl {
 		}
 	}
 	
-	public function get_selected(){
-		
+	public function get_selected()
+	{
 		$res = tree_selected($this->self);
 		if ($res === null){
 			return null;
@@ -961,12 +962,13 @@ class TTreeView extends TControl {
 			return _c( $res );
 	}
 	
-	public function set_selected($v){
-		
+	public function set_selected($v)
+	{
 		tree_select($this->self, $v->self);
 	}
 	
-	public function get_absIndex(){
+	public function get_absIndex()
+	{
 		$sel = $this->selected;
 		if ($sel)
 			return $sel->absIndex;
@@ -974,19 +976,13 @@ class TTreeView extends TControl {
 			return -1;
 	}
 	
-	public function set_absIndex($v){
+	public function set_absIndex($v)
+	{
 		return tree_setAbsIndex($this->self, (int)$v);
 	}
 	
-	public function fullExpand(){
-		tree_fullExpand($this->self);
-	}
-	
-	public function fullCollapse(){
-		tree_fullCollapse($this->self);
-	}
-	
-	public function addItem($name, $tab){
+	public function addItem($name, $tab)
+	{
 		if($tab>0)
 			for($i=1;$i<=$tab;$i++){
 				$tabs .= '	';
@@ -1075,6 +1071,13 @@ class TTreeNode extends TControl
 	public function get_absIndex()
 	{
 		return tree_absIndex($this->self);
+	}
+	public function set_Expanded($v)
+	{
+		if($v)
+			$this->Expand(false);
+		else
+			$this->Collapse(false);
 	}
 }
 

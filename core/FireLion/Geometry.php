@@ -24,28 +24,6 @@
 |				Floating Polygon	-> TPolygonF
 |
 */
-
-function UnclosedGeoArrayToClosed(&$point, $type)
-{
-	$point = array_values($point);
-	$cnt = count($point);
-	for($i=0;$i<$cnt;$i++)
-	{
-		$result[] = new $type($point[$i], $point[($i=$cnt)?0:$i+1]);
-	}
-	return $result;
-}
-//example: $Lines = UnclosedGeoArrayToClosed($Shape->GetPoints());
-function UnclosedGeoArrayToUnion(&$Union, &$point, $type)
-{
-	$point = array_values($point);
-	$cnt = count($point);
-	for($i=0;$i<$cnt;$i++)
-	{
-		$Union->Union(new $type($point[$i], $point[($i=$cnt)?0:$i+1]));
-	}
-}
-
 ///////////////////////////////////////////////////////////////////////////////
 ///                             TPoint                                      ///
 ///	Main graphical position class, which  stores x, y integer values		///
@@ -184,9 +162,9 @@ class TPoint implements ArrayAccess
 		return (int)rad2deg(atan2((double)$this->_y - $pt->_y,(double)$this->_x - $pt->_x));
 	}
 	
-	public function AngleBetween(TPoint $pt)
+	public function GetAngle()
 	{
-		return $this->Angle($pt);
+		return (int)rad2deg(atan2((double)$this->_y,(double)$this->_x));
 	}
 	
 	public function Rotate(TPoint $Center, $Angle)
@@ -358,6 +336,21 @@ class TPoint implements ArrayAccess
 	public function IsEmpty()
 	{
 		return $this->IsZero();
+	}
+	
+	public function GetPolygon()
+	{
+		return [clone $this];
+	}
+	
+	public function GetPoints()
+	{
+		return $this->GetPolygon();
+	}
+	
+	public function GetLines()
+	{
+		return [];
 	}
 	
 	public function GetSquare()
@@ -1797,6 +1790,40 @@ class TPolygon
 			$this->Points[] = $data;
 	}
 	
+	public function Exterpolate(TPolygon $data)
+	{
+		$t = 0;
+		if( count($data) > 0 )
+		{
+			$cnt = count($data);
+			$pts = $this->Points;
+			foreach($pts as $i=>$P)
+			{
+				if($P->x == $data[$t]->x && $P->y == $data[$t]->y)
+				{
+					$t++;
+					unset($this->Points[$i]);
+				}
+				if($t>=$cnt)
+					return;
+			}
+		}
+	}
+	
+	public function Eject(TPoint $P)
+	{
+		$pts = $this->Points;
+			foreach($pts as $i=>$Pt)
+				if($Pt->x == $P->x && $Pt->y == $P->y)
+					unset($this->Points[$i]);
+	}
+	
+	public function Inject(TPoint $P, IntegerArray $Arr)
+	{
+		foreach($Arr as $int)
+			$this->Points = array_insert($this->Points, $int, $P);
+	}
+	
 	public function AngleCount()
 	{
 		$count = count($this->Points);
@@ -1938,29 +1965,4 @@ class TPolygon
 				return $this->Open;
 		}
 	}
-}
-
-
-///////////////////////////////////////////////////////////////////////////////
-///                            Sample functions                             ///
-///					Use it for creating Geometry Shapes 					///
-///////////////////////////////////////////////////////////////////////////////
-function rect($left,$top,$right,$bottom)
-{
-    return new TRect($left,$top,$right,$bottom);
-}
-
-function rectf($left,$top,$right,$bottom)
-{
-    return new TRectF($left,$top,$right,$bottom);
-}
-
-function point($x,$y)
-{
-    return new TPoint($x,$y);
-}
-
-function pointf($x,$y)
-{
-    return new TPointF($x,$y);
 }
