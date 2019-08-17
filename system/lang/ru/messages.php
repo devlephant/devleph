@@ -929,6 +929,7 @@ $m["Row Moving"] = "Перемещение строк";
 $m["HTML Code"]  = "HTML Код";
 $m["Busy"] = "Занят";
 $m["Active Page"] = "Активная страница";
+$m["Form Events"] = "События формы";
 $m["Warning"] = "Осторожно";
 $m["line"] = "Строка";
 $m["Unclosed quotes"] = "Незакрытые кавычки";

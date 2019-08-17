@@ -1227,6 +1227,7 @@ class myProperties {
             $panel = new TNextInspector( $fmMain );
             $panel->parent = c('fmPropsAndEvents->tabProps');
             $panel->align  = 'alClient';
+			$panel->name = '_panelProps';
             $panel->enableVisualStyles = true;
 			$panel->borderStyle = bsNone;
             $panel->rowHeight = 20;
@@ -1246,6 +1247,8 @@ class myProperties {
             $this->panels[$class]['PANEL'] = $panel;
             $this->panels[$class]['GROUP'] = $gr;
                 
+			$panel->visible = false;
+			$panel->BeginUpdate();
             if ($class!=='TForm'){
                 $componentProps[$class] =
                 array_merge([['CAPTION'=>t('Name'),'TYPE'=>'Name','PROP'=>'name','ADD_GROUP'=>true]],
@@ -1257,7 +1260,6 @@ class myProperties {
                     
                 $create_addgr = false;
 				$del = true;
-			$panel->BeginUpdate();
 			foreach ($componentProps[$class] as &$prop){
                     
                 if (!isset($prop['TYPE'])) continue;
@@ -1312,6 +1314,7 @@ class myProperties {
 				
 			c("fmMain->editorPopup")->AutoPopup = true;
 			$panel->EndUpdate();
+			$panel->visible = true;
         }
     }
     

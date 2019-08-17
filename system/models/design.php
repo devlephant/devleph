@@ -476,11 +476,8 @@ class myDesign
         self::showPopup();
 		
 		$tree = c('fmMain->TreeProject');
-		$arr_self = array_flip($tree->__arrObjSelf);
+
         myVars::set($target, 'targetSelected');
-		
-		if($arr_self[$obj->self] !== null)
-			$tree->absIndex = $arr_self[$obj->self];
         
         if ($selectedClass && self::isWinControl($obj)){
 

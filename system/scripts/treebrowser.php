@@ -25,7 +25,18 @@ $arr_self = $self->__arrObjSelf;
 $obj_self = $arr_self[$self->absIndex];
 if(!empty($obj_self))
 {
-	if(!is_object(c($obj_self))) return;
+	if( is_array($obj_self) or !is_object(c($obj_self))){
+		if(!empty($obj_self["self"])){
+			global $myEvents;
+			$_sc->clearTargets();
+			$_sc->addTarget(c($obj_self["self"]));
+			$myEvents->_generate(c($obj_self["self"]));
+			c("fmPropsAndEvents->eventList")->itemIndex = $obj_self["event_index"];
+			myEvents::phpEditorShow(nil);
+			return;
+		}
+		return;
+	}
 	foreach( myUtils::$forms as $name=>$form ){
 		if( $form->self == c($obj_self)->owner ){
 			if( strtolower($_FORMS[$formSelected]) == $name )

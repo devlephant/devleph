@@ -1072,12 +1072,10 @@ class TTreeNode extends TControl
 	{
 		return tree_absIndex($this->self);
 	}
+	
 	public function set_Expanded($v)
 	{
-		if($v)
-			$this->Expand(false);
-		else
-			$this->Collapse(false);
+		tree_expand($this->self, $v);
 	}
 }
 
