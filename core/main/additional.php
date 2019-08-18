@@ -1075,7 +1075,15 @@ class TTreeNode extends TControl
 	
 	public function set_Expanded($v)
 	{
-		tree_expand($this->self, $v);
+		tree_expand($this->self, $v, false);
+	}
+	
+	public function Expand($v){
+		tree_expand($this->self, true, $v);
+	}
+	
+	public function Collapse($v){
+		tree_expand($this->self, false, $v);
 	}
 }
 
