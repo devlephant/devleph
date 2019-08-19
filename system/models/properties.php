@@ -1223,11 +1223,11 @@ class myProperties {
 			$theme = dsThemeDesign::$dir; //#ADDOPT;
 			
             c("fmMain->editorPopup")->AutoPopup = false;
-			
+			lockWindowUpdate($this->panel->handle);
             $panel = new TNextInspector( $fmMain );
             $panel->parent = c('fmPropsAndEvents->tabProps');
-            $panel->align  = 'alClient';
-			$panel->name = '_panelProps';
+            $panel->BeginUpdate();
+			$panel->align  = 'alClient';
             $panel->enableVisualStyles = true;
 			$panel->borderStyle = bsNone;
             $panel->rowHeight = 20;
@@ -1246,9 +1246,7 @@ class myProperties {
             
             $this->panels[$class]['PANEL'] = $panel;
             $this->panels[$class]['GROUP'] = $gr;
-                
-			$panel->visible = false;
-			$panel->BeginUpdate();
+			
             if ($class!=='TForm'){
                 $componentProps[$class] =
                 array_merge([['CAPTION'=>t('Name'),'TYPE'=>'Name','PROP'=>'name','ADD_GROUP'=>true]],
@@ -1314,12 +1312,12 @@ class myProperties {
 				
 			c("fmMain->editorPopup")->AutoPopup = true;
 			$panel->EndUpdate();
-			$panel->visible = true;
+			lockWindowUpdate(0);
         }
     }
     
-    public function generateClass($class, $back = false){
-        
+    public function generateClass($class, $back = false)
+	{
         $this->_generateClass($class);
     }
     
