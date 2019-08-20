@@ -164,7 +164,7 @@ class myUtils
 			{
 				if(!$skip)
 				$idx++;
-				if( !$inf || ( checkObjToDel($arr, $object, $inf) == $idx) )
+				if( !$inf || ( self::checkObjToDel($arr, $object, $inf) == $idx) )
 				{
 					$skip = true;
 					$idx--;
