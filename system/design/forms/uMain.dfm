@@ -1504,6 +1504,10 @@ object fmMain: TfmMain
       Caption = '{Grouping}'
       ShortCut = 16455
     end
+	object itemInvert: TMenuItem
+      Caption = '{Invert}'
+      ShortCut = 16458
+    end
     object itemAddevent: TMenuItem
       Caption = '{Add event}'
       ShortCut = 16453

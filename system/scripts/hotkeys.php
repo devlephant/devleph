@@ -7,6 +7,7 @@ function clearEditorHotKeys(){
     c('fmMain->itemCopy',true)->shortCut = '';
     c('fmMain->itemCut',true)->shortCut = '';
     c('fmMain->itemPaste',true)->shortCut = '';
+	c('fmMain->itemInvert',true)->shortCut = '';
     
     global $fmEdit, $fmMain, $editorPopup, $_sc;
     $fmEdit->popupMenu = null;
@@ -19,6 +20,7 @@ function setEditorHotKeys(){
     c('fmMain->itemCopy',1)->shortCut = 'Ctrl+C';
     c('fmMain->itemCut',1)->shortCut = 'Ctrl+X';
     c('fmMain->itemPaste',1)->shortCut = 'Ctrl+V';
+	c('fmMain->itemInvert',1)->shortCut = 'Ctrl+J';
     
     global $fmEdit, $fmMain, $editorPopup, $_sc;
     

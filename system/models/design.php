@@ -460,8 +460,8 @@ class myDesign
             
         } else {
         
-            setTimeout(25,"myDesign::_selectComponent($self, $target, $y, $y);");
-            //myDesign::_selectComponent($self, $target, $y, $y);
+            //setTimeout(25,"myDesign::_selectComponent($self, $target, $y, $y);");
+            myDesign::_selectComponent($self, $target, $y, $y);
         }
     }
     
@@ -546,7 +546,6 @@ class myDesign
         myProperties::updateProps();
         $_sc->update();
         
-            
         myVars::set(false, '__sizeAndMove');
     }
    
@@ -662,6 +661,13 @@ class myDesign
         myVars::set(false, 'isMouseDown');
         myVars::set(true, '__sizeAndMove');
         
+		$last_targets = [];
+		$invert = $GLOBALS['__invertSelect'];
+		$targets = $_sc->targets_ex;
+		foreach( $targets as $el ){
+			$last_targets[$el->self] = true;
+		}
+		
         $_sc->clearTargets();
         if (!$_designSel && $button!=1){
             
@@ -705,16 +711,17 @@ class myDesign
             foreach ($components as $el){
                 
                 if (!$el->name || rtti_class($el->self) == 'TEvents' || $el->self == $GLOBALS['_sc']->self) continue;
-                
-                if (self::inArea($el->self, $ax, $ay, $w, $h)){
-                    ++$i;
-                    $_sc->addTarget($el);
-                    if ($i==1){
+                if( $last_targets[$el->self] && $invert ) continue;
+				
+				if (self::inArea($el->self, $ax, $ay, $w, $h)){
+					++$i;
+					$_sc->addTarget($el);
+					if ($i==1){
 						$el = _c(self::noVisAlias($el->self));
-                        $myEvents->generate($el);
-                        $myProperties->generate($el->self, c('fmPropsAndEvents->tabProps',1));
-                    }
-                }
+						$myEvents->generate($el);
+						$myProperties->generate($el->self, c('fmPropsAndEvents->tabProps',1));
+					}
+				}
             }
             
             if ($i==0){
@@ -1020,6 +1027,14 @@ class myDesign
         self::keyCopy(0, true);
         self::keyDelete();
         myInspect::generate($fmEdit);
+    }
+	
+	static function keyInvert(){
+        
+        myVars::set(0, 'popupShow');
+        if (!self::canDoIt()) return;
+        
+        $GLOBALS['__invertSelect'] = !$GLOBALS['__invertSelect'];
     }
     
     static function szRefresh(){

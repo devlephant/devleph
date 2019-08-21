@@ -964,7 +964,7 @@ function($theme)
 	//
 	//iterating troughout icons-stylezeable components
 	foreach( array("btn_addEvent", "itemAddevent", "btn_editEvent", "btn_changeEvent", "btn_delEvent",
-	/*Object Menu->>>*/	  "itemDel", "itemCopy", "itemCut", "itemGroup", "itemPaste", 
+	/*Object Menu->>>*/	  "itemDel", "itemCopy", "itemCut", "itemGroup", "itemPaste", "itemInvert", 
 	"itFile"	/*->>>*/, "it_new", "it_new_form", "it_new_project", "it_open", "it_save", "it_saveas",
 	"itOptions"	/*->>>*/, "it_undo", "it_redo", "it_preference",
 	"itService"	/*->>>*/, "it_components", "it_objectinspector", "it_props", "it_debuginfo",

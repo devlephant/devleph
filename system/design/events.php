@@ -9,6 +9,7 @@ c('fmMain->itemSendtofront')->onClick = 'myDesign::toFront';
 c('fmMain->itemSendtoback')->onClick  = 'myDesign::toBack';
 c('fmMain->itemLock')->onClick = 'myDesign::lockComponent';
 c('fmMain->itemGroup')->onClick = 'myDesign::groupComponent';
+c('fmMain->itemInvert')->onClick = 'myDesign::keyInvert';
 c('fmMain->itemAddevent')->onClick = function($self){
     myEvents::clickAddEvent(0, true);
 };
