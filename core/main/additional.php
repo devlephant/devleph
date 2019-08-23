@@ -1108,6 +1108,11 @@ class TStyleTabs extends TTransparentPanel {
 		}
 	}
 	
+	//Возвращает страницу по индексу
+	function GetPage($v){
+		return $this->__controlpages->GetPage($v);
+	}
+	
 	//Возвращает индекс активной страницы
 	function get_pageIndex(){
 		return $this->__controlpages->pageIndex;
