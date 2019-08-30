@@ -20,18 +20,29 @@ object fmPHPEditor: TfmPHPEditor
   Visible = False
   PixelsPerInch = 96
   TextHeight = 13
+  object eventTabs: TTabControl
+    Left = 0
+	Top = 0
+	Width = 1011
+	Height = 24
+	Align = alTop
+	Tabs.Strings = (
+	  'page1'
+	  'page2')
+	TabIndex = 0
+  end
   object shapeshape: TShape
     Left = 0
     Top = 0
 	Width = 4011
-	Height = 34
+	Height = 60
 	Brush.Color = clWhite
 	Pen.Color = clWhite
 	Align = alNone
   end
   object panelCode: TPanel
     Left = 0
-    Top = 27
+    Top = 54
     Width = 1011
     Height = 516
     Align = alClient
@@ -265,7 +276,7 @@ object fmPHPEditor: TfmPHPEditor
   end
   object Panel2: TPanel
     Left = 0
-    Top = 0
+    Top = 27
     Width = 1011
     Height = 27
     Align = alTop
@@ -688,6 +699,13 @@ object fmPHPEditor: TfmPHPEditor
         Caption = '-'
       end
     end
+	object view: TMenuItem
+	  Caption = '{&view}'
+	  object it_tabs: TMenuItem
+		Caption = '{Tabs}'
+		Checked = True
+	  end
+	end
     object iconv: TMenuItem
       Caption = '{iconv}'
       object cutf8: TMenuItem

@@ -63,6 +63,13 @@ function showMessage($text){
 }
 
 function alert($text){showMessage($text);}
+function pre_a(...$obj){
+	if ( sync(__FUNCTION__, $obj) ) return;
+	
+	foreach( $obj as $s ) {
+		alert( print_r((is_object($s) &&  method_exists($s, '__toString'))?$s->__toString():$s, true) );
+	}
+}
 function msg($text){showMessage($text);}
 
 function confirm($text){

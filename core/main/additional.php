@@ -404,6 +404,17 @@ class TTabControl extends TControl {
 		return $this->tabs->get_count();
 	}
 	
+	function delPage($v){
+		if( is_int($v) ){
+			$this->tabs->delete($v);
+			return true;
+		} elseif( is_string($v) ){
+			$this->tabs->delete( array_flip($this->tabs->strings)[$v] );
+			return true;
+		}
+		return false;
+	}
+	
 	
 	function indexOfTabXY($x, $y)
 	{
@@ -422,6 +433,7 @@ class TTabControl extends TControl {
 	function get_text(){
 		return $this->tabs->text;
 	}
+	
 }
 
 class TPageControl extends TControl {

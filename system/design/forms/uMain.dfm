@@ -589,7 +589,7 @@ object fmMain: TfmMain
       end
       object TTreeBwr: TTabSheet
         Caption = '{Project Tree}'
-		TabVisible = true
+	    TabVisible = true
         ExplicitLeft = 0
         ExplicitTop = 0
         ExplicitWidth = 0
@@ -597,16 +597,16 @@ object fmMain: TfmMain
         DesignSize = (
           169
           468)
-			object TreeProject: TTreeView
-			Left = 0
-			Top = 0
-			BorderStyle = bsNone
-		    Align = alClient
-			AutoExpand = True
-			Indent = 19
-			TabOrder = 0
-	end
-	end
+	    object TreeProject: TTreeView
+	 	  Left = 0
+		  Top = 0
+		  BorderStyle = bsNone
+		  Align = alClient
+	   	  AutoExpand = True
+		  Indent = 19
+		  TabOrder = 0
+	    end
+	  end
     end
   end
   object TPanel

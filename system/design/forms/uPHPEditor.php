@@ -16,7 +16,7 @@ class ev_fmPHPEditor_tlOk{
 		c("fmPHPEditor->ok_cl")->visible = false;
 	}
 	static function onClick($self){
-		global $phpeditorClosing, $showComplete, $showHint, $lastStringSelStart, $myEvents, $cancel;
+		global $phpeditorClosing, $lastStringSelStart, $myEvents;
 		myComplete::saveCode();
 			$event = c('fmPHPEditor')->event;
 			$name  = $myEvents->selObj instanceof TForm ? '--fmedit' : $myEvents->selObj->name;
@@ -48,6 +48,23 @@ class evfmPHPEditor {
 	static function onShow($self)
 	{
 		c("fmPHPEditor->ok_cn")->visible = false;
+		
+		global $myEvents, $_FORMS, $formSelected;
+		eventEngine::setForm();
+		$eventList = c('fmPropsAndEvents->eventList');
+		$eventTabs = c('fmPropsAndEvents->eventTabs');
+		$php_memo = c('fmPHPEditor->memo');
+		
+		$name = $myEvents->selObj instanceof TForm ? '--fmedit' : $myEvents->selObj->name;
+		$event  = $eventList->events[$eventList->itemIndex];
+		$events = eventEngine::listEventsEx($name);
+		$eventTabs->text = implode(PHP_EOL, $events);
+		$eventTabs->TabIndex = $eventList->itemIndex;
+        
+        $php_memo->text = eventEngine::getEvent($name, $event);
+        $ltight = str_replace('{', '', str_ireplace('event ', '', CApi::getStringEventInfo($event, $myEvents->selObj->className) ) );
+        $x_name = $myEvents->selObj->name == 'fmEdit' ? $_FORMS[$formSelected] : $myEvents->selObj->name;
+        c('fmPHPEditor')->text = t('php_script_editor').' -> '.$x_name.'::'.$ltight;
 	}
 	static function onCloseQuery($self, &$canClose)
 	{
@@ -591,6 +608,45 @@ class ev_fmPHPEditor_cansi {
         c("fmPHPEditor->cutf8")->checked = false;
         c("fmPHPEditor->cansi")->checked = true;        
     }
+}
+
+class ev_fmPHPEditor_it_tabs {
+	static function onClick($self){
+		$self = c($self);
+		$self->checked = !$self->checked;
+		c("fmPHPEditor->eventTabs")->visible = $self->checked;
+		//pre(c("fmPHPEditor->eventTabs")->tabs);
+	}
+}
+
+class ev_fmPHPEditor_eventTabs {
+	static function onChange($self){
+		global $phpeditorClosing, $lastStringSelStart, $myEvents, $_FORMS, $formSelected;
+		eventEngine::setForm();
+		$eventList = c('fmPropsAndEvents->eventList');
+		$eventTabs = c('fmPropsAndEvents->eventTabs');
+		$php_memo = c('fmPHPEditor->memo');
+		$save = true; //Пока так. Можно будет потом её прикрутить, как настройку.
+		
+		$name = $myEvents->selObj instanceof TForm ? '--fmedit' : $myEvents->selObj->name;
+		$event  = $eventList->events[$eventTabs->TabIndex];
+		
+		if($save){
+			myComplete::saveCode();
+			eventEngine::setEvent($name, c('fmPHPEditor')->event, c('fmPHPEditor->memo')->text);    
+			myHistory::go();
+			
+			$lastStringSelStart[$name][$event]['x'] =  c('fmPHPEditor->memo')->caretX;
+			$lastStringSelStart[$name][$event]['y'] =  c('fmPHPEditor->memo')->caretY;
+		}
+		
+		c('fmPHPEditor')->event = $event;
+		
+        $php_memo->text = eventEngine::getEvent($name, $event);
+        $ltight = str_replace('{', '', str_ireplace('event ', '', CApi::getStringEventInfo($event, $myEvents->selObj->className) ) );
+        $x_name = $myEvents->selObj->name == 'fmEdit' ? $_FORMS[$formSelected] : $myEvents->selObj->name;
+        c('fmPHPEditor')->text = t('php_script_editor').' -> '.$x_name.'::'.$ltight;
+	}
 }
 
 function str_replace_o($search, $replace, $text) 
