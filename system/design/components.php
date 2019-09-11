@@ -5,9 +5,10 @@ global $_c;
 $_c->gdHorizontal	= 0;
 $_c->gdVertical		= 1;
 
-$_components = [];
-$componentProps   = [];
-$componentEvents  = [];
+$_components         = [];
+$componentProps      = [];
+$componentEvents     = [];
+$componentBehaviours = [];
 $files = (defined('DS_DEBUG_MODE') && constant('DS_DEBUG_MODE'))? array_merge(findFiles(dirname(__FILE__) . '/components/','php',0,1), findFiles(dirname(__FILE__) . '/components/dev/','php',0,1)) :findFiles(dirname(__FILE__) . '/components/','php',0,1);
 $dir_n  = dirname(__FILE__);
 
@@ -37,6 +38,10 @@ if (EMULATE_DVS_EXE) return;
 	
 	foreach (findFiles($dir_n . '/components/events/','php') as $file){
 		$componentEvents[basenameNoExt($file)] = include($dir_n . '/components/events/' . $file);
+	}
+	
+	foreach (findFiles($dir_n . '/components/behaviours/','php') as $file){
+		$componentBehaviours[basenameNoExt($file)] = include($dir_n . '/components/behaviours/' . $file);
 	}
 	
     foreach (findFiles($dir_n . '/components/modifers/','php') as $file){
@@ -216,4 +221,5 @@ if (EMULATE_DVS_EXE) return;
         myVars::set2($cp,'_componentPanel');
         myVars::set2($componentProps,'componentProps');
         myVars::set2($componentEvents,'componentEvents');
+		myVars::set2($componentBehaviours,'componentBehaviours');
 		fmLogoin::progress(1, "Components Loaded");
