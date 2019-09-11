@@ -3,6 +3,7 @@
 class myProject {
     
     public $formsInfo;
+	public $objectsInfo;
     public $config;
     public $add_info;
 	private static $demosLoaded = false;
@@ -484,6 +485,7 @@ class myProject {
             
             $info  = unserialize(file_get_contents($file_ex.'.inf')); // fix bug
             $myProject->config    = $info['config'];
+			$myProject->objectsInfo = $info['objectsInfo'];
 			if( !isset($myProject->config['data_dir']) ) $myProject->config['data_dir'] = 'data'; //bugfix
             $myProject->formsInfo = $info['formsInfo']; 
         }
@@ -545,6 +547,7 @@ class myProject {
         myProject::cfg('DV_PREFIX', DV_PREFIX);
         
         $info['formsInfo'] = $myProject->formsInfo;
+		$info['objectsInfo'] = $myProject->objectsInfo;
         $info['config']    = $myProject->config;
         
         file_put_contents(dirname($projectFile).'/'.basenameNoExt($projectFile).'.inf', serialize($info));

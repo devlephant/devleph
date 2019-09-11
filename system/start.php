@@ -47,7 +47,8 @@
     
     if (!EMULATE_DVS_EXE){
         
-        loader::model('codegen');
+        loader::model('behaviours');
+		loader::model('codegen');
         loader::model('syntaxCheck');
         loader::model('design');
         loader::model('copyer');
