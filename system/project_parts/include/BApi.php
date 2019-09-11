@@ -9,7 +9,7 @@ class bapi {
 		$code = $code . _BR_ . '$obj = _c('.$obj->self.');
 		if ( $obj->'.$bevent.' ){
             call_user_func($obj->'.$bevent.', '.$args.');
-        }'
+        }';
 		$func = create_function($args, $code);
         event_set($obj->self, $event, $func);
 	}
