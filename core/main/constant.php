@@ -24,10 +24,9 @@ class TConstantList{
 	public $defines;
 	public $defs;
 	function __set($nm,$val){
-	    if (!defined($nm)){
-			$this->defines[$nm] = $val;
+		$this->defines[$nm] = $val;
+		if (!defined($nm))
 			define($nm,$val, false);
-	    }
 	}
 	
 	function __get($nm){
