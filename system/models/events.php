@@ -329,13 +329,17 @@ class myEvents {
         
         eventEngine::setForm();
         $events = eventEngine::listEvents($name);
-        
+        //$myEvents->classes[rtti_class($myEvents->selObj->self)];
+		
         $this->last_self = $myEvents->selObj->self;
         $eventList->events = $events;
         
         global $doChangeEvent;
         if ( $doChangeEvent )
             $eventList->itemIndex = $eventList->items->count-1;
+		$v = count($events)!==count($componentEvents[rtti_class($myEvents->selObj->self)]);
+			c("fmPropsAndEvents->btn_addEvent")->enabled = $v;
+			c("fmPropsAndEvents->btn_changeEvent")->enabled = $v;
 		c("fmMain->editorPopup")->AutoPopup = true;
     }
     
