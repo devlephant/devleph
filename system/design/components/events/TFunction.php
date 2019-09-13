@@ -3,7 +3,7 @@
 $result = [];
 
 $result[] = array(
-                  'CAPTION'=>t('On Execute'),
+                  'CAPTION'=>t("onexecute"),
                   'EVENT'=>'onExecute',
                   'INFO'=>'%func%($self)',
                   'ICON'=>'onexecute',

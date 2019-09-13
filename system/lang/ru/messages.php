@@ -548,38 +548,7 @@ $m["Add Event"] = "Добавить событие";
 $m["Edit Event"] = "Редактировать";
 
 $m["Event Types"] = "Типы Событий";
-$m["On Click"] = "Клик";
-$m["On DblClick"] = "2х Клик";
-$m["On Mouse Down"] = "Нажатие Мышки";
-$m["On Mouse Up"] = "Отжатие Мышки";
-$m["On Mouse Move"] = "Движение Мышки";
 
-$m["On Mouse Enter"] = "Курсор на объекте";
-$m["On Mouse Leave"] = "Курсор вне объекта";
-
-$m["On Execute"] = "Выполнение";
-$m["On Start"]   = "Старт Таймера";
-$m["On Timer"]   = "Таймер";
-$m["On Finish"]  = "Финиш Таймера";
-$m["On Change"]  = "Изменение";
-$m["On Key Down"]= "Нажатие клавиши";
-$m["On Key Press"]= "Клавиатура";
-$m["On Key Up"]  = "Отжатие клавиши";
-$m["On Close"]   = "Закрытие";
-$m["On Close Query"] = "Запрос на закрытие";
-$m["On Activate"]  = "Активность";
-$m["On Deactivate"] = "Деактивность";
-$m["On Show"]    = "Появление";
-$m["On Hide"]    = "Скрытие";
-$m["On Resize"]  = "Изменение размеров";
-$m["On Paint"]   = "Отрисовка";
-$m["On Start Track"] = "Начало воспроизведения";
-$m["On End Track"] = "Конец воспроизведения";
-$m["On Scroll"] = "При прокрутке";
-$m["On Create"] = "Создание";
-$m["On Select"] = "Выбор";
-$m["On Start Change"] = "Начало изменения";
-$m["On Transparency Test"] = "Проверка Прозрачности";
 $m["onhittest"] = "Проверка Прозрачности"; 
 $m["onclick"] = "Клик";
 $m["ondblclick"] = "2х Клик";
@@ -1090,9 +1059,6 @@ $m["Compile in debug mode"] = "Компилировать в режиме отл
 $m["No Select"] = "Без выделения";
 $m["Server Root"] = "Корневой каталог";
 
-$m["On HotSpot Click"] = "Клик по ссылке";
-$m["On HotSpot Covered"] = "Наведение на ссылку";
-$m["On Form Submit"] = "Отправка формы";
 $m["onhotspotclick"] = "Клик по ссылке";
 $m["onhotspotcovered"] = "Наведение на ссылку";
 $m["onformsubmit"] = "Отправка формы";
@@ -1109,8 +1075,6 @@ $m["Backup Projects"] = "Резервирование проектов";
 $m["Remove executable after testing"] = "Удалять исполняемый файл после тестирования";
 $m["demo_projects"] = "Демо проекты";
 $m["projects"] = "Проекты";
-$m["On Vertical Scroll"] = "Вертикальная Прокрутка";
-$m["On Horizontal Scroll"] =  "Горизонтальная Прокрутка";
 $m["Synchronization"] = "Синхронизация";
 
 $m["Color On Enter"] = "Цвет Ввода";
@@ -1122,14 +1086,10 @@ $m["Text Hint"] = "Текст Подсказка";
 $m["Two Color"] = "Второй цвет";
 $m["Two Font Color"] = "Второй цвет шрифта";
 $m["Border Selected"] = "Обводить выбранное";
-$m["On Focus"] = "Фокус";
-$m["On Blur"] = "Потеря Фокуса";
 $m["onfocus"] = "Фокус";
 $m["onblur"] = "Потеря Фокуса";
 $m["Margin Left"] = "Левый Отступ";
 $m["Margin Right"] = "Правый Отступ";
-
-$m["On Drop Files"] = "Перенос Файлов";
 $m["ondropfiles"] = "Перенос Файлов";
 $m["TDropFiles_Caption"] = "Переносчик Файлов";
 

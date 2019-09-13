@@ -4,7 +4,7 @@ $result = [];
 
 
 $result[] = array(
-                  'CAPTION'=>t('On Show'),
+                  'CAPTION'=>t("onshow"),
                   'EVENT'=>'onShow',
                   'INFO'=>'%func%($self)',
                   'ICON'=>'onshow',

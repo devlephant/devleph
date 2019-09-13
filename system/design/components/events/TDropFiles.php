@@ -3,7 +3,7 @@
 $result = [];
 
 $result[] = array(
-                  'CAPTION'=>t('On Drop Files'),
+                  'CAPTION'=>t("ondropfiles"),
                   'EVENT'=>'onDropFiles',
                   'INFO'=>'%func%($self,$files)',
                   'ICON'=>'ondropfiles',

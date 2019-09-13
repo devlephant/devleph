@@ -3,7 +3,7 @@
 $result = [];
 
 $result[] = array(
-                  'CAPTION'=>t('On Start Change'),
+                  'CAPTION'=>t("onstartchange"),
                   'EVENT'=>'onStartChange',
                   'INFO'=>'%func%($self)',
                   'ICON'=>'onchange',
@@ -11,7 +11,7 @@ $result[] = array(
 
 
 $result[] = array(
-                  'CAPTION'=>t('On Change'),
+                  'CAPTION'=>t("onchange"),
                   'EVENT'=>'onChange',
                   'INFO'=>'%func%($self)',
                   'ICON'=>'onchange',

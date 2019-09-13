@@ -4,19 +4,19 @@ $result = [];
 
 
 $result[] = array(
-                  'CAPTION'=>t('On Show'),
+                  'CAPTION'=>t("onshow"),
                   'EVENT'=>'onShow',
                   'INFO'=>'%func%($self)',
                   'ICON'=>'onshow',
                   );
 $result[] = array(
-                  'CAPTION'=>t('On Close'),
+                  'CAPTION'=>t("onclose"),
                   'EVENT'=>'onClose',
                   'INFO'=>'%func%($self)',
                   'ICON'=>'onclose',
                   );
 $result[] = array(
-                  'CAPTION'=>t('On Find'),
+                  'CAPTION'=>t("onfind"),
                   'EVENT'=>'onFind',
                   'INFO'=>'%func%($self)',
                   'ICON'=>'onfind',

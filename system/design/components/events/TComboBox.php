@@ -3,88 +3,88 @@
 $result = [];
 
 $result[] = array(
-                  'CAPTION'=>t('On Change'),
+                  'CAPTION'=>t("onchange"),
                   'EVENT'=>'onchange',
                   'INFO'=>'%func%($self)',
                   'ICON'=>'onchange',
                   );
 $result[] = array(
-                  'CAPTION'=>t('On Click'),
+                  'CAPTION'=>t("onclick"),
                   'EVENT'=>'onClick',
                   'INFO'=>'%func%($self)',
                   'ICON'=>'onclick',
                   );
 $result[] = array(
-                  'CAPTION'=>t('On DblClick'),
+                  'CAPTION'=>t("ondblclick"),
                   'EVENT'=>'onDblClick',
                   'INFO'=>'%func%($self)',
                   'ICON'=>'ondblclick',
                   );
 $result[] = array(
-                  'CAPTION'=>t('On Focus'),
+                  'CAPTION'=>t("onfocus"),
                   'EVENT'=>'onfocus',
                   'INFO'=>'%func%($self)',
                   'ICON'=>'onfocus',
                   );
 $result[] = array(
-                  'CAPTION'=>t('On Blur'),
+                  'CAPTION'=>t("onblur"),
                   'EVENT'=>'onblur',
                   'INFO'=>'%func%($self)',
                   'ICON'=>'onblur',
                   );
 $result[] = array(
-                  'CAPTION'=>t('On Key Up'),
+                  'CAPTION'=>t("onkeyup"),
                   'EVENT'=>'onKeyUp',
                   'INFO'=>'%func%($self,$key,$shift)',
                   'ICON'=>'onkeyup',
                   );
 $result[] = array(
-                  'CAPTION'=>t('On Key Press'),
+                  'CAPTION'=>t("onkeypress"),
                   'EVENT'=>'onKeyPress',
                   'INFO'=>'%func%($self,$key,$shift)',
                   'ICON'=>'onkeypress',
                   );
 $result[] = array(
-                  'CAPTION'=>t('On Key Down'),
+                  'CAPTION'=>t("onkeydown"),
                   'EVENT'=>'onKeyDown',
                   'INFO'=>'%func%($self,$key,$shift)',
                   'ICON'=>'onkeydown',
                   );
 $result[] = array(
-                  'CAPTION'=>t('On Mouse Down'),
+                  'CAPTION'=>t("onmousedown"),
                   'EVENT'=>'onMouseDown',
                   'INFO'=>'%func%($self,$button,$shift,$x,$y)',
                   'ICON'=>'mousedown',
                   );
 $result[] = array(
-                  'CAPTION'=>t('On Mouse Move'),
+                  'CAPTION'=>t("onmousemove"),
                   'EVENT'=>'onMouseMove',
                   'INFO'=>'%func%($self,$button,$shift,$x,$y)',
                   'ICON'=>'mousemove',
                   );
 $result[] = array(
-                  'CAPTION'=>t('On Mouse Up'),
+                  'CAPTION'=>t("onmouseup"),
                   'EVENT'=>'onMouseUp',
                   'INFO'=>'%func%($self,$button,$shift,$x,$y)',
                   'ICON'=>'mouseup',
                   );
 
 $result[] = array(
-                  'CAPTION'=>t('On Mouse Enter'),
+                  'CAPTION'=>t("onmouseenter"),
                   'EVENT'=>'onMouseEnter',
                   'INFO'=>'%func%($self)',
                   'ICON'=>'onmouseenter',
                   );
 
 $result[] = array(
-                  'CAPTION'=>t('On Mouse Leave'),
+                  'CAPTION'=>t("onmouseleave"),
                   'EVENT'=>'onMouseLeave',
                   'INFO'=>'%func%($self)',
                   'ICON'=>'onmouseleave',
                   );
 
 $result[] = array(
-                  'CAPTION'=>t('On Select'),
+                  'CAPTION'=>t("onselect"),
                   'EVENT'=>'onSelect',
                   'INFO'=>'%func%($self)',
                   'ICON'=>'onselect',

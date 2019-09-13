@@ -1,7 +1,7 @@
 <?
 return
 [[
-	'CAPTION'=>t('On Button Clicked'),
+	'CAPTION'=>t("onbuttonclicked"),
 	'EVENT'=>'onButtonClicked',
 	'INFO'=>'%func%($self)',
 	'ICON'=>'onclick',

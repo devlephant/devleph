@@ -3,7 +3,7 @@
 $result = [];
 
 $result[] = array(
-                  'CAPTION'=>t('On Select'),
+                  'CAPTION'=>t("onselect"),
                   'EVENT'=>'onSelect',
                   'INFO'=>'%func%($self)',
                   'ICON'=>'onselect',

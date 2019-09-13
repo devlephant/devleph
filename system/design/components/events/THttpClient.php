@@ -3,14 +3,14 @@
 $result = [];
 
 $result[] = array(
-                  'CAPTION'=>t('On Complete'),
+                  'CAPTION'=>t("oncomplete"),
                   'EVENT'=>'onComplete',
                   'INFO'=>'%func%($self, $html)',
                   'ICON'=>'oncomplete',
                   );
 
 $result[] = array(
-                  'CAPTION'=>t('On Error'),
+                  'CAPTION'=>t("onerror"),
                   'EVENT'=>'onError',
                   'INFO'=>'%func%($self, $error)',
                   'ICON'=>'onerror',

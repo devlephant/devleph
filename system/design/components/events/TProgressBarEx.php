@@ -3,7 +3,7 @@
 $result = [];
 
 $result[] = array(
-                  'CAPTION'=>t('On Mouse Enter'),
+                  'CAPTION'=>t("onmouseenter"),
                   'EVENT'=>'onMouseEnter',
                   'INFO'=>'%func%($self)',
                   'ICON'=>'onmouseenter',

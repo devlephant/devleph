@@ -3,13 +3,13 @@
 $result = [];
 
 $result[] = array(
-                  'CAPTION'=>t('On Show'),
+                  'CAPTION'=>t("onshow"),
                   'EVENT'=>'onShow',
                   'INFO'=>'%func%($self)',
                   'ICON'=>'onshow',
                   );
 $result[] = array(
-                  'CAPTION'=>t('On Error'),
+                  'CAPTION'=>t("onerror"),
                   'EVENT'=>'onError',
                   'INFO'=>'%func%($self)',
                   'ICON'=>'onerror',

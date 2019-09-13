@@ -3,50 +3,50 @@
 $result = [];
 
 $result[] =	[
-				'CAPTION'=>t('On Click'),
+				'CAPTION'=>t("onclick"),
 				'EVENT'=>'onClick',
 				'INFO'=>'%func%($self)',
 				'ICON'=>'onclick',
 			];
 
 $result[] =	[
-				'CAPTION'=>t('On Mouse Down'),
+				'CAPTION'=>t("onmousedown"),
 				'EVENT'=>'onMouseDown',
 				'INFO'=>'%func%($self,$button,$shift,$x,$y)',
 				'ICON'=>'mousedown',
 			];
 $result[] =	[
-				'CAPTION'=>t('On Mouse Move'),
+				'CAPTION'=>t("onmousemove"),
 				'EVENT'=>'onMouseMove',
 				'INFO'=>'%func%($self,$button,$shift,$x,$y)',
 				'ICON'=>'mousemove',
 			];
 $result[] =	[
-				'CAPTION'=>t('On Mouse Up'),
+				'CAPTION'=>t("onmouseup"),
 				'EVENT'=>'onMouseUp',
 				'INFO'=>'%func%($self,$button,$shift,$x,$y)',
 				'ICON'=>'mouseup',
 			];
 $result[] =	[
-				'CAPTION'=>t('On Mouse Enter'),
+				'CAPTION'=>t("onmouseenter"),
 				'EVENT'=>'onMouseEnter',
 				'INFO'=>'%func%($self)',
 				'ICON'=>'onmouseenter',
 			];
 $result[] =	[
-				'CAPTION'=>t('On Mouse Leave'),
+				'CAPTION'=>t("onmouseleave"),
 				'EVENT'=>'onMouseLeave',
 				'INFO'=>'%func%($self)',
 				'ICON'=>'onmouseleave',
 			];
 $result[] =	[
-				'CAPTION'=>t('On Focus'),
+				'CAPTION'=>t("onfocus"),
 				'EVENT'=>'onfocus',
 				'INFO'=>'%func%($self)',
 				'ICON'=>'onfocus',
 			];
 $result[] =	[
-				'CAPTION'=>t('On Blur'),
+				'CAPTION'=>t("onblur"),
 				'EVENT'=>'onblur',
 				'INFO'=>'%func%($self)',
 				'ICON'=>'onblur',

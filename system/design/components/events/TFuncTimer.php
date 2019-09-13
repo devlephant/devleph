@@ -3,7 +3,7 @@
 $result = [];
 
 $result[] = array(
-                  'CAPTION'=>t('On Timer'),
+                  'CAPTION'=>t("ontimer"),
                   'EVENT'=>'onTimer',
                   'INFO'=>'%func%($self)',
                   'ICON'=>'ontimer',
