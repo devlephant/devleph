@@ -79,7 +79,7 @@ $m["Use as"] = "Використовувати як";
 $m["Console"] = "    Лог";
 $m["Highlighting"] = "Підсвітка";
 $m["Pictures count"] = "Кількість Зображень";
-$m["iconv"] = "Кодировка";
+$m["iconv"] = "Кодування";
 $m["on_left_side"] = "Зліва";
 $m["on_right_side"] = "Зправа";
 $m["on_top_side"] = "В горі";
@@ -476,7 +476,7 @@ $m["onclick"] = "Клік";
 $m["ondblclick"] = "2х Клік";
 $m["onmousedown"] = "Натискання Мишки";
 $m["onmouseup"] = "Відтискання Мишки";
-$m["onmousemove"] = "Рух Мишки";
+$m["onmousemove"] = "Рух Мишкою";
 $m["onmouseenter"] = "Курсор на об'єкті";
 $m["onmouseleave"] = "Курсор поза об'єктом";
 
