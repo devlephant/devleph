@@ -459,9 +459,8 @@ class myDesign
             }
             
         } else {
-        
-            //setTimeout(25,"myDesign::_selectComponent($self, $target, $y, $y);");
-            myDesign::_selectComponent($self, $target, $y, $y);
+			 setTimeout(10,"myDesign::_selectComponent($self, $target, $x, $y);");
+			 //Не трогать!!! Багфикс, в связи с однопотоком для создания компонентов...
         }
     }
     
