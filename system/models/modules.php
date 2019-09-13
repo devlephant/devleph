@@ -18,6 +18,9 @@ class myModules {
     
     static function getPHPModules(){
         
+        global $projectFile;
+		global $componentClasses;
+        
         $forms = myProject::getFormsObjects();
         
         $result  = [];
@@ -37,14 +40,6 @@ class myModules {
         return $result;
     }
     
-	static function getBehaviours(){
-        
-        $files  = [];
-		$files = array_merge(findFiles(SYSTEM_DIR.'/design/behaviours/', 'php'), findFiles(SYSTEM_DIR.'/design/behaviours/', 'phpe2'));
-		
-        return $files;
-    }
-	
     static function skinExists(){
         
         $forms = myProject::getFormsObjects();

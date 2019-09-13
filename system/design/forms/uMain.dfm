@@ -460,7 +460,6 @@ object fmMain: TfmMain
       Font.Style = []
       ParentFont = False
       TabOrder = 0
-	  MultiLine = True
       object tabProps: TTabSheet
         Caption = '{properties}'
         object Panel1: TPanel
@@ -588,43 +587,6 @@ object fmMain: TfmMain
           Flat = True
         end
       end
-	  object tabBeha: TTabSheet
-        Caption = '{Behaviours}'
-	    TabVisible = true
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
-		ImageIndex = 1
-        DesignSize = (
-          169
-          468)
-		object shape1_1: TShape
-		  Top = 48
-          Width = 190
-          Height = 8
-		  Brush.Color = clBtnFace
-		  Pen.Style = psClear
-		  Anchors = [akTop, akLeft, akRight]
-		end
-        object btn_addBehaviours: TSpeedButton
-          Left = 6
-          Top = 9
-          Width = 181
-          Height = 38
-          Cursor = crHandPoint
-          Anchors = [akLeft, akTop, akRight]
-          Caption = '{Add Behaviours}'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Name = 'Segoe UI'
-          Font.Style = [fsBold]
-          ParentFont = False
-          ParentShowHint = False
-          ShowHint = False
-          Flat = True
-        end
-	  end
       object TTreeBwr: TTabSheet
         Caption = '{Project Tree}'
 	    TabVisible = true

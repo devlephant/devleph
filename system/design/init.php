@@ -31,7 +31,6 @@ if (!EMULATE_DVS_EXE){
     $_sc->onStartSizeMove = 'myDesign::startSizeMove';
     $_sc->OnDuringSizeMove = 'myDesign::duringSizeMove';
     $myProperties = new myProperties;
-	$myBehaviours = new myBehaviours;
 
     c('fmNewProject->startup')->checked = (bool)myOptions::get('newProjectDialog', 'startup', true);
 	myOptions::getXYWH('fmMain', $fmMain, ['x' => 0, 'y' => 0, 'w' => 800, 'h' => 800]); 
@@ -49,7 +48,6 @@ if (!EMULATE_DVS_EXE){
     $inspectList->popupMenu    = c('fmMain->editorPopup');
     $GLOBALS['_sc']     =& $_sc;
     $GLOBALS['myProperties'] =& $myProperties;
-	$GLOBALS['myBehaviours'] =& $myBehaviours;
     $GLOBALS['myEvents'] = new myEvents;
     c('fmPropsAndEvents->btn_addEvent')->onClick = 'myEvents::clickAddEvent';
 	fmLogoIn::Progress(2, "Inspector Loaded");

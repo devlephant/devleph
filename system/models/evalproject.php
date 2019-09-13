@@ -87,7 +87,6 @@ class evalProject {
             
             $info  = unserialize(file_get_contents(dirname($file).'/'.basenameNoExt($file).'.inf'));
             $this->config    = $info['config'];
-			$this->objectsInfo = $info['objectsInfo'];
             $this->formsInfo = $info['formsInfo'];
         }
         

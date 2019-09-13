@@ -269,7 +269,7 @@ class myCompile
         
        
 
-		$files = array_merge($files, myModules::getPHPModules(), myModules::getBehaviours());
+		$files = array_merge($files, myModules::getPHPModules());
 
 		foreach ($files as $i => $file) {
 			if (fileExt($file) == 'phpe2') {
