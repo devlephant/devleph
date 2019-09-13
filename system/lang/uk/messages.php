@@ -1006,10 +1006,6 @@ $m["Debug"] = "Відлагодження";
 $m["Compile in debug mode"] = "Компілювати в режимі відладки";
 $m["No Select"] = "Без виділення";
 $m["Server Root"] = "Корневий каталог";
-
-$m["On HotSpot Click"] = "Клік по посиланню";
-$m["On HotSpot Covered"] = "Наведення на посилання";
-$m["On Form Submit"] = "Відправка форми";
 $m["onhotspotclick"] = "Клік по посилланю";
 $m["onhotspotcovered"] = "Наведение на посилання";
 $m["onformsubmit"] = "Відправка форми";
@@ -1026,8 +1022,6 @@ $m["Backup Projects"] = "Резервування проектів";
 $m["Remove executable after testing"] = "Видаляти exe-проекту після тестування";
 $m["demo_projects"] = "Демо проекти";
 $m["projects"] = "Проекти";
-$m["On Vertical Scroll"] = "Вертикальна Промотка";
-$m["On Horizontal Scroll"] =  "Горизонтальна Промотка";
 $m["Synchronization"] = "Синхронізація";
 
 
@@ -1040,9 +1034,7 @@ $m["Text Hint"] = "Текст-Подказка";
 $m["Two Color"] = "Другий колір";
 $m["Two Font Color"] = "Другий колір шрифту";
 $m["Border Selected"] = "Рамка виділення";
-$m["On Focus"] = "Фокус";
-$m["On Blur"] = "Втрата Фокусу";
-$m["onfocus"] = "Фокус";
+$m["onfocus"] = "Фокусування";
 $m["onblur"] = "Втрата Фокусу";
 $m["Margin Left"] = "Лівий Відступ";
 $m["Margin Right"] = "Правий Відступ";
