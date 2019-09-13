@@ -1,18 +1,6 @@
 <?
-
-
 class TLocalization extends __TNoVisual {
-    
-    
-    
-    public function __construct($onwer=nil,$init=true,$self=nil){
-        parent::__construct($onwer, $init, $self);
-                
-        if ($init){
-            
-        }
-    }
-    
+  
     public function __initComponentInfo(){
         
         $this->hide();

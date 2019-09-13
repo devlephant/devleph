@@ -131,17 +131,12 @@ class TThread {
     }
     
     public function __construct($func_name = false, $self = false){
-        
-        if (!$self){
-            $this->self = gui_threadCreate();
-        }
-        else
-            $this->self = (int)$self;
+        $this->self = ($self==false||$self==nil)?gui_threadCreate():$self;
         
         if ( $func_name )
             $this->set_onExecute($func_name);
 		
-		return c($this->self);
+		return c($this->self);//ЧТО ЭТО ВООБЩЕ ЗА КОСТЫЛЬ???
     }
     
     public function set_onExecute($func){

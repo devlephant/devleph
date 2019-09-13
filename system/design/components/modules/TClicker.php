@@ -517,9 +517,4 @@ $Point->OnClick = Function($self)
 /////////////////////////////////* Main FX Core */////////////////////////////////
 }
 
-
-
-Public Function __construct($owner=nil,$init=true,$self=nil){
-        parent::__construct($owner,$init,$self);} 
- 
 }

@@ -289,5 +289,4 @@ $FFI->SwitchToThisWindow($Handle,false);
  $COM = new COM("Wscript.shell");
  Return $COM->SendKeys($Text);
 }
-Public Function __construct($owner=nil,$init=true,$self=nil){ parent::__construct($owner,$init,$self); }
 }

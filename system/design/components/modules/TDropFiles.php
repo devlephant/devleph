@@ -2,13 +2,6 @@
 
 class TDropFiles extends __TNoVisual {
     
-    
-
-    public function __construct($onwer=nil,$init=true,$self=nil){
-        parent::__construct($onwer, $init, $self);
-        
-    }
-    
     public function __initComponentInfo(){
         
         parent::__initComponentInfo();

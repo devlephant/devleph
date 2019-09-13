@@ -4,10 +4,10 @@ class TEditTextDialog extends TEditDialog {
     
     
     
-    function __construct($onwer=nil,$init=true,$self=nil){
+    function __construct($onwer=nil,$self=nil){
         $this->dlg_type = 'TTextDialog';
        
-        parent::__construct($onwer,$init,$self);
+        parent::__construct($onwer,$self);
     }
     
     function selectDialog($self){
@@ -38,10 +38,10 @@ class TEditImageDialog extends TEditDialog {
     
     #public imagelist
     
-    function __construct($onwer=nil,$init=true,$self=nil){
+    function __construct($onwer=nil,$self=nil){
         $this->dlg_type = 'TImageDialog';
        
-        parent::__construct($onwer,$init,$self);
+        parent::__construct($onwer,$self);
     }
     
     function selectDialog($self){
@@ -68,10 +68,10 @@ class TEditSizesDialog extends TEditDialog {
     
     
     
-    function __construct($onwer=nil,$init=true,$self=nil){
+    function __construct($onwer=nil,$self=nil){
         $this->dlg_type = 'TSizesDialog';
        
-        parent::__construct($onwer,$init,$self);
+        parent::__construct($onwer,$self);
         $this->readOnly = true;
         $this->text     = '('.t('Sizes & Position').')';
     }
@@ -90,8 +90,8 @@ class TEditFormDialog extends TEditDialog {
     
     
     
-    function __construct($onwer=nil,$init=true,$self=nil){
-        parent::__construct($onwer,$init,$self);
+    function __construct($onwer=nil,$self=nil){
+        parent::__construct($onwer,$self);
         $this->readOnly = true;
     }
     
@@ -126,9 +126,9 @@ class TEditMenuDialog extends TEditDialog {
     
     
     
-    function __construct($onwer=nil,$init=true,$self=nil){
+    function __construct($onwer=nil,$self=nil){
         $this->dlg_type = 'TMenuDialog';
-        parent::__construct($onwer,$init,$self);
+        parent::__construct($onwer,$self);
     }
     
     

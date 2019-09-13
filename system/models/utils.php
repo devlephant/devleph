@@ -313,7 +313,7 @@ class myUtils
 			{
 				if ( !gui_is($el->self, 'TControl') )
 				{
-					$alias = new __TNoVisual($form,true,nil,get_class($el));
+					$alias = new __TNoVisual($form,nil,get_class($el));
 					$alias->parent = $form;
 					$alias->Assoc = $el;
 					$alias->tag = -3;

@@ -20,10 +20,10 @@ class TPrintDialogEx extends __TNoVisual {
         eventEngine::updateIndex($dlg);
 	}
 	
-	public function __construct($owner = nil, $init = true, $self = nil){
-		parent::__construct($owner, $init, $self);
+	public function __construct($owner = nil,$self = nil){
+		parent::__construct($owner,$self);
 		
-		if ( $init ){
+		if ( $self==nil ){
 		
 			$this->fromPage = 0;
 			$this->toPage = 0;

@@ -169,7 +169,7 @@ function to_object($self, $type='TControl'){ //самый интересный �
 	$type = trim($type);
         
 	  if ( class_exists($type)) //Если запрашиваемый делфи-класс существует в виде обёртки, то...
-        return new $type(nil,false,$self);//Создаём екземпляр его php-обёртки
+        return new $type(nil,$self);//Создаём екземпляр его php-обёртки
 	
     return false; //В ином случае возвращаем False (ложь, нифига, тусс)
 }
@@ -526,16 +526,10 @@ class TComponent extends TObject {
 	    $this->visible = $this->avisible;
 	    $this->enabled = $this->aenabled;
 	}
-	function __construct($onwer = nil,$init = true,$self = nil)
+	function __construct($owner=nil,$self= nil)
 	{
-	    if ($init){
-			$this->self = obj_create(rtti_DClass($this), $onwer);
-	    }
-	    
-        if ($self !== nil)
-             $this->self = $self;
-		
-	   $this->__setAllPropEx($init);
+		$this->self = ($self == nil)?obj_create(rtti_DClass($this),$owner): $self;
+		$this->__setAllPropEx($self==nil);
 	}
 	
 	function set_prop($prop,$val){
@@ -690,17 +684,16 @@ class TControl extends TComponent {
 	protected $_font;
 	//public $avisible;
 	
-	function __construct($onwer=nil,$init=true,$self=nil){
-	    parent::__construct($onwer,$init);
+	function __construct($onwer=nil,$self=nil){
+	    parent::__construct($onwer,$self);
 			
-		if ($self!==nil) $this->self = $self;
-		if ($init)
+		if ($self==nil)
 		{	
 		    $this->avisible = $this->visible;
 		    $this->aenabled = $this->enabled;
 		}
 		
-		$this->__setAllPropEx($init);
+		$this->__setAllPropEx($self==nil);
 	}
 	
 	function parentComponents(){

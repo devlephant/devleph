@@ -113,10 +113,10 @@ class __TNoVisual extends TControl {
 		gui_destroy($this->self);
 	}
     
-    public function __construct($onwer=nil,$init=true,$self=nil,$fc=false){
+    public function __construct($onwer=nil,$self=nil,$fc=false){
         
-		parent::__construct($onwer, $init, $self);
-	    if ($init){
+		parent::__construct($onwer,$self);
+	    if ($self==nil){
 
 			$this->showHint = true;
 			$this->hint = $this->name;

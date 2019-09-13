@@ -7,10 +7,10 @@ $_c->sgori_Center	= 3;
 class TSimpleGraph extends TImage
 {
 	private $_charts;
-	public function __construct( $owner = nil, $init = true, $self = nil )
+	public function __construct( $owner = nil, $self = nil )
 	{
-		parent::__construct( $owner, $init, $self );
-		if( $init )
+		parent::__construct( $owner, $self );
+		if( $self==nil )
 		{
 			$this->_charts = [];//initial chart\\
 		}

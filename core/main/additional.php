@@ -106,7 +106,7 @@ class TCoolTrayIcon extends TControl {
 	public function get_picture(){
 		
 		if (!isset($this->_picture))
-			$this->_picture = new TIcon(false);
+			$this->_picture = new TIcon();
 		$this->_picture->self = gui_propget($this->self,'Icon');
 		return $this->_picture;
 	}
@@ -228,7 +228,7 @@ class TShape extends TControl {
 	public function get_brush(){
 		
 		if (!$this->_brush)
-			$this->_brush = new TBrush(false);
+			$this->_brush = new TBrush();
 		$this->_brush->self = gui_propGet($this->self,'Brush');
 		return $this->_brush;
 	}
@@ -236,7 +236,7 @@ class TShape extends TControl {
 	public function get_pen(){
 		
 		if (!isset($this->_pen))
-			$this->_pen   = new TPen(false);
+			$this->_pen   = new TPen();
 		
 		$this->_pen->self   = gui_propGet($this->self,'Pen');
 		
@@ -264,8 +264,7 @@ class TScrollBox extends TControl {
 	
 	function get_constraints(){
 		if (!isset($this->_constraints)){
-			$this->_constraints = new TSizeConstraints(nil, false);
-			$this->_constraints->self = gui_propGet($this->self,'constraints');
+			$this->_constraints = new TSizeConstraints(nil,gui_propGet($this->self,'constraints'));
 		}
 		return $this->_constraints;
 	}
@@ -291,8 +290,7 @@ class TCheckListBox extends TControl {
 	
 	function get_items(){
 		if (!isset($this->_items)){
-			$this->_items = new TStrings(false);
-			$this->_items->self = gui_propGet($this->self,'Items');
+			$this->_items = new TStrings(nil,gui_propGet($this->self,'Items'));
 			$this->_items->parent_object = $this->self;
 		}
 		return $this->_items;
@@ -374,10 +372,10 @@ class TSplitter extends TControl {function get_enabled(){return true;}}
 class TStatusBar extends TControl {
 	
 	
-	function __construct($onwer=nil,$init=true,$self=nil){
-		parent::__construct($onwer,$init,$self);
+	function __construct($owner=nil,$self=nil){
+		parent::__construct($owner,$self);
 		
-		if ($init){
+		if ($self==nil){
 			$this->useSystemFont = false;
 			$this->simplePanel   = true;
 		}
@@ -391,8 +389,7 @@ class TTabControl extends TControl {
 	
 	function get_tabs(){
 		if (!isset($this->_tabs)){
-			$this->_tabs = new TStrings(false);
-			$this->_tabs->self = gui_propGet($this->self,'tabs');
+			$this->_tabs = new TStrings(nil,gui_propGet($this->self,'tabs'));
 			$this->_tabs->parent_object = $this->self;
 		}
 		return $this->_tabs;
@@ -836,8 +833,7 @@ class TListView extends TControl {
 	function get_items(){
 		
 		if (!$this->_items){
-			$this->_items = new TListItems($this,false);
-			$this->_items->self = gui_propGet($this->self,'items');
+			$this->_items = new TListItems($this,gui_propGet($this->self,'items'));
 		}
 		return $this->_items;
 	}
@@ -1107,10 +1103,10 @@ class TStyleTabs extends TTransparentPanel {
 		
 	}
 	
-    function __construct($onwer=nil,$init=true,$self=nil){
-	parent::__construct($onwer,$init,$self);
+    function __construct($owner=nil,$self=nil){
+	parent::__construct($owner,$self);
     	
-        if ($init){
+        if ($self==nil){
 		//Создаёт компонент управления страницами(scrollbox'ами)
 		$pages = new TStylePages;
 		$pages->parent = $this;

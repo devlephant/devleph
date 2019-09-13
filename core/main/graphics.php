@@ -257,9 +257,9 @@ $_c->fsStrikeOut = 'fsStrikeOut';
 
 class TControlCanvas extends TCanvas
 {
-    function __construct($owner=nil,$init=true,$self=nil)
+    function __construct($owner=nil,$self=nil)
 	{
-		parent::__construct($owner,$init,is_object($self)?$self->self:(int)$self);
+		parent::__construct($owner,is_object($self)?$self->self:$self);
 		if(is_object($owner))
 			$this->Control = $owner;
     }
@@ -322,12 +322,9 @@ class TBitmap extends TGraphic{
 
     public $parent_object = nil;
 
-    public function __construct($owner=nil, $init=true, $self=nil){
-        if($self!==nil){
-			$this->self = $self;
-
-		}elseif ($init)
-            $this->self = tbitmap_create();
+    public function __construct($owner=nil, $self=nil)
+	{
+		$this->self = ($self==nil)? tbitmap_create():$self;
 		if($owner!==nil)
 			$this->owner = $owner;
     }
@@ -391,7 +388,7 @@ class TBitmap extends TGraphic{
     }
 
 	public function get_Canvas(){
-		return new TCanvas($this,false,bitmap_canvas($this->self));;
+		return new TCanvas($this,bitmap_canvas($this->self));
 	}
 
 	public function setSizes($width, $height){
@@ -400,12 +397,8 @@ class TBitmap extends TGraphic{
 }
 class TIcon extends TGraphic{
 
-    function __construct($owner=nil,$init=true,$self=nil){
-        if ($init && !$self){
-            $this->self = ticon_create();
-		} else {
-			if($self)	$this->self = $self;
-		}
+    function __construct($owner=nil,$self=nil){
+		$this->self = ($self==nil)?ticon_create():$self;
     }
 
     function loadAnyFile($filename){
@@ -417,7 +410,7 @@ class TIcon extends TGraphic{
     }
 
 	function loadFromStr($data, $format = 'bmp'){
-        $bitmap = new TBitmap(nil,false);
+        $bitmap = new TBitmap(nil);
         picture_loadstr($bitmap->self, $data, $format);
 		icon_assign($this->self, $bitmap->self);
     }
@@ -465,15 +458,10 @@ class TPicture extends TControl{
 
     public $parent_object = nil;
 
-    function __construct($init=true, $owner=nil, $self=nil){
-        if ($init)
-			if( $self && $self !== nil )
-				$this->self = $self;
-			else
-				$this->self = tpicture_create();
-
-			if($owner && $owner !== nil)
-				$this->owner = $owner;
+    function __construct($owner=nil, $self=nil){
+		$this->self = ($self==nil)?tpicture_create():$self;
+		if($owner && $owner !== nil)
+			$this->owner = $owner;
 	}
     function get_Graphic()
 	{
@@ -531,11 +519,7 @@ class TPicture extends TControl{
     }
 
     function getBitmap(){
-
-		$self = picture_bitmap($this->self);
-		$result = new TBitmap(nil, false);
-		$result->self = $self;
-		return $result;
+		return new TBitmap(nil, picture_bitmap($this->self));
     }
 
     function assign($pic){

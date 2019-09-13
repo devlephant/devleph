@@ -30,9 +30,9 @@ class TDataVar extends __TNoVisual {
     }
     
     public function __construct($onwer=nil,$init=true,$self=nil){
-	parent::__construct($onwer, $init, $self);
+	parent::__construct($onwer,$self);
 	
-	if ($init){
+	if ($self==nil){
 	    $this->serialize = true;
 	}
     }

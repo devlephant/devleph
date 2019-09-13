@@ -16,9 +16,9 @@ class TScrollProgress extends TProgressBar {
         event_set($this->self, 'onMouseMove', 'TScrollProgress::doMouseMove');
 	 }
 	
-    function __construct($owner = nil, $init = true, $self = nil){
-		parent::__construct($owner, $init, $self);
-        if ( $init ){
+    function __construct($owner = nil,$self = nil){
+		parent::__construct($owner,$self);
+        if ( $self==nil ){
 			if ( !$GLOBALS['APP_DESIGN_MODE'] ){
 			$this->__initComponentInfo();
 			}

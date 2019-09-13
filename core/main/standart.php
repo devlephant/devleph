@@ -29,9 +29,9 @@ $_c->setConstList(['doNoOrient', 'doHorizontal', 'doVertical']);
 
 class TGraphControl extends TControl 
 {
-	public function __construct($owner=nil,$init=true,$self=nil)
+	public function __construct($owner=nil,$self=nil)
 	{
-		parent::__construct($owner,$init,$self);
+		parent::__construct($owner,$self);
 		if( method_exists(get_class($this), 'Paint') )
 			event_set($this->self, 'OnPaint', get_class($this).'::Paint');
 	}
@@ -84,8 +84,7 @@ class TMemo extends TControl {
 	
 	function get_items(){
 		if (!isset($this->_items)){
-			$this->_items = new TStrings(false);
-			$this->_items->self = gui_propGet($this->self,'Lines');
+			$this->_items = new TStrings(nil,gui_propGet($this->self,'Lines'));
 		}
 		return $this->_items;
 	}
@@ -230,8 +229,7 @@ class TListBox extends TControl {
 
 	function get_items(){
 		if (!isset($this->_items)){
-			$this->_items = new TStrings(false);
-			$this->_items->self = gui_propGet($this->self,'Items');
+			$this->_items = new TStrings(nil,gui_propGet($this->self,'Items'));
 			$this->_items->parent_object = $this->self;
 		}
 		return $this->_items;
@@ -322,8 +320,7 @@ class TComboBox extends TControl {
 	
 	function get_items(){
 		if (!isset($this->_items)){
-			$this->_items = new TStrings(false);
-			$this->_items->self = gui_propGet($this->self,'Items');
+			$this->_items = new TStrings(nil,gui_propGet($this->self,'Items'));
 			$this->_items->parent_object = $this->self;
 		}
 		return $this->_items;
@@ -373,9 +370,9 @@ class TScrollBar extends TControl {	}
 class TGroupBox extends TControl {
 	
 	
-	function __construct($onwer=nil,$init=true,$self=nil){
-		parent::__construct($onwer,$init,$self);
-		
+	function __construct($onwer=nil,$self=nil){
+		parent::__construct($onwer,$self);
+		if($self==nil)
 		$this->parentColor = false;
 	}
 }
@@ -384,16 +381,15 @@ class TRadioGroup extends TControl {
 	
 	protected $_items;
 	
-	function __construct($onwer=nil,$init=true,$self=nil){
-		parent::__construct($onwer,$init,$self);
-		if ($init)
+	function __construct($onwer=nil,$self=nil){
+		parent::__construct($onwer,$self);
+		if ($self==nil)
 			$this->parentColor = false;
 	}
 	
 	function get_items(){
 		if (!isset($this->_items)){
-			$this->_items = new TStrings(false);
-			$this->_items->self = gui_propGet($this->self,'Items');
+			$this->_items = new TStrings(nil,gui_propGet($this->self,'Items'));
 			$this->_items->parent_object = $this->self;
 		}
 		return $this->_items;
@@ -412,18 +408,17 @@ class TPanel extends TControl {
 	
 	protected $_constraints;
 	
-	public function __construct($onwer=nil, $init=true, $self=nil){
-		parent::__construct($onwer,$init,$self);
+	public function __construct($onwer=nil,$self=nil){
+		parent::__construct($onwer,$self);
 			
-		if ($init)
+		if ($self==nil)
 			$this->parentColor = false;	
 	}
 	
 	
 	function get_constraints(){
 		if (!isset($this->_constraints)){
-			$this->_constraints = new TSizeConstraints(nil, false);
-			$this->_constraints->self = gui_propGet($this->self,'constraints');
+			$this->_constraints = new TSizeConstraints(nil,gui_propGet($this->self,'constraints'));
 		}
 		return $this->_constraints;
 	}
@@ -431,10 +426,10 @@ class TPanel extends TControl {
 class TDSPanel extends TPanel {}
 class TTransparentPanel extends TControl
 {
-Public function __construct($owner=nil,$init=true,$self=nil)
+Public function __construct($owner=nil,$self=nil)
  {
-	 parent::__construct($owner,$init,$self);
-	 if($init) $this->__initComponentInfo();
+	 parent::__construct($owner,$self);
+	 if($self==nil) $this->__initComponentInfo();
  }
 Public Function __initComponentInfo()
  {

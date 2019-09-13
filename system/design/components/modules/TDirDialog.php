@@ -20,10 +20,10 @@ class TDirDialog extends __TNoVisual {
 		return false;
         }
 
-        public function __construct($onwer=nil,$init=true,$self=nil){
-            parent::__construct($onwer, $init, $self);
+        public function __construct($onwer=nil,$self=nil){
+            parent::__construct($onwer,$self);
             
-            if ($init){
+            if ($self==nil){
                 $this->title = '';
                 $this->root  = '';
             }

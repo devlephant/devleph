@@ -103,9 +103,7 @@ class TSynEdit extends TMemo {
 
 }
 
-class TSynGutter extends TControl{
-	
-}
+class TSynGutter extends TControl{}
 
 class TSynCompletionProposal extends TControl {
     
@@ -127,14 +125,10 @@ class TSynCompletionProposal extends TControl {
     #title = ''
     #width = 260
     
-    function __construct($onwer=nil,$init=true,$self=nil){
-		parent::__construct($onwer,$init,$self);
-		$this->itemList = new TStrings(false);
-		$this->itemList->self = gui_propGet($this->self,'itemList');
-			
-			$this->insertList = new TStrings(false);
-		$this->insertList->self = gui_propGet($this->self,'insertList');
-		
+    function __construct($onwer=nil,$self=nil){
+		parent::__construct($onwer,$self);
+		$this->itemList = new TStrings(nil,gui_propGet($this->self,'itemList'));
+		$this->insertList = new TStrings(nil,gui_propGet($this->self,'insertList'));
 		$this->__setAllPropEx();
     }
     

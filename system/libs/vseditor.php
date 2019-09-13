@@ -50,11 +50,9 @@ class TNxButtonItem extends TNxPropertyItem {
     
     public $picture;
 	
-	public function __construct($onwer=nil, $init=true, $self=nil){
-		parent::__construct($onwer,$init,$self);
-		$this->picture = new TBitmap(nil,false);
-		$this->picture->self = gui_propGet($this->self,'Glyph');
-		
+	public function __construct($onwer=nil,$self=nil){
+		parent::__construct($onwer,$self);
+		$this->picture = new TBitmap(nil,gui_propGet($this->self,'Glyph'));
 		$this->picture->parent_object = $this->self;
 		$this->__setAllPropEx();
 	}

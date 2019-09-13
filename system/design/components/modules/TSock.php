@@ -38,9 +38,9 @@
 			parent::__initComponentInfo();
 		}
 		
-		Public Function __construct($onwer=nil,$init=true,$self=nil)
+		Public Function __construct($onwer=nil,$self=nil)
 		{
-			parent::__construct($onwer, $init, $self);
+			parent::__construct($onwer,$self);
 			
 			global $__TSock_Config;
 			IF(!$__TSock_Config[$this->self])
@@ -50,7 +50,7 @@
 				$__TSock_Config[$this->self]->ID = null;
 			}
 			
-			IF($init)
+			IF($self==nil)
 			{
 				$this->IP = "127.0.0.1";
 				$this->Port = 7777;

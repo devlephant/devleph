@@ -1,9 +1,7 @@
 <?
 class TPageSetupDialogEx extends __TNoVisual {
-
-	
-
-	public function __initComponentInfo(){
+	public function __initComponentInfo()
+	{
 		parent::__initComponentInfo();
 		
 		$dlg = new TPageSetupDialog($this->parent);
@@ -12,10 +10,5 @@ class TPageSetupDialogEx extends __TNoVisual {
         $this->name = '';
         $dlg->name = $tmp;
         eventEngine::updateIndex($dlg);
-	}
-	
-	public function __construct($owner = nil, $init = true, $self = nil){
-		parent::__construct($owner, $init, $self);
-		
 	}
 }

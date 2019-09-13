@@ -6,10 +6,10 @@ class TSpoiler Extends TPanel{
 	public $_cap;
 	
 	
-	public function __construct($owner=nil, $init=true, $self=nil){
-		parent::__construct($owner,$init,$self);
+	public function __construct($owner=nil,$self=nil){
+		parent::__construct($owner,$self);
 	
-		if($init){
+		if($self==nil){
 			$this->wClose = 40;
 			$this->hClose = 20;
 			$this->wOpen = 120;
@@ -22,7 +22,7 @@ class TSpoiler Extends TPanel{
 	}
 	public function get_btn(){
 		if (!isset($this->_btn)){
-			$this->_btn = new TBitBtn(false);
+			$this->_btn = new TBitBtn();
 			$this->_btn->parent = $this->self;
 			$this->_btn->h = 12;
 			$this->_btn->x = 4;
@@ -36,7 +36,7 @@ class TSpoiler Extends TPanel{
 	}
 	public function get_cap(){
 		if(!isset($this->_cap)){
-			$this->_cap = new TLabel(false);
+			$this->_cap = new TLabel();
 			$this->_cap->parent_object = $this->self;
 			$this->_cap->h = $this->h;
 			$bn = $this->get_btn();

@@ -129,11 +129,9 @@ class TMenuItem extends TControl implements ArrayAccess, Iterator, Countable
 		return $this->count;
 	}
 	
-	public function __construct($onwer=nil, $init=true, $self=nil){
-		parent::__construct($onwer,$init,$self);
-		$this->picture = new TBitmap(nil,false);
-		$this->picture->self = gui_propGet($this->self,'Bitmap');
-		
+	public function __construct($onwer=nil, $self=nil){
+		parent::__construct($onwer,$self);
+		$this->picture = new TBitmap(nil,gui_propGet($this->self,'Bitmap'));
 		$this->picture->parent_object = $this->self;
 	}
 	

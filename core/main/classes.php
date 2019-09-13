@@ -35,9 +35,8 @@ class TStrings extends TObject{
     
     public $parent_object = nil;
     
-    function __construct($init = true, $owner = nil, $self = nil){
-        if ($init)
-            $this->self = ($self!==nil)? $self: tstrings_create();
+    function __construct($owner = nil, $self = nil){
+            $this->self = ($self==nil)? component_create('TStrings',$owner): $self;
     }
     
     // properties ...

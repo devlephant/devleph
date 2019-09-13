@@ -1,11 +1,5 @@
 <?
 class TWiFi extends __TNoVisual {
-	
-	
-	function __construct($onwer=nil,$init=true,$self=nil){
-	parent::__construct($onwer,$init,$self);
-	}
-	
 	static function getInformation(){
 		global $result;
 		$list = shell_exec('netsh wlan show networks');

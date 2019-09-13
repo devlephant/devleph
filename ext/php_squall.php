@@ -168,8 +168,8 @@ class SQUALL_Player extends TPanel {
         }
     }
     
-    function __construct($onwer=nil,$init=true,$self=nil){
-	parent::__construct($onwer,$init,$self);	
+    function __construct($onwer=nil,$self=nil){
+	parent::__construct($onwer,$self);	
        
         if (!defined('SQUALL_IS_INIT')){
             SQUALL::init();
@@ -177,7 +177,7 @@ class SQUALL_Player extends TPanel {
         }
         
         
-        if ($init){
+        if ($self==nil){
             $this->visible = false;
             $this->apan = 50;
             $this->avolume = 100;

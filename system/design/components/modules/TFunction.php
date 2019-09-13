@@ -20,10 +20,10 @@ class TFunction extends __TNoVisual {
 	define('USER_FUNCTION_SELF_'.strtolower($this->name), $this->self);
     }
     
-    public function __construct($onwer=nil,$init=true,$self=nil){
-	parent::__construct($onwer, $init, $self);
+    public function __construct($onwer=nil,$self=nil){
+	parent::__construct($onwer,$self);
 	
-        if ($init){
+        if ($self==nil){
 	    $this->priority = tpIdle;
             $this->toRegister = true;
 	}

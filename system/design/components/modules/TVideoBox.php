@@ -6,9 +6,9 @@ class TVideoBox extends TScrollBox{
     #new_Panel;
     #sampleMovie;
 
-	public function __construct($owner=nil,$init=true,$self=nil){
-		parent::__construct($owner,$init,$self);
-		if($init){
+	public function __construct($owner=nil,$self=nil){
+		parent::__construct($owner,$self);
+		if($self==nil){
 			$this->caption = '';
 		}
 	}

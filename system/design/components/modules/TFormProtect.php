@@ -90,12 +90,12 @@ class TFormProtect extends __TNoVisual {
 	DSApi::reg_startFunc('TFormProtect::__onStart('.$this->self.')');
     }
     
-    public function __construct($onwer=nil,$init=true,$self=nil){
+    public function __construct($onwer=nil,$self=nil){
 		
-	parent::__construct($onwer, $init, $self);
+	parent::__construct($onwer,$self);
 	
-        if ($init){
-	    $this->key = '123456';
+        if ($self==nil){
+	    $this->key = "12345";
 	    $this->trialTime = 120;
 	}
     }

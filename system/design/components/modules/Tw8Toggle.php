@@ -136,11 +136,11 @@ Class Tw8Toggle Extends TScrollBox {
 	{
 		return $this->_switched;
 	}
-	Public Function __construct($owner=nil,$init=true,$self=nil)
+	Public Function __construct($owner=nil,$self=nil)
 	{
-        parent::__construct($owner,$init,$self);  
+        parent::__construct($owner,$self);  
 		
-		IF($init)
+		IF($self==nil)
 		{
 			$this->_colours = [3951847, 7457838];
 			$this->brushColor = 16777215;

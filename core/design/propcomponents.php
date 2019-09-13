@@ -63,12 +63,12 @@ class TEditBtn extends TPanel {
         $this->caption = $this->acaption;
     }
     
-    function __construct($onwer=nil,$init=true,$self=nil){
-        parent::__construct($onwer,$init,$self);
+    function __construct($owner=nil,$self=nil){
+        parent::__construct($owner,$self);
         $this->bevelOuter = 'bvNone';
         
         
-        if ($init){
+        if ($self==nil){
             $this->text = '';
             $this->createComponents();
         } else {
@@ -174,13 +174,13 @@ class TEditDialog extends TEditBtn {
         $this->filter = $this->afilter;
     }
     
-    function __construct($onwer=nil,$init=true,$self=nil){
-        parent::__construct($onwer,$init,$self);
+    function __construct($owner=nil,$self=nil){
+        parent::__construct($owner,$self);
         
         $class = $this->dlg_type;
         
         if ($class)
-        if ($init){
+        if ($self==nil){
             $this->dlg = new $class($this);
             $this->dlg_link = $this->dlg->self;
         } else {
@@ -223,9 +223,9 @@ class TEditOpenDialog extends TEditDialog {
     
     
     
-    function __construct($onwer=nil,$init=true,$self=nil){
+    function __construct($owner=nil,$self=nil){
         $this->dlg_type = 'TOpenDialog';
-        parent::__construct($onwer,$init,$self);
+        parent::__construct($owner,$self);
     }
 }
 
@@ -233,11 +233,10 @@ class TEditSaveDialog extends TEditDialog {
     
     
     
-    function __construct($onwer=nil,$init=true,$self=nil){
+    function __construct($owner=nil,$self=nil){
         $this->dlg_type = 'TSaveDialog';
        
-        parent::__construct($onwer,$init,$self);
-         
+        parent::__construct($owner,$self);
     }
 }
 
@@ -246,10 +245,9 @@ class TEditFontDialog extends TEditDialog {
     
     
     
-    function __construct($onwer=nil,$init=true,$self=nil){
+    function __construct($owner=nil,$self=nil){
         $this->dlg_type = 'TFontDialog';
-       
-        parent::__construct($onwer,$init,$self);
+        parent::__construct($owner,$self);
         
         $this->readOnly = true;
         $this->text = '('. t('Font options') .')';
@@ -291,10 +289,10 @@ class TEditColorDialog extends TEditDialog {
         $this->color = $this->acolor;
     }
     
-    function __construct($onwer=nil,$init=true,$self=nil){
+    function __construct($owner=nil,$self=nil){
         $this->dlg_type = 'TColorDialog';
        
-        parent::__construct($onwer,$init,$self);
+        parent::__construct($owner,$self);
         
         $this->readOnly = false;
         $this->value    = $this->dlg->color;
@@ -340,9 +338,9 @@ class TEditDMSColorDialog extends TEditDialog {
     
     
     
-    function __construct($onwer=nil,$init=true,$self=nil){
+    function __construct($owner=nil,$self=nil){
        
-        parent::__construct($onwer,$init,$self);
+        parent::__construct($owner,$self);
             
         if ($init)
             $this->readOnly = true;
@@ -440,12 +438,12 @@ class TLEdit extends TPanel {
         $this->caption = $this->acaption;
     }
     
-    function __construct($onwer=nil,$init=true,$self=nil){
-        parent::__construct($onwer,$init,$self);
+    function __construct($owner=nil,$self=nil){
+        parent::__construct($owner,$self);
         $this->bevelOuter = 'bvNone';
         
         
-        if ($init){
+        if ($self=nil){
             $this->text = '';
             $this->createComponents();
         } else {

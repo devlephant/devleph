@@ -215,9 +215,9 @@ class TCiControl implements ITIBImage
 
 class TIB extends TMImage{
 
-   public final function __construct($onwer=nil,$init=true,$self=nil){
-    parent::__construct($onwer,$init,$self);
-    if($init)
+   public final function __construct($onwer=nil,$self=nil){
+    parent::__construct($onwer,$self);
+    if($self==nil)
 	{
      $this->center	= true;
 	 $this->down	= false;

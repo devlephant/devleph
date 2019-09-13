@@ -414,18 +414,4 @@ Function Move()
  
  
 }
-
-
-
-
-
-
-
-
-
-
-
-Function __construct($owner = nil , $init = True , $self = nil){
- parent::__construct($owner,$init,$self);}
- 
 }

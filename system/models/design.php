@@ -392,7 +392,7 @@ class myDesign
             global $myProperties, $myEvents, $myInspect;
             if ( !gui_is($obj->self, 'TControl') )
 			{
-				$Cobj = new __TNoVisual($fmEdit,true,nil,get_class($obj));
+				$Cobj = new __TNoVisual($fmEdit,nil,get_class($obj));
 				$Cobj->tag = -3; //to delete
 				$Cobj->parent = $obj->owner;
 				$Cobj->x = $obj->x;
@@ -984,7 +984,7 @@ class myDesign
             if (method_exists($el['cmp'],'__pasteDesign')) $el['cmp']->__pasteDesign();
 				if ( !gui_is($el['cmp']->self, 'TControl') )
 				{
-					$alias = new __TNoVisual($el['cmp']->owner,true,nil,get_class($el['cmp']));
+					$alias = new __TNoVisual($el['cmp']->owner,nil,get_class($el['cmp']));
 					$alias->parent = $el['cmp']->owner;
 					$alias->Assoc = $el['cmp'];
 					$alias->tag = -3;

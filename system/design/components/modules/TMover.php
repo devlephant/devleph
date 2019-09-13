@@ -10,10 +10,9 @@ class TMover extends __TNoVisual {
 	$objcont->fMouseUp  = event_get($objcont->self,'onMouseUp');
         event_set($objcont->self, 'onMouseUp', 'TMover::doMouseUp');
 	}
-    public function __construct($onwer=nil,$init=false,$self=nil){
-        parent::__construct($onwer, $init, $self);
-        if ($init){
-	  	
+    public function __construct($onwer=nil,$self=nil){
+        parent::__construct($onwer,$self);
+        if ($self==nil){
 		if ( !$GLOBALS['APP_DESIGN_MODE'] ){ //Debug
 		if( $this->cobj <= ''){
 		$this->__setC($this->parent);

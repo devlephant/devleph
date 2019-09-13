@@ -4,11 +4,6 @@ class TMainMenuEx extends __TNoVisual{
     
     #public data
     
-    public function __construct($onwer=nil,$init=true,$self=nil){
-        parent::__construct($onwer, $init, $self);
-        
-    }
-    
     public function __initComponentInfo(){
 	parent::__initComponentInfo();
 	$obj = new TMainMenu(_c($this->owner));

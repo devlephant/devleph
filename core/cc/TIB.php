@@ -3,14 +3,15 @@
 /* TIB v1.3*/
 class TIB extends TMImage{
    
-   function __construct($onwer=nil,$init=true,$self=nil){
-    parent::__construct($onwer,$init,$self);
-    if($init){
-     $this->center = true;
-     $this->autoState = true;
-	 $this->modalResult = 0;
-	 $this->images = [];
-    }
+   function __construct($onwer=nil,$self=nil){
+    parent::__construct($onwer,$self);
+		if($self==nil)
+		{
+			$this->center = true;
+			$this->autoState = true;
+			$this->modalResult = 0;
+			$this->images = [];
+		}
    }
    
    public function get_state(){

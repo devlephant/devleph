@@ -33,7 +33,4 @@ Function Alternate($fx,$url){
    File_get_contents($post);
    Return $post;
 }
-
-Public Function __construct($owner=nil,$init=true,$self=nil){
-        parent::__construct($owner,$init,$self);}
 }
