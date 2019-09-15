@@ -155,7 +155,6 @@ if (!defined('IS_APPLICATION_START')){
 		
         include 'scripts/hotkeys.php';
 		include 'scripts/treebrowser.php';
-		include 'scripts/eventTabs.php';
 		fmLogoin::Progress(2,"Hotkeys Loaded");
         $GLOBALS['APPLICATION']->processMessages();
         
