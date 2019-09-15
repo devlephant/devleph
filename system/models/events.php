@@ -270,6 +270,8 @@ class myEvents {
             eventEngine::setEvent($name, $eventL['EVENT'], '');
         }
         
+		eventTabs_update();
+		
         $myEvents->genList();
         if ($GLOBALS['show_editor']){
             c('fmMain->eventList')->items->selected = t(strtolower($eventL['EVENT']));
