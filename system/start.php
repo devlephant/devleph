@@ -79,7 +79,6 @@
     
     if (!EMULATE_DVS_EXE){
         loader::model('dialogs_ex');
-        loader::model('propcomponents_ex');
         loader::model('dsapi');
     }
 	
