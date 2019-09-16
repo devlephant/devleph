@@ -5,7 +5,6 @@ interface IEditor
 	const Type = "TNxButtonItem";
 	public static function OnCreate(TNxPropertyItem $Item, $class);
 	public static function Update(TNxButtonItem $Item, TComponent $Object, $prop);
-	public static function Click($ItemGID);
 }
 */
 class myProperties
@@ -13,7 +12,6 @@ class myProperties
     public $panels; // панель свойств компонентов...
     
     public $params;
-    public $elements;
     public $panel;
     
     public $selObj;
@@ -172,31 +170,41 @@ class myProperties
 			foreach ($componentProps[$class] as &$prop){
                     
                 if (!isset($prop['TYPE'])) continue;
-                
-				if(isset($prop['ADD_GROUP']))
-				{
-					if (!$create_addgr && $prop['ADD_GROUP']){
-						$gr2 = new TNxToolbarItem;
-						$gr2->caption = t('gr_additional');
-						$panel->addItem(null, $gr2);
-                    
-						$this->panels[$class]['GROUP_ADD'] = $gr2;
-						$create_addgr = true;
-					}
-					if( !$prop['ADD_GROUP'] )
-						$del = false;
-				} else {
-					$del = false;
-				}
-				$prop['TYPE'] = strtolower($prop['TYPE']);
-				if (isset(self::$types[$prop['TYPE']]))
-				{
+                if (!isset(self::$types[$prop['TYPE']])) continue;
+					$prop['TYPE'] = strtolower($prop['TYPE']);
 					$type	= self::$types[$prop['TYPE']];
 					$edt	= $type::type;
-					
-					$type::OnCreate( ($param['ADD_GROUP']?$gr2:$gr)->add(new $edt, $param['CAPTION']), $class);
-					$this->params[$class][$edt->self] =& $param;
-				}
+					if(isset($prop['ADD_GROUP']))
+					{	
+						if (!$create_addgr && $prop['ADD_GROUP']){
+							$gr2 = new TNxToolbarItem;
+							$gr2->caption = t('gr_additional');
+							$panel->addItem(null, $gr2);
+						
+							$this->panels[$class]['GROUP_ADD'] = $gr2;
+							$create_addgr = true;
+						}
+						if( !$prop['ADD_GROUP'] )
+						{
+							$del = false;
+							$edt = $gr->add(new $edt, $prop['CAPTION']);
+						} else $edt = $gr2->add(new $edt, $prop['CAPTION']);
+					} else {
+						$del = false;
+						$edt = $gr->add(new $edt, $prop['CAPTION']);
+					}
+					$type::OnCreate( $edt, isset($prop['CLASS'])?$prop['CLASS']:false, $prop );
+					$this->params[$class][$edt->self] =& $prop;
+					if(trim($prop['PROP'])=="")
+					{
+						$edt->showHint = false;
+						continue;
+					}
+					if(isset($prop['REAL_PROP']))
+						$edt->hint = $prop['CAPTION']._BR_."[->{$prop['REAL_PROP']}]";
+					else
+						$edt->hint = $prop['CAPTION']._BR_."[->{$prop['PROP']}]";
+					$edt->showHint = true;
             }
             if( $del )
 			 {	$gr->free(); }
