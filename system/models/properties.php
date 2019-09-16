@@ -36,7 +36,10 @@ class myProperties
 			{
 				if (!isset($param['TYPE'])) continue;
 				if(isset(self::$types[$param['TYPE']))
-				{self::$types[$param['TYPE']}::Update(_c($self),$this->selObj,is_array($param['PROP']) ? $param['PROP'][0] : $param['PROP']);
+				{
+					$type = self::$types[$param['TYPE'];
+					$type::Update(_c($self),$this->selObj,is_array($param['PROP']) ? $param['PROP'][0] : $param['PROP']);
+				}
 			}
 			
 			$toSetProp = false;
@@ -192,11 +195,11 @@ class myProperties
 					$edt	= $type::type;
 					
 					$type::OnCreate( ($param['ADD_GROUP']?$gr2:$gr)->add(new $edt, $param['CAPTION']), $class);
+					$this->params[$class][$edt->self] =& $param;
 				}
             }
             if( $del )
-			 {	$gr->free(); }   
-                $this->panels[$class]['EL']  = $this->elements;
+			 {	$gr->free(); }
 				
 			c("fmMain->editorPopup")->AutoPopup = true;
 			$panel->EndUpdate();
@@ -277,7 +280,8 @@ class myProperties
 		return get_sorted_methods($class);
     }
     
-    static function fixSplitterMoved($self){
+    static function fixSplitterMoved($self)
+	{
         if(!c('fmPropsAndEvents') || c('fmPropsAndEvents') instanceof DebugClass ) return;
         c('fmPropsAndEvents->tabProps',1)->repaint();
     }
