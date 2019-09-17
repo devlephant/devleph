@@ -196,6 +196,7 @@ class myUtils
 			$str = str_replace_once('Visible = True','Visible = False',file_get_contents($file));
 			$str = explode(_BR_,$str);
 			self::replacePropArr($str, 'PopupMenu', 'fmMain.editorPopup');
+			self::delPropArr($str, 'Cursor');
 			self::replacePropArr($str, 'FormStyle', 'fsNormal');
 			self::replacePropArr($str, 'BorderStyle', 'bsNone');
 			self::replacePropArr($str, 'AutoScroll', 'False');
@@ -389,7 +390,8 @@ class myUtils
 		self::replacePropArr($str,'TransparentColorValue', (int)$info['transparentColorValue'],true);
 		if(isset($info['doubleBuffered']))
 		self::replacePropArr($str,'DoubleBuffered', $info['doubleBuffered']?'true':'false',true);
-	
+		if(isset($info['cursor']))
+		self::replacePropArr($str,'Cursor', (int)$info['cursor'],true);
 		if( self::formPropArr($str,'PopupMenu',false) == 'fmMain.editorPopup' )
 		{
 			self::delPropArr($str, 'PopupMenu');

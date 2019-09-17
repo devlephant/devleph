@@ -27,7 +27,7 @@ $result[] = array(
                   'CAPTION'=>t('Picture Layout'),
                   'TYPE'=>'combo',
                   'PROP'=>'layout',
-                  'NO_CONST'=>1,
+                  'NO_CONST'=>true,
                   'VALUES'=>array('blGlyphLeft', 'blGlyphRight', 'blGlyphTop', 'blGlyphBottom'),
                   );
 $result[] = array(
@@ -97,6 +97,7 @@ $result[] = array(
                   'TYPE'=>'combo',
                   'PROP'=>'cursor',
                   'VALUES'=>$GLOBALS['cursors_meta'],
+				  'NO_CONST'=>true,
                   'ADD_GROUP'=>true,
                   );
 

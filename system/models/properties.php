@@ -208,9 +208,9 @@ class myProperties
 					treeBwr_add();
 				}
 				return;
-			}elseif( in_array($prop, ['x','y','autoscroll','alphablend','alphablendvalue','screensnap','snapbuffer','transparentcolor','transparentcolorvalue','doublebuffered']) )
+			}elseif( in_array($prop, ['cursor','x','y','autoscroll','alphablend','alphablendvalue','screensnap','snapbuffer','transparentcolor','transparentcolorvalue','doublebuffered']) )
 			{
-				$myProject->formsInfo[$_FORMS[$formSelected]][$prop] = $value;
+				$myProject->formsInfo[$_FORMS[$formSelected]][$prop] = Localization::toEncoding(method_exists($type,"SaveValue")?$type::SaveValue($param,$value):$value);
 				return;
 			}
 		}

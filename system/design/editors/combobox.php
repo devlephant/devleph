@@ -11,7 +11,7 @@ class ComboboxEditor
 	public static function OnEdit( $edt, $prop, $value, &$upd )
 	{
 		global $myProperties, $_sc, $fmEdit;
-		$param = $myProperties->elements[ $self ];
+		$param = $myProperties->elements[ $edt->self ];
 		if ( isset($param['NO_CONST']) )
 		{
 			$value = ((bool)$param['NO_CONST'])? array_search($value,$param['VALUES']): constant($value);
@@ -25,6 +25,23 @@ class ComboboxEditor
 		{
 			_c(myDesign::noVisAlias($el->self))->$prop = $value;
 		}
+	}
+	public static function Update( $edt, $value )
+	{
+		global $myProperties;
+		$param = $myProperties->elements[ $edt->self ];
+		if ( isset($param['NO_CONST']) )
+		{
+			$edt->value = ($param['NO_CONST'])? $param['VALUES'][(int)$value]: $value;
+        } else {
+			$edt->value = $value;
+		}
+	}
+	public static function SaveValue( $prop, $value )
+	{
+		if ( isset($param['NO_CONST']) )
+			return ($param['NO_CONST'])? array_search($value,$param['VALUES']): constant($value);
+        return constant($value);
 	}
 }
 myProperties::AddType(["combo","combobox","tkset","const","constlist"], "ComboboxEditor");

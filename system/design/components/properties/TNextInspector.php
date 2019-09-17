@@ -46,6 +46,7 @@ $result[] = array(
                   'TYPE'=>'combo',
                   'PROP'=>'cursor',
                   'VALUES'=>$GLOBALS['cursors_meta'],
+				  'NO_CONST'=>true,
                   'ADD_GROUP'=>true,
                   );
 
