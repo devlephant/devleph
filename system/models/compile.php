@@ -389,7 +389,7 @@ class myCompile
 		myUtils::saveForm();
 		myDesign::szRefresh();
 		$startTime = microtime(1);
-		self::setStatus('', t('Starting Project') . '...');
+		self::setStatus('', t('Starting project') . '...');
 
 		$php_dir = dirname(replaceSl(EXE_NAME)) . '/php/';
 		$p_dir = dirname($projectFile) . '/php/';
@@ -434,7 +434,7 @@ class myCompile
 		
 		$vtime = round( microtime(1) - $startTime, 1 );
 		$vtime = $vtime>=60? round($vtime/60,1).t('min.'): $vtime.t('sec.');
-		self::setStatus('Success', t('Start Finished for') . ' ' . $vtime );
+		self::setStatus('Success', t('Start finished for') . ' ' . $vtime );
 		shell_execute(0, 'open', replaceSr($exeFile), ' -c ' . receiver_handle(), replaceSr(dirname($exeFile)), SW_SHOW);
 		myDesign::szRefresh();
 		dsErrorDebug::ErrStatus($_e);
@@ -496,7 +496,7 @@ class myCompile
 	{
 		$startTime = microtime(1);
 		global $myProject;
-		self::setStatus('', t('Building Project') . '...');
+		self::setStatus('', t('Building project') . '...');
 		$debug_enabled = $myProject->config['debug']['enabled'];
 		$myProject->config['debug']['enabled'] = false;
 		myUtils::saveForm();
@@ -608,7 +608,7 @@ class myCompile
 		$res = null;
 		$vtime = round( microtime(1) - $startTime, 1 );
 		$vtime = $vtime>=60? round($vtime/60,1).t('min.'): $vtime.t('sec.');
-		self::setStatus('Success', t('Building Completed') . '. ( '.$vtime.' )');
+		self::setStatus('Success', t('Building completed') . '. ( '.$vtime.' )');
 
 		dsErrorDebug::ErrStatus($_e);
 		$myProject->config['debug']['enabled'] = $debug_enabled;
