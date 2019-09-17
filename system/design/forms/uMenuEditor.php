@@ -26,9 +26,9 @@ class menuEditor {
     }
     
     static function updateTree(){
-        
-        c('edt_menuEditor->tree')->text = self::resultToText( self::getResult() );
-        c('edt_menuEditor->tree')->fullExpand();
+        $tree = c('edt_menuEditor->tree');
+        $tree->text = self::resultToText( self::getResult() );
+        $tree->fullExpand();
     }
     
     static function getParam($index){

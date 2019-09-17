@@ -296,7 +296,7 @@ class TMenuDialog extends TPanel {
     
     
     function execute(){
-        
+		MenuEditor::updateTree();
         $r = c('edt_menuEditor',1)->showModal();
         return $r == mrOk;
     }
