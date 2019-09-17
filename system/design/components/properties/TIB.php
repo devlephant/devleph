@@ -15,8 +15,8 @@ $result[] = array(
                   );
 $result[] = array(
                   'CAPTION'=>t('apr_style'),
-                  'TYPE'=>'tib',
-                  'PROP'=>'',
+                  'TYPE'=>"tib",
+                  'PROP'=>"images",
                   );
 $result[] = array(
                   'CAPTION'=>t('State'),
@@ -138,10 +138,4 @@ $result[] = array(
                   'REAL_PROP'=>'visible',
                   'ADD_GROUP'=>true,
                   );
-
-$result[] = array('CAPTION'=>t('p_Left'), 'PROP'=>'x','TYPE'=>'number','ADD_GROUP'=>1);
-$result[] = array('CAPTION'=>t('p_Top'), 'PROP'=>'y','TYPE'=>'number','ADD_GROUP'=>1);
-$result[] = array('CAPTION'=>t('Width'), 'PROP'=>'w','TYPE'=>'number','ADD_GROUP'=>1);
-$result[] = array('CAPTION'=>t('Height'), 'PROP'=>'h','TYPE'=>'number','ADD_GROUP'=>1);
-
 return $result;

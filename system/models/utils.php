@@ -111,14 +111,12 @@ class myUtils
             unset($arr[$index]);
     }
     
-    static function replacePropArr(&$arr, $prop, $value){
-        $arr   = explode(_BR_, $str);
+    static function replacePropArr(&$arr, $prop, $value, $AddIfNoneF=false){
         $index = false;
+		if(substr_count($value, '=')==0)$value = "{$prop} = {$value}";
         foreach ($arr as $i=>$line)
 		{
-            
-            $info = explode(' = ',$line);
-            if (trim($info[0])==$prop){
+            if (trim(explode(' = ',$line)[0])==$prop){
                 $index = $i;
                 break;
             }
@@ -128,7 +126,12 @@ class myUtils
         }
         
         if ($index)
+		{
             $arr[$index] = $value;
+		} elseif ($AddIfNoneF)
+		{
+			$arr[1] = $arr[1]._BR_.$value;
+		}
     }
 	static	function checkObjToDel(&$arr, $o, $inf)
 	{
@@ -190,19 +193,18 @@ class myUtils
         if( !file_exists($file) ) {
 			message(t('Form %s1 does not exist!', basenamenoext($file)));
 		} else {
-			$str = file_get_contents($file);
-			
-			$str = str_replace_once('Visible = True','Visible = False',$str);
-			$str = str_ireplace('fsMDIChild','fsNormal',$str);
-			$str = str_ireplace('fsStayOnTop','fsNormal',$str);
-			$str = str_ireplace('fsMDIForm','fsNormal',$str);
-        
-			$str = str_ireplace('bsDialog','bsNone', $str);
-			$str = str_ireplace('bsSizeable','bsNone',$str);
-			$str = str_ireplace('bsSingle','bsNone', $str);
-			$str = str_ireplace('bsToolWindow','bsNone',$str);
-			$str = str_ireplace('bsSizeToolWin','bsNone',$str);
-			dfm_read('',$form, $str);
+			$str = str_replace_once('Visible = True','Visible = False',file_get_contents($file));
+			$str = explode(_BR_,$str);
+			self::replacePropArr($str, 'PopupMenu', 'fmMain.editorPopup');
+			self::replacePropArr($str, 'FormStyle', 'fsNormal');
+			self::replacePropArr($str, 'BorderStyle', 'bsNone');
+			self::replacePropArr($str, 'AutoScroll', 'False');
+			self::replacePropArr($str, 'AlphaBlend', 'False');
+			self::delPropArr($str, 'AlphaBlendValue');
+			self::delPropArr($str, 'ScreenSnap');
+			self::delPropArr($str, 'SnapBuffer');
+			self::delPropArr($str, 'TransparentColor');
+			dfm_read(false,$form,implode(_BR_,$str));
 		}
         
         
@@ -316,12 +318,16 @@ class myUtils
 					$alias = new __TNoVisual($form,nil,get_class($el));
 					$alias->parent = $form;
 					$alias->Assoc = $el;
+					$alias->onMove = function($self)use($el)
+					{
+						myDesign::SavePosOf($el, gui_propget($self,'Left'), gui_propget($self,'Top'));
+					};
 					$alias->tag = -3;
 					if($el->x > 0)
 					{
 						$alias->x = $el->x;
 						$alias->y = $el->y;
-					} else list($alias->x,$alias->y) = [0,0];
+					} else myDesign::LoadPosOf($el, $alias);
 					MyDesign::plusnoVisAlias($el->self, $alias->self);
 					$_sc->registerTarget($alias);
 				} else $_sc->registerTarget($el);
@@ -358,13 +364,37 @@ class myUtils
         
         if (self::formPropArr($str,'Width',null)!==null)
 		{
-            self::replacePropArr($str,'Width',' ClientWidth = '. $fmEdit->Width );
+            self::replacePropArr($str,'Width',' ClientWidth = '. $fmEdit->clientWidth );
             self::replacePropArr($str,'Height',' ClientHeight = '. $fmEdit->clientHeight );
         }
+		$info =& $GLOBALS['myProject']->formsInfo[$GLOBALS['_FORMS'][$GLOBALS['formSelected']]];
+		
+		if(isset($info['x']))
+		self::replacePropArr($str,'Left', (int)$info['x'],true);
+		if(isset($info['y']))
+		self::replacePropArr($str,'Top', (int)$info['y'],true);
+		if(isset($info['autoScroll']))
+		self::replacePropArr($str,'AutoScroll', $info['autoScroll']?'true':'false',true);
+		if(isset($info['alphaBlend']))
+		self::replacePropArr($str,'AlphaBlend', $info['alphaBlend']?'true':'false',true);
+		if(isset($info['alphaBlendValue']))
+		self::replacePropArr($str,'AlphaBlendValue', (int)$info['alphaBlendValue'],true);
+		if(isset($info['screenSnap']))
+		self::replacePropArr($str,'ScreenSnap', $info['screenSnap']?'true':'false',true);
+		if(isset($info['snapBuffer']))
+		self::replacePropArr($str,'SnapBuffer', (int)$info['snapBuffer'],true);
+		if(isset($info['transparentColor']))
+		self::replacePropArr($str,'TransparentColor', $info['transparentColor']?'true':'false',true);
+		if(isset($info['transparentColorValue']))
+		self::replacePropArr($str,'TransparentColorValue', (int)$info['transparentColorValue'],true);
+		if(isset($info['doubleBuffered']))
+		self::replacePropArr($str,'DoubleBuffered', $info['doubleBuffered']?'true':'false',true);
+	
 		if( self::formPropArr($str,'PopupMenu',false) == 'fmMain.editorPopup' )
 		{
 			self::delPropArr($str, 'PopupMenu');
         }
+		
 		self::delObjectArr($str, 'TSizeCtrl', 'enabled=true');//Тк мы определяем, что сайз-контрол - искуемый и включенный, наш, что мы использовали в редакторе...
 		self::delObjectArr($str, '__TNoVisual', 'tag=-3');
 		$str = implode(_BR_,$str);

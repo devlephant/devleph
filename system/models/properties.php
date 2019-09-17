@@ -3,14 +3,16 @@
 interface IEditor
 {
 	const Type = "TNxButtonItem";
-	public static function OnCreate(TNxPropertyItem $Item, $class);
-	public static function Update(TNxButtonItem $Item, TComponent $Object, $prop);
+	public static function OnCreate( TNxPropertyItem $Item, $class, array &$prop );
+	public static function Update( TNxButtonItem $Item, $value );
 }
 */
 class myProperties
 {   
+	const ButtonCaption = ". . .";
+	const ButtonWidth = 19;
     public $panels; // панель свойств компонентов...
-    
+    public $elements;
     public $params;
     public $panel;
     
@@ -19,28 +21,64 @@ class myProperties
     public $last_class;
 	public static $types;
 	
-    static function updateProps()
+    static function updateProps($p=false,$link=false)
 	{
-        $GLOBALS['myProperties']->_setProps(true);
+        $GLOBALS['myProperties']->_setProps($p,$link);
     }
-    function _setProps($update = false){
+    function _setProps($interclude=false,$exclude=false){
         
         global $_c, $toSetProp, $fmEdit;
         $toSetProp = true;
         if( !is_object($this->selObj) )
 			$this->selObj = $fmEdit;
-		if( is_array($this->params[$this->selObj->className]) )
-			foreach ($this->params[$this->selObj->className] as $self=>$param)
+		if($interclude)
+		{
+			$arr = [$exclude];
+			$exclude = false;
+		}$arr =& $this->params[$this->selObj->className];
+		if( is_array($arr) )
+			foreach($arr as $self)
 			{
+				$param =& $this->elements[$self];
+				if($self==$exclude) continue;
 				if (!isset($param['TYPE'])) continue;
-				if(isset(self::$types[$param['TYPE']))
+				if(isset(self::$types[$param['TYPE']]))
 				{
-					$type = self::$types[$param['TYPE'];
-					$type::Update(_c($self),$this->selObj,is_array($param['PROP']) ? $param['PROP'][0] : $param['PROP']);
+					$type = self::$types[$param['TYPE']];
+					if( defined("$type::caption") ) continue;
+					$prop = $param['PROP'];
+					$p = $this->selObj->$prop;
+					if($this->selObj instanceof TForm && !is_object($this->selObj->$prop))
+					{
+						$fname =& $GLOBALS['_FORMS'][$GLOBALS['formSelected']];
+						$formsinfo =& $GLOBALS['myProject']->formsInfo[$fname];
+						if(strtolower($prop)=='name')
+						{
+							$p = $fname;
+						} elseif( isSet( $formsinfo[$prop] ) )
+						{
+							$p = $formsinfo[$prop];
+						}
+					}
+					if( $this->selObj->name!=="" && !gui_is($this->selObj->self, 'TControl') )
+					{
+						$prop =	strtolower($prop);
+						$arr = ["x","y","w","h","left","top","width","height"];
+						if(in_array($prop,$arr))
+						{
+							$pos = array_search($prop,$arr);
+							$p = $GLOBALS['myProject']->formsInfo[$GLOBALS['_FORMS'][$GLOBALS['formSelected']]]["_v"][$this->selObj->name][ ($pos%2==0?1:0) ];
+							if($pos%3==0||$pos%4==0)
+								$p = 24;
+						}
+					}
+					if( method_exists($type, "Update") )
+					{
+						$type::Update(_c($self),$p);
+					} else _c($self)->value = $p;
 				}
 			}
-			
-			$toSetProp = false;
+		$toSetProp = false;
     }
     
     function setProps(){
@@ -124,6 +162,117 @@ class myProperties
         
         myInspect::updateSelected();   
     }
+	public static function VSEdit($self, $link, $value, $CAN){
+        global $myProperties, $_sc, $fmEdit, $toSetProp, $_FORMS, $projectFile, $myProject, $formSelected;
+        if ($toSetProp) return;
+        clearEditorHotKeys();
+        $param = $myProperties->elements[ $link ];
+		$type = self::$types[$param['TYPE']];
+		if( defined("$type::caption") )
+		{
+			_c($link)->value = "(" . t($type::caption) . ")";
+		}
+        $prop  = $param['PROP'];
+		$obj =& $myProperties->selObj;
+		if($obj instanceof TForm)
+		{
+			$prop = strtolower($prop);
+			if($prop=="name")
+			{
+				$value = Localization::toEncoding($value);
+				if (preg_match('/^([a-z]{1})([a-z0-9\_]+)$/i',$value)){
+				foreach ($_FORMS as $el){
+					if (strtolower($el)==strtolower($value)){
+						return;
+					}
+				}
+				$name = $GLOBALS['_FORMS'][$GLOBALS['formSelected']];
+				$dfm_file = dirname($projectFile) .'/'. $name . '.dfm';
+				$dfm_file2= dirname($projectFile) .'/'. $value . '.dfm';
+				if (file_exists($dfm_file2))
+					unlink($dfm_file2);
+				
+				rename($dfm_file, $dfm_file2);
+				
+				myDesign::groupChangeFormName($name, $value);
+				myDesign::eventChangeFormName($name, $value);
+				
+					$k = array_search($name, $_FORMS);
+					$_FORMS[$k] = $value;
+					$id = c('fmMain->tabForms')->tabIndex;
+					c('fmMain->tabForms')->tabs->setLine($k,$value.'.dfm');
+					c('fmMain->tabForms')->tabIndex = $id;
+					$myProject->formsInfo[$value] = $myProject->formsInfo[$name];
+					unset($myProject->formsInfo[$name]);
+					
+					treeBwr_add();
+				}
+				return;
+			}elseif( in_array($prop, ['x','y','autoscroll','alphablend','alphablendvalue','screensnap','snapbuffer','transparentcolor','transparentcolorvalue','doublebuffered']) )
+			{
+				$myProject->formsInfo[$_FORMS[$formSelected]][$prop] = $value;
+				return;
+			}
+		}
+		$set_prop = false;
+		$upd_sc = true;
+			if ($prop=="name")
+			{
+				$upd_sc = false;
+				if (!preg_match('/^[a-z]{1}[a-z0-9\_]*$/i',$value)){
+					_c($link)->value = $value;
+					return;
+				}
+				myDesign::changeName($obj, $value);
+			} elseif( method_exists($type, "OnEdit") )
+			{
+				$type::OnEdit(_c($link), $prop, $value, $set_prop);
+			}
+			else 	
+				{
+				$targets = count($_sc->targets_ex) ? $_sc->targets_ex : [$fmEdit];
+				myHistory::add($targets, $prop);
+				
+				foreach ($targets as $self=>$el){
+					$el = _c(myDesign::noVisAlias($el->self));
+					$el->$prop = $value;
+				}
+			}
+		if($upd_sc)
+		{
+			$_sc->update();  // fix bug
+			$_sc->updateBtns();
+		}
+		self::updateProps($set_prop,$link);
+    }
+	
+	public static function VSBarClick($self, $link, $index){
+        global $myProperties, $_sc, $fmEdit, $toSetProp, $myProject, $_FORMS, $formSelected;
+        if ($toSetProp) return;
+        
+        $param = $myProperties->elements[ $link ];
+        
+        if ($param['TYPE']!=='check') return;
+        
+        $value = _c($link)->value === t('Yes') ? true : false;
+        
+        $prop  = $param['PROP'];
+		if($myProperties->selObj instanceof TForm && 
+			in_array(strtolower($prop), ['autoscroll','alphablend','screensnap','transparentcolor','doublebuffered']))
+		{
+			$myProject->formsInfo[$_FORMS[$formSelected]][$prop] = $value;
+		} else {
+        $targets = count($_sc->targets_ex) ? $_sc->targets_ex : [$fmEdit];
+        myHistory::add($targets, $prop);
+        
+        foreach ($targets as $self=>$el){
+           $el = _c(myDesign::noVisAlias($el->self));
+            $el->$prop = $value;
+        }
+        $_sc->update();  // fix bug
+		self::updateProps(false,$link);
+		}
+    }
     
     public function _generateClass($class)
 	{    
@@ -154,17 +303,17 @@ class myProperties
             
             $this->panels[$class]['PANEL'] = $panel;
             $this->panels[$class]['GROUP'] = $gr;
-			
-            if ($class!=='TForm'){
-                $componentProps[$class] =
-                array_merge([['CAPTION'=>t('Name'),'TYPE'=>'Name','PROP'=>'name','ADD_GROUP'=>true]],
-                            (array)$componentProps[$class]);
-                $componentProps[$class] = array_values($componentProps[$class]);
-            }
-            
-            if (is_array($componentProps[$class]))
-			{
-                    
+                $componentProps[$class][] =
+							['CAPTION'=>t('Name'),'TYPE'=>'text','PROP'=>'name','ADD_GROUP'=>true];
+				$componentProps[$class][] =
+							['CAPTION'=>t('p_Left'),'TYPE'=>'int','PROP'=>'x','ADD_GROUP'=>true];
+				$componentProps[$class][] =
+							['CAPTION'=>t('p_Top'),'TYPE'=>'int','PROP'=>'y','ADD_GROUP'=>true];
+				$componentProps[$class][] =
+							['CAPTION'=>t('Width'),'TYPE'=>'int','PROP'=>'w','REAL_PROP'=>"clientWidth",'ADD_GROUP'=>true];
+				$componentProps[$class][] =
+							['CAPTION'=>t('Height'),'TYPE'=>'int','PROP'=>'h','REAL_PROP'=>"clientHeight",'ADD_GROUP'=>true];
+							
                 $create_addgr = false;
 				$del = true;
 			foreach ($componentProps[$class] as &$prop){
@@ -193,8 +342,13 @@ class myProperties
 						$del = false;
 						$edt = $gr->add(new $edt, $prop['CAPTION']);
 					}
-					$type::OnCreate( $edt, isset($prop['CLASS'])?$prop['CLASS']:false, $prop );
-					$this->params[$class][$edt->self] =& $prop;
+					$type::OnCreate( $edt, $class, $prop );
+					if( defined("$type::caption") )
+					{
+						$edt->value = "(" . t($type::caption) . ")";
+					}
+					$this->params[$class][] = $edt->self;
+					$this->elements[$edt->self] =& $prop;
 					if(trim($prop['PROP'])=="")
 					{
 						$edt->showHint = false;
@@ -212,10 +366,16 @@ class myProperties
 			c("fmMain->editorPopup")->AutoPopup = true;
 			$panel->EndUpdate();
 			lockWindowUpdate(0);
-			}
 		}
 	}
-    
+    public static function AddType($typenames, $class)
+	{
+		if( is_array($typenames) )
+			foreach($typenames as $type)
+				Self::$types[$type] = $class;
+		else 
+			Self::$types[$typenames] = $class;
+	}
     public function generateClass($class, $back = false)
 	{
         $this->_generateClass($class);

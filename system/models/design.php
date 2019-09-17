@@ -398,6 +398,11 @@ class myDesign
 				$Cobj->x = $obj->x;
 				$Cobj->y = $obj->y;
 				$Cobj->Assoc = $obj;
+				$Cobj->onMove = function($self)use($obj)
+				{
+					myDesign::SavePosOf($obj, gui_propget($self,'Left'), gui_propget($self,'Top'));
+				};
+				myDesign::LoadPosOf($obj, $Cobj);
 				self::plusnoVisAlias($obj->self,$Cobj->self);
 			} else $Cobj = $obj;
 			$myProperties->generate($obj->self,c('fmPropsAndEvents->tabProps',1));
@@ -423,6 +428,19 @@ class myDesign
         return false;
     }
     
+	static function SavePosOf($Element,$x,$y)
+	{
+		global $myProject, $_FORMS, $formSelected;
+		if($Element->name !== "")
+		$myProject->formsInfo[$_FORMS[$formSelected]]["_v"][$Element->name] = [$x,$y];
+	}
+	
+	static function LoadPosOf($Element,$alias)
+	{
+		if($Element->name !== "" && isSet($myProject->formsInfo[$_FORMS[$formSelected]]["_v"][$Element->name]))
+		list($alias->Left,$alias->Top) = $myProject->formsInfo[$_FORMS[$formSelected]]["_v"][$Element->name];
+	}
+	
 	static function plusnoVisAlias($a,$nvs)
 	{
 		if($nvs==$a)return;
@@ -987,9 +1005,13 @@ class myDesign
 					$alias = new __TNoVisual($el['cmp']->owner,nil,get_class($el['cmp']));
 					$alias->parent = $el['cmp']->owner;
 					$alias->Assoc = $el['cmp'];
+					$_el = $el['cmp'];
+					$alias->onMove = function($self)use($_el)
+					{
+						myDesign::SavePosOf($_el, gui_propget($self,'Left'), gui_propget($self,'Top'));
+					};
 					$alias->tag = -3;
-					$alias->x = $el['cmp']->x;
-					$alias->y = $el['cmp']->y;
+					myDesign::LoadPosOf($_el, $alias);
 					self::plusnoVisAlias($el['cmp']->self, $alias->self);
 				} else $alias = $el['cmp'];
                 $myInspect->addItem($el['cmp']);

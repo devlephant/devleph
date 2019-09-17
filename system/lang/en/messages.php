@@ -19,9 +19,17 @@ $m["tib_place_status"] = "Install State";
 $m["tib_clear_status"] = "Remove State";
 $m["mov_up"] = "Move Up";
 $m["mov_do"] = "Move Down";
-$m["img_cnt_1"]  = "Image";
-$m["img_cnt_234"]= "Images";
-$m["img_cnt_5_0"]= "Images";
+$m["item_cnt"] = "Item";
+$m["img_cnt"] = "Image";
+$m["0cnt_1"]  = "";
+$m["0cnt_234"]= "s";
+$m["0cnt_5_0"]= "s";
+$m["1cnt_1"]  = "";
+$m["1cnt_234"]= "s";
+$m["1cnt_5_0"]= "s";
+$m["2cnt_1"]  = "";
+$m["2cnt_234"]= "s";
+$m["2cnt_5_0"]= "s";
 $m["build_notify_ua"] = "				Warning
 
   Programs, compiled on Dev-S, required a MSVC++ 2011 package to be installed

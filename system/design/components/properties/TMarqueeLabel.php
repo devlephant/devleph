@@ -17,10 +17,6 @@ $result[] = array('CAPTION'=>t('Cursor'),'TYPE'=>'combo','PROP'=>'cursor','VALUE
 $result[] = array('CAPTION'=>t('Sizes and position'),'TYPE'=>'sizes','PROP'=>'','ADD_GROUP'=>true);
 $result[] = array('CAPTION'=>t('Enabled'),'TYPE'=>'check','PROP'=>'aenabled','REAL_PROP'=>'enabled','ADD_GROUP'=>true);
 $result[] = array('CAPTION'=>t('visible'),'TYPE'=>'check','PROP'=>'avisible','REAL_PROP'=>'visible','ADD_GROUP'=>true);
-$result[] = array('CAPTION'=>t('p_Left'), 'PROP'=>'x','TYPE'=>'number','ADD_GROUP'=>1);
-$result[] = array('CAPTION'=>t('p_Top'), 'PROP'=>'y','TYPE'=>'number','ADD_GROUP'=>1);
-$result[] = array('CAPTION'=>t('Width'), 'PROP'=>'w','TYPE'=>'number','ADD_GROUP'=>1);
-$result[] = array('CAPTION'=>t('Height'), 'PROP'=>'h','TYPE'=>'number','ADD_GROUP'=>1);
 
 $result[] = array('CAPTION'=>t('Active'),'TYPE'=>'check','PROP'=>'active','ADD_GROUP'=>true);
 $result[] = array('CAPTION'=>t('Left Direction'),'TYPE'=>'check','PROP'=>'leftDirection','ADD_GROUP'=>true);

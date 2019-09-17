@@ -1,11 +1,6 @@
 <?
 
 $result = [];
-
-
-$result[] = array('CAPTION'=>t('p_Left'), 'PROP'=>'x');
-$result[] = array('CAPTION'=>t('p_Top'), 'PROP'=>'y');
-
 $result[] = array(
                   'CAPTION'=>t('caption'),
                   'TYPE'=>'text',
@@ -160,9 +155,8 @@ $result[] = array(
                   'PROP'=>'DragMode',
                   'VALUES'=>array('dmManual', 'dmAutomatic'),
                   );				  
-$result[] = array('CAPTION'=>t('Width'), 'PROP'=>'clientWidth','TYPE'=>'number','ADD_GROUP'=>true);
-$result[] = array('CAPTION'=>t('Height'), 'PROP'=>'clientHeight','TYPE'=>'number','ADD_GROUP'=>true);
-
+$result[] = array('CAPTION'=>t('Width'), 'PROP'=>'clientWidth','TYPE'=>'','ADD_GROUP'=>true);
+$result[] = array('CAPTION'=>t('Height'), 'PROP'=>'clientHeight','TYPE'=>'','ADD_GROUP'=>true);
 $result[] = array('CAPTION'=>t('Real Width'), 'PROP'=>'w','TYPE'=>'','ADD_GROUP'=>true);
 $result[] = array('CAPTION'=>t('Real Height'), 'PROP'=>'h','TYPE'=>'','ADD_GROUP'=>true);
 $result[] = array(

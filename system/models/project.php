@@ -148,30 +148,22 @@ class myProject {
         $info['maxheight']= $fmEdit->constraints->maxheight;
         $info['minheight']= $fmEdit->constraints->minheight;
         
-        $props = array('autoScroll','autoSize','alphaBlend','alphaBlendValue','screenSnap','clientWidth','clientHeight',
-                        'snapBuffer','transparentColor','transparentColorValue','borderWidth');
-        foreach ($props as $p){
-            $info[$p] = $fmEdit->$p;
-        }
-        
         $info['objects'] = [];
         $components = $fmEdit->componentList;
-        foreach ($components as $el){
-            
+		$i=0;
+        foreach ($components as $el)
+		{    
             if ($el->name){
                 
-                $arr = array('NAME'=>$el->name,'CLASS'=>rtti_class($el->self));
-                
+                $info['objects'][$i] = ['NAME'=>$el->name,'CLASS'=>rtti_class($el->self)];
                 if (method_exists($el,'__inspectProperties')){
                     $i_props = $el->__inspectProperties();
                     foreach((array)$i_props as $x_prop){
-                        $arr[$x_prop] = $el->$x_prop;
+                        $info['objects'][$i][$x_prop] = $el->$x_prop;
                     }
                 }
-                
-                $info['objects'][] = $arr;
-                
             }
+			$i++;
         }
         
         self::save();
@@ -182,19 +174,31 @@ class myProject {
         global $fmEdit, $myProject, $formSelected, $_FORMS;
         
 		if(!isset($myProject->formsInfo[$_FORMS[$formSelected]])) return;
-        $info = $myProject->formsInfo[$_FORMS[$formSelected]];
-        
-        $props = array('autoScroll','autoSize','alphaBlend','alphaBlendValue','screenSnap','clientWidth','clientHeight',
-                        'snapBuffer','transparentColor','transparentColorValue','borderWidth');
-
+        $info =& $myProject->formsInfo[$_FORMS[$formSelected]];
         $fmEdit->constraints->maxwidth = $info['maxwidth'];
         $fmEdit->constraints->minwidth = $info['minwidth'];
         $fmEdit->constraints->maxheight= $info['maxheight'];
         $fmEdit->constraints->minheight= $info['minheight'];
-        
-        foreach ($props as $p){
-            $fmEdit->$p = $info[$p];
-        } 
+		$fmEdit->DoubleBuffered = false;
+		$components = $fmEdit->componentList;
+        foreach ($components as $el){
+            
+            if ($el->name){
+                
+                $arr = array('NAME'=>$el->name,'CLASS'=>rtti_class($el->self));
+                
+                if (method_exists($el,'__inspectProperties'))
+				{
+                    $i_props = $el->__inspectProperties();
+                    foreach((array)$i_props as $x_prop){
+                        $el->$x_prop = $arr[$x_prop];
+                    }
+                }
+                
+                $info['objects'][] = $arr;
+                
+            }
+        }
     }
     
     static function setPropForm($prop, $value){
