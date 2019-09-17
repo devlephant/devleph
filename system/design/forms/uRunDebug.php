@@ -2,23 +2,23 @@
 
 class ev_fmRunDebug {
     
-    static function onShow(){
-        
+    static function onShow($self)
+	{    
         $debug_vars = (array)myProject::cfg('debug_vars');
         foreach ($debug_vars as $var)
             myDebug::sendMsg(array('action'=>'add','name'=>$var,'type'=>'glVars'));
     }
     
-    static function onClose(){
-        
+    static function onClose($self)
+	{    
         myUtils::stop();
     }
 }
 
 class ev_fmRunDebug_btn_add {
     
-    static function onClick(){
-        
+    static function onClick($self)
+	{    
         $arr['type'] = 'glVars';
         c('edt_inputText')->formStyle = fsStayOnTop;
         $res = inputText('Новая переменная', 'Введите имя глобальной переменной');
@@ -35,8 +35,8 @@ class ev_fmRunDebug_btn_add {
 
 class ev_fmRunDebug_btn_del {
     
-    static function onClick(){
-        
+    static function onClick($self)
+	{    
         $arr['type'] = 'glVars';
         $res = c('fmRunDebug->varList')->inText;
         $res = str_replace('$','',$res);
@@ -52,8 +52,8 @@ class ev_fmRunDebug_btn_del {
 
 class ev_fmRunDebug_btn_edit {
     
-    static function onClick(){
-        
+    static function onClick($self)
+	{    
         $arr['type'] = 'glVars';
         $res = c('fmRunDebug->varList')->inText;
         $res = str_replace('$','',$res);

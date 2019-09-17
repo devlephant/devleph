@@ -154,16 +154,16 @@ class evfmPHPEditorMEMO {
     
 }
 class ev_fmPHPEditor_btn_new {
-    static function onClick(){ c('fmPHPEditor->memo')->text = ''; }
+    static function onClick($self){ c('fmPHPEditor->memo')->text = ''; }
 }
 
 class ev_fmPHPEditor_New1 {
-    static function onClick(){ c('fmPHPEditor->memo')->text = ''; }
+    static function onClick($self){ c('fmPHPEditor->memo')->text = ''; }
 }
 
 class ev_fmPHPEditor_btn_open {
-    static function onClick(){
-        
+    static function onClick($self)
+	{    
         $dlg = new TOpenDialog;
         $dlg->filter = DLG_FILTER_ALL;
         
@@ -177,8 +177,8 @@ class ev_fmPHPEditor_btn_open {
 }
 
 class ev_fmPHPEditor_Open1 {
-    static function onClick(){
-        
+    static function onClick($self)
+	{    
         $dlg = new TOpenDialog;
         $dlg->filter = DLG_FILTER_ALL;
         
@@ -192,8 +192,8 @@ class ev_fmPHPEditor_Open1 {
 }
 
 class ev_fmPHPEditor_btn_save {
-    static function onClick(){
-        
+    static function onClick($self)
+	{   
         $dlg = new TSaveDialog;
         $dlg->filter = 'PHP Script (.php)|*.php';
         
@@ -211,8 +211,9 @@ class ev_fmPHPEditor_btn_save {
 }
 
 
-class ev_fmPHPEditor_btn_find {
-    static function onClick(){
+class ev_fmPHPEditor_btn_find
+{
+    static function onClick($self){
         
         c('fmPHPEditor->p_search')->visible = !c('edt_FindDialog->p_search')->visible;
         c('fmPHPEditor->p_search')->repaint();
@@ -223,7 +224,7 @@ class ev_fmPHPEditor_btn_find {
 
 class ev_fmPHPEditor_it_find {
     
-    static function onClick($self=nil)
+    static function onClick($self)
 	{    
 		ev_fmPHPEditor_btn_find::onClick($self);
     }
@@ -231,15 +232,16 @@ class ev_fmPHPEditor_it_find {
 
 class ev_fmPHPEditor_f_next {
     
-    static function onClick(){
+    static function onClick($self)
+	{
         ev_fmPHPEditor_f_text::onKeyUp(0, 13);
     }
 }
 
 class ev_fmPHPEditor_f_prev {
     
-    static function onClick(){
-        
+    static function onClick($self)
+	{    
         $GLOBALS['__findIndex'] -= 1;
         
         if ($GLOBALS['__findIndex']<0)
@@ -253,8 +255,8 @@ class ev_fmPHPEditor_f_prev {
 
 class ev_fmPHPEditor_c_register {
     
-    static function onClick(){
-        
+    static function onClick($self)
+	{    
         unset($GLOBALS['__find']);
         unset($GLOBALS['__findIndex']);
     }
@@ -312,43 +314,50 @@ class ev_fmPHPEditor_f_text {
 }
 
 class ev_fmPHPEditor_lowercase1 {
-    static function onClick(){
+    static function onClick($self)
+	{
         c('fmPHPEditor->memo')->selText = strtolower(c('fmPHPEditor->memo')->selText);
     }
 }
 
 class ev_fmPHPEditor_UPPERCASE1 {
-    static function onClick(){
+    static function onClick($self)
+	{
         c('fmPHPEditor->memo')->selText = strtoupper(c('fmPHPEditor->memo')->selText);
     }
 }
 
 class ev_fmPHPEditor_undoItem {
-    static function onClick(){
+    static function onClick($self)
+	{
         c('fmPHPEditor->memo')->undo();
     }
 }
 
 class ev_fmPHPEditor_redoItem {
-    static function onClick(){
+    static function onClick($self)
+	{
         c('fmPHPEditor->memo')->redo();
     }
 }
 
 class ev_fmPHPEditor_btn_undo {
-    static function onClick(){
+    static function onClick($self)
+	{
         c('fmPHPEditor->memo')->undo();
     }
 }
 
 class ev_fmPHPEditor_btn_redo {
-    static function onClick(){
+    static function onClick($self)
+	{
         c('fmPHPEditor->memo')->redo();
     }
 }
 
 class ev_fmPHPEditor_it_saveevent {
-    static function onClick(){
+    static function onClick($self)
+	{
         global $myEvents;
         
         myComplete::saveCode();
@@ -363,7 +372,8 @@ class ev_fmPHPEditor_it_saveevent {
 }
 
 class ev_fmPHPEditor_exit{
-    static function onClick(){
+    static function onClick($self)
+	{
 		global $phpeditorClosing;
 		$phpeditorClosing = 1;
 		c('fmPHPEditor->memo')->text = '';
@@ -372,28 +382,32 @@ class ev_fmPHPEditor_exit{
 }
 
 class ev_fmPHPEditor_it_selectall {
-    static function onClick(){
+    static function onClick($self)
+	{
          c('fmPHPEditor->memo')->selectAll();
     }
 }
 class ev_fmPHPEditor_selectall1 {
-    static function onClick(){
+    static function onClick($self)
+	{
          c('fmPHPEditor->memo')->selectAll();
     }
 }
 class ev_fmPHPEditor_it_cut {
-    static function onClick(){
-         c('fmPHPEditor->memo')->cutToClipboard();
+    static function onClick($self)
+	{
+		c('fmPHPEditor->memo')->cutToClipboard();
     }
 }
 class ev_fmPHPEditor_cut1 {
-    static function onClick(){
+    static function onClick($self)
+	{
          c('fmPHPEditor->memo')->cutToClipboard();
     }
 }
 class ev_fmPHPEditor_Saveas1{
-	    static function onClick(){
-        
+	static function onClick($self)
+	{
         $dlg = new TSaveDialog;
         $dlg->filter = 'PHP Script (.php)|*.php';
         
@@ -411,24 +425,16 @@ class ev_fmPHPEditor_Saveas1{
 }
 
 class ev_fmPHPEditor_it_copy {
-    static function onClick(){
-         c('fmPHPEditor->memo')->copyToClipboard();
-    }
+    static function onClick($self){c('fmPHPEditor->memo')->copyToClipboard();}
 }
 class ev_fmPHPEditor_copy1{
-    static function onClick(){
-         c('fmPHPEditor->memo')->copyToClipboard();
-    }
+    static function onClick($self){c('fmPHPEditor->memo')->copyToClipboard();}
 }
 class ev_fmPHPEditor_it_paste {
-    static function onClick(){
-         c('fmPHPEditor->memo')->pasteFromClipboard();
-    }
+    static function onClick($self){c('fmPHPEditor->memo')->pasteFromClipboard();}
 }
 class ev_fmPHPEditor_paste1 {
-    static function onClick(){
-         c('fmPHPEditor->memo')->pasteFromClipboard();
-    }
+    static function onClick($self){c('fmPHPEditor->memo')->pasteFromClipboard();}
 }
 c('fmPHPEditor')->onResize = function($self)
 {
@@ -564,8 +570,8 @@ EditorSynt::MainStart();
 
 class ev_fmPHPEditor_options {
 	public static $ini;
-    static function onClick(){
-		
+    static function onClick($self)
+	{	
         $ini = self::$ini;
         c('fmPHPEditor->SynPHPSyn')->saveToArray($arr);
         $color = c('fmPHPEditor->memo')->color;
@@ -582,8 +588,8 @@ class ev_fmPHPEditor_options {
     }
 }
 class ev_fmPHPEditor_cutf8 {
-    static function onClick(){
-		
+    static function onClick($self)
+	{	
 		if( ! c("fmPHPEditor->cutf8")->checked ){
 			if( messageBox( t(t('enc_chng_dg'), 'UTF-8'), t('change encode'), MB_ICONWARNING + MB_YESNO  ) == mrNo )
 				return;
@@ -598,7 +604,9 @@ class ev_fmPHPEditor_cutf8 {
         c("fmPHPEditor->cansi")->checked=true; 
 
 class ev_fmPHPEditor_cansi {
-    static function onClick(){
+    static function onClick($self)
+	{
+		
 		if( ! c("fmPHPEditor->cansi")->checked ){
 			if( messageBox( t(t('enc_chng_dg'), 'ANSI'), t('change encode'), MB_ICONWARNING + MB_YESNO  ) == mrNo )
 				return;
@@ -610,8 +618,9 @@ class ev_fmPHPEditor_cansi {
 }
 
 class ev_fmPHPEditor_it_tabs {
-	static function onClick($self){
-		$self = c($self);
+	static function onClick($self)
+	{
+		$self = _c($self);
 		$self->checked = !$self->checked;
 		c("fmPHPEditor->eventTabs")->visible = $self->checked;
 		//pre(c("fmPHPEditor->eventTabs")->tabs);

@@ -71,7 +71,7 @@ class evfmMain {
                 
                 if (messageBox(t("Воу, ты устарел,\nуже доступна версия %s\nОбновить программу?",$last_ver), t('.: Мастер обновления :.'), MB_YESNO)==mrYes){
                     
-                    ev_it_masterupdate::onClick();
+                    ev_it_masterupdate::onClick(0);
                 }
             }
         }
@@ -391,24 +391,23 @@ class ev_it_treebrowser {
 }
 
 class ev_it_siteprogram {
-    
-    static function onClick(){
-        
+    static function onClick($self)
+	{
         shell_execute(0,'open','http://kashaproduct.at.ua/','','',SW_SHOW);
     }
 }
 
 class ev_fmMain_it_phphelp {
-    
-    static function onClick(){
+    static function onClick($self)
+	{
         run('http://php.su/learnphp/');
     }
 }
 
-class ev_it_helpbook {
-    
-    static function onClick() {
-        
+class ev_it_helpbook
+{    
+    static function onClick($self)
+	{
         return shell_execute(0,'open','http://help.develstudio.ru/Vvedenie-16.html','','',SW_SHOW);
         
         if (!file_exists(DOC_ROOT . '/lang/' . LANG_ID . '/help.chm'))
@@ -419,24 +418,22 @@ class ev_it_helpbook {
 }
 
 class ev_it_aboutprogram {
-    
-    static function onClick(){
-        
+    static function onClick($self)
+	{    
         c('fmAbout')->showModal();
     }
 }
 
 class ev_it_exit {
-    
-    static function onClick(){
+    static function onClick($self)
+	{
         c('fmMain')->close();
     }
 }
 
 class ev_statusBar {
-    
-    static function onClick(){
-        
+    static function onClick($self)
+	{
         global $projectFile;
         shell_execute(0,'open', replaceSr(dirname($projectFile)).'\\', '', '', SW_SHOW);
     }
@@ -635,7 +632,7 @@ class ev_fmMain_pDockMain {
         $_sc->clearTargets();
     }
     
-    static function onClick(){
+    static function onClick($self=0){
         setTimeout(15,'ev_fmMain_pDockMain::doit()');
     }
 }
