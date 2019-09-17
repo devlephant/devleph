@@ -74,7 +74,7 @@ $result[] = array(
                               3 => t('Error'),
                               4 => t('Last Icon'),
                               5 => t('Tray Icon')),
-                  'NO_CONST'=>1,
+                  'NO_CONST'=>true,
                   );
 $result[] = array(
                   'CAPTION'=>t('Timeout of Ballontip'),

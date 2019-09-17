@@ -90,7 +90,6 @@ function toHTMLColor($color){
     return sprintf('#%02X%02X%02X', $color&0xFF , ($color>>8)&0xFF , ($color>>16)&0xFF );
 }
 
-
 function registerGlobalVar(&$value){
     
     $c = count($GLOBALS[__FUNCTION__]);

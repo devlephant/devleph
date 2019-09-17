@@ -1,13 +1,7 @@
 <?
 
 $result = [];
-/*
-$result[] = array(
-                  'CAPTION'=>t('Name'),
-                  'TYPE'=>'text',
-                  'PROP'=>'name',
-                  );
-*/
+
 $result[] = array(
                   'CAPTION'=>t('Parameters'),
                   'TYPE'=>'text',

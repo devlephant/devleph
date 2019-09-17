@@ -655,7 +655,7 @@ protected $name;
 		$this->isstatic = true;
 	}
 	
-	public static  function HEXtoRGB($hex)
+	public static  function DHEXtoRGB($hex)
 	{
 		$hex = preg_replace("/[^0-9A-Fa-f]/", '', $hex);
 		$rgb = [];
@@ -686,15 +686,15 @@ protected $name;
     return $rgb;
 	}
 	
-	public static function DHEXtoRGB($hexStr)
+	public static function HEXtoRGB($hexStr)
 	{
-		$rgb = [];
-		
-		$rgb[0] = $hexStr & 0xFF;
-		$rgb[1] = ($hexStr >> 8) & 0xFF;
-		$rgb[2] = ($hexStr >> 16) & 0xFF; 
-		
-	return $rgb;
+		$rgb = self::DHEXtoRGB($hexStr);
+	return [$rgb[2], $rgb[1], $rgb[0]];
+	}
+	
+	public static function DhexToHex($dhexStr)
+	{
+		return self::RGBtoHEX( ...self::DHEXtoRGB($dhexStr) );
 	}
 	
 	public static function RGBtoHEX($r, $g, $b)
@@ -801,6 +801,11 @@ protected $name;
 				}			        	        
 		}
 	return [ round( $h, 2 ), round( $s, 2 ), round( $l, 2 ) ];
+	}
+	
+	public static function RGBtoBGR( $r, $g, $b )
+	{
+		return [$b,$g,$r];
 	}
 	
 	public static function HSLtoRGB( $h, $s, $l )

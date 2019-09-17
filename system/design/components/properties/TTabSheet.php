@@ -45,6 +45,7 @@ $result[] = array(
                   'TYPE'=>'combo',
                   'PROP'=>'cursor',
                   'VALUES'=>$GLOBALS['cursors_meta'],
+				  'NO_CONST'=>true,
                   'ADD_GROUP'=>true,
                   );
 $result[] = array(
@@ -131,11 +132,6 @@ $result[] = array(
                   'REAL_PROP'=>'visible',
                   'ADD_GROUP'=>true,
                   );
-				  
-$result[] = array('CAPTION'=>t('Left'), 'PROP'=>'x','TYPE'=>'number','ADD_GROUP'=>true);
-$result[] = array('CAPTION'=>t('Top'), 'PROP'=>'y','TYPE'=>'number','ADD_GROUP'=>true);
-$result[] = array('CAPTION'=>t('Width'), 'PROP'=>'clientWidth','TYPE'=>'number','ADD_GROUP'=>true);
-$result[] = array('CAPTION'=>t('Height'), 'PROP'=>'clientHeight','TYPE'=>'number','ADD_GROUP'=>true);
-$result[] = array('CAPTION'=>t('Real Width'), 'PROP'=>'w','TYPE'=>'');
-$result[] = array('CAPTION'=>t('Real Height'), 'PROP'=>'h','TYPE'=>'');
+$result[] = array('CAPTION'=>t('Real Width'), 'PROP'=>'clientWidth','TYPE'=>'number','ADD_GROUP'=>true);
+$result[] = array('CAPTION'=>t('Real Height'), 'PROP'=>'clientHeight','TYPE'=>'number','ADD_GROUP'=>true);
 return $result;

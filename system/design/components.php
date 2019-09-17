@@ -31,6 +31,8 @@ foreach ($files as $file){
 if (EMULATE_DVS_EXE) return;
 
 	global $_c;
+	foreach (findFiles($dir_n . '/editors/','php',false,true) as $file)
+        require $file;
 	foreach (findFiles($dir_n . '/components/properties/','php')as $file){
 		$componentProps[basenameNoExt($file)] = include($dir_n . '/components/properties/' . $file);
 	}
@@ -39,12 +41,9 @@ if (EMULATE_DVS_EXE) return;
 		$componentEvents[basenameNoExt($file)] = include($dir_n . '/components/events/' . $file);
 	}
 	
-    foreach (findFiles($dir_n . '/components/modifers/','php') as $file){
-        require($dir_n . '/components/modifers/' . $file);
+    foreach (findFiles($dir_n . '/components/modifers/','php',false,true) as $file){
+        require $file;
     }
-	
-    foreach (findFiles($dir_n . '/editor_types/','php') as $file)
-        require $dir_n . '/editor_types/' . $file;
 	
 	function convertReturnType($class, $method, $type)
 	{

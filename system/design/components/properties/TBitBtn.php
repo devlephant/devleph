@@ -29,7 +29,7 @@ $result[] = array(
                   'CAPTION'=>t('Picture Layout'),
                   'TYPE'=>'combo',
                   'PROP'=>'layout',
-				  'NO_CONST'=>1,
+				  'NO_CONST'=>true,
                   'VALUES'=>array('blGlyphLeft', 'blGlyphRight', 'blGlyphTop', 'blGlyphBottom'),
                   );
 $result[] = array(
@@ -136,6 +136,7 @@ $result[] = array(
                   'TYPE'=>'combo',
                   'PROP'=>'cursor',
                   'VALUES'=>$GLOBALS['cursors_meta'],
+				  'NO_CONST'=>true,
                   'ADD_GROUP'=>true,
                   );
 
@@ -161,10 +162,4 @@ $result[] = array(
                   'REAL_PROP'=>'visible',
                   'ADD_GROUP'=>true,
                   );
-
-$result[] = array('CAPTION'=>t('p_Left'), 'PROP'=>'x','TYPE'=>'number','ADD_GROUP'=>true);
-$result[] = array('CAPTION'=>t('p_Top'), 'PROP'=>'y','TYPE'=>'number','ADD_GROUP'=>true);
-$result[] = array('CAPTION'=>t('Width'), 'PROP'=>'w','TYPE'=>'number','ADD_GROUP'=>true);
-$result[] = array('CAPTION'=>t('Height'), 'PROP'=>'h','TYPE'=>'number','ADD_GROUP'=>true);
-
 return $result;

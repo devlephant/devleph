@@ -826,7 +826,7 @@ class ev_fmMain_shapeSize {
 
 class ev_itemCAll {
     
-    static function onClick(){
+    static function onClick($self=false){
         global $fmEdit, $_sc;
 
         foreach( $fmEdit->componentList as $c )

@@ -1,1134 +1,100 @@
 <?
-
-
-class myProperties {
-    
-    
+/*--pseudocode--*
+interface IEditor
+{
+	//!! - Required
+	
+	const type = "TNxButtonItem";
+	//!!
+	
+	const caption = "Static Property";
+	
+	public static function OnCreate( TNxPropertyItem $Item, $class, array &$prop );
+	//!!
+	
+	public static function OnEdit( TNxProperty item $Item, string $property, mixed $value, bool &$continue);
+	public static function SaveValue( array &$prop, mixed $value);
+	public static function Click( int $self );
+	public static function Update( TNxButtonItem $Item, $value );
+}
+*/
+class myProperties
+{   
+	const ButtonCaption = ". . .";
+	const ButtonWidth = 19;
     public $panels; // панель свойств компонентов...
-    
-    public $params;
     public $elements;
+    public $params;
     public $panel;
     
     public $selObj;
     
     public $last_class;
-    
-    public static function VSFormClick($self){
-        
-        global $myProperties, $_sc, $fmEdit;
-        
-        $param = $myProperties->elements[ $self ];
-        $prop  = $param['PROP'];
-        
-        $form = c($param['PROP']);
-    
-        self::formShow($self, $form);
-        if ($form->showModal()==mrOk){
-            
-            self::formSelect($self, $form);
-        }
-        
-    }
-    
-    public static function VSImageClick($self){
-        
-        global $myProperties, $_sc, $fmEdit;
-        
-        $param = $myProperties->elements[ $self ];
-        $prop  = $param['PROP'];
-		
-        $dlg = new TImageDialog;
-        $dlg->value = $myProperties->selObj->$prop;
-        
-        if ($dlg->execute()){
-            
-            $obj = _c($self);
-            $bitmap = $dlg->value;
-            $targets = count($_sc->targets_ex) ? $_sc->targets_ex : array($fmEdit);
-            $m = 'set_' . $prop;
-            foreach ($targets as $el)
-			{
-				$el = _c(myDesign::noVisAlias($el->self));
-                $el->$prop->assign($bitmap);
-					if( method_exists($el, $m) )
-					$el->$m($bitmap);
-            }
-            
-			if(isset($param['UPDATE']))
-				if ($param['UPDATE']) $myProperties->setProps();
-            
-            if (!$bitmap->isEmpty()){
-                $obj->value = '(' . t('image') . ')';
-            } else
-                $obj->value = '(' . t('None') . ')';
-                
-            $_sc->update();  // fix bug
-        }
-        
-        $dlg->free();
-		self::updateProps();
-	}
-    
-    public static function VSComponentsClick($self){
-        
-        global $myProperties, $_sc, $fmEdit;
-        
-        $param = $myProperties->elements[ $self ];
-        $prop  = $param['PROP'];
-        
-        $dlg = new TObjectsDialog;
-        
-        if ($dlg->execute(false,'',true)){
-            
-            $obj = _c($self);
-            $value = $dlg->value;
-            $targets = count($_sc->targets_ex) ? $_sc->targets_ex : array($fmEdit);
-            
-            foreach ($targets as $el)
-			{
-				$el = _c(myDesign::noVisAlias($el->self));
-				$el->$prop = $value;
-			}
-			if(isset($param['UPDATE']))
-				if ($param['UPDATE']) $myProperties->setProps();
-            $obj->value = $value;
-        }
-        
-        $dlg->free();
-        self::updateProps();
-    }
-    
-    public static function VSSizesClick($self){
-        
-        global $myProperties, $_sc, $fmEdit;
-        
-        $param = $myProperties->elements[ $self ];
-        $prop  = $param['PROP'];
-        
-        $dlg = new TSizesDialog;
-        $dlg->setSizeControl( '_sc' );
-        $dlg->setObject( $myProperties->selObj );
-        
-        if ($dlg->execute()){
-            
-        }
-        $_sc->update();  // fix bug
-        $dlg->free();
-		self::updateProps();
-    }
-    
-    public static function VSFontClick($self){
-       
-        global $myProperties, $_sc, $fmEdit;
-        
-        $param = $myProperties->elements[ $self ];
-        $prop  = $param['PROP'];
-        
-        $dlg = new TFontDialog;
-        $dlg->font->assign( $myProperties->selObj->$prop );
-        
-        if ($dlg->execute()){
-            
-            $font  = $dlg->font;
-            $targets = count($_sc->targets_ex) ? $_sc->targets_ex : array($fmEdit);
-
-            foreach ($targets as $link=>$el){
-				$el = _c(myDesign::noVisAlias($el->self));
-                $el->$prop->assign($font);
-            }
-            
-            self::setFontDsgn(_c($self), $font);
-            $_sc->update();  // fix bug
-        }
-        
-        $dlg->free();
-		self::updateProps();
-    }
-    
-    public static function VSColorClick($self){
-       
-        global $myProperties, $_sc, $fmEdit;
-        
-        $param = $myProperties->elements[ $self ];
-        $prop  = $param['PROP'];
-		
-        $dlg = new TDMSColorDialog;
-        $dlg->color = $myProperties->selObj->$prop;
-		
-        $colors = myOptions::get('colors','in',null);
-		if( $colors!==null )
-		{
-			list($dlg->MainColors->text, $dlg->CustomColors->text) = unserialize(base64_decode($colors));
-		}
-        $x = cursor_real_x($dlg->form,10);
-        $y = cursor_real_y($dlg->form,10);
-        
-        if ($dlg->execute($x, $y)){
-            
-            $color  = $dlg->color;
-            $targets = count($_sc->targets_ex) ? $_sc->targets_ex : array($fmEdit);
-            myHistory::add($targets, $prop);
-            
-            foreach ($targets as $link=>$el){
-				$el = _c(myDesign::noVisAlias($el->self));
-                $el->$prop = $color;
-            }
-            
-            self::setColorDsgn(_c($self), $color);
-            $_sc->update();  // fix bug
-			myOptions::set('colors', 'in', base64_encode(serialize(array($dlg->MainColors->text, $dlg->CustomColors->text))));
-        }
-
-			
-        $dlg->free();
-		self::updateProps();
-    }
-    public static function VSTIBClick($self)
-	{
-		global $myProperties, $_sc, $fmEdit;
-        $prop  = 'images';
-		$targets = count($_sc->targets_ex) ? $_sc->targets_ex : array($fmEdit);
-		$ib = _c(myDesign::noVisAlias(current($targets)->self));;
-		if($ib == $fmEdit) return;
-		$prev = $ib->$prop;
-		$prev2 = isset($ib->state)? $ib->state: null;
-		if( master_TIB::execute( $ib ) )
-		{
-            myHistory::add($targets, $prop);
-            if( count($targets) > 1 )
-				foreach ($targets as $link=>$el){
-					$el = _c(myDesign::noVisAlias($el->self));
-					if( isset($el->$prop) )
-						$el->$prop = $ib->$prop;
-					if( isset($el->state) )
-						$el->state = $ib->state;
-				}
-		} else {
-			$ib->$prop = $prev;
-			if( isset($ib->state) )
-				$ib->state = $prev2;
-		}
-		self::setTibDsgn(c($self), count($ib->$prop) );
-		$_sc->update();  // fix bug
-		self::updateProps();	// fix bug
-	}
-	public static function setTibDsgn($obj, $cnt)
-	{
-		$cnt = str_split($cnt);
-		$cnt = end($cnt);
-		switch( $cnt )
-		{
-			case 1: {
-				$cnt = $cnt . " " . t("img_cnt_1");
-			} break;
-			case 2: case 3: case 4:
-			{
-				$cnt = $cnt . " " . t("img_cnt_234");
-			} break;
-			case 5: case 6: case 7: case 8: case 9: case 0:
-			{
-				$cnt = $cnt . " " . t("img_cnt_5_0");
-			} break;
-		}
-		$obj->value = "[ " . $cnt . " ]";
-	}
-    public static function VSMenuClick($self){
-        
-        global $myProperties, $toSetProp, $_sc;
-        if ($toSetProp) return;
-        
-        $param = $myProperties->elements[ $self ];
-        $prop  = $param['PROP'];
-        
-        $dlg = new TMenuDialog;
-        $dlg->value = $myProperties->selObj->$prop;
-        
-        if ($dlg->execute()){
-            
-            $value = $dlg->value;
-            c($self)->value = $value;
-            
-            $targets = count($_sc->targets_ex) ? $_sc->targets_ex : array($fmEdit);
-            myHistory::add($targets, $prop);
-            
-                foreach ($targets as $self=>$el){
-                    $el = _c(myDesign::noVisAlias($el->self));
-                    $el->$prop = $value;
-                }
-                
-            $_sc->update();  // fix bug
-        }
-        
-        $dlg->free(); 
-		self::updateProps();
-    }
-    
-    public static function VSButtonClick($self){
-        
-        global $myProperties, $toSetProp, $_sc;
-        if ($toSetProp) return;
-        
-        clearEditorHotKeys();
-        
-        $param = $myProperties->elements[ $self ];
-        $prop  = $param['PROP'];
-        
-        $dlg = new TTextDialog;
-        $dlg->value = $myProperties->selObj->$prop;
-        
-        if ($dlg->execute()){
-            
-            c($self)->value = $dlg->value;
-            $value = $dlg->value; // f.b.
-            
-            $targets = count($_sc->targets_ex) ? $_sc->targets_ex : array($fmEdit);
-            myHistory::add($targets, $prop);
-            
-                foreach ($targets as $self=>$el){
-                    $el = _c(myDesign::noVisAlias($el->self));
-                    $el->$prop = $value;
-                }
-            
-            $_sc->update();  // fix bug
-        }
-        
-        $dlg->free();
-		self::updateProps();
-    }
-    
-    public static function VSEdit($self, $link, $value, $CAN){
-        
-        global $myProperties, $_sc, $fmEdit, $toSetProp;
-        if ($toSetProp) return;
-        
-        clearEditorHotKeys();
-        
-        $param = $myProperties->elements[ $link ];
-        $prop  = $param['PROP'];
-        
-        
-        if ($param['TYPE']=='font'){
-            
-            $font = $myProperties->selObj->$prop;    
-            
-            self::setFontDsgn(c($link), $font);
-            return false;
-        }
-		if ($param['TYPE']=='stfont'){
-            
-            $font = $myProperties->selObj->$prop;    
-            
-            self::setFontDsgn(c($link), $font);
-            return false;
-        }
-        
-        if ($param['TYPE']=='color'){
-            
-            $color = $myProperties->selObj->$prop;    
-            
-            self::setColorDsgn(c($link), $color);
-            return false;
-        }
-        
-        if ($param['TYPE']=='sizes'){
-            
-            $color = $myProperties->selObj->$prop;    
-            
-            c($link)->value = '('.t('Sizes & Position').')';
-            return false;
-        }
-        
-        if (substr($param['PROP'],0,6)=='cursor'){
-            
-            $value = constant($value);
-        } elseif ($param['TYPE']=='combo'){
-            
-			
-            if ( isset($param['NO_CONST']) )
-                $value = ((bool)$param['NO_CONST'])? array_search($value,$param['VALUES']): constant($value);
-            else {
-                $value = constant($value);
-            }
-			
-        }
-				
-        if ($param['PROP']=='modalResult'){
-            
-			if ( !is_numeric($value) ) // fix
-            $value = constant($value);
-        }
-		
+	public static $types;
 	
-        if ($param['TYPE']=='form'){
-            
-            c($link)->value  = '('.t('Properties').')';
-            return;
-        }
-        
-        if ($param['PROP']=='name'){
-            
-            global $myProperties;
-            $obj = $myProperties->selObj;    
-            
-            //myHistory::add($obj, $prop);
-            
-		
-	    if (!preg_match('/^[a-z]{1}[a-z0-9\_]*$/i',$value)){
-                c($link)->value = $value;
-                return;
-            }
-	        
-            myDesign::changeName($obj, $value);
-        
-        } else {
-            
-            $targets = count($_sc->targets_ex) ? $_sc->targets_ex : array($fmEdit);
-            myHistory::add($targets, $prop);
-			
-            foreach ($targets as $self=>$el){
-                $el = _c(myDesign::noVisAlias($el->self));
-                $el->$prop = $value;
-            }
-            
-            $_sc->update();  // fix bug
-            $_sc->updateBtns();
-            
-            //$myProperties->unFocusPanel();
-        }
-		self::updateProps();
-    }
-    
-    public static function VSBarClick($self, $prop, $index){
-        
-        global $myProperties, $_sc, $fmEdit, $toSetProp;
-        if ($toSetProp) return;
-        
-        $param = $myProperties->elements[ $prop ];
-        
-        if ($param['TYPE']!=='check') return;
-        
-        $value = _c($prop)->value === t('Yes') ? true : false;
-        
-        $prop  = $param['PROP'];
-        $targets = count($_sc->targets_ex) ? $_sc->targets_ex : array($fmEdit);
-        myHistory::add($targets, $prop);
-        
-        foreach ($targets as $self=>$el){
-           $el = _c(myDesign::noVisAlias($el->self));
-            $el->$prop = $value;
-        }
-        $_sc->update();  // fix bug
-		self::updateProps();
-    }
-    
-    function formSelect($self, $form){
-        
-        global $myProject, $fmEdit, $formSelected, $_FORMS;
-        
-        $position     = $form->findComponent('c_position')->items->selected;
-        $windowState  = $form->findComponent('c_windowstate')->items->selected;
-        $formStyle    = $form->findComponent('c_formstyle')->items->selected;
-        $borderStyle  = $form->findComponent('c_borderstyle')->items->selected;
-        
-        $visible      = $form->findComponent('c_visible')->checked;
-        $noload       = $form->findComponent('c_noload')->checked;
-        $i_close      = $form->findComponent('c_close')->checked;
-        $i_min        = $form->findComponent('c_min')->checked;
-        $i_max        = $form->findComponent('c_max')->checked;
-               
-        $e_minwidth   = $form->findComponent('e_minwidth');
-        $e_minheight  = $form->findComponent('e_minheight');
-        $e_maxheight  = $form->findComponent('e_maxheight');
-        $e_maxwidth   = $form->findComponent('e_maxwidth');
-        
-        $fmEdit->constraints->maxheight  = $e_maxheight->text;
-        $fmEdit->constraints->maxwidth  = $e_maxwidth->text;
-        $fmEdit->constraints->minheight = $e_minheight->text;
-        $fmEdit->constraints->minwidth  = $e_minwidth->text;
-        
-        $info =& $myProject->formsInfo[$_FORMS[$formSelected]];
-        $info['position']    = $position;
-        $info['windowState'] = $windowState;
-        $info['formStyle']   = $formStyle;
-        $info['borderStyle'] = $borderStyle;
-        $info['visible']     = $visible;
-        $info['noload']      = $noload;
-        $info['i_close']     = $i_close;
-        $info['i_min']       = $i_min;
-        $info['i_max']       = $i_max;
-        
-        myProject::saveFormInfo();
-    }
-    
-    
-    function formShow($self, $form, $x = true){
-        
-        global $myProject, $formSelected, $_FORMS, $fmEdit;
-        
-        $c_position   = $form->findComponent('c_position');
-        $c_windowState= $form->findComponent('c_windowstate');
-        $c_formstyle  = $form->findComponent('c_formstyle');
-        $c_borderstyle= $form->findComponent('c_borderstyle');
-        
-        $c_visible    = $form->findComponent('c_visible');
-        $c_noload     = $form->findComponent('c_noload');
-        $i_close      = $form->findComponent('c_close');
-        $i_min        = $form->findComponent('c_min');
-        $i_max        = $form->findComponent('c_max');
-        
-        $e_minwidth   = $form->findComponent('e_minwidth');
-        $e_minheight  = $form->findComponent('e_minheight');
-        $e_maxheight  = $form->findComponent('e_maxheight');
-        $e_maxwidth   = $form->findComponent('e_maxwidth');
-        
-        $e_maxheight->text = $fmEdit->constraints->maxheight;
-        $e_maxwidth->text  = $fmEdit->constraints->maxwidth;
-        $e_minheight->text = $fmEdit->constraints->minheight;
-        $e_minwidth->text  = $fmEdit->constraints->minwidth;
-        
-        $form->findComponent('ud_maxheight')->position = $fmEdit->constraints->maxheight;
-        $form->findComponent('ud_maxwidth')->position  = $fmEdit->constraints->maxwidth;
-        $form->findComponent('ud_minheight')->position = $fmEdit->constraints->minheight;
-        $form->findComponent('ud_minwidth')->position  = $fmEdit->constraints->minwidth;
-        
-        $info = $myProject->formsInfo[$_FORMS[$formSelected]];
-        
-        if ($info['position']){
-            $c_position->items->selected    = $info['position'];
-            $c_windowState->items->selected = $info['windowState'];
-            $c_formstyle->items->selected   = $info['formStyle'];
-            $c_borderstyle->items->selected   = $info['borderStyle'];
-            
-            $c_visible->checked      = (bool)$info['visible'];
-            $c_noload->checked       = (bool)$info['noload'];
-            $i_close->checked        = $info['i_close'];
-            $i_max->checked          = $info['i_max'];
-            $i_min->checked          = $info['i_min'];
-        } else {
-            $c_position->items->selected    = 'poDesigned';
-            $c_windowState->items->selected = 'wsNormal';
-            $c_formstyle->items->selected   = 'fsNormal';
-            $c_visible->checked = false;
-            $c_noload->checked = false;
-            $i_close->checked   = true;
-            $i_max->checked     = true;
-            $i_min->checked     = true;
-        }
-        
-    }
-    
-    static function setFontDsgn($obj, $font)
-	{    
-		foreach(['name', 'color', 'style', 'charset'] as $p)
-		$obj->ValueFont->$p = $font->$p;
-        $obj->value = $font->name. ','. $font->size .','. toHTMLColor($font->color);
-    }
-    
-    static function setColorDsgn($obj, $color){
-        
-       // $obj->valueFont('color',$color);
-        $obj->value = toHTMLColor($color);
-    }
-    
-    static function updateProps()
+    static function updateProps($p=false,$link=false)
 	{
-        $GLOBALS['myProperties']->_setProps(true);
+        $GLOBALS['myProperties']->_setProps($p,$link);
     }
-    function _setProps($update = false){
+    function _setProps($interclude=false,$exclude=false){
         
         global $_c, $toSetProp, $fmEdit;
         $toSetProp = true;
         if( !is_object($this->selObj) )
 			$this->selObj = $fmEdit;
-        $elements = $this->params[$this->selObj->className];
-        
-		if( is_array($elements) )
-			foreach ($elements as $self=>$param){
-            
+		if($interclude)
+		{
+			$arr = [$exclude];
+			$exclude = false;
+		}$arr =& $this->params[$this->selObj->className];
+		if( is_array($arr) )
+			foreach($arr as $self)
+			{
+				$param =& $this->elements[$self];
+				if($self==$exclude) continue;
 				if (!isset($param['TYPE'])) continue;
-            
-				$prop = is_array($param['PROP']) ? $param['PROP'][0] : $param['PROP'];
-				$value = $this->selObj->$prop;
-            
-				$obj = _c($self);
-				
-				if ($param['TYPE']=='combo'){
-                
-					if (substr($param['PROP'],0,6)=='cursor'){
-                    
-						if (is_string($value))
-							$index = array_search(constant($value), array_keys($GLOBALS['cursors_meta']));
-						else
-							$index = array_search($value, array_keys($GLOBALS['cursors_meta']));
-						$value = $index;
-					}
-						
-					if (preg_match('/^([0-9]+)$/',$value)){
-						$value = (int)$value;
-						$i = -1;
-						foreach ($param['VALUES'] as $key => $el){
-                        
-							++$i;
-							if ($key == $value) break;
-						}
-                    
-						$obj->itemIndex = $i;
-					} else {
-						if(isset($param['NO_CONST'])){
-							if ($param['NO_CONST']){
-								$lines = explode(_BR_,$obj->text);
-								$k     = array_search($value, $lines);
-							
-								$obj->itemIndex = $k;
-							} else {
-								$obj->itemIndex = $_c->$value;
-							}
-						} else {
-							$obj->itemIndex = $_c->$value;
+				if(isset(self::$types[$param['TYPE']]))
+				{
+					$type = self::$types[$param['TYPE']];
+					if( defined("$type::caption") ) continue;
+					$prop = $param['PROP'];
+					$p = $this->selObj->$prop;
+					if($this->selObj instanceof TForm && !is_object($this->selObj->$prop))
+					{
+						$fname =& $GLOBALS['_FORMS'][$GLOBALS['formSelected']];
+						$formsinfo =& $GLOBALS['myProject']->formsInfo[$fname];
+						if(strtolower($prop)=='name')
+						{
+							$p = $fname;
+						} elseif( isSet( $formsinfo[$prop] ) )
+						{
+							$p = $formsinfo[$prop];
 						}
 					}
-				} elseif ($param['TYPE']=='scombo'){
-                
-					$obj->itemIndex = constant($value);
-                
-				} elseif ($param['TYPE']=='check') {
-                
-					$obj->value = $value ? t('Yes') : t('No');
-					//$obj->itemIndex = $value ? 0 : 1;
-               
-				} elseif ($param['TYPE']=='image'){
-                
-					$ovalue = $this->selObj->$prop;
-                
-					if ($ovalue)
-					if (!$ovalue->isEmpty())
-						$obj->value = '(' . t('image') . ')';
-					else
-						$obj->value = '(' . t('None') . ')';
-                    
-                
-				} elseif ($param['TYPE']=='font'){
-                
-					self::setFontDsgn($obj, $this->selObj->$prop);
-                
-				} elseif ($param['TYPE']=='stfont'){
-                
-					self::setFontDsgn($obj, $this->selObj->$prop);
-                
-				} elseif ($param['TYPE']=='color'){
-                
-					self::setColorDsgn($obj, $this->selObj->$prop);
-                
-				} elseif ($param['TYPE']=='form') {
-                
-					$obj->value = '('.t('Properties').')';
-                
-				} elseif ($param['TYPE']=='sizes') {
-                
-					$obj->value = '('.t('Sizes & Position').')';
-                
-				} elseif ($param['TYPE']=='hotkey') {
-					$obj->value = $this->selObj->$prop;
-                
-				} elseif ($param['TYPE']=='components'){
-                
-					$obj->value = $this->selObj->$prop;
-					//$obj->inText = $this->selObj->$prop;
-					/*global $_FORMS, $formSelected;
-					$forms = myProject::getFormsObjects();
-					$items = [];
-                
-					if ($param['ONE_FORM']){
-                    
-						foreach ($forms[$_FORMS[$formSelected]] as $x)
-							$items[] = ($x['NAME']); 
-					} else {
-                    
-						foreach ($forms as $form=>$objs){
-							$items[] = ($form);
-                        foreach ($objs as $x)
-                            $items[] = ($form.'->'.$x['NAME']);
+					if( $this->selObj->name!=="" && !gui_is($this->selObj->self, 'TControl') )
+					{
+						$prop =	strtolower($prop);
+						$arr = ["x","y","w","h","left","top","width","height"];
+						if(in_array($prop,$arr))
+						{
+							$pos = array_search($prop,$arr);
+							$p = $GLOBALS['myProject']->formsInfo[$GLOBALS['_FORMS'][$GLOBALS['formSelected']]]["_v"][$this->selObj->name][ ($pos%2==0?1:0) ];
+							if($pos%3==0||$pos%4==0)
+								$p = 24;
 						}
 					}
-                
-					$obj->text = $items;
-					$obj->value = $this->selObj->$prop;*/
-                
-				} elseif ($param['TYPE']=='files') {
-                
-					$items = [];
-                
-					global $projectFile;
-					$files = findFiles(dirname($projectFile), $param['EXT'], $param['RECURSIVE'], true);
-                
-					foreach ($files as $file){
-						$file = str_replace([dirname($projectFile),'//'],['','//'], $file);
-						if ($file[0]=='/')
-							$file[0] = ' '; $file = ltrim($file);
-                    
-						if (!in_array($file, $items))
-							$items[] = $file;
-					}
-                
-					$obj->text  = $items;
-					$obj->value = $this->selObj->$prop;
-				} elseif ($param['TYPE']=='tib') {
-					self::setTibDsgn($obj, count($this->selObj->images));
-				} else {
-					//$obj->text = $this->selObj->$prop;
-					$obj->value = (string)$this->selObj->$prop;
+					if( method_exists($type, "Update") )
+					{
+						$type::Update(_c($self),$p);
+					} else _c($self)->value = $p;
 				}
-            
 			}
-			
-			$toSetProp = false;
+		$toSetProp = false;
     }
     
     function setProps(){
         global $myProperties; $myProperties->_setProps();
         //setTimeout(25, 'global $myProperties; $myProperties->_setProps()');
-    }
-    
-    
-    function createXName(&$param, $class){
-    
-        self::createXText($param, $class);    
-    }
-    
-    function createXText(&$param, $class){
-        
-        $edt = new TNxButtonItem;
-        $edt->caption = $param['CAPTION'];
-        
-		if (isset($param['ADD_GROUP'])){
-			if ($param['ADD_GROUP']){
-				$edt = _c($this->panels[$class]['GROUP_ADD']->add($edt, $param['CAPTION']));
-			}else{
-				$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
-			}
-		}else{
-			$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
-		}
-        $edt->ButtonCaption = '...';
-        $edt->buttonWidth = 19;
-
-		if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
-			$edt->hint = $param['CAPTION']._BR_."[->{$param['REAL_PROP']}]";
-		else
-			$edt->hint = $param['CAPTION']._BR_."[->{$param['PROP']}]";
-        $edt->showHint = true;
-        $edt->onButtonClick = 'myProperties::VSButtonClick';
-        
-        $this->params[$class][$edt->self] =& $param; 
-        $this->elements[$edt->self] = $param;
-    }
-    
-    
-    function createXMenu(&$param, $class){
-        
-        $edt = new TNxButtonItem;
-        
-        if (isset($param['ADD_GROUP'])){
-			if ($param['ADD_GROUP']){
-				$edt = _c($this->panels[$class]['GROUP_ADD']->add($edt, $param['CAPTION']));
-			}else{
-				$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
-			}
-		}else{
-			$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
-		}
-        $edt->ButtonCaption = '...';
-        $edt->buttonWidth = 19;
-        if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
-			$edt->hint = $param['CAPTION']._BR_."[->{$param['REAL_PROP']}]";
-		else
-			$edt->hint = $param['CAPTION']._BR_."[->{$param['PROP']}]";
-        $edt->showHint = true;
-        //$edt->readOnly = true;
-        $edt->onButtonClick = 'myProperties::VSMenuClick';
-        
-        $this->params[$class][$edt->self] =& $param;
-        $this->elements[$edt->self] = $param;
-    }
-    
-    
-    function createXForm(&$param, $class){
-        
-        $edt = new TNxButtonItem;
-        
-        if (isset($param['ADD_GROUP'])){
-			if ($param['ADD_GROUP']){
-				$edt = _c($this->panels[$class]['GROUP_ADD']->add($edt, $param['CAPTION']));
-			}else{
-				$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
-			}
-		}else{
-			$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
-		}
-        $edt->ButtonCaption = '...';
-        $edt->buttonWidth = 19;
-        if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
-			$edt->hint = $param['CAPTION']._BR_."[->{$param['REAL_PROP']}]";
-		else
-			$edt->hint = $param['CAPTION']._BR_."[->{$param['PROP']}]";
-        $edt->showHint = true;
-        $edt->value  = '('.t('Properties').')';
-        
-        $edt->onButtonClick = 'myProperties::VSFormClick';
-        
-        $this->params[$class][$edt->self] =& $param;
-        $this->elements[$edt->self] = $param;
-    }
-    
-    function createXColor(&$param, $class){
-        
-        $edt = new TNxButtonItem;
-        
-        if (isset($param['ADD_GROUP'])){
-			if ($param['ADD_GROUP']){
-				$edt = _c($this->panels[$class]['GROUP_ADD']->add($edt, $param['CAPTION']));
-			}else{
-				$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
-			}
-		}else{
-			$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
-		}
-        $edt->ButtonCaption = '...';
-        $edt->buttonWidth = 19;
-        if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
-			$edt->hint = $param['CAPTION']._BR_."[->{$param['REAL_PROP']}]";
-		else
-			$edt->hint = $param['CAPTION']._BR_."[->{$param['PROP']}]";
-        $edt->showHint = true;
-        
-        $edt->onButtonClick = 'myProperties::VSColorClick';
-        
-        $this->params[$class][$edt->self] =& $param;
-        $this->elements[$edt->self] = $param;
-    }
-    function createXTib(&$param, $class){
-        
-        $edt = new TNxButtonItem;
-        
-        if (isset($param['ADD_GROUP'])){
-			if ($param['ADD_GROUP']){
-				$edt = _c($this->panels[$class]['GROUP_ADD']->add($edt, $param['CAPTION']));
-			}else{
-				$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
-			}
-		}else{
-			$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
-		}
-        $edt->ButtonCaption = '...';
-        $edt->buttonWidth = 19;
-        if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
-			$edt->hint = $param['CAPTION']._BR_."[->{$param['REAL_PROP']}]";
-		else
-			$edt->hint = $param['CAPTION']._BR_."[->{$param['PROP']}]";
-        $edt->showHint = true;
-        
-        $edt->onButtonClick = 'myProperties::VSTIBClick';
-        
-        $this->params[$class][$edt->self] =& $param;
-        $this->elements[$edt->self] = $param;
-    }
-    function createXFont(&$param, $class){
-        
-        $edt = new TNxButtonItem;
-         if (isset($param['ADD_GROUP'])){
-			if ($param['ADD_GROUP']){
-				$edt = _c($this->panels[$class]['GROUP_ADD']->add($edt, $param['CAPTION']));
-			}else{
-				$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
-			}
-		}else{
-			$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
-		}
-        if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
-			$edt->hint = $param['CAPTION']._BR_."[->{$param['REAL_PROP']}]";
-		else
-			$edt->hint = $param['CAPTION']._BR_."[->{$param['PROP']}]";
-        $edt->showHint    = true;
-        $edt->buttonWidth = 19;
-        $edt->value       = '('. t('Font options') .')';
-        
-        $edt->ButtonCaption = '...';
-        
-        $edt->onButtonClick = 'myProperties::VSFontClick';
-        
-        $this->params[$class][$edt->self] =& $param;
-        $this->elements[$edt->self] = $param;
-    }
-    function createXSTFont(&$param, $class){
-        
-        $edt = new TNxButtonItem;
-        if (isset($param['ADD_GROUP'])){
-			if ($param['ADD_GROUP']){
-				$edt = _c($this->panels[$class]['GROUP_ADD']->add($edt, $param['CAPTION']));
-			}else{
-				$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
-			}
-		}else{
-			$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
-		}
-        
-        if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
-			$edt->hint = $param['CAPTION']._BR_."[->{$param['REAL_PROP']}]";
-		else
-			$edt->hint = $param['CAPTION']._BR_."[->{$param['PROP']}]";
-        $edt->showHint    = true;
-        $edt->buttonWidth = 19;
-        $edt->value       = '('. t('Font options') .')';
-        
-        $edt->ButtonCaption = '...';
-        
-        $edt->onButtonClick = 'myProperties::VSFontClick';
-        
-        $this->params[$class][$edt->self] =& $param;
-        $this->elements[$edt->self] = $param;
-    }
-    function createXNumber(&$param, $class){
-        
-        $edt = new TNxSpinItem;
-        if (isset($param['ADD_GROUP'])){
-			if ($param['ADD_GROUP']){
-				$edt = _c($this->panels[$class]['GROUP_ADD']->add($edt, $param['CAPTION']));
-			}else{
-				$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
-			}
-		}else{
-			$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
-		}
-        if ($class == 'TForm'){
-            global $propFormW, $propFormH;
-            
-            if ($param['PROP']=='clientWidth')
-                $propFormW = $edt;
-            if ($param['PROP']=='clientHeight')
-                $propFormH = $edt;
-        }
-        
-        if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
-			$edt->hint = $param['CAPTION']._BR_."[->{$param['REAL_PROP']}]";
-		else
-			$edt->hint = $param['CAPTION']._BR_."[->{$param['PROP']}]";
-        $edt->showHint = true;
-        
-        $this->params[$class][$edt->self] =& $param;
-        $this->elements[$edt->self] = $param;
-    }
-    
-    function createXHotkey(&$param, $class){
-        
-        $edt = new TNxButtonItem;
-        $edt->caption = $param['CAPTION'];
-        
-        if (isset($param['ADD_GROUP'])){
-			if ($param['ADD_GROUP']){
-				$edt = _c($this->panels[$class]['GROUP_ADD']->add($edt, $param['CAPTION']));
-			}else{
-				$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
-			}
-		}else{
-			$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
-		}
-        $edt->ButtonCaption = '...';
-        $edt->buttonWidth = 19;
-        if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
-			$edt->hint = $param['CAPTION']._BR_."[->{$param['REAL_PROP']}]";
-		else
-			$edt->hint = $param['CAPTION']._BR_."[->{$param['PROP']}]";
-        $edt->showHint = true;
-        $edt->onButtonClick = 'myProperties::VSButtonClick';
-        
-        $this->params[$class][$edt->self] =& $param;
-        $this->elements[$edt->self] = $param;
-    }
-    
-    function createXImage(&$param, $class){
-        
-        $edt = new TNxButtonItem;
-        $edt->caption = $param['CAPTION'];
-        
-        if (isset($param['ADD_GROUP'])){
-			if ($param['ADD_GROUP']){
-				$edt = _c($this->panels[$class]['GROUP_ADD']->add($edt, $param['CAPTION']));
-			}else{
-				$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
-			}
-		}else{
-			$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
-		}
-        $edt->ButtonCaption = '...';
-        $edt->buttonWidth = 19;
-        if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
-			$edt->hint = $param['CAPTION']._BR_."[->{$param['REAL_PROP']}]";
-		else
-			$edt->hint = $param['CAPTION']._BR_."[->{$param['PROP']}]";
-        $edt->showHint = true;
-        $edt->value       = '('. t('None') .')';
-        
-        $edt->onButtonClick = 'myProperties::VSImageClick';
-        
-        $this->params[$class][$edt->self] =& $param;
-        $this->elements[$edt->self] = $param;
-    }
-    
-    function createXCombo(&$param, $class){
-        
-        $edt = new TNxComboBoxItem;
-        $edt->caption = $param['CAPTION'];
-        
-        if (isset($param['ADD_GROUP'])){
-			if ($param['ADD_GROUP']){
-				$edt = _c($this->panels[$class]['GROUP_ADD']->add($edt, $param['CAPTION']));
-			}else{
-				$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
-			}
-		}else{
-			$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
-		}
-        
-        if (count($param['VALUES']))
-            $edt->text = $param['VALUES'];
-        
-        if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
-			$edt->hint = $param['CAPTION']._BR_."[->{$param['REAL_PROP']}]";
-		else
-			$edt->hint = $param['CAPTION']._BR_."[->{$param['PROP']}]";
-        $edt->showHint = true;
-		
-        //_c($tmp)->onButtonClick = 'myProperties::VSButtonClick';
-        $this->params[$class][$edt->self] =& $param;
-        $this->elements[$edt->self] = $param;
-    }
-    
-    /*function createXComponents($param, $class){
-        
-        $edt = new TNxComboBoxItem;
-        $edt->caption = $param['CAPTION'];
-        
-        if ($param['ADD_GROUP'])
-            $edt = _c($this->panels[$class]['GROUP_ADD']->add($edt, $param['CAPTION']));
-        else
-            $edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
-        
-        $edt->hint = $param['CAPTION'];
-        $edt->showHint = true;
-
-        $this->elements[$edt->self] = $param;
-    }*/
-        
-    
-    function createXComponents(&$param, $class){
-      
-        $edt = new TNxButtonItem;
-        
-        if (isset($param['ADD_GROUP'])){
-			if ($param['ADD_GROUP']){
-				$edt = _c($this->panels[$class]['GROUP_ADD']->add($edt, $param['CAPTION']));
-			}else{
-				$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
-			}
-		}else{
-			$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
-		}
-        if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
-			$edt->hint = $param['CAPTION']._BR_."[->{$param['REAL_PROP']}]";
-		else
-			$edt->hint = $param['CAPTION']._BR_."[->{$param['PROP']}]";
-        $edt->showHint    = true;
-        $edt->buttonWidth = 19;
-        $edt->ButtonCaption = '...';
-        $edt->caption = $param['CAPTION'];
-        
-        $edt->onButtonClick = 'myProperties::VSComponentsClick';
-        $this->params[$class][$edt->self] =& $param;
-        $this->elements[$edt->self] = $param;
-    }
-    
-    function createXFiles(&$param, $class){
-        
-        $edt = new TNxComboBoxItem;
-        $edt->caption = $param['CAPTION'];
-        
-        if (isset($param['ADD_GROUP'])){
-			if ($param['ADD_GROUP']){
-				$edt = _c($this->panels[$class]['GROUP_ADD']->add($edt, $param['CAPTION']));
-			}else{
-				$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
-			}
-		}else{
-			$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
-		}
-        if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
-			$edt->hint = $param['CAPTION']._BR_."[->{$param['REAL_PROP']}]";
-		else
-			$edt->hint = $param['CAPTION']._BR_."[->{$param['PROP']}]";
-        $edt->showHint = true;
-
-        $this->params[$class][$edt->self] =& $param;
-        $this->elements[$edt->self] = $param;
-    }
-    
-    function createXCheck(&$param, $class){
-        
-        $edt = new TNxCheckBoxItem;
-        
-        if (isset($param['ADD_GROUP'])){
-			if ($param['ADD_GROUP']){
-				$edt = _c($this->panels[$class]['GROUP_ADD']->add($edt, $param['CAPTION']));
-			}else{
-				$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
-			}
-		}else{
-			$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
-		}
-        
-        $edt->showText = true;
-        $edt->TextKind = 'tkCustom';
-        $edt->TrueText = t('Yes');
-        $edt->FalseText = t('No');
-        if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
-			$edt->hint = $param['CAPTION']._BR_."[->{$param['REAL_PROP']}]";
-		else
-			$edt->hint = $param['CAPTION']._BR_."[->{$param['PROP']}]";
-        $edt->showHint = true;
-        
-        //_c($tmp)->onButtonClick = 'myProperties::VSButtonClick';
-        $this->params[$class][$edt->self] = &$param;
-        $this->elements[$edt->self] = $param;
-    }
-    
-    function createXSizes(&$param, $class){
-        
-        $edt = new TNxButtonItem;
-        
-        if (isset($param['ADD_GROUP'])){
-			if ($param['ADD_GROUP']){
-				$edt = _c($this->panels[$class]['GROUP_ADD']->add($edt, $param['CAPTION']));
-			}else{
-				$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
-			}
-		}else{
-			$edt = _c($this->panels[$class]['GROUP']->add($edt, $param['CAPTION']));
-		}
-        
-       if(trim(isset($param['REAL_PROP'])? $param['REAL_PROP']: '')>'')
-			$edt->hint = $param['CAPTION']._BR_."[->{$param['REAL_PROP']}]";
-		else
-			$edt->hint = $param['CAPTION']._BR_."[->{$param['PROP']}]";;
-        
-        $edt->showHint    = true;
-        $edt->buttonWidth = 19;
-        $edt->value       = '('.t('Sizes & Position').')';;
-        
-        $edt->ButtonCaption = '...';
-        
-        $edt->onButtonClick = 'myProperties::VSSizesClick';
-        $this->params[$class][$edt->self] =& $param;
-        $this->elements[$edt->self] = $param;
     }
     
     static function unFocusPanel(){
@@ -1140,8 +106,8 @@ class myProperties {
         }
     }
     
-    function generate($self,$panel){
-       
+    function generate($self,$panel)
+	{   
         global $componentProps;
         
         if (is_object($self)){
@@ -1157,29 +123,23 @@ class myProperties {
             $this->panel  = $panel;    
            
             if (!isset($this->panels[$class])){
-                if (is_array($componentProps[$class])){
-                    
-					
-                                       
+                if (is_array($componentProps[$class]))
+				{                                  
                     $this->generateClass($class, 0);      
                     if (isset($this->panels[$this->last_class]['PANEL'])){
                         $this->panels[$class]['PANEL']->splitterPosition = $this->panels[$this->last_class]['PANEL']->splitterPosition;
                         myOptions::set('panelLeft', 'splitterW', $this->panels[$this->last_class]['PANEL']->splitterPosition);
-                    }
-                    else {
+                    } else {
 						
 						if(is_object($this) && isset($this->panels) && isset($this->panels[$class]) && isset($this->panels[$class]['PANEL']))
 							if(is_object($this->panels[$class]['PANEL']))
 								if(myOptions::get('panelLeft', 'splitterW', null)!==null)
 								$this->panels[$class]['PANEL']->splitterPosition = (int)myOptions::get('panelLeft', 'splitterW',0);
                     }
-					//pre( $this->panels[$class]['PANEL'] 
-                }
-                
-                       
+                }      
             } else {
-                
-                if (isset($this->panels[$this->last_class]['PANEL'])) {
+                if (isset($this->panels[$this->last_class]['PANEL']))
+				{
                     $this->panels[$class]['PANEL']->splitterPosition = $this->panels[$this->last_class]['PANEL']->splitterPosition;
                     myOptions::set('panelLeft', 'splitterW', $this->panels[$this->last_class]['PANEL']->splitterPosition);
                 }
@@ -1213,15 +173,123 @@ class myProperties {
         
         myInspect::updateSelected();   
     }
+	public static function VSEdit($self, $link, $value, $CAN){
+        global $myProperties, $_sc, $fmEdit, $toSetProp, $_FORMS, $projectFile, $myProject, $formSelected;
+        if ($toSetProp) return;
+        clearEditorHotKeys();
+        $param = $myProperties->elements[ $link ];
+		$type = self::$types[$param['TYPE']];
+		if( defined("$type::caption") )
+		{
+			_c($link)->value = "(" . t($type::caption) . ")";
+		}
+        $prop  = $param['PROP'];
+		$obj =& $myProperties->selObj;
+		if($obj instanceof TForm)
+		{
+			$prop = strtolower($prop);
+			if($prop=="name")
+			{
+				$value = Localization::toEncoding($value);
+				if (preg_match('/^([a-z]{1})([a-z0-9\_]+)$/i',$value)){
+				foreach ($_FORMS as $el){
+					if (strtolower($el)==strtolower($value)){
+						return;
+					}
+				}
+				$name = $GLOBALS['_FORMS'][$GLOBALS['formSelected']];
+				$dfm_file = dirname($projectFile) .'/'. $name . '.dfm';
+				$dfm_file2= dirname($projectFile) .'/'. $value . '.dfm';
+				if (file_exists($dfm_file2))
+					unlink($dfm_file2);
+				
+				rename($dfm_file, $dfm_file2);
+				
+				myDesign::groupChangeFormName($name, $value);
+				myDesign::eventChangeFormName($name, $value);
+				
+					$k = array_search($name, $_FORMS);
+					$_FORMS[$k] = $value;
+					$id = c('fmMain->tabForms')->tabIndex;
+					c('fmMain->tabForms')->tabs->setLine($k,$value.'.dfm');
+					c('fmMain->tabForms')->tabIndex = $id;
+					$myProject->formsInfo[$value] = $myProject->formsInfo[$name];
+					unset($myProject->formsInfo[$name]);
+					
+					treeBwr_add();
+				}
+				return;
+			}elseif( in_array($prop, ['cursor','x','y','autoscroll','alphablend','alphablendvalue','screensnap','snapbuffer','transparentcolor','transparentcolorvalue','doublebuffered']) )
+			{
+				$myProject->formsInfo[$_FORMS[$formSelected]][$prop] = Localization::toEncoding(method_exists($type,"SaveValue")?$type::SaveValue($param,$value):$value);
+				return;
+			}
+		}
+		$set_prop = false;
+		$upd_sc = true;
+			if ($prop=="name")
+			{
+				$upd_sc = false;
+				if (!preg_match('/^[a-z]{1}[a-z0-9\_]*$/i',$value)){
+					_c($link)->value = $value;
+					return;
+				}
+				myDesign::changeName($obj, $value);
+			} elseif( method_exists($type, "OnEdit") )
+			{
+				$type::OnEdit(_c($link), $prop, $value, $set_prop);
+			}
+			else 	
+				{
+				$targets = count($_sc->targets_ex) ? $_sc->targets_ex : [$fmEdit];
+				myHistory::add($targets, $prop);
+				
+				foreach ($targets as $self=>$el){
+					$el = _c(myDesign::noVisAlias($el->self));
+					$el->$prop = $value;
+				}
+			}
+		if($upd_sc)
+		{
+			$_sc->update();  // fix bug
+			$_sc->updateBtns();
+		}
+		self::updateProps($set_prop,$link);
+    }
+	
+	public static function VSBarClick($self, $link, $index){
+        global $myProperties, $_sc, $fmEdit, $toSetProp, $myProject, $_FORMS, $formSelected;
+        if ($toSetProp) return;
+        
+        $param = $myProperties->elements[ $link ];
+        
+        if ($param['TYPE']!=='check') return;
+        
+        $value = _c($link)->value === t('Yes') ? true : false;
+        
+        $prop  = $param['PROP'];
+		if($myProperties->selObj instanceof TForm && 
+			in_array(strtolower($prop), ['autoscroll','alphablend','screensnap','transparentcolor','doublebuffered']))
+		{
+			$myProject->formsInfo[$_FORMS[$formSelected]][$prop] = $value;
+		} else {
+        $targets = count($_sc->targets_ex) ? $_sc->targets_ex : [$fmEdit];
+        myHistory::add($targets, $prop);
+        
+        foreach ($targets as $self=>$el){
+           $el = _c(myDesign::noVisAlias($el->self));
+            $el->$prop = $value;
+        }
+        $_sc->update();  // fix bug
+		self::updateProps(false,$link);
+		}
+    }
     
-    public function _generateClass($class){
-        
+    public function _generateClass($class)
+	{    
         global $componentProps, $fmMain;
-        
-            
-        if (!isset($this->panels[$class])){
-			$theme = dsThemeDesign::$dir; //#ADDOPT;
-			
+        if (!isset($this->panels[$class]))
+		{
             c("fmMain->editorPopup")->AutoPopup = false;
 			lockWindowUpdate($this->panel->handle);
             $panel = new TNextInspector( $fmMain );
@@ -1246,76 +314,79 @@ class myProperties {
             
             $this->panels[$class]['PANEL'] = $panel;
             $this->panels[$class]['GROUP'] = $gr;
-			
-            if ($class!=='TForm'){
-                $componentProps[$class] =
-                array_merge([['CAPTION'=>t('Name'),'TYPE'=>'Name','PROP'=>'name','ADD_GROUP'=>true]],
-                            (array)$componentProps[$class]);
-                $componentProps[$class] = array_values($componentProps[$class]);
-            }
-            
-            if (is_array($componentProps[$class])){
-                    
+                $componentProps[$class][] =
+							['CAPTION'=>t('Name'),'TYPE'=>'text','PROP'=>'name','ADD_GROUP'=>true];
+				$componentProps[$class][] =
+							['CAPTION'=>t('p_Left'),'TYPE'=>'int','PROP'=>'x','ADD_GROUP'=>true];
+				$componentProps[$class][] =
+							['CAPTION'=>t('p_Top'),'TYPE'=>'int','PROP'=>'y','ADD_GROUP'=>true];
+				$componentProps[$class][] =
+							['CAPTION'=>t('Width'),'TYPE'=>'int','PROP'=>'w','REAL_PROP'=>"clientWidth",'ADD_GROUP'=>true];
+				$componentProps[$class][] =
+							['CAPTION'=>t('Height'),'TYPE'=>'int','PROP'=>'h','REAL_PROP'=>"clientHeight",'ADD_GROUP'=>true];
+							
                 $create_addgr = false;
 				$del = true;
 			foreach ($componentProps[$class] as &$prop){
                     
                 if (!isset($prop['TYPE'])) continue;
-                
-				if(isset($prop['ADD_GROUP']))
-				{
-					if (!$create_addgr && $prop['ADD_GROUP']){
-						$gr2 = new TNxToolbarItem;
-						$gr2->caption = t('gr_additional');
-						$panel->addItem(null, $gr2);
-                    
-						$this->panels[$class]['GROUP_ADD'] = $gr2;
-						$create_addgr = true;
-					}
-					if( !$prop['ADD_GROUP'] )
-						$del = false;
-				} else {
-					$del = false;
-				}
-					
-                if (method_exists($this,'createX'.$prop['TYPE'])){
-					
-                        $this->{'createX'.$prop['TYPE']}($prop, $class);
-
-                        if ($prop['TYPE']=='font'){
-                            $xprop = ['CAPTION'=>t('Font Color'), 'TYPE'=>'color', 'PROP'=>'fontColor', 'REAL_PROP'=>'font->color'];
-                            $this->{'createX'.$xprop['TYPE']}($xprop, $class);
-						}	
-						 if ($prop['TYPE']=='font' or (strtolower($prop['CAPTION'])==strtolower(t('Font Color')) and $prop['TYPE']=='color')){
-							$xr = ['CAPTION'=>t('Font Size'), 'TYPE'=>'number', 'PROP'=>'fontsize', 'REAL_PROP'=>'font->size'];
-							$xt = ['CAPTION'=>t('Font Height'), 'TYPE'=>'number', 'PROP'=>'fontheight'];
-							$xo = ['CAPTION'=>t('Font Pitch'), 'TYPE'=>'combo', 'PROP'=>'fontpitch', 'REAL_PROP'=>'font->pitch', 'VALUES'=>['fpDefault','fpVariable', 'fpFixed']];
-							$xq = ['CAPTION'=>t('Font Quality'), 'TYPE'=>'combo', 'PROP'=>'fontquality', 'REAL_PROP'=>'font->quality', 'VALUES'=>['fqDefault', 'fqDraft', 'fqProof', 'fqNonAntialiased', 'fqAntialiased', 'fqClearType', 'fqClearTypeNatural']];
-							$xla = ['CAPTION'=>t('Font Orientation'), 'TYPE'=>'number', 'PROP'=>'fontori', 'REAL_PROP'=>'font->orientation'];
-							
-                            $this->{'createX'.$xr['TYPE']}($xr, $class);
-							
-                            $this->{'createX'.$xt['TYPE']}($xt, $class);
-							
-                            $this->{'createX'.$xo['TYPE']}($xo, $class);
-							
-                            $this->{'createX'.$xq['TYPE']}($xq, $class);
-							
-							$this->{'createX'.$xla['TYPE']}($xla, $class);
+                if (!isset(self::$types[$prop['TYPE']])) continue;
+					$prop['TYPE'] = strtolower($prop['TYPE']);
+					$type	= self::$types[$prop['TYPE']];
+					$edt	= $type::type;
+					if(isset($prop['ADD_GROUP']))
+					{	
+						if (!$create_addgr && $prop['ADD_GROUP']){
+							$gr2 = new TNxToolbarItem;
+							$gr2->caption = t('gr_additional');
+							$panel->addItem(null, $gr2);
+						
+							$this->panels[$class]['GROUP_ADD'] = $gr2;
+							$create_addgr = true;
 						}
-                }
-            }
+						if( !$prop['ADD_GROUP'] )
+						{
+							$del = false;
+							$edt = $gr->add(new $edt, $prop['CAPTION']);
+						} else $edt = $gr2->add(new $edt, $prop['CAPTION']);
+					} else {
+						$del = false;
+						$edt = $gr->add(new $edt, $prop['CAPTION']);
+					}
+					$type::OnCreate( $edt, $class, $prop );
+					if( defined("$type::caption") )
+					{
+						$edt->value = "(" . t($type::caption) . ")";
+					}
+					$this->params[$class][] = $edt->self;
+					$this->elements[$edt->self] =& $prop;
+					if(trim($prop['PROP'])=="")
+					{
+						$edt->showHint = false;
+						continue;
+					}
+					if(isset($prop['REAL_PROP']))
+						$edt->hint = $prop['CAPTION']._BR_."[->{$prop['REAL_PROP']}]";
+					else
+						$edt->hint = $prop['CAPTION']._BR_."[->{$prop['PROP']}]";
+					$edt->showHint = true;
             }
             if( $del )
-			 {	$gr->free(); }   
-                $this->panels[$class]['EL']  = $this->elements;
+			 {	$gr->free(); }
 				
 			c("fmMain->editorPopup")->AutoPopup = true;
 			$panel->EndUpdate();
 			lockWindowUpdate(0);
-        }
-    }
-    
+		}
+	}
+    public static function AddType($typenames, $class)
+	{
+		if( is_array($typenames) )
+			foreach($typenames as $type)
+				Self::$types[$type] = $class;
+		else 
+			Self::$types[$typenames] = $class;
+	}
     public function generateClass($class, $back = false)
 	{
         $this->_generateClass($class);
@@ -1388,7 +459,8 @@ class myProperties {
 		return get_sorted_methods($class);
     }
     
-    static function fixSplitterMoved($self){
+    static function fixSplitterMoved($self)
+	{
         if(!c('fmPropsAndEvents') || c('fmPropsAndEvents') instanceof DebugClass ) return;
         c('fmPropsAndEvents->tabProps',1)->repaint();
     }

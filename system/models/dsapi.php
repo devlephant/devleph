@@ -48,8 +48,8 @@ class CApi extends DSApi {
         if (is_dir($dir.'/actions/'))
             $result['actions'] = dir_copy($dir.'/actions/', DOC_ROOT.'/design/actions/');
         
-        if (is_dir($dir.'/editor_types/'))
-            $result['editor_types'] = dir_copy($dir.'/editor_types/', DOC_ROOT.'/design/editor_types/');
+        if (is_dir($dir.'/Editors/'))
+            $result['property_types'] = dir_copy($dir.'/Editors/', DOC_ROOT.'/design/Editors/');
         
         if (is_dir($dir.'/complete/'))
             $result['complete'] = dir_copy($dir.'/complete/', DOC_ROOT.'/design/complete/');
@@ -109,9 +109,9 @@ class CApi extends DSApi {
         foreach ($files['actions'] as $file)
             file_delete(DOC_ROOT.'/design/actions/'.$file);
             
-        if ($files['editor_types'])
-        foreach ($files['editor_types'] as $file)
-            file_delete(DOC_ROOT.'/design/editor_types/'.$file);    
+        if ($files['editors'])
+        foreach ($files['editors'] as $file)
+            file_delete(DOC_ROOT.'/design/Editors/'.$file);    
     
         if ($files['prog'])
         foreach ($files['prog'] as $file)
