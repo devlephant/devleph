@@ -2,8 +2,19 @@
 /*--pseudocode--*
 interface IEditor
 {
-	const Type = "TNxButtonItem";
+	//!! - Required
+	
+	const type = "TNxButtonItem";
+	//!!
+	
+	const caption = "Static Property";
+	
 	public static function OnCreate( TNxPropertyItem $Item, $class, array &$prop );
+	//!!
+	
+	public static function OnEdit( TNxProperty item $Item, string $property, mixed $value, bool &$continue);
+	public static function SaveValue( array &$prop, mixed $value);
+	public static function Click( int $self );
 	public static function Update( TNxButtonItem $Item, $value );
 }
 */
