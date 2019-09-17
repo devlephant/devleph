@@ -223,13 +223,9 @@ class ev_fmPHPEditor_btn_find {
 
 class ev_fmPHPEditor_it_find {
     
-    static function onClick(){
-        
-        if (c('p_search')->visible){
-            ev_fmPHPEditor_f_text::onKeyUp(0,13);
-        } else {
-            ev_fmPHPEditor_btn_find::onClick();
-        }
+    static function onClick($self=nil)
+	{    
+		ev_fmPHPEditor_btn_find::onClick($self);
     }
 }
 

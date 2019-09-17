@@ -827,27 +827,42 @@ class ev_fmMain_shapeSize {
 class ev_itemCAll {
     
     static function onClick($self=false){
-        global $fmEdit, $_sc;
-
+        global $fmEdit, $_sc, $myEvents, $myProperties;
+		${0} = false;
         foreach( $fmEdit->componentList as $c )
 		{
 			if( $c->self !== $_sc->self && gui_is($c->self, 'TControl') )
+			{
+				if(${0}===false)
+					${0} = $c;
 				$_sc->addTarget($c);
+			}
+		}
+		if(${0}!==false)
+		{
+			$myEvents->generate(${0});
+			$myProperties->generate(${0}->self, c('fmPropsAndEvents->tabProps',1));
 		}
 	}
 }
 //add these please
-class ev_fmMain_itinvertce {
-	static function onClick()
+class ev_fmMain_itemInvert {
+	static function onClick($self=nil)
 	{
-		global $fmEdit, $_sc;
+		global $fmEdit, $_sc, $myEvents, $myProperties;
 		$targets = count($_sc->targets_ex) ? $_sc->targets_ex : [$fmEdit];
+		${0} = false;
 		$_sc->ClearTargets();
 		foreach( $fmEdit->componentList as $c )
 		{
-			if( $c->self !== $_sc->self )
-				if( !in_array($c, $targets) )
-					$_sc->addTarget($c);
+			if( $c->self === $_sc->self || !gui_is($c->self, "TControl") || in_array($c, $targets) ) continue;
+			if(${0}===false)${0} = $c;
+			$_sc->addTarget($c);
+		}
+		if(${0}!==false)
+		{
+			$myEvents->generate(${0});
+			$myProperties->generate(${0}->self, c('fmPropsAndEvents->tabProps',1));
 		}
 	}
 }

@@ -677,13 +677,6 @@ class myDesign
         
         myVars::set(false, 'isMouseDown');
         myVars::set(true, '__sizeAndMove');
-        
-		$last_targets = [];
-		$invert = $GLOBALS['__invertSelect'];
-		$targets = $_sc->targets_ex;
-		foreach( $targets as $el ){
-			$last_targets[$el->self] = true;
-		}
 		
         $_sc->clearTargets();
         if (!$_designSel && $button!=1){
@@ -727,8 +720,7 @@ class myDesign
             $components = $fmEdit->componentList;
             foreach ($components as $el){
                 
-                if (!$el->name || rtti_class($el->self) == 'TEvents' || $el->self == $GLOBALS['_sc']->self) continue;
-                if( $last_targets[$el->self] && $invert ) continue;
+                if (!$el->name || !gui_is($el->self,'TControl') || $el->self == $GLOBALS['_sc']->self) continue;
 				
 				if (self::inArea($el->self, $ax, $ay, $w, $h)){
 					++$i;
@@ -1054,8 +1046,7 @@ class myDesign
         
         myVars::set(0, 'popupShow');
         if (!self::canDoIt()) return;
-        
-        $GLOBALS['__invertSelect'] = !$GLOBALS['__invertSelect'];
+        ev_fmMain_itemInvert::onClick(nil);
     }
     
     static function szRefresh(){

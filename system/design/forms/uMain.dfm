@@ -1449,6 +1449,10 @@ object fmMain: TfmMain
       Caption = '{Select All}'
       ShortCut = 16449
     end
+	object itemInvert: TMenuItem
+      Caption = '{Invert Selection}'
+      ShortCut = 16458
+    end
     object itemCut: TMenuItem
       Bitmap.Data = {
         36030000424D3603000000000000360000002800000010000000100000000100
@@ -1503,10 +1507,6 @@ object fmMain: TfmMain
     object itemGroup: TMenuItem
       Caption = '{Grouping}'
       ShortCut = 16455
-    end
-	object itemInvert: TMenuItem
-      Caption = '{Invert}'
-      ShortCut = 16458
     end
     object itemAddevent: TMenuItem
       Caption = '{Add event}'
