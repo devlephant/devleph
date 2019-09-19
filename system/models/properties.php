@@ -197,6 +197,7 @@ class myProperties
 						return;
 					}
 				}
+				myHistory::add([$fmEdit], $prop);
 				$name = $GLOBALS['_FORMS'][$GLOBALS['formSelected']];
 				$dfm_file = dirname($projectFile) .'/'. $name . '.dfm';
 				$dfm_file2= dirname($projectFile) .'/'. $value . '.dfm';
@@ -221,6 +222,7 @@ class myProperties
 				return;
 			}elseif( in_array($prop, ['cursor','x','y','autoscroll','alphablend','alphablendvalue','screensnap','snapbuffer','transparentcolor','transparentcolorvalue','doublebuffered']) )
 			{
+				myHistory::add([$fmEdit], $prop);
 				$myProject->formsInfo[$_FORMS[$formSelected]][$prop] = Localization::toEncoding(method_exists($type,"SaveValue")?$type::SaveValue($param,$value):$value);
 				return;
 			}
@@ -234,6 +236,7 @@ class myProperties
 					_c($link)->value = $value;
 					return;
 				}
+				myHistory::add([$obj], $prop);
 				myDesign::changeName($obj, $value);
 			} elseif( method_exists($type, "OnEdit") )
 			{
@@ -241,12 +244,12 @@ class myProperties
 			}
 			else 	
 				{
-				$targets = count($_sc->targets_ex) ? $_sc->targets_ex : [$fmEdit];
+				$targets = $_sc->targets_ex;
+				$targets = count($targets)>0? $targets: [$fmEdit];
 				myHistory::add($targets, $prop);
 				
-				foreach ($targets as $self=>$el){
-					$el = _c(myDesign::noVisAlias($el->self));
-					$el->$prop = $value;
+				foreach ($targets as $link=>$el){
+					_c(myDesign::noVisAlias($link))->$prop = $value;
 				}
 			}
 		if($upd_sc)
@@ -273,7 +276,8 @@ class myProperties
 		{
 			$myProject->formsInfo[$_FORMS[$formSelected]][$prop] = $value;
 		} else {
-        $targets = count($_sc->targets_ex) ? $_sc->targets_ex : [$fmEdit];
+		$targets = $_sc->targets_ex;
+		$targets = count($targets)>0?$targets: [$fmEdit];
         myHistory::add($targets, $prop);
         
         foreach ($targets as $self=>$el){

@@ -23,8 +23,7 @@ class ComponentPickerEditor
             myHistory::add($targets, $prop);
             foreach ($targets as $link=>$el)
 			{
-				$el = _c(myDesign::noVisAlias($link));
-				$el->$prop = $value;
+				_c(myDesign::noVisAlias($link))->$prop = $value;
 			}
             $obj->value = $value;
         }

@@ -16,7 +16,7 @@ class ImageButtonEditor
 		
 		$targets = $_sc->targets_ex;
 		if(count($targets)==0) return;
-		$ib = _c(myDesign::noVisAlias($myProperties->selObj));
+		$ib = _c(myDesign::noVisAlias($myProperties->selObj->self));
 		
 		$prev = $ib->$prop;
 		$prev2 = isset($ib->state)? $ib->state: null;

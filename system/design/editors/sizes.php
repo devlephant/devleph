@@ -50,8 +50,9 @@ class SizesEditor
 		$positions = [];
 		foreach($targets as $i=>$el)
 		{
-			$positions[$i] = [$el->x, $el->y, $el->w, $el->h];
+			$positions[$i] = [$el->x, $el->y, $el->w, $el->h, $el->anchors];
 		}
+		
         if (c('fmSizesPosition',1)->showModal()==mrOk){
             
             $anchors = [];
@@ -67,14 +68,15 @@ class SizesEditor
             if (c('fmSizesPosition->c_bottom',1)->checked)
                 $anchors[] = 'akBottom';
             $anchors = implode(',', $anchors);
-            foreach($targets as $el){
+			myHistory::addArr($targets, ["x","y","w","h","anchors"], $positions);
+			foreach($targets as $el){
                 $el->anchors = $anchors;
             }
 			myProperties::updateProps();
         } else {
 			foreach($targets as $i=>$el)
 			{
-				list($el->x, $el->y, $el->w, $el->h) = $positions[$i];
+				list($el->x, $el->y, $el->w, $el->h, $el->anchors) = $positions[$i];
 			}
 			$_sc->update();
 		}
