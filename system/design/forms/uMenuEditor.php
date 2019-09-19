@@ -238,16 +238,12 @@ class ev_edt_menuEditor {
 class ev_edt_menuEditor_btn_data {
     
     static function onClick($self){
-        
-        $dlg = new TTextDialog;
-        $dlg->value = c('edt_menuEditor')->result;
-        if ($dlg->execute()){
+        TextEditor::$value = c('edt_menuEditor')->result;
+        if (TextEditor::execute()){
             
-            c('edt_menuEditor')->result = $dlg->value;
+            c('edt_menuEditor')->result = TextEditor::$value;
             menuEditor::updateTree();
         }
-        
-        $dlg->free();
 		c("edt_menuEditor")->toFront();
     }
 }

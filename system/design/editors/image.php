@@ -19,14 +19,32 @@ class ImageEditor
         $param = $myProperties->elements[ $self ];
         $prop  = $param['PROP'];
 		
-        $dlg = new TImageDialog;
-        $dlg->value = $myProperties->selObj->$prop;
-        
-        if ($dlg->execute()){
+		$im = c('edt_ImageView->image');
+		$bitmap = $myProperties->selObj->$prop;
+		if( $v instanceof TBitmap )
+		{
+			$im->picture->graphic = $bitmap;
+			$im->picture->graphic->ReleasePalette();
+		}	
+		else 
+			$im->picture->assign( $bitmap );
+		
+		c('edt_ImageView->background')->visible = ($im->picture->graphic->SupportsPartialTransparency || $im->picture->graphic->Transparent);
+        c('edt_ImageView->btn_load')->onClick = __CLASS__ . "::load";
+        c("edt_ImageView->btn_save")->onClick = __CLASS__ . "::save";
+        c("edt_ImageView->btn_clear")->onClick= __CLASS__ . "::clear";
+        c("edt_ImageView->btn_copy")->onClick = __CLASS__ . "::copy";
+        c("edt_ImageView->btn_paste")->onClick= __CLASS__ . "::paste";
+		
+        if (c('edt_ImageView')->showModal() == mrOk)
+		{
             
             $obj = _c($self);
-            $bitmap = $dlg->value;
-            $targets = count($_sc->targets_ex) ? $_sc->targets_ex : [$fmEdit];
+            $bitmap = $im->picture;
+				
+			$targets = $_sc->targets_ex;
+			$targets = count($targets)>0?$targets : [$fmEdit];
+			myHistory::add($targets, $prop);
             $m = 'set_' . $prop;
             foreach ($targets as $el)
 			{
@@ -40,7 +58,6 @@ class ImageEditor
             $_sc->update();  // fix bug
         }
         
-        $dlg->free();
 		myProperties::updateProps();
 	}
 	public static function Update( $edt, &$value )
@@ -51,5 +68,62 @@ class ImageEditor
 	{
 		$upd = true;
 	}
+    static function clear($self=0)
+	{
+        c('edt_ImageView->image')->picture->clear();
+		c('edt_ImageView->background')->visible = false;
+    }
+    
+    static function load($self=0)
+	{
+        $dlg = new TOpenDialog;
+        $dlg->filter = DLG_FILTER_PICTURES;
+        
+        $result = false;
+        if ($dlg->execute()){
+            
+            c('edt_ImageView->image')->picture->loadAnyFile($dlg->fileName);
+			c('edt_ImageView->background')->visible = (c('edt_ImageView->image')->picture->graphic->SupportsPartialTransparency || c('edt_ImageView->image')->picture->graphic->Transparent);
+			c('edt_ImageView')->repaint();
+			$result = true;
+        }
+        
+        $dlg->free();
+		c('edt_ImageView')->toFront();
+		
+        return $result;
+    }
+    static function save($self=0)
+	{
+		$dlg = new TSaveDialog;
+        $dlg->filter = 'Bitmap Images (*.bmp)|*.bmp';
+        
+        if ($dlg->execute()){
+            if (file_exists($dlg->fileName) && !confirm(t('File "%s" already exists! You want to replace this file?',basename($dlg->fileName)))) return false;
+            
+            $dlg->fileName = fileExt($dlg->fileName)=='bmp' ? $dlg->fileName : $dlg->fileName . '.bmp';
+                c('edt_ImageView->image')->picture->getBitmap()->saveToFile($dlg->fileName);
+        }
+        
+        $dlg->free();
+		c('edt_ImageView')->toFront();
+    }
+    static function copy($self=0)
+	{
+		c('edt_ImageView->imgBuffer')->picture->assign( c('edt_ImageView->image')->picture );
+		clipboard_assign( c('edt_ImageView->image')->picture->self );
+    }
+    static function paste($self=0)
+	{
+		$im = c('edt_ImageView->image');
+		if( clipboard_checkformat('pic') )
+		{
+			clipboard_assignpic( $im->picture->self );
+		} else
+		{
+			$im->picture->assign( c("edt_ImageView->imgBuffer")->picture );
+		}
+	   c('edt_ImageView->background')->visible = ($im->picture->graphic->SupportsPartialTransparency || $im->picture->graphic->Transparent);
+    }
 }
 myProperties::AddType("image", "ImageEditor");

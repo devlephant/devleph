@@ -18,12 +18,13 @@ class ComboboxEditor
         } else {
 			$value = constant($value);
 		}
-		$targets = count($_sc->targets_ex) ? $_sc->targets_ex : [$fmEdit];
+		$targets = $_sc->targets_ex;
+		$targets = count($targets)>0?$targets : [$fmEdit];
 		myHistory::add($targets, $prop);
             
 		foreach ($targets as $link=>$el)
 		{
-			_c(myDesign::noVisAlias($el->self))->$prop = $value;
+			_c(myDesign::noVisAlias($link))->$prop = $value;
 		}
 	}
 	public static function Update( $edt, $value )

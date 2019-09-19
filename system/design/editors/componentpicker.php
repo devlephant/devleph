@@ -18,11 +18,12 @@ class ComponentPickerEditor
             
             $obj = _c($self);
             $value = $dlg->value;
-            $targets = count($_sc->targets_ex) ? $_sc->targets_ex : [$fmEdit];
-            
-            foreach ($targets as $el)
+			$targets = $_sc->targets_ex;
+			$targets = count($targets)>0?$targets : [$fmEdit];
+            myHistory::add($targets, $prop);
+            foreach ($targets as $link=>$el)
 			{
-				$el = _c(myDesign::noVisAlias($el->self));
+				$el = _c(myDesign::noVisAlias($link));
 				$el->$prop = $value;
 			}
             $obj->value = $value;

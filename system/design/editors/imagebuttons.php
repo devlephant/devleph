@@ -13,17 +13,19 @@ class ImageButtonEditor
 		global $myProperties, $_sc, $fmEdit, $toSetProp;
 		if ($toSetProp) return;
         $prop  = $myProperties->elements[ $self ]['PROP'];
-		if(count($_sc->targets_ex)==0) return;
-		$ib = _c(myDesign::noVisAlias(current($_sc->targets_ex)->self));
+		
+		$targets = $_sc->targets_ex;
+		if(count($targets)==0) return;
+		$ib = _c(myDesign::noVisAlias($myProperties->selObj));
 		
 		$prev = $ib->$prop;
 		$prev2 = isset($ib->state)? $ib->state: null;
 		if( master_TIB::execute( $ib ) )
 		{
-            myHistory::add($_sc->targets_ex, $prop);
-            if( count($_sc->targets_ex) > 1 )
-				foreach ($_sc->targets_ex as $link=>$el){
-					$el = _c(myDesign::noVisAlias($el->self));
+            myHistory::add($targets, $prop);
+            if( count($targets) > 1 )
+				foreach ($targets as $link=>$el){
+					$el = _c(myDesign::noVisAlias($link));
 					if( isset($el->$prop) )
 						$el->$prop = $ib->$prop;
 					if( isset($el->state) )

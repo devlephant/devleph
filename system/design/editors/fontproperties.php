@@ -45,10 +45,12 @@ class FontPropertiesEditor
         if ($dlg->execute()){
             
             $font  = $dlg->font;
-            $targets = count($_sc->targets_ex) ? $_sc->targets_ex : [$fmEdit];
-
+			
+			$targets = $_sc->targets_ex;
+			$targets = count($targets)>0?$targets : [$fmEdit];
+			myHistory::add($targets, $prop);
             foreach ($targets as $link=>$el){
-				_c(myDesign::noVisAlias($el->self))->$prop->assign($font);
+				_c(myDesign::noVisAlias($link))->$prop->assign($font);
             }
             $_sc->update();  // fix bug
         }

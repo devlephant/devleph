@@ -14,25 +14,25 @@ class MenusEditor
         if ($toSetProp) return;
         
         $prop = $myProperties->elements[ $self ]['PROP'];
-        $dlg = new TMenuDialog;
-        $dlg->value = $myProperties->selObj->$prop;
-        
-        if ($dlg->execute()){
+		$dlg = c('edt_menuEditor',1);
+        $dlg->result = $myProperties->selObj->$prop;
+		MenuEditor::updateTree();
+        $r = c('edt_menuEditor',1)->showModal();
+        if ($r == mrOk)
+		{   
+            $value = $dlg->result;
+            _c($self)->value = $value;
             
-            $value = $dlg->value;
-            c($self)->value = $value;
-            
-            $targets = count($_sc->targets_ex) ? $_sc->targets_ex : [$fmEdit];
+			$targets = $_sc->targets_ex;
+			$targets = count($targets)>0?$targets : [$fmEdit];
             myHistory::add($targets, $prop);
             
                 foreach ($targets as $self=>$el){
-                    _c(myDesign::noVisAlias($el->self))->$prop = $value;
+                    _c(myDesign::noVisAlias($self))->$prop = $value;
                 }
                 
             $_sc->update();  // fix bug
         }
-        
-        $dlg->free(); 
 		myProperties::updateProps();
 	}
 	public static function Update( $edt, $value )

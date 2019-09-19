@@ -25,12 +25,13 @@ class TextEditor
         if (self::execute())
 		{    
             $edt->value = self::$value;
-            
-            $targets = count($_sc->targets_ex) ? $_sc->targets_ex : [$fmEdit];
+				
+			$targets = $_sc->targets_ex;
+			$targets = count($targets)>0?$targets : [$fmEdit];
             myHistory::add($targets, $prop);
             
                 foreach ($targets as $self=>$el){
-                    $el = _c(myDesign::noVisAlias($el->self));
+                    $el = _c(myDesign::noVisAlias($self));
                     $el->$prop = self::$value;
                 }
             
@@ -42,11 +43,11 @@ class TextEditor
 	public static function execute()
 	{
 		$e = c("edt_Text");
-        $e->onKeyDown = 'TTextDialog::keyDown';
+        $e->onKeyDown = __CLASS__ . "::keyDown";
 		$TextField =  c('edt_Text->memo');
-        $TextField->onKeyDown = 'TTextDialog::keyDown';
-		c('edt_Text->bitbtn3')->onClick = 'TTextDialog::clickCopy';
-		c('edt_Text->bitbtn4')->onClick = 'TTextDialog::clickPaste';
+        $TextField->onKeyDown = __CLASS__ . "::keyDown";
+		c('edt_Text->bitbtn3')->onClick = __CLASS__ . "::clickCopy";
+		c('edt_Text->bitbtn4')->onClick = __CLASS__ . "::clickPaste";
 		$TextField->text = self::$value;
         $e = $e->showModal() == mrOk;
 		self::$value = $TextField->text;

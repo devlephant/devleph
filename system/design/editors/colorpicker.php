@@ -31,12 +31,13 @@ class ColorPickerEditor
         if ($dlg->execute($x, $y)){
             
             $color  = $dlg->color;
-            $targets = count($_sc->targets_ex) ? $_sc->targets_ex : [$fmEdit];
+			$targets = $_sc->targets_ex;
+            $targets = count($targets)>0? $targets : [$fmEdit];
             myHistory::add($targets, $prop);
             
-            foreach ($targets as $link=>$el){
-				$el = _c(myDesign::noVisAlias($el->self));
-                $el->$prop = $color;
+            foreach ($targets as $link=>$el)
+			{
+				_c(myDesign::noVisAlias($link))->$prop = $color;
             }
             $_sc->update();  // fix bug
 			myOptions::set('colors','in', base64_encode(serialize(array($dlg->MainColors->text, $dlg->CustomColors->text))));
@@ -48,11 +49,17 @@ class ColorPickerEditor
 	{
 		global $_sc, $fmEdit;
 		$color =  self::toColor($value);
-		if($color===false) $upd = true;
-		foreach ((count($_sc->targets_ex)? $_sc->targets_ex : [$fmEdit]) as $link=>$el)
+		if($color===false)
 		{
-			$el = _c(myDesign::noVisAlias($el->self));
-			$el->$prop = ($color!==false)? $color:$el->$prop;
+			$upd = true;
+			return;
+		}
+		$targets = $_sc->targets_ex;
+		$targets = count($targets)>0?$targets : [$fmEdit];
+		myHistory::add($targets, $prop);
+		foreach ($targets as $link=>$el)
+		{
+			_c(myDesign::noVisAlias($link))->$prop = $color;
 		}
 	}
 	public static function toColor($color)

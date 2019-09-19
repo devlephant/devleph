@@ -16,7 +16,7 @@ object fmEdit: TForm
   BorderStyle = bsSizeable
   Caption = 'New Form'
   ClientHeight = 280
-  ClientWidth = 460
+  ClientWidth = 456
   Color = $00FFFFFF
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
