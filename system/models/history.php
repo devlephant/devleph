@@ -4,10 +4,9 @@ class myHistory {
 	const INDEX_PROP = 0;
 	const INDEX_EVENT = 1;
 	const INDEX_OBJECT = 2;
-	public static $HISTORY_ARRAY;
+	public static $HISTORY_ARRAY = [];
 	static function add($objects, $prop)
 	{
-        
         if (!count($objects)) return;
         
         global $_FORMS, $formSelected, $__isUndo;
@@ -33,7 +32,6 @@ class myHistory {
             unset($value);
             
         }
-        
         self::$HISTORY_ARRAY[$_FORMS[$formSelected]][] = [$arr,self::INDEX_PROP,date("Dm Y"),date("H:i:s")];
         ++$GLOBALS['historyIndex'];
     }
@@ -51,13 +49,13 @@ class myHistory {
 		}
         $arr = [];
         foreach ($objects as $link=>$el){
-            
             $el = toObject($el);
-            $arr[] = array ('name'=>self::toName($el->name,$el->self),
-                            'prop'=>$prop,
-                            'value'=>$vals[$link]);
-            unset($value);
-            
+            $arr[] =		
+					[
+						'name'=>self::toName($el->name,$el->self),
+						'prop'=>$prop,
+						'value'=>$vals[$link]
+					];
         }
         
         self::$HISTORY_ARRAY[$_FORMS[$formSelected]][] = [$arr,self::INDEX_PROP,date("Dm Y"),date("H:i:s")];
@@ -141,8 +139,7 @@ class myHistory {
 	{
 		global $myProperties, $_sc, $_FORMS, $projectFile, $myProject, $formSelected, $fmEdit;
 		
-		pre($o);$o = _c(myDesign::noVisAlias($o->self));
-		pre($o);
+		$o = _c(myDesign::noVisAlias($o->self));
 		if($o instanceof TForm)
 		{
 			$prop = strtolower($prop);
@@ -197,8 +194,8 @@ class myHistory {
 		$p = $o->$prop;
 		if($o instanceof TForm && !is_object($o->$prop))
 		{
-			$fname =& $GLOBALS['_FORMS'][$GLOBALS['formSelected']];
-			$formsinfo =& $GLOBALS['myProject']->formsInfo[$fname];
+			$fname = $GLOBALS['_FORMS'][$GLOBALS['formSelected']];
+			$formsinfo = $GLOBALS['myProject']->formsInfo[$fname];
 			if(strtolower($prop)=='name')
 			{
 				$p = $fname;
@@ -223,6 +220,7 @@ class myHistory {
 	}
     static function open($arr)
 	{
+		pre($arr);
 		global $myEvents, $myProperties, $myInspect, $_sc, $fmEdit;
 		
 		if(!is_array($arr)) return;
@@ -232,7 +230,6 @@ class myHistory {
 			{    
 				$obj  = c($el['name']);
 				$prop = $el['prop'];
-				
 				if (is_array($prop)){
 					foreach ($prop as $i=>$x){
 						self::SetProp($obj, $x, $el['value'][$i]);
@@ -330,9 +327,8 @@ class myHistory {
     }
     
     static function load($index)
-	{    
-        global $_FORMS, $formSelected;
-        self::open(self::$HISTORY_ARRAY[$_FORMS[$formSelected]][$index]);
+	{
+        self::open(self::$HISTORY_ARRAY[$GLOBALS['_FORMS'][$GLOBALS['formSelected']]][$index]);
     }
 	
     static function undo(){

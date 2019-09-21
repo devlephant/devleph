@@ -197,7 +197,6 @@ class myProperties
 						return;
 					}
 				}
-				myHistory::add([$fmEdit], $prop);
 				$name = $GLOBALS['_FORMS'][$GLOBALS['formSelected']];
 				$dfm_file = dirname($projectFile) .'/'. $name . '.dfm';
 				$dfm_file2= dirname($projectFile) .'/'. $value . '.dfm';
@@ -216,7 +215,7 @@ class myProperties
 					c('fmMain->tabForms')->tabIndex = $id;
 					$myProject->formsInfo[$value] = $myProject->formsInfo[$name];
 					unset($myProject->formsInfo[$name]);
-					
+					myHistory::addArr([$fmEdit], $prop, [$name]);
 					treeBwr_add();
 				}
 				return;
