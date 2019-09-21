@@ -27,7 +27,7 @@ class myHistory {
             } else
                 $value = self::getProp($el, $prop);
             
-            $arr[] = array ('name'=>$el->FullName,
+            $arr[] = array ('name'=>self::toName($el->name,$el->self),
                             'prop'=>$prop,
                             'value'=>$value);
             unset($value);
@@ -53,7 +53,7 @@ class myHistory {
         foreach ($objects as $link=>$el){
             
             $el = toObject($el);
-            $arr[] = array ('name'=>$el->FullName,
+            $arr[] = array ('name'=>self::toName($el->name,$el->self),
                             'prop'=>$prop,
                             'value'=>$vals[$link]);
             unset($value);
@@ -72,9 +72,10 @@ class myHistory {
 			self::$HISTORY_ARRAY[$_FORMS[$formSelected]] = array_slice(self::$HISTORY_ARRAY[$_FORMS[$formSelected]], 0, $GLOBALS['historyIndex']);
 			$__isUndo = false;
 		}
+		$obj = toObject($object);
 		$arr[] =
 		[
-			"name"=>toObject($object)->name,
+			"name"=>self::toName($obj->name,$obj->self),
 			"data"=>null
 		];
         
@@ -96,10 +97,11 @@ class myHistory {
         foreach ($objects as $el)
 		{
             $el = toObject($el);
+			$name = $el->Name;
 			$arr[] =
 			[
-				"name"=>$el->name,
-				"parent"=>$el->parent->fullName,
+				"name"=>self::toName($el->name,$el->self),
+				"parent"=>self::toName($el->name,$el->parent->self),
 				"data"=>gui_writeStr($el->self)
 			];
         }
@@ -138,8 +140,9 @@ class myHistory {
     static function setProp($o, $prop, $val)
 	{
 		global $myProperties, $_sc, $_FORMS, $projectFile, $myProject, $formSelected, $fmEdit;
-		$o = _c(myDesign::noVisAlias($o->self));
 		
+		pre($o);$o = _c(myDesign::noVisAlias($o->self));
+		pre($o);
 		if($o instanceof TForm)
 		{
 			$prop = strtolower($prop);
@@ -221,6 +224,7 @@ class myHistory {
     static function open($arr)
 	{
 		global $myEvents, $myProperties, $myInspect, $_sc, $fmEdit;
+		
 		if(!is_array($arr)) return;
 		if( $arr[1] == SELF::INDEX_PROP )
 		{
@@ -377,6 +381,11 @@ class myHistory {
 		return;
 		rc:
 		self::Clear();
+	}
+	
+	static function toName($n,$self)
+	{
+		return $n!==""?($n!=="fmEdit"?"fmEdit->$n":$n):$self;
 	}
 	
 	static function ChangeForm($form)
