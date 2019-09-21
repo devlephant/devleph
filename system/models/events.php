@@ -66,8 +66,7 @@ class myEvents {
         
         if ($eventList->itemIndex>-1){
             
-            global $fmEdit, $myEvents;
-            global $dynamicFuncs, $_FORMS, $formSelected;
+            global $fmEdit, $myEvents, $lastStringSelStart, $dynamicFuncs, $_FORMS, $formSelected;
             $dynamicFuncs = false;
             
             complete_Props::$forms = false;
@@ -156,8 +155,10 @@ class myEvents {
             if ($PHPEditor->showModal() == mrOk){
                 myComplete::saveCode();
                 $name = $myEvents->selObj instanceof TForm ? '--fmedit' : $myEvents->selObj->name;
-                eventEngine::setEvent($name, $event, c('fmPHPEditor->memo')->text);    
-                myHistory::go();
+                $tx = c("fmPHPEditor->memo");
+				eventEngine::setEvent($name, $event, $tx->text);
+				$lastStringSelStart[$name][$event]['x'] =  $tx->caretX;
+				$lastStringSelStart[$name][$event]['y'] =  $tx->caretY;
             }
             
             global $showComplete, $showHint;

@@ -202,9 +202,6 @@ class myDesign
             $myEvents->_generate($obj);
             
         }
-        
-        if ($gen)  
-        myHistory::go();
     }
     
     static function countComponentsByClass($class){
@@ -318,7 +315,7 @@ class myDesign
             
             $id = self::getNoExistsNameIndex($obj);
             $obj->name = vsprintf($c['NAME'].'%s', $id);            
-         
+			myHistory::addObj($obj);
             $x = round($x / $_sc->gridSize) * $_sc->gridSize;
             $y = round($y / $_sc->gridSize) * $_sc->gridSize;
             
@@ -799,15 +796,16 @@ class myDesign
 		treeBwr_add();
     }
     
-    static function keyDelete(){
+    static function keyDelete($_s,$upd=true){
         
         myVars::set(0, 'popupShow');
 
         //if (!self::canDoIt()) return;
         
-        global $_sc, $fmEdit, $myInspect;
+        global $_sc, $fmEdit, $myInspect, $myProperties, $myEvents;
         $components = $_sc->targets_ex;
-        
+		if($upd)
+        myHistory::delObj($components);
         $_sc->clearTargets();
         
         foreach ($components as $el){
@@ -816,8 +814,6 @@ class myDesign
         
         
         $obj = _c(self::noVisAlias(self::lastComponent()->self));
-        
-        global $myProperties, $myEvents, $myInspect;
         
         $myProperties->generate($obj->self,c('fmPropsAndEvents->tabProps',1));
         $myEvents->generate($obj);
@@ -957,7 +953,7 @@ class myDesign
 			self::$alias = [];
 		}
 	}
-    static function keyPaste(){
+    static function keyPaste($self=0){
         
         myVars::set(0, 'popupShow');
         if (!self::canDoIt()) return;
@@ -1006,7 +1002,7 @@ class myDesign
 					myDesign::LoadPosOf($_el, $alias);
 					self::plusnoVisAlias($el['cmp']->self, $alias->self);
 				} else $alias = $el['cmp'];
-                $myInspect->addItem($el['cmp']);
+                $myInspect->addItem($alias);
             if ($iter<=1000)
 				$_sc->addTarget($alias);
             
@@ -1030,7 +1026,7 @@ class myDesign
         myVars::set(false, '__sizeAndMove');
     }
     
-    static function keyCut(){
+    static function keyCut($self=0){
         
         myVars::set(0, 'popupShow');
         if (!self::canDoIt()) return;
@@ -1038,11 +1034,11 @@ class myDesign
         global $_sc,$fmEdit;
         
         self::keyCopy(0, true);
-        self::keyDelete();
+        self::keyDelete(0);
         myInspect::generate($fmEdit);
     }
 	
-	static function keyInvert(){
+	static function keyInvert($self=0){
         
         myVars::set(0, 'popupShow');
         if (!self::canDoIt()) return;

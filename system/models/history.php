@@ -1,14 +1,19 @@
 <?
 class myHistory {
+	
+	const INDEX_PROP = 0;
+	const INDEX_EVENT = 1;
+	const INDEX_OBJECT = 2;
+	public static $HISTORY_ARRAY;
 	static function add($objects, $prop)
 	{
         
         if (!count($objects)) return;
         
-        global $HISTORY_ARRAY, $_FORMS, $formSelected, $__isUndo;
+        global $_FORMS, $formSelected, $__isUndo;
 		if( $__isUndo )
 		{
-			$HISTORY_ARRAY[$_FORMS[$formSelected]] = array_slice($HISTORY_ARRAY[$_FORMS[$formSelected]], 0, $GLOBALS['historyIndex']);
+			self::$HISTORY_ARRAY[$_FORMS[$formSelected]] = array_slice(self::$HISTORY_ARRAY[$_FORMS[$formSelected]], 0, $GLOBALS['historyIndex']);
 			$__isUndo = false;
 		}
         $arr = [];
@@ -16,22 +21,20 @@ class myHistory {
             
             $el = toObject($el);
             
-            
             if (is_array($prop)){
                 foreach ($prop as $x)
                     $value[] = self::getProp($el, $x);
             } else
                 $value = self::getProp($el, $prop);
             
-            $arr[] = array ('name'=>$el->name,
-                            'self'=>$el->self,
+            $arr[] = array ('name'=>$el->FullName,
                             'prop'=>$prop,
                             'value'=>$value);
             unset($value);
             
         }
         
-        $HISTORY_ARRAY[$_FORMS[$formSelected]][] = $arr;
+        self::$HISTORY_ARRAY[$_FORMS[$formSelected]][] = [$arr,self::INDEX_PROP,date("Dm Y"),date("H:i:s")];
         ++$GLOBALS['historyIndex'];
     }
     
@@ -40,28 +43,88 @@ class myHistory {
         
         if (!count($objects)) return;
         
-        global $HISTORY_ARRAY, $_FORMS, $formSelected, $__isUndo;
+        global $_FORMS, $formSelected, $__isUndo;
 		if( $__isUndo )
 		{
-			$HISTORY_ARRAY[$_FORMS[$formSelected]] = array_slice($HISTORY_ARRAY[$_FORMS[$formSelected]], 0, $GLOBALS['historyIndex']);
+			self::$HISTORY_ARRAY[$_FORMS[$formSelected]] = array_slice(self::$HISTORY_ARRAY[$_FORMS[$formSelected]], 0, $GLOBALS['historyIndex']);
 			$__isUndo = false;
 		}
         $arr = [];
         foreach ($objects as $link=>$el){
             
             $el = toObject($el);
-            
-            $arr[] = array ('name'=>$el->name,
-                            'self'=>$el->self,
+            $arr[] = array ('name'=>$el->FullName,
                             'prop'=>$prop,
                             'value'=>$vals[$link]);
             unset($value);
             
         }
         
-        $HISTORY_ARRAY[$_FORMS[$formSelected]][] = $arr;
+        self::$HISTORY_ARRAY[$_FORMS[$formSelected]][] = [$arr,self::INDEX_PROP,date("Dm Y"),date("H:i:s")];
         ++$GLOBALS['historyIndex'];
     }
+	
+	static function addObj($object)
+	{
+        global $_FORMS, $formSelected, $__isUndo;
+		if( $__isUndo )
+		{
+			self::$HISTORY_ARRAY[$_FORMS[$formSelected]] = array_slice(self::$HISTORY_ARRAY[$_FORMS[$formSelected]], 0, $GLOBALS['historyIndex']);
+			$__isUndo = false;
+		}
+		$arr[] =
+		[
+			"name"=>toObject($object)->name,
+			"data"=>null
+		];
+        
+        self::$HISTORY_ARRAY[$_FORMS[$formSelected]][] = [$arr,self::INDEX_OBJECT,date("Dm Y"),date("H:i:s")];
+        ++$GLOBALS['historyIndex'];
+	}
+	
+	static function delObj($objects)
+	{
+		if (!count($objects)) return;
+        
+        global $_FORMS, $formSelected, $__isUndo;
+		if( $__isUndo )
+		{
+			self::$HISTORY_ARRAY[$_FORMS[$formSelected]] = array_slice(self::$HISTORY_ARRAY[$_FORMS[$formSelected]], 0, $GLOBALS['historyIndex']);
+			$__isUndo = false;
+		}
+        $arr = [];
+        foreach ($objects as $el)
+		{
+            $el = toObject($el);
+			$arr[] =
+			[
+				"name"=>$el->name,
+				"parent"=>$el->parent->fullName,
+				"data"=>gui_writeStr($el->self)
+			];
+        }
+        
+        self::$HISTORY_ARRAY[$_FORMS[$formSelected]][] = [$arr,self::INDEX_OBJECT,date("Dm Y"),date("H:i:s")];
+        ++$GLOBALS['historyIndex'];
+	}
+	
+	static function addEvent($obj, $event, $code)
+	{
+		global $_FORMS, $formSelected, $__isUndo;
+		if( $__isUndo )
+		{
+			self::$HISTORY_ARRAY[$_FORMS[$formSelected]] = array_slice(self::$HISTORY_ARRAY[$_FORMS[$formSelected]], 0, $GLOBALS['historyIndex']);
+			$__isUndo = false;
+		}
+        self::$HISTORY_ARRAY[$_FORMS[$formSelected]][] = [
+			[
+			"name"=>$obj,
+			"event"=>$event,
+			"data"=>$code
+			]
+		,self::INDEX_EVENT,date("Dm Y"),date("H:i:s")];
+        ++$GLOBALS['historyIndex'];
+	}
 	
     static function addXY($objects)
 	{
@@ -157,61 +220,171 @@ class myHistory {
 	}
     static function open($arr)
 	{
+		global $myEvents, $myProperties, $myInspect, $_sc, $fmEdit;
 		if(!is_array($arr)) return;
-        foreach ($arr as $el)
-		{    
-            $obj  = _c($el['self']);
-            $prop = $el['prop'];
-            
-            if (is_array($prop)){
-                foreach ($prop as $i=>$x){
-                    self::SetProp($obj, $x, $el['value'][$i]);
-                }
-            } else
-                self::SetProp($obj, $prop, $el['value']);
-        }
+		if( $arr[1] == SELF::INDEX_PROP )
+		{
+			foreach ($arr[0] as $el)
+			{    
+				$obj  = c($el['name']);
+				$prop = $el['prop'];
+				
+				if (is_array($prop)){
+					foreach ($prop as $i=>$x){
+						self::SetProp($obj, $x, $el['value'][$i]);
+					}
+				} else
+					self::SetProp($obj, $prop, $el['value']);
+			}
+		} elseif ( $arr[1] == SELF::INDEX_OBJECT )
+		{
+			$s = false;
+			$iter = 0;
+			foreach ($arr[0] as $el)
+			{
+				if($el["data"]==null)
+				{
+					myDesign::deleteObject(c($el['name']));
+					$obj = _c(myDesign::noVisAlias(myDesign::lastComponent()->self));
+					$myProperties->generate($obj->self,c('fmPropsAndEvents->tabProps',1));
+					$myEvents->generate($obj);
+					if ($obj->self !== $fmEdit->self)
+					$_sc->addTarget(_c(myDesign::noVisAliasRt($obj->self)));
+					myInspect::generate($fmEdit);
+				} else {
+					myVars::set(true, '__sizeAndMove');
+					$obj = new TControl($fmEdit);
+					$obj->parent = $fmEdit;
+					gui_ReadStr($obj->self, $el["data"]);
+					if ( !gui_is($obj->self, 'TControl') )
+					{
+						$alias = new __TNoVisual($obj->owner,nil,get_class($obj));
+						$alias->parent = $obj->owner;
+						$alias->Assoc = $obj;
+						$_el = $obj;
+						$alias->onMove = function($self)use($_el)
+						{
+							myDesign::SavePosOf($_el, gui_propget($self,'Left'), gui_propget($self,'Top'));
+						};
+						$alias->tag = -3;
+						myDesign::LoadPosOf($_el, $alias);
+						self::plusnoVisAlias($obj->self, $alias->self);
+					} else $alias = $obj;
+					$myInspect->addItem($alias);
+					if( ($iter++) <=1000)
+						$_sc->addTarget($alias);
+					$controls = $obj->Controls;
+					if(count($controls) > 0)
+					foreach ($controls as $x=>$child){
+                    
+						if (method_exists($child,'__updateDesign')) $child->__updateDesign();
+						if (method_exists($child,'__pasteDesign')) $child->__pasteDesign();
+						
+						$myInspect->addItem($child);
+						
+						if ($iter++<=1000)
+							$_sc->registerTarget($child);
+					}
+					if($s===false)
+						$s = $alias;
+				}
+			}
+			
+			myVars::set(false, '__sizeAndMove');
+			
+			if($s!==false)
+			{
+				$_sc->update();
+				$myEvents->generate($s);
+				$myProperties->generate($s, c('fmPropsAndEvents->tabProps',1));
+				
+				goto tree;
+			}
+		
+		} elseif ( $arr[1] == SELF::INDEX_EVENT )
+		{
+			if( $arr[0]["data"] == null)
+			{
+				eventEngine::delEvent($arr["name"],$arr["event"],false);
+			}
+				else eventEngine::setEvent($arr["name"],$arr["event"],$arr["data"],false);
+			goto upd_events;
+		}
         
         myProperties::updateProps();
+		$_sc->update();
+		upd_events:
+		$myEvents->genList();
+		tree:
+		treeBwr_add();
     }
     
-    static function init()
-	{    
-        global $projectFile;   
+    static function clear()
+	{
         $GLOBALS['HISTORY_ARRAY'] = [];
         myVars::set(0, 'historyIndex');
     }
     
     static function load($index)
 	{    
-        global $HISTORY_ARRAY,  $_FORMS, $formSelected;
-        self::open($HISTORY_ARRAY[$_FORMS[$formSelected]][$index]);
-    }
-    
-    static function go()
-	{    
-		return false;
+        global $_FORMS, $formSelected;
+        self::open(self::$HISTORY_ARRAY[$_FORMS[$formSelected]][$index]);
     }
 	
     static function undo(){
-        global $_sc, $__isUndo;
+        global $__isUndo;
         $index = myVars::get('historyIndex');
         if ($index == 0) return false;
         $__isUndo = true;
         self::load($index-1);
-		$_sc->update();
         myVars::set($index-1, 'historyIndex');
     }
     
     static function redo(){
-        global $_sc, $HISTORY_ARRAY,  $_FORMS, $formSelected;
+        global $_FORMS, $formSelected;
         
         $index = myVars::get('historyIndex');
-        if ($index == count($HISTORY_ARRAY[$_FORMS[$formSelected]]) - 1) return false;
+        if ($index == count(self::$HISTORY_ARRAY[$_FORMS[$formSelected]]) - 1) return false;
         
         self::load($index+1);
-		$_sc->update();
         myVars::set($index+1, 'historyIndex');
     }
+	
+	static function SaveFiles($projectFile)
+	{
+		$dir = dirname($projectFile) . DIRECTORY_SEPARATOR . "__history";;
+		if(!is_dir($dir))
+			mkdir($dir);
+		foreach(self::$HISTORY_ARRAY as $form=>$data)
+		{
+			file_put_contents($dir . DIRECTORY_SEPARATOR . "$form.json", json_encode($data));
+		}
+	}
+	
+	static function LoadFiles($form)
+	{
+		global $projectFile;
+		$dir = dirname($projectFile) . DIRECTORY_SEPARATOR . "__history";;
+		if(!is_dir($dir)) goto rc;
+			$files = FindFiles($dir,"json",false,true);
+			if(empty($files)) goto rc;
+			foreach($files as $f)
+			{
+				self::$HISTORY_ARRAY[BasenameNoExt($f)] = json_decode(file_get_contents($f),true);
+			}
+		self::ChangeForm( $form );
+		return;
+		rc:
+		self::Clear();
+	}
+	
+	static function ChangeForm($form)
+	{
+		if(!isset(self::$HISTORY_ARRAY[$form]))
+			self::$HISTORY_ARRAY[$form] = [];
+		$count = count(self::$HISTORY_ARRAY[$form]);
+        myVars::set($count>0?$count-1:0, 'historyIndex');
+	}
 }
 
-myHistory::init();
+myHistory::Clear();

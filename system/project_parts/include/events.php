@@ -78,9 +78,11 @@ class eventEngine {
         return self::$DATA[strtolower(self::$form)][strtolower($object)][strtolower($type)];
     }
     
-    static function setEvent($object, $type, $value){
+    static function setEvent($object, $type, $value, $upd=true){
         $type = strtolower($type);
         self::$DATA[strtolower(self::$form)][strtolower($object)][strtolower($type)] = $value;
+		if($upd)
+		myHistory::addEvent($name, $type, $value);
     }
     
     static function copyEvent($original, $new, $type = false){
@@ -104,14 +106,22 @@ class eventEngine {
         unset(self::$DATA[(self::$form)][$object][$type]);
     }
     
-    static function delEvent($object, $type = false){
+    static function delEvent($object, $type = false, $up=true){
         
         $type	= strtolower($type);
         $object	= strtolower($object);
         if ($type)
+		{
+			if($up)
+				myHistory::addEvent( self::$DATA[self::$form][$object][$type] );
             unset(self::$DATA[self::$form][$object][$type]);
-        else
+        } else
+		{
+			if($up)
+				foreach( self::$DATA[self::$form][$object] as $type=>$data )
+				myHistory::addEvent($object, $type, $data);
             unset(self::$DATA[self::$form][$object]);
+		}
     }
     
     static function changeName($object, $new){

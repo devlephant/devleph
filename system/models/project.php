@@ -22,7 +22,7 @@ class myProject {
     }
     
     static function openLsProject(  $vv = false )
-	{    
+	{
         global $_PARAMS, $projectFile;
         
         setTimeout( 10000, 'myProject::registerFileType()' );
@@ -52,10 +52,7 @@ class myProject {
         }	
     }
     
-    static function setStatus($text, $progress){
-        
-        
-    }
+    static function setStatus($text, $progres){}
     
     static function cfg($name, $value = null){
         
@@ -467,8 +464,8 @@ class myProject {
         return true;
     }
     
-    static function open($file, $init = true, $dnt = false){
-        
+    static function open($file, $init = true, $dnt = false)
+	{
         $file = replaceSl($file);
         
         if (!file_exists($file)) return false;
@@ -500,8 +497,6 @@ class myProject {
             
             eventEngine::$DATA = unserialize(file_get_contents($file_ex.'.events'));
             
-        } else {
-            
         }
 
         self::clearProject();
@@ -515,7 +510,7 @@ class myProject {
             return;
         }
         myUtils::loadForm($forms[0], true);
-		
+		myHistory::LoadFiles($forms[0]);
         self::genTabs();
         self::showIncorrect();
 		myInspect::genList(false);
@@ -554,7 +549,7 @@ class myProject {
         file_put_contents(dirname($projectFile).'/'.basenameNoExt($projectFile).'.inf', serialize($info));
         file_put_contents(dirname($projectFile).'/'.basenameNoExt($projectFile).'.cfg', serialize($myProject->add_info));
         file_put_contents(dirname($projectFile).'/'.basenameNoExt($projectFile).'.events', serialize((array)eventEngine::$DATA));
-        
+        myHistory::SaveFiles($projectFile);
         if(implode(_BR_,$_FORMS)) file_put_contents($projectFile, implode(_BR_,$_FORMS));
         
     }

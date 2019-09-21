@@ -161,7 +161,6 @@ if (!defined('IS_APPLICATION_START')){
         
         loader::model('actions');
         Localization::localApplication();
-        myProject::openLsProject( true );
 		
 		if( DS_DEBUG_MODE )
 		{
@@ -180,15 +179,15 @@ if (!defined('IS_APPLICATION_START')){
     
     if (!EMULATE_DVS_EXE){  
      
-        global $_PARAMS, $fmMain;
+        global $_PARAMS, $fmMain, $_sc, $myInspect;
 		
         if (myOptions::get('newProjectDialog', 'startup', true) && !file_exists(isset($_PARAMS[2])? $_PARAMS[2]: '')) {
 			$GLOBALS['__newproject_close'] = true;
             myProject::newProjectDialog( true ); 
 		} else {
+			myProject::openLsProject( true );
 			$GLOBALS['__newproject_close'] = false;
 		}
-		global $fmMain, $_sc, $myInspect;
 		$dock = с("fmMain->pDockMain");
 		$dock->drop = new TDropFilesTarget($dock);
 		$dock->drop->enabled = true;

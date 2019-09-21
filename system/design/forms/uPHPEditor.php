@@ -20,11 +20,10 @@ class ev_fmPHPEditor_tlOk{
 		myComplete::saveCode();
 			$event = c('fmPHPEditor')->event;
 			$name  = $myEvents->selObj instanceof TForm ? '--fmedit' : $myEvents->selObj->name;
-			eventEngine::setEvent($name, $event, c('fmPHPEditor->memo')->text);    
-			myHistory::go();
-			
-			$lastStringSelStart[$name][$event]['x'] =  c('fmPHPEditor->memo')->caretX;
-			$lastStringSelStart[$name][$event]['y'] =  c('fmPHPEditor->memo')->caretY;
+			$tx = c("fmPHPEditor->memo");
+			eventEngine::setEvent($name, $event, $tx->text);
+			$lastStringSelStart[$name][$event]['x'] =  $tx->caretX;
+			$lastStringSelStart[$name][$event]['y'] =  $tx->caretY;
 		
 		$phpeditorClosing = 1;
 		c("fmPHPEditor")->close();
@@ -82,12 +81,11 @@ class evfmPHPEditor {
 		}
 		if(	!$phpeditorClosing and c('fmPHPEditor->tlCancel')->enabled and $msg = messageBox(t('All unsaved changes in the code will be lost. Do you want to save the code before closing?'), t('Closing the Code Editor'), MB_ICONWARNING + MB_YESNOCANCEL) and $msg == mrYes )
 		{		
-			myComplete::saveCode();
-			eventEngine::setEvent($name, $event, c('fmPHPEditor->memo')->text);    
-			myHistory::go();
-			
-			$lastStringSelStart[$name][$event]['x'] =  c('fmPHPEditor->memo')->caretX;
-			$lastStringSelStart[$name][$event]['y'] =  c('fmPHPEditor->memo')->caretY;
+			myComplete::saveCode();   
+			$tx = c("fmPHPEditor->memo");
+			eventEngine::setEvent($name, $event, $tx->text);
+			$lastStringSelStart[$name][$event]['x'] =  $tx->caretX;
+			$lastStringSelStart[$name][$event]['y'] =  $tx->caretY;
 		
 			$phpeditorClosing = 1;
 			c('fmPHPEditor')->close();
@@ -363,8 +361,11 @@ class ev_fmPHPEditor_it_saveevent {
         myComplete::saveCode();
         $event = c('fmPHPEditor')->event;
         $name  = $myEvents->selObj instanceof TForm ? '--fmedit' : $myEvents->selObj->name;
-        eventEngine::setEvent($name, $event, c('fmPHPEditor->memo')->text);    
-        myHistory::go();
+        $tx = c("fmPHPEditor->memo");
+		eventEngine::setEvent($name, $event, $tx->text);
+		
+		$lastStringSelStart[$name][$event]['x'] =  $tx->caretX;
+		$lastStringSelStart[$name][$event]['y'] =  $tx->caretY;
         
         message_beep(66);
         c('fmPHPEditor->tlCancel')->enabled = false;
@@ -650,8 +651,10 @@ class ev_fmPHPEditor_eventTabs {
 		
 		if($save){
 			myComplete::saveCode();
-			eventEngine::setEvent($name, c('fmPHPEditor')->event, c('fmPHPEditor->memo')->text);    
-			myHistory::go();
+			$tx = c("fmPHPEditor->memo");
+			eventEngine::setEvent($name, $event, $tx->text);
+			$lastStringSelStart[$name][$event]['x'] =  $tx->caretX;
+			$lastStringSelStart[$name][$event]['y'] =  $tx->caretY;
 			
 			$lastStringSelStart[$name][$event]['x'] =  c('fmPHPEditor->memo')->caretX;
 			$lastStringSelStart[$name][$event]['y'] =  c('fmPHPEditor->memo')->caretY;
