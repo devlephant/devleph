@@ -145,33 +145,8 @@ class myHistory {
 			$prop = strtolower($prop);
 			if($prop=="name")
 			{
-				if (preg_match('/^([a-z]{1})([a-z0-9\_]+)$/i',$val)){
-				foreach ($_FORMS as $el){
-					if (strtolower($el)==strtolower($val)){
-						return;
-					}
-				}
-				$name = $GLOBALS['_FORMS'][$GLOBALS['formSelected']];
-				$dfm_file = dirname($projectFile) .'/'. $name . '.dfm';
-				$dfm_file2= dirname($projectFile) .'/'. $val . '.dfm';
-				if (file_exists($dfm_file2))
-					unlink($dfm_file2);
-				
-				rename($dfm_file, $dfm_file2);
-				
-				myDesign::groupChangeFormName($name, $value);
-				myDesign::eventChangeFormName($name, $value);
-				
-					$k = array_search($name, $_FORMS);
-					$_FORMS[$k] = $val;
-					$id = c('fmMain->tabForms')->tabIndex;
-					c('fmMain->tabForms')->tabs->setLine($k,$val.'.dfm');
-					c('fmMain->tabForms')->tabIndex = $id;
-					$myProject->formsInfo[$val] = $myProject->formsInfo[$name];
-					unset($myProject->formsInfo[$name]);
-					
-					treeBwr_add();
-				}
+				if(myUtils::changeFName($_FORMS[$formSelected],Localization::toEncoding($val)))
+				treeBwr_add();
 			}elseif( in_array($prop, ['cursor','x','y','autoscroll','alphablend','alphablendvalue','screensnap','snapbuffer','transparentcolor','transparentcolorvalue','doublebuffered']) )
 			{
 				$myProject->formsInfo[$_FORMS[$formSelected]][$prop] = $val;
@@ -390,6 +365,17 @@ class myHistory {
 			self::$HISTORY_ARRAY[$form] = [];
 		$count = count(self::$HISTORY_ARRAY[$form]);
         myVars::set($count>0?$count-1:0, 'historyIndex');
+	}
+	
+	static function ChangeFormName($before, $new)
+	{
+		global $projectFile;
+		if(count(self::$HISTORY_ARRAY[$form][$before])==0) return;
+		self::$HISTORY_ARRAY[$form][$new] = self::$HISTORY_ARRAY[$form][$before];
+		unset( self::$HISTORY_ARRAY[$form][$before] );
+		$file = dirname($projectFile) . DIRECTORY_SEPARATOR . "__history" . DIRECTORY_SEPARATOR . "$before.json";
+		if(!is_file($file)) return;
+			rename($file, dirname($projectFile) . DIRECTORY_SEPARATOR . "__history" . DIRECTORY_SEPARATOR . "$new.json");
 	}
 }
 

@@ -646,7 +646,37 @@ class myUtils
         
         return false;
     }
-    
+    static function changeFName($name,$value)
+	{
+		global $_FORMS, $myProject;
+		if (!preg_match('/^([a-z]{1})([a-z0-9\_]+)$/i',$value)) return false;
+				foreach ($_FORMS as $el){
+					if (strtolower($el)==strtolower($value)){
+						return false;
+					}
+				}
+				$dfm_file = dirname($projectFile) .'/'. $name . '.dfm';
+				$dfm_file2= dirname($projectFile) .'/'. $value . '.dfm';
+				if (file_exists($dfm_file2))
+					unlink($dfm_file2);
+				
+				rename($dfm_file, $dfm_file2);
+				myHistory::ChangeFormName($name,$value);
+				myDesign::groupChangeFormName($name, $value);
+				myDesign::eventChangeFormName($name, $value);
+				
+					$k = array_search($name, $_FORMS);
+					$_FORMS[$k] = $value;
+					$tfrms = c('fmMain->tabForms');
+					$id = $tfrms->tabIndex;
+					$tfrms->tabs->setLine($k,$value.'.dfm');
+					$tfrms->tabIndex = $id;
+					$myProject->formsInfo[$value] = $myProject->formsInfo[$name];
+					unset($myProject->formsInfo[$name]);
+					myInspect::refresh($GLOBALS["fmEdit"]);
+					myInspect::genList($GLOBALS["fmEdit"]);
+		return true;
+	}
     static function renameForm($nam = false){
         global $projectFile, $formSelected, $_FORMS, $myProject;
         if(stripos($nam, '.dfm')){
@@ -659,36 +689,8 @@ class myUtils
           
         $new_name = inputText(t('Rename this form'),t('New form name'), $name);
         if ($new_name)
-        if (preg_match('/^([a-z]{1})([a-z0-9\_]+)$/i',$new_name)){
-            
-            global $_FORMS, $formSelected;
-            foreach ($_FORMS as $el){
-                if (strtolower($el)==strtolower($new_name)){
-                    msg(t('Form %s already exists in the project',$el));
-                    return false;
-                }
-            }
-    
-        
-        $dfm_file = dirname($projectFile) .'/'. $name . '.dfm';
-        $dfm_file2= dirname($projectFile) .'/'. $new_name . '.dfm';
-        if (file_exists($dfm_file2))
-            unlink($dfm_file2);
-        
-        rename($dfm_file, $dfm_file2);
-        myDesign::groupChangeFormName($name, $new_name);
-        myDesign::eventChangeFormName($name, $new_name);
-        
-            $k = array_search($name, $_FORMS);
-            $_FORMS[$k] = $new_name;
-            $id = c('fmMain->tabForms')->tabIndex;
-            c('fmMain->tabForms')->tabs->setLine($k,$new_name.'.dfm');
-            c('fmMain->tabForms')->tabIndex = $id;
-            $myProject->formsInfo[$new_name] = $myProject->formsInfo[$name];
-            unset($myProject->formsInfo[$name]);
-            
+        if (self::changeFName($_FORMS[$formSelected],$new_name))
 			treeBwr_add();
-        }
     }
     
     static function openProject($file){

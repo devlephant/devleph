@@ -190,34 +190,12 @@ class myProperties
 			$prop = strtolower($prop);
 			if($prop=="name")
 			{
-				$value = Localization::toEncoding($value);
-				if (preg_match('/^([a-z]{1})([a-z0-9\_]+)$/i',$value)){
-				foreach ($_FORMS as $el){
-					if (strtolower($el)==strtolower($value)){
-						return;
+					$name = $GLOBALS['_FORMS'][$GLOBALS['formSelected']];
+					if( myUtils::changeFName($name,Localization::toEncoding($value)) )
+					{
+						myHistory::addArr([$fmEdit], $prop, [$name]);
+						treeBwr_add();
 					}
-				}
-				$name = $GLOBALS['_FORMS'][$GLOBALS['formSelected']];
-				$dfm_file = dirname($projectFile) .'/'. $name . '.dfm';
-				$dfm_file2= dirname($projectFile) .'/'. $value . '.dfm';
-				if (file_exists($dfm_file2))
-					unlink($dfm_file2);
-				
-				rename($dfm_file, $dfm_file2);
-				
-				myDesign::groupChangeFormName($name, $value);
-				myDesign::eventChangeFormName($name, $value);
-				
-					$k = array_search($name, $_FORMS);
-					$_FORMS[$k] = $value;
-					$id = c('fmMain->tabForms')->tabIndex;
-					c('fmMain->tabForms')->tabs->setLine($k,$value.'.dfm');
-					c('fmMain->tabForms')->tabIndex = $id;
-					$myProject->formsInfo[$value] = $myProject->formsInfo[$name];
-					unset($myProject->formsInfo[$name]);
-					myHistory::addArr([$fmEdit], $prop, [$name]);
-					treeBwr_add();
-				}
 				return;
 			}elseif( in_array($prop, ['cursor','x','y','autoscroll','alphablend','alphablendvalue','screensnap','snapbuffer','transparentcolor','transparentcolorvalue','doublebuffered']) )
 			{

@@ -4,10 +4,7 @@ class myInspect {
     
     public $objects;
     
-    public function  __construct(){
-        
-        
-    }
+    public function  __construct(){}
 
     static function genList($obj){
         
