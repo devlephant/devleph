@@ -355,6 +355,7 @@ class myHistory {
 		$dir = dirname($projectFile) . DIRECTORY_SEPARATOR . "__history";;
 		if(!is_dir($dir))
 			mkdir($dir);
+		if(is_array(self::$HISTORY_ARRAY) && count(self::$HISTORY_ARRAY)>0)
 		foreach(self::$HISTORY_ARRAY as $form=>$data)
 		{
 			file_put_contents($dir . DIRECTORY_SEPARATOR . "$form.json", json_encode($data));
