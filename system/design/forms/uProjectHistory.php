@@ -8,6 +8,16 @@ class ev_fmProjectHistory
 		self::updview();
 		c("fmProjectHistory")->show();
 	}
+	
+	static function toName($name)
+	{
+		global $_FORMS, $formSelected;
+		$formSelName = $_FORMS[$formSelected];
+		$name = str_replace(["--fmEdit","fmEdit->"], [$formSelName,"$formSelName->"], $name);
+		if( $name  == "fmEdit" )
+			return $formSelName;
+		return $name;
+	}
 	static function updview()
 	{
 		global $_FORMS, $formSelected;

@@ -5,7 +5,7 @@ class myHistory {
 	const INDEX_EVENT = 1;
 	const INDEX_OBJECT = 2;
 	public static $HISTORY_ARRAY = [];
-	public static $HISTORY_INDEXES = []
+	public static $HISTORY_INDEXES = [];
 
 	static function add($objects, $prop)
 	{
