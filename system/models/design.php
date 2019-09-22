@@ -546,11 +546,7 @@ class myDesign
         global $_sc;
        
         $targets = $_sc->targets_ex;
-		if ($state == 1){
-            myHistory::addXY($targets); 
-        } elseif ($state == 2){
-            myHistory::addWH($targets);
-        }
+	
         foreach ($targets as $el){
             if (method_exists($el,'__updateDesign'))
                 $el->__updateDesign();
@@ -1085,13 +1081,13 @@ class myDesign
     
     static function tabFormClick($self, $button, $shift, $x, $y)
 	{
-        global $_FORMS, $formSelected, $historyIndex;
+        global $_FORMS, $formSelected;
         $index = c('fmMain->tabForms')->tabIndex;   
         if ($index == $formSelected) return false;
         myUtils::saveForm();
         $formSelected = $index;
         myUtils::loadForm($_FORMS[$index]);
-        $historyIndex = 0;
+        myHistory::ChangeForm($_FORMS[$index]);
     }
     
     static function objsInspectEdited($self, $item, &$s){
