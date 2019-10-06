@@ -24,5 +24,7 @@ PHP 5.6.40 (5.3.x - 5.6.x Support)
 Chromium 69.0.3 (Flash, Javascript, HTML5 native support)
 
 Unicode partially support (will be full as soon as possible)
-<a href="/readme/en.md"> English </a>
+
+<a href="/readme/EN.md"> English </a>
+
 <a href="/readme/ru.md"> Russich </a>
