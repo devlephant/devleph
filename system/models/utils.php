@@ -215,7 +215,7 @@ class myUtils
 		if(!isset($GLOBALS['sc_offset']))
         $GLOBALS['sc_offset'] = (int)myOptions::get('sc', 'offset', 8);
 	
-		$obj = c("fmMain->shapeSize");
+		$obj = DevS\cache::c("fmMain->shapeSize");
 		$obj->w = $form->w + $GLOBALS['sc_offset'] * 2;
 		$obj->h = $form->h + $GLOBALS['sc_offset'] * 2;
 		$form->position = poDesigned;
@@ -266,10 +266,10 @@ class myUtils
            }
         }
        
-        c('fmMain')->caption = 'Dev-S '.DV_YEAR.' ['.basenameNoExt($projectFile).']';
-        c('fmMain->statusBar')->caption = " ".replaceSr($projectFile);
+        DevS\cache::c('fmMain')->caption = 'Dev-S '.DV_YEAR.' ['.basenameNoExt($projectFile).']';
+        DevS\cache::c('fmMain->statusBar')->caption = " ".replaceSr($projectFile);
        
-        $form->parent = c('fmMain->pDockMain');
+        $form->parent = DevS\cache::c('fmMain->pDockMain');
         $form->show();
     }
 
@@ -306,7 +306,7 @@ class myUtils
         $_sc->onEndSizeMove   = 'myDesign::endSizeMove';
         $_sc->onStartSizeMove = 'myDesign::startSizeMove';
         
-        $_sc->popupMenu= c('fmMain->editorPopup');
+        $_sc->popupMenu= DevS\cache::c('fmMain->editorPopup');
             
         $_sc->enable   = true;
          
@@ -335,8 +335,8 @@ class myUtils
             }
         }
         
-        c('fmMain->shapeSize')->w = $form->w + $GLOBALS['sc_offset']*2;
-        c('fmMain->shapeSize')->h = $form->h + $GLOBALS['sc_offset']*2;
+        DevS\cache::c('fmMain->shapeSize')->w = $form->w + $GLOBALS['sc_offset']*2;
+        DevS\cache::c('fmMain->shapeSize')->h = $form->h + $GLOBALS['sc_offset']*2;
          
          
         /*foreach ($targets_ex as $el){
@@ -415,7 +415,7 @@ class myUtils
 		if( fileExt($file) !== 'dfm' ) return;
 		$basename = basenameNoExt($file);
 		$name 	  = basename($file);
-		$dock = c("fmMain->tabForms");
+		$dock = DevS\cache::c("fmMain->tabForms");
 		$x = array_search($basename, $_FORMS, false);
 		x_copy($file, dirname($projectFile) . '/' . $name);
 		if($x==false)
@@ -445,12 +445,12 @@ class myUtils
         foreach ((array)$_FORMS as $i=>$el)
             if (strtolower($el) == strtolower($name)){
                 $formSelected = $i;
-                c('fmMain->tabForms')->tabIndex = $i;
+                DevS\cache::c('fmMain->tabForms')->tabIndex = $i;
             }
         
         $myEvents->last_self = ''; // fix bug 
         $l_name = strtolower($name); // fix bug ... 
-		c('fmMain->pdockMain')->VertScrollBar->position = c('fmMain->pdockMain')->HorzScrollBar->position = 0;		
+		DevS\cache::c('fmMain->pdockMain')->VertScrollBar->position = DevS\cache::c('fmMain->pdockMain')->HorzScrollBar->position = 0;		
         if (isset(self::$forms[$l_name])){
         if (self::$forms[$l_name]){
             
@@ -511,10 +511,10 @@ class myUtils
             $fmEdit->repaint();
             $fmEdit->show();
         }
-		if( $fmEdit->y !== (c("fmMain->shapeSize")->y + $GLOBALS['sc_offset']) ) 
+		if( $fmEdit->y !== (DevS\cache::c("fmMain->shapeSize")->y + $GLOBALS['sc_offset']) ) 
 			{
-				$fmEdit->y = c("fmMain->shapeSize")->y + $GLOBALS['sc_offset'];
-				$fmEdit->x = c("fmMain->shapeSize")->x + $GLOBALS['sc_offset'];
+				$fmEdit->y = DevS\cache::c("fmMain->shapeSize")->y + $GLOBALS['sc_offset'];
+				$fmEdit->x = DevS\cache::c("fmMain->shapeSize")->x + $GLOBALS['sc_offset'];
             }
         myProject::loadFormInfo();
 
@@ -615,9 +615,9 @@ class myUtils
         $new_name = $new_name.'_'.$i;    
             
             
-        $index = c('fmMain->tabForms')->tabIndex;
-        c('fmMain->tabForms',1)->addPage($new_name.'.dfm');
-        c('fmMain->tabForms',1)->tabIndex = $index;
+        $index = DevS\cache::c('fmMain->tabForms')->tabIndex;
+        DevS\cache::c('fmMain->tabForms')->addPage($new_name.'.dfm');
+        DevS\cache::c('fmMain->tabForms')->tabIndex = $index;
         
         $dfm_file = dirname($projectFile) .'/'. $name . '.dfm';
         $dfm_file2= dirname($projectFile) .'/'. $new_name . '.dfm';
@@ -632,7 +632,8 @@ class myUtils
 		treeBwr_add();
     }
     
-    static function formExists($nam){
+    static function formExists($nam)
+	{
         if(stripos($nam, '.dfm')){
 			$name = explode('.',$nam);
 			if( $name[count($name)-1] == 'dfm' ) unset($name[count($name)-1]);

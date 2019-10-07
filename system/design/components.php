@@ -120,11 +120,11 @@ if (EMULATE_DVS_EXE) return;
 	
     ////// создаем панель компонентов ///////// 
 	/*AZ: Вырезал этот код ещё давно, т.к хлам по сути, можно не создавать в этом месте, а из dfm грузить*/
-    $cp = c('fmComponents->list');
+    $cp = DevS\cache::c('fmComponents->list');
 	$rfc = function($theme)
 	{
-		$cp = c('fmComponents->list');
-		$pp = c('fmMain->NXGlyphos');
+		$cp = DevS\cache::c('fmComponents->list');
+		$pp = DevS\cache::c('fmMain->NXGlyphos');
 		$cp->ExpandGlyph->loadFromFile("{$theme}/pc_collapsed.bmp");
 		$cp->CollapseGlyph->loadFromFile("{$theme}/pc_expanded.bmp");
 		$pp->clear();

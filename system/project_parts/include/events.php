@@ -110,17 +110,20 @@ class eventEngine {
         
         $type	= strtolower($type);
         $object	= strtolower($object);
-        if ($type)
+		if(isSet(self::$DATA[self::$form][$object])) 
 		{
-			if($up)
-				myHistory::addEvent( self::$DATA[self::$form][$object][$type] );
-            unset(self::$DATA[self::$form][$object][$type]);
-        } else
-		{
-			if($up)
-				foreach( self::$DATA[self::$form][$object] as $type=>$data )
-				myHistory::addEvent($object, $type, $data);
-            unset(self::$DATA[self::$form][$object]);
+			if ($type)
+			{
+				if($up)
+					myHistory::addEvent( self::$DATA[self::$form][$object][$type] );
+				unset(self::$DATA[self::$form][$object][$type]);
+			} else
+			{
+				if($up)
+					foreach( self::$DATA[self::$form][$object] as $type=>$data )
+					myHistory::addEvent($object, $type, $data);
+				unset(self::$DATA[self::$form][$object]);
+			}
 		}
     }
     

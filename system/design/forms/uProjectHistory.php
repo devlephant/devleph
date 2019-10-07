@@ -6,7 +6,7 @@ class ev_fmProjectHistory
 	static function Show()
 	{
 		self::updview();
-		c("fmProjectHistory")->show();
+		DevS\cache::c("fmProjectHistory")->show();
 	}
 	
 	static function toName($name)
@@ -21,7 +21,7 @@ class ev_fmProjectHistory
 	static function updview()
 	{
 		global $_FORMS, $formSelected;
-		$tree = c("fmProjectHistory->history");
+		$tree = DevS\cache::c("fmProjectHistory->history");
 		$selIndex = [0,0];
 		$tree->items->BeginUpdate();
 		$tree->text = "";
@@ -39,9 +39,9 @@ class ev_fmProjectHistory
 			$imgindex[] = myImages::getImgID("form");
 			++$cindex;
 			$findex = $cindex;
-			$expand[$cindex] = false
+			$expand[$cindex] = false;
 			if(is_array($data))
-			foreach( $data as $el=>$obj )
+			foreach( $data as $el=>$objs )
 			{
 				//0 = anything, string
 				//1 = class
@@ -49,8 +49,11 @@ class ev_fmProjectHistory
 				//3 = event name
 				//4 = event code
 				//5 = event notice
-				$name = self::toName($obj[0]["name"]);
-				
+				if(!isset($objs[0][0])) $objs[0] = [$objs[0]];
+				foreach($objs as $obj)
+				{
+					$name = self::toName($obj[0]["name"]);
+					pre([$name,$obj[0]["name"],$objs]);
 				if( $obj[1] == myHistory::INDEX_PROP )
 				{
 					if( is_array($obj[0]["prop"]) )
@@ -58,7 +61,7 @@ class ev_fmProjectHistory
 						foreach($obj[0]["prop"] as $i=>$_obj)
 						{
 							++$cindex;
-							$text .= "\t\t{$obj[2]} {$obj[3]} [$name->$_obj]" . PHP_EOL;
+							$text .= "\t\t{$obj[2]} {$obj[3]} [$cindex] ($name->$_obj)" . PHP_EOL;
 							$imgindex[] = myImages::getImgID("property");
 							
 							$imgindex[] = myImages::getImgID("valueofproperty");
@@ -74,7 +77,7 @@ class ev_fmProjectHistory
 						}
 					} else {
 						++$cindex;
-							$text .= "\t\t{$obj[2]} {$obj[3]} ($name->$_obj)" . PHP_EOL;
+							$text .= "\t\t{$obj[2]} {$obj[3]} [$cindex] ($name->{$obj[0]["prop"]})" . PHP_EOL;
 							$imgindex[] = myImages::getImgID("property");
 							
 							$imgindex[] = myImages::getImgID("valueofproperty");
@@ -90,7 +93,7 @@ class ev_fmProjectHistory
 					}
 				} elseif( $obj[1] == myHistory::INDEX_OBJECT ) {
 					++$cindex;
-					$text .= "\t\t{$obj[2]} {$obj[3]} (".t("Object %s " . ($obj[0]["data"]==null?"created": "deleted"), $name) . PHP_EOL;
+					$text .= "\t\t{$obj[2]} {$obj[3]} [$cindex] (".t("Object %s " . ($obj[0]["data"]==null?"created": "deleted"), $name) . PHP_EOL;
 					$imgindex[] = myImages::getImgID($obj[0]["class"]);
 					$imgindex[] = myImages::getImgID("property");
 					$imgindex[] = myImages::getImgID("property");
@@ -108,7 +111,7 @@ class ev_fmProjectHistory
 				{
 					$imgindex[] = myImages::getImgID($obj[0]["event"]);
 					++$cindex;
-					$text .= "\t\t{$obj[2]} {$obj[3]} ($name->" . $obj[0]["event"] .")" .  PHP_EOL;
+					$text .= "\t\t{$obj[2]} {$obj[3]} [$cindex] ($name->" . $obj[0]["event"] .")" .  PHP_EOL;
 					
 					++$cindex;
 					$text .= "\t\t\t " . t("Name of the object:") ." ". $name . PHP_EOL;
@@ -123,28 +126,29 @@ class ev_fmProjectHistory
 					$text .= "\t\t\t " . t("Event code:") ." [...]". PHP_EOL;
 					self::$data[$cindex] = [4,$obj[0]["data"],[$el,0,"data"]];
 					++$cindex;
-					$text .= "\t\t\t " . t("Event has been" . ($obj[0]["c"]==0?"created":($obj[0]["c"]==1?"changed":"deleted"))) . PHP_EOL;
+					$text .= "\t\t\t " . t("Event has been " . ($obj[0]["c"]==0?"created":($obj[0]["c"]==1?"changed":"deleted"))) . PHP_EOL;
 					self::$data[$cindex] = [5,$obj[0]["c"],[$el,0,"c"]];
 				}
-				if($form == $_FORMS[$formSelected] && $el == myHistory::$historyIndex )
+				}
+				if($form == $_FORMS[$formSelected] && $el == myHistory::$HISTORY_INDEXES[$_FORMS[$formSelected]] )
 				{
-					for( range($findex, $cindex-$findex) as $r )
+					foreach( range($findex, $cindex-$findex) as $r )
 						$expand[$r] = true;
 					$selIndex = [$cindex, $cindex-$findex];
 				} else {
-					for( range($findex, $cindex-$findex) as $r )
+					foreach( range($findex, $cindex-$findex) as $r )
 						$expand[$r] = false;
 				}
 			}
 		}
+		pre($text);
 		$tree->text = $text;
 		foreach($tree->items as $i=>$item){
 			$item->Expanded = $expand[$i];
 			$item->imageIndex = $imgindex[$i];
-			if($i == $selIndex[0])
-			$item->SelectedIndex = $selIndex[1];
+			$item->SelectedIndex = $imgindex[$i];
 		}
-		$tree->Images = c('MainImages24');
+		$tree->Images = DevS\cache::c('MainImages24');
 		$tree->items->EndUpdate();
 	}
 	static function EditClick($self)
@@ -184,7 +188,7 @@ class ev_fmProjectHistory
 					if($component->name=="") continue;
 					$names[] = $_FORMS[$formSelected] . "->" . $component->name;
 				}
-				self::create235($names,$inf[1]),$pointer);
+				self::create235($names,$inf[1],$pointer);
 			} elseif( $inf[0] == 3 )
 			{
 				self::create235(array_keys($GLOBALS['__EVENTS_API_PRMS']),$inf[1],$pointer);
@@ -263,7 +267,7 @@ class ev_fmProjectHistory_btnDelete
 {
 	static function onClick($self)
 	{
-		ev_fmProjectHistory::DeleteClick( c("fmProjectHistory->history") );
+		ev_fmProjectHistory::DeleteClick( DevS\cache::c("fmProjectHistory->history") );
 	}
 }
 
@@ -271,7 +275,7 @@ class ev_fmProjectHistory_btnEdit
 {
 	static function onClick($self)
 	{
-		ev_fmProjectHistory::EditClick( c("fmProjectHistory->history") );
+		ev_fmProjectHistory::EditClick( DevS\cache::c("fmProjectHistory->history") );
 	}
 }
 
@@ -279,6 +283,6 @@ class ev_fmProjectHistory_btnLoad
 {
 	static function onClick($self)
 	{
-		ev_fmProjectHistory::OpenClick( c("fmProjectHistory->history") );
+		ev_fmProjectHistory::OpenClick( DevS\cache::c("fmProjectHistory->history") );
 	}
 }

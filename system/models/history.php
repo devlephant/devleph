@@ -125,12 +125,12 @@ class myHistory {
 			$__isUndo = false;
 		}
         self::$HISTORY_ARRAY[$_FORMS[$formSelected]][] = [
-			[
+			[[
 			"name"=>$obj,
 			"event"=>$event,
 			"c"=>$comment,
 			"data"=>$code
-			]
+			]]
 		,self::INDEX_EVENT,date("Dm Y"),date("H:i:s")];
         ++self::$HISTORY_INDEXES[$_FORMS[$formSelected]];
 	}
@@ -236,7 +236,7 @@ class myHistory {
 				{
 					myDesign::deleteObject(c($el['name']));
 					$obj = _c(myDesign::noVisAlias(myDesign::lastComponent()->self));
-					$myProperties->generate($obj->self,c('fmPropsAndEvents->tabProps',1));
+					$myProperties->generate($obj->self,DevS\cache::c('fmPropsAndEvents->tabProps'));
 					$myEvents->generate($obj);
 					if ($obj->self !== $fmEdit->self)
 					$_sc->addTarget(_c(myDesign::noVisAliasRt($obj->self)));
@@ -286,7 +286,7 @@ class myHistory {
 			{
 				$_sc->update();
 				$myEvents->generate($s);
-				$myProperties->generate($s, c('fmPropsAndEvents->tabProps',1));
+				$myProperties->generate($s, DevS\cache::c('fmPropsAndEvents->tabProps'));
 				
 				goto tree;
 			}

@@ -30,8 +30,8 @@ class myEvents {
     
     static function findText(){
         
-        $text = c('fmPHPEditor->memo')->text;
-        $find = c('fmPHPEditor->f_text')->text;
+        $text = DevS\cache::c('fmPHPEditor->memo')->text;
+        $find = DevS\cache::c('fmPHPEditor->f_text')->text;
         $reg  = val('fmPHPEditor->c_register');
         
         $GLOBALS['__find'] = [];
@@ -61,8 +61,8 @@ class myEvents {
     
     static function editorShow($selLine=false, $caretY=false, $err = false, $only_show = false){
         
-        $eventList = c('fmPropsAndEvents->eventList');
-        $PHPEditor = c('fmPHPEditor');
+        $eventList = DevS\cache::c('fmPropsAndEvents->eventList');
+        $PHPEditor = DevS\cache::c('fmPHPEditor');
         
         if ($eventList->itemIndex>-1){
             
@@ -73,9 +73,9 @@ class myEvents {
             
             $event  = $eventList->events[$eventList->itemIndex];
             //СЮДА ДОБАВИТЬ КОД НА СЛУЧАЙ ЕСЛИ СЕЙЧАС ОТКРЫТА ВКЛАДКА НЕ С ФОРМОЙ (НУ ИЛИ ЧТО-ТО ТАКОЕ)
-			$tabForms = c("fmMain->tabForms");
-			$php_memo = c('fmPHPEditor->memo');
-            $last_text = c('fmPHPEditor')->text;
+			$tabForms = DevS\cache::c("fmMain->tabForms");
+			$php_memo = DevS\cache::c('fmPHPEditor->memo');
+            $last_text = DevS\cache::c('fmPHPEditor')->text;
 			if(fileExt($tabForms->tabs->strings[ $tabForms->tabIndex ]) !== 'dfm')
 			{
 				$PHPEditor->borderStyle = bsSizeable;
@@ -116,22 +116,22 @@ class myEvents {
                 
                 if ($err)
 				{    
-                    c('fmFindErrors->l_obj', 1)->text = $err['name'];
-                    c('fmFindErrors->l_event', 1)->text = t('Event - "%s"', t(strtolower($err['event'])));
-                    c('fmFindErrors->memofind', 1)->text = $php_memo->items->getLine((int)$err['line']-1);
-                    c('fmFindErrors->err_msg', 1)->text = t($err['msg']);
-                    c('fmFindErrors->l_line', 1)->text = t('Line %s', $err['line']);
+                    DevS\cache::c('fmFindErrors->l_obj', 1)->text = $err['name'];
+                    DevS\cache::c('fmFindErrors->l_event', 1)->text = t('Event - "%s"', t(strtolower($err['event'])));
+                    DevS\cache::c('fmFindErrors->memofind', 1)->text = $php_memo->items->getLine((int)$err['line']-1);
+                    DevS\cache::c('fmFindErrors->err_msg', 1)->text = t($err['msg']);
+                    DevS\cache::c('fmFindErrors->l_line', 1)->text = t('Line %s', $err['line']);
                     
                     $action = myActions::getAction(action_Simple::getLine());
                     
                     if ($action){
-                            c('fmFindErrors->info',1)->caption = $action['TEXT'];
-                            c('fmFindErrors->action_image',1)->loadPicture($action['ICON']);
-                            c('fmFindErrors->desc',1)->caption = myActions::getInline($action);
+                            DevS\cache::c('fmFindErrors->info',1)->caption = $action['TEXT'];
+                            DevS\cache::c('fmFindErrors->action_image',1)->loadPicture($action['ICON']);
+                            DevS\cache::c('fmFindErrors->desc',1)->caption = myActions::getInline($action);
                         } else {
-                            c('fmFindErrors->info',1)->caption = '';
-                            c('fmFindErrors->desc',1)->caption = '';
-                            c('fmFindErrors->action_image',1)->picture->clear();
+                            DevS\cache::c('fmFindErrors->info',1)->caption = '';
+                            DevS\cache::c('fmFindErrors->desc',1)->caption = '';
+                            DevS\cache::c('fmFindErrors->action_image',1)->picture->clear();
                     }
                     
                     $GLOBALS['APPLICATION']->toFront();
@@ -167,8 +167,8 @@ class myEvents {
     }
     static function ShowEditorInTab($Caret, $tabIndex)
 	{
-		$PHPEditor = c("fmPHPEditor");
-		$php_memo = c("fmPHPEditor->memo");
+		$PHPEditor = DevS\cache::c("fmPHPEditor");
+		$php_memo = DevS\cache::c("fmPHPEditor->memo");
 		
 		if($Caret)
 			list($php_memo->CaretX, $php_memo->CaretY, $php_memo->TopLine, $selectedLine) = $Caret;
@@ -218,7 +218,7 @@ class myEvents {
         global $doChangeEvent, $myEvents;
         $doChangeEvent = true;
         
-        $edt_Events = c('edt_EventTypes->popupMenu');
+        $edt_Events = DevS\cache::c('edt_EventTypes->popupMenu');
         
         $x = cursor_pos_x();
         $y = cursor_pos_y();
@@ -226,7 +226,7 @@ class myEvents {
         $class = rtti_class($myEvents->selObj->self);
         $buttons = $myEvents->classes[$class];
         
-        $eventList = c('fmPropsAndEvents->eventList');
+        $eventList = DevS\cache::c('fmPropsAndEvents->eventList');
 		
         $event  = $eventList->events[$eventList->itemIndex];
         
@@ -262,7 +262,7 @@ class myEvents {
         $eventL = $myEvents->getEvent($obj);
         if ( $doChangeEvent ){
             
-            $eventList = c('fmPropsAndEvents->eventList');
+            $eventList = DevS\cache::c('fmPropsAndEvents->eventList');
             $event  = $eventList->events[$eventList->itemIndex];
             
             eventEngine::changeEvent($name, $event, $eventL['EVENT']);
@@ -323,11 +323,11 @@ class myEvents {
     function genList(){
         
         global $componentEvents, $fmEdit, $myEvents;
-        $eventList = c('fmMain->eventList');
+        $eventList = DevS\cache::c('fmMain->eventList');
         $eventList->clear();
         
         $name = $myEvents->selObj instanceof TForm ? '--fmedit' : $myEvents->selObj->name;
-		c("fmMain->editorPopup")->AutoPopup = false;
+		DevS\cache::c("fmMain->editorPopup")->AutoPopup = false;
         $eventList->text = eventEngine::listEventsEx($name);
         
         eventEngine::setForm();
@@ -341,9 +341,9 @@ class myEvents {
         if ( $doChangeEvent )
             $eventList->itemIndex = $eventList->items->count-1;
 		$v = count($events)!==count($componentEvents[rtti_class($myEvents->selObj->self)]);
-			c("fmPropsAndEvents->btn_addEvent")->enabled = $v;
-			c("fmPropsAndEvents->btn_changeEvent")->enabled = $v;
-		c("fmMain->editorPopup")->AutoPopup = true;
+			DevS\cache::c("fmPropsAndEvents->btn_addEvent")->enabled = $v;
+			DevS\cache::c("fmPropsAndEvents->btn_changeEvent")->enabled = $v;
+		DevS\cache::c("fmMain->editorPopup")->AutoPopup = true;
     }
     
     function _generate($object){
@@ -351,7 +351,7 @@ class myEvents {
         global $myEvents;
         $this->selObj = $object;
         if ($myEvents->last_self == $object->self) return;
-		c("fmMain->editorPopup")->AutoPopup = false;
+		DevS\cache::c("fmMain->editorPopup")->AutoPopup = false;
         $myEvents->clearForm();
         
         $class = rtti_class($object->self);
@@ -377,20 +377,20 @@ class myEvents {
         }
         
         
-        c('fmMain->tabEvents')->enabled = count($myEvents->classes[$class]) > 0;
-        c('fmMain->btn_addEvent')->enabled = count($myEvents->classes[$class]) > 0;
-        c("fmMain->editorPopup")->AutoPopup = true;
+        DevS\cache::c('fmMain->tabEvents')->enabled = count($myEvents->classes[$class]) > 0;
+        DevS\cache::c('fmMain->btn_addEvent')->enabled = count($myEvents->classes[$class]) > 0;
+        DevS\cache::c("fmMain->editorPopup")->AutoPopup = true;
         $myEvents->genList();
         
     }
     
-    function generate($obj){
-        
+    function generate($obj)
+	{
         setTimeout(25, 'global $myEvents; $myEvents->_generate(_c('.$obj->self.'))');
     }
     
-    function addEvent(){
-        
+    function addEvent()
+	{    
         global $doChangeEvent, $myEvents;
         $doChangeEvent = false;
         
@@ -408,7 +408,7 @@ class myEvents {
 				$btn->visible = true;
 		}
         
-		c('edt_EventTypes->popupMenu')->popup($x, $y);
+		DevS\cache::c('edt_EventTypes->popupMenu')->popup($x, $y);
 		foreach ($buttons as $btn)
             $btn->visible = true;
 		

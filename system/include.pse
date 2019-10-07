@@ -47,9 +47,9 @@ if (!defined('IS_APPLICATION_START')){
 		$dfm_dir = "\\design\\forms\\";
         $fmLogoin = TForm::loadFromFile("{$dfm_dir}uLogoin");
 		dsThemeDesign::Load();
-        c("fmLogoin->label9")->caption = "Version: " . DV_VERSION . " - " . DV_PREFIX;
-		c("fmLogoin->Image1")->loadFromFile(dsThemeDesign::$dir."/LogoIn.png");
-		c('fmLogoin->loadbar')->brushColor = dsThemeDesign::$ini['fmLogoin']['loadbar'];
+        DevS\cache::c("fmLogoin->label9")->caption = "Version: " . DV_VERSION . " - " . DV_PREFIX;
+		DevS\cache::c("fmLogoin->Image1")->loadFromFile(dsThemeDesign::$dir."/LogoIn.png");
+		DevS\cache::c('fmLogoin->loadbar')->brushColor = dsThemeDesign::$ini['fmLogoin']['loadbar'];
 		fmLogoin::Progress(1);
 		fmLogoin::Progress2(15,28);
         $fmLogoin->show();
@@ -73,6 +73,8 @@ if (!defined('IS_APPLICATION_START')){
 		fmLogoin::Progress2(15,28);
         // Editor dialogs
         TForm::loadFromFile("{$dfm_dir}uedt_Text", true);
+		fmLogoin::Progress2(15,28);
+		TForm::loadFromFile("{$dfm_dir}uProjectHistory", true);
 		fmLogoin::Progress2(15,28);
 		TForm::loadFromFile("{$dfm_dir}uTIBEditor", true);
 		fmLogoin::Progress2(15,28);
@@ -106,7 +108,7 @@ if (!defined('IS_APPLICATION_START')){
 		fmLogoin::Progress2(15,28);
         TForm::loadFromFile("{$dfm_dir}uBuildProgram"); 
 		fmLogoin::Progress2(15,28);
-		c("fmBuildProgram->im_icon")->loadFromFile(DOC_ROOT . 'project_parts/project.ico');
+		DevS\cache::c("fmBuildProgram->im_icon")->loadFromFile(DOC_ROOT . 'project_parts/project.ico');
         TForm::loadFromFile("{$dfm_dir}uBuildCompleted",true);
 		fmLogoin::Progress2(15,28);
         TForm::loadFromFile("{$dfm_dir}uProjectOptions",true);
@@ -170,7 +172,7 @@ if (!defined('IS_APPLICATION_START')){
 		$fmLogoin->free();
         unset($fmLogoin);
         evfmMain::loadMainConfig();
-		c('fmMain->panelPropEvent')->onChange = 'myProperties::fixSplitterMoved';
+		DevS\cache::c('fmMain->panelPropEvent')->onChange = 'myProperties::fixSplitterMoved';
 		$fmMain->onResize = 'myProperties::fixSplitterMoved';
 		myProperties::fixSplitterMoved(0);
     }
@@ -227,7 +229,7 @@ if (!defined('IS_APPLICATION_START')){
 				$_sc->addTarget($img);
 				if($d==0)
 				{
-					$myProperties->generate($img->self,c('fmPropsAndEvents->tabProps',1));
+					$myProperties->generate($img->self,DevS\cache::c('fmPropsAndEvents->tabProps',1));
 					$myEvents->generate($img);
 				}
 				$d += $_sc->gridSize;
@@ -272,7 +274,7 @@ if (!defined('IS_APPLICATION_START')){
 			}
 
 		};
-		$dock = c("fmMain->tabForms");
+		$dock = DevS\cache::c("fmMain->tabForms");
 		$dock->drop = new TDropFilesTarget($dock);
 		$dock->drop->parent = $dock;
 		$dock->drop->enabled = true;

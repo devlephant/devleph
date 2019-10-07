@@ -39,9 +39,8 @@ class complete_Vars {
 	}
 	
     // возвращаем список для инлайна
-    function getList($lineText){
-        
-        
+    function getList($lineText)
+	{
         $gl_vars = (array)myProject::cfg('globals');
         
         $vars = self::getLocalVars();

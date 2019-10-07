@@ -8,41 +8,41 @@ class evfmEasySelectDialog {
         global $myProject, $formSelected, $_FORMS;
         
         $arr = myProject::getFormsObjects($GLOBALS['OBJ_CLASSES']);
-        c('objs_forms')->items->setArray(array_keys($arr));
-        c('objs_forms')->itemIndex = $formSelected;
+        DevS\cache::c('fmEasySelectDialog->objs_forms')->items->setArray(array_keys($arr));
+        DevS\cache::c('fmEasySelectDialog->objs_forms')->itemIndex = $formSelected;
         
-        c('lst_forms')->items->setArray(array_keys($arr));
-        c('lst_forms')->itemIndex = $formSelected;
+        DevS\cache::c('fmEasySelectDialog->lst_forms')->items->setArray(array_keys($arr));
+        DevS\cache::c('fmEasySelectDialog->lst_forms')->itemIndex = $formSelected;
         
-        myInspect::generateEx($arr[ $_FORMS[$formSelected] ], c('objs_list'));
-        myInspect::generateEx($arr[ $_FORMS[$formSelected] ], c('lst_objects'));
+        myInspect::generateEx($arr[ $_FORMS[$formSelected] ], DevS\cache::c('fmEasySelectDialog->objs_list'));
+        myInspect::generateEx($arr[ $_FORMS[$formSelected] ], DevS\cache::c('fmEasySelectDialog->lst_objects'));
         
-        $txt = c('line')->text;
-        c('c_kav')->checked = ($txt[0]=='"' && $txt[strlen($txt)-1]=='"');
+        $txt = DevS\cache::c('fmEasySelectDialog->line')->text;
+        DevS\cache::c('fmEasySelectDialog->c_kav')->checked = ($txt[0]=='"' && $txt[strlen($txt)-1]=='"');
         if ( preg_match('/^c\((.*)\)$/i', trim($txt)) ){
             
-            c('fmEasySelectDialog->pages')->pageIndex    = 1;
+            DevS\cache::c('fmEasySelectDialog->pages')->pageIndex    = 1;
             $obj_str = str_ireplace('c("','', $txt);
             $obj_str = str_ireplace('")','',$obj_str);
             $obj_str = trim($obj_str);
             $objs = explode('->',$obj_str);
                 
                 if (in_array($objs[0],$_FORMS)){
-                    c('objs_forms')->itemIndex = array_search($objs[0], $_FORMS);
-                    myInspect::generateEx($arr[ $objs[0] ], c('objs_list'));
-                    c('objs_forms')->setFocus();
+                    DevS\cache::c('fmEasySelectDialog->objs_forms')->itemIndex = array_search($objs[0], $_FORMS);
+                    myInspect::generateEx($arr[ $objs[0] ], DevS\cache::c('fmEasySelectDialog->objs_list'));
+                    DevS\cache::c('fmEasySelectDialog->objs_forms')->setFocus();
                     if ( $objs[1] ){
-                        c('objs_list')->items->selectedCaption = $objs[1];
-                        c('objs_list')->setFocus();
+                        DevS\cache::c('fmEasySelectDialog->objs_list')->items->selectedCaption = $objs[1];
+                        DevS\cache::c('fmEasySelectDialog->objs_list')->setFocus();
                     }
                 } else {
-                    c('objs_list')->items->selectedCaption = $objs[0];
-                    c('objs_list')->setFocus();
+                    DevS\cache::c('fmEasySelectDialog->objs_list')->items->selectedCaption = $objs[0];
+                    DevS\cache::c('fmEasySelectDialog->objs_list')->setFocus();
                 }
                 
         } elseif ( preg_match('/^c\((.*)\)\-\>([a-z0-9\_\-\>]+)$/i', trim($txt)) ){
             
-            c('fmEasySelectDialog->pages')->pageIndex    = 2;
+            DevS\cache::c('fmEasySelectDialog->pages')->pageIndex    = 2;
             preg_match_all('#^c\(\"(.*)\"\)\-\>([a-z0-9\_\-\>]+)$#i', $txt, $arx);
             
             $prop = trim($arx[2][0]);
@@ -66,29 +66,29 @@ class evfmEasySelectDialog {
                         break;
                     }
                     
-                c('lst_objects')->items->selectedCaption = $obj_str;
+                DevS\cache::c('fmEasySelectDialog->lst_objects')->items->selectedCaption = $obj_str;
             }
             
-            ev_lst_objects::onClick(c('lst_objects')->self);
-            c('lst_props')->setFocus();
+            ev_lst_objects::onClick(DevS\cache::c('fmEasySelectDialog->lst_objects')->self);
+            DevS\cache::c('fmEasySelectDialog->lst_props')->setFocus();
                 
-            c('lst_props')->items->selected = myProperties::getPropertyText($prop);
-            c('lst_props')->setFocus();
-            c('line')->text = $arx[0][0];
+            DevS\cache::c('fmEasySelectDialog->lst_props')->items->selected = myProperties::getPropertyText($prop);
+            DevS\cache::c('fmEasySelectDialog->lst_props')->setFocus();
+            DevS\cache::c('fmEasySelectDialog->line')->text = $arx[0][0];
             
-            myInspect::generateEx($arr[ $form_str ], c('lst_objects'));
+            myInspect::generateEx($arr[ $form_str ], c('fmEasySelectDialog->lst_objects'));
             
-            c('lst_objects')->items->selectedCaption = $obj_str;
+            DevS\cache::c('fmEasySelectDialog->lst_objects')->items->selectedCaption = $obj_str;
             
             if ( !$objs[1] )
-                c('lst_objects')->itemIndex = -1;
+                DevS\cache::c('fmEasySelectDialog->lst_objects')->itemIndex = -1;
         }
     }
     
     static function onShow($self){
         
         $obj = new TEditColorDialog(_c($self));
-        $obj->parent = c('fmEasySelectDialog->gb_color');
+        $obj->parent = DevS\cache::c('fmEasySelectDialog->gb_color');
         $obj->w = 160;
         $obj->x = 13;
         $obj->y = 40;
@@ -97,19 +97,16 @@ class evfmEasySelectDialog {
     }
     
     static function onColorClick($self){
-        
-        c('line')->text = _c($self)->text;
+       DevS\cache::c('fmEasySelectDialog->line')->text = _c($self)->text;
     }
     
     static function onColorSelect($obj, $color){
-        
-        c('line')->text = '0x'.dechex($color);
+        DevS\cache::c('fmEasySelectDialog->line')->text = '0x'.dechex($color);
     }
 }
 
 
 class ev_objs_forms {
-    
     
     static function onChange($self){
         
@@ -117,18 +114,18 @@ class ev_objs_forms {
         $index = _c($self)->itemIndex;
         $arr = myProject::getFormsObjects($GLOBALS['OBJ_CLASSES']);
         
-        myInspect::generateEx($arr[ $_FORMS[$index] ], c('fmEasySelectDialog->objs_list'));
+        myInspect::generateEx($arr[ $_FORMS[$index] ], DevS\cache::c('fmEasySelectDialog->objs_list'));
         
         if ($GLOBALS['OBJ_ISFUNC'])
-            c('line')->text = _c($self)->items->selected;
+            DevS\cache::c('fmEasySelectDialog->line')->text = _c($self)->items->selected;
         else
-            c('line')->text = 'c(\'' . _c($self)->items->selected . '\')';
+            DevS\cache::c('fmEasySelectDialog->line')->text = 'c(\'' . _c($self)->items->selected . '\')';
     }
     
     
     static function onClick($self){
         
-       // c('line')->text = 'c(\'' . _c($self)->items->selected . '\')';
+       // DevS\cache::c('fmEasySelectDialog->line')->text = 'c(\'' . _c($self)->items->selected . '\')';
     }
 }
 
@@ -142,12 +139,12 @@ class ev_lst_forms {
         $index = _c($self)->itemIndex;
         $arr = myProject::getFormsObjects($GLOBALS['OBJ_CLASSES']);
         
-        myInspect::generateEx($arr[ $_FORMS[$index] ], c('fmEasySelectDialog->lst_objects'));
-        ev_lst_objects::onClick(c('lst_objects')->self);
-        c('lst_objects')->items->itemIndex = -1;
+        myInspect::generateEx($arr[ $_FORMS[$index] ], DevS\cache::c('fmEasySelectDialog->lst_objects'));
+        ev_lst_objects::onClick(c('fmEasySelectDialog->lst_objects')->self);
+        DevS\cache::c('fmEasySelectDialog->lst_objects')->items->itemIndex = -1;
         
         
-        //c('line')->text = 'c(\'' . _c($self)->items->selected . '\')';
+        //DevS\cache::c('fmEasySelectDialog->line')->text = 'c(\'' . _c($self)->items->selected . '\')';
     }
     
     static function onSelect($self){
@@ -167,25 +164,25 @@ class ev_objs_list {
         global $_FORMS, $formSelected;
         
         $objs = _c($self)->items->selectedCaption;
-        $form_name = c('objs_forms')->items->selected;
+        $form_name = DevS\cache::c('fmEasySelectDialog->objs_forms')->items->selected;
         
         if ($GLOBALS['OBJ_ISFUNC']){
             if (current($objs))
                 if ($GLOBALS['OBJ_FULLPATH'])
-                    c('line')->text = $form_name .'->'. current($objs);
+                    DevS\cache::c('fmEasySelectDialog->line')->text = $form_name .'->'. current($objs);
                 else
-                    c('line')->text = current($objs);
+                    DevS\cache::c('fmEasySelectDialog->line')->text = current($objs);
             else
-                c('line')->text = $form_name;
+                DevS\cache::c('fmEasySelectDialog->line')->text = $form_name;
         } else {
             if (current($objs)){
                 if ($_FORMS[$formSelected]==$form_name)
-                    c('line')->text = 'c("' . current($objs) . '")';
+                    DevS\cache::c('fmEasySelectDialog->line')->text = 'c("' . current($objs) . '")';
                 else
-                    c('line')->text = 'c("' . $form_name.'->'. current($objs) . '")';
+                    DevS\cache::c('fmEasySelectDialog->line')->text = 'c("' . $form_name.'->'. current($objs) . '")';
             }
             else
-                c('line')->text = 'c("' . $form_name . '")';
+                DevS\cache::c('fmEasySelectDialog->line')->text = 'c("' . $form_name . '")';
         }
     }
     
@@ -201,7 +198,7 @@ class ev_lst_objects {
         $obj = _c($self);
         
         $index = current($obj->items->selected);
-        $findex = c('lst_forms')->items->selected;
+        $findex = DevS\cache::c('fmEasySelectDialog->lst_forms')->items->selected;
         
         $arr = myProject::getFormsObjects($GLOBALS['OBJ_CLASSES']);
         
@@ -215,18 +212,18 @@ class ev_lst_objects {
         foreach ($arr as $el)
             $result[] = $el['CAPTION'];
         
-        c('lst_props')->items->setArray($result);
-        $form_name = c('lst_forms')->items->selected;
+        DevS\cache::c('fmEasySelectDialog->lst_props')->items->setArray($result);
+        $form_name = DevS\cache::c('fmEasySelectDialog->lst_forms')->items->selected;
         
         if ($class!='TForm'){
             
             if ($_FORMS[$formSelected]==$form_name)
-                c('line')->text = 'c("' . current($obj->items->selectedCaption) . '")';
+               DevS\cache::c('fmEasySelectDialog->line')->text = 'c("' . current($obj->items->selectedCaption) . '")';
             else
-                c('line')->text = 'c("' . $form_name .'->'. current($obj->items->selectedCaption) . '")';
+                DevS\cache::c('fmEasySelectDialog->line')->text = 'c("' . $form_name .'->'. current($obj->items->selectedCaption) . '")';
         }
         else
-            c('line')->text = 'c("' . $form_name . '")';
+            DevS\cache::c('fmEasySelectDialog->line')->text = 'c("' . $form_name . '")';
     }
 }
 
@@ -240,10 +237,10 @@ class ev_lst_props {
         
         
         global $_FORMS, $formSelected;
-        $obj = c('lst_objects');
+        $obj = DevS\cache::c('fmEasySelectDialog->lst_objects');
         
         $index = current($obj->items->selected);
-        $findex = c('lst_forms')->items->selected;
+        $findex = DevS\cache::c('fmEasySelectDialog->lst_forms')->items->selected;
         $arr = myProject::getFormsObjects($GLOBALS['OBJ_CLASSES']);
         
         if (!is_numeric($index))
@@ -258,7 +255,7 @@ class ev_lst_props {
         
             $prop = $arr[$s_index]['PROP'];
         
-        $form_name = c('lst_forms')->items->selected;
+        $form_name = DevS\cache::c('fmEasySelectDialog->lst_forms')->items->selected;
         
         if ($class!='TForm'){
             
@@ -270,7 +267,7 @@ class ev_lst_props {
         else
             $result = 'c("' . $form_name . '")';
         
-        c('line')->text = $result . '->' . $prop;
+        DevS\cache::c('fmEasySelectDialog->line')->text = $result . '->' . $prop;
     }
 }
 
@@ -280,7 +277,7 @@ class ev_GlobalVars {
     
     static function onClick($self){
         
-        c('line')->text = _c($self)->items->selected;
+        DevS\cache::c('fmEasySelectDialog->line')->text = _c($self)->items->selected;
     }
 }
 
@@ -288,7 +285,7 @@ class ev_lst_constants {
     
     static function onClick($self){
         
-        c('line')->text = _c($self)->items->selected;
+        DevS\cache::c('fmEasySelectDialog->line')->text = _c($self)->items->selected;
     }
 }
 
@@ -297,7 +294,7 @@ class ev_localVars {
     
     static function onClick($self){
         
-        c('line')->text = _c($self)->items->selected;
+        DevS\cache::c('fmEasySelectDialog->line')->text = _c($self)->items->selected;
     }
 }
 
@@ -313,8 +310,8 @@ class ev_fd_browsedir {
             $p_dir = dirname($projectFile);
             $dir   = str_replace($p_dir.'/','',$dir) . '/';
             
-            c('line')->text  = $dir;
-            c('l_dir')->text = $dir;
+            DevS\cache::c('fmEasySelectDialog->line')->text  = $dir;
+            DevS\cache::c('fmEasySelectDialog->l_dir')->text = $dir;
         }
     }
 }
@@ -334,12 +331,12 @@ class ev_fd_browsefiles {
             $file  = replaceSl($dlg->fileName);
             $file  = str_replace($p_dir . '/', '', $file);
             
-            c('line')->text   = $file;
-            c('l_file')->text = $file;
+            DevS\cache::c('fmEasySelectDialog->line')->text   = $file;
+            DevS\cache::c('fmEasySelectDialog->l_file')->text = $file;
         }
         
         $dlg->free();
-		c("fmEasySelectDialog")->toFront();
+		DevS\cache::c("fmEasySelectDialog")->toFront();
     }
 }
 
@@ -355,8 +352,8 @@ class ev_fd_browsedirlocal {
             $p_dir = dirname($projectFile);
             $dir   = str_replace($p_dir .'/','',$dir) . '/';
             
-            c('line')->text  = $dir;
-            c('l_dirlocal')->text = $dir;
+            DevS\cache::c('fmEasySelectDialog->line')->text  = $dir;
+            DevS\cache::c('fmEasySelectDialog->l_dirlocal')->text = $dir;
         }
     }
 }
@@ -377,12 +374,12 @@ class ev_fd_browsefileslocal {
             $file  = replaceSl($dlg->fileName);
             $file  = str_replace($p_dir . '/', '', $file);
             
-            c('line')->text   = $file;
-            c('l_filelocal')->text = $file;
+            DevS\cache::c('fmEasySelectDialog->line')->text   = $file;
+            DevS\cache::c('fmEasySelectDialog->l_filelocal')->text = $file;
         }
         
         $dlg->free();
-		c("fmEasySelectDialog")->toFront();
+		DevS\cache::c("fmEasySelectDialog")->toFront();
     }
 }
 
@@ -390,7 +387,7 @@ class ev_search_inweb {
     
     static function onClick($self){
         
-        shell_execute(0,'open','http://php.su/functions/?' . urlencode( c('e_search')->text ), '', '', SW_SHOW);
+        shell_execute(0,'open','http://php.su/functions/?' . urlencode( c('fmEasySelectDialog->e_search')->text ), '', '', SW_SHOW);
     }
     
 }
@@ -399,26 +396,26 @@ class ev_e_search {
      
     static function onKeyUp($self){
         
-        c('line')->text = _c($self)->text;
+        DevS\cache::c('fmEasySelectDialog->line')->text = _c($self)->text;
     }
     
     static function onKeyPress($self){
         
-        c('line')->text = _c($self)->text;
+        DevS\cache::c('fmEasySelectDialog->line')->text = _c($self)->text;
     }
 }
 
 class ev_e_true {
     
     static function onClick($self){
-        c('line')->text = 'true';
+        DevS\cache::c('fmEasySelectDialog->line')->text = 'true';
     }
 }
 
 class ev_e_false {
     
     static function onClick($self){
-        c('line')->text = 'false';
+        DevS\cache::c('fmEasySelectDialog->line')->text = 'false';
     }
 }
 
@@ -428,9 +425,9 @@ class ev_c_kav {
     static function onMouseUp($self){
         
         if (c($self)->checked){
-            c('line')->text = '"' . c('line')->text . '"';
+            DevS\cache::c('fmEasySelectDialog->line')->text = '"' . c('fmEasySelectDialog->line')->text . '"';
         } else {
-            c('line')->text = action_Simple::trimQuote(c('line')->text);
+            DevS\cache::c('fmEasySelectDialog->line')->text = action_Simple::trimQuote(c('fmEasySelectDialog->line')->text);
         }
     }
 }

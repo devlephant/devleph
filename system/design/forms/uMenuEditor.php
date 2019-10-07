@@ -26,7 +26,7 @@ class menuEditor {
     }
     
     static function updateTree(){
-        $tree = c('edt_menuEditor->tree');
+        $tree = DevS\cache::c('edt_menuEditor->tree');
         $tree->text = self::resultToText( self::getResult() );
         $tree->fullExpand();
     }
@@ -77,12 +77,12 @@ class menuEditor {
         
         
         $result[$index] = $item;
-        c('edt_menuEditor')->result = implode(_BR_, $result);
+        DevS\cache::c('edt_menuEditor')->result = implode(_BR_, $result);
     }
     
     static function getResult(){
         
-        $result = c('edt_menuEditor')->result;
+        $result = DevS\cache::c('edt_menuEditor')->result;
         $result = explode(_BR_, $result);
         
         array_map('trim',$result);
@@ -103,7 +103,7 @@ class menuEditor {
         
         if (is_int($index) && $index!==count($result)){
             $result = array_insert($result, $index, $item);
-            c('edt_menuEditor')->result = implode(_BR_, $result);
+            DevS\cache::c('edt_menuEditor')->result = implode(_BR_, $result);
             //$index++;
         } else {
             
@@ -131,11 +131,11 @@ class menuEditor {
         $result['func'] = val('edt_menuEditor->e_func');
         $result['level'] = val('edt_menuEditor->e_level');
         $result['name'] = val('edt_menuEditor->e_name');
-        $result['scut'] = c('edt_menuEditor->e_scut')->hotKey;
+        $result['scut'] = DevS\cache::c('edt_menuEditor->e_scut')->hotKey;
 
-        $result['enabled'] = ! (int) c('edt_menuEditor->e_enabled')->checked;
-        $result['checked'] = (int) c('edt_menuEditor->e_checked')->checked;
-        $result['AutoCheck'] = (int) c('edt_menuEditor->e_AutoCheck')->checked;
+        $result['enabled'] = ! (int) DevS\cache::c('edt_menuEditor->e_enabled')->checked;
+        $result['checked'] = (int) DevS\cache::c('edt_menuEditor->e_checked')->checked;
+        $result['AutoCheck'] = (int) DevS\cache::c('edt_menuEditor->e_AutoCheck')->checked;
 		$result['iconData'] = $bmp;
         
         return $result;
@@ -148,10 +148,10 @@ class menuEditor {
         val('edt_menuEditor->e_func',$result['func']);
         val('edt_menuEditor->e_level',$result['level']);
         val('edt_menuEditor->e_name',$result['name']);
-        c('edt_menuEditor->e_scut')->hotKey = $result['scut'];
-        c('edt_menuEditor->e_enabled')->checked = ! (int) $result['enabled'];
-        c('edt_menuEditor->e_checked')->checked = (int) $result['checked'];
-        c('edt_menuEditor->e_AutoCheck')->checked = (int) $result['AutoCheck'];
+        DevS\cache::c('edt_menuEditor->e_scut')->hotKey = $result['scut'];
+        DevS\cache::c('edt_menuEditor->e_enabled')->checked = ! (int) $result['enabled'];
+        DevS\cache::c('edt_menuEditor->e_checked')->checked = (int) $result['checked'];
+        DevS\cache::c('edt_menuEditor->e_AutoCheck')->checked = (int) $result['AutoCheck'];
     }
     
     static function exchange($from, $to){
@@ -180,7 +180,7 @@ class menuEditor {
         $result[$from] = $result[$to];
         $result[$to]   = $tmp;
         
-        c('edt_menuEditor')->result = implode(_BR_, $result);
+        DevS\cache::c('edt_menuEditor')->result = implode(_BR_, $result);
     }
     
     static function itemUp($index){
@@ -219,7 +219,7 @@ class menuEditor {
         
         unset($result[$index]);
         $result = array_values($result);
-        c('edt_menuEditor')->result = implode(_BR_, $result);
+        DevS\cache::c('edt_menuEditor')->result = implode(_BR_, $result);
         return $index;
     }
 }
@@ -229,8 +229,8 @@ class ev_edt_menuEditor {
     
     static function onActivate($self){
         
-        c('tree')->text = menuEditor::resultToText( menuEditor::getResult() );
-        c('edt_menuEditor->tree')->absIndex = 0;
+        DevS\cache::c('tree')->text = menuEditor::resultToText( menuEditor::getResult() );
+        DevS\cache::c('edt_menuEditor->tree')->absIndex = 0;
         menuEditor::setParams( menuEditor::getParam( 0 ) );
     }
 }
@@ -238,13 +238,13 @@ class ev_edt_menuEditor {
 class ev_edt_menuEditor_btn_data {
     
     static function onClick($self){
-        TextEditor::$value = c('edt_menuEditor')->result;
+        TextEditor::$value = DevS\cache::c('edt_menuEditor')->result;
         if (TextEditor::execute()){
             
-            c('edt_menuEditor')->result = TextEditor::$value;
+            DevS\cache::c('edt_menuEditor')->result = TextEditor::$value;
             menuEditor::updateTree();
         }
-		c("edt_menuEditor")->toFront();
+		DevS\cache::c("edt_menuEditor")->toFront();
     }
 }
 
@@ -254,12 +254,12 @@ class ev_edt_menuEditor_btn_path {
         
         $dlg = new TObjectsDialog;
         if ($dlg->execute( array('TFunction'),t('To select function for click event') )){
-            c('edt_menuEditor->e_func')->text = $dlg->value;
+            DevS\cache::c('edt_menuEditor->e_func')->text = $dlg->value;
             ev_edt_menuEditor_btn_save::onClick(0);
         }
         
         $dlg->free();
-		c("edt_menuEditor")->toFront();
+		DevS\cache::c("edt_menuEditor")->toFront();
     }
 }
 class ev_edt_menuEditor_btn_pathToIcon {
@@ -268,11 +268,11 @@ class ev_edt_menuEditor_btn_pathToIcon {
         
         $dlg = new TOpenDialog;
         if ($dlg->execute()){
-			c('edt_menuEditor->e_icon')->text = $dlg->fileName;
+			DevS\cache::c('edt_menuEditor->e_icon')->text = $dlg->fileName;
         }
         
         $dlg->free();
-		c("edt_menuEditor")->toFront();
+		DevS\cache::c("edt_menuEditor")->toFront();
     }
 }
 
@@ -281,10 +281,10 @@ class ev_edt_menuEditor_btn_insert {
     
     static function onClick($self){
         
-        $index = menuEditor::insert( c('edt_menuEditor->tree')->absIndex, array('text'=>t('Menu item %s', count(menuEditor::getResult())+1), 'enabled'=>0, 'checked'=>0, 'AutoCheck'=>0) );
+        $index = menuEditor::insert( DevS\cache::c('edt_menuEditor->tree')->absIndex, array('text'=>t('Menu item %s', count(menuEditor::getResult())+1), 'enabled'=>0, 'checked'=>0, 'AutoCheck'=>0) );
         menuEditor::updateTree();
         
-        c('edt_menuEditor->tree')->absIndex = $index;
+        DevS\cache::c('edt_menuEditor->tree')->absIndex = $index;
     }
 }
 
@@ -295,7 +295,7 @@ class ev_edt_menuEditor_tree {
     static function onChange($self){
         
             global $treeIndex; // is hak -_-
-            $treeIndex = c('edt_menuEditor->tree')->absIndex;
+            $treeIndex = DevS\cache::c('edt_menuEditor->tree')->absIndex;
             menuEditor::setParams( menuEditor::getParam( $treeIndex ) );        
     }
 
@@ -306,7 +306,7 @@ class ev_edt_menuEditor_popup {
     static function onPopup($self){
         
         global $treeIndex; // is hak -_-
-        $treeIndex = c('edt_menuEditor->tree')->absIndex;
+        $treeIndex = DevS\cache::c('edt_menuEditor->tree')->absIndex;
         menuEditor::setParams( menuEditor::getParam( $treeIndex ) );
     }
 }
@@ -317,13 +317,13 @@ class ev_edt_menuEditor_btn_save {
     static function onClick($self){
         
         $params = menuEditor::getParams();
-        $index  = c('edt_menuEditor->tree')->absIndex;
-        menuEditor::setParam( c('edt_menuEditor->tree')->absIndex, $params );
+        $index  = DevS\cache::c('edt_menuEditor->tree')->absIndex;
+        menuEditor::setParam( DevS\cache::c('edt_menuEditor->tree')->absIndex, $params );
         menuEditor::updateTree();
         
         menuEditor::setParams( menuEditor::getParam( $index ) );
-        c('edt_menuEditor->tree')->setFocus();
-        c('edt_menuEditor->tree')->absIndex = $index;
+        DevS\cache::c('edt_menuEditor->tree')->setFocus();
+        DevS\cache::c('edt_menuEditor->tree')->absIndex = $index;
     }
 }
 
@@ -331,7 +331,7 @@ class ev_edt_menuEditor_btn_cancel {
     
     static function onClick($self){
         
-        menuEditor::setParams( menuEditor::getParam( c('edt_menuEditor->tree')->absIndex ) );
+        menuEditor::setParams( menuEditor::getParam( DevS\cache::c('edt_menuEditor->tree')->absIndex ) );
     }
 }
 
@@ -341,7 +341,7 @@ class ev_edt_menuEditor_btn_up {
         global $treeIndex;
         $index = menuEditor::itemUp( $treeIndex );
         menuEditor::updateTree();
-        c('edt_menuEditor->tree')->absIndex = $index;
+        DevS\cache::c('edt_menuEditor->tree')->absIndex = $index;
     }
 }
 
@@ -352,7 +352,7 @@ class ev_edt_menuEditor_btn_down {
         global $treeIndex;
         $index = menuEditor::itemDown( $treeIndex );
         menuEditor::updateTree();
-        c('edt_menuEditor->tree')->absIndex = $index;
+        DevS\cache::c('edt_menuEditor->tree')->absIndex = $index;
     }
 }
 
@@ -364,7 +364,7 @@ class ev_edt_menuEditor_btn_delete {
         global $treeIndex;
         $index = menuEditor::delete( $treeIndex );
         menuEditor::updateTree();
-        c('edt_menuEditor->tree')->absIndex = $index;
+        DevS\cache::c('edt_menuEditor->tree')->absIndex = $index;
     }
 }
 
@@ -396,7 +396,7 @@ class ev_edt_menuEditor_it_add {
                                           'level'=>$params['level']+1)
                                     );
         menuEditor::updateTree();
-        c('edt_menuEditor->tree')->absIndex = $index;
+        DevS\cache::c('edt_menuEditor->tree')->absIndex = $index;
     }
 }
 

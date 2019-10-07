@@ -2,10 +2,10 @@
 function eventTabs_update(){
 	global $myEvents, $_FORMS, $formSelected;
 	eventEngine::setForm();
-	$eventList = c('fmPropsAndEvents->eventList');
-	$eventTabs = c('fmPHPEditor->eventTabs');
-	$eventTabs->popupMenu = c('fmMain->edt_EventTypes->popupMenu');
-	$php_memo = c('fmPHPEditor->memo');
+	$eventList = DevS\cache::c('fmPropsAndEvents->eventList');
+	$eventTabs = DevS\cache::c('fmPHPEditor->eventTabs');
+	$eventTabs->popupMenu = DevS\cache::c('fmMain->edt_EventTypes->popupMenu');
+	$php_memo = DevS\cache::c('fmPHPEditor->memo');
 	
 	$name = $myEvents->selObj instanceof TForm ? '--fmedit' : $myEvents->selObj->name;
 	$event  = $eventList->events[$eventList->itemIndex];
@@ -17,10 +17,10 @@ function eventTabs_update(){
 function eventTabs_show(){
 		global $myEvents, $_FORMS, $formSelected;
 		eventEngine::setForm();
-		$eventList = c('fmPropsAndEvents->eventList');
-		$eventTabs = c('fmPHPEditor->eventTabs');
-		$eventTabs->popupMenu = c('fmMain->edt_EventTypes->popupMenu');
-		$php_memo = c('fmPHPEditor->memo');
+		$eventList = DevS\cache::c('fmPropsAndEvents->eventList');
+		$eventTabs = DevS\cache::c('fmPHPEditor->eventTabs');
+		$eventTabs->popupMenu = DevS\cache::c('fmMain->edt_EventTypes->popupMenu');
+		$php_memo = DevS\cache::c('fmPHPEditor->memo');
 		
 		$name = $myEvents->selObj instanceof TForm ? '--fmedit' : $myEvents->selObj->name;
 		$event  = $eventList->events[$eventList->itemIndex];
@@ -32,5 +32,5 @@ function eventTabs_show(){
         $php_memo->text = eventEngine::getEvent($name, $event);
         $ltight = str_replace('{', '', str_ireplace('event ', '', CApi::getStringEventInfo($event, $myEvents->selObj->className) ) );
         $x_name = $myEvents->selObj->name == 'fmEdit' ? $_FORMS[$formSelected] : $myEvents->selObj->name;
-        c('fmPHPEditor')->text = t('php_script_editor').' -> '.$x_name.'::'.$ltight;
+        DevS\cache::c('fmPHPEditor')->text = t('php_script_editor').' -> '.$x_name.'::'.$ltight;
 }

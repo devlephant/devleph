@@ -30,7 +30,7 @@ class myDebug {
     static function regGlVars($arr){
         
         global $__DEBUG_GLVARS;
-        $list = c('fmRunDebug->varList',1);
+        $list = DevS\cache::c('fmRunDebug->varList',1);
         $index = $list->itemIndex;
         $var   = $list->items->selected;
         $list->text = array_keys($arr['glVars']);
@@ -38,12 +38,12 @@ class myDebug {
         
         $__DEBUG_GLVARS = $arr['glVars'];
         
-        if ( c('fmRunDebug->c_refresh',1)->checked )
+        if ( DevS\cache::c('fmRunDebug->c_refresh',1)->checked )
         c('fmRunDebug->mResult')->text = $__DEBUG_GLVARS[$var];
         
         myProject::cfg('debug_vars', array_keys($arr['glVars']));
             
-        c('fmRunDebug->mResult')->repaint();
+        DevS\cache::c('fmRunDebug->mResult')->repaint();
     }
     
     static function regError($handle, $arr){
@@ -85,7 +85,7 @@ class myDebug {
             
             if (!$arr['event']) $arr['event'] = 'OnExecute';
            
-            c('fmMain->eventList')->items->selected = t(strtolower($arr['event']));
+            DevS\cache::c('fmMain->eventList')->items->selected = t(strtolower($arr['event']));
             
             message_beep(MB_ICONERROR);
             myEvents::editorShow($arr['line'], $arr['line'], $arr);

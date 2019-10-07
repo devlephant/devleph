@@ -1,5 +1,5 @@
 <?
-$act_panel = c('fmMain->action_panel');
+$act_panel = DevS\cache::c('fmMain->action_panel');
 
 class design_Reader{
     
