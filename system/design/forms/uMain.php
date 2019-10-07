@@ -1,7 +1,7 @@
 <?
 function searchCompList( $text ) {
 global $_cComplist;
-$cp = DevS\cache::c('fmComponents->list');
+$cp = c('fmComponents->list');
 
 	foreach($cp->groups as $cpgr){
 		_c($cpgr)->free();
@@ -10,7 +10,7 @@ $cp = DevS\cache::c('fmComponents->list');
     ////// обновляем панель компонентов /////////
     
         $componentClasses = [];
-        $groups = DevS\cache::c('fmComponents->list')->groups;
+        $groups = c('fmComponents->list')->groups;
         foreach ($_cComplist as $c){
 			if( strpos(strtolower(' '.$c['CAPTION'] .' - '. $c['CLASS']), strtolower($text)) ||
 				strpos(strtolower(' '.$c['GROUP']), strtolower($text)) ||
@@ -33,7 +33,7 @@ $cp = DevS\cache::c('fmComponents->list');
 
 function resetCompList(){
 global $_cComplist;
-$cp = DevS\cache::c('fmComponents->list');
+$cp = c('fmComponents->list');
 	foreach($cp->groups as $cpgr){
 		_c($cpgr)->free();
 		$cp->groups = $cp->items = [];
@@ -41,7 +41,7 @@ $cp = DevS\cache::c('fmComponents->list');
     ////// обновляем панель компонентов /////////
     
         $componentClasses = [];
-        $groups = DevS\cache::c('fmComponents->list')->groups;
+        $groups = c('fmComponents->list')->groups;
         foreach ($_cComplist as $c){
 			if (!in_array($c['GROUP'], $groups)){
                 $cp->addSection($c['GROUP'],t('gr_'.$c['GROUP']));
@@ -56,7 +56,7 @@ $cp = DevS\cache::c('fmComponents->list');
                 $btn->imageIndex = myImages::getImgID('component');
         }
 		 myVars::set2($componentClasses, 'componentClasses');
-		 DevS\cache::c('fmMain->list')->selectedList = explode(',',myOptions::get('components','groups', 'main'));
+		 c('fmMain->list')->selectedList = explode(',',myOptions::get('components','groups', 'main'));
 }
 
 class evfmMain {
@@ -79,8 +79,8 @@ class evfmMain {
 	static function onShow($self){
 		global $fmEdit, $fmMain;
 		static $i;
-		if( trim(DevS\cache::c("fmMain->c_formComponents")->intext) == ':TForm'){
-			DevS\cache::c("fmMain->c_formComponents")->intext = $fmEdit->name.' :TForm';
+		if( trim(c("fmMain->c_formComponents")->intext) == ':TForm'){
+			c("fmMain->c_formComponents")->intext = $fmEdit->name.' :TForm';
 		}
 		myDesign::bugfixFormProps();
 		if( !isset($i) )
@@ -128,33 +128,33 @@ class evfmMain {
         
 		myOptions::setXYWH('fmMain', $fmMain);
 		myOptions::set('fmMain', 's', $fmMain->windowState);
-        myOptions::setXYWH('fmPHPEditor', DevS\cache::c('fmPHPEditor'));
-		myOptions::set('fmPHPEditor', 's', DevS\cache::c('fmPHPEditor')->windowState);
-        myOptions::set('fmPHPEditor', 'panelH', (int)DevS\cache::c('fmPHPEditor->errPanel')->h);
+        myOptions::setXYWH('fmPHPEditor', c('fmPHPEditor'));
+		myOptions::set('fmPHPEditor', 's', c('fmPHPEditor')->windowState);
+        myOptions::set('fmPHPEditor', 'panelH', (int)c('fmPHPEditor->errPanel')->h);
         myOptions::set('fmObjInspect', 'visible',(bool)$fmObjInspect->visible);
-		myOptions::set('newProjectDialog', 'startup', (bool)DevS\cache::c('fmNewProject->startup')->checked);
+		myOptions::set('newProjectDialog', 'startup', (bool)c('fmNewProject->startup')->checked);
         
-        Docking::saveFile(DevS\cache::c('fmMain->pDockBottom'),DS_USERDIR.'bottom.dock');
-        Docking::saveFile(DevS\cache::c('fmMain->pDockRight'),DS_USERDIR.'right.dock');
-        Docking::saveFile(DevS\cache::c('fmMain->pDockLeft'),DS_USERDIR.'left.dock');
+        Docking::saveFile(c('fmMain->pDockBottom'),DS_USERDIR.'bottom.dock');
+        Docking::saveFile(c('fmMain->pDockRight'),DS_USERDIR.'right.dock');
+        Docking::saveFile(c('fmMain->pDockLeft'),DS_USERDIR.'left.dock');
         
-        myOptions::set('pDockRight','width', DevS\cache::c('fmMain->pDockRight')->w);
-        myOptions::set('pDockLeft','width', DevS\cache::c('fmMain->pDockLeft')->w);
-        myOptions::set('pDockBottom','height', DevS\cache::c('fmMain->pDockBottom')->h);
-		myOptions::set('treebrowser','visible', DevS\cache::c('fmMain->TTreeBwr')->TabVisible);
+        myOptions::set('pDockRight','width', c('fmMain->pDockRight')->w);
+        myOptions::set('pDockLeft','width', c('fmMain->pDockLeft')->w);
+        myOptions::set('pDockBottom','height', c('fmMain->pDockBottom')->h);
+		myOptions::set('treebrowser','visible', c('fmMain->TTreeBwr')->TabVisible);
 
-        myOptions::setFloat('pComponents', DevS\cache::c('fmMain->pComponents'));
-        myOptions::setFloat('pInspector', DevS\cache::c('fmMain->pInspector'));
-        myOptions::setFloat('pProps', DevS\cache::c('fmMain->pProps'));
-        myOptions::setFloat('pDebugWindow', DevS\cache::c('fmMain->pDebugWindow'));
+        myOptions::setFloat('pComponents', c('fmMain->pComponents'));
+        myOptions::setFloat('pInspector', c('fmMain->pInspector'));
+        myOptions::setFloat('pProps', c('fmMain->pProps'));
+        myOptions::setFloat('pDebugWindow', c('fmMain->pDebugWindow'));
         
-        myOptions::set('components','groups', implode(',',DevS\cache::c('fmMain->list')->selectedList));
-        myOptions::set('components','smallIcons', DevS\cache::c('fmMain->list')->smallIcons);        
+        myOptions::set('components','groups', implode(',',c('fmMain->list')->selectedList));
+        myOptions::set('components','smallIcons', c('fmMain->list')->smallIcons);        
         
-		myOptions::setXYWH('rundebug', DevS\cache::c('fmRunDebug'));
+		myOptions::setXYWH('rundebug', c('fmRunDebug'));
 		
-        DevS\cache::c('fmPHPEditor->SynPHPSyn')->saveToArray($arr);
-        $arr['main']['color'] = DevS\cache::c('fmPHPEditor->memo')->color;
+        c('fmPHPEditor->SynPHPSyn')->saveToArray($arr);
+        $arr['main']['color'] = c('fmPHPEditor->memo')->color;
         $ini = new TIniFileEx;
         $ini->arr = $arr;
         $ini->filename = DS_USERDIR.'phpsyn.ini';
@@ -170,7 +170,7 @@ class evfmMain {
         
         $panels = array('pDockLeft','pDockRight','pDockBottom');
         foreach ($panels as $panel){
-            foreach (DevS\cache::c('fmMain->'.$panel)->get_dockList() as $el)
+            foreach (c('fmMain->'.$panel)->get_dockList() as $el)
                 if ($el->self == $obj->self) return true;
         }
         
@@ -181,7 +181,7 @@ class evfmMain {
 
         if( gui_class( control_dockhost($self) ) == 'TPanel')
 		{
-			$se = DevS\cache::c($self);
+			$se = c($self);
 			$x = get_x($se) + GetSystemMetrics(32);
 			$y = get_y($se) + GetSystemMetrics(SM_CYSMCAPTION);
 			control_manualfloat($self, $x, $y, $x+$se->w, $y+$se->h);
@@ -194,8 +194,8 @@ class evfmMain {
 		if($value)
 			ev_fmMain_pDockLeft::setcrz(true);
 		if(gui_class($host)!=='TPanel') return;
-		$sl = DevS\cache::c($self);
-		$obj = DevS\cache::c($host);
+		$sl = c($self);
+		$obj = c($host);
 		if( $value )
 		{
 			global $_sc;
@@ -219,79 +219,79 @@ class evfmMain {
         
         $ini = new TIniFileEx(DS_USERDIR.'phpsyn.ini');
 		
-        DevS\cache::c('fmPHPEditor->SynPHPSyn')->loadFromArray($ini->arr);
-        DevS\cache::c('fmPHPEditor->memo')->color = $ini->read('main','color',clWhite);
-		DevS\cache::c('fmMain->shapeSize')->penStyle = (int)myOptions::get('sc','SizerPenStyle',2);
-		DevS\cache::c('fmMain->shapeSize')->brushColor = myOptions::get('sc','SizerInnerColor',12632256);
+        c('fmPHPEditor->SynPHPSyn')->loadFromArray($ini->arr);
+        c('fmPHPEditor->memo')->color = $ini->read('main','color',clWhite);
+		c('fmMain->shapeSize')->penStyle = (int)myOptions::get('sc','SizerPenStyle',2);
+		c('fmMain->shapeSize')->brushColor = myOptions::get('sc','SizerInnerColor',12632256);
 		$GLOBALS['sc_offset'] = (int)myOptions::get('sc', 'offset', 8);
-        DevS\cache::c('fmMain->shapeSize')->penColor = myOptions::get('sc','SizerOuterColor',clBlack);
-		myOptions::getXYWH('rundebug', DevS\cache::c('fmRunDebug'));
+        c('fmMain->shapeSize')->penColor = myOptions::get('sc','SizerOuterColor',clBlack);
+		myOptions::getXYWH('rundebug', c('fmRunDebug'));
 		
-        DevS\cache::c('fmMain->pDockRight')->w = (int)myOptions::get('pDockRight','width',200);
-        DevS\cache::c('fmMain->pDockLeft')->w = (int)myOptions::get('pDockLeft','width',220);
-        DevS\cache::c('fmMain->pDockBottom')->h = (int)myOptions::get('pDockBottom','height',220);
-		DevS\cache::c('fmMain->TTreeBwr')->TabVisible = (bool)myOptions::get('treebrowser','visible',1);
+        c('fmMain->pDockRight')->w = (int)myOptions::get('pDockRight','width',200);
+        c('fmMain->pDockLeft')->w = (int)myOptions::get('pDockLeft','width',220);
+        c('fmMain->pDockBottom')->h = (int)myOptions::get('pDockBottom','height',220);
+		c('fmMain->TTreeBwr')->TabVisible = (bool)myOptions::get('treebrowser','visible',1);
         
-        DevS\cache::c('fmMain->list')->selectedList = explode(',',myOptions::get('components','groups', 'main'));
-        DevS\cache::c('fmMain->list')->smallIcons   = myOptions::get('components','smallIcons',false);
-        DevS\cache::c('fmMain->c_type')->itemIndex  = c('fmMain->list')->smallIcons ? 1 : 0;
+        c('fmMain->list')->selectedList = explode(',',myOptions::get('components','groups', 'main'));
+        c('fmMain->list')->smallIcons   = myOptions::get('components','smallIcons',false);
+        c('fmMain->c_type')->itemIndex  = c('fmMain->list')->smallIcons ? 1 : 0;
        
         
-        control_floatstyle( DevS\cache::c('fmMain->pDockRight')->self );
-        control_floatstyle( DevS\cache::c('fmMain->pDockLeft')->self );
-        control_floatstyle( DevS\cache::c('fmMain->pDockBottom')->self );
-        control_floatstyle( DevS\cache::c('fmMain->pInspector')->self );
-        control_floatstyle( DevS\cache::c('fmMain->pComponents')->self );
-        control_floatstyle( DevS\cache::c('fmMain->pProps')->self );
-        control_floatstyle( DevS\cache::c('fmMain->pDebugWindow')->self );
+        control_floatstyle( c('fmMain->pDockRight')->self );
+        control_floatstyle( c('fmMain->pDockLeft')->self );
+        control_floatstyle( c('fmMain->pDockBottom')->self );
+        control_floatstyle( c('fmMain->pInspector')->self );
+        control_floatstyle( c('fmMain->pComponents')->self );
+        control_floatstyle( c('fmMain->pProps')->self );
+        control_floatstyle( c('fmMain->pDebugWindow')->self );
         
-        DevS\cache::c('fmMain->pDebugWindow')->onStartDock = 'evfmMain::panelStartDock';
-        DevS\cache::c('fmMain->pInspector')->onStartDock = 'evfmMain::panelStartDock';
-        DevS\cache::c('fmMain->pProps')->onStartDock = 'evfmMain::panelStartDock';
-        DevS\cache::c('fmMain->pComponents')->onStartDock = 'evfmMain::panelStartDock';
-		DevS\cache::c('fmMain->pComponents')->onDockedVisibilityChanged = 'evfmMain::panelVisibility';
-        DevS\cache::c('fmMain->pInspector')->onDockedVisibilityChanged = 'evfmMain::panelVisibility';
-        DevS\cache::c('fmMain->pProps')->onDockedVisibilityChanged = 'evfmMain::panelVisibility';
-        DevS\cache::c('fmMain->pDebugWindow')->onDockedVisibilityChanged = 'evfmMain::panelVisibility';
+        c('fmMain->pDebugWindow')->onStartDock = 'evfmMain::panelStartDock';
+        c('fmMain->pInspector')->onStartDock = 'evfmMain::panelStartDock';
+        c('fmMain->pProps')->onStartDock = 'evfmMain::panelStartDock';
+        c('fmMain->pComponents')->onStartDock = 'evfmMain::panelStartDock';
+		c('fmMain->pComponents')->onDockedVisibilityChanged = 'evfmMain::panelVisibility';
+        c('fmMain->pInspector')->onDockedVisibilityChanged = 'evfmMain::panelVisibility';
+        c('fmMain->pProps')->onDockedVisibilityChanged = 'evfmMain::panelVisibility';
+        c('fmMain->pDebugWindow')->onDockedVisibilityChanged = 'evfmMain::panelVisibility';
            
         if (!file_exists(DS_USERDIR.'bottom.dock')){
             
-            DevS\cache::c('fmMain->pComponents')->manualDock(DevS\cache::c('fmMain->pDockRight'), alTop);
-            DevS\cache::c('fmMain->pInspector')->manualDock(DevS\cache::c('fmMain->pDockBottom'),alTop);
-            DevS\cache::c('fmMain->pProps')->manualDock(DevS\cache::c('fmMain->pDockLeft'),alTop);
-            DevS\cache::c('fmMain->pDebugWindow')->manualDock(DevS\cache::c('fmMain->pDockBottom'),alBottom);
+            c('fmMain->pComponents')->manualDock(c('fmMain->pDockRight'), alTop);
+            c('fmMain->pInspector')->manualDock(c('fmMain->pDockBottom'),alTop);
+            c('fmMain->pProps')->manualDock(c('fmMain->pDockLeft'),alTop);
+            c('fmMain->pDebugWindow')->manualDock(c('fmMain->pDockBottom'),alBottom);
             
         } else {
-            Docking::loadFile(DevS\cache::c('fmMain->pDockBottom'),DS_USERDIR.'bottom.dock');
-            Docking::loadFile(DevS\cache::c('fmMain->pDockRight'),DS_USERDIR.'right.dock');
-            Docking::loadFile(DevS\cache::c('fmMain->pDockLeft'),DS_USERDIR.'left.dock');
+            Docking::loadFile(c('fmMain->pDockBottom'),DS_USERDIR.'bottom.dock');
+            Docking::loadFile(c('fmMain->pDockRight'),DS_USERDIR.'right.dock');
+            Docking::loadFile(c('fmMain->pDockLeft'),DS_USERDIR.'left.dock');
             
-            if (!self::isDocked(DevS\cache::c('fmMain->pComponents')))
+            if (!self::isDocked(c('fmMain->pComponents')))
 			{
-				self::$visfix[] = DevS\cache::c('fmMain->pComponents');
+				self::$visfix[] = c('fmMain->pComponents');
 			}
-            if (!self::isDocked(DevS\cache::c('fmMain->pInspector')))
+            if (!self::isDocked(c('fmMain->pInspector')))
 			{	
-				self::$visfix[] = DevS\cache::c('fmMain->pInspector');		
+				self::$visfix[] = c('fmMain->pInspector');		
 			}
             if (!self::isDocked(c('fmMain->pProps')))
 			{
-				self::$visfix[] = DevS\cache::c('fmMain->pProps');
+				self::$visfix[] = c('fmMain->pProps');
 			}
-            if (!self::isDocked(DevS\cache::c('fmMain->pDebugWindow')))
+            if (!self::isDocked(c('fmMain->pDebugWindow')))
 			{
-				self::$visfix[] = DevS\cache::c('fmMain->pDebugWindow');
+				self::$visfix[] = c('fmMain->pDebugWindow');
 			}
             
-            DevS\cache::c('fmMain->it_components')->checked = DevS\cache::c('fmMain->pComponents')->visible;
-            DevS\cache::c('fmMain->it_objectinspector')->checked = DevS\cache::c('fmMain->pInspector')->visible;
-            DevS\cache::c('fmMain->it_props')->checked = DevS\cache::c('fmMain->pProps')->visible;
-            DevS\cache::c('fmMain->it_debuginfo')->checked = DevS\cache::c('fmMain->pDebugWindow')->visible;
-			DevS\cache::c('fmMain->it_treebrowser')->checked = DevS\cache::c('fmMain->TTreeBwr')->TabVisible;
+            c('fmMain->it_components')->checked = c('fmMain->pComponents')->visible;
+            c('fmMain->it_objectinspector')->checked = c('fmMain->pInspector')->visible;
+            c('fmMain->it_props')->checked = c('fmMain->pProps')->visible;
+            c('fmMain->it_debuginfo')->checked = c('fmMain->pDebugWindow')->visible;
+			c('fmMain->it_treebrowser')->checked = c('fmMain->TTreeBwr')->TabVisible;
         }
         
-            $obj  = new TComboBox( DevS\cache::c('fmMain') );
-            $list = DevS\cache::c('fmObjectInspector->list');
+            $obj  = new TComboBox( c('fmMain') );
+            $list = c('fmObjectInspector->list');
             
             $obj->parent = $list->parent;
             $obj->align  = alTop;
@@ -308,12 +308,12 @@ class evfmMain {
                     myOptions::set('inspector', 'smallIcons', $obj->itemIndex);
             };
             
-            DevS\cache::c('fmPropsAndEvents->eventList')->onDblClick = 'myEvents::phpEditorShow';
-            DevS\cache::c('fmPropsAndEvents->btn_editEvent')->onClick = 'myEvents::phpEditorShow';
-            DevS\cache::c('fmPropsAndEvents->btn_delEvent')->onClick  = 'myEvents::deleteEvent';
-            DevS\cache::c('fmPropsAndEvents->btn_changeEvent')->onClick = 'myEvents::changeEvent';
+            c('fmPropsAndEvents->eventList')->onDblClick = 'myEvents::phpEditorShow';
+            c('fmPropsAndEvents->btn_editEvent')->onClick = 'myEvents::phpEditorShow';
+            c('fmPropsAndEvents->btn_delEvent')->onClick  = 'myEvents::deleteEvent';
+            c('fmPropsAndEvents->btn_changeEvent')->onClick = 'myEvents::changeEvent';
             
-            gui_propSet(gui_propGet(DevS\cache::c("fmObjectInspector->list")->self, 'IconOptions'), 'AutoArrange', 1);
+            gui_propSet(gui_propGet(c("fmObjectInspector->list")->self, 'IconOptions'), 'AutoArrange', 1);
 			$list->BorderStyle = bsNone;
 			
     }
@@ -321,7 +321,7 @@ class evfmMain {
     static function onCloseQuery($self, &$canClose) {
         if (!defined('IS_APPLICATION_START')) return false;
 		application_restore();
-		DevS\cache::c("fmMain")->toFront();
+		c("fmMain")->toFront();
         switch(messageBox(t('ds_on_exit'),t('Closing Dev-S'),MB_YESNOCANCEL)){
             case mrYes:{
 				
@@ -351,7 +351,7 @@ class ev_it_objectinspector {
     static function onClick($self){
         
         $GLOBALS['_sc']->updateBtns();
-        DevS\cache::c('fmMain->pInspector')->visible = !DevS\cache::c('fmMain->pInspector')->visible;
+        c('fmMain->pInspector')->visible = !c('fmMain->pInspector')->visible;
     }
 }
 
@@ -360,7 +360,7 @@ class ev_it_components {
     static function onClick($self){
         
         $GLOBALS['_sc']->updateBtns();
-        DevS\cache::c('fmMain->pComponents')->visible = !DevS\cache::c('fmMain->pComponents')->visible;
+        c('fmMain->pComponents')->visible = !c('fmMain->pComponents')->visible;
     }
 }
 
@@ -368,7 +368,7 @@ class ev_it_components {
 class ev_it_props {
     static function onClick($self){
         $GLOBALS['_sc']->updateBtns();
-        DevS\cache::c('fmMain->pProps')->visible = !DevS\cache::c('fmMain->pProps')->visible;
+        c('fmMain->pProps')->visible = !c('fmMain->pProps')->visible;
     }
 }
 
@@ -377,7 +377,7 @@ class ev_it_debuginfo {
     
     static function onClick($self){
         $GLOBALS['_sc']->updateBtns();
-        DevS\cache::c('fmMain->pDebugWindow')->visible = !DevS\cache::c('fmMain->pDebugWindow')->visible;
+        c('fmMain->pDebugWindow')->visible = !c('fmMain->pDebugWindow')->visible;
     }
 }
 
@@ -385,8 +385,8 @@ class ev_it_treebrowser {
     
     static function onClick($self){
         $GLOBALS['_sc']->updateBtns();
-        DevS\cache::c('fmMain->TTreeBwr')->TabVisible = !DevS\cache::c('fmMain->TTreeBwr')->TabVisible;
-	DevS\cache::c('fmMain->it_treebrowser')->checked = DevS\cache::c('fmMain->TTreeBwr')->TabVisible;
+        c('fmMain->TTreeBwr')->TabVisible = !c('fmMain->TTreeBwr')->TabVisible;
+	c('fmMain->it_treebrowser')->checked = c('fmMain->TTreeBwr')->TabVisible;
     }
 }
 
@@ -420,14 +420,14 @@ class ev_it_helpbook
 class ev_it_aboutprogram {
     static function onClick($self)
 	{    
-        DevS\cache::c('fmAbout')->showModal();
+        c('fmAbout')->showModal();
     }
 }
 
 class ev_it_exit {
     static function onClick($self)
 	{
-        DevS\cache::c('fmMain')->close();
+        c('fmMain')->close();
     }
 }
 
@@ -527,12 +527,12 @@ class ev_fmMain_pDockLeft {
 	
 	static function onResize($self)
 	{
-		self::nrsz(DevS\cache::c($self), 'w');
+		self::nrsz(c($self), 'w');
 	}
 	
 	static function onCanResize($self, &$nW, &$nH, &$can)
 	{
-		ev_fmMain_pDockLeft::crsz(DevS\cache::c($self), 'w', $nW, $can);
+		ev_fmMain_pDockLeft::crsz(c($self), 'w', $nW, $can);
 	}
 }
 
@@ -549,7 +549,7 @@ class ev_fmMain_pDockRight {
 	
 	static function onResize($self)
 	{
-		ev_fmMain_pDockLeft::nrsz(DevS\cache::c($self), 'w');
+		ev_fmMain_pDockLeft::nrsz(c($self), 'w');
 	}
 	
 	static function onCanResize($self, &$nW, &$nH, &$can)
@@ -586,17 +586,17 @@ class ev_fmMain_pDockBottom {
     
     static function onUndock($self, $source=1){
         
-        ev_fmMain_pDockLeft::edk(DevS\cache::c($self), 'h', $source);
+        ev_fmMain_pDockLeft::edk(c($self), 'h', $source);
     }
 	
 	static function onResize($self)
 	{
-		ev_fmMain_pDockLeft::nrsz(DevS\cache::c($self), 'h');
+		ev_fmMain_pDockLeft::nrsz(c($self), 'h');
 	}
 	
 	static function onCanResize($self, &$nW, &$nH, &$can)
 	{
-		ev_fmMain_pDockLeft::crsz(DevS\cache::c($self), 'h', $nH, $can);
+		ev_fmMain_pDockLeft::crsz(c($self), 'h', $nH, $can);
 	}
 }
 
@@ -607,7 +607,7 @@ class ev_fmMain_c_formComponents {
         
         global $fmEdit;
         
-        $index = DevS\cache::c($self)->itemIndex;
+        $index = c($self)->itemIndex;
         
         if ($index===0) $obj = $fmEdit;
         else {
@@ -641,7 +641,7 @@ class ev_fmMain_c_type {
     
     static function onChange($self)
 	{
-        DevS\cache::c('fmMain->list')->smallIcons = ( DevS\cache::c($self)->itemIndex == 1 );
+        c('fmMain->list')->smallIcons = ( c($self)->itemIndex == 1 );
     }
 }
 class ev_fmMain_c_search
@@ -720,7 +720,7 @@ class ev_fmMain_shapeSize {
     static function onMouseDown($self, $button, $shift, $x, $y){
         if( $button == 1 ) return;
         global $shapeSize, $_preX, $_preY, $curType, $_scgridSize;
-        DevS\cache::c('fmMain->pDockMain')->doubleBuffer = true;
+        c('fmMain->pDockMain')->doubleBuffer = true;
         
         $obj = _c($self);
        
@@ -741,8 +741,8 @@ class ev_fmMain_shapeSize {
 			self::$timer->onTimer = __CLASS__ . '::onTimer';
 		}
 		
-			self::$hbar = DevS\cache::c("fmEdit->pDockMain")->HorzScrollBar;
-			self::$vbar = DevS\cache::c("fmEdit->pDockMain")->VertScrollBar;
+			self::$hbar = c("fmEdit->pDockMain")->HorzScrollBar;
+			self::$vbar = c("fmEdit->pDockMain")->VertScrollBar;
 		$_preX = false;
 		self::$phbars = [self::$hbar->position, self::$vbar->position];
 		self::$timer->enabled = true;
@@ -789,12 +789,12 @@ class ev_fmMain_shapeSize {
 				if ($curType==crSizeWE || $curType==crSizeNWSE)
 				{
 					$fmEdit->w = $x;
-					DevS\cache::c('fmMain->shapeSize',1)->w = $fmEdit->w + $GLOBALS['sc_offset']*2;
+					c('fmMain->shapeSize',1)->w = $fmEdit->w + $GLOBALS['sc_offset']*2;
 				}
 				if ($curType==crSizeNS || $curType==crSizeNWSE)
 				{
 					$fmEdit->h = $y;
-					DevS\cache::c('fmMain->shapeSize',1)->h = $fmEdit->h + $GLOBALS['sc_offset']*2;
+					c('fmMain->shapeSize',1)->h = $fmEdit->h + $GLOBALS['sc_offset']*2;
 				}
 				global $propFormW, $propFormH;
 				$propFormW->value = $fmEdit->w;
@@ -859,7 +859,7 @@ class ev_fmMain_itemInvert {
 		if(${0}!==false)
 		{
 			$myEvents->generate(${0});
-			$myProperties->generate(${0}->self, DevS\cache::c('fmPropsAndEvents->tabProps'));
+			$myProperties->generate(${0}->self, c('fmPropsAndEvents->tabProps'));
 		}
 	}
 }
@@ -879,7 +879,7 @@ class fmain_ibtn {
 	{
 		foreach (self::$list as $ic=>$zero)
 		{
-			$s = DevS\cache::c('fmMain->'.$ic);
+			$s = c('fmMain->'.$ic);
 			self::$images[$s->self] = [];
 			self::setDsgn($s,$ic,"{$theme}/{$ic}");
 		}
@@ -907,7 +907,7 @@ class fmain_ibtn {
 	}
 	static function sevent($ic, $callback)
 	{
-		$s = DevS\cache::c('fmMain->'.$ic);
+		$s = c('fmMain->'.$ic);
 		self::$onClick[$s->self] = $callback;
 		self::$list[$ic] = 0;
 		self::setDsgn($s,$ic,dsThemeDesign::$dir . '/' . $ic);
@@ -916,9 +916,9 @@ class fmain_ibtn {
 	{
 		if( isset(self::$images[$s][$index]) )
 		{
-			DevS\cache::c($s)->picture->loadFromStr( ...self::$images[$s][$index] );
+			c($s)->picture->loadFromStr( ...self::$images[$s][$index] );
 		} else 
-			DevS\cache::c($s)->picture->Clear();
+			c($s)->picture->Clear();
 	}
 	static function onMouseEnter($self)
 	{
@@ -988,29 +988,29 @@ function($theme)
 	) as $c )
 		if( file_exists("{$theme}/{$c}.bmp") )
 		{
-			DevS\cache::c("fmMain->{$c}")->picture->loadFromFile(		"{$theme}/{$c}.bmp" );
+			c("fmMain->{$c}")->picture->loadFromFile(		"{$theme}/{$c}.bmp" );
 		} elseif ( file_exists("{$theme}/{$c}.png") ) {
-			DevS\cache::c("fmMain->{$c}")->picture->loadFromFile(		"{$theme}/{$c}.png" );
+			c("fmMain->{$c}")->picture->loadFromFile(		"{$theme}/{$c}.png" );
 		} elseif ( file_exists("{$theme}/{$c}.gif") ) {
-			DevS\cache::c("fmMain->{$c}")->picture->loadFromFile(		"{$theme}/{$c}.gif" );
+			c("fmMain->{$c}")->picture->loadFromFile(		"{$theme}/{$c}.gif" );
 		} elseif ( file_exists("{$theme}/{$c}.tiff") ) {
-			DevS\cache::c("fmMain->{$c}")->picture->loadFromFile(		"{$theme}/{$c}.tiff" );
+			c("fmMain->{$c}")->picture->loadFromFile(		"{$theme}/{$c}.tiff" );
 		} elseif  ( file_exists("{$theme}/{$c}.ico") ) {
-			DevS\cache::c("fmMain->{$c}")->picture->loadFromFile(		"{$theme}/{$c}.ico" );
+			c("fmMain->{$c}")->picture->loadFromFile(		"{$theme}/{$c}.ico" );
 		}
 	
 	
-	DevS\cache::c("fmMain->itemCall")->picture->loadFromFile(			"{$theme}/mi_select.bmp" );
-	DevS\cache::c("fmMain->itemSendtofront")->picture->loadFromFile(	"{$theme}/mi_bringtofront.bmp" );
-	DevS\cache::c("fmMain->itemSendtoback")->picture->loadFromFile(		"{$theme}/mi_sendtoback.bmp" );
+	c("fmMain->itemCall")->picture->loadFromFile(			"{$theme}/mi_select.bmp" );
+	c("fmMain->itemSendtofront")->picture->loadFromFile(	"{$theme}/mi_bringtofront.bmp" );
+	c("fmMain->itemSendtoback")->picture->loadFromFile(		"{$theme}/mi_sendtoback.bmp" );
 	
 };
 
-event_set(DevS\cache::c("fmMain->pDockMain")->self, 'OnScrollVert', function($self, $scrollCode, &$scrollPos)
+event_set(c("fmMain->pDockMain")->self, 'OnScrollVert', function($self, $scrollCode, &$scrollPos)
 {
 	$GLOBALS['_sc']->update();
 });
-event_set(DevS\cache::c("fmMain->pDockMain")->self, 'onScrollHorz', function($self, $scrollCode, &$scrollPos)
+event_set(c("fmMain->pDockMain")->self, 'onScrollHorz', function($self, $scrollCode, &$scrollPos)
 {
 	$GLOBALS['_sc']->update();
 });

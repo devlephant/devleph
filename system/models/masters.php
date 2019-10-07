@@ -12,8 +12,8 @@ class myMasters {
         foreach ($utils as $code)
             self::createMaster($code);
 		
-		if( DevS\cache::c('fmMain->it_Utils')->count <= 0 )
-			DevS\cache::c('fmMain->it_Utils')->visible = false;
+		if( c('fmMain->it_Utils')->count <= 0 )
+			c('fmMain->it_Utils')->visible = false;
     }
     
     static function createMaster($code){
@@ -28,9 +28,9 @@ class myMasters {
         if (file_exists($dir . '/info.php')){
             $info = include $dir . '/info.php';
             
-            $it = new TMenuItem(DevS\cache::c('fmMain'));
+            $it = new TMenuItem(c('fmMain'));
             $it->caption = $info['CAPTION'];
-			$obj_CCC = DevS\cache::c("fmMain->it_Utils");
+			$obj_CCC = c("fmMain->it_Utils");
             $obj_CCC->addItem($it);   
             
             if (file_exists($dir.'/icon.bmp'))
@@ -40,7 +40,7 @@ class myMasters {
             elseif (file_exists($dir.'/icon.gif'))
                 $it->loadPicture($dir.'/icon.gif');
             
-            DevS\cache::c('fmMain->it_Utils')->addItem($it);
+            c('fmMain->it_Utils')->addItem($it);
             $it->onClick = function() use ($code, $info){
                 call_user_func('master_'.$code.'::open', $info['MSP_PROJECT']);
             };

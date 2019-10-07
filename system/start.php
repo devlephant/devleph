@@ -19,7 +19,6 @@
     require 'libs/mvc.php';
      
 	if (!EMULATE_DVS_EXE){
-		loader::lib('cache');
         loader::lib('data');
         loader::model('options');
 
@@ -41,9 +40,7 @@
     loader::lib('syntax');
     loader::lib('zip');
     loader::lib('vseditor');
-    loader::lib('synedit');
     loader::lib('docking');
-    loader::lib('catbuttons');
 	}
     
     if (!EMULATE_DVS_EXE){

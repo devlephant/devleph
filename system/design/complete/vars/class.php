@@ -29,7 +29,7 @@ class complete_Vars {
     
 	public static function getLocalVars()
 	{
-		$str = Devs\cache::c('fmPHPEditor.memo')->text;
+		$str = c('fmPHPEditor.memo')->text;
         $str = str_replace('$',_BR_.'$',$str);
         $arr = [];
         preg_match_all('#(.*)(\$[a-z\_]{1}[a-zA-Z0-9\_]{0,60})(.*)#', $str, $arr);

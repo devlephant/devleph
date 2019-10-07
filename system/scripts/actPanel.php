@@ -9,40 +9,40 @@ ev_fmMain_btn_rundebug::s( 'myUtils::runDebug' );
 ev_fmMain_btn_newForm::s( 'myUtils::newForm' );
 ev_fmMain_btn_delForm::s( 'myUtils::deleteForm' );
 
-DevS\cache::c('fmMain->fp_delete')->onClick = 'myUtils::deleteForm';
-DevS\cache::c('fmMain->hd_deleteform')->onClick = 'myUtils::deleteForm';
-DevS\cache::c('fmMain->hd_deleteform2')->onClick = 'myUtils::deleteForm';
+c('fmMain->fp_delete')->onClick = 'myUtils::deleteForm';
+c('fmMain->hd_deleteform')->onClick = 'myUtils::deleteForm';
+c('fmMain->hd_deleteform2')->onClick = 'myUtils::deleteForm';
 
-DevS\cache::c('fmMain->fp_new')->onClick    = 'myUtils::newForm';
-DevS\cache::c('fmMain->hd_newform')->onClick = 'myUtils::newForm';
+c('fmMain->fp_new')->onClick    = 'myUtils::newForm';
+c('fmMain->hd_newform')->onClick = 'myUtils::newForm';
 
-DevS\cache::c('fmMain->fp_rename')->onClick = 'myUtils::renameForm';
-DevS\cache::c('fmMain->hd_formrename')->onClick = 'myUtils::renameForm';
+c('fmMain->fp_rename')->onClick = 'myUtils::renameForm';
+c('fmMain->hd_formrename')->onClick = 'myUtils::renameForm';
 
-DevS\cache::c('fmMain->fp_clone')->onClick  = 'myUtils::cloneForm';
+c('fmMain->fp_clone')->onClick  = 'myUtils::cloneForm';
 
-DevS\cache::c('fmMain->fp_left')->onClick   = 'myUtils::leftForm';
-DevS\cache::c('fmMain->hd_leftform')->onClick = 'myUtils::leftForm';
+c('fmMain->fp_left')->onClick   = 'myUtils::leftForm';
+c('fmMain->hd_leftform')->onClick = 'myUtils::leftForm';
 
-DevS\cache::c('fmMain->fp_right')->onClick  = 'myUtils::rightForm';
-DevS\cache::c('fmMain->hd_rightform')->onClick = 'myUtils::rightForm';
+c('fmMain->fp_right')->onClick  = 'myUtils::rightForm';
+c('fmMain->hd_rightform')->onClick = 'myUtils::rightForm';
 
-DevS\cache::c('fmMain->it_new_form')->onClick = 'myUtils::newForm';
-DevS\cache::c('fmMain->it_new_project')->onClick = 'myProject::newProjectDialog';
-DevS\cache::c('fmMain->it_open')->onClick= 'myProject::openFromFileDialog';
-DevS\cache::c('fmMain->it_save')->onClick= function($self){
+c('fmMain->it_new_form')->onClick = 'myUtils::newForm';
+c('fmMain->it_new_project')->onClick = 'myProject::newProjectDialog';
+c('fmMain->it_open')->onClick= 'myProject::openFromFileDialog';
+c('fmMain->it_save')->onClick= function($self){
 	myUtils::saveForm();
 	message_beep(66); 
 };
-DevS\cache::c('fmMain->it_run')->onClick = 'myUtils::run';
-DevS\cache::c('fmMain->it_saveas')->onClick = 'myProject::saveAsDVSDialog';
+c('fmMain->it_run')->onClick = 'myUtils::run';
+c('fmMain->it_saveas')->onClick = 'myProject::saveAsDVSDialog';
 
-DevS\cache::c('fmMain->it_undo')->onClick = 'myHistory::undo';
-DevS\cache::c('fmMain->it_redo')->onClick = 'myHistory::redo';
-DevS\cache::c('fmMain->it_preference')->onClick = 'myOptions::Options';
+c('fmMain->it_undo')->onClick = 'myHistory::undo';
+c('fmMain->it_redo')->onClick = 'myHistory::redo';
+c('fmMain->it_preference')->onClick = 'myOptions::Options';
 
-DevS\cache::c('fmMain->it_buildproject')->onClick = 'myOptions::BuildProgram';
+c('fmMain->it_buildproject')->onClick = 'myOptions::BuildProgram';
 ev_fmMain_btn_make::s( 'myOptions::BuildProgram' );
-DevS\cache::c('fmMain->it_projectoptions')->onClick = 'myOptions::ProjectOptions';
-DevS\cache::c('fmMain->it_projectmodules')->onClick = 'myOptions::PHPModules';
-DevS\cache::c('fmMain->it_stopprogram')->onClick = 'myUtils::stop';
+c('fmMain->it_projectoptions')->onClick = 'myOptions::ProjectOptions';
+c('fmMain->it_projectmodules')->onClick = 'myOptions::PHPModules';
+c('fmMain->it_stopprogram')->onClick = 'myUtils::stop';

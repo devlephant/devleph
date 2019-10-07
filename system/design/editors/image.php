@@ -19,7 +19,7 @@ class ImageEditor
         $param = $myProperties->elements[ $self ];
         $prop  = $param['PROP'];
 		
-		$im = DevS\cache::c('edt_ImageView->image');
+		$im = c('edt_ImageView->image');
 		$bitmap = $myProperties->selObj->$prop;
 		if( $v instanceof TBitmap )
 		{
@@ -29,14 +29,14 @@ class ImageEditor
 		else 
 			$im->picture->assign( $bitmap );
 		
-		DevS\cache::c('edt_ImageView->background')->visible = ($im->picture->graphic->SupportsPartialTransparency || $im->picture->graphic->Transparent);
-        DevS\cache::c('edt_ImageView->btn_load')->onClick = __CLASS__ . "::load";
-        DevS\cache::c("edt_ImageView->btn_save")->onClick = __CLASS__ . "::save";
-        DevS\cache::c("edt_ImageView->btn_clear")->onClick= __CLASS__ . "::clear";
-        DevS\cache::c("edt_ImageView->btn_copy")->onClick = __CLASS__ . "::copy";
-        DevS\cache::c("edt_ImageView->btn_paste")->onClick= __CLASS__ . "::paste";
+		c('edt_ImageView->background')->visible = ($im->picture->graphic->SupportsPartialTransparency || $im->picture->graphic->Transparent);
+        c('edt_ImageView->btn_load')->onClick = __CLASS__ . "::load";
+        c("edt_ImageView->btn_save")->onClick = __CLASS__ . "::save";
+        c("edt_ImageView->btn_clear")->onClick= __CLASS__ . "::clear";
+        c("edt_ImageView->btn_copy")->onClick = __CLASS__ . "::copy";
+        c("edt_ImageView->btn_paste")->onClick= __CLASS__ . "::paste";
 		
-        if (DevS\cache::c('edt_ImageView')->showModal() == mrOk)
+        if (c('edt_ImageView')->showModal() == mrOk)
 		{
             
             $obj = _c($self);
@@ -70,8 +70,8 @@ class ImageEditor
 	}
     static function clear($self=0)
 	{
-        DevS\cache::c('edt_ImageView->image')->picture->clear();
-		DevS\cache::c('edt_ImageView->background')->visible = false;
+        c('edt_ImageView->image')->picture->clear();
+		c('edt_ImageView->background')->visible = false;
     }
     
     static function load($self=0)
@@ -82,14 +82,14 @@ class ImageEditor
         $result = false;
         if ($dlg->execute()){
             
-            DevS\cache::c('edt_ImageView->image')->picture->loadAnyFile($dlg->fileName);
-			DevS\cache::c('edt_ImageView->background')->visible = (DevS\cache::c('edt_ImageView->image')->picture->graphic->SupportsPartialTransparency || DevS\cache::c('edt_ImageView->image')->picture->graphic->Transparent);
-			DevS\cache::c('edt_ImageView')->repaint();
+            c('edt_ImageView->image')->picture->loadAnyFile($dlg->fileName);
+			c('edt_ImageView->background')->visible = (c('edt_ImageView->image')->picture->graphic->SupportsPartialTransparency || c('edt_ImageView->image')->picture->graphic->Transparent);
+			c('edt_ImageView')->repaint();
 			$result = true;
         }
         
         $dlg->free();
-		DevS\cache::c('edt_ImageView')->toFront();
+		c('edt_ImageView')->toFront();
 		
         return $result;
     }
@@ -102,7 +102,7 @@ class ImageEditor
             if (file_exists($dlg->fileName) && !confirm(t('File "%s" already exists! You want to replace this file?',basename($dlg->fileName)))) return false;
             
             $dlg->fileName = fileExt($dlg->fileName)=='bmp' ? $dlg->fileName : $dlg->fileName . '.bmp';
-                DevS\cache::c('edt_ImageView->image')->picture->getBitmap()->saveToFile($dlg->fileName);
+                c('edt_ImageView->image')->picture->getBitmap()->saveToFile($dlg->fileName);
         }
         
         $dlg->free();
@@ -110,20 +110,20 @@ class ImageEditor
     }
     static function copy($self=0)
 	{
-		DevS\cache::c('edt_ImageView->imgBuffer')->picture->assign( DevS\cache::c('edt_ImageView->image')->picture );
-		clipboard_assign( DevS\cache::c('edt_ImageView->image')->picture->self );
+		c('edt_ImageView->imgBuffer')->picture->assign( c('edt_ImageView->image')->picture );
+		clipboard_assign( c('edt_ImageView->image')->picture->self );
     }
     static function paste($self=0)
 	{
-		$im = DevS\cache::c('edt_ImageView->image');
+		$im = c('edt_ImageView->image');
 		if( clipboard_checkformat('pic') )
 		{
 			clipboard_assignpic( $im->picture->self );
 		} else
 		{
-			$im->picture->assign( DevS\cache::c("edt_ImageView->imgBuffer")->picture );
+			$im->picture->assign( c("edt_ImageView->imgBuffer")->picture );
 		}
-	   DevS\cache::c('edt_ImageView->background')->visible = ($im->picture->graphic->SupportsPartialTransparency || $im->picture->graphic->Transparent);
+	   c('edt_ImageView->background')->visible = ($im->picture->graphic->SupportsPartialTransparency || $im->picture->graphic->Transparent);
     }
 }
 myProperties::AddType("image", "ImageEditor");

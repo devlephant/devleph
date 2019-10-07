@@ -3,7 +3,7 @@
   
   PHP4Delphi Objects Library
   
-  2019 ver 4
+  2019 ver 5
   
   Classes:
   _Object, TObject, TComponent, TFont, TControl
@@ -53,7 +53,9 @@ function rtti_call($obj,$prop,$values=false){
 	{
 		$f = class_exists(gui_class($f))? _c($f): $f; 		//костыль с функцией c()
 	}elseif(gui_methodrtype($obj->self, $prop) == tkPointer){
-		return new Pointer($f);
+		$fp = new Pointer($f);
+		_Object::__regObject($f, $fp);
+		return $fp;
 	}
 	return $f;
 }
@@ -63,12 +65,93 @@ class Pointer
 	{
 		$this->self = $self;
 	}
+	
+	public function free()
+	{
+		_Object::__unregObject($this->self);
+	}
 }	
 /* Class for Object with property ala java */
 class _Object {  
-    
+    private static $obj_array = [];
+	private static $alias = [];
     protected $props = [];
+	public static function __findObject($str, $sep, $asObject)
+	{
+		$str = strtolower($str);
+		if( isset( self::$alias[$str] ) )
+			return self::$obj_array[self::$alias[$str]];
+		
+		global $SCREEN;
+    $str = str_replace('.', $sep, $str);
+    $names = explode($sep,$str);
+    $owner = $GLOBALS['APPLICATION'];//первый объект у нас - TApplication, по нему ищем уже дочерние объекты
+    $x     = true;
     
+    for ($i=0;$i<count($names);$i++){
+	
+	if ( !$owner ) return null; //если каким-то образом объект не был найден (например удалён или не существует вообще)
+    
+        $owner = $owner->findComponent($names[$i]);//ищем дочерний объект, далее проверка на удачность
+		//например если это TButton, а не TForm, объект найден не будет, т.к имя использовано в контексте события 
+		//(т.е имя используется событием на компоненте для обращения к компоненту той-же формы, на которой он находится) 
+		if ($x && !$owner){
+			//а вот это костыль из студии, он проверяет не было ли задано событием его самое местонахождения
+			//см. процедура SetEventInfo (класс __exEvents)
+			//далее данные из SetEventInfo удаляются через freeEventInfo
+				//p.s в этом месте можно поставить хук на событие для отладки
+			if(isset($GLOBALS['__ownerComponent'])){
+				if ($GLOBALS['__ownerComponent']){
+					$owner = c($GLOBALS['__ownerComponent']); //если инфа о родителе есть, он берётся из неё
+				}else{
+					$owner = $SCREEN->activeForm; //если такой инфы нет, он берётся по учтению активной формы
+					//в данном случае обращение из TPanel, TPageControl к дочерним компонентам объекта неактуально, оно
+					//уйдёт вникуда, если информация об событии не была инициализирована через setEventInfo
+				}
+			}else{
+				//та-же самая проверка, но на случай первого обращения к компоненту после запуска приложения
+				$owner = $SCREEN->activeForm;
+			}
+			
+			--$i;
+			$x = false;
+			
+		}
+    }
+    
+	//возвращаем наш компонент, в случае если такового нет, я переместил возвращение в код выше (см. цикл for /\)
+    self::$alias[$str] = $owner->self;
+	if( !isSet(self::$obj_array[$owner->self]) )
+		self::$obj_array[$owner->self] = $owner;
+	return $owner;
+	}
+	public static function __regObject($self, $i)
+	{
+		self::$obj_array[$self] = $i;
+	}
+	
+	public static function __getInstance($self, $type)
+	{
+		if( isSet( self::$obj_array[$self] ) )
+			if( $type === false || self::$obj_array[$self] instanceof $type ) return self::$obj_array[$self];
+		if( $type === false ) 
+			$type = rtti_class($self);
+		$type = trim($type);
+		if( class_exists($type)	) //Если запрашиваемый делфи-класс существует в виде обёртки, то...
+		{
+			self::$obj_array[$self] = new $type(nil,$self);//Создаём 
+			return self::$obj_array[$self];
+		}
+		
+		return false; //В ином случае возвращаем False (ложь, нифига, тусс)
+	}
+	
+	public static function __unregObject($self)
+	{
+		if( isSet( self::$obj_array[$self] ) )
+		unset( self::$obj_array[$self] );
+	}
+	
     function __get($nm) {
 	    $s = 'get_'.$nm;
 	    $s2 = 'getx_'.$nm;
@@ -143,6 +226,7 @@ class TObject extends _Object {
     
     function __construct($init = true){
         $this->self = component_create(__CLASS__,nil);
+		parent::__regObject($this->self, $this);
     }
     
     function free(){
@@ -150,6 +234,7 @@ class TObject extends _Object {
 		if (class_exists('animate',false))
 			animate::objectFree($this->self);
 		gui_destroy($this->self);
+		parent::__unregObject($this->self, $this);
 		//obj_free($this->self);	
     }
 	
@@ -166,12 +251,7 @@ class TObject extends _Object {
 }
 
 function to_object($self, $type='TControl'){ //самый интересный и ужасный костыль DS
-	$type = trim($type);
-        
-	  if ( class_exists($type)) //Если запрашиваемый делфи-класс существует в виде обёртки, то...
-        return new $type(nil,$self);//Создаём екземпляр его php-обёртки
-	
-    return false; //В ином случае возвращаем False (ложь, нифига, тусс)
+	return _Object::__getInstance($self, $type);
 }
 
 
@@ -195,45 +275,7 @@ function setEvent($form,$name,$event,$func){
     //set_event($obj->self,$event,$func);
 }
 function findComponent($str,$sep = '->',$asObject='TControl'){
-    global $SCREEN;
-    $str = str_replace('.', $sep, $str);
-    $names = explode($sep,$str);
-    $owner = $GLOBALS['APPLICATION'];//первый объект у нас - TApplication, по нему ищем уже дочерние объекты
-    $x     = true;
-    
-    for ($i=0;$i<count($names);$i++){
-	
-	if ( !$owner ) return null; //если каким-то образом объект не был найден (например удалён или не существует вообще)
-    
-        $owner = $owner->findComponent($names[$i]);//ищем дочерний объект, далее проверка на удачность
-		//например если это TButton, а не TForm, объект найден не будет, т.к имя использовано в контексте события 
-		//(т.е имя используется событием на компоненте для обращения к компоненту той-же формы, на которой он находится) 
-		if ($x && !$owner){
-			//а вот это костыль из студии, он проверяет не было ли задано событием его самое местонахождения
-			//см. процедура SetEventInfo (класс __exEvents)
-			//далее данные из SetEventInfo удаляются через freeEventInfo
-				//p.s в этом месте можно поставить хук на событие для отладки
-			if(isset($GLOBALS['__ownerComponent'])){
-				if ($GLOBALS['__ownerComponent']){
-					$owner = c($GLOBALS['__ownerComponent']); //если инфа о родителе есть, он берётся из неё
-				}else{
-					$owner = $SCREEN->activeForm; //если такой инфы нет, он берётся по учтению активной формы
-					//в данном случае обращение из TPanel, TPageControl к дочерним компонентам объекта неактуально, оно
-					//уйдёт вникуда, если информация об событии не была инициализирована через setEventInfo
-				}
-			}else{
-				//та-же самая проверка, но на случай первого обращения к компоненту после запуска приложения
-				$owner = $SCREEN->activeForm;
-			}
-			
-			--$i;
-			$x = false;
-			
-		}
-    }
-    
-	//возвращаем наш компонент, в случае если такового нет, я переместил возвращение в код выше (см. цикл for /\)
-    return $owner;
+    return _Object::__findObject($str, $sep, $asObject);
 }
 function rtti_DClass($name) //возврашает настоящий класс из псевдо-класса
 {
@@ -285,7 +327,7 @@ function c($str, $check_thread = true){
 		return ThreadObjectReceiver::c($str);
 	} elseif(is_numeric($str))
 	{
-		return to_object($str,rtti_class($str));		
+		return to_object($str);		
 	} else {
 		if (isset($GLOBALS['__OBJ_ALIAS']))
 		    foreach ($GLOBALS['__OBJ_ALIAS'] as $org=>$alias)
@@ -293,7 +335,7 @@ function c($str, $check_thread = true){
 		$res = findComponent($str);
 	}
 
-    return is_object($res)? to_object($res->self,rtti_class($res->self)): new DebugClass($str);
+    return is_object($res)? to_object($res->self): new DebugClass($str);
 }
 
 function с($str, $check_thread = false){

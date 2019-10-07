@@ -1,21 +1,21 @@
 <?
 
-DevS\cache::c('fmMain')->onClick = 'myDesign::refreshForm';
-DevS\cache::c('fmMain->itemDel')->onClick = 'myDesign::keyDelete';
-DevS\cache::c('fmMain->itemCopy')->onClick = 'myDesign::keyCopy';
-DevS\cache::c('fmMain->itemCut')->onClick  = 'myDesign::keyCut';
-DevS\cache::c('fmMain->itemPaste')->onClick = 'myDesign::keyPaste';
-DevS\cache::c('fmMain->itemSendtofront')->onClick = 'myDesign::toFront';
-DevS\cache::c('fmMain->itemSendtoback')->onClick  = 'myDesign::toBack';
-DevS\cache::c('fmMain->itemLock')->onClick = 'myDesign::lockComponent';
-DevS\cache::c('fmMain->itemGroup')->onClick = 'myDesign::groupComponent';
-DevS\cache::c('fmMain->itemAddevent')->onClick = function($self){
+c('fmMain')->onClick = 'myDesign::refreshForm';
+c('fmMain->itemDel')->onClick = 'myDesign::keyDelete';
+c('fmMain->itemCopy')->onClick = 'myDesign::keyCopy';
+c('fmMain->itemCut')->onClick  = 'myDesign::keyCut';
+c('fmMain->itemPaste')->onClick = 'myDesign::keyPaste';
+c('fmMain->itemSendtofront')->onClick = 'myDesign::toFront';
+c('fmMain->itemSendtoback')->onClick  = 'myDesign::toBack';
+c('fmMain->itemLock')->onClick = 'myDesign::lockComponent';
+c('fmMain->itemGroup')->onClick = 'myDesign::groupComponent';
+c('fmMain->itemAddevent')->onClick = function($self){
     myEvents::clickAddEvent(0, true);
 };
 
-DevS\cache::c('fmMain->editorPopup')->onPopup = 'myDesign::editorPopup';
+c('fmMain->editorPopup')->onPopup = 'myDesign::editorPopup';
 
-DevS\cache::c('fmMain->tabForms')->onMouseDown    = 'myDesign::tabFormClick';
-DevS\cache::c('fmObjectInspector->list')->onEdited= 'myDesign::objsInspectEdited';
+c('fmMain->tabForms')->onMouseDown    = 'myDesign::tabFormClick';
+c('fmObjectInspector->list')->onEdited= 'myDesign::objsInspectEdited';
 
-DevS\cache::c('fmMain->itService')->onClick = 'myDesign::itViewsPopup';
+c('fmMain->itService')->onClick = 'myDesign::itViewsPopup';

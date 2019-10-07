@@ -14,7 +14,7 @@ class mySyntaxCheck {
             $eventList = eventEngine::$DATA[$form]['--fmedit'];
         else
             $eventList = eventEngine::$DATA[$form][$obj_name];
-		$list = DevS\cache::c('fmMain->debugList');
+		$list = c('fmMain->debugList');
         if($eventList)
         foreach ($eventList as $event=>$code){
             

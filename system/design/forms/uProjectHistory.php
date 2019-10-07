@@ -6,7 +6,7 @@ class ev_fmProjectHistory
 	static function Show()
 	{
 		self::updview();
-		DevS\cache::c("fmProjectHistory")->show();
+		c("fmProjectHistory")->show();
 	}
 	
 	static function toName($name)
@@ -21,7 +21,7 @@ class ev_fmProjectHistory
 	static function updview()
 	{
 		global $_FORMS, $formSelected;
-		$tree = DevS\cache::c("fmProjectHistory->history");
+		$tree = c("fmProjectHistory->history");
 		$selIndex = [0,0];
 		$tree->items->BeginUpdate();
 		$tree->text = "";
@@ -148,7 +148,7 @@ class ev_fmProjectHistory
 			$item->imageIndex = $imgindex[$i];
 			$item->SelectedIndex = $imgindex[$i];
 		}
-		$tree->Images = DevS\cache::c('MainImages24');
+		$tree->Images = c('MainImages24');
 		$tree->items->EndUpdate();
 	}
 	static function EditClick($self)
@@ -267,7 +267,7 @@ class ev_fmProjectHistory_btnDelete
 {
 	static function onClick($self)
 	{
-		ev_fmProjectHistory::DeleteClick( DevS\cache::c("fmProjectHistory->history") );
+		ev_fmProjectHistory::DeleteClick( c("fmProjectHistory->history") );
 	}
 }
 
@@ -275,7 +275,7 @@ class ev_fmProjectHistory_btnEdit
 {
 	static function onClick($self)
 	{
-		ev_fmProjectHistory::EditClick( DevS\cache::c("fmProjectHistory->history") );
+		ev_fmProjectHistory::EditClick( c("fmProjectHistory->history") );
 	}
 }
 
@@ -283,6 +283,6 @@ class ev_fmProjectHistory_btnLoad
 {
 	static function onClick($self)
 	{
-		ev_fmProjectHistory::OpenClick( DevS\cache::c("fmProjectHistory->history") );
+		ev_fmProjectHistory::OpenClick( c("fmProjectHistory->history") );
 	}
 }
