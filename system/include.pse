@@ -74,6 +74,8 @@ if (!defined('IS_APPLICATION_START')){
         // Editor dialogs
         TForm::loadFromFile("{$dfm_dir}uedt_Text", true);
 		fmLogoin::Progress2(15,28);
+		TForm::loadFromFile("{$dfm_dir}uProjectHistory", true);
+		fmLogoin::Progress2(15,28);
 		TForm::loadFromFile("{$dfm_dir}uTIBEditor", true);
 		fmLogoin::Progress2(15,28);
         TForm::loadFromFile("{$dfm_dir}uedt_EventTypes");

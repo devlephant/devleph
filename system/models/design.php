@@ -156,10 +156,10 @@ class myDesign
         global $componentClasses;
 		if(!ev_fmMain_c_search::$is_search)
 		{
-			myOptions::set('components','groups', implode(',',c('fmMain->list')->selectedList));
+			myOptions::set('components','groups', implode(',',DevS\cache::c('fmMain->list')->selectedList));
 		} else {
 			if( (bool) (int)myOptions::get('search','grselcomp', "0") ) //#ADDOPT
-				myOptions::set('components','groups', implode(',',c('fmMain->list')->selectedList) . "," . myOptions::get('components','groups'));
+				myOptions::set('components','groups', implode(',',DevS\cache::c('fmMain->list')->selectedList) . "," . myOptions::get('components','groups'));
 		}
         myVars::set($componentClasses[$btn], 'selectedClass');
     }
@@ -198,7 +198,7 @@ class myDesign
 			$selectedClass = false;
         }               
 			$obj = _c(self::noVisAlias($obj->self));
-            $myProperties->generate($obj->self,c('fmMain->tabProps',1));
+            $myProperties->generate($obj->self,DevS\cache::c('fmMain->tabProps',1));
             $myEvents->_generate($obj);
             
         }
@@ -276,9 +276,9 @@ class myDesign
         $_sc->clearTargets();
         
 		if ($c){
-            if(c("fmComponents->c_search")->text !== ''){
-				c("fmComponents->c_search")->text = '';
-				//myOptions::set("components","groups", implode(",",c("fmMain->list")->selectedList));
+            if(DevS\cache::c("fmComponents->c_search")->text !== ''){
+				DevS\cache::c("fmComponents->c_search")->text = '';
+				//myOptions::set("components","groups", implode(",",DevS\cache::c("fmMain->list")->selectedList));
 			}
 			if (isset($c['IS_ONE']))
             if ($c['IS_ONE'] && self::countComponentsByClass($c['CLASS'])>0){
@@ -402,7 +402,7 @@ class myDesign
 				myDesign::LoadPosOf($obj, $Cobj);
 				self::plusnoVisAlias($obj->self,$Cobj->self);
 			} else $Cobj = $obj;
-			$myProperties->generate($obj->self,c('fmPropsAndEvents->tabProps',1));
+			$myProperties->generate($obj->self,DevS\cache::c('fmPropsAndEvents->tabProps',1));
             $myEvents->generate($obj);
             $myInspect->addItem($obj,$Cobj->self);
             
@@ -489,7 +489,7 @@ class myDesign
         myInspect::selectObject($obj);
         self::showPopup();
 		
-		$tree = c('fmMain->TreeProject');
+		$tree = DevS\cache::c('fmMain->TreeProject');
 
         myVars::set($target, 'targetSelected');
         
@@ -507,7 +507,7 @@ class myDesign
                 $_sc->addTarget(_c(self::noVisAliasRt($target)), false);
                 global $myProperties, $myEvents;
                 
-                $myProperties->generate($target,c('fmPropsAndEvents->tabProps',1));
+                $myProperties->generate($target,DevS\cache::c('fmPropsAndEvents->tabProps',1));
                 $myEvents->generate($obj);
                 
                 //self::inspectElement(_c($target));
@@ -600,7 +600,7 @@ class myDesign
             myVars::set(true, 'isMouseDown');
         }
         
-       // c('fmMain')->text = $button;
+       // DevS\cache::c('fmMain')->text = $button;
         
         myInspect::selectFmEdit();
         if ($_designSel)
@@ -721,7 +721,7 @@ class myDesign
 					if ($i==1){
 						$el = _c(self::noVisAlias($el->self));
 						$myEvents->generate($el);
-						$myProperties->generate($el->self, c('fmPropsAndEvents->tabProps',1));
+						$myProperties->generate($el->self, DevS\cache::c('fmPropsAndEvents->tabProps',1));
 					}
 				}
             }
@@ -761,7 +761,7 @@ class myDesign
             $myProperties->selObj = false;
             $myEvents->selObj = false;
         }
-        $myProperties->generate($fmEdit->self,c('fmPropsAndEvents->tabProps',1));
+        $myProperties->generate($fmEdit->self,DevS\cache::c('fmPropsAndEvents->tabProps',1));
 
         $myEvents->_generate($fmEdit);
     }
@@ -811,7 +811,7 @@ class myDesign
         
         $obj = _c(self::noVisAlias(self::lastComponent()->self));
         
-        $myProperties->generate($obj->self,c('fmPropsAndEvents->tabProps',1));
+        $myProperties->generate($obj->self,DevS\cache::c('fmPropsAndEvents->tabProps',1));
         $myEvents->generate($obj);
         
         if ($obj->self !== $fmEdit->self)
@@ -822,22 +822,10 @@ class myDesign
     
     static function canDoIt(){
         
-        if ( c('fmMain->tmpEdit',1)->focused )
-            return true;
-        
-        if ( c('fmComponents',1)->focused )
-            return true;
-        
-        if ( c('fmComponents->list',1)->focused )
-            return true;
-        
-        if ( c('fmPropsAndEvents->eventList',1)->focused )
-            return true;
-        
-        if ( c('fmPropsAndEvents->tabEvents',1)->focused )
-            return true;
-        
-        return false;
+        return
+			DevS\cache::c('fmMain->tmpEdit')->focused || 
+			DevS\cache::c('fmComponents')->focused || DevS\cache::c('fmComponents->list')->focused ||
+			DevS\cache::c('fmPropsAndEvents->eventList')->focused || DevS\cache::c('fmPropsAndEvents->tabEvents')->focused ;
     }
     
     static function editorPopup(){
@@ -849,9 +837,9 @@ class myDesign
         $popupShow = true;
         $components = $_sc->targets_ex;
         $theme = dsThemeDesign::$dir;
-        c('fmMain->itemLock')->checked = false;
-		c('fmMain->itemLock')->picture->loadFromFile("{$theme}/mi_lock.bmp" );
-		c('fmMain->itemLock')->caption = t("Lock component");
+        DevS\cache::c('fmMain->itemLock')->checked = false;
+		DevS\cache::c('fmMain->itemLock')->picture->loadFromFile("{$theme}/mi_lock.bmp" );
+		DevS\cache::c('fmMain->itemLock')->caption = t("Lock component");
         if (count($components)==0) return;
         
 		$r = false;
@@ -859,11 +847,11 @@ class myDesign
 			if($el->tag==2012) $r = true;
 		if($r)
 		{
-			c('fmMain->itemLock',1)->checked = true;
-			c('fmMain->itemLock',1)->picture->loadFromFile("{$theme}/mi_unlock.bmp" );
-			c('fmMain->itemLock',1)->caption = t("Unlock component");
+			DevS\cache::c('fmMain->itemLock')->checked = true;
+			DevS\cache::c('fmMain->itemLock')->picture->loadFromFile("{$theme}/mi_unlock.bmp" );
+			DevS\cache::c('fmMain->itemLock')->caption = t("Unlock component");
 		}
-        c('fmMain->itemGroup',1)->caption = count(self::getGroup($myProperties->selObj))>0 ?
+        DevS\cache::c('fmMain->itemGroup')->caption = count(self::getGroup($myProperties->selObj))>0 ?
                                             t('Ungroup') : t('Group');
     }
     
@@ -878,7 +866,7 @@ class myDesign
         setEditorHotKeys();
         myProperties::unFocusPanel();
 
-        c('fmMain->tmpEdit')->setFocus();
+        DevS\cache::c('fmMain->tmpEdit')->setFocus();
     }
     
     static function groupComponent(){
@@ -1122,8 +1110,8 @@ class myDesign
         
         global $fmEdit, $_sc;
         
-        c('fmMain->shapeSize',1)->w = $fmEdit->w + $GLOBALS['sc_offset']*2;
-        c('fmMain->shapeSize',1)->h = $fmEdit->h + $GLOBALS['sc_offset']*2; 
+        DevS\cache::c('fmMain->shapeSize')->w = $fmEdit->w + $GLOBALS['sc_offset']*2;
+        DevS\cache::c('fmMain->shapeSize')->h = $fmEdit->h + $GLOBALS['sc_offset']*2; 
 		if( isset($_sc) )
 			if( is_object($_sc) )
 				$_sc->update();
@@ -1131,10 +1119,10 @@ class myDesign
     
     static function itViewsPopup($self){
         
-        c('fmMain->it_components')->checked = c('fmMain->pComponents')->visible;
-        c('fmMain->it_objectinspector')->checked = c('fmMain->pInspector')->visible;
-        c('fmMain->it_props')->checked = c('fmMain->pProps')->visible;
-        c('fmMain->it_debuginfo')->checked = c('fmMain->pDebugWindow')->visible;
+        DevS\cache::c('fmMain->it_components')->checked = c('fmMain->pComponents')->visible;
+        DevS\cache::c('fmMain->it_objectinspector')->checked = c('fmMain->pInspector')->visible;
+        DevS\cache::c('fmMain->it_props')->checked = c('fmMain->pProps')->visible;
+        DevS\cache::c('fmMain->it_debuginfo')->checked = c('fmMain->pDebugWindow')->visible;
     }
 	
 	static function detectNS($self)

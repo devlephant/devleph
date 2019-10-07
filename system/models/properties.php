@@ -271,10 +271,10 @@ class myProperties
         global $componentProps, $fmMain;
         if (!isset($this->panels[$class]))
 		{
-            c("fmMain->editorPopup")->AutoPopup = false;
+            DevS\cache::c("fmMain->editorPopup")->AutoPopup = false;
 			lockWindowUpdate($this->panel->handle);
             $panel = new TNextInspector( $fmMain );
-            $panel->parent = c('fmPropsAndEvents->tabProps');
+            $panel->parent = DevS\cache::c('fmPropsAndEvents->tabProps');
             $panel->BeginUpdate();
 			$panel->align  = 'alClient';
             $panel->enableVisualStyles = true;
@@ -283,7 +283,7 @@ class myProperties
             $panel->HighlightTextColor = 0xC1FFFF;
             $panel->onVSEdit = 'myProperties::VSEdit';
             $panel->onVSToolBarClick = 'myProperties::VSBarClick';
-			$panel->Glyphs = c("fmMain->NXGlyphos");
+			$panel->Glyphs = DevS\cache::c("fmMain->NXGlyphos");
 			$panel->ButtonsStyle = 1; //btCustom
 			gui_propSet($panel->self, 'Color', clWindow);
 			gui_propSet($panel->self, 'CategoriesColor', clBtnFace);
@@ -355,7 +355,7 @@ class myProperties
             if( $del )
 			 {	$gr->free(); }
 				
-			c("fmMain->editorPopup")->AutoPopup = true;
+			DevS\cache::c("fmMain->editorPopup")->AutoPopup = true;
 			$panel->EndUpdate();
 			lockWindowUpdate(0);
 		}
@@ -375,7 +375,7 @@ class myProperties
     
     public function _generateAllClasses(){
         
-        $this->panel = c('fmPropsAndEvents->tabProps',1);
+        $this->panel = DevS\cache::c('fmPropsAndEvents->tabProps',1);
         lockWindowUpdate($this->panel->handle);
         
         global $componentClasses;
@@ -442,8 +442,8 @@ class myProperties
     
     static function fixSplitterMoved($self)
 	{
-        if(!c('fmPropsAndEvents') || c('fmPropsAndEvents') instanceof DebugClass ) return;
-        c('fmPropsAndEvents->tabProps',1)->repaint();
+        if(!DevS\cache::c('fmPropsAndEvents') || DevS\cache::c('fmPropsAndEvents') instanceof DebugClass ) return;
+        DevS\cache::c('fmPropsAndEvents->tabProps')->repaint();
     }
 	static function fixSel($self)
 	{

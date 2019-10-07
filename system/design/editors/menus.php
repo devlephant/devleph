@@ -14,10 +14,10 @@ class MenusEditor
         if ($toSetProp) return;
         
         $prop = $myProperties->elements[ $self ]['PROP'];
-		$dlg = c('edt_menuEditor',1);
+		$dlg = DevS\cache::c('edt_menuEditor');
         $dlg->result = $myProperties->selObj->$prop;
 		MenuEditor::updateTree();
-        $r = c('edt_menuEditor',1)->showModal();
+        $r = DevS\cache::c('edt_menuEditor')->showModal();
         if ($r == mrOk)
 		{   
             $value = $dlg->result;

@@ -42,12 +42,12 @@ class TextEditor
 	}
 	public static function execute()
 	{
-		$e = c("edt_Text");
+		$e = DevS\cache::c("edt_Text");
         $e->onKeyDown = __CLASS__ . "::keyDown";
-		$TextField =  c('edt_Text->memo');
+		$TextField =  DevS\cache::c('edt_Text->memo');
         $TextField->onKeyDown = __CLASS__ . "::keyDown";
-		c('edt_Text->bitbtn3')->onClick = __CLASS__ . "::clickCopy";
-		c('edt_Text->bitbtn4')->onClick = __CLASS__ . "::clickPaste";
+		DevS\cache::c('edt_Text->bitbtn3')->onClick = __CLASS__ . "::clickCopy";
+		DevS\cache::c('edt_Text->bitbtn4')->onClick = __CLASS__ . "::clickPaste";
 		$TextField->text = self::$value;
         $e = $e->showModal() == mrOk;
 		self::$value = $TextField->text;
@@ -57,17 +57,17 @@ class TextEditor
     function keyDown($self, &$key, &$shift)
 	{
         if ($key == VK_ESCAPE)
-            c('edt_Text')->close();
+            DevS\cache::c('edt_Text')->close();
     }
 	
 	function clickCopy($self)
 	{
-		clipboard_settext( c('edt_Text->memo')->text );
+		clipboard_settext( DevS\cache::c('edt_Text->memo')->text );
 	}
 	
 	function clickPaste($self)
 	{
-		c('edt_Text->memo')->text = clipboard_gettext( );
+		DevS\cache::c('edt_Text->memo')->text = clipboard_gettext( );
 	}
 }
 MyProperties::AddType(["text","string","str","caption","shortstring","widestring","ansistring","utf8string"], "TextEditor");

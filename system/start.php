@@ -19,6 +19,7 @@
     require 'libs/mvc.php';
      
 	if (!EMULATE_DVS_EXE){
+		loader::lib('cache');
         loader::lib('data');
         loader::model('options');
 

@@ -20,31 +20,31 @@ class SizesEditor
         $anchors = explode(',', $obj->anchors);
         
         if ($xy_cursor){
-            c('fmSizesPosition',1)->x = cursor_real_x(c('fmSizesPosition'),10);
-            c('fmSizesPosition',1)->y = cursor_real_y(c('fmSizesPosition'),10);
+            DevS\cache::c('fmSizesPosition')->x = cursor_real_x(DevS\cache::c('fmSizesPosition'),10);
+            DevS\cache::c('fmSizesPosition')->y = cursor_real_y(DevS\cache::c('fmSizesPosition'),10);
         }
         
-        c('fmSizesPosition->e_x',1)->onKeyUp = __CLASS__ . "::setSizes";
-        c('fmSizesPosition->e_x',1)->onKeyPress= __CLASS__ . "::setSizes";
+        DevS\cache::c('fmSizesPosition->e_x')->onKeyUp = __CLASS__ . "::setSizes";
+        DevS\cache::c('fmSizesPosition->e_x')->onKeyPress= __CLASS__ . "::setSizes";
         
-        c('fmSizesPosition->e_y',1)->onKeyUp = __CLASS__ . "::setSizes";
-        c('fmSizesPosition->e_y',1)->onKeyPress= __CLASS__ . "::setSizes";
+        DevS\cache::c('fmSizesPosition->e_y')->onKeyUp = __CLASS__ . "::setSizes";
+        DevS\cache::c('fmSizesPosition->e_y')->onKeyPress= __CLASS__ . "::setSizes";
         
-        c('fmSizesPosition->e_w',1)->onKeyUp = __CLASS__ . "::setSizes";
-        c('fmSizesPosition->e_w',1)->onKeyPress= __CLASS__ . "::setSizes";
+        DevS\cache::c('fmSizesPosition->e_w')->onKeyUp = __CLASS__ . "::setSizes";
+        DevS\cache::c('fmSizesPosition->e_w')->onKeyPress= __CLASS__ . "::setSizes";
         
-        c('fmSizesPosition->e_h',1)->onKeyUp = __CLASS__ . "::setSizes";
-        c('fmSizesPosition->e_h',1)->onKeyPress= __CLASS__ . "::setSizes";
+        DevS\cache::c('fmSizesPosition->e_h')->onKeyUp = __CLASS__ . "::setSizes";
+        DevS\cache::c('fmSizesPosition->e_h')->onKeyPress= __CLASS__ . "::setSizes";
         
-        c('fmSizesPosition->c_left',1)->checked = in_array('akLeft', $anchors);
-        c('fmSizesPosition->c_top',1)->checked  = in_array('akTop', $anchors);
-        c('fmSizesPosition->c_right',1)->checked= in_array('akRight', $anchors);
-        c('fmSizesPosition->c_bottom',1)->checked = in_array('akBottom', $anchors);
+        DevS\cache::c('fmSizesPosition->c_left')->checked = in_array('akLeft', $anchors);
+        DevS\cache::c('fmSizesPosition->c_top')->checked  = in_array('akTop', $anchors);
+        DevS\cache::c('fmSizesPosition->c_right')->checked= in_array('akRight', $anchors);
+        DevS\cache::c('fmSizesPosition->c_bottom')->checked = in_array('akBottom', $anchors);
         
-        c('fmSizesPosition->e_x',1)->text = $obj->x;
-        c('fmSizesPosition->e_y',1)->text = $obj->y;
-        c('fmSizesPosition->e_w',1)->text = $obj->w;
-		c('fmSizesPosition->e_h',1)->text = $obj->h;
+        DevS\cache::c('fmSizesPosition->e_x')->text = $obj->x;
+        DevS\cache::c('fmSizesPosition->e_y')->text = $obj->y;
+        DevS\cache::c('fmSizesPosition->e_w')->text = $obj->w;
+		DevS\cache::c('fmSizesPosition->e_h')->text = $obj->h;
 		$targets = $_sc->targets_ex;
         $targets = count($targets) ? $targets: [$fmEdit];
 		$positions = [];
@@ -53,19 +53,19 @@ class SizesEditor
 			$positions[$i] = [$el->x, $el->y, $el->w, $el->h, $el->anchors];
 		}
 		
-        if (c('fmSizesPosition',1)->showModal()==mrOk){
+        if (DevS\cache::c('fmSizesPosition')->showModal()==mrOk){
             
             $anchors = [];
-            if (c('fmSizesPosition->c_left',1)->checked)
+            if (DevS\cache::c('fmSizesPosition->c_left')->checked)
                 $anchors[] = 'akLeft';
                 
-            if (c('fmSizesPosition->c_top',1)->checked)
+            if (DevS\cache::c('fmSizesPosition->c_top')->checked)
                 $anchors[] = 'akTop';
             
-            if (c('fmSizesPosition->c_right',1)->checked)
+            if (DevS\cache::c('fmSizesPosition->c_right')->checked)
                 $anchors[] = 'akRight';
             
-            if (c('fmSizesPosition->c_bottom',1)->checked)
+            if (DevS\cache::c('fmSizesPosition->c_bottom')->checked)
                 $anchors[] = 'akBottom';
             $anchors = implode(',', $anchors);
 			myHistory::addArr($targets, ["x","y","w","h","anchors"], $positions);
@@ -88,10 +88,10 @@ class SizesEditor
 		$targets = $_sc->targets_ex;
         $targets = count($targets) ? $targets: [$fmEdit];
 		
-		$x = c('fmSizesPosition->e_x')->text - $el0->x;
-		$y = c('fmSizesPosition->e_y')->text - $el0->y;
-		$w = c('fmSizesPosition->e_w')->text;
-		$h = c('fmSizesPosition->e_h')->text;
+		$x = DevS\cache::c('fmSizesPosition->e_x')->text - $el0->x;
+		$y = DevS\cache::c('fmSizesPosition->e_y')->text - $el0->y;
+		$w = DevS\cache::c('fmSizesPosition->e_w')->text;
+		$h = DevS\cache::c('fmSizesPosition->e_h')->text;
 		foreach($targets as $el)
 		{
 			$el->x += $x;

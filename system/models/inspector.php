@@ -18,10 +18,10 @@ class myInspect {
             $result[] = $el['NAME'].': '.$el['CLASS'];
         }
         
-        c('fmPropsAndEvents->c_formComponents',1)->text = $result;
+        DevS\cache::c('fmPropsAndEvents->c_formComponents',1)->text = $result;
         
         if (!$obj){
-            c('fmPropsAndEvents->c_formComponents',1)->itemIndex = 0;
+            DevS\cache::c('fmPropsAndEvents->c_formComponents',1)->itemIndex = 0;
             return;
         }
         
@@ -140,7 +140,7 @@ class myInspect {
     }
     
     static function updateSelected(){
-		c('fmObjectInspector->list')->onClick = 'myInspect::click';
+		DevS\cache::c('fmObjectInspector->list')->onClick = 'myInspect::click';
     }
     
     static function click($self){

@@ -7,7 +7,7 @@ class myComplete {
     
     static function updateComponentList(){
         
-        $combo = c('fmPHPEditor->c_component');
+        $combo = DevS\cache::c('fmPHPEditor->c_component');
         $text = [];
         
         $forms = myProject::getFormsObjects();
@@ -28,16 +28,16 @@ class myComplete {
         
         global $myComplete, $synComplete, $synHint, $phpMemo, $completeList,
                 $showHint, $showComplete;
-        $synComplete = c('fmPHPEditor->synComplete');
-        $synHint     = c('fmPHPEditor->synHint');
-        $phpMemo     = c('fmPHPEditor->memo');
+        $synComplete = DevS\cache::c('fmPHPEditor->synComplete');
+        $synHint     = DevS\cache::c('fmPHPEditor->synHint');
+        $phpMemo     = DevS\cache::c('fmPHPEditor->memo');
         $phpMemo->onKeyUp = 'myComplete::memoKeyUp';
         $phpMemo->onKeyPress= 'myComplete::memoKeyPress';
         
         $synComplete->onClose='myComplete::synClose';
         $synHint->onClose    ='myComplete::synClose';
         
-        c('fmPHPEditor->hide_err_list')->onClick = 'myComplete::hideErrors';
+        DevS\cache::c('fmPHPEditor->hide_err_list')->onClick = 'myComplete::hideErrors';
         
         $myComplete = new myComplete;
         $dir = DOC_ROOT . '/design/complete/';
@@ -101,30 +101,30 @@ class myComplete {
 		if( (bool)(int)myOptions::get('prefs','complete_actskeys', "0") ){
 		if( $key == 13 || $key==114){
 			
-			//c( $self )->BeginUndoBlock();
+			//DevS\cache::c( $self )->BeginUndoBlock();
 			$CaretY = gui_propGet($self, 'CaretY') - 1;
 			$CaretX = gui_propGet($self, 'CaretX') - 1;
-			$line = c( $self )->items->getLine($CaretY);
+			$line = DevS\cache::c( $self )->items->getLine($CaretY);
 			$length = strlen($line) - strlen( substr($line, 0, $CaretX) );
 			if( myComplete::findSymbol( substr($line, 0, $CaretX), "{") && myComplete::findSymbol(substr($line, $CaretX, $length), "}") ) {
 				$spos = myComplete::findSymbolPos(substr($line, $CaretX, $length), "}");
 				$str1 = substr($line, $CaretX, $length);
 				$str = substr($str1, 0, $spos);
-				$Array = c( $self )->items->get_lines();
+				$Array = DevS\cache::c( $self )->items->get_lines();
 				$arr[0] = array_slice($Array, 0, $CaretY);
 				$arr[1][0] = substr($line, 0, $CaretX);
 				$arr[1][1] = "	".$str;
 				$arr[1][2] = "}".substr($str1, $spos+1, $length);
 				$arr[2] = array_slice($Array, $CaretY+1, count($Array));
 				
-				c( $self )->items->setArray( array_merge($arr[0], $arr[1], $arr[2]) );
+				DevS\cache::c( $self )->items->setArray( array_merge($arr[0], $arr[1], $arr[2]) );
 		        /*
-				c( $self )->items->setLine($CaretY,  substr($line, 0, $CaretX)); 
-				c( $self )->items->setLine($CaretY+1,  "	".$str );
+				DevS\cache::c( $self )->items->setLine($CaretY,  substr($line, 0, $CaretX)); 
+				DevS\cache::c( $self )->items->setLine($CaretY+1,  "	".$str );
 			
-				c( $self )->items->setLine($CaretY+2, "}".substr($str1, $spos+1, $length) );//*/
-				//c( $self )->EndUndoBlock();
-				//c( $self )->BeginUndoBlock();
+				DevS\cache::c( $self )->items->setLine($CaretY+2, "}".substr($str1, $spos+1, $length) );//*/
+				//DevS\cache::c( $self )->EndUndoBlock();
+				//DevS\cache::c( $self )->BeginUndoBlock();
 				gui_propSet($self, 'CaretY', $CaretY + 2);
 				gui_propSet($self, 'CaretX', 2);
 				//c( $self )->EndUndoBlock();
@@ -175,21 +175,21 @@ class myComplete {
 		if( (bool)(int)myOptions::get('prefs','complete_chars', "0") )
 		{
 		if( isset($chars[$key]) ) {
-			//c( $self )->BeginUndoBlock();
+			//DevS\cache::c( $self )->BeginUndoBlock();
 			$CaretY = gui_propGet($self, 'CaretY') - 1;
 			$CaretX = gui_propGet($self, 'CaretX') - 1;
 			$line = c( $self )->items->getLine($CaretY);
 			$length = strlen($line) - strlen( substr($line, 0, $CaretX) );
 			if( !myComplete::checkDublicate($self, $key) ){
-			c( $self )->items->setLine($CaretY,  substr($line, 0, $CaretX) . $key.$chars[$key] . substr($line, $CaretX, $length) );
+			DevS\cache::c($self)->items->setLine($CaretY,  substr($line, 0, $CaretX) . $key.$chars[$key] . substr($line, $CaretX, $length) );
 			}else{
-			c( $self )->items->setLine($CaretY,  substr($line, 0, $CaretX) . $key . substr($line, $CaretX, $length) );
+			DevS\cache::c($self)->items->setLine($CaretY,  substr($line, 0, $CaretX) . $key . substr($line, $CaretX, $length) );
 			}
-			//c( $self )->EndUndoBlock();
-			//c( $self )->BeginUndoBlock();
+			//DevS\cache::c( $self )->EndUndoBlock();
+			//DevS\cache::c( $self )->BeginUndoBlock();
 			gui_PropSet($self, 'CaretX', gui_propGet($self, 'CaretX') + 1);
 			$key = "";
-			//c( $self )->EndUndoBlock();
+			//DevS\cache::c( $self )->EndUndoBlock();
 		}
 		if( in_array($key, array(')', ']')) ) {
 			if( myComplete::checkDublicate($self, $key) ) {
@@ -230,9 +230,9 @@ class myComplete {
                 
                     $synHint->item   = (array)$result['ARR']['item'];
                     $synHint->insert = (array)$result['ARR']['insert'];
-                    //c('fmPHPEditor')->formStyle = fsStayOnTop;
+                    //DevS\cache::c('fmPHPEditor')->formStyle = fsStayOnTop;
                     $synHint->active( /*true*/ );
-                    //c('fmPHPEditor')->formStyle = fsNormal;
+                    //DevS\cache::c('fmPHPEditor')->formStyle = fsNormal;
                     $synComplete->active(false);
                     $showHint = true;
                     $showComplete = false;
@@ -243,7 +243,7 @@ class myComplete {
                 $synComplete->insert = (array)$result['ARR']['insert'];
 				$synComplete->active();
                 $synHint->active(false);
-                c('fmPHPEditor')->show();
+                DevS\cache::c('fmPHPEditor')->show();
                 
                 $showComplete = true;
                 $showHint     = false;
@@ -377,10 +377,10 @@ class myComplete {
     
     static function checkSyntax() {
         
-        if (!c('fmPHPEditor',1)->visible) return; 
+        if (!DevS\cache::c('fmPHPEditor')->visible) return; 
                                   
         
-        $phpMemo = c('fmPHPEditor->memo');
+        $phpMemo = DevS\cache::c('fmPHPEditor->memo');
         $code    = $phpMemo->text;
         
         $checker = new PHPSyntax;
@@ -403,13 +403,13 @@ class myComplete {
         }
         
         $index = c('fmPHPEditor->err_list',1)->itemIndex;
-        c('fmPHPEditor->err_list',1)->text = $lines;
-        c('fmPHPEditor->err_list',1)->itemIndex = $index;
+        DevS\cache::c('fmPHPEditor->err_list',1)->text = $lines;
+        DevS\cache::c('fmPHPEditor->err_list',1)->itemIndex = $index;
     }
     
     static function hideErrors($self){
         
-        c('errPanel')->height = 1;
+        DevS\cache::c('errPanel')->height = 1;
     }
 
 }

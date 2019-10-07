@@ -4,7 +4,7 @@ function treeBwr_add()
 	global $projectFile;
 	
 	$dir = dirname($projectFile);
-	$tree = c('fmMain->TreeProject');
+	$tree = DevS\cache::c('fmMain->TreeProject');
 	
 	$tree->items->BeginUpdate();
 	$tree->text = "";
@@ -61,7 +61,7 @@ function treeBwr_add()
 			$icon = empty($icon)?"empty":$icon;
 			$imgindex[] = myImages::getImgID( $icon );
 			++$cindex;
-			$arr_self[$cindex] = ["self"=>c("fmEdit")->self, "event"=>$event, "event_index"=>$i];
+			$arr_self[$cindex] = ["self"=>DevS\cache::c("fmEdit")->self, "event"=>$event, "event_index"=>$i];
 			$Forms .= "		".$event._BR_;
 		}
 	}
@@ -107,7 +107,7 @@ function treeBwr_add()
 		$item->imageIndex = $imgindex[$i];
 		$item->SelectedIndex = $imgindex[$i];
 	}
-	$tree->Images = c('MainImages24');
+	$tree->Images = DevS\cache::c('MainImages24');
 	$tree->items->EndUpdate();
 	unset($tree, $dir, $dirs, $Forms, $Scripts, $Modules, $imglist, $no_multi_call);
 }
