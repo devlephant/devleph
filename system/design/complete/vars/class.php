@@ -27,13 +27,24 @@ class complete_Vars {
         return $result;
     }
     
+	public static function getLocalVars()
+	{
+		$str = Devs\cache::c('fmPHPEditor.memo')->text;
+        $str = str_replace('$',_BR_.'$',$str);
+        $arr = [];
+        preg_match_all('#(.*)(\$[a-z\_]{1}[a-zA-Z0-9\_]{0,60})(.*)#', $str, $arr);
+        
+        sort($arr[2]);
+        return array_unique($arr[2]);
+	}
+	
     // возвращаем список для инлайна
     function getList($lineText){
         
         
         $gl_vars = (array)myProject::cfg('globals');
         
-        $vars = INPUT_DLG_editor::getLocalVars();
+        $vars = self::getLocalVars();
         $vars = array_merge($vars, array_keys($gl_vars), self::getFormVars());
         
         global $myEvents;
