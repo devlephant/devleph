@@ -545,6 +545,11 @@ class TComponent extends TObject {
 	}
 	
 	function get_prop($prop){
+		if( !rtti_exists($this,$prop) )
+		{
+			$c = $this->findComponent($prop);
+			return $c === 0? null: $c;
+		}
 		$result = rtti_get($this,$prop);
 		
 		if ($result==='True') $result = true;
@@ -600,7 +605,8 @@ class TComponent extends TObject {
 		
 
 			    
-	    if (is_int($res) && ($res == -908067676)){ //Вот этот инопланетный код ошибки, непоймёшь откуда взятый, даже нет для него константы у Dim-s, просто число
+	    if (is_int($res) && ($res == -908067676))
+		{ //Вот этот инопланетный код ошибки, непоймёшь откуда взятый, даже нет для него константы у Dim-s, просто число
 		    
 		    $result = $this->__getPropEx($nm);
 		    if ($result === NULL)
