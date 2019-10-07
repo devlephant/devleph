@@ -1,7 +1,7 @@
 <?
 global $fmphpeditor_lastAction;
 $fmphpeditor_lastAction = false;
-$s = c("fmPHPEditor->memo");
+$s = DevS\cache::c("fmPHPEditor->memo");
 $s->rightEdge  = false;
 $s->font->name = 'Trebuchet MS';
 $s->font->size = 10;
@@ -10,43 +10,43 @@ $s->options    = '[eoAutoIndent, eoDragDropEditing, eoEnhanceEndKey, eoGroupUndo
 
 class ev_fmPHPEditor_tlOk{
 	static function onMouseEnter($self){
-		c("fmPHPEditor->ok_cl")->visible = true;
+		DevS\cache::c("fmPHPEditor->ok_cl")->visible = true;
 	}
 	static function onMouseLeave($self){
-		c("fmPHPEditor->ok_cl")->visible = false;
+		DevS\cache::c("fmPHPEditor->ok_cl")->visible = false;
 	}
 	static function onClick($self){
 		global $phpeditorClosing, $lastStringSelStart, $myEvents;
 		myComplete::saveCode();
-			$event = c('fmPHPEditor')->event;
+			$event = DevS\cache::c('fmPHPEditor')->event;
 			$name  = $myEvents->selObj instanceof TForm ? '--fmedit' : $myEvents->selObj->name;
-			$tx = c("fmPHPEditor->memo");
+			$tx = DevS\cache::c("fmPHPEditor->memo");
 			eventEngine::setEvent($name, $event, $tx->text);
 			$lastStringSelStart[$name][$event]['x'] =  $tx->caretX;
 			$lastStringSelStart[$name][$event]['y'] =  $tx->caretY;
 		
 		$phpeditorClosing = 1;
-		c("fmPHPEditor")->close();
-		c("fmPHPEditor")->ModalResult = 1;
+		DevS\cache::c("fmPHPEditor")->close();
+		DevS\cache::c("fmPHPEditor")->ModalResult = 1;
 	}
 }
 class ev_fmPHPEditor_tlCancel{
 	static function onMouseEnter($self){
-		if( c($self)->enabled )
-			c("fmPHPEditor->ok_cn")->visible = true;
+		if( DevS\cache::c($self)->enabled )
+			DevS\cache::c("fmPHPEditor->ok_cn")->visible = true;
 	}
 	static function onMouseLeave($self){
-		c("fmPHPEditor->ok_cn")->visible = false;
+		DevS\cache::c("fmPHPEditor->ok_cn")->visible = false;
 	}
 	static function onClick($self){
-		c("fmPHPEditor")->close();
-		c("fmPHPEditor")->ModalResult = 2;
+		DevS\cache::c("fmPHPEditor")->close();
+		DevS\cache::c("fmPHPEditor")->ModalResult = 2;
 	}
 }
 class evfmPHPEditor {
 	static function onShow($self)
 	{
-		c("fmPHPEditor->ok_cn")->visible = false;
+		DevS\cache::c("fmPHPEditor->ok_cn")->visible = false;
 		
 		eventTabs_show();
 	}
@@ -54,29 +54,29 @@ class evfmPHPEditor {
 	static function onCloseQuery($self, &$canClose)
 	{
 		global $phpeditorClosing, $showComplete, $showHint, $lastStringSelStart, $myEvents, $cancel;
-		$event = c('fmPHPEditor')->event;
+		$event = DevS\cache::c('fmPHPEditor')->event;
 		$name  = $myEvents->selObj instanceof TForm ? '--fmedit' : $myEvents->selObj->name;
-		$evt_schange = $phpeditorClosing? true: md5( str_replace(array(" ", "\t", "\r", "\n"), "", eventEngine::getEvent($name, $event)) )!== md5( str_replace(array(" ", "\t", "\r", "\n"), "", c('fmPHPEditor->memo')->text ) );
+		$evt_schange = $phpeditorClosing? true: md5( str_replace(array(" ", "\t", "\r", "\n"), "", eventEngine::getEvent($name, $event)) )!== md5( str_replace(array(" ", "\t", "\r", "\n"), "", DevS\cache::c('fmPHPEditor->memo')->text ) );
 		if( !$evt_schange && !$phpeditorClosing )
 		{
 			$phpeditorClosing = 1;
-			c('fmPHPEditor')->close();
+			DevS\cache::c('fmPHPEditor')->close();
 		}
-		if(	!$phpeditorClosing and c('fmPHPEditor->tlCancel')->enabled and $msg = messageBox(t('All unsaved changes in the code will be lost. Do you want to save the code before closing?'), t('Closing the Code Editor'), MB_ICONWARNING + MB_YESNOCANCEL) and $msg == mrYes )
+		if(	!$phpeditorClosing and DevS\cache::c('fmPHPEditor->tlCancel')->enabled and $msg = messageBox(t('All unsaved changes in the code will be lost. Do you want to save the code before closing?'), t('Closing the Code Editor'), MB_ICONWARNING + MB_YESNOCANCEL) and $msg == mrYes )
 		{		
 			myComplete::saveCode();   
-			$tx = c("fmPHPEditor->memo");
+			$tx = DevS\cache::c("fmPHPEditor->memo");
 			eventEngine::setEvent($name, $event, $tx->text);
 			$lastStringSelStart[$name][$event]['x'] =  $tx->caretX;
 			$lastStringSelStart[$name][$event]['y'] =  $tx->caretY;
 		
 			$phpeditorClosing = 1;
-			c('fmPHPEditor')->close();
+			DevS\cache::c('fmPHPEditor')->close();
 		}
 		elseif($msg !== mrCancel)
 		{
 			$phpeditorClosing = 1;
-			c('fmPHPEditor')->close();
+			DevS\cache::c('fmPHPEditor')->close();
 		}
 		else
 		{
@@ -96,8 +96,8 @@ class evfmPHPEditorMEMO {
     
     static function onDblClick($self){       
         $action = myActions::getAction(action_Simple::getLine());
-        if ($action){
-            
+        if ($action)
+		{            
             action_Simple::openDialog($action['DIALOG'], $action);
         }
     }
@@ -106,17 +106,16 @@ class evfmPHPEditorMEMO {
     static function onMouseDown($self){
 		global $fmphpeditor_lastAction;
 		$fmphpeditor_lastAction = $action = myActions::getAction(action_Simple::getLine());
-        
         if ($action){
-            c('fmPHPEditor.info',1)->caption = $action['TEXT'];
-            c('fmPHPEditor.action_image',1)->loadPicture($action['ICON']);
-            c('fmPHPEditor.desc',1)->caption = myActions::getInlineFixed($action);
-			c('fmPHPEditor.desc',1)->hint	 = myActions::getInline($action);
+            DevS\cache::c('fmPHPEditor->info')->caption = $action['TEXT'];
+            DevS\cache::c('fmPHPEditor->action_image')->loadPicture($action['ICON']);
+            DevS\cache::c('fmPHPEditor->desc')->caption = myActions::getInlineFixed($action);
+			DevS\cache::c('fmPHPEditor->desc')->hint	 = myActions::getInline($action);
         } else {
-            c('fmPHPEditor.info',1)->caption = '';
-            c('fmPHPEditor.desc',1)->caption = '';
-            c('fmPHPEditor.action_image',1)->picture->clear();
-			c('fmPHPEditor.desc',1)->hint	 = '';
+            DevS\cache::c('fmPHPEditor->info')->caption = '';
+            DevS\cache::c('fmPHPEditor->desc')->caption = '';
+            DevS\cache::c('fmPHPEditor.action_image')->picture->clear();
+			DevS\cache::c('fmPHPEditor.desc')->hint	 = '';
         }
     }
 	
@@ -135,11 +134,11 @@ class evfmPHPEditorMEMO {
     
 }
 class ev_fmPHPEditor_btn_new {
-    static function onClick($self){ c('fmPHPEditor->memo')->text = ''; }
+    static function onClick($self){ DevS\cache::c('fmPHPEditor->memo')->text = ''; }
 }
 
 class ev_fmPHPEditor_New1 {
-    static function onClick($self){ c('fmPHPEditor->memo')->text = ''; }
+    static function onClick($self){ DevS\cache::c('fmPHPEditor->memo')->text = ''; }
 }
 
 class ev_fmPHPEditor_btn_open {
@@ -148,12 +147,13 @@ class ev_fmPHPEditor_btn_open {
         $dlg = new TOpenDialog;
         $dlg->filter = DLG_FILTER_ALL;
         
-        if ($dlg->execute()){
-            c('fmPHPEditor->memo')->text =  file_get_contents($dlg->fileName) ;   
+        if ($dlg->execute())
+		{
+            DevS\cache::c('fmPHPEditor->memo')->text =  file_get_contents($dlg->fileName) ;   
         }
         
         $dlg->free();
-		c("fmPHPEditor")->toFront();
+		DevS\cache::c("fmPHPEditor")->toFront();
     }
 }
 
@@ -163,12 +163,13 @@ class ev_fmPHPEditor_Open1 {
         $dlg = new TOpenDialog;
         $dlg->filter = DLG_FILTER_ALL;
         
-        if ($dlg->execute()){
-            c('fmPHPEditor->memo')->text =  file_get_contents($dlg->fileName) ;   
+        if ($dlg->execute())
+		{
+            DevS\cache::c('fmPHPEditor->memo')->text =  file_get_contents($dlg->fileName) ;   
         }
         
         $dlg->free();
-		c("fmPHPEditor")->toFront();
+		DevS\cache::c("fmPHPEditor")->toFront();
     }
 }
 
@@ -178,27 +179,27 @@ class ev_fmPHPEditor_btn_save {
         $dlg = new TSaveDialog;
         $dlg->filter = 'PHP Script (.php)|*.php';
         
-        if ($dlg->execute()){
-            
+        if ($dlg->execute())
+		{
             $fileName = $dlg->fileName;
             if (fileExt($fileName)!=='php') $fileName .= '.php';
             
-            file_p_contents( $fileName, c('fmPHPEditor->memo')->text );   
+            file_p_contents( $fileName, DevS\cache::c('fmPHPEditor->memo')->text );   
         }
         
         $dlg->free();
-		c("fmPHPEditor")->toFront();
+		DevS\cache::c("fmPHPEditor")->toFront();
     }
 }
 
 
 class ev_fmPHPEditor_btn_find
 {
-    static function onClick($self){
-        
-        c('fmPHPEditor->p_search')->visible = !c('edt_FindDialog->p_search')->visible;
-        c('fmPHPEditor->p_search')->repaint();
-        c('fmPHPEditor->f_text')->setFocus();
+    static function onClick($self)
+	{
+        DevS\cache::c('fmPHPEditor->p_search')->visible = !DevS\cache::c('edt_FindDialog->p_search')->visible;
+        DevS\cache::c('fmPHPEditor->p_search')->repaint();
+        DevS\cache::c('fmPHPEditor->f_text')->setFocus();
     }
 }
 
@@ -253,17 +254,17 @@ class ev_fmPHPEditor_f_text {
         
         if ($key==13 || $key==114){
             
-            if (!c('f_text')->text) return;
+            if (!DevS\cache::c('fmPHPEditor->f_text')->text) return;
             
             if (!isset($GLOBALS['__findIndex']))
                 $GLOBALS['__findIndex'] = 0;
             
             
-            c('memo')->selStart = 0;
-            c('memo')->selEnd   = 0;
+            DevS\cache::c('fmPHPEditor->memo')->selStart = 0;
+            DevS\cache::c('fmPHPEditor->memo')->selEnd   = 0;
             
             $start = myEvents::findTextItem($GLOBALS['__findIndex']);
-            $length = strlen(c('f_text')->text);
+            $length = strlen(DevS\cache::c('fmPHPEditor->f_text')->text);
             
             if (!isset($start)){
                 
@@ -278,14 +279,14 @@ class ev_fmPHPEditor_f_text {
             
             ++$GLOBALS['__findIndex'];
             
-            c('memo')->selStart = $start;
-            c('memo')->selEnd   = $start + $length;
-            c('fmPHPEditor->memo')->setFocus();
+            DevS\cache::c('fmPHPEditor->memo')->selStart = $start;
+            DevS\cache::c('fmPHPEditor->memo')->selEnd   = $start + $length;
+            DevS\cache::c('fmPHPEditor->memo')->setFocus();
             
         } elseif ($key==VK_ESCAPE){
                 
-            c('fmPHPEditor->p_search')->visible = !c('edt_FindDialog->p_search')->visible;
-            c('fmPHPEditor->memo')->setFocus();
+            DevS\cache::c('fmPHPEditor->p_search')->visible = !c('edt_FindDialog->p_search')->visible;
+            DevS\cache::c('fmPHPEditor->memo')->setFocus();
             
         } else {
             $GLOBALS['__findIndex'] = 0;
@@ -297,42 +298,42 @@ class ev_fmPHPEditor_f_text {
 class ev_fmPHPEditor_lowercase1 {
     static function onClick($self)
 	{
-        c('fmPHPEditor->memo')->selText = strtolower(c('fmPHPEditor->memo')->selText);
+        DevS\cache::c('fmPHPEditor->memo')->selText = strtolower(DevS\cache::c('fmPHPEditor->memo')->selText);
     }
 }
 
 class ev_fmPHPEditor_UPPERCASE1 {
     static function onClick($self)
 	{
-        c('fmPHPEditor->memo')->selText = strtoupper(c('fmPHPEditor->memo')->selText);
+        DevS\cache::c('fmPHPEditor->memo')->selText = strtoupper(DevS\cache::c('fmPHPEditor->memo')->selText);
     }
 }
 
 class ev_fmPHPEditor_undoItem {
     static function onClick($self)
 	{
-        c('fmPHPEditor->memo')->undo();
+        DevS\cache::c('fmPHPEditor->memo')->undo();
     }
 }
 
 class ev_fmPHPEditor_redoItem {
     static function onClick($self)
 	{
-        c('fmPHPEditor->memo')->redo();
+        DevS\cache::c('fmPHPEditor->memo')->redo();
     }
 }
 
 class ev_fmPHPEditor_btn_undo {
     static function onClick($self)
 	{
-        c('fmPHPEditor->memo')->undo();
+        DevS\cache::c('fmPHPEditor->memo')->undo();
     }
 }
 
 class ev_fmPHPEditor_btn_redo {
     static function onClick($self)
 	{
-        c('fmPHPEditor->memo')->redo();
+        DevS\cache::c('fmPHPEditor->memo')->redo();
     }
 }
 
@@ -342,16 +343,16 @@ class ev_fmPHPEditor_it_saveevent {
         global $myEvents;
         
         myComplete::saveCode();
-        $event = c('fmPHPEditor')->event;
+        $event = DevS\cache::c('fmPHPEditor')->event;
         $name  = $myEvents->selObj instanceof TForm ? '--fmedit' : $myEvents->selObj->name;
-        $tx = c("fmPHPEditor->memo");
+        $tx = DevS\cache::c("fmPHPEditor->memo");
 		eventEngine::setEvent($name, $event, $tx->text);
 		
 		$lastStringSelStart[$name][$event]['x'] =  $tx->caretX;
 		$lastStringSelStart[$name][$event]['y'] =  $tx->caretY;
         
         message_beep(66);
-        c('fmPHPEditor->tlCancel')->enabled = false;
+        DevS\cache::c('fmPHPEditor->tlCancel')->enabled = false;
     }
 }
 
@@ -360,33 +361,33 @@ class ev_fmPHPEditor_exit{
 	{
 		global $phpeditorClosing;
 		$phpeditorClosing = 1;
-		c('fmPHPEditor->memo')->text = '';
-        c("fmPHPEditor")->close();
+		DevS\cache::c('fmPHPEditor->memo')->text = '';
+        DevS\cache::c("fmPHPEditor")->close();
     }
 }
 
 class ev_fmPHPEditor_it_selectall {
     static function onClick($self)
 	{
-         c('fmPHPEditor->memo')->selectAll();
+		DevS\cache::c('fmPHPEditor->memo')->selectAll();
     }
 }
 class ev_fmPHPEditor_selectall1 {
     static function onClick($self)
 	{
-         c('fmPHPEditor->memo')->selectAll();
+		DevS\cache::c('fmPHPEditor->memo')->selectAll();
     }
 }
 class ev_fmPHPEditor_it_cut {
     static function onClick($self)
 	{
-		c('fmPHPEditor->memo')->cutToClipboard();
+		DevS\cache::c('fmPHPEditor->memo')->cutToClipboard();
     }
 }
 class ev_fmPHPEditor_cut1 {
     static function onClick($self)
 	{
-         c('fmPHPEditor->memo')->cutToClipboard();
+		DevS\cache::c('fmPHPEditor->memo')->cutToClipboard();
     }
 }
 class ev_fmPHPEditor_Saveas1{
@@ -404,28 +405,28 @@ class ev_fmPHPEditor_Saveas1{
         }
         
         $dlg->free();
-		c("fmPHPEditor")->toFront();
+		DevS\cache::c("fmPHPEditor")->toFront();
     }
 }
 
 class ev_fmPHPEditor_it_copy {
-    static function onClick($self){c('fmPHPEditor->memo')->copyToClipboard();}
+    static function onClick($self){DevS\cache::c('fmPHPEditor->memo')->copyToClipboard();}
 }
 class ev_fmPHPEditor_copy1{
-    static function onClick($self){c('fmPHPEditor->memo')->copyToClipboard();}
+    static function onClick($self){DevS\cache::c('fmPHPEditor->memo')->copyToClipboard();}
 }
 class ev_fmPHPEditor_it_paste {
-    static function onClick($self){c('fmPHPEditor->memo')->pasteFromClipboard();}
+    static function onClick($self){DevS\cache::c('fmPHPEditor->memo')->pasteFromClipboard();}
 }
 class ev_fmPHPEditor_paste1 {
-    static function onClick($self){c('fmPHPEditor->memo')->pasteFromClipboard();}
+    static function onClick($self){DevS\cache::c('fmPHPEditor->memo')->pasteFromClipboard();}
 }
 c('fmPHPEditor')->onResize = function($self)
 {
 	global $fmphpeditor_lastAction;
         
         if ($fmphpeditor_lastAction)
-            c('fmPHPEditor.desc',1)->caption = myActions::getInlineFixed($fmphpeditor_lastAction);
+            DevS\cache::c('fmPHPEditor.desc')->caption = myActions::getInlineFixed($fmphpeditor_lastAction);
 };
 class EditorSynt
 {
@@ -450,10 +451,10 @@ class EditorSynt
 		
 		$ini = new TIniFileEx($file);
 		ev_fmPHPEditor_options::$ini = $ini;
-		c('fmPHPEditor->SynPHPSyn')->loadFromArray($ini->arr);
-        c('fmPHPEditor->memo')->font->name = $ini->read('main','font','Courier New');
-	c('fmPHPEditor->memo')->font->size = $ini->read('main','fontsize',10);
-	c('fmPHPEditor->memo')->color = $ini->read('main','color',clWhite);
+		DevS\cache::c('fmPHPEditor->SynPHPSyn')->loadFromArray($ini->arr);
+        DevS\cache::c('fmPHPEditor->memo')->font->name = $ini->read('main','font','Courier New');
+	DevS\cache::c('fmPHPEditor->memo')->font->size = $ini->read('main','fontsize',10);
+	DevS\cache::c('fmPHPEditor->memo')->color = $ini->read('main','color',clWhite);
 	if( $ini->read('main','setForm',true) ){
 	$col_ac = $ini->read('main','color',0);
 	if( $col_ac == $ini->read('Comment','background',0) and $col_ac == $ini->read('Identifier','background',0) and $col_ac == $ini->read('Key','background',0) and $col_ac == $ini->read('Number','background',0) and $col_ac == $ini->read('String','background',0) and $col_ac == $ini->read('Symbol','background',0) and $col_ac == $ini->read('Variable','background',0) ){
@@ -463,19 +464,19 @@ class EditorSynt
 		if( $ini->read('Space', 'backround',0)  == $ini->read('gutter', 'color',0) ){ $resc = $ini->read('gutter', 'color',0); };
 	}
 	if(!isset($resc)){if(!$ini->read('gutter','color',false)){ $resc = $ini->read('main','color',0); }else{ $resc = $ini->read('gutter','color',0); }  }
-	c('fmPHPEditor')->color = $resc;
+	DevS\cache::c('fmPHPEditor')->color = $resc;
 	foreach( c('fmPHPEditor')->get_componentList() as $obj ){
 		if(get_class($obj) == 'TLabel'){
 		$obj->font->color = $ini->read('String','foreground',clWhite);
 		}
 	}
 	}
-		c('fmPHPEditor->memo')->ActiveLineColor = $ini->read('main','ActiveLineColor',c('fmPHPEditor->memo')->color);
-        gui_propSet( c('fmPHPEditor->memo')->gutter->self, 'color', $ini->read('gutter','color',clWhite) );
-        gui_propSet( c('fmPHPEditor->memo')->gutter->self, 'font.color', $ini->read('gutter','fontcolor',clGray) );
+		DevS\cache::c('fmPHPEditor->memo')->ActiveLineColor = $ini->read('main','ActiveLineColor',DevS\cache::c('fmPHPEditor->memo')->color);
+        gui_propSet( DevS\cache::c('fmPHPEditor->memo')->gutter->self, 'color', $ini->read('gutter','color',clWhite) );
+        gui_propSet( DevS\cache::c('fmPHPEditor->memo')->gutter->self, 'font.color', $ini->read('gutter','fontcolor',clGray) );
 
-        gui_propSet( c('fmPHPEditor->memo')->SelectedColor, 'background', $ini->read('main','SelectedColorBG',c('fmPHPEditor->memo')->color) );
-        gui_propSet( c('fmPHPEditor->memo')->SelectedColor, 'foreground', $ini->read('main','SelectedColorFG',c('fmPHPEditor->memo')->font->color ) );
+        gui_propSet( DevS\cache::c('fmPHPEditor->memo')->SelectedColor, 'background', $ini->read('main','SelectedColorBG',DevS\cache::c('fmPHPEditor->memo')->color) );
+        gui_propSet( DevS\cache::c('fmPHPEditor->memo')->SelectedColor, 'foreground', $ini->read('main','SelectedColorFG',DevS\cache::c('fmPHPEditor->memo')->font->color ) );
 	
 		myOptions::set('syntax','highlight', $name);
 	}
@@ -523,7 +524,7 @@ class EditorSynt
 		foreach( $synList as $s )
 		{
 			$it = new TMenuItem;
-			$it->parent = c("fmPHPEditor");
+			$it->parent = DevS\cache::c("fmPHPEditor");
 			$it->name = str_replace([' ', '-', '#', '@', '!', '$', '.', '+', '=', '(', ')'], '_', $s);
 			$it->caption = $s;
 			$it->onClick = function($self)use($s){
@@ -535,7 +536,7 @@ class EditorSynt
 			
 			$syntItems[$s] = $it;
 			
-			c('fmPHPEditor->SynList')->addItem($it);
+			DevS\cache::c('fmPHPEditor->SynList')->addItem($it);
 		}
 		else
 		{
@@ -543,7 +544,7 @@ class EditorSynt
 			$it->caption = t('Syntax highlighting is not found');
 			$it->enabled = false;
 			
-			c('fmPHPEditor->SynList')->addItem($it);
+			DevS\cache::c('fmPHPEditor->SynList')->addItem($it);
 		}
 		
 		EditorSynt::loadFirstSyntax();
@@ -557,57 +558,56 @@ class ev_fmPHPEditor_options {
     static function onClick($self)
 	{	
         $ini = self::$ini;
-        c('fmPHPEditor->SynPHPSyn')->saveToArray($arr);
-        $color = c('fmPHPEditor->memo')->color;
-        if (c('fmEditorSettings')->showModal()!==mrOk){
-            c('fmPHPEditor->SynPHPSyn')->loadFromArray($arr);
-            c('fmPHPEditor->memo')->color = $ini->read('main','color',clWhite);
-            c('fmPHPEditor->memo')->ActiveLineColor = $ini->read('main','ActiveLineColor',c('fmPHPEditor->memo')->color);
+        DevS\cache::c('fmPHPEditor->SynPHPSyn')->saveToArray($arr);
+        $color = DevS\cache::c('fmPHPEditor->memo')->color;
+        if (DevS\cache::c('fmEditorSettings')->showModal()!==mrOk){
+            DevS\cache::c('fmPHPEditor->SynPHPSyn')->loadFromArray($arr);
+            DevS\cache::c('fmPHPEditor->memo')->color = $ini->read('main','color',clWhite);
+            DevS\cache::c('fmPHPEditor->memo')->ActiveLineColor = $ini->read('main','ActiveLineColor',DevS\cache::c('fmPHPEditor->memo')->color);
             
-            gui_propSet( c('fmPHPEditor->memo')->gutter, 'color', $ini->read('gutter','color',clWhite) );
-            gui_propSet( c('fmPHPEditor->memo')->gutter, 'font.color', $ini->read('gutter','fontcolor',clGray) );
-            gui_propSet( c('fmPHPEditor->memo')->SelectedColor, 'background', $ini->read('main','SelectedColorBG',c('fmPHPEditor->memo')->color) );
-            gui_propSet( c('fmPHPEditor->memo')->SelectedColor, 'foreground', $ini->read('main','SelectedColorFG', c('fmPHPEditor->memo')->font->color ) );
+            gui_propSet( DevS\cache::c('fmPHPEditor->memo')->gutter, 'color', $ini->read('gutter','color',clWhite) );
+            gui_propSet( DevS\cache::c('fmPHPEditor->memo')->gutter, 'font.color', $ini->read('gutter','fontcolor',clGray) );
+            gui_propSet( DevS\cache::c('fmPHPEditor->memo')->SelectedColor, 'background', $ini->read('main','SelectedColorBG',DevS\cache::c('fmPHPEditor->memo')->color) );
+            gui_propSet( DevS\cache::c('fmPHPEditor->memo')->SelectedColor, 'foreground', $ini->read('main','SelectedColorFG', DevS\cache::c('fmPHPEditor->memo')->font->color ) );
         }
     }
 }
 class ev_fmPHPEditor_cutf8 {
     static function onClick($self)
 	{	
-		if( ! c("fmPHPEditor->cutf8")->checked ){
+		if( ! DevS\cache::c("fmPHPEditor->cutf8")->checked ){
 			if( messageBox( t(t('enc_chng_dg'), 'UTF-8'), t('change encode'), MB_ICONWARNING + MB_YESNO  ) == mrNo )
 				return;
-			c('fmPHPEditor->memo')->text = iconv('windows-1251', 'UTF-8', c('fmPHPEditor->memo')->text);
+			DevS\cache::c('fmPHPEditor->memo')->text = iconv('windows-1251', 'UTF-8', DevS\cache::c('fmPHPEditor->memo')->text);
 		}
-        c("fmPHPEditor->cutf8")->checked = true;
-        c("fmPHPEditor->cansi")->checked = false;
+        DevS\cache::c("fmPHPEditor->cutf8")->checked = true;
+        DevS\cache::c("fmPHPEditor->cansi")->checked = false;
     }
 }
 
-        c("fmPHPEditor->cutf8")->checked=false;
-        c("fmPHPEditor->cansi")->checked=true; 
+        DevS\cache::c("fmPHPEditor->cutf8")->checked=false;
+        DevS\cache::c("fmPHPEditor->cansi")->checked=true; 
 
 class ev_fmPHPEditor_cansi {
     static function onClick($self)
 	{
 		
-		if( ! c("fmPHPEditor->cansi")->checked ){
+		if( ! DevS\cache::c("fmPHPEditor->cansi")->checked ){
 			if( messageBox( t(t('enc_chng_dg'), 'ANSI'), t('change encode'), MB_ICONWARNING + MB_YESNO  ) == mrNo )
 				return;
-			c('fmPHPEditor->memo')->text = iconv('UTF-8', 'windows-1251', c('fmPHPEditor->memo')->text);
+			DevS\cache::c('fmPHPEditor->memo')->text = iconv('UTF-8', 'windows-1251', DevS\cache::c('fmPHPEditor->memo')->text);
 		}
-        c("fmPHPEditor->cutf8")->checked = false;
-        c("fmPHPEditor->cansi")->checked = true;        
+        DevS\cache::c("fmPHPEditor->cutf8")->checked = false;
+        DevS\cache::c("fmPHPEditor->cansi")->checked = true;        
     }
 }
 
 class ev_fmPHPEditor_it_tabs {
 	static function onClick($self)
 	{
-		$self = _c($self);
+		$self = DevS\cache::c($self);
 		$self->checked = !$self->checked;
-		c("fmPHPEditor->eventTabs")->visible = $self->checked;
-		//pre(c("fmPHPEditor->eventTabs")->tabs);
+		DevS\cache::c("fmPHPEditor->eventTabs")->visible = $self->checked;
 	}
 }
 
@@ -615,11 +615,17 @@ class ev_fmPHPEditor_eventTabs {
 	static function onChange($self){
 		global $phpeditorClosing, $lastStringSelStart, $myEvents, $_FORMS, $formSelected;
 		eventEngine::setForm();
-		$eventList = c('fmPropsAndEvents->eventList');
-		$eventTabs = c('fmPHPEditor->eventTabs');
-		$php_memo = c('fmPHPEditor->memo');
-		$save = true; //Пока так. Можно будет потом её прикрутить, как настройку.
-		
+		$eventList = DevS\cache::c('fmPropsAndEvents->eventList');
+		$eventTabs = DevS\cache::c('fmPHPEditor->eventTabs');
+		$php_memo = DevS\cache::c('fmPHPEditor->memo');
+		$save = myOptions::get('code', 'savemode', 0);//#ADDOPT;
+		//code = code editor setup
+		/*
+		0 => Save with asking
+		1 => Save without asking
+		2 => Don't save
+		*/
+		//Пока так. Можно будет потом её прикрутить, как настройку.
 		if($eventTabs->TabIndex == $eventTabs->tabs->get_count()-1){
 			$eventTabs->TabIndex = $eventTabs->last_index;
 			myEvents::clickAddEvent(0, true);
@@ -638,17 +644,14 @@ class ev_fmPHPEditor_eventTabs {
 			eventEngine::setEvent($name, $event, $tx->text);
 			$lastStringSelStart[$name][$event]['x'] =  $tx->caretX;
 			$lastStringSelStart[$name][$event]['y'] =  $tx->caretY;
-			
-			$lastStringSelStart[$name][$event]['x'] =  c('fmPHPEditor->memo')->caretX;
-			$lastStringSelStart[$name][$event]['y'] =  c('fmPHPEditor->memo')->caretY;
 		}
 		
-		c('fmPHPEditor')->event = $event;
+		DevS\cache::c('fmPHPEditor')->event = $event;
 		
         $php_memo->text = eventEngine::getEvent($name, $event);
         $ltight = str_replace('{', '', str_ireplace('event ', '', CApi::getStringEventInfo($event, $myEvents->selObj->className) ) );
         $x_name = $myEvents->selObj->name == 'fmEdit' ? $_FORMS[$formSelected] : $myEvents->selObj->name;
-        c('fmPHPEditor')->text = t('php_script_editor').' -> '.$x_name.'::'.$ltight;
+        DevS\cache::c('fmPHPEditor')->text = t('php_script_editor').' -> '.$x_name.'::'.$ltight;
 	}
 }
 

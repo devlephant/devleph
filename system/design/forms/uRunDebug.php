@@ -20,9 +20,9 @@ class ev_fmRunDebug_btn_add {
     static function onClick($self)
 	{    
         $arr['type'] = 'glVars';
-        c('edt_inputText')->formStyle = fsStayOnTop;
+        DevS\cache::c('edt_inputText')->formStyle = fsStayOnTop;
         $res = inputText('Новая переменная', 'Введите имя глобальной переменной');
-        c('edt_inputText')->formStyle = fsNormal;
+        DevS\cache::c('edt_inputText')->formStyle = fsNormal;
         $res = str_replace('$','',$res);
         if ($res){
             $arr['name'] = $res;
@@ -38,7 +38,7 @@ class ev_fmRunDebug_btn_del {
     static function onClick($self)
 	{    
         $arr['type'] = 'glVars';
-        $res = c('fmRunDebug->varList')->inText;
+        $res = DevS\cache::c('fmRunDebug->varList')->inText;
         $res = str_replace('$','',$res);
         if ($res){
         
@@ -55,12 +55,12 @@ class ev_fmRunDebug_btn_edit {
     static function onClick($self)
 	{    
         $arr['type'] = 'glVars';
-        $res = c('fmRunDebug->varList')->inText;
+        $res = DevS\cache::c('fmRunDebug->varList')->inText;
         $res = str_replace('$','',$res);
         
-        c('edt_inputText')->formStyle = fsStayOnTop;
+        DevS\cache::c('edt_inputText')->formStyle = fsStayOnTop;
         $res = inputText('Переименнование', 'Введите новое имя переменной');
-        c('edt_inputText')->formStyle = fsNormal;
+        DevS\cache::c('edt_inputText')->formStyle = fsNormal;
         
         
         if ($res){
@@ -74,11 +74,9 @@ class ev_fmRunDebug_btn_edit {
 
 class ev_fmRunDebug_varList {
     
-    static function onClick($self){
-        
-        $var = c($self)->items->selected;
+    static function onClick($self)
+	{
         global $__DEBUG_GLVARS;
-        
-        c('fmRunDebug->mResult')->text = $__DEBUG_GLVARS[$var];
+        DevS\cache::c('fmRunDebug->mResult')->text = $__DEBUG_GLVARS[DevS\cache::c($self)->items->selected];
     }
 }

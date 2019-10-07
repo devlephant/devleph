@@ -3,11 +3,11 @@
 
 
 function clearEditorHotKeys(){
-    c('fmMain->itemDel',true)->shortCut = '';
-    c('fmMain->itemCopy',true)->shortCut = '';
-    c('fmMain->itemCut',true)->shortCut = '';
-    c('fmMain->itemPaste',true)->shortCut = '';
-	c('fmMain->itemInvert',true)->shortCut = '';
+    DevS\cache::c('fmMain->itemDel',true)->shortCut = '';
+    DevS\cache::c('fmMain->itemCopy',true)->shortCut = '';
+    DevS\cache::c('fmMain->itemCut',true)->shortCut = '';
+    DevS\cache::c('fmMain->itemPaste',true)->shortCut = '';
+	DevS\cache::c('fmMain->itemInvert',true)->shortCut = '';
     
     global $fmEdit, $fmMain, $editorPopup, $_sc;
     $fmEdit->popupMenu = null;
@@ -16,11 +16,11 @@ function clearEditorHotKeys(){
 }
 
 function setEditorHotKeys(){
-    c('fmMain->itemDel',1)->shortCut = 'Del';
-    c('fmMain->itemCopy',1)->shortCut = 'Ctrl+C';
-    c('fmMain->itemCut',1)->shortCut = 'Ctrl+X';
-    c('fmMain->itemPaste',1)->shortCut = 'Ctrl+V';
-	c('fmMain->itemInvert',1)->shortCut = 'Ctrl+J';
+    DevS\cache::c('fmMain->itemDel',1)->shortCut = 'Del';
+    DevS\cache::c('fmMain->itemCopy',1)->shortCut = 'Ctrl+C';
+    DevS\cache::c('fmMain->itemCut',1)->shortCut = 'Ctrl+X';
+    DevS\cache::c('fmMain->itemPaste',1)->shortCut = 'Ctrl+V';
+	DevS\cache::c('fmMain->itemInvert',1)->shortCut = 'Ctrl+J';
     
     global $fmEdit, $fmMain, $editorPopup, $_sc;
     

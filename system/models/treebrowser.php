@@ -107,7 +107,7 @@ function treeBwr_add()
 		$item->imageIndex = $imgindex[$i];
 		$item->SelectedIndex = $imgindex[$i];
 	}
-	$tree->Images = DevS\cache::c('MainImages24');
+	$tree->Images = DevS\cache::c('fmMain->MainImages24');
 	$tree->items->EndUpdate();
 	unset($tree, $dir, $dirs, $Forms, $Scripts, $Modules, $imglist, $no_multi_call);
 }

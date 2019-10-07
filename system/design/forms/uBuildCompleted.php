@@ -6,7 +6,7 @@ class ev_fmBuildCompleted_btn_run {
     
     static function onClick($self){
         
-        run(DevS\cache::c('fmBuildProgram->path',1)->text);
+        run(DevS\cache::c('fmBuildProgram->path')->text);
     }
 }
 
@@ -15,7 +15,7 @@ class ev_fmBuildCompleted_btn_dir {
     
     static function onClick($self){
         
-        run(dirname(DevS\cache::c('fmBuildProgram->path',1)->text));
+        run(dirname(DevS\cache::c('fmBuildProgram->path')->text));
     }
 }
 

@@ -330,7 +330,7 @@ class myActions {
 		$pixelDiff = ($pixel - ($pixel - (int)$pixel));
 		$pixel = $pixelDiff>=($pixel-0.5)? ($pixel - 0.5): (int)$pixel;
 
-		$maxLen = (int)(DevS\cache::c('fmPHPEditor->tlCancel',1)->left - 8 ) / $pixel;
+		$maxLen = (int)(DevS\cache::c('fmPHPEditor->tlCancel')->left - 8 ) / $pixel;
 		return (strlen($line)>$maxLen)? substr($line, 0, $maxLen - 3) . '...': $line;
 	}
 }
@@ -356,7 +356,7 @@ class action_Simple {
     
     static function getLine(){
         
-        $result = DevS\cache::c('fmPHPEditor.memo')->lineText;
+        $result = DevS\cache::c('fmPHPEditor->memo')->lineText;
         
         return self::trimLine( $result );
     }
@@ -368,9 +368,9 @@ class action_Simple {
             $command = $command . ';';
         }*/
         
-        $lineY = DevS\cache::c('fmPHPEditor.memo',1)->caretY;
-        c('fmPHPEditor.memo',1)->replaceLine($command);
-        c('fmPHPEditor.memo',1)->caretY = $lineY;
+        $lineY = DevS\cache::c('fmPHPEditor->memo')->caretY;
+        c('fmPHPEditor->memo')->replaceLine($command);
+        c('fmPHPEditor->memo')->caretY = $lineY;
     }
     
     static function insertCommand($command){

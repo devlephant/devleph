@@ -409,7 +409,7 @@ class myComplete {
     
     static function hideErrors($self){
         
-        DevS\cache::c('errPanel')->height = 1;
+        DevS\cache::c('fmPHPEditor->errPanel')->height = 1;
     }
 
 }

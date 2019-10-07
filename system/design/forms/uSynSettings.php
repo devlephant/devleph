@@ -12,25 +12,25 @@ class ev_fmEditorSettings {
     
     function getAttri(){
         
-        $list    = c('fmEditorSettings->list');
+        $list    = DevS\cache::c('fmEditorSettings->list');
         $prefixs = array('Comment', 'Identifier', 'Key', 'Number', 'Space', 'String', 'Symbol', 'Variable');
         $index   = $list->itemIndex;
         
         if ($index !== -1)
-            return c('fmPHPEditor->SynPHPSyn')->getAttri($prefixs[$index]);
+            return DevS\cache::c('fmPHPEditor->SynPHPSyn')->getAttri($prefixs[$index]);
         else
             return false;
     }
     
-    function bColorSelect($self, $color){
-        
+    function bColorSelect($self, $color)
+	{
         $attr = self::getAttri();
         $attr->background = $color;
     }
     
-    function bgColorSelect($self, $color){
-        
-        c('fmPHPEditor->memo')->color = $color;
+    function bgColorSelect($self, $color)
+	{
+        DevS\cache::c('fmPHPEditor->memo')->color = $color;
     }
     
     function fColorSelect($self, $color){
@@ -59,22 +59,22 @@ class ev_fmEditorSettings {
         return (array)$lines;
     }
     
-    function updateHighLightCfg(){
-        
-        c('fmEditorSettings->c_config')->text = self::getHighlight();
-		c('fmEditorSettings->c_config')->items->selected = myOptions::get('syntax','highlight', 'Notepad++ Style');
+    function updateHighLightCfg()
+	{
+        DevS\cache::c('fmEditorSettings->c_config')->text = self::getHighlight();
+		DevS\cache::c('fmEditorSettings->c_config')->items->selected = myOptions::get('syntax','highlight', 'Notepad++ Style');
     }
     
-    function saveHightLight($name){
+    function saveHightLight($name)
+	{    
+        DevS\cache::c('fmPHPEditor->SynPHPSyn')->saveToArray($arr);
+        $arr['main']['color'] = DevS\cache::c('fmPHPEditor->memo')->color;
+        $arr['main']['SelectedColorBG'] = gui_propGet( DevS\cache::c('fmPHPEditor->memo')->SelectedColor, 'Background' );
+        $arr['main']['SelectedColorFG'] = gui_propGet( DevS\cache::c('fmPHPEditor->memo')->SelectedColor, 'Foreground' );
+        $arr['main']['ActiveLineColor'] = DevS\cache::c('fmPHPEditor->memo')->ActiveLineColor;
         
-        c('fmPHPEditor->SynPHPSyn')->saveToArray($arr);
-        $arr['main']['color'] = c('fmPHPEditor->memo')->color;
-        $arr['main']['SelectedColorBG'] = gui_propGet( c('fmPHPEditor->memo')->SelectedColor, 'Background' );
-        $arr['main']['SelectedColorFG'] = gui_propGet( c('fmPHPEditor->memo')->SelectedColor, 'Foreground' );
-        $arr['main']['ActiveLineColor'] = c('fmPHPEditor->memo')->ActiveLineColor;
-        
-        $arr['gutter']['color'] = gui_propGet( c('fmPHPEditor->memo')->gutter, 'color' );
-        $arr['gutter']['fontcolor'] = gui_propGet( c('fmPHPEditor->memo')->gutter, 'font.color' );
+        $arr['gutter']['color'] = gui_propGet( DevS\cache::c('fmPHPEditor->memo')->gutter, 'color' );
+        $arr['gutter']['fontcolor'] = gui_propGet( DevS\cache::c('fmPHPEditor->memo')->gutter, 'font.color' );
         
         $ini = new TIniFileEx;
         $ini->arr = $arr;
@@ -94,14 +94,14 @@ class ev_fmEditorSettings {
         if (!$file) continue;
         
         $ini = new TIniFileEx($file);
-        c('fmPHPEditor->SynPHPSyn')->loadFromArray($ini->arr);
-        c('fmPHPEditor->memo')->color = $ini->read('main','color',clWhite);
-		c('fmPHPEditor->memo')->ActiveLineColor = $ini->read('main','ActiveLineColor',c('fmPHPEditor->memo')->color);
+        DevS\cache::c('fmPHPEditor->SynPHPSyn')->loadFromArray($ini->arr);
+        DevS\cache::c('fmPHPEditor->memo')->color = $ini->read('main','color',clWhite);
+		DevS\cache::c('fmPHPEditor->memo')->ActiveLineColor = $ini->read('main','ActiveLineColor',DevS\cache::c('fmPHPEditor->memo')->color);
         
-        gui_propSet( c('fmPHPEditor->memo')->gutter, 'color', $ini->read('gutter','color',clWhite) );
-        gui_propSet( c('fmPHPEditor->memo')->gutter, 'font.color', $ini->read('gutter','fontcolor',clGray) );
-        gui_propSet( c('fmPHPEditor->memo')->SelectedColor, 'background', $ini->read('main','SelectedColorBG',c('fmPHPEditor->memo')->color) );
-        gui_propSet( c('fmPHPEditor->memo')->SelectedColor, 'foreground', $ini->read('main','SelectedColorFG',c('fmPHPEditor->memo')->font->color ) );
+        gui_propSet( DevS\cache::c('fmPHPEditor->memo')->gutter, 'color', $ini->read('gutter','color',clWhite) );
+        gui_propSet( DevS\cache::c('fmPHPEditor->memo')->gutter, 'font.color', $ini->read('gutter','fontcolor',clGray) );
+        gui_propSet( DevS\cache::c('fmPHPEditor->memo')->SelectedColor, 'background', $ini->read('main','SelectedColorBG',DevS\cache::c('fmPHPEditor->memo')->color) );
+        gui_propSet( DevS\cache::c('fmPHPEditor->memo')->SelectedColor, 'foreground', $ini->read('main','SelectedColorFG',DevS\cache::c('fmPHPEditor->memo')->font->color ) );
         
 		EditorSynt::UnsetSyntaxes();
 		myOptions::set('syntax','highlight', $name);
@@ -118,8 +118,8 @@ class ev_fmEditorSettings {
 		{
             unlink($file);  
 			
-			c('fmEditorSettings->c_config')->itemIndex=0;
-			c('fmEditorSettings->list')->itemIndex=0;
+			DevS\cache::c('fmEditorSettings->c_config')->itemIndex=0;
+			DevS\cache::c('fmEditorSettings->list')->itemIndex=0;
 			
 			EditorSynt::UnsetSyntaxes();
 			EditorSynt::MainStart();
@@ -132,17 +132,13 @@ class ev_fmEditorSettings {
     
     function sizeChange($self)
     {
-        $self = c($self);
+        $self = DevS\cache::c($self);
         $int = (int) $self->Text;
         if( $int < 1 )
             $int = 1;
         
-        gui_stringToComponent( c('fmPHPEditor->memo')->self, '
-        object memo: TSynEdit
-            Gutter.Font.Size = '.$int.'
-            Font.Size = '.$int.'
-        end
-        ');
+        DevS\cache::c('fmPHPEditor->memo')->Gutter->Font->Size = $int;
+        DevS\cache::c('fmPHPEditor->memo')->Font->Size = $int;
         
     }
     
@@ -151,28 +147,28 @@ class ev_fmEditorSettings {
         $self = c($self);
         $font = new TFontDialog;
         
-        $font->font->name = c("fmPHPEditor->memo")->font->name;
-        $font->font->style = c("fmPHPEditor->memo")->font->style;        
-        $font->font->size = c("fmPHPEditor->memo")->font->size;
+        $font->font->name = DevS\cache::c("fmPHPEditor->memo")->font->name;
+        $font->font->style = DevS\cache::c("fmPHPEditor->memo")->font->style;        
+        $font->font->size = DevS\cache::c("fmPHPEditor->memo")->font->size;
         
         if( $font->execute() )
         {
             $name = $font->font->name;
             $Size = (int) $font->font->size;
             
-			c('fmPHPEditor->memo')->Gutter->Font->Name = c('fmPHPEditor->memo')->Font->Name = $name;
+			DevS\cache::c('fmPHPEditor->memo')->Gutter->Font->Name = DevS\cache::c('fmPHPEditor->memo')->Font->Name = $name;
             
             self::$size->text = $Size;
             self::$font->caption = $name;
         }
 		$font->free();
-		c("fmEditorSettings")->toFront();
+		DevS\cache::c("fmEditorSettings")->toFront();
     }
     
     function onShow(){
         
-        $form = c('fmEditorSettings');
-        $group= c('fmEditorSettings->groupBox');
+        $form = DevS\cache::c('fmEditorSettings');
+        $group= DevS\cache::c('fmEditorSettings->groupBox');
         
         if( self::$showed ) return;
         self::$showed=1;
@@ -200,7 +196,7 @@ class ev_fmEditorSettings {
         
         self::$size = new TEdit( $form );
         self::$size->parent = $form;
-        self::$size->text = c("fmPHPEditor->memo")->font->size;
+        self::$size->text = DevS\cache::c("fmPHPEditor->memo")->font->size;
         self::$size->y = 206;
         self::$size->x = 90;
         self::$size->w = 80;
@@ -208,8 +204,8 @@ class ev_fmEditorSettings {
         
         self::$font = new TLabel( $form );
         self::$font->parent = $form;
-        self::$font->caption = c("fmPHPEditor->memo")->font->name;
-        self::$font->hint = 'Изменить';
+        self::$font->caption = DevS\cache::c("fmPHPEditor->memo")->font->name;
+        self::$font->hint = t("Change");
         self::$font->autoSize = false;
         self::$font->y = 228;
         self::$font->x = 90;
@@ -246,7 +242,7 @@ class ev_fmEditorSettings_c_bold {
         
         $attr = ev_fmEditorSettings::getAttri();
         if ($attr)
-            $attr->style = ev_fmEditorSettings::getStyle($attr->style, c($self)->checked, 'fsBold');
+            $attr->style = ev_fmEditorSettings::getStyle($attr->style, DevS\cache::c($self)->checked, 'fsBold');
     }
 }
 
@@ -257,7 +253,7 @@ class ev_fmEditorSettings_c_italic {
         
         $attr = ev_fmEditorSettings::getAttri();
         if ($attr)
-            $attr->style = ev_fmEditorSettings::getStyle($attr->style, c($self)->checked, 'fsItalic');    
+            $attr->style = ev_fmEditorSettings::getStyle($attr->style, DevS\cache::c($self)->checked, 'fsItalic');    
     }
 }
 
@@ -267,7 +263,7 @@ class ev_fmEditorSettings_c_underline {
         
         $attr = ev_fmEditorSettings::getAttri();
         if ($attr)
-            $attr->style = ev_fmEditorSettings::getStyle($attr->style, c($self)->checked, 'fsUnderline');
+            $attr->style = ev_fmEditorSettings::getStyle($attr->style, DevS\cache::c($self)->checked, 'fsUnderline');
     }
 }
 
@@ -280,9 +276,9 @@ class ev_fmEditorSettings_list {
             
             ev_fmEditorSettings::$bColor->value = $attr->background;
             ev_fmEditorSettings::$fColor->value = $attr->foreground;
-            c('fmEditorSettings->c_bold')->checked = strpos($attr->style, 'fsBold')!==false;
-            c('fmEditorSettings->c_italic')->checked = strpos($attr->style, 'fsItalic')!==false;
-            c('fmEditorSettings->c_underline')->checked = strpos($attr->style, 'fsUnderline')!==false;
+            DevS\cache::c('fmEditorSettings->c_bold')->checked = strpos($attr->style, 'fsBold')!==false;
+            DevS\cache::c('fmEditorSettings->c_italic')->checked = strpos($attr->style, 'fsItalic')!==false;
+            DevS\cache::c('fmEditorSettings->c_underline')->checked = strpos($attr->style, 'fsUnderline')!==false;
         }
     }
 }
@@ -291,8 +287,8 @@ class ev_fmEditorSettings_c_config {
     
     function onChange($self){
         
-        $files = c($self)->items->lines;
-        $index = c($self)->itemIndex;
+        $files = DevS\cache::c($self)->items->lines;
+        $index = DevS\cache::c($self)->itemIndex;
         ev_fmEditorSettings::loadHightLight($files[$index]);
     }
 }
@@ -301,9 +297,9 @@ class ev_fmEditorSettings_btn_addcfg {
     
     function onClick($self){
         
-        $self  = c('fmEditorSettings->c_config')->self;
-        $files = c($self)->items->lines;
-        $index = c($self)->itemIndex;
+        $self  = DevS\cache::c('fmEditorSettings->c_config')->self;
+        $files = DevS\cache::c($self)->items->lines;
+        $index = DevS\cache::c($self)->itemIndex;
         $name  = inputText(t('Add highlight'), t('Name'), $files[$index]);
         $name  = str_ireplace(array('?','\\','/','>','<','|','"',':'),'', $name);
         
@@ -318,9 +314,9 @@ class ev_fmEditorSettings_btn_delcfg {
     
     function onClick($self){
         
-        $self  = c('fmEditorSettings->c_config')->self;
-        $files = c($self)->items->lines;
-        $index = c($self)->itemIndex;
+        $self  = DevS\cache::c('fmEditorSettings->c_config')->self;
+        $files = DevS\cache::c($self)->items->lines;
+        $index = DevS\cache::c($self)->itemIndex;
         
         if (!$files[$index]) return;
         

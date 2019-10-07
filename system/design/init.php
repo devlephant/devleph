@@ -27,29 +27,29 @@ if (!EMULATE_DVS_EXE){
 	$_sc->DisabledBtnColor = (int)myOptions::get('sc','DisabledBtnColor', clGray);
     $_sc->showGrid = (bool)myOptions::get('sc','showGrid',false);
     $_sc->enable   = true;
-    $_sc->popupMenu= c('fmMain->editorPopup');
+    $_sc->popupMenu= DevS\cache::c('fmMain->editorPopup');
     $_sc->onStartSizeMove = 'myDesign::startSizeMove';
     $_sc->OnDuringSizeMove = 'myDesign::duringSizeMove';
     $myProperties = new myProperties;
 
-    c('fmNewProject->startup')->checked = (bool)myOptions::get('newProjectDialog', 'startup', true);
+    DevS\cache::c('fmNewProject->startup')->checked = (bool)myOptions::get('newProjectDialog', 'startup', true);
 	myOptions::getXYWH('fmMain', $fmMain, ['x' => 0, 'y' => 0, 'w' => 800, 'h' => 800]); 
     $fmMain->windowState = myOptions::get('fmMain', 's', wsMaximized);
-	c('fmPHPEditor',1)->position = poDesigned;
-	myOptions::getXYWH('fmPHPEditor', c('fmPHPEditor',1), ['x'=>0,'y'=>0,'w'=>719,'h'=>563]);
-	c('fmPHPEditor',1)->windowState = myOptions::get('fmPHPEditor', 's', wsNormal);
+	DevS\cache::c('fmPHPEditor')->position = poDesigned;
+	myOptions::getXYWH('fmPHPEditor', DevS\cache::c('fmPHPEditor'), ['x'=>0,'y'=>0,'w'=>719,'h'=>563]);
+	DevS\cache::c('fmPHPEditor')->windowState = myOptions::get('fmPHPEditor', 's', wsNormal);
     $fmMain->caption = 'Dev-S'. DV_YEAR;
     
-    $fmMain->popupMenu = c('fmMain->editorPopup');
-    $fmEdit->popupMenu = c('fmMain->editorPopup');
-    $_sc->popupMenu    = c('fmMain->editorPopup');
+    $fmMain->popupMenu = DevS\cache::c('fmMain->editorPopup');
+    $fmEdit->popupMenu = DevS\cache::c('fmMain->editorPopup');
+    $_sc->popupMenu    = DevS\cache::c('fmMain->editorPopup');
 
     global $inspectList;
-    $inspectList->popupMenu    = c('fmMain->editorPopup');
+    $inspectList->popupMenu    = DevS\cache::c('fmMain->editorPopup');
     $GLOBALS['_sc']     =& $_sc;
     $GLOBALS['myProperties'] =& $myProperties;
     $GLOBALS['myEvents'] = new myEvents;
-    c('fmPropsAndEvents->btn_addEvent')->onClick = 'myEvents::clickAddEvent';
+    DevS\cache::c('fmPropsAndEvents->btn_addEvent')->onClick = 'myEvents::clickAddEvent';
 	fmLogoIn::Progress(2, "Inspector Loaded");
     myComplete::init();
 	
