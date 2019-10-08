@@ -19,7 +19,6 @@
     require 'libs/mvc.php';
      
 	if (!EMULATE_DVS_EXE){
-        loader::lib('data');
         loader::model('options');
 
         $lang			= myOptions::get('main','lang', substr(strtolower(osinfo_syslang()), 0, 2));
@@ -37,7 +36,6 @@
     loader::modules('project_parts/include');
 	if (!EMULATE_DVS_EXE){
 	loader::lib('(debug)studio-only');
-    loader::lib('syntax');
     loader::lib('zip');
     loader::lib('vseditor');
     loader::lib('docking');
