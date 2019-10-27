@@ -6,7 +6,7 @@ class myCompile
 	
 	static public function setStatus($type, $text, $color = clGray)
 	{
-		$list = DevS\cache::c('fmMain->debugList');
+		$list = c('fmMain->debugList');
 		
 		if (!$text) return NULL;
 		if($type=='')$list->text .= '['.t('Info').'] ' . $text;	
@@ -39,7 +39,7 @@ class myCompile
 	}
 	static public function addStatus($type, $text, $color = clGray)
 	{
-		$list = DevS\cache::c('fmMain->debugList');
+		$list = c('fmMain->debugList');
 		
 		if (!$text) return NULL;
 		

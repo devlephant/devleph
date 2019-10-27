@@ -244,8 +244,7 @@ class TChromium extends TControl {
 	public function get_Options(){
 	    
 	    if (!isset($this->_options)){
-		$this->_options = new TChromiumOptions(nil, false);
-		$this->_options->self = gui_propGet( $this->self, 'options' );
+		$this->_options = new TChromiumOptions(nil,gui_propGet( $this->self, 'options' ));
 	    }
 	    return $this->_options;
 	}

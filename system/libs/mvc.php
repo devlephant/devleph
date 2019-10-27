@@ -10,8 +10,6 @@ class Loader {
                 
                 if ( file_exists(SYSTEM_DIR . $file.'.phz') )
                     $ext = 'phz';
-                elseif ( file_exists(SYSTEM_DIR . $file.'.phb') )
-                    $ext = 'phb';
                 elseif ( file_exists(SYSTEM_DIR . $file.'.phpe') )
                     $ext = 'phpe';
                 elseif ( file_exists(SYSTEM_DIR . $file.'.php') )

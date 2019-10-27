@@ -7,9 +7,9 @@ class fmLogoin
 	{
 		self::$p = (isset(self::$p)?(self::$p + $v):$v);
 		$v = self::$p;
-		DevS\cache::c("fmLogoin->label5")->caption = "{$v}%";
-		DevS\cache::c("fmLogoin->loadbar")->w = (691 / 100) * $v;
-		DevS\cache::c("fmLogoin->loadbar_desc")->caption = $t;
+		c("fmLogoin->label5")->caption = "{$v}%";
+		c("fmLogoin->loadbar")->w = (691 / 100) * $v;
+		c("fmLogoin->loadbar_desc")->caption = $t;
 	}
 	static function Progress2($max, $MaxSteps, $t=false)
 	{
@@ -20,14 +20,14 @@ class fmLogoin
 		}else ++self::$queue[$MaxSteps][0];
 		$Step = self::$queue[$MaxSteps][0];
 		$v = (self::$p + floor(($max/$MaxSteps) * $Step))-1;
-		DevS\cache::c("fmLogoin->loadbar")->w = (691 / 100) * $v;
+		c("fmLogoin->loadbar")->w = (691 / 100) * $v;
 		if($t!==false)
-			DevS\cache::c("fmLogoin->loadbar_desc")->caption = $t;
+			c("fmLogoin->loadbar_desc")->caption = $t;
 
 		if($Step==$MaxSteps)
 		{
 			self::$p = $v;
-			DevS\cache::c("fmLogoin->label5")->caption = "{$v}%";
+			c("fmLogoin->label5")->caption = "{$v}%";
 			unset(self::$queue[$MaxSteps]);
 		}
 	}

@@ -1,24 +1,24 @@
 <?
-    myVars::set( DevS\cache::c('fmMain->MainImages24'), '_IMAGES24' ); 
-    myVars::set( DevS\cache::c('fmMain->MainImages32'), '_IMAGES32' );
+    myVars::set( c('fmMain->MainImages24'), '_IMAGES24' ); 
+    myVars::set( c('fmMain->MainImages32'), '_IMAGES32' );
     
     /* menus */
 	
-    myVars::set( DevS\cache::c('fmMain->editorPopup'), 'editorPopup' );
-	myVars::set( DevS\cache::c('fmMain->editorPopup'), 'editorPopup' );
-    myVars::set( DevS\cache::c('fmMain->formsPopur'), 'formsPopur');
-    myVars::set( DevS\cache::c('fmMain->MainMenu'), '_MENU' );
+    myVars::set( c('fmMain->editorPopup'), 'editorPopup' );
+	myVars::set( c('fmMain->editorPopup'), 'editorPopup' );
+    myVars::set( c('fmMain->formsPopur'), 'formsPopur');
+    myVars::set( c('fmMain->MainMenu'), '_MENU' );
     
-    myVars::set( DevS\cache::c('fmMain->formsPopur'), 'formsPopur');
+    myVars::set( c('fmMain->formsPopur'), 'formsPopur');
     
-    myVars::set( DevS\cache::c('fmPHPEditor'), 'fmPHPEditor');
-    myVars::set( DevS\cache::c('fmFormList'), 'fmFormList');
+    myVars::set( c('fmPHPEditor'), 'fmPHPEditor');
+    myVars::set( c('fmFormList'), 'fmFormList');
 
-    myVars::set( DevS\cache::c('fmObjectInspector->list'), 'inspectList');
+    myVars::set( c('fmObjectInspector->list'), 'inspectList');
     global $inspectList, $_IMAGES24;
     $inspectList->images = $_IMAGES24;
-    DevS\cache::c('fmEasySelectDialog->objs_list')->images   = $_IMAGES24;
-    DevS\cache::c('fmEasySelectDialog->lst_objects')->images = $_IMAGES24;
+    c('fmEasySelectDialog->objs_list')->images   = $_IMAGES24;
+    c('fmEasySelectDialog->lst_objects')->images = $_IMAGES24;
     
     $projectFile = DS_USERDIR . 'Project/Project.msppr';
 

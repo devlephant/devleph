@@ -68,8 +68,8 @@ class myOptions {
     static function PHPModules(){
         
         global $myProject, $projectFile;
-        $form = DevS\cache::c('fmPHPModules');
-        $list = DevS\cache::c('fmPHPModules->list');
+        $form = c('fmPHPModules');
+        $list = c('fmPHPModules->list');
         $list->clear();
         
         $modules = findFiles(SYSTEM_DIR . '/../ext/','dll');
@@ -92,7 +92,7 @@ class myOptions {
         
         global $myProject, $projectFile;
         
-        $list = DevS\cache::c('fmProjectOptions->list');
+        $list = c('fmProjectOptions->list');
         $list->clear();
         
         $modules = findFiles(SYSTEM_DIR . '/../ext/','dll');
@@ -100,30 +100,30 @@ class myOptions {
         $list->items->setArray($modules);
         $list->checkedItems = (array)$myProject->config['modules'];   
         
-        DevS\cache::c('fmProjectOptions->c_debugmode')->checked = $myProject->config['debug']['enabled'];
-        DevS\cache::c('fmProjectOptions->c_ignorewarnings')->checked = $myProject->config['debug']['no_warnings'];
-        DevS\cache::c('fmProjectOptions->c_ignoreerrors')->checked = $myProject->config['debug']['no_errors'];
+        c('fmProjectOptions->c_debugmode')->checked = $myProject->config['debug']['enabled'];
+        c('fmProjectOptions->c_ignorewarnings')->checked = $myProject->config['debug']['no_warnings'];
+        c('fmProjectOptions->c_ignoreerrors')->checked = $myProject->config['debug']['no_errors'];
         
-        DevS\cache::c('fmProjectOptions->c_programtype')->itemIndex = (int)$myProject->config['prog_type'];
+        c('fmProjectOptions->c_programtype')->itemIndex = (int)$myProject->config['prog_type'];
         
-        DevS\cache::c('fmProjectOptions->e_apptitle',1)->text    = $myProject->config['apptitle'];
-        DevS\cache::c('fmProjectOptions->e_programname',1)->text = basenameNoExt($projectFile);
+        c('fmProjectOptions->e_apptitle',1)->text    = $myProject->config['apptitle'];
+        c('fmProjectOptions->e_programname',1)->text = basenameNoExt($projectFile);
          
 			global $projectFile;
 		if(!file_exists(dirname($projectFile).'/c_php.ini')) copy( dirname(EXE_NAME) . '/core/c_php.ini', dirname($projectFile).'/c_php.ini');
 		
-        DevS\cache::c('fmProjectOptions->phmemo')->text = file_get_contents(dirname($projectFile).'/c_php.ini');
-        if (DevS\cache::c('fmProjectOptions')->showModal() == mrOk){
+        c('fmProjectOptions->phmemo')->text = file_get_contents(dirname($projectFile).'/c_php.ini');
+        if (c('fmProjectOptions')->showModal() == mrOk){
             
-            file_put_contents(dirname($projectFile).'/c_php.ini', DevS\cache::c('fmProjectOptions->phmemo')->text);
-            $myProject->config['debug']['enabled'] = DevS\cache::c('fmProjectOptions->c_debugmode')->checked;
-            $myProject->config['debug']['no_warnings'] = DevS\cache::c('fmProjectOptions->c_ignorewarnings')->checked;
-            $myProject->config['debug']['no_errors'] = DevS\cache::c('fmProjectOptions->c_ignoreerrors')->checked;
-            $myProject->config['prog_type'] = DevS\cache::c('fmProjectOptions->c_programtype')->itemIndex;
+            file_put_contents(dirname($projectFile).'/c_php.ini', c('fmProjectOptions->phmemo')->text);
+            $myProject->config['debug']['enabled'] = c('fmProjectOptions->c_debugmode')->checked;
+            $myProject->config['debug']['no_warnings'] = c('fmProjectOptions->c_ignorewarnings')->checked;
+            $myProject->config['debug']['no_errors'] = c('fmProjectOptions->c_ignoreerrors')->checked;
+            $myProject->config['prog_type'] = c('fmProjectOptions->c_programtype')->itemIndex;
             
-            $myProject->config['apptitle'] = DevS\cache::c('fmProjectOptions->e_apptitle')->text;
+            $myProject->config['apptitle'] = c('fmProjectOptions->e_apptitle')->text;
 			$prLast = $projectFile;
-            $projectFile = dirname($projectFile) . '/' . DevS\cache::c('fmProjectOptions->e_programname')->text . '.msppr';
+            $projectFile = dirname($projectFile) . '/' . c('fmProjectOptions->e_programname')->text . '.msppr';
             if( $prLast !== $projectFile ){
 				unlink(	dirname($prLast) . '/' . basenameNoExt($prLast) . '.cfg'		);
 				unlink(	dirname($prLast) . '/' . basenameNoExt($prLast) . '.events'		);
@@ -136,7 +136,7 @@ class myOptions {
             $myProject->config['modules'] = $list->checkedItems;
 
             myProject::save();
-            DevS\cache::c("fmMain->statusBar")->caption = " ".replaceSr($projectFile);
+            c("fmMain->statusBar")->caption = " ".replaceSr($projectFile);
 			treeBwr_add();
         }
     }
@@ -154,11 +154,11 @@ class myOptions {
             if (file_exists($dlg->fileName))
                 msg(t('WARNING: File %s exists!',$dlg->fileName));
             
-            DevS\cache::c('fmBuildProgram->path')->text = $dlg->fileName;
+            c('fmBuildProgram->path')->text = $dlg->fileName;
         }
         
         $dlg->free();
-		DevS\cache::c('fmProjectOptions')->toFront();
+		c('fmProjectOptions')->toFront();
 	}
     
     static function openIconDialog(){
@@ -168,11 +168,11 @@ class myOptions {
         
         if ($dlg->execute()){
             
-            DevS\cache::c('fmBuildProgram->im_icon')->picture->loadFromFile($dlg->fileName);
+            c('fmBuildProgram->im_icon')->picture->loadFromFile($dlg->fileName);
             myVars::set($dlg->fileName, '__iconFile');
         }
 		$dlg->free();
-		DevS\cache::c('fmProjectOptions')->toFront();
+		c('fmProjectOptions')->toFront();
     }
     
     static function saveSettings(){
@@ -207,26 +207,26 @@ class myOptions {
         $ini  = new TIniFileEx($file);
         $path = dirname($projectFile).'/build/'.basenameNoExt($projectFile).'.exe';
         
-        DevS\cache::c('fmBuildProgram->path')->text = $ini->read('main','path', $path);
-        DevS\cache::c('fmBuildProgram->c_attachphp')->checked = $ini->read('main','attachphp', true);
-        DevS\cache::c('fmBuildProgram->c_attachsoulengine')->checked = $ini->read('main','attachsoulengine',true);
-        DevS\cache::c('fmBuildProgram->c_attachdata')->checked = $ini->read('main','attachdata', true);
-        DevS\cache::c('fmBuildProgram->c_upx')->itemIndex = $ini->read('main','upx_level', 0);
-        DevS\cache::c('fmBuildProgram->e_companyname')->text = $ini->read('main','company', '');
-        DevS\cache::c('fmBuildProgram->e_version')->text = $ini->read('main','version', '1.0.0.0');
-        DevS\cache::c('fmBuildProgram->c_compress')->checked = $ini->read('main','c_compress', false);
+        c('fmBuildProgram->path')->text = $ini->read('main','path', $path);
+        c('fmBuildProgram->c_attachphp')->checked = $ini->read('main','attachphp', true);
+        c('fmBuildProgram->c_attachsoulengine')->checked = $ini->read('main','attachsoulengine',true);
+        c('fmBuildProgram->c_attachdata')->checked = $ini->read('main','attachdata', true);
+        c('fmBuildProgram->c_upx')->itemIndex = $ini->read('main','upx_level', 0);
+        c('fmBuildProgram->e_companyname')->text = $ini->read('main','company', '');
+        c('fmBuildProgram->e_version')->text = $ini->read('main','version', '1.0.0.0');
+        c('fmBuildProgram->c_compress')->checked = $ini->read('main','c_compress', false);
         $iconFile = $ini->read('main', 'icon', '');
         if ($iconFile){
-            DevS\cache::c('fmBuildProgram->im_icon')->picture->loadFromFile($iconFile);
+            c('fmBuildProgram->im_icon')->picture->loadFromFile($iconFile);
             myVars::set($iconFile, '__iconFile');    
         }
     }
     
     static function BuildProgram(){
         
-        DevS\cache::c('fmBuildProgram->btn_path')->onClick = 'myOptions::saveExeDialog';
-        DevS\cache::c('fmBuildProgram->btn_icon')->onClick = 'myOptions::openIconDialog';
-        DevS\cache::c('fmBuildProgram->btn_savesettings')->onClick = function($self){
+        c('fmBuildProgram->btn_path')->onClick = 'myOptions::saveExeDialog';
+        c('fmBuildProgram->btn_icon')->onClick = 'myOptions::openIconDialog';
+        c('fmBuildProgram->btn_savesettings')->onClick = function($self){
             myOptions::saveSettings();
             message_beep(66);
         };
@@ -234,9 +234,9 @@ class myOptions {
         
         self::loadSettings();
         
-        if (DevS\cache::c('fmBuildProgram')->showModal() == mrOk){
+        if (c('fmBuildProgram')->showModal() == mrOk){
             
-            /*if (!is_writable(replaceSl(DevS\cache::c('fmBuildProgram->path')->text))){
+            /*if (!is_writable(replaceSl(c('fmBuildProgram->path')->text))){
             
                 msg(t('Please, select correct path for your program!'));
                 self::BuildProgram();
@@ -245,15 +245,15 @@ class myOptions {
             
             self::saveSettings();
             myCompile::adv_start(
-                                DevS\cache::c('fmBuildProgram->path')->text,
+                                c('fmBuildProgram->path')->text,
 								DevS\cache\ c('fmBuildProgram->c_attachphp')->checked,
-                                DevS\cache::c('fmBuildProgram->c_attachsoulengine')->checked,
-                                DevS\cache::c('fmBuildProgram->c_attachdata')->checked,
-                                DevS\cache::c('fmBuildProgram->c_upx')->itemIndex,
-                                DevS\cache::c('fmBuildProgram->e_companyname')->text,
-                                DevS\cache::c('fmBuildProgram->e_version')->text,
+                                c('fmBuildProgram->c_attachsoulengine')->checked,
+                                c('fmBuildProgram->c_attachdata')->checked,
+                                c('fmBuildProgram->c_upx')->itemIndex,
+                                c('fmBuildProgram->e_companyname')->text,
+                                c('fmBuildProgram->e_version')->text,
                                 /* DevS\cache\('fmBuildProgram->e_filedescription')->text */ '',
-								DevS\cache::c('fmBuildProgram->c_compress')->checked,
+								c('fmBuildProgram->c_compress')->checked,
                                  myVars::get('__iconFile')
                                 );
             
@@ -265,8 +265,8 @@ class myOptions {
             }
             
             message_beep(66);
-            DevS\cache::c('fmBuildCompleted->e_filename')->text = DevS\cache::c('fmBuildProgram->path')->text;
-            DevS\cache::c('fmBuildCompleted')->showModal();
+            c('fmBuildCompleted->e_filename')->text = c('fmBuildProgram->path')->text;
+            c('fmBuildCompleted')->showModal();
         }
     }
     
@@ -275,61 +275,61 @@ class myOptions {
     static function Options(){
         
         global $_sc;
-        DevS\cache::c('fmOptions->c_showgrid')->checked = (bool)myOptions::get('sc','showGrid',false);
-        DevS\cache::c('fmOptions->e_gridsize')->text    = c('fmOptions->up_gridsize')->position = (int)myOptions::get('sc','gridSize',8);
-		DevS\cache::c('fmOptions->e_fs')->text = c("fmOptions->up_fs")->position = (int)myOptions::get('sc', 'offset', 8);
-		DevS\cache::c('fmOptions->cb_penstyle')->itemIndex = (int)myOptions::get('sc','SizerPenStyle',2);
-		DevS\cache::c('fmOptions->backup_active')->checked = (bool)myOptions::get('backup','active',true);
-		DevS\cache::c('fmOptions->delete_exefile')->checked = (bool)myOptions::get('delete_exefile','active',false);
-		DevS\cache::c('fmOptions->en_bc')->brushColor = myOptions::get('sc','BtnColor',clBlue);
-		DevS\cache::c('fmOptions->dis_bc')->brushColor = myOptions::get('sc','DisabledBtnColor', clGray);
-		DevS\cache::c('fmOptions->sel_color')->brushColor = myOptions::get('sc','SelectColor', clBlack);
-		DevS\cache::c('fmOptions->en_bc')->penColor = myOptions::get('sc','pEn',clBlack);
-		DevS\cache::c('fmOptions->dis_bc')->penColor = myOptions::get('sc','pDis', clBlack);
-		DevS\cache::c('fmOptions->scol_inn')->brushColor = myOptions::get('sc','SizerInnerColor', 12632256);
-		DevS\cache::c('fmOptions->scol_out')->brushColor = myOptions::get('sc','SizerOuterColor', clBlack);
-		DevS\cache::c('fmOptions->scol_inn')->penColor = myOptions::get('sc','pSin',clBlack);
-		DevS\cache::c('fmOptions->scol_out')->penColor = myOptions::get('sc','pSout', clBlack);
-		DevS\cache::c('fmOptions->sel_color')->penColor = myOptions::get('sc','pSel', 12615808);
-		DevS\cache::c('fmOptions->backup_dir')->text = (string)myOptions::get('backup','dir','backup');
-		DevS\cache::c('fmOptions->backup_count')->text = c('fmOptions->up_bcnt')->position = (int)myOptions::get('backup','count',3);
-		DevS\cache::c('fmOptions->backup_interval')->text = c('fmOptions->up_bint')->position = (int)myOptions::get('backup','interval',2);
-		DevS\cache::c('fmOptions->lb_themes')->text = implode(_BR_, findDirs(DOC_ROOT.'design/theme/'));
+        c('fmOptions->c_showgrid')->checked = (bool)myOptions::get('sc','showGrid',false);
+        c('fmOptions->e_gridsize')->text    = c('fmOptions->up_gridsize')->position = (int)myOptions::get('sc','gridSize',8);
+		c('fmOptions->e_fs')->text = c("fmOptions->up_fs")->position = (int)myOptions::get('sc', 'offset', 8);
+		c('fmOptions->cb_penstyle')->itemIndex = (int)myOptions::get('sc','SizerPenStyle',2);
+		c('fmOptions->backup_active')->checked = (bool)myOptions::get('backup','active',true);
+		c('fmOptions->delete_exefile')->checked = (bool)myOptions::get('delete_exefile','active',false);
+		c('fmOptions->en_bc')->brushColor = myOptions::get('sc','BtnColor',clBlue);
+		c('fmOptions->dis_bc')->brushColor = myOptions::get('sc','DisabledBtnColor', clGray);
+		c('fmOptions->sel_color')->brushColor = myOptions::get('sc','SelectColor', clBlack);
+		c('fmOptions->en_bc')->penColor = myOptions::get('sc','pEn',clBlack);
+		c('fmOptions->dis_bc')->penColor = myOptions::get('sc','pDis', clBlack);
+		c('fmOptions->scol_inn')->brushColor = myOptions::get('sc','SizerInnerColor', 12632256);
+		c('fmOptions->scol_out')->brushColor = myOptions::get('sc','SizerOuterColor', clBlack);
+		c('fmOptions->scol_inn')->penColor = myOptions::get('sc','pSin',clBlack);
+		c('fmOptions->scol_out')->penColor = myOptions::get('sc','pSout', clBlack);
+		c('fmOptions->sel_color')->penColor = myOptions::get('sc','pSel', 12615808);
+		c('fmOptions->backup_dir')->text = (string)myOptions::get('backup','dir','backup');
+		c('fmOptions->backup_count')->text = c('fmOptions->up_bcnt')->position = (int)myOptions::get('backup','count',3);
+		c('fmOptions->backup_interval')->text = c('fmOptions->up_bint')->position = (int)myOptions::get('backup','interval',2);
+		c('fmOptions->lb_themes')->text = implode(_BR_, findDirs(DOC_ROOT.'design/theme/'));
         
-        if (DevS\cache::c('fmOptions')->showModal() == mrOk){
+        if (c('fmOptions')->showModal() == mrOk){
             
             
-            myOptions::set('sc','showGrid', DevS\cache::c('fmOptions->c_showgrid')->checked);
-			myOptions::set('backup','active', DevS\cache::c('fmOptions->backup_active')->checked);
-			myOptions::set('delete_exefile','active', DevS\cache::c('fmOptions->delete_exefile')->checked);
+            myOptions::set('sc','showGrid', c('fmOptions->c_showgrid')->checked);
+			myOptions::set('backup','active', c('fmOptions->backup_active')->checked);
+			myOptions::set('delete_exefile','active', c('fmOptions->delete_exefile')->checked);
 			
-			$dir = DevS\cache::c('fmOptions->backup_dir')->text;
+			$dir = c('fmOptions->backup_dir')->text;
 			if ( !preg_match('/$([.\-\_a-zа-яА-Я0-9]+)/i', $dir) )
 				$dir = 'backup';
 		
 				myOptions::set('backup','dir', $dir);
-				myOptions::set('backup','interval', (int)DevS\cache::c('fmOptions->backup_interval')->text);
-				myOptions::set('backup','count', (int)DevS\cache::c('fmOptions->backup_count')->text);
+				myOptions::set('backup','interval', (int)c('fmOptions->backup_interval')->text);
+				myOptions::set('backup','count', (int)c('fmOptions->backup_count')->text);
 			
-                myOptions::set('sc','gridSize', (int)DevS\cache::c('fmOptions->e_gridsize')->text);
-				myOptions::set('sc','SizerPenStyle', DevS\cache::c('fmOptions->cb_penstyle')->itemIndex);	
-				myOptions::set('sc','BtnColor', DevS\cache::c('fmOptions->en_bc')->brushColor);
-				myOptions::set('sc','DisabledBtnColor', DevS\cache::c('fmOptions->dis_bc')->brushColor);
-				myOptions::set('sc','SelectColor', DevS\cache::c('fmOptions->sel_color')->brushColor);
+                myOptions::set('sc','gridSize', (int)c('fmOptions->e_gridsize')->text);
+				myOptions::set('sc','SizerPenStyle', c('fmOptions->cb_penstyle')->itemIndex);	
+				myOptions::set('sc','BtnColor', c('fmOptions->en_bc')->brushColor);
+				myOptions::set('sc','DisabledBtnColor', c('fmOptions->dis_bc')->brushColor);
+				myOptions::set('sc','SelectColor', c('fmOptions->sel_color')->brushColor);
 				
-				$_sc->MovePanelCanvas->brush->color = DevS\cache::c('fmOptions->scol_inn')->brushColor;
-				$_sc->MovePanelCanvas->pen->color = DevS\cache::c('fmOptions->scol_out')->brushColor;
-				$_sc->MovePanelCanvas->pen->style = DevS\cache::c('fmOptions->cb_penstyle')->itemIndex;
+				$_sc->MovePanelCanvas->brush->color = c('fmOptions->scol_inn')->brushColor;
+				$_sc->MovePanelCanvas->pen->color = c('fmOptions->scol_out')->brushColor;
+				$_sc->MovePanelCanvas->pen->style = c('fmOptions->cb_penstyle')->itemIndex;
 				
-				myOptions::set('sc', 'SizerInnerColor', (int)DevS\cache::c('fmOptions->scol_inn')->brushColor);
-				myOptions::set('sc', 'SizerOuterColor', (int)DevS\cache::c('fmOptions->scol_out')->brushColor);
-				myOptions::set('sc','pEn',  DevS\cache::c('fmOptions->en_bc')->penColor);
-				myOptions::set('sc','pDis', DevS\cache::c('fmOptions->dis_bc')->penColor);
-				myOptions::set('sc','pSel', DevS\cache::c('fmOptions->sel_color')->penColor);
-				myOptions::set('sc','pSin', DevS\cache::c('fmOptions->scol_inn')->penColor);
-				myOptions::set('sc','pSout', DevS\cache::c('fmOptions->scol_out')->penColor);
-				myOptions::set('sc', 'offset', (int)DevS\cache::c('fmOptions->e_fs')->text);
-				$GLOBALS['sc_offset'] = (int)DevS\cache::c('fmOptions->e_fs')->text;		
+				myOptions::set('sc', 'SizerInnerColor', (int)c('fmOptions->scol_inn')->brushColor);
+				myOptions::set('sc', 'SizerOuterColor', (int)c('fmOptions->scol_out')->brushColor);
+				myOptions::set('sc','pEn',  c('fmOptions->en_bc')->penColor);
+				myOptions::set('sc','pDis', c('fmOptions->dis_bc')->penColor);
+				myOptions::set('sc','pSel', c('fmOptions->sel_color')->penColor);
+				myOptions::set('sc','pSin', c('fmOptions->scol_inn')->penColor);
+				myOptions::set('sc','pSout', c('fmOptions->scol_out')->penColor);
+				myOptions::set('sc', 'offset', (int)c('fmOptions->e_fs')->text);
+				$GLOBALS['sc_offset'] = (int)c('fmOptions->e_fs')->text;		
 				myBackup::updateSettings();	
         } else {
 			global $fmEdit;
@@ -338,18 +338,18 @@ class myOptions {
 			$_sc->showGrid = (bool)myOptions::get('sc','showGrid',false);
 			$_sc->gridSize = (int)myOptions::get('sc','gridSize',8);
 			$GLOBALS['sc_offset'] = (int)myOptions::get('sc', 'offset', 8);
-			$obj = DevS\cache::c("fmMain->shapeSize");
+			$obj = c("fmMain->shapeSize");
 			$obj->w = $fmEdit->w + $GLOBALS['sc_offset'] * 2;
 			$obj->h = $fmEdit->h + $GLOBALS['sc_offset'] * 2;
 			$fmEdit->x = $obj->x + $GLOBALS['sc_offset'];
 			$fmEdit->y = $obj->y + $GLOBALS['sc_offset'];
-			DevS\cache::c('fmMain->shapeSize')->penStyle = myOptions::get('sc','SizerPenStyle',2);
-			DevS\cache::c('fmMain->shapeSize')->brushColor = myOptions::get('sc', 'SizerInnerColor', 12632256);
-			DevS\cache::c('fmMain->shapeSize')->penColor = myOptions::get('sc', 'SizerOuterColor', clBlack);
-			DevS\cache::c('fmOptions->en_bc')->penColor = myOptions::get('sc','pEn',clBlack);
-			DevS\cache::c('fmOptions->dis_bc')->penColor = myOptions::get('sc','pDis', clBlack);
-			DevS\cache::c('fmOptions->sel_color')->penColor = myOptions::get('sc','pSel', 12615808);
-			DevS\cache::c('fmEdit')->repaint();
+			c('fmMain->shapeSize')->penStyle = myOptions::get('sc','SizerPenStyle',2);
+			c('fmMain->shapeSize')->brushColor = myOptions::get('sc', 'SizerInnerColor', 12632256);
+			c('fmMain->shapeSize')->penColor = myOptions::get('sc', 'SizerOuterColor', clBlack);
+			c('fmOptions->en_bc')->penColor = myOptions::get('sc','pEn',clBlack);
+			c('fmOptions->dis_bc')->penColor = myOptions::get('sc','pDis', clBlack);
+			c('fmOptions->sel_color')->penColor = myOptions::get('sc','pSel', 12615808);
+			c('fmEdit')->repaint();
 		}
     }
 }
@@ -443,7 +443,7 @@ class myBackup {
 	
 	static function init()
 	{
-			if((bool)DevS\cache::c('fmOptions->backup_active')->checked)
+			if((bool)c('fmOptions->backup_active')->checked)
 				if((bool)myOptions::get('backup','active',true))
 					if(!isset(self::$timer)||!is_object(self::$timer))
 					{

@@ -92,10 +92,10 @@ class myProject {
     static function genTabs()
 	{
         global $_FORMS;
-        DevS\cache::c('fmMain->tabForms')->tabs->clear();
+        c('fmMain->tabForms')->tabs->clear();
 		 
         foreach ($_FORMS as $form){
-            DevS\cache::c('fmMain->tabForms')->addPage($form.'.dfm');
+            c('fmMain->tabForms')->addPage($form.'.dfm');
 		}
     }
     
@@ -282,7 +282,7 @@ class myProject {
         $lastFiles = array_values($lastFiles);
         file_put_contents(DS_USERDIR . 'last.lst', serialize($lastFiles));
         
-            $objLast = DevS\cache::c('fmMain->it_lastprojects');
+            $objLast = c('fmMain->it_lastprojects');
             
             $objLast->clear();
             
@@ -306,7 +306,7 @@ class myProject {
 		if ( self::$demosLoaded ) return;
 		
 		self::$demosLoaded = true;
-		$objLast = DevS\cache::c('fmMain->it_demoprojects');
+		$objLast = c('fmMain->it_demoprojects');
 		
 		$demos = findFiles( dirname(EXE_NAME) . '/demos/', 'dvs' );
 		foreach ( $demos as $xfile ){
@@ -718,7 +718,7 @@ class myProject {
             $GLOBALS['__newproject_modalresult'] = mrOk;
         } elseif ($key==VK_ESCAPE){
             $GLOBALS['__newproject_modalresult'] = mrCancel;
-            DevS\cache::c('fmNewProject')->close();
+            c('fmNewProject')->close();
         }
     }
     
@@ -731,11 +731,11 @@ class myProject {
             
             
             $dlg->fileName = fileExt($dlg->fileName)=='msppr' ? $dlg->fileName : $dlg->fileName . '.msppr';
-            DevS\cache::c('fmNewProject->path')->text = $dlg->fileName;
+            c('fmNewProject->path')->text = $dlg->fileName;
         }
         
         $dlg->free();
-		DevS\cache::c('fmNewProject')->toFront();
+		c('fmNewProject')->toFront();
     }
     
     static function projectLastProjects($self){
@@ -751,7 +751,7 @@ class myProject {
 				$GLOBALS['__newproject_close'] = false;
                 self::open($file, true, false);
 				self::initLastFiles($file, false);
-				DevS\cache::c('fmNewProject')->close();
+				c('fmNewProject')->close();
 			}
         }
             
@@ -760,18 +760,18 @@ class myProject {
     
     static function projectDialog($text = '', $setmain_form=false){
         global $APPLICATION, $fmMain;
-        $dlg = DevS\cache::c('fmNewProject');
+        $dlg = c('fmNewProject');
 		if( $setmain_form )
 		{
 			$APPLICATION->mainFormOnTaskBar = false; 
-			gui_formsetmain( DevS\cache::c('fmNewProject')->self );
+			gui_formsetmain( c('fmNewProject')->self );
 			$APPLICATION->mainFormOnTaskBar = true; 
 		}
-		DevS\cache::c('fmNewProject->path')->text = str_replace('\\\\','\\',$text);
-        DevS\cache::c('fmNewProject->btn_dlg')->onClick = 'myProject::projectDialogBtn';
-        DevS\cache::c('fmNewProject->path')->onKeyDown  = 'myProject::projectDialogKeyDown';
-        DevS\cache::c('fmNewProject->lastProjects')->onDblClick = 'myProject::projectLastProjects';
-		DevS\cache::c('fmNewProject->bitbtn2')->onClick = function($self){
+		c('fmNewProject->path')->text = str_replace('\\\\','\\',$text);
+        c('fmNewProject->btn_dlg')->onClick = 'myProject::projectDialogBtn';
+        c('fmNewProject->path')->onKeyDown  = 'myProject::projectDialogKeyDown';
+        c('fmNewProject->lastProjects')->onDblClick = 'myProject::projectLastProjects';
+		c('fmNewProject->bitbtn2')->onClick = function($self){
 			if( $GLOBALS['__newproject_close']  )
 			{
 				application_terminate();
@@ -788,7 +788,7 @@ class myProject {
                 );
         }
         
-        DevS\cache::c('fmNewProject->lastProjects')->items->setArray($arr);
+        c('fmNewProject->lastProjects')->items->setArray($arr);
         $dlg->FormState = 'fsmodal';
         $res = $dlg->showModal();
 		if( $setmain_form )
@@ -801,14 +801,14 @@ class myProject {
         $__fix = isset($GLOBALS['__newproject_modalresult'])? $GLOBALS['__newproject_modalresult']: '';
         if ($res==mrOk || $__fix==mrOk){
             
-            $result['PATH'] = replaceSl(DevS\cache::c('fmNewProject->path')->text);
+            $result['PATH'] = replaceSl(c('fmNewProject->path')->text);
             if (fileExt($result['PATH'])!=='msppr'){
 				$GLOBALS['__newproject_close'] = false;
                 msg(t('Project file must have a ".msppr" extension'));
                 return false;
             }
             
-            $result['DEL_ALL_FILES'] = DevS\cache::c('fmNewProject->c_alldelete')->checked;
+            $result['DEL_ALL_FILES'] = c('fmNewProject->c_alldelete')->checked;
         } else
             $result = false;  
 		if( $GLOBALS['__newproject_close'] && !$result )

@@ -176,6 +176,7 @@ include_lib('main','timing');
 include_lib('main','threading');
 include_lib('main','buttons');
 include_lib('main','additional');
+include_lib('main','catbuttons');
 include_lib('main','menus');
 include_lib('main','imagelist');
 include_lib('main','web');

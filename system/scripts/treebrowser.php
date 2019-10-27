@@ -1,6 +1,6 @@
 <?
-DevS\cache::c("fmMain->TreeProject")->onDblClick = create_function('$self', 'global $projectFile;
-$self = DevS\cache::c("fmMain->TreeProject");
+c("fmMain->TreeProject")->onDblClick = create_function('$self', 'global $projectFile;
+$self = c("fmMain->TreeProject");
 switch( fileExt($self->itemSelected) )
 {
 	
@@ -19,8 +19,8 @@ switch( fileExt($self->itemSelected) )
 }
 ');
 
-DevS\cache::c("fmMain->TreeProject")->onClick = create_function('$self','global $_FORMS, $formSelected, $_sc;
-$self = DevS\cache::c("fmMain->TreeProject");
+c("fmMain->TreeProject")->onClick = create_function('$self','global $_FORMS, $formSelected, $_sc;
+$self = c("fmMain->TreeProject");
 $arr_self = $self->__arrObjSelf;
 $obj_self = $arr_self[$self->absIndex];
 if(!empty($obj_self))
@@ -31,7 +31,7 @@ if(!empty($obj_self))
 			$_sc->clearTargets();
 			$_sc->addTarget(c($obj_self["self"]));
 			$myEvents->_generate(c($obj_self["self"]));
-			DevS\cache::c("fmPropsAndEvents->eventList")->itemIndex = $obj_self["event_index"];
+			c("fmPropsAndEvents->eventList")->itemIndex = $obj_self["event_index"];
 			myEvents::phpEditorShow(nil);
 			return;
 		}
