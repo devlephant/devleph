@@ -115,7 +115,7 @@ class eventEngine {
 			if ($type)
 			{
 				if($up)
-					myHistory::addEvent( self::$DATA[self::$form][$object][$type] );
+					myHistory::addEvent( $object, $type, self::$DATA[self::$form][$object][$type] );
 				unset(self::$DATA[self::$form][$object][$type]);
 			} else
 			{
