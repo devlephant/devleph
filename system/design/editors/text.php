@@ -1,7 +1,7 @@
 <?
 class TextEditor
 {
-	public $value;
+	public static $value;
 	const type = "TNxButtonItem";
 	public static function OnCreate( $edt, $class, &$prop )
 	{
