@@ -50,6 +50,7 @@ object fmLogoin: TfmLogoin
       Top = 0
       Width = 690
       Height = 353
+	  Center = True
 	end
     object Label9: TLabel
       Left = 5

@@ -488,8 +488,6 @@ class myDesign
            
         myInspect::selectObject($obj);
         self::showPopup();
-		
-		$tree = c('fmMain->TreeProject');
 
         myVars::set($target, 'targetSelected');
         
