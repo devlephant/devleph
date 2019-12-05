@@ -32,13 +32,14 @@ class ColorPickerEditor
             
             $color  = $dlg->color;
 			$targets = $_sc->targets_ex;
-            $targets = count($targets)>0? $targets : [$fmEdit];
+            $targets = count($targets)>0? $targets : [$fmEdit->self => $fmEdit];
             myHistory::add($targets, $prop);
-            
-            foreach ($targets as $link=>$el)
+			
+			foreach ($targets as $link=>$el)
 			{
 				_c(myDesign::noVisAlias($link))->$prop = $color;
-            }
+			}
+			
             $_sc->update();  // fix bug
 			myOptions::set('colors','in', base64_encode(serialize(array($dlg->MainColors->text, $dlg->CustomColors->text))));
         }
@@ -55,12 +56,14 @@ class ColorPickerEditor
 			return;
 		}
 		$targets = $_sc->targets_ex;
-		$targets = count($targets)>0?$targets : [$fmEdit];
+		$targets = count($targets)>0?$targets : [$fmEdit->self => $fmEdit];
 		myHistory::add($targets, $prop);
+		
 		foreach ($targets as $link=>$el)
 		{
 			_c(myDesign::noVisAlias($link))->$prop = $color;
 		}
+
 	}
 	public static function toColor($color)
 	{

@@ -43,7 +43,7 @@ class ImageEditor
             $bitmap = $im->picture;
 				
 			$targets = $_sc->targets_ex;
-			$targets = count($targets)>0?$targets : [$fmEdit];
+			$targets = count($targets)>0?$targets : [$fmEdit->self => $fmEdit];
 			myHistory::add($targets, $prop);
             $m = 'set_' . $prop;
             foreach ($targets as $el)

@@ -24,7 +24,7 @@ class MenusEditor
             _c($self)->value = $value;
             
 			$targets = $_sc->targets_ex;
-			$targets = count($targets)>0?$targets : [$fmEdit];
+			$targets = count($targets)>0?$targets : [$fmEdit->self => $fmEdit];
             myHistory::add($targets, $prop);
             
                 foreach ($targets as $self=>$el){
