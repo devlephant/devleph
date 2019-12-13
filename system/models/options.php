@@ -246,7 +246,7 @@ class myOptions {
             self::saveSettings();
             myCompile::adv_start(
                                 c('fmBuildProgram->path')->text,
-								DevS\cache\ c('fmBuildProgram->c_attachphp')->checked,
+								c('fmBuildProgram->c_attachphp')->checked,
                                 c('fmBuildProgram->c_attachsoulengine')->checked,
                                 c('fmBuildProgram->c_attachdata')->checked,
                                 c('fmBuildProgram->c_upx')->itemIndex,

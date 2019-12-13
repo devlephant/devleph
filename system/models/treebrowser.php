@@ -23,8 +23,12 @@ function treeBwr_add()
 		$imgindex[] = myImages::getImgID('form');
 		++$cindex;
 		$expand[$cindex] = true;
-		$form = (object)myUtils::$forms[strtolower(basenameNoExt($dfm))];
-		$comList = $form->componentList;
+		$fm_name = strtolower(basenameNoExt($dfm));
+		if(array_key_exists($fm_name, myUtils::$forms)){
+			$comList = myUtils::$forms[$fm_name]->componentList;
+		} else { 
+			continue;
+		}
 		foreach( (array)$comList as $obj )
 		{
 			if($obj->self	!==	$GLOBALS['_sc']->self&&$obj->name !== '')
@@ -103,7 +107,7 @@ function treeBwr_add()
 	
 	$tree->text = $text;
 	foreach($tree->items as $i=>$item){
-		$item->Expanded = $expand[$i];
+		$item->Expanded = array_key_exists($i, $expand);
 		$item->imageIndex = $imgindex[$i];
 		$item->SelectedIndex = $imgindex[$i];
 	}

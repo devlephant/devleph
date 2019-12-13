@@ -14,22 +14,22 @@ class FontPropertiesEditor
 		$rprop = isset($prop['REAL_PROP'])? $prop['REAL_PROP']: $prop['PROP'];
 		 $xprops = 
 				[
-				  ['CAPTION'=>t('Font Color'), 'TYPE'=>'color', 'PROP'=>'fontColor', 'REAL_PROP'=>"$rprop->color"],
-				  ['CAPTION'=>t('Font Size'), 'TYPE'=>'number', 'PROP'=>'fontsize', 'REAL_PROP'=>"$rprop->size"],
-				  ['CAPTION'=>t('Font Height'), 'TYPE'=>'number', 'PROP'=>'fontheight', 'REAL_PROP'=>"$rprop->height"],
-				  ['CAPTION'=>t('Font Pitch'), 'TYPE'=>'combo', 'PROP'=>'fontpitch', 'REAL_PROP'=>"$rprop->pitch", 'VALUES'=>['fpDefault','fpVariable', 'fpFixed']],
-				  ['CAPTION'=>t('Font Quality'), 'TYPE'=>'combo', 'PROP'=>'fontquality', 'REAL_PROP'=>"$rprop->quality", 'VALUES'=>['fqDefault', 'fqDraft', 'fqProof', 'fqNonAntialiased', 'fqAntialiased', 'fqClearType', 'fqClearTypeNatural']],
-				  ['CAPTION'=>t('Font Orientation'), 'TYPE'=>'number', 'PROP'=>'fontori', 'REAL_PROP'=>"$rprop->orientation"]
+				  ['CAPTION'=>t('Font Color'), 'TYPE'=>'color', 'PROP'=>'fontColor', 'REAL_PROP'=>"{$rprop}->color"],
+				  ['CAPTION'=>t('Font Size'), 'TYPE'=>'number', 'PROP'=>'fontsize', 'REAL_PROP'=>"{$rprop}->size"],
+				  ['CAPTION'=>t('Font Height'), 'TYPE'=>'number', 'PROP'=>'fontheight', 'REAL_PROP'=>"{$rprop}->height"],
+				  ['CAPTION'=>t('Font Pitch'), 'TYPE'=>'combo', 'PROP'=>'fontpitch', 'REAL_PROP'=>"{$rprop}->pitch", 'VALUES'=>['fpDefault','fpVariable', 'fpFixed']],
+				  ['CAPTION'=>t('Font Quality'), 'TYPE'=>'combo', 'PROP'=>'fontquality', 'REAL_PROP'=>"{$rprop}->quality", 'VALUES'=>['fqDefault', 'fqDraft', 'fqProof', 'fqNonAntialiased', 'fqAntialiased', 'fqClearType', 'fqClearTypeNatural']],
+				  ['CAPTION'=>t('Font Orientation'), 'TYPE'=>'number', 'PROP'=>'fontori', 'REAL_PROP'=>"{$rprop}->orientation"]
 				  //Font style
 				  ];
 		foreach($xprops as $property)
 		{
 			$type = myProperties::$types[$property['TYPE']];
 			$edit = $type::type;
-			$edit = new $type;
+			$edit = new $edit;
 			$type::OnCreate( $edit, $class, $property );
 			$myProperties->params[$class][] = $edit->self;
-			$edit->hint = $property['CAPTION']._BR_."[->{$property['REAL_PROP']}]";
+			$edit->hint = $property['CAPTION'] . _BR_ . "[->{$property['REAL_PROP']}]";
 			$edit->showHint = true;
 			$componentProps[$class][] = $property;
 			$myProperties->elements[$edt->self] = $property;
