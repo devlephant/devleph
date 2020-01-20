@@ -235,10 +235,11 @@ class myUtils
             
             $class = rtti_class($el->self);
             $real_class = __rtti_class($el->self);
-                    
-            if ($class !== 'TSizeCtrl' && $el->self !== $GLOBALS['_sc']->self){
+			$installed_sc = method_exists($_sc,'self')?$el->self !== $_sc->self:true;
+                     
+            if ($class !== 'TSizeCtrl' && $installed_sc ){
                 //$_sc->registerTarget($el);
-               
+
                 if (is_subclass_of($el,  '__TNoVisual')){
                     $el->label = '';
                     $el->obj   = '';
