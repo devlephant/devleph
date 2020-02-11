@@ -202,7 +202,7 @@ class Localization {
     
     static function toEncoding($str){
 	$encoding = self::detectLocale($str);
-	$defEnc = (function_exists('delphi_is_uc') && delphi_is_uc())? 'utf-8': 'windows-1251';
+	$defEnc = (UTF8_SUPPORT)? 'utf-8': 'windows-1251';
 	$res = $encoding == $defEnc ? $str : iconv($encoding, $defEnc, $str);
 	//if($res==false) pre($str);//#DEBUG;
 	return $res;

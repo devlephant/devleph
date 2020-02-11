@@ -154,7 +154,7 @@
 				   $var->$m = self::json_fix_cyr($v, $decode);
 			   }
 		   } elseif (is_string($var)) {
-			   if(!function_exists('delphi_is_uc') || !delphi_is_uc())
+			   if(!UTF8_SUPPORT)
 			   {
 				if($decode)
 					$var = self::StringDecode($var);

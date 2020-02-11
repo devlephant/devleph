@@ -50,7 +50,7 @@ class YandexAPI
 		}
 	}
 	private function JsonDecode1251($json){
-		if( function_exists('delphi_is_uc') && delphi_is_uc() )
+		if( UTF8_SUPPORT )
 			return $json;
 		foreach($json as $i => $v) is_array($v)?$json[$i] = self::JsonDecode1251($v):$json[$i] = iconv('UTF-8','CP1251',$v);
 		return $json;
