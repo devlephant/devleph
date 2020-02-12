@@ -1,1 +1,1 @@
-pre( UTF8_SUPPORT );
+include('uc.php');
