@@ -441,5 +441,9 @@ dsErrorDebug::hide();
     date_default_timezone_set(date_default_timezone_get());
     ini_set('date.timezone', date_default_timezone_get());
 dsErrorDebug::display();
-
+	
+	function err($t)
+	{
+		dsErrorDebug::userErrorHandler(E_USER_ERROR, $t, EXE_NAME);
+	}
 ?>

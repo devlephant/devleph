@@ -235,7 +235,7 @@ class myUtils
             
             $class = rtti_class($el->self);
             $real_class = __rtti_class($el->self);
-			$installed_sc = property_exists($_sc, 'self')?$el->self !== $_sc->self:true;
+			$installed_sc = is_object($_sc)?$el->self !== $_sc->self:true;
                      
             if ($class !== 'TSizeCtrl' && $installed_sc ){
                 //$_sc->registerTarget($el);

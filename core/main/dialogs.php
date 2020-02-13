@@ -42,9 +42,9 @@ global $_c;
 $_c->setConstList(['mtWarning', 'mtError', 'mtInformation', 'mtConfirmation', 'mtCustom']);
 $_c->setConstList(['fdScreen', 'fdPrinter', 'fdBoth']);
 
-function messageBox($text,$caption,$flag = MB_OK){
+function messageBox($text,$caption = Null,$flag = MB_OK){
 	
-	return application_messagebox($text, $caption, $flag);
+	return application_messagebox($text, ($caption==Null? appTitle(): $caption), $flag);
 }
 
 function messageDlg($text, $type = mtInformation, $flag = MB_OK){
@@ -57,25 +57,47 @@ function message($text, $mode = mtCustom){
 	return messageDlg($text, $mode);
 }
 
-function showMessage($text){
-	
-	messageBox($text,appTitle());
-}
+function showMessage($text){messageBox($text);}
 
-function alert($text){showMessage($text);}
-function pre_a(...$obj){
-	if ( sync(__FUNCTION__, $obj) ) return;
-	
-	foreach( $obj as $s ) {
-		alert( print_r((is_object($s) &&  method_exists($s, '__toString'))?$s->__toString():$s, true) );
+function alert($text){messageBox($text);}
+
+function msg($text){messageBox($text);}
+
+function out($text)
+{
+	if( defined("STDOUT") )
+	{
+		fputs(STDOUT, $text);
+	} else {
+		messageBox($text);
 	}
 }
-function msg($text){showMessage($text);}
 
-function confirm($text){
-	$res = messageBox($text,appTitle(),MB_YESNO);
-	return $res == idYes;
+function in($prompt, $def="")
+{
+	if( defined("STDIN") )
+	{
+		if( defined("STDOUT") )
+			fwrite(STDOUT, (string)$prompt);
+		$res = fgets(STDIN);
+	} else {
+		$res = InputBox(appTitle(), (string)$prompt, (string)$def);
+	}
+	return $res!==""? $res: $def;
 }
+
+function confirm($text)
+{
+	if( defined("STDIN") && defined("STDOUT") )
+	{
+		fwrite(STDOUT, (string)$text . "[Y/n]");
+		$res = fgetc(STDIN);
+		return $res == "y" || $res == "Y";
+	} else {
+		return messageBox((string)$text,appTitle(),MB_YESNO) == idYes;
+	}
+}
+
 class __TNoVisual extends TControl {
     public $class_name = __CLASS__;
 	

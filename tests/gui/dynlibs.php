@@ -1,5 +1,5 @@
 <?php
-if( ldtl('LoadDllCLasses.dll') )
+if( rtl('LoadDllCLasses.dll') )
 {
 	class TFlowPanel extends TControl{}
 
@@ -9,7 +9,7 @@ $c->parent = $form;
 $form->show();
 }
 
-if( lbpl('TestPack240.bpl') )
+if( rtl('TestPack240.bpl') )
 {
 	class TTouchKeyboard extends TControl{}
 $c = new TTouchKeyboard();

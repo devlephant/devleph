@@ -120,6 +120,11 @@ function pre2(...$obj){
 
 }
 
+function var_pre(...$obj)
+{
+	pre2(...$obj);
+}
+
 function include_lib($class,$name){
 	require ENGINE_DIR . $class . '/' . $name . '.php';
 }
