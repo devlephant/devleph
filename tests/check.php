@@ -108,7 +108,7 @@ class TestUnit
 		return $res;
 	}
 	
-	public static CheckFuncs(array $funcs, CheckEvents $FuncE, $ref=false)
+	public static function CheckFuncs(array $funcs, CheckEvents $FuncE, $ref=false)
 	{
 		$res = TRUE;
 		$i=0;
@@ -193,7 +193,7 @@ class TestUnit
 	
 	protected static function Doerrf($estr, ...$args)
 	{
-		SELF::Log( "Function " . SELF::$NamePrePend.$args[0] . ":{" . PHP_EOL . print_r($args[1],true) . PHP_EOL "}:" . SELF::$NamePrePend.$args[0] );
+		SELF::Log( "Function " . SELF::$NamePrePend.$args[0] . ":{" . PHP_EOL . print_r($args[1],true) . PHP_EOL . "}:" . SELF::$NamePrePend.$args[0] );
 		SELF::DoErr($estr, ...$args);
 	}
 	
@@ -206,9 +206,9 @@ class TestUnit
 		SELF::Log( "ERROR: " . sprintf($erstr, ...$_content) );
 	}
 	
-	public static function Call( $name, ...&$args )
+	public static function Call( $name, &...$args )
 	{
-		SELF::Log(SELF::${"CALLING"}, $name, $args);
+		SELF::Log(SELF::$CALLING, $name, $args);
 		if( !is_callable($name) and substr($name, 0, 2) !== "<?" )
 			if( is_string($name) )
 			{
@@ -222,7 +222,7 @@ class TestUnit
 		}
 	}
 	
-	public static function CallRet( $name, Check $check, ...&$args)
+	public static function CallRet( $name, Check $check, &...$args)
 	{
 		$argcopy = $args;
 		$r = SELF::Call($name, ...$args);
@@ -238,7 +238,7 @@ class TestUnit
 		return $res;
 	}
 	
-	public static function CallArg( $name, $ArgNum, Check $check, ...&$args)
+	public static function CallArg( $name, $ArgNum, Check $check, &...$args)
 	{
 		SELF::Call($name, ...$args);
 		if( SELF::$Error )
@@ -345,11 +345,11 @@ class TestUnit
 /*SKELETON*/
 interface IEvented_ut
 {
-	public $OnError;
-	public $OnFail;
-	public $OnProgress;
-	public $OnPass;
-	public $OnSucces;
+	#public $OnError;
+	#public $OnFail;
+	#public $OnProgress;
+	#public $OnPass;
+	#public $OnSucces;
 	//=> Событий хватает. Параметры - подходят?
 	public function AddConstant( $Constant );
 	public function AddFunction( $Function );
@@ -381,6 +381,10 @@ class __evented_test implements IEvented_ut
 		$this->UnitName = $Name;
 		$this->EventsOverload = new CheckEvents([$this, "Progress"], [$this, "Fail"], [$this, "Pass"], [$this, "Succes"], [$this, "Error"]);
 	}
+	
+	public function GetStat(){}
+	public function GetScope(){}
+	public function WriteLog(){}
 	
 	public function Progress($i, $t)
 	{
@@ -427,7 +431,7 @@ class __evented_test implements IEvented_ut
 			$this->Funtions[$Function]  = [$args, [$RtCheck, [$ArgNum, $ArgCheck]]];
 		}
 	}
-	protected _imprtf(&$From)
+	protected function _imprtf(&$From)
 	{
 		if( IsSet($From) )
 		foreach( $From as $Functions=>$Values )
@@ -449,7 +453,7 @@ class __evented_test implements IEvented_ut
 			}
 		}
 	}
-	protected _imprtc(&$From)
+	protected function _imprtc(&$From)
 	{
 		if( IsSet($From) )
 		foreach( $From as $Constants=>$Values )
@@ -461,7 +465,7 @@ class __evented_test implements IEvented_ut
 			} else $this->Constants[] = $Values;
 		}
 	}
-	protected _imprtn(&$From)
+	protected function _imprtn(&$From)
 	{
 		if( IsSet($From) )
 		{
@@ -473,11 +477,11 @@ class __evented_test implements IEvented_ut
 				$this->UnitName = $From;
 		}
 	}
-	protected _imprtl(&$Names)
+	protected function _imprtl(&$Names)
 	{
 		
 	}
-	protected _imprte(&$From)
+	protected function _imprte(&$From)
 	{
 		static $order = 
 		["Progress", "Fail", "Pass", "Success", "Error"];
@@ -518,7 +522,7 @@ class IUnitTest extends __evented_test
 			$this->Libs[] = $Library;
 	}
 	
-	protected _imprtl(&$Names)
+	protected function _imprtl(&$Names)
 	{
 		if( IsSet($Names) )
 			foreach($Names as $Name)
@@ -567,7 +571,7 @@ class ITests
 			unset( $this->_t[$r] );
 	}
 	
-	public function Include( $filename )
+	public function Inc( $filename )
 	{
 		$ext = strtolower( explode(".",$filename)[substr_count($filename,".")-1] );
 		if( $ext == "php" )
