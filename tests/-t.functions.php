@@ -1405,6 +1405,38 @@ function ExistFunc($func)
 			return is_callable( $unit->GetClassFunc($func) );
 	return is_callable($func);
 }
+/* -- Logging -- */
+function Fault( $text, ...$e )
+{
+	if( count($e) > 0 )
+		$text = sprintf($text, $e);
+	Out($text);
+	Halt();
+}
+
+function Fail( $text, ...$e )
+{
+	if( count($e) > 0 )
+		$text = sprintf($text, $e);
+	
+	if( !confirm( "An error has been occured." . PHP_EOL . $text . PHP_EOL . "Continue?" ) )
+		Halt();
+}
+
+function Error( $text, ...$e )
+{
+	Fail(...func_get_args());
+}
+
+function Input( $t, $def = "" )
+{
+	return In($t, $def);
+}
+
+function Output(...$t)
+{
+	return Out(...$t);
+}
 
 /* -- Events --- */
 class UnitEvents
