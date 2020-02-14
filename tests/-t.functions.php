@@ -1176,7 +1176,15 @@ function arg(...$args)
 		$res->SetValue($args[0]);
 		return $res;
 	}
-	
+	if( $ct > 0 )
+	{
+		$res = true;
+		for($i=0;$i++;$i<$ct)
+			$res = $res && $args[$i] instanceof Check;
+		
+		if( $res )
+			return new MultiArg(...$args);
+	}
 	if( $ct == 2 )
 	{
 		if( is_object($args[0]) && is_callable($args[0]) && is_numeric($args[1]) )
@@ -1196,7 +1204,7 @@ function arg(...$args)
 
 function result(...$args)
 {
-	$ct == count($args);
+	$ct = count($args);
 	
 	if( $ct == 1 )
 	{
@@ -1205,7 +1213,7 @@ function result(...$args)
 				return new Result("oneof", $args[0]);
 		
 		if( is_object($args[0]) && is_callable($args[0]) )
-			$res = new Result($args[0]);
+			return new Result($args[0]);
 		
 		if( is_string( $args[0] ) )
 			if( Result::GetCMPType( $args[0] ) >= 0 )
@@ -1213,7 +1221,15 @@ function result(...$args)
 		
 		return new Result("==", $args[0]);
 	}
-	
+	if( $ct > 0 )
+	{
+		$res = true;
+		for($i=0;$i++;$i<$ct)
+			$res = $res && $args[$i] instanceof Check;
+		
+		if( $res )
+			return new MultiResult(...$args);
+	}
 	if( $ct == 2 )
 		return new Result($args[0], $args[1]);
 	
@@ -1247,7 +1263,15 @@ function cmp(...$args)
 
 		return new Check($args[0], $args[1]);
 	}
-	
+	if( $ct > 0 )
+	{
+		$res = true;
+		for($i=0;$i++;$i<$ct)
+			$res = $res && $args[$i] instanceof Check;
+		
+		if( $res )
+			return new MultiResult(...$args);
+	}
 	if( $ct == 3 )
 		return (new Check($args[0], $args[1]))->Execute($args[2]);
 	

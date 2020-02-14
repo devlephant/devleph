@@ -403,16 +403,18 @@ class TestUnit
 		if( isSet($args) )
 		{
 			foreach($args as &$arg)
-			$r = $arg->Execute( $ars[$arg->Position] );
-			$res = $res and $r!==false;
-			SELF::DoCmpRes($r, $arg, SELF::Dump($ars), $ns, SELF::Dump($ArgumentsCopy));
+			{
+				$r = $arg->Execute( $ars[$arg->Position] );
+				$res = $res and $r!==false;
+				SELF::DoCmpRes($r, $arg, SELF::Dump($ars), $ns, SELF::Dump($ArgumentsCopy));
+			}
 		}
 		return $res;
 	}
 	public static function DoCmpRes($result, Check $check, $argsout,  $funcname=Null, $argsin=Null)
 	{
 		$s = Self::${( $funcname!==null? "FUNC_": "" ) . ( is_subclass_of($check, "Arg")? "ARG_": "" ) . "CMP_RESULT"};
-		$cmpres = $check->ToStr($result, (is_subclass_of($check, "Argument")? $argsout[$check->Position]: $argsout));
+		$cmpres = $check->ToStr($result, (is_subclass_of($check, "Arg")? $argsout[$check->Position]: $argsout));
 		if($funcname !== null )
 		{
 			if( $argsin !== null )
@@ -788,6 +790,7 @@ class Check
 		"??"=>12,
 		"is"=>13,
 		""=>14,
+		"typeof"=>14,
 		"sub"=>15,
 		"range"=>16,
 		"instance"=>17,
@@ -820,7 +823,7 @@ class Check
 			9=>"does %not contains %",
 			10=>"present in %",
 			11=>"set",
-			12=>"%not set and %not defined",
+			12=>"%not set %{or,and} %not defined",
 			13=>"%",
 			14=>"the same type as % type",
 			15=>"subclass of %",
@@ -837,9 +840,15 @@ class Check
 	{
 		$false = $res==false? "not": "";
 		$true = $res==false? "": "not";
-		
-		return str_replace(["%1", "%", "%not", "%res", "%!not"],[print_r($v,true),print_r($this->value,true),$false,$res,$true],
-			( strpos(Self::$strings[$this->type], "%not")==false? "%1 is $false": "%1 is" ) . Self::$strings[$this->type]);
+		$s = ( strpos(Self::$strings[$this->type], "%not")==false? "%1 is $false ": "%1 is" ) . Self::$strings[$this->type];
+		if( strpos($s, "%{") !== false )
+			{
+				$ss = substr($s, strpos($s, "%{")+2);
+				$ss = substr($ss, 0, strpos($ss, "}"));
+				$s = str_replace("%{" . $ss . "}", explode(",",$ss)[(int)$res!==false], $s);
+			}
+		return str_replace(["%not", "%res", "%!not", "%1", "%"],[$false,$res,$true,print_r($v,true),print_r($this->value,true)],
+			$s);
 	}
 	public static final function GetComparators()
 	{ return array_keys(SELF::$types); }
@@ -1076,6 +1085,25 @@ class Arg extends Check
 	}
 }
 class MultiCheck extends Check
+{
+	protected $data;
+	public function __construct(Check ...$checks)
+	{
+		$this->data = $checks;
+	}
+	
+	public function Execute( &$in )
+	{
+		foreach( $this->data as $check )
+		{
+			if( $check->Execute( $in ) )
+				Return TRUE;
+		}
+		Return FALSE;
+		
+	}
+}
+class MultiResult extends Result
 {
 	protected $data;
 	public function __construct(Check ...$checks)
