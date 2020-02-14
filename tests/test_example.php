@@ -10,6 +10,6 @@ if( Loaded() )
 	$a = 0;
 	$b = 2;
 	$c = 5;
-	Call ( "testset", $a, $b, $c, arg(), arg() );
+	Call( "testset", $a, $b, $c, arg(), arg() );
 	pre( $a + $b + $c );
 }

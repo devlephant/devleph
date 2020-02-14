@@ -129,7 +129,7 @@ class OFunction
 		return $this->name;
 	}
 	
-	public function Call(&...$argument)
+	public function CallVars(&...$argument)
 	{
 		if( !$this->Check() ) 
 			return -1;
@@ -137,7 +137,7 @@ class OFunction
 		return TestUnit::Call($this->GetFullName(), ...$argument);
 	}
 	
-	public function CallStaticArg(...$argument)
+	public function Call(...$argument)
 	{
 		if( !$this->Check() ) 
 			return -1;
@@ -1367,7 +1367,7 @@ function check($type, $is)
 	return new Check($type, $is);
 }
 
-function Call($func, &...$argument)
+function CallVars($func, &...$argument)
 {
 	global $unit;
 	if( $unit->type == type::STRUCT )
@@ -1376,7 +1376,7 @@ function Call($func, &...$argument)
 	return TestUnit::Call($func, ...$argument);
 }
 
-function CallStaticArg($func, ...$argument)
+function Call($func, ...$argument)
 {
 	global $unit;
 	if( $unit->type == type::STRUCT )
