@@ -3,39 +3,51 @@ if( !defined("STDOUT") )
 {
 	if( !is_file("stdout.log") )
 		file_put_contents("stdout.log", "");
-	define("STDOUT", fopen("stdout.txt", "w+"));
+	define("STDOUT", fopen("stdout.txt", "w"), false);
 }
 class TestUnit
 {
 	public static $LogHandler = STDOUT; //Doesn't work until launch with -t parameter
 	
-	public static $IS_NOT_CALLABLE = "%s1 is not callable!";
-	public static $FUNCTION_DNE = "Function \"%s1\" does not exists!";
-	public static $ERROR_WHILE_EXECUTING = "Function \"%s1\" raised Error" . PHP_EOL . "%s3";
-	public static $WRONG_RESULT = "Function \"%s1\" returned wrong result!";
-	public static $WRONG_PARAM = "Function \"%s1\" variated wrong parameter!";
-	public static $ARGUMENT_DNE = "Specified argument \"%s3\" does not exists!";
-	public static $COMPARING_RESULT = "Comparing function \"%s1\" result";
-	public static $COMPARING_ARG = "Comparing function \"%s1\" argument #%s2";
+	public static $CALLING = "Calling function \"%s\" with parameters:" . PHP_EOL . "%s";
+	public static $CMP_RESULT = "Comparison result: %s";
+	public static $ARG_CMP_RESULT = "Argument comparison result: %s";
+	public static $FUNC_CMP_RESULT = "%s result comparison result: %s";
+	public static $FUNC_ARG_CMP_RESULT = "%s argument comparison result: %s" . PHP_EOL . "Arguments before: %s" . PHP_EOL . "Arguments after: %s"; 
+	
+	public static $IS_NOT_CALLABLE = "%s is not callable!";
+	public static $FUNCTION_DNE = "Function \"%s\" does not exists!";
+	public static $ERROR_WHILE_EXECUTING = "Function \"%s\" raised Error" . PHP_EOL . "%s";
+	public static $WRONG_RESULT = "Function \"%s\" returned wrong result!";
+	public static $WRONG_PARAM = "Function \"%s\" variated wrong parameter!";
+	public static $ARGUMENT_DNE = "Specified argument \"%s\" does not exists!";
+	public static $COMPARING_RESULT = "Comparing function \"%s\" result";
+	public static $COMPARING_ARG = "Comparing function \"%s\" argument #%s";
 	
 	/* not intended */
-	public static $CONST_UNDEF = "Constant \"%s1\" undefined!";
-	public static $CONST_WRONG_VAL = "Constant \"%s1\" has wrong value of %s2";
+	public static $CONST_UNDEF = "Constant \"%s\" undefined!";
+	public static $CONST_WRONG_VAL = "Constant \"%s\" has wrong value of %s";
 	
-	public static $FUNC_UNDEF = "Function \"%s1\" undefined!";
+	public static $FUNC_UNDEF = "Function \"%s\" undefined!";
 	
-	public static $CLASS_UNDEF = "Class \"%s1\" undefined!";
+	public static $CLASS_UNDEF = "Class \"%s\" undefined!";
 	
-	public static $ext_err = "UNABLE TO LOAD %s1 extension!";
-	public static $rtl_err = "UNABLE TO LOAD %s1 runtime library!";
+	public static $ext_err = "UNABLE TO LOAD %s extension!";
+	public static $rtl_err = "UNABLE TO LOAD %s runtime library!";
 	
 	/* intersected */
-	public static $__WRONG_COUNT = "Wrong argument count for \"%s1\" [required: %s2; passed: %s3]";
-	public static $__WRONG_PASSED_TO = "Wrong parameter type passed to \"%s1\"" . PHP_EOL . "[passed: %s2]";
+	public static $__WRONG_COUNT = "Wrong argument count for \"%s\" [required: %s; passed: %s]";
+	public static $__WRONG_PASSED_TO = "Wrong parameter type passed to \"%s\"" . PHP_EOL . "[passed: %s]";
 	/*?------------*/
 	
 	static $Error = false;
 	static $NamePrePend = '';
+	
+	private static function Clear()
+	{
+		SELF::$Error = false;
+	}
+	
 	public static function Dump($v)
 	{
 		ob_start();
@@ -44,10 +56,29 @@ class TestUnit
 	}
 	public static function LibLoaded($l)
 	{
-		if( substr($l,0,4) == "php_" and explode(".", $l)[substr_count($l,".")-1] == "dll" )
-		{
-			$r = SELF::ExtensionLoaded($l);
-		} else $r = SELF::ModuleLoaded($l);
+		self:$Error = false;
+		$name = BaseNameNoExt($l);
+		if( strtolower( substr($name,0,4) ) == 'php_')
+			$name = substr($name, 4);
+			
+		if( !extension_loaded($name) and !rtll($name) and !rtll($l) )
+			SELF::DoErr( SELF::${"ext_err"}, 'php_' + $name);
+		return !SELF::$Error;
+	}
+	
+	public static function StructLoaded($s)
+	{
+		return interface_exists($unit->name, false) or class_exists($unit->name, false);
+	}
+	
+	public static function CheckGlobal($Name)
+	{
+		return isSet($GlOBALS[$Name]);
+	}
+	
+	public static function CompareGlobal($Name, Check $Cmp)
+	{
+		return $Cmp->Execute($GLOBALS[$Name]);
 	}
 	
 	public static function CheckLibFuncs($l, array $funcs, CheckEvents $FuncE)
@@ -155,11 +186,14 @@ class TestUnit
 		return $res;
 	}
 	
-	public static function Log($data)
+	public static function Log($data, ...$params)
 	{
+		if(!empty($params))
+			$data = sprintf($data, ...$params);
 		if( is_resource(SELF::$LogHandler) )
 		{
-			fwrite(SELF::$LogHandler, PHP_EOL . $data);
+			fwrite(SELF::$LogHandler, PHP_EOL . $data, strlen(PHP_EOL . $data));
+			fflush(SELF::$LogHandler);
 		}elseif( is_file(SELF::$LogHandler) )
 		{
 			file_put_contents(SELF::$LogHandler, $data, FILE_APPEND);
@@ -203,25 +237,9 @@ class TestUnit
 		foreach( $args as &$_content )
 			$_content = print_r($_content,true);
 		SELF::$Error = true;
-		SELF::Log( "ERROR: " . sprintf($erstr, ...$_content) );
+		SELF::Log( "ERROR: " . sprintf($erstr, ...$args) );
 	}
-	
-	public static function Call( $name, &...$args )
-	{
-		SELF::Log(SELF::$CALLING, $name, $args);
-		if( !is_callable($name) and substr($name, 0, 2) !== "<?" )
-			if( is_string($name) )
-			{
-				SELF::DoErrf( SELF::${"FUNCTION_DNE"}, $name, $args);
-			} else SELF::DoErrf( SELF::${"IS_NOT_CALLABLE"}, $name, $args );
-		try{
-			call_user_func_array($name, $args);
-		} catch( Exception $e )
-		{
-			SELF::DoErrf(SELF::${"ERROR_WHILE_EXECUTING"}, $name, $args, $e);
-		}
-	}
-	
+		
 	public static function CallRet( $name, Check $check, &...$args)
 	{
 		$argcopy = $args;
@@ -232,9 +250,8 @@ class TestUnit
 			return FALSE;
 		}
 		
-		SELF::Log(SELF::${"COMPARING_RESULT"}, $name);
 		$res = $check->Execute( $r );
-		SELF::DoCmpRes(SELF::Dump($res), $check, $name, SELF::Dump($argcopy), SELF::Dump($args), SELF::Dump($r));
+		SELF::DoCmpRes($res, $check, $r, "Function ".$name);
 		return $res;
 	}
 	
@@ -247,7 +264,6 @@ class TestUnit
 			return FALSE;
 		}
 		
-		SELF::Log(SELF::${"COMPARING_ARG"}, $name, $ArgNum);
 		if( !isSet($args[$ArgNum]) )
 		{
 			SELF::DoErrf(SELF::${"ARGUMENT_DNE"}, $name, SELF::Dump($args), $ArgNum);
@@ -255,12 +271,156 @@ class TestUnit
 			return FALSE;
 		} else {
 			$res = $check->Execute( $args[$ArgNum] );
-			SELF::DoCmpRes(SELF::Dump($res), $check, $name, SELF::Dump($argcopy), SELF::Dump($args));
+			SELF::DoCmpRes($res, $check, SELF::Dump($args), "Function ".$name, SELF::Dump($argcopy));
 		}
 		
 		return $res;
 	}
 	
+	public static function IsCallable(&$name)
+	{
+		if( is_callable($name) )
+		{
+			return True;
+		} elseif( is_array($name) )
+			if( is_callable([$name[1], $name[0]]) ) 
+			{
+				$name = array_flip($name);
+				return True;
+			}
+		return FALSE;
+	}
+	
+	public static function IsMethod($name)
+	{
+		if( is_array($name) )
+			return method_exists($name[0], $name[1]);
+		return FALSE;
+	}
+	
+	public static function IsClassMethod($name)
+	{
+		if( Self::IsMethod($name) )
+		{
+			return is_string($name[0]);
+		}
+		return FALSE;
+	}
+	
+	public static function Call( $name, &...$ars )
+	{
+		SELF::Clear();
+		$ct = count($ars)-1;
+		$chck = is_array($ars) && !empty($ars);
+		if( $chck )
+			$chck = is_object($ars[0]);
+		if( $chck )
+			$chck = is_subclass_of($ars[0], "Arg");
+		if( $chck )
+		{
+			for($i=0;$i<=$ct;$i++)
+			{
+				if( !is_subclass_of($ars[$i], 'Check') )
+				{
+					$io = $i;
+					break;
+				}
+				$args[] = $ars[$i];
+			}
+			$Arguments = $ArgumentsCopy = array_slice($ars, $io+1);
+		} else {
+			$io = 0;
+			for($i=$ct;$i>=0;$i--)
+			{
+				if( !is_subclass_of($ars[$i], 'Check') )
+				break;
+				$argstart = $i;
+			}
+			if( isSet($argstart) )
+			{
+				$iv = 0;
+				$Arguments = $ArgumentsCopy = array_slice($ars, 0, $ct - $argstart + 1);
+				$args = array_slice($ars, $argstart);
+			}
+		}
+		if(isSet($args)){
+			foreach( $args as $i=>$arg )
+			{
+				if( !is_subclass_of($args[$i], "Arg") )
+				{
+					$Result = $arg;
+					$iv = $i;
+					unset($args[$i]);
+				} else
+				{
+					if( $arg->Position < 0 )
+						$arg->Position = $io + $i - $iv;
+					if( !$arg->vls() ) //vls - Values Is Set
+						$arg->SetValue($Arguments[$i-$iv]);
+				}
+			}
+			$args = array_values($args);
+		} else $Arguments = $ArgumentsCopy = $ars;
+		
+		if( !Self::IsCallable($name) )
+			if( is_string($name) && substr($name, 0, 2) == "<?" )
+			{
+				$cargs = count($Arguments);
+				for($i=1;$i<=$cargs;$i++)
+					$arg_s[] = '$arg' . $i;
+			
+				if( StrToLower(SubStr($name, 0, 5) == "<?php") )
+					$cout = 5;
+				else 
+					$cout = 2;
+			
+				$name = create_function(implode(", ", $arg_s), SubStr($name, $cout));
+			} Else {
+				SELF::DoErrf( SELF::${is_string($name)? "FUNCTION_DNE": "IS_NOT_CALLABLE"}, print_r($name, True), Self::Dump($ArgumentsCopy));
+				return FALSE;
+			}
+		$ns = (self::IsClassMethod($name)? "Method ": "Function ") . print_r($name,true);
+		SELF::Log(SELF::$CALLING, $ns, Self::Dump($Arguments));
+		try
+		{
+			$r = call_user_func_array($name, $Arguments);
+			if( $Arguments !== $ArgumentsCopy )
+			{
+				foreach( array_diff($Arguments, $ArgumentsCopy) as $i=>$v )
+				$ars[$io + $i] = $v;
+			}
+		} catch( Exception $e )
+		{
+			SELF::DoErrf(SELF::${"ERROR_WHILE_EXECUTING"}, $ns, Self::Dump($ArgumentsCopy), Self::Dump($e));
+			return FALSE;
+		}
+		$res = TRUE;
+		if( is_subclass_of($Result, 'Check') )
+		{
+			$res = $Result->Execute( $r ) !== false;
+			SELF::DoCmpRes($res, $Result, $r, $ns);
+		}
+		if( isSet($args) )
+		{
+			foreach($args as &$arg)
+			$r = $arg->Execute( $ars[$arg->Position] );
+			$res = $res and $r!==false;
+			SELF::DoCmpRes($r, $arg, SELF::Dump($ars), $ns, SELF::Dump($ArgumentsCopy));
+		}
+		return $res;
+	}
+	public static function DoCmpRes($result, Check $check, $argsout,  $funcname=Null, $argsin=Null)
+	{
+		$s = Self::${( $funcname!==null? "FUNC_": "" ) . ( is_subclass_of($check, "Arg")? "ARG_": "" ) . "CMP_RESULT"};
+		$cmpres = $check->ToStr($result, (is_subclass_of($check, "Argument")? $argsout[$check->Position]: $argsout));
+		if($funcname !== null )
+		{
+			if( $argsin !== null )
+			{
+				Self::Log($s, $funcname, $argsin, $argsout, $cmpres); 
+			} else Self:: Log($s, $funcname, $cmpres);
+		} else Self::Log($s, $cmpres);
+	}
 	public static function ConstExist( $name )
 	{
 		$res = defined($name);
@@ -286,22 +446,6 @@ class TestUnit
 				SELF::DoErr(SELF::${"FUNC_UNDEF"}, $name);
 			SELF::$Error = false;
 		return $res;
-	}
-	
-	public static function ExtensionLoaded( $name ) //?PHP Extensions
-	{
-		$name = BaseNameNoExt($name);
-		if( strtolower( substr($name,0,4) ) == 'php_')
-			$name = substr($name, 5);
-			
-		if( !extension_loaded($name) )
-			SELF::DoErr( SELF::${"ext_err"}, 'php_' + $name + '.dll');
-	}
-	
-	public static function ModuleLoaded( $name ) //RTL
-	{	
-		if( !rtll($name) )
-			SELF::DoErr( SELF::${"rtl_err"}, $name);
 	}
 	
 	public static function ConstVal( $name, Check $compare )
@@ -358,7 +502,22 @@ interface IEvented_ut
 	public function GetResult(); //=> Bool
 	public function WriteLog(); //=> Вывод в консоль.
 }
-
+class Stats
+{
+	public $FunctionsTotal = 0;
+	public $FunctionsFaulted = 0;
+	public $FunctionsPassed =0;
+	
+	public $ConstantsTotal = 0;
+	public $ConstantsFaulted = 0;
+	public $ConstantsPassed = 0;
+	
+	public $LibrariesTotal  = 0;
+	public $DLLibraries = 0;
+	public $BPLibraries = 0;
+	public $LibrariesFaulted = 0;
+	public $LibrariesPassed = 0;
+}
 class __evented_test implements IEvented_ut
 {
 	public $OnError;
@@ -380,11 +539,36 @@ class __evented_test implements IEvented_ut
 	{
 		$this->UnitName = $Name;
 		$this->EventsOverload = new CheckEvents([$this, "Progress"], [$this, "Fail"], [$this, "Pass"], [$this, "Succes"], [$this, "Error"]);
+		$this->Stats = new Stats;
 	}
 	
-	public function GetStat(){}
-	public function GetScope(){}
-	public function WriteLog(){}
+	public function GetStat(){ return clone $this->Stats; }
+	public function GetScope()
+	{
+		$output = str_repeat("#", strlen($this->UnitName) + 10);
+		$output .= PHP_EOL . "#####{$this->UnitName}#####" .  PHP_EOL;
+		$output = str_repeat("#", strlen($this->UnitName) + 10) . PHP_EOL;
+		$output .= "#Auto-Globals:\t{$this->Stats->GlobalsPassed} of {$this->Stats->GlobalsTotal}"  . PHP_EOL;
+		$output .= "#Constants:\t{$this->Stats->ConstantsPassed} of {$this->Stats->ConstantsTotal}" . PHP_EOL;
+		$output .= "#Classes:\t{$this->Stats->ClassesPassed} of {$this->StatsClassesTotal}"			. PHP_EOL;
+		foreach( $this->Stats->Classes as $Class )
+		{
+			$output .= "~~~{$Class->Name}~~~" . PHP_EOL;
+			$output .= "   ~Variables:\t{$Class->VariablesTotal} of {$Class->VariablesPassed}"		. PHP_EOL;
+			$output .= "   ~Methods:\t{$Class->MethodsPassed} of {$Class->MethodsTotal}" 			. PHP_EOL;
+			$output .= "   ~Constants:\t{$Class->ConstantsTotal} of {$Class->ConstantsPassed}"		. PHP_EOL;
+			$output .= "   ~Functions\t{$Class->FunctionsTotal} of {$Class->FunctionsPassed}"		. PHP_EOL;
+			$output .= "   ~Properties:\t{$Class->PropertiesPassed} of {$Class->PropertiesTotal}"	. PHP_EOL;
+			$output .= PHP_EOL;
+		}
+		$output .= "#Functions:\t{$this->Stats->FunctionsPassed} of {$this->Stats->FunctionsTotal}" . PHP_EOL;
+		
+		return $output;
+	}
+	public function WriteLog()
+	{
+		TestUnit::Log( $this->GetScope() );
+	}
 	
 	public function Progress($i, $t)
 	{
@@ -472,15 +656,11 @@ class __evented_test implements IEvented_ut
 			if( is_array($From) )
 			{
 				$this->_imprtn($From[0]);
-				$this->_imprtl($From[1]);
 			} else 
 				$this->UnitName = $From;
 		}
 	}
-	protected function _imprtl(&$Names)
-	{
-		
-	}
+
 	protected function _imprte(&$From)
 	{
 		static $order = 
@@ -514,21 +694,6 @@ class __evented_test implements IEvented_ut
 
 class IUnitTest extends __evented_test
 {
-	public $Libs = [];
-	
-	public function AddLib( $Library )
-	{
-		if( file_exists($Library) or file_exists("ext/{$Library}") )
-			$this->Libs[] = $Library;
-	}
-	
-	protected function _imprtl(&$Names)
-	{
-		if( IsSet($Names) )
-			foreach($Names as $Name)
-				$this->AddLib($Name);
-	}
-	
 	public function Run()
 	{
 		$this->Result = True;
@@ -630,16 +795,85 @@ class Check
 		"objectof"=>17,
 		"class"=>17,
 		"classof"=>17,
+		"oneof"=>18,
+		"r"=>18,
+		"checkarr"=>18,
+		"check"=>18,
+		"cmp"=>18,
+		"!"=>19,
+		"!!"=>20,
+		//dyn
+		"<=>"=>22,
+		"!<=>"=>23,
 	];
-	
-	public function __construct($type, $value)
+	protected static $strings =
+	[
+			0=>"equal to %",
+			1=>"the same as %",
+			2=>"greater than %",
+			3=>"greater than or same as %",
+			4=>"lesser than %",
+			5=>"lesser than or same as %",
+			6=>"greater or lesser than %",
+			7=>"%!not equal to %",
+			8=>"partially equal to %",
+			9=>"does %not contains %",
+			10=>"present in %",
+			11=>"set",
+			12=>"%not set and %not defined",
+			13=>"%",
+			14=>"the same type as % type",
+			15=>"subclass of %",
+			16=>"in range of %",
+			17=>"instance of %",
+			18=>"successfull result of multi-comparison check",
+			19=>"not set or not defined",
+			20=>"not set",
+			"the first compare result, equal to %res",
+			"the first negative compare result, equal to %res",
+	];
+	protected $CallFunc;
+	public function ToStr($res, $v)
 	{
-		$this->type = is_integer($type)? $type: ( isSet( STATIC::$types[$type] )? STATIC::$types[$type]: 0 );
-		$this->value = $value;
+		$false = $res==false? "not": "";
+		$true = $res==false? "": "not";
+		
+		return str_replace(["%1", "%", "%not", "%res", "%!not"],[print_r($v,true),print_r($this->value,true),$false,$res,$true],
+			( strpos(Self::$strings[$this->type], "%not")==false? "%1 is $false": "%1 is" ) . Self::$strings[$this->type]);
+	}
+	public static final function GetComparators()
+	{ return array_keys(SELF::$types); }
+	
+	public static final function GetComparisonFunctions()
+	{ return SELF::GetComparators(); }
+	
+	public static final function GetCMPFuncs()
+	{ return SELF::GetComparators(); }
+	
+	public function GetCMPType( $Exp )
+	{
+		return isSet( STATIC::$types[$Exp] )? STATIC::$types[$Exp]: -1;
+	}
+	
+	public function __construct($type = "==", $value = True)
+	{
+		if( is_object($type) && is_callable($type) )
+		{
+			$this->CallFunc = $type;
+			$this->type = -1;
+		} else {
+			$this->type = is_integer($type)? $type: ( isSet( STATIC::$types[$type] )? STATIC::$types[$type]: 0 );
+			$this->value = $value;
+		}
 	}
 	
 	public function Execute( &$in )
 	{
+		if( $this->type == -1 )
+		{
+			return isSet($this->CallFunc)? $this->CallFunc($in): FALSE;
+		}
+		
 		if( $this->type == 11 )
 			return isSet($in);
 		
@@ -680,7 +914,7 @@ class Check
 			{
 				$inv = $in;
 				if( strlen($in) > strlen($this->value))
-					$inv = substr($in, 0, strlen($this->value));
+					$inv = substr($in, 0, strlen($this->value)-1);
 				return strtolower($inv) == strtolower($this->value);
 			}
 			if( is_float($in) || is_double($in) )
@@ -751,8 +985,9 @@ class Check
 		
 		if( $this->type == 15 )
 		{
-			$c = is_object($in)? get_class($in): $in;
-			return in_array($this->value, class_implements($c)) or in_array($this->value, class_parents($c));
+			$cr = is_object($this->value)? get_class($this->value): $this->value;
+			$cl = is_object($in)? get_class($in): $in;
+			return in_array($cl, class_implements($cr)) or in_array($cr, class_parents($cl));
 		}
 		
 		if( $this->type == 16 )
@@ -760,19 +995,136 @@ class Check
 		
 		if( $this->type == 17 )
 			return $in instanceof $this->value;
+		
+		if( $this->type == 18 )
+		{
+			if( is_array( $this->value ) )
+				foreach($this->value as &$cmp)
+					if( $cmp instanceof SELF )
+						if( $cmp->Execute( $in ) ) return TRUE;
+			return FALSE;
+		}
+		
+		if( $this->type == 19 )
+		{
+			if(!isSet($in))
+				return TRUE;
+			return is_null($in) or is_nan($in);
+		}
+		
+		if( $this->type == 20 )
+			return !isSet($in);
+		
+		if( $this->type == count(SELF::$types)-2 )
+		{
+			$res = -1;
+			for($type=18;$type>=0;$type--)
+			{
+				$this->type = $type;
+				if(  $this->Execute( $in ) )
+				{
+					$res = $type;
+					break;
+				}
+			}
+			return $res;
+		}
+		if( $this->type == count(SELF::$types)-1 )
+		{
+			$res = -1;
+			for($type=18;$type>=0;$type--)
+			{
+				$this->type = $type;
+				if( !$this->Execute( $in ) )
+				{
+					$res = $type;
+					break;
+				}
+			}
+			return $res;
+		}
+	}
+}
+class Result extends Check {}
+class Arg extends Check
+{
+	public $Position;
+	protected $valueset = false;
+	
+	public function __construct($type = "==", $position=-1)
+	{
+		if( is_object($type) && is_callable($type) )
+		{
+			$this->CallFunc = $type;
+			$this->type = -1;
+		} else {
+			$this->type = is_integer($type)? $type: ( isSet( STATIC::$types[$type] )? STATIC::$types[$type]: 0 );
+		}
+		$this->position = $position;
+		$this->valueset = false;
+	}
+	
+	public function SetValue($v)
+	{
+		$this->value = $v;
+		$this->valueset = true;
+	}
+	
+	public function vls()
+	{
+		return $this->valueset;
+	}
+}
+class MultiCheck extends Check
+{
+	protected $data;
+	public function __construct(Check ...$checks)
+	{
+		$this->data = $checks;
+	}
+	
+	public function Execute( &$in )
+	{
+		foreach( $this->data as $check )
+		{
+			if( $check->Execute( $in ) )
+				Return TRUE;
+		}
+		Return FALSE;
+		
+	}
+}
+class MultiArg extends Arg
+{
+	protected $data;
+	public function __construct($position = -1, Check ...$checks)
+	{
+		$this->Position = -1;
+		if( is_integer($position) )
+		{
+			$this->Position = $position;
+			$this->data = $checks;
+		} elseif( is_subclass_of($position, "Check") ) {
+			$this->data = array_merge([$position], $checks);
+		} else 
+			$this->data = $checks;
+	}
+	
+	public function Execute( &$in )
+	{
+		foreach( $this->data as $check )
+		{
+			if( $check->Execute( $in ) )
+				Return TRUE;
+		}
+		Return FALSE;
+		
 	}
 }
 class_alias("Check", "CMP");
 class_alias("Check", "Compare");
 class_alias("Check", "CMPFunc");
-function Compare($i, $type, $i2)
-{
-	return (new Check($type, $i))->Execute($i2);
-}
-function Check($i, $type, $i2)
-{
-	return (new Check($type, $i))->Execute($i2);
-}
+
 class CheckEvents
 {
 	#public $OnProgress;
@@ -823,3 +1175,4 @@ class CheckEvents
 		return isSet($this->evts[$name]) && $this->evts[$name]!==0;
 	}
 }
+require_once "-t.functions.php";

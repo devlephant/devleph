@@ -1,2 +1,3 @@
-pre( get_extension_funcs('osinfo') );
-pre( osinfo_disktotal('C') );
+require "tests/-t.comparators.php";
+$t = "pre";
+Call("gui_message", $t, result("??", 0));
