@@ -1140,17 +1140,10 @@ class MultiResult extends Result
 class MultiArg extends Arg
 {
 	protected $data;
-	public function __construct($position = -1, Check ...$checks)
+	public function __construct(Check ...$checks)
 	{
-		$this->Position = -1;
-		if( is_integer($position) )
-		{
-			$this->Position = $position;
-			$this->data = $checks;
-		} elseif( is_subclass_of($position, "Check") ) {
-			$this->data = array_merge([$position], $checks);
-		} else 
-			$this->data = $checks;
+		$this->data = $checks;
+		$this->Position = count($checks) > 0? $checks[0]->Position: -1;
 	}
 	
 	public function Execute( &$in )
