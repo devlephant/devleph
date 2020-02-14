@@ -1438,7 +1438,7 @@ function Output(...$t)
 	return Out(...$t);
 }
 
-/* -- Events --- */
+/* ----- Events ----- */
 class UnitEvents
 {
 	public $OnError;
