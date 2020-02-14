@@ -1257,10 +1257,14 @@ function arg(...$args)
 	}
 	if( $ct > 0 )
 	{
-		$res = true;
 		for($i=0;$i++;$i<$ct)
-			$res = $res && $args[$i] instanceof Check;
-		
+		{
+			if( is_object($args[$i]) )
+			{
+				if( !isSet($res) ) $res = true;
+				$res = $res and ( is_subclass_of($args[$i], "Check") );
+			} else $res = false;
+		}
 		if( $res )
 			return new MultiArg(...$args);
 	}
@@ -1302,10 +1306,14 @@ function result(...$args)
 	}
 	if( $ct > 0 )
 	{
-		$res = true;
 		for($i=0;$i++;$i<$ct)
-			$res = $res && $args[$i] instanceof Check;
-		
+		{
+			if( is_object($args[$i]) )
+			{
+				if( !isSet($res) ) $res = true;
+				$res = $res and ( is_subclass_of($args[$i], "Check") );
+			} else $res = false;
+		}
 		if( $res )
 			return new MultiResult(...$args);
 	}
@@ -1344,12 +1352,16 @@ function cmp(...$args)
 	}
 	if( $ct > 0 )
 	{
-		$res = true;
 		for($i=0;$i++;$i<$ct)
-			$res = $res && $args[$i] instanceof Check;
-		
+		{
+			if( is_object($args[$i]) )
+			{
+				if( !isSet($res) ) $res = true;
+				$res = $res and ( is_subclass_of($args[$i], "Check") );
+			} else $res = false;
+		}
 		if( $res )
-			return new MultiResult(...$args);
+			return new MultiCheck(...$args);
 	}
 	if( $ct == 3 )
 		return (new Check($args[0], $args[1]))->Execute($args[2]);
