@@ -20,9 +20,13 @@ class Unit
 	public $NotifyEvents;
 	
 	public $name;
-	public $type;
+	protected $_type;
+	#public $type;
+	protected $_instance = Null;
+	#public $Self;
 	
 	protected $instance;
+	
 	public function __construct()
 	{
 		$this->UnitEvents = new UnitEvents;
@@ -37,10 +41,10 @@ class Unit
 		
 		if( strpos($name, "::") !== false )
 			return explode("::", $name);
-		
-		if( isSet($this->instance) && method_exists($this->instance, $name) )
+		$instance = $this->GetInstance();
+		if( $instance !== Null && method_exists($this->instance, $name) )
 		{
-			return [$this->instance, $name];
+			return [$instance, $name];
 		}
 		
 		if( $this->type !== type::STRUCT)
@@ -54,6 +58,42 @@ class Unit
 	{
 		if(is_object($instance))
 			$this->instance = $instance;
+	}
+	
+	public function GetInstance()
+	{
+		if( is_object($this->instance) )
+			return $this->instance;
+		
+		return $this->_instance;
+	}
+	
+	public function __set($name, $value)
+	{
+		if( strtolower($name) == "type" )
+		{
+			if( $this->_type == type::EXT )
+			{
+				$this->_instance = new OLibrary( $this->name );
+			} elseif($this->type == type::STRUCT) {
+				$this->_instance = os( $this->name );
+			} else {
+				$this->_instance = NULL;
+			}
+		}
+	}
+	
+	public function __get($name)
+	{
+		if( strtolower($name) == "type" )
+			return $this->_type;
+		if( strtolower($name) == "self" )
+			return $this->_instance;
+	}
+	
+	public function __isSet($name)
+	{
+		return StrToLower($name) == "type";
 	}
 }
 $unit = new Unit;
@@ -580,7 +620,7 @@ class OInterface
 	
 	public function Check()
 	{
-		return interface_exists($this->name);
+		return interface_exists($this->name, FALSE);
 	}
 	
 	public function IsImplements( $interface )
@@ -646,7 +686,7 @@ class OTrait
 	
 	public function Check()
 	{
-		return interface_exists($this->name);
+		return interface_exists($this->name, FALSE);
 	}
 	
 	public function ImplementsInterface( $interface )
@@ -997,10 +1037,20 @@ function ov($name)
 }
 function oc($name)
 {
-	if( class_exists($name) or is_object($name) )
+	if( class_exists($name, FALSE) or is_object($name) )
 		return new OClass($name);
 	
 	return new OConstant($name);
+}
+function os($name)
+{
+	if( trait_exists($name, FALSE) )
+		return new OTrait($name);
+	
+	if( interface_exists($name, FALSE) )
+		return new OInterface($name);
+	
+	return new OClass($name);
 }
 function ocl($name)
 {
