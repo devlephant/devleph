@@ -1,7 +1,7 @@
 <?php 
-require_once "check.php";
-$t = new ITests(pre, err);
-$t->IncludeAll(".pt");
-$t->Run();
+require_once "-t.comparators.php";
+
+$t = new ITests();
+$t->RunAll("php");
 
 halt();

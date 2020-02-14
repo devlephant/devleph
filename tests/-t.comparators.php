@@ -68,7 +68,7 @@ class TestUnit
 	
 	public static function StructLoaded($s)
 	{
-		return interface_exists($unit->name, false) or class_exists($unit->name, false);
+		return interface_exists($s, false) or trait_exists($s, false) or class_exists($s, false);
 	}
 	
 	public static function CheckGlobal($Name)
@@ -765,6 +765,21 @@ class ITests
 				$this->Add( $test );
 			$test->Import( json_decode( file_get_contents($filename), true ) );
 		}
+	}
+	
+	public function RunAll($ext="php")
+	{
+		global $unit;
+		foreach( findfiles( __DIR__ . "/cli", [$ext], false, true) as $s )
+		{
+			if( !is_object($unit) )
+				$unit = new Unit;
+			
+			UnitName( substr(BaseName($s), 0, strlen(BaseName($s)) - strlen($ext) - 1) );
+			include_once( $s );
+		}
+		$unit->name = '';
+		$unit->type = type::UNDEF;
 	}
 }
 /*SKELETON*/

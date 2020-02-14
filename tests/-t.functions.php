@@ -70,8 +70,9 @@ class Unit
 	
 	public function __set($name, $value)
 	{
-		if( strtolower($name) == "type" )
+		if( StrToLower($name) == "type" )
 		{
+			$this->_type = $value;
 			if( $this->_type == type::EXT )
 			{
 				$this->_instance = new OLibrary( $this->name );
@@ -93,7 +94,8 @@ class Unit
 	
 	public function __isSet($name)
 	{
-		return StrToLower($name) == "type";
+		$name = StrToLower($name);
+		return  $name == "type" or $name == "self";
 	}
 }
 $unit = new Unit;
@@ -1154,14 +1156,37 @@ function startswith($str, $start, $IgnoreCase = false)
 {
 	
 	$substr = substr($str, 0, strlen($str)-strlen($start)-1);
-	return	$IgnoreCase? strtolower($substr) == $start: $substr == $start;
+	return	$IgnoreCase? strtolower($substr) == strtolower($start): $substr == $start;
 }
 
 function endswith($str, $ending, $IgnoreCase = false)
 {
 	$substr =  substr($str, strlen($str)-strlen($ending));
-	return	$IgnoreCase? strtolower($substr) == $ending: $substr == $ending;
+	return	$IgnoreCase? strtolower($substr) == strtolower($ending): $substr == $ending;
 }
+
+function inStr($haystack, ...$needles)
+{
+	$ct = count($needles);
+	if( $ct == 0 )
+		return FALSE;
+	
+	if( is_bool( $needles[ $ct - 1 ] ) )
+	{
+		$IgnoreCase = $needles[ $ct - 1 ];
+		$needles[ $ct - 1 ];
+	} elseif( is_bool($needles[0]) ) {
+		$IgnoreCase = $needles[0];
+		unset($needles[0]);
+	} else $IgnoreCase = False;
+	$func = $IgnoreCase? "stripos": "strpos";
+	
+	$res = false;
+	foreach($needles as $needle)
+		$res |= $func($haystack, $needle)!==false;
+	return $res;
+}
+
 /*-- Informational --*/
 function UnitName( $UName, $type = type::UNDEF, $defInstance = false)
 {
@@ -1169,29 +1194,33 @@ function UnitName( $UName, $type = type::UNDEF, $defInstance = false)
 	$unit->name = $UName;
 	if( $type == type::UNDEF )
 	{
-		if( strpos($UName, [" ", "\t", "\r", "\n", ":"]) !== false )
+		
+		if( inStr($UName, "-", "`", "~", "@", "%", "^", "*", "+", "/", "\\", ":") )
 		{
-			$unit->type = 0;
+			$unit->type = type::UNIT;
 		} elseif( endswith($UName, ".dll", true) or endswith($UName, ".so", true) or endswith($UName, ".bpl", true) ) {
-			$unit->type = 2;
+			$unit->type = type::EXT;
 		} else
 			$unit->type = (int) interface_exists($UName, false) or class_exists($UName, false) or trait_exists($UName, false);
 		
 	} else $unit->type = $type;
-	if( $defInstance !== false )
+	if( is_object( $defInstance ) )
 		$unit->SetInstance($defInstance);
 }
 
-function Loaded($name = null)
+function Loaded($UName = null)
 {
 	global $unit;
-	if( $name = null )
+	
+	if( $UName == null )
 	{
 		if( $unit->type == type::STRUCT )
 			return TestUnit::StructLoaded( $unit->name );
+		
 		if( $unit->type == type::EXT )
 			return TestUnit::LibLoaded( $unit->name );
-		return TRUE;
+		
+		return FALSE;
 	} else {
 		if( endswith($UName, ".dll", true) or endswith($UName, ".so", true) or endswith($UName, ".bpl", true) ) {
 			return TestUnit::LibLoaded( $unit->name );
