@@ -1442,6 +1442,7 @@ function Fatal( $text, ...$e )
 
 function Fail( $text, ...$e )
 {
+	global $unit;
 	$unit->errors++;
 	if( count($e) > 0 )
 		$text = sprintf($text, $e);
