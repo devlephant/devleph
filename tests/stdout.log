@@ -1,0 +1,48 @@
+
+Calling function "Function osinfo_DotNet" with parameters:
+array(1) {
+  [0]=>
+  &object(Result)#15 (3) {
+    ["type"]=>
+    int(-1)
+    ["value"]=>
+    NULL
+    ["CallFunc":protected]=>
+    object(Closure)#14 (2) {
+      ["this"]=>
+      object(ITests)#10 (2) {
+        ["_t":protected]=>
+        NULL
+        ["NoAdded":protected]=>
+        NULL
+      }
+      ["parameter"]=>
+      array(1) {
+        ["$ver"]=>
+        string(10) "<required>"
+      }
+    }
+  }
+}
+
+Function osinfo_DotNet result comparison result: 
+4.0.30319 is  correct
+
+Calling function "Function osinfo_DiskSerial" with parameters:
+array(1) {
+  [0]=>
+  &string(1) "c"
+}
+
+Function osinfo_DiskSerial result comparison result: 
+C653892A is  not equal to 00000000
+
+Calling function "Function osinfo_DiskTotal" with parameters:
+array(1) {
+  [0]=>
+  &string(1) "c"
+}
+
+Function osinfo_DiskTotal result comparison result: 
+249504460800 is  greater than 100
+PHP_OSINFO => OK

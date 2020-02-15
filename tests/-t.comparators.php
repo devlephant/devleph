@@ -3,7 +3,7 @@ if( !defined("STDOUT") )
 {
 	if( !is_file("stdout.log") )
 		file_put_contents("stdout.log", "");
-	define("STDOUT", fopen("stdout.txt", "w"), false);
+	define("STDOUT", fopen("stdout.log", "w"), false);
 }
 class TestUnit
 {
@@ -826,6 +826,7 @@ class Check
 	];
 	protected static $strings =
 	[
+			-1=>"correct",
 			0=>"equal to %",
 			1=>"the same as %",
 			2=>"greater than %",
@@ -895,7 +896,7 @@ class Check
 	{
 		if( $this->type == -1 )
 		{
-			return isSet($this->CallFunc)? $this->CallFunc($in): FALSE;
+			return isSet($this->CallFunc)? call_user_func($this->CallFunc, $in): FALSE;
 		}
 		
 		if( $this->type == 11 )

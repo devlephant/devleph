@@ -7,7 +7,16 @@ if( !Loaded() )
 			"Reason: extension " . ["not found", "contains error"][(int)$unit->Self->Available]
 		);
 $Checks = 
-["DiskTotal"=>["c", result(">", 100)]];
+[
+"DiskTotal"	=>["c", result(">", 100)		],
+"DiskSerial"=>["c", result("!=", "00000000")],
+"DotNet"	=>[		result(
+					function($ver)
+					{
+						return substr_count($ver, ".") > 1 AND substr($ver,0,1) !== "0";
+					}
+											)]
+];
 foreach
 (
 	[
