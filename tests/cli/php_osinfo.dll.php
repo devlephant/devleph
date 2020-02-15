@@ -8,14 +8,57 @@ if( !Loaded() )
 		);
 $Checks = 
 [
-"DiskTotal"	=>["c", result(">", 100)		],
-"DiskSerial"=>["c", result("!=", "00000000")],
+"DiskTotal"	=>["c", result(">", 1000)		 ],
+"DiskSerial"=>["c", result("!=", "00000000") ],
+"DiskFree"	=>["c", result(">", 1000)		 ],
 "DotNet"	=>[		result(
 					function($ver)
 					{
 						return substr_count($ver, ".") > 1 AND substr($ver,0,1) !== "0";
 					}
-											)]
+											)],
+"IsNt"		=>[		result("type", "boolean")],
+"Winver"	=>[		result(
+					function($ver)
+					{
+						return (double)$ver > 2;
+					}
+											)],
+"DOSVer"	=>[		result(
+					function($ver)
+					{
+						return (float)$ver > 10;
+					}
+											)],
+"Memory"	=>[2,	result(">", 1000)		 ],
+"IsAdmin"	=>[		result("type", "boolean")],
+"MacAddress"=>[		result(
+					function($v)
+					{
+						return
+							substr_count($v, "-") == 5
+							AND
+							$v !== "00-00-00-00-00"
+							AND
+							$v !== "-----";
+					}
+											)],
+"DisplayDevice"=>[	result(
+					function($v)
+					{
+						return strlen($v) > 5;
+					}
+											)],
+"DriveType"		=>[ "c",
+					result("type", "double") ],
+"ComputerName"	=>[	result(
+					function($v)
+					{
+						return strlen($v) > 2;
+					}
+											)],
+"UserName"		=>&$Checks["ComputerName"],
+"SysLang"		=>[	result("type", "string") ],
 ];
 foreach
 (

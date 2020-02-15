@@ -805,6 +805,7 @@ class Check
 		"??"=>12,
 		"is"=>13,
 		""=>14,
+		"type"=>14,
 		"typeof"=>14,
 		"sub"=>15,
 		"range"=>16,

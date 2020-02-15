@@ -28,6 +28,76 @@ array(1) {
 Function osinfo_DotNet result comparison result: 
 4.0.30319 is  correct
 
+Calling function "Function osinfo_IsNt" with parameters:
+array(1) {
+  [0]=>
+  &object(Result)#17 (3) {
+    ["type"]=>
+    int(14)
+    ["value"]=>
+    string(7) "boolean"
+    ["CallFunc":protected]=>
+    NULL
+  }
+}
+
+Function osinfo_IsNt result comparison result: 
+1 is  the same type as boolean type
+
+Calling function "Function osinfo_DOSVer" with parameters:
+array(1) {
+  [0]=>
+  &object(Result)#21 (3) {
+    ["type"]=>
+    int(-1)
+    ["value"]=>
+    NULL
+    ["CallFunc":protected]=>
+    object(Closure)#20 (2) {
+      ["this"]=>
+      object(ITests)#10 (2) {
+        ["_t":protected]=>
+        NULL
+        ["NoAdded":protected]=>
+        NULL
+      }
+      ["parameter"]=>
+      array(1) {
+        ["$ver"]=>
+        string(10) "<required>"
+      }
+    }
+  }
+}
+
+Function osinfo_DOSVer result comparison result: 
+37.128 is  correct
+
+Calling function "Function osinfo_Memory" with parameters:
+array(1) {
+  [0]=>
+  &int(2)
+}
+
+Function osinfo_Memory result comparison result: 
+946704384 is  greater than 1000
+
+Calling function "Function osinfo_IsAdmin" with parameters:
+array(1) {
+  [0]=>
+  &object(Result)#23 (3) {
+    ["type"]=>
+    int(14)
+    ["value"]=>
+    string(7) "boolean"
+    ["CallFunc":protected]=>
+    NULL
+  }
+}
+
+Function osinfo_IsAdmin result comparison result: 
+1 is  the same type as boolean type
+
 Calling function "Function osinfo_DiskSerial" with parameters:
 array(1) {
   [0]=>
@@ -44,5 +114,126 @@ array(1) {
 }
 
 Function osinfo_DiskTotal result comparison result: 
-249504460800 is  greater than 100
+249504460800 is  greater than 1000
+
+Calling function "Function osinfo_DiskFree" with parameters:
+array(1) {
+  [0]=>
+  &string(1) "c"
+}
+
+Function osinfo_DiskFree result comparison result: 
+20083675136 is  greater than 1000
+
+Calling function "Function osinfo_MacAddress" with parameters:
+array(1) {
+  [0]=>
+  &object(Result)#25 (3) {
+    ["type"]=>
+    int(-1)
+    ["value"]=>
+    NULL
+    ["CallFunc":protected]=>
+    object(Closure)#24 (2) {
+      ["this"]=>
+      object(ITests)#10 (2) {
+        ["_t":protected]=>
+        NULL
+        ["NoAdded":protected]=>
+        NULL
+      }
+      ["parameter"]=>
+      array(1) {
+        ["$v"]=>
+        string(10) "<required>"
+      }
+    }
+  }
+}
+
+Function osinfo_MacAddress result comparison result: 
+3C-F8-62-B6-E5-BD is  correct
+
+Calling function "Function osinfo_DisplayDevice" with parameters:
+array(1) {
+  [0]=>
+  &object(Result)#27 (3) {
+    ["type"]=>
+    int(-1)
+    ["value"]=>
+    NULL
+    ["CallFunc":protected]=>
+    object(Closure)#26 (2) {
+      ["this"]=>
+      object(ITests)#10 (2) {
+        ["_t":protected]=>
+        NULL
+        ["NoAdded":protected]=>
+        NULL
+      }
+      ["parameter"]=>
+      array(1) {
+        ["$v"]=>
+        string(10) "<required>"
+      }
+    }
+  }
+}
+
+Function osinfo_DisplayDevice result comparison result: 
+Intel(R) HD Graphics is  correct
+
+Calling function "Function osinfo_DriveType" with parameters:
+array(1) {
+  [0]=>
+  &string(1) "c"
+}
+
+Function osinfo_DriveType result comparison result: 
+1 is  the same type as double type
+
+Calling function "Function osinfo_ComputerName" with parameters:
+array(1) {
+  [0]=>
+  &object(Result)#30 (3) {
+    ["type"]=>
+    int(-1)
+    ["value"]=>
+    NULL
+    ["CallFunc":protected]=>
+    object(Closure)#29 (2) {
+      ["this"]=>
+      object(ITests)#10 (2) {
+        ["_t":protected]=>
+        NULL
+        ["NoAdded":protected]=>
+        NULL
+      }
+      ["parameter"]=>
+      array(1) {
+        ["$v"]=>
+        string(10) "<required>"
+      }
+    }
+  }
+}
+
+Function osinfo_ComputerName result comparison result: 
+CDSTRIKE is  correct
+
+Calling function "Function osinfo_SysLang" with parameters:
+array(1) {
+  [0]=>
+  &object(Result)#31 (3) {
+    ["type"]=>
+    int(14)
+    ["value"]=>
+    string(6) "string"
+    ["CallFunc":protected]=>
+    NULL
+  }
+}
+
+Function osinfo_SysLang result comparison result: 
+UKR is  the same type as string type
 PHP_OSINFO => OK
