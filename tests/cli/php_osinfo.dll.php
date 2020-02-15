@@ -59,6 +59,7 @@ $Checks =
 											)],
 "UserName"		=>&$Checks["ComputerName"],
 "SysLang"		=>[	result("type", "string") ],
+//get, Locale
 ];
 foreach
 (
