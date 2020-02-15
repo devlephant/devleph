@@ -10,10 +10,10 @@ class TestUnit
 	public static $LogHandler = STDOUT; //Doesn't work until launch with -t parameter
 	
 	public static $CALLING = "Calling function \"%s\" with parameters:" . PHP_EOL . "%s";
-	public static $CMP_RESULT = "Comparison result: %s";
-	public static $ARG_CMP_RESULT = "Argument comparison result: %s";
-	public static $FUNC_CMP_RESULT = "%s result comparison result: %s";
-	public static $FUNC_ARG_CMP_RESULT = "%s argument comparison result: %s" . PHP_EOL . "Arguments before: %s" . PHP_EOL . "Arguments after: %s"; 
+	public static $CMP_RESULT = "Comparison result: " . PHP_EOL . "%s";
+	public static $ARG_CMP_RESULT = "Argument comparison result: " . PHP_EOL . "%s";
+	public static $FUNC_CMP_RESULT = "%s result comparison result: " . PHP_EOL . "%s";
+	public static $FUNC_ARG_CMP_RESULT = "%s argument comparison result: " . PHP_EOL . "%s" . PHP_EOL . "Arguments before: %s" . PHP_EOL . "Arguments after: %s"; 
 	
 	public static $IS_NOT_CALLABLE = "%s is not callable!";
 	public static $FUNCTION_DNE = "Function \"%s\" does not exists!";
@@ -413,7 +413,7 @@ class TestUnit
 	}
 	public static function DoCmpRes($result, Check $check, $argsout,  $funcname=Null, $argsin=Null)
 	{
-		$s = Self::${( $funcname!==null? "FUNC_": "" ) . ( is_subclass_of($check, "Arg")? "ARG_": "" ) . "CMP_RESULT"};
+		$s = Self::${( $funcname!==null? "FUNC_": "" ) . ( is_subclass_of($check, "Arg")? "ARG_": "" ) . "CMP_RESULT"} . PHP_EOL;
 		$cmpres = $check->ToStr($result, (is_subclass_of($check, "Arg")? $argsout[$check->Position]: $argsout));
 		if($funcname !== null )
 		{
@@ -855,14 +855,14 @@ class Check
 	{
 		$false = $res==false? "not": "";
 		$true = $res==false? "": "not";
-		$s = ( strpos(Self::$strings[$this->type], "%not")==false? "%1 is $false ": "%1 is" ) . Self::$strings[$this->type];
+		$s = ( stripos(Self::$strings[$this->type], "%not")==false? "%1 is $false ": "%1 is" ) . Self::$strings[$this->type];
 		if( strpos($s, "%{") !== false )
 			{
 				$ss = substr($s, strpos($s, "%{")+2);
 				$ss = substr($ss, 0, strpos($ss, "}"));
 				$s = str_replace("%{" . $ss . "}", explode(",",$ss)[(int)$res!==false], $s);
 			}
-		return str_replace(["%not", "%res", "%!not", "%1", "%"],[$false,$res,$true,print_r($v,true),print_r($this->value,true)],
+		return str_ireplace(["%not", "%res", "%!not", "%1", "%"],[$false,$res,$true,print_r($v,true),print_r($this->value,true)],
 			$s);
 	}
 	public static final function GetComparators()

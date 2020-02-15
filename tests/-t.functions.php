@@ -19,6 +19,7 @@ class Unit
 	public $TypedEvents;
 	public $NotifyEvents;
 	
+	public $errors = 0;
 	public $name;
 	protected $_type;
 	#public $type;
@@ -1152,6 +1153,21 @@ function o($name)
 	}
 }
 /*-- Routines --*/
+function InArray(  Check $CompFunc, $el, $array )
+{
+	if( $CompFunc->type == 11 )
+		return count($array) > 0;
+	
+	foreach( $array as &$element )
+		if( $CompFunc->Execute($element) );
+		return TRUE;
+}
+
+function ArrayContains( Check $CompFunc, $array, $el=nil )
+{
+	return InArray($el, $array);
+}
+
 function startswith($str, $start, $IgnoreCase = false)
 {
 	
@@ -1406,6 +1422,12 @@ function ExistFunc($func)
 	return is_callable($func);
 }
 /* -- Logging -- */
+function asCaption( $text, $t = 5 )
+{
+	if( is_string($t) )
+		$t = floor(( strlen($t) - strlen($text) )/ 2);
+	return str_repeat("#", $t) . $text . str_repeat("#", $t);
+}
 function Fault( $text, ...$e )
 {
 	if( count($e) > 0 )
@@ -1413,9 +1435,14 @@ function Fault( $text, ...$e )
 	Out($text);
 	Halt();
 }
+function Fatal( $text, ...$e )
+{
+	Fault($text, ...$e);
+}
 
 function Fail( $text, ...$e )
 {
+	$unit->errors++;
 	if( count($e) > 0 )
 		$text = sprintf($text, $e);
 	
@@ -1433,9 +1460,9 @@ function Input( $t, $def = "" )
 	return In($t, $def);
 }
 
-function Output(...$t)
+function Output($t)
 {
-	return Out(...$t);
+	return Out($t.PHP_EOL);
 }
 
 /* ----- Events ----- */
