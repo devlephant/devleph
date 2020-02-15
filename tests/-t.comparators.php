@@ -774,12 +774,11 @@ class ITests
 		{
 			if( !is_object($unit) )
 				$unit = new Unit;
-			
+			$unit->clear();
 			UnitName( substr(BaseName($s), 0, strlen(BaseName($s)) - strlen($ext) - 1) );
 			include_once( $s );
 		}
-		$unit->name = '';
-		$unit->type = type::UNDEF;
+		$unit->clear();
 	}
 }
 /*SKELETON*/
@@ -787,6 +786,8 @@ class Check
 {
 	public $type;
 	public $value;
+	public $Mod;
+	
 	protected static $types = 
 	[
 		"="=>0,
@@ -821,6 +822,9 @@ class Check
 		"cmp"=>18,
 		"!"=>19,
 		"!!"=>20,
+		"fmt"=>21,
+		"format"=>21,
+		"regex"=>21,
 		//dyn
 		"<=>"=>22,
 		"!<=>"=>23,
@@ -895,6 +899,9 @@ class Check
 	
 	public function Execute( &$in )
 	{
+		if( isSet($this->Mod) )
+			$in = call_user_func($this->Mod, $in);
+		
 		if( $this->type == -1 )
 		{
 			return isSet($this->CallFunc)? call_user_func($this->CallFunc, $in): FALSE;
@@ -1040,6 +1047,9 @@ class Check
 		
 		if( $this->type == 20 )
 			return !isSet($in);
+		
+		if( $this->type == 21 )
+			return preg_match($this->value, $in);
 		
 		if( $this->type == count(SELF::$types)-2 )
 		{

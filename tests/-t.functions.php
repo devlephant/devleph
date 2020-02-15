@@ -69,6 +69,13 @@ class Unit
 		return $this->_instance;
 	}
 	
+	public function clear()
+	{
+		$this->name = '';
+		$this->type = type::UNDEF;
+		$this->errors = 0;
+	}
+	
 	public function __set($name, $value)
 	{
 		if( StrToLower($name) == "type" )
