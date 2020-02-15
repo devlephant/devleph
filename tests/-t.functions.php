@@ -1165,7 +1165,7 @@ function InArray(  Check $CompFunc, $el, $array )
 
 function ArrayContains( Check $CompFunc, $array, $el=nil )
 {
-	return InArray($el, $array);
+	return InArray($CompFunc, $el, $array);
 }
 
 function startswith($str, $start, $IgnoreCase = false)
