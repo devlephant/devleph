@@ -3,9 +3,8 @@
 [❚❚❚❚❚❚⫴⫴⫴⫴]
 
 Autors:<br>
-Dmitriy Zaycev(Dim-S), Vladislav Shinkaruk(lonadels), Andrew Zenin(cashacat, Andrewz, Leau), Dmitriy Alderti(gignorie), 
-<br>Alexander Kobozev([s]Alex, SAL), Vyascheslav Novikov(manofjoe), Andrew Ivanov(tawero, suic1de)
-<br> and Rostislav Romanov(em_soft)
+Dmitriy Zaycev(Dim-S), Vladislav Shinkaruk(lonadelsie), Lev Zenin(iFurera, MechFuhrer, ResistanceLion, mvsxNxm, Pain), Dmitry Alderti(gignorie), 
+<br>Alexander Kobozev([s]Alex, SAL, SoundAlex), Vyascheslav Novikov(Manofjoe), Andrey Djigarhanyan(Tawero, Suic1de), Artem Ukolov (mstudiodad) 
 
 This product includes PHP software, freely available from http://www.php.net/software/
 
