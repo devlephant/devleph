@@ -328,8 +328,8 @@ class OProperty
 		
 		if( property_exists($this->class, $this->name) )
 			return True;
-		$c = $this->class;
-		return isSet( $c::${ $this->name } );
+		
+		return $this->Is_Set;
 	}
 	
 	public function Is_Set()
@@ -1231,6 +1231,11 @@ function UnitName( $UName, $type = type::UNDEF, $defInstance = false)
 		$unit->SetInstance($defInstance);
 }
 
+function SubTest(array $test)
+{
+	
+}
+
 function Loaded($UName = null)
 {
 	global $unit;
@@ -1387,8 +1392,10 @@ function cmp(...$args)
 			return new MultiCheck(...$args);
 	}
 	if( $ct == 3 )
-		return (new Check($args[0], $args[1]))->Execute($args[2]);
-	
+	{
+		$res = is_string($args[0])?new Check($args[0],$args[1]):new Check($args[1], $args[0]);
+		return $res->Execute($args[2]);
+	}
 	return new Check();
 }
 
@@ -1427,6 +1434,11 @@ function ExistFunc($func)
 		if( class_exists($unit->name, FALSE) )
 			return is_callable( $unit->GetClassFunc($func) );
 	return is_callable($func);
+}
+
+function ExistsFunc($func)
+{
+	return ExistFunc($func);
 }
 /* -- Logging -- */
 function asCaption( $text, $t = 5 )
@@ -1468,9 +1480,9 @@ function Input( $t, $def = "" )
 	return In($t, $def);
 }
 
-function Output($t)
+function Output($t, ...$e)
 {
-	return Out($t.PHP_EOL);
+	return Out( (count($e)>0?sprintf($t,$e):$t).PHP_EOL);
 }
 
 /* ----- Events ----- */
