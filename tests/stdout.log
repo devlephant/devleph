@@ -1,14 +1,25 @@
 
+Calling function "Function clipboard_SetText" with parameters:
+array(1) {
+  [0]=>
+  &string(34) "Is it Unicode?🐆🐆🐆🐆🐆"
+}
+
+Function clipboard_SetText result comparison result: 
+ is not correct
+Embed~Clipboard => WRONG
 Calling function "Function osinfo_DotNet" with parameters:
 array(1) {
   [0]=>
-  &object(Result)#15 (3) {
+  &object(Result)#18 (4) {
     ["type"]=>
     int(-1)
     ["value"]=>
     NULL
+    ["Mod"]=>
+    NULL
     ["CallFunc":protected]=>
-    object(Closure)#14 (2) {
+    object(Closure)#17 (2) {
       ["this"]=>
       object(ITests)#10 (2) {
         ["_t":protected]=>
@@ -31,11 +42,13 @@ Function osinfo_DotNet result comparison result:
 Calling function "Function osinfo_IsNt" with parameters:
 array(1) {
   [0]=>
-  &object(Result)#17 (3) {
+  &object(Result)#19 (4) {
     ["type"]=>
     int(14)
     ["value"]=>
     string(7) "boolean"
+    ["Mod"]=>
+    NULL
     ["CallFunc":protected]=>
     NULL
   }
@@ -47,13 +60,15 @@ Function osinfo_IsNt result comparison result:
 Calling function "Function osinfo_DOSVer" with parameters:
 array(1) {
   [0]=>
-  &object(Result)#21 (3) {
+  &object(Result)#23 (4) {
     ["type"]=>
     int(-1)
     ["value"]=>
     NULL
+    ["Mod"]=>
+    NULL
     ["CallFunc":protected]=>
-    object(Closure)#20 (2) {
+    object(Closure)#22 (2) {
       ["this"]=>
       object(ITests)#10 (2) {
         ["_t":protected]=>
@@ -80,16 +95,18 @@ array(1) {
 }
 
 Function osinfo_Memory result comparison result: 
-946704384 is  greater than 1000
+2175737856 is  greater than 1000
 
 Calling function "Function osinfo_IsAdmin" with parameters:
 array(1) {
   [0]=>
-  &object(Result)#23 (3) {
+  &object(Result)#25 (4) {
     ["type"]=>
     int(14)
     ["value"]=>
     string(7) "boolean"
+    ["Mod"]=>
+    NULL
     ["CallFunc":protected]=>
     NULL
   }
@@ -123,18 +140,20 @@ array(1) {
 }
 
 Function osinfo_DiskFree result comparison result: 
-20083675136 is  greater than 1000
+12851183616 is  greater than 1000
 
 Calling function "Function osinfo_MacAddress" with parameters:
 array(1) {
   [0]=>
-  &object(Result)#25 (3) {
+  &object(Result)#27 (4) {
     ["type"]=>
     int(-1)
     ["value"]=>
     NULL
+    ["Mod"]=>
+    NULL
     ["CallFunc":protected]=>
-    object(Closure)#24 (2) {
+    object(Closure)#26 (2) {
       ["this"]=>
       object(ITests)#10 (2) {
         ["_t":protected]=>
@@ -157,13 +176,15 @@ Function osinfo_MacAddress result comparison result:
 Calling function "Function osinfo_DisplayDevice" with parameters:
 array(1) {
   [0]=>
-  &object(Result)#27 (3) {
+  &object(Result)#29 (4) {
     ["type"]=>
     int(-1)
     ["value"]=>
     NULL
+    ["Mod"]=>
+    NULL
     ["CallFunc":protected]=>
-    object(Closure)#26 (2) {
+    object(Closure)#28 (2) {
       ["this"]=>
       object(ITests)#10 (2) {
         ["_t":protected]=>
@@ -195,13 +216,15 @@ Function osinfo_DriveType result comparison result:
 Calling function "Function osinfo_ComputerName" with parameters:
 array(1) {
   [0]=>
-  &object(Result)#30 (3) {
+  &object(Result)#32 (4) {
     ["type"]=>
     int(-1)
     ["value"]=>
     NULL
+    ["Mod"]=>
+    NULL
     ["CallFunc":protected]=>
-    object(Closure)#29 (2) {
+    object(Closure)#31 (2) {
       ["this"]=>
       object(ITests)#10 (2) {
         ["_t":protected]=>
@@ -224,11 +247,13 @@ CDSTRIKE is  correct
 Calling function "Function osinfo_SysLang" with parameters:
 array(1) {
   [0]=>
-  &object(Result)#31 (3) {
+  &object(Result)#33 (4) {
     ["type"]=>
     int(14)
     ["value"]=>
     string(6) "string"
+    ["Mod"]=>
+    NULL
     ["CallFunc":protected]=>
     NULL
   }
