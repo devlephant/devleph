@@ -1,7 +1,7 @@
 ﻿# Stats
 61% complete :heavy_check_mark:
-Project is currently abandoned
 [❚❚❚❚❚❚⫴⫴⫴⫴]
+<br>**Project is abandoned**
 
 This product includes PHP software, freely available from http://www.php.net/software/
 
