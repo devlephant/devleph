@@ -12,8 +12,7 @@ This product includes PHP software, freely available from http://www.php.net/sof
 <br>12.7Mb (zipped)
 <br>30Mb (on a disk)
 <br><a href="https://github.com/KashaketCompany/Dev-S/releases">Changelog</a>
-<br><a href="https://github.com/KashaketCompany/Dev-S-Exts">Additional Extensions</a>
-<br><a href="https://vk.com/kashaket">Project Group(VK)</a>
+
 ## ShortScript
 PHP 5.6.40 (5.3.x - 5.6.x Support)
 
