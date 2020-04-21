@@ -17,9 +17,7 @@ This product includes PHP software, freely available from http://www.php.net/sof
 ## ShortScript
 PHP 5.6.40 (5.3.x - 5.6.x Support)
 
-Chromium 69.0.3 (Flash, Javascript, HTML5 native support)
-
-Unicode partially support (will be full as soon as possible)
+Unicode partial upport (Inspector is unfamiliar with that)
 
 <a href="/readme/EN.md"> English </a>
 
