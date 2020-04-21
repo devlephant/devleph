@@ -1,10 +1,7 @@
 ﻿# Stats
-60% complete :heavy_check_mark:
+61% complete :heavy_check_mark:
+Project is currently abandoned
 [❚❚❚❚❚❚⫴⫴⫴⫴]
-
-Autors:<br>
-Dmitriy Zaycev(Dim-S), Vladislav Shinkaruk(lonadelsie), Lev Zenin(iFurera, MechFuhrer, ResistanceLion, mvsxMn, Pain), Dmitry Alberti(gignorie), 
-<br>Alexander Kobozev([s]Alex, SAL, SoundAlex), Vyascheslav Novikov(Manofjoe), Andrey Djigarhanyan(Tawero, Suic1de), Artem Ukolov (mstudiodad) 
 
 This product includes PHP software, freely available from http://www.php.net/software/
 
