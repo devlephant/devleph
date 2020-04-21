@@ -2,7 +2,7 @@
 
 Just download, unpack it, and run Launcher.exe to proceed :)
 
-Compatible SoulEngine Version Can Be Found -> <a href="https://github.com/suwermave/soulengine>HERE</a>
+Compatible SoulEngine Version Can Be Found -> <a href="https://github.com/suwermave/soulengine">HERE</a>
 
 Added debug launch via bat-cmd, if you don't like to use this way, just create link (*.lnk) with parameter -debug.
 Note: This feature was added firstly in Dev-S 3.0.2 Beta
