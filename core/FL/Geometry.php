@@ -7,7 +7,7 @@
 |	Date Modified: 14 August 2019 year										  |
 |	Time:	19:34 (Ua)														  |
 |	Autors:																	  |
-|															Andrew Zenin	  |
+|	Andrew Ivanov, Lev Zenin											  |
 |																			  |
 \*----------------------------------------------------------------------------/
 |
