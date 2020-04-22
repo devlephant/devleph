@@ -10,8 +10,8 @@
 	function strins($string, $position, $content){
 		return substr($string, 0, $position) . $content . substr($string, $position);
 	}
-			///////////////////////////
-			// Creator: Andrew Zenin //
+			/////////////////////////////
+			// Creator: Andrew Ivanov //
 			///////////////////////////
 function parent_get_prop_all($obj, $prop){
     $arr = [];
