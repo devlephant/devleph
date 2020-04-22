@@ -69,7 +69,7 @@ object fmAbout: TfmAbout
     Width = 72
     Height = 13
     Cursor = crHandPoint
-    Caption = 'Andrew Zenin'
+    Caption = 'Dmitriy Alderti'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = 0
   end
@@ -153,7 +153,7 @@ object fmAbout: TfmAbout
     Width = 97
     Height = 18
     Cursor = crHandPoint
-    Caption = 'Andrew Zenin'
+    Caption = 'Andrew Ivanov'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = 0
     Transparent = True
