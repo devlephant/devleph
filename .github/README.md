@@ -1,10 +1,11 @@
-![devleph](https://user-images.githubusercontent.com/50447661/92180622-2b54e600-ee50-11ea-985b-90f202114404.png)
+<img src="https://raw.githubusercontent.com/suwermave/bootstrap/fef42a6ef74d4a843c10f94405ef9328a95580a4/DEVLEPH%20LOGO.svg" height="46">
 
 #
 
 💻 Compact and extensible PHP IDE for desktop applications featuring:
 
-<img align="right" src="https://raw.githubusercontent.com/" height="280">
+<img align="right" src="https://github.com/suwermave/storedimages/blob/3ca86e040895cb91b6cefd5690f8c6dae862eecb/devleph%20screenshot.png" height="280">
+ 
  
 - An actual PHP 5.6 out of the box
 - <a href="https://smth.com/">Plenty example projects</a>
