@@ -1,10 +1,10 @@
-<img src="https://raw.githubusercontent.com/suwermave/bootstrap/fef42a6ef74d4a843c10f94405ef9328a95580a4/DEVLEPH%20LOGO.svg" height="46">
+<img src="https://raw.githubusercontent.com/devlephant/deslgn/fd46bc1236e44dde001d282809a72f99389b50dd/DEVLEPH%20LOGO.svg?token=AMA4KLP25B5XIOCY3URRVGC7M63M2" height="46">
 
 #
 
 💻 Compact and extensible PHP IDE for desktop applications featuring:
 
-<img align="right" src="https://github.com/suwermave/storedimages/blob/3ca86e040895cb91b6cefd5690f8c6dae862eecb/devleph%20screenshot.png" height="280">
+<img align="right" src="https://raw.githubusercontent.com/devlephant/deslgn/master/devleph%20screenshot.png?token=AMA4KLOC2KDX7RKUBWFYFB27M63QG" height="280">
  
  
 - An actual PHP 5.6 out of the box
