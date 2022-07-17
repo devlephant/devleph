@@ -518,6 +518,28 @@ object fmPHPEditor: TfmPHPEditor
       Height = 23
       Shape = bsLeftLine
     end
+	object opt_saveTabs: TComboBox
+      Left = 197
+      Top = 4
+      Width = 112
+      Height = 23
+      Hint = '{When changing the tab, what to do?}'
+      HelpType = htKeyword
+      HelpKeyword = 
+        'AAAAAhQCEQVDTEFTUxEJVENvbWJvQm94EQZQQVJBTVMUCBEIYXZpc2libGUFEQhh' +
+        'ZW5hYmxlZAURAXcMQFoAAAAAAAARAWgMAAAAAAAAAAARC29ubW91c2Vkb3duERZt' +
+        'eURlc2lnbjo6b2JqTW91c2VEb3duEQF5EQE0EQF4EQMxOTcRCmJldmVsd2lkdGgR' +
+        'ATA='
+      ItemIndex = 0
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 0
+      Text = '{Save with asking}'
+      Items.Strings = (
+        '{Save with asking}'
+        '{Save without asking}'
+        '{Don'#39't save}')
+    end
 
 
   end

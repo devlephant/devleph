@@ -18,7 +18,10 @@ class ev_fmPHPEditor_tlOk{
 	static function onClick($self){
 		global $phpeditorClosing, $lastStringSelStart, $myEvents;
 		myComplete::saveCode();
-			$event = c('fmPHPEditor')->event;
+			//$event = c('fmPHPEditor')->event;
+			$eventList = c('fmPropsAndEvents->eventList');
+			$eventTabs = c('fmPHPEditor->eventTabs');
+			$event = $eventList->events[$eventTabs->TabIndex];
 			$name  = $myEvents->selObj instanceof TForm ? '--fmedit' : $myEvents->selObj->name;
 			$tx = c("fmPHPEditor->memo");
 			eventEngine::setEvent($name, $event, $tx->text);
@@ -54,9 +57,12 @@ class evfmPHPEditor {
 	static function onCloseQuery($self, &$canClose)
 	{
 		global $phpeditorClosing, $showComplete, $showHint, $lastStringSelStart, $myEvents, $cancel;
-		$event = c('fmPHPEditor')->event;
+		//$event = c('fmPHPEditor')->event;
+		$eventList = c('fmPropsAndEvents->eventList');
+		$eventTabs = c('fmPHPEditor->eventTabs');
+		$event = $eventList->events[$eventTabs->TabIndex];
 		$name  = $myEvents->selObj instanceof TForm ? '--fmedit' : $myEvents->selObj->name;
-		$evt_schange = $phpeditorClosing? true: md5( str_replace(array(" ", "\t", "\r", "\n"), "", eventEngine::getEvent($name, $event)) )!== md5( str_replace(array(" ", "\t", "\r", "\n"), "", c('fmPHPEditor->memo')->text ) );
+		$evt_schange = md5( str_replace(array(" ", "\t", "\r", "\n"), "", eventEngine::getEvent($name, $event)) )!== md5( str_replace(array(" ", "\t", "\r", "\n"), "", c('fmPHPEditor->memo')->text ) );
 		if( !$evt_schange && !$phpeditorClosing )
 		{
 			$phpeditorClosing = 1;
@@ -607,7 +613,15 @@ class ev_fmPHPEditor_it_tabs {
 	{
 		$self = c($self);
 		$self->checked = !$self->checked;
-		c("fmPHPEditor->eventTabs")->visible = $self->checked;
+		c('fmPHPEditor->opt_saveTabs')->visible = c("fmPHPEditor->eventTabs")->visible = $self->checked;
+		myOptions::set('code', 'vis_tabs', (int)$self->checked);
+	}
+}
+
+class ev_fmPHPEditor_opt_saveTabs {
+	static function onSelect($self)
+	{
+		myOptions::set('code', 'savemode', (int)c('fmPHPEditor->opt_saveTabs')->itemIndex);
 	}
 }
 
@@ -633,25 +647,34 @@ class ev_fmPHPEditor_eventTabs {
 			return;
 		}
 		
-		$eventTabs->last_index = $eventTabs->TabIndex;
-		
 		$name = $myEvents->selObj instanceof TForm ? '--fmedit' : $myEvents->selObj->name;
-		$event  = $eventList->events[$eventTabs->TabIndex];
-		
-		if($save){
+		$event = $eventList->events[$eventTabs->TabIndex];
+		$event_last = $eventList->events[$eventTabs->last_index];
+		$evt_schange = md5( str_replace(array(" ", "\t", "\r", "\n"), "", eventEngine::getEvent($name, $event_last)) ) == md5( str_replace(array(" ", "\t", "\r", "\n"), "", $php_memo->text ) );
+
+		if( !$evt_schange and !$phpeditorClosing and c('fmPHPEditor->tlCancel')->enabled and $save == 0 and $msg = messageBox(t('All unsaved changes in the code will be lost. Do you want to save the code before closing?'), t('Closing the Event Tab'), MB_ICONWARNING + MB_YESNOCANCEL)){
+			
+			if($msg == mrYes){
+				myComplete::saveCode();
+				eventEngine::setEvent($name, $event_last, $php_memo->text);
+				$lastStringSelStart[$name][$event_last]['x'] =  $php_memo->caretX;
+				$lastStringSelStart[$name][$event_last]['y'] =  $php_memo->caretY;
+			} elseif($msg == mrCancel) {
+				$eventTabs->TabIndex = $eventTabs->last_index;
+				return;
+			}
+		} elseif(!$evt_schange and !$phpeditorClosing and c('fmPHPEditor->tlCancel')->enabled and $save == 1){
 			myComplete::saveCode();
-			$tx = c("fmPHPEditor->memo");
-			eventEngine::setEvent($name, $event, $tx->text);
-			$lastStringSelStart[$name][$event]['x'] =  $tx->caretX;
-			$lastStringSelStart[$name][$event]['y'] =  $tx->caretY;
+			eventEngine::setEvent($name, $event_last, $php_memo->text);
+			$lastStringSelStart[$name][$event_last]['x'] =  $php_memo->caretX;
+			$lastStringSelStart[$name][$event_last]['y'] =  $php_memo->caretY;
 		}
 		
-		c('fmPHPEditor')->event = $event;
-		
-        $php_memo->text = eventEngine::getEvent($name, $event);
-        $ltight = str_replace('{', '', str_ireplace('event ', '', CApi::getStringEventInfo($event, $myEvents->selObj->className) ) );
-        $x_name = $myEvents->selObj->name == 'fmEdit' ? $_FORMS[$formSelected] : $myEvents->selObj->name;
-        c('fmPHPEditor')->text = t('php_script_editor').' -> '.$x_name.'::'.$ltight;
+		$eventTabs->last_index = $eventTabs->TabIndex;
+		$php_memo->text = eventEngine::getEvent($name, $event);
+		$ltight = str_replace('{', '', str_ireplace('event ', '', CApi::getStringEventInfo($event, $myEvents->selObj->className) ) );
+		$x_name = $myEvents->selObj->name == 'fmEdit' ? $_FORMS[$formSelected] : $myEvents->selObj->name;
+		c('fmPHPEditor')->text = t('php_script_editor').' -> '.$x_name.'::'.$ltight;
 	}
 }
 
