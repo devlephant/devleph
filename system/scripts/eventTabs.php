@@ -21,6 +21,8 @@ function eventTabs_show(){
 		$eventTabs = c('fmPHPEditor->eventTabs');
 		$eventTabs->popupMenu = c('fmMain->edt_EventTypes->popupMenu');
 		$php_memo = c('fmPHPEditor->memo');
+		c('fmPHPEditor->opt_saveTabs')->itemIndex = myOptions::get('code', 'savemode', 0);
+		c('fmPHPEditor->opt_saveTabs')->visible = c("fmPHPEditor->eventTabs")->visible = c("fmPHPEditor->it_tabs")->checked = (bool)myOptions::get('code', 'vis_tabs', 1);
 		
 		$name = $myEvents->selObj instanceof TForm ? '--fmedit' : $myEvents->selObj->name;
 		$event  = $eventList->events[$eventList->itemIndex];
